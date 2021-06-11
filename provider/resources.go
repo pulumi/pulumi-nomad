@@ -12,27 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package xyz
+package nomad
 
 import (
 	"fmt"
 	"path/filepath"
 	"unicode"
 
-	"github.com/pulumi/pulumi-xyz/provider/pkg/version"
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-provider-nomad/nomad"
+	"github.com/pulumi/pulumi-nomad/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/terraform-providers/terraform-provider-xyz/xyz"
 )
 
 // all of the token components used below.
 const (
 	// packages:
-	mainPkg = "xyz"
+	mainPkg = "nomad"
 	// modules:
 	mainMod = "index" // the y module
 )
@@ -77,63 +75,56 @@ func stringValue(vars resource.PropertyMap, prop resource.PropertyKey) string {
 	return ""
 }
 
-// preConfigureCallback is called before the providerConfigure function of the underlying provider.
-// It should validate that the provider can be configured, and provide actionable errors in the case
-// it cannot be. Configuration variables can be read from `vars` using the `stringValue` function -
-// for example `stringValue(vars, "accessKey")`.
-func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) error {
-	return nil
-}
-
 // managedByPulumi is a default used for some managed resources, in the absence of something more meaningful.
 var managedByPulumi = &tfbridge.DefaultInfo{Value: "Managed by Pulumi"}
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(xyz.Provider().(*schema.Provider))
+	p := shimv1.NewProvider(nomad.Provider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:           p,
-		Name:        "xyz",
-		Description: "A Pulumi package for creating and managing xyz cloud resources.",
-		Keywords:    []string{"pulumi", "xyz"},
+		Name:        "nomad",
+		Description: "A Pulumi package for creating and managing nomad cloud resources.",
+		Keywords:    []string{"pulumi", "nomad"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-xyz",
-		Config:      map[string]*tfbridge.SchemaInfo{
-			// Add any required configuration here, or remove the example below if
-			// no additional points are required.
-			// "region": {
-			// 	Type: makeType("region", "Region"),
-			// 	Default: &tfbridge.DefaultInfo{
-			// 		EnvVars: []string{"AWS_REGION", "AWS_DEFAULT_REGION"},
-			// 	},
-			// },
-		},
-		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. Two examples
-			// are below - the single line form is the common case. The multi-line form is
-			// needed only if you wish to override types or other default options.
-			//
-			// "aws_iam_role": {Tok: makeResource(mainMod, "IamRole")}
-			//
-			// "aws_acm_certificate": {
-			// 	Tok: makeResource(mainMod, "Certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: makeType(mainPkg, "Tags")},
-			// 	},
-			// },
+		GitHubOrg:   "hashicorp",
+		Repository:  "https://github.com/pulumi/pulumi-nomad",
+		Config:      map[string]*tfbridge.SchemaInfo{},
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"nomad_acl_policy":          {Tok: makeResource(mainMod, "AclPolicy")},
+			"nomad_acl_token":           {Tok: makeResource(mainMod, "AclToken")},
+			"nomad_external_volume":     {Tok: makeResource(mainMod, "ExternalVolume")},
+			"nomad_job":                 {Tok: makeResource(mainMod, "Job")},
+			"nomad_namespace":           {Tok: makeResource(mainMod, "Namespace")},
+			"nomad_quota_specification": {Tok: makeResource(mainMod, "QuoteSpecification")},
+			"nomad_sentinel_policy":     {Tok: makeResource(mainMod, "SentinelPolicy")},
+			"nomad_volume":              {Tok: makeResource(mainMod, "Volume")},
+			"nomad_scheduler_config":    {Tok: makeResource(mainMod, "SchedulerConfig")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
-			// "aws_ami": {Tok: makeDataSource(mainMod, "getAmi")},
+			"nomad_acl_policies":     {Tok: makeDataSource(mainMod, "getAclPolicies")},
+			"nomad_acl_policy":       {Tok: makeDataSource(mainMod, "getAclPolicy")},
+			"nomad_acl_token":        {Tok: makeDataSource(mainMod, "getAclToken")},
+			"nomad_acl_tokens":       {Tok: makeDataSource(mainMod, "getAclTokens")},
+			"nomad_datacenters":      {Tok: makeDataSource(mainMod, "getDatacenters")},
+			"nomad_deployments":      {Tok: makeDataSource(mainMod, "getDeployments")},
+			"nomad_job":              {Tok: makeDataSource(mainMod, "getJob")},
+			"nomad_job_parser":       {Tok: makeDataSource(mainMod, "getJobParser")},
+			"nomad_namespace":        {Tok: makeDataSource(mainMod, "getNamespace")},
+			"nomad_namespaces":       {Tok: makeDataSource(mainMod, "getNamespaces")},
+			"nomad_plugin":           {Tok: makeDataSource(mainMod, "getPlugin")},
+			"nomad_plugins":          {Tok: makeDataSource(mainMod, "getPlugins")},
+			"nomad_scaling_policies": {Tok: makeDataSource(mainMod, "getScalingPolicies")},
+			"nomad_scaling_policy":   {Tok: makeDataSource(mainMod, "getScalingPolicy")},
+			"nomad_scheduler_config": {Tok: makeDataSource(mainMod, "getSchedulerPolicy")},
+			"nomad_regions":          {Tok: makeDataSource(mainMod, "getRegions")},
+			"nomad_volumes":          {Tok: makeDataSource(mainMod, "getVolumes")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
-			// List any npm dependencies and their versions
 			Dependencies: map[string]string{
 				"@pulumi/pulumi": "^3.0.0",
 			},
@@ -141,13 +132,8 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			// See the documentation for tfbridge.OverlayInfo for how to lay out this
-			// section, or refer to the AWS provider. Delete this section if there are
-			// no overlay files.
-			//Overlay: &tfbridge.OverlayInfo{},
 		},
 		Python: &tfbridge.PythonInfo{
-			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},

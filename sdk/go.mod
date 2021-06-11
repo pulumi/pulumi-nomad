@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-xyz/sdk
+module github.com/pulumi/pulumi-nomad/sdk
 
 go 1.14
 

@@ -1,0 +1,3153 @@
+{
+    "name": "nomad",
+    "description": "A Pulumi package for creating and managing nomad cloud resources.",
+    "keywords": [
+        "pulumi",
+        "nomad"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`nomad` Terraform Provider](https://github.com/hashicorp/terraform-provider-nomad).",
+    "repository": "https://github.com/pulumi/pulumi-nomad",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {
+        "variables": {
+            "address": {
+                "type": "string",
+                "description": "URL of the root of the target Nomad agent.\n"
+            },
+            "caFile": {
+                "type": "string",
+                "description": "A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+            },
+            "caPem": {
+                "type": "string",
+                "description": "PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+            },
+            "certFile": {
+                "type": "string",
+                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+            },
+            "certPem": {
+                "type": "string",
+                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+            },
+            "consulToken": {
+                "type": "string",
+                "description": "Consul token to validate Consul Connect Service Identity policies specified in the job file.\n"
+            },
+            "headers": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/types/nomad:config/headers:headers"
+                },
+                "description": "The headers to send with each Nomad request.\n"
+            },
+            "httpAuth": {
+                "type": "string",
+                "description": "HTTP basic auth configuration.\n"
+            },
+            "keyFile": {
+                "type": "string",
+                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+            },
+            "keyPem": {
+                "type": "string",
+                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+            },
+            "region": {
+                "type": "string",
+                "description": "Region of the target Nomad agent.\n"
+            },
+            "secretId": {
+                "type": "string",
+                "description": "ACL token secret for API requests.\n"
+            },
+            "vaultToken": {
+                "type": "string",
+                "description": "Vault token if policies are specified in the job file.\n"
+            }
+        },
+        "defaults": [
+            "address"
+        ]
+    },
+    "types": {
+        "nomad:config/headers:headers": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "nomad:index/ExternalVolumeCapability:ExternalVolumeCapability": {
+            "properties": {
+                "accessMode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "attachmentMode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessMode",
+                "attachmentMode"
+            ]
+        },
+        "nomad:index/ExternalVolumeMountOptions:ExternalVolumeMountOptions": {
+            "properties": {
+                "fsType": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "mountFlags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "nomad:index/JobHcl2:JobHcl2": {
+            "properties": {
+                "allowFs": {
+                    "type": "boolean",
+                    "description": "`(boolean: false)` - Set this to `true` to be able to use\nHCL2 filesystem functions\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "`(boolean: false)` - Set this to `true` if your jobspec uses the HCL2\nformat instead of the default HCL.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "vars": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "nomad:index/JobTaskGroup:JobTaskGroup": {
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "meta": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tasks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/JobTaskGroupTask:JobTaskGroupTask"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "volumes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/JobTaskGroupVolume:JobTaskGroupVolume"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "count",
+                        "meta",
+                        "name",
+                        "tasks",
+                        "volumes"
+                    ]
+                }
+            }
+        },
+        "nomad:index/JobTaskGroupTask:JobTaskGroupTask": {
+            "properties": {
+                "driver": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "meta": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "volumeMounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/JobTaskGroupTaskVolumeMount:JobTaskGroupTaskVolumeMount"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "driver",
+                        "meta",
+                        "name",
+                        "volumeMounts"
+                    ]
+                }
+            }
+        },
+        "nomad:index/JobTaskGroupTaskVolumeMount:JobTaskGroupTaskVolumeMount": {
+            "properties": {
+                "destination": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "volume": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "destination",
+                        "readOnly",
+                        "volume"
+                    ]
+                }
+            }
+        },
+        "nomad:index/JobTaskGroupVolume:JobTaskGroupVolume": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "source": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "name",
+                        "readOnly",
+                        "source",
+                        "type"
+                    ]
+                }
+            }
+        },
+        "nomad:index/ProviderHeader:ProviderHeader": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "value": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": []
+                }
+            }
+        },
+        "nomad:index/QuoteSpecificationLimit:QuoteSpecificationLimit": {
+            "properties": {
+                "region": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The region these limits should apply to.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "regionLimit": {
+                    "$ref": "#/types/nomad:index/QuoteSpecificationLimitRegionLimit:QuoteSpecificationLimitRegionLimit",
+                    "description": "`(block: \u003crequired\u003e)` - The limits to enforce. This block\nmay only be specified once in the `limits` block. Its structure is\ndocumented below.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "region",
+                "regionLimit"
+            ]
+        },
+        "nomad:index/QuoteSpecificationLimitRegionLimit:QuoteSpecificationLimitRegionLimit": {
+            "properties": {
+                "cpu": {
+                    "type": "integer",
+                    "description": "`(int: 0)` - The amount of CPU to limit allocations to. A value of zero\nis treated as unlimited, and a negative value is treated as fully disallowed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "memoryMb": {
+                    "type": "integer",
+                    "description": "`(int: 0)` - The amount of memory (in megabytes) to limit\nallocations to. A value of zero is treated as unlimited, and a negative value\nis treated as fully disallowed.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "nomad:index/VolumeCapability:VolumeCapability": {
+            "properties": {
+                "accessMode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "attachmentMode": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessMode",
+                "attachmentMode"
+            ]
+        },
+        "nomad:index/VolumeMountOptions:VolumeMountOptions": {
+            "properties": {
+                "fsType": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "mountFlags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "nomad:index/getAclPoliciesPolicy:getAclPoliciesPolicy": {
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "description",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "nomad:index/getAclTokensAclToken:getAclTokensAclToken": {
+            "properties": {
+                "accessorId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "createTime": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "global": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessorId",
+                "createTime",
+                "global",
+                "name",
+                "policies",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "nomad:index/getJobConstraint:getJobConstraint": {
+            "properties": {
+                "ltarget": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "operand": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "rtarget": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "ltarget",
+                "operand",
+                "rtarget"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "nomad:index/getJobPeriodicConfig:getJobPeriodicConfig": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "prohibitOverlap": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "spec": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "specType": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "timezone": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "prohibitOverlap",
+                "spec",
+                "specType",
+                "timezone"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "nomad:index/getJobTaskGroup:getJobTaskGroup": {
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "meta": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tasks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/getJobTaskGroupTask:getJobTaskGroupTask"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "volumes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/getJobTaskGroupVolume:getJobTaskGroupVolume"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "count",
+                "meta",
+                "name",
+                "tasks",
+                "volumes"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "nomad:index/getJobTaskGroupTask:getJobTaskGroupTask": {
+            "properties": {
+                "driver": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "meta": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "volumeMounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/getJobTaskGroupTaskVolumeMount:getJobTaskGroupTaskVolumeMount"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "driver",
+                "meta",
+                "name",
+                "volumeMounts"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "nomad:index/getJobTaskGroupTaskVolumeMount:getJobTaskGroupTaskVolumeMount": {
+            "properties": {
+                "destination": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "volume": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "destination",
+                "readOnly",
+                "volume"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "nomad:index/getJobTaskGroupVolume:getJobTaskGroupVolume": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "source": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "readOnly",
+                "source",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "nomad:index/getPluginNode:getPluginNode": {
+            "properties": {
+                "healthy": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "healthyDescription": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "healthy",
+                "healthyDescription",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "nomad:index/getScalingPoliciesPolicy:getScalingPoliciesPolicy": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "target": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "pulumi.json#/Any"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "`(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "enabled",
+                "id",
+                "target",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        }
+    },
+    "provider": {
+        "description": "The provider type for the nomad package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "address": {
+                "type": "string",
+                "description": "URL of the root of the target Nomad agent.\n"
+            },
+            "caFile": {
+                "type": "string",
+                "description": "A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+            },
+            "caPem": {
+                "type": "string",
+                "description": "PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+            },
+            "certFile": {
+                "type": "string",
+                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+            },
+            "certPem": {
+                "type": "string",
+                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+            },
+            "consulToken": {
+                "type": "string",
+                "description": "Consul token to validate Consul Connect Service Identity policies specified in the job file.\n"
+            },
+            "headers": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/types/nomad:index/ProviderHeader:ProviderHeader"
+                },
+                "description": "The headers to send with each Nomad request.\n"
+            },
+            "httpAuth": {
+                "type": "string",
+                "description": "HTTP basic auth configuration.\n"
+            },
+            "keyFile": {
+                "type": "string",
+                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+            },
+            "keyPem": {
+                "type": "string",
+                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+            },
+            "region": {
+                "type": "string",
+                "description": "Region of the target Nomad agent.\n"
+            },
+            "secretId": {
+                "type": "string",
+                "description": "ACL token secret for API requests.\n"
+            },
+            "vaultToken": {
+                "type": "string",
+                "description": "Vault token if policies are specified in the job file.\n"
+            }
+        },
+        "required": [
+            "address"
+        ],
+        "inputProperties": {
+            "address": {
+                "type": "string",
+                "description": "URL of the root of the target Nomad agent.\n"
+            },
+            "caFile": {
+                "type": "string",
+                "description": "A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+            },
+            "caPem": {
+                "type": "string",
+                "description": "PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+            },
+            "certFile": {
+                "type": "string",
+                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+            },
+            "certPem": {
+                "type": "string",
+                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+            },
+            "consulToken": {
+                "type": "string",
+                "description": "Consul token to validate Consul Connect Service Identity policies specified in the job file.\n"
+            },
+            "headers": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/types/nomad:index/ProviderHeader:ProviderHeader"
+                },
+                "description": "The headers to send with each Nomad request.\n"
+            },
+            "httpAuth": {
+                "type": "string",
+                "description": "HTTP basic auth configuration.\n"
+            },
+            "keyFile": {
+                "type": "string",
+                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+            },
+            "keyPem": {
+                "type": "string",
+                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+            },
+            "region": {
+                "type": "string",
+                "description": "Region of the target Nomad agent.\n"
+            },
+            "secretId": {
+                "type": "string",
+                "description": "ACL token secret for API requests.\n"
+            },
+            "vaultToken": {
+                "type": "string",
+                "description": "Vault token if policies are specified in the job file.\n"
+            }
+        },
+        "requiredInputs": [
+            "address"
+        ]
+    },
+    "resources": {
+        "nomad:index/aclPolicy:AclPolicy": {
+            "description": "Manages an ACL policy registered in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a policy from a HCL file:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\nimport * from \"fs\";\n\nconst dev = new nomad.AclPolicy(\"dev\", {\n    description: \"Submit jobs to the dev environment.\",\n    rulesHcl: fs.readFileSync(`${path.module}/dev.hcl`),\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndev = nomad.AclPolicy(\"dev\",\n    description=\"Submit jobs to the dev environment.\",\n    rules_hcl=(lambda path: open(path).read())(f\"{path['module']}/dev.hcl\"))\n```\n```csharp\nusing System.IO;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var dev = new Nomad.AclPolicy(\"dev\", new Nomad.AclPolicyArgs\n        {\n            Description = \"Submit jobs to the dev environment.\",\n            RulesHcl = File.ReadAllText($\"{path.Module}/dev.hcl\"),\n        });\n    }\n\n}\n```\n\nRegistering a policy from inline HCL:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dev = new nomad.AclPolicy(\"dev\", {\n    description: \"Submit jobs to the dev environment.\",\n    rulesHcl: `namespace \"dev\" {\n  policy = \"write\"\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndev = nomad.AclPolicy(\"dev\",\n    description=\"Submit jobs to the dev environment.\",\n    rules_hcl=\"\"\"namespace \"dev\" {\n  policy = \"write\"\n}\n\n\"\"\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var dev = new Nomad.AclPolicy(\"dev\", new Nomad.AclPolicyArgs\n        {\n            Description = \"Submit jobs to the dev environment.\",\n            RulesHcl = @\"namespace \"\"dev\"\" {\n  policy = \"\"write\"\"\n}\n\n\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclPolicy(ctx, \"dev\", \u0026nomad.AclPolicyArgs{\n\t\t\tDescription: pulumi.String(\"Submit jobs to the dev environment.\"),\n\t\t\tRulesHcl:    pulumi.String(fmt.Sprintf(\"%v%v%v%v\", \"namespace \\\"dev\\\" {\\n\", \"  policy = \\\"write\\\"\\n\", \"}\\n\", \"\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A description of the policy.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n"
+                },
+                "rulesHcl": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The contents of the policy to register,\nas HCL or JSON.\n"
+                }
+            },
+            "required": [
+                "name",
+                "rulesHcl"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A description of the policy.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n"
+                },
+                "rulesHcl": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The contents of the policy to register,\nas HCL or JSON.\n"
+                }
+            },
+            "requiredInputs": [
+                "rulesHcl"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AclPolicy resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "`(string: \"\")` - A description of the policy.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n"
+                    },
+                    "rulesHcl": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - The contents of the policy to register,\nas HCL or JSON.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "nomad:index/aclToken:AclToken": {
+            "properties": {
+                "accessorId": {
+                    "type": "string",
+                    "description": "`(string)` - A non-sensitive identifier for this token that\ncan be logged and shared safely without granting any access to the cluster.\n"
+                },
+                "createTime": {
+                    "type": "string",
+                    "description": "`(string)` - The timestamp the token was created.\n"
+                },
+                "global": {
+                    "type": "boolean",
+                    "description": "`(bool: false)` - Whether the token should be replicated to all\nregions, or if it will only be used in the region it was created in.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A human-friendly name for this token.\n"
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "`(set: [])` - A set of policy names to associate with this\ntoken. Must be set on `client`-type tokens, must not be set on\n`management`-type tokens. Policies do not need to exist before being\nused here.\n"
+                },
+                "secretId": {
+                    "type": "string",
+                    "description": "`(string)` - The token value itself, which is presented for\naccess to the cluster.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The type of token this is. Use `client`\nfor tokens that will have policies associated with them. Use `management`\nfor tokens that can perform any action.\n"
+                }
+            },
+            "required": [
+                "accessorId",
+                "createTime",
+                "name",
+                "secretId",
+                "type"
+            ],
+            "inputProperties": {
+                "global": {
+                    "type": "boolean",
+                    "description": "`(bool: false)` - Whether the token should be replicated to all\nregions, or if it will only be used in the region it was created in.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A human-friendly name for this token.\n"
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "`(set: [])` - A set of policy names to associate with this\ntoken. Must be set on `client`-type tokens, must not be set on\n`management`-type tokens. Policies do not need to exist before being\nused here.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The type of token this is. Use `client`\nfor tokens that will have policies associated with them. Use `management`\nfor tokens that can perform any action.\n"
+                }
+            },
+            "requiredInputs": [
+                "type"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AclToken resources.\n",
+                "properties": {
+                    "accessorId": {
+                        "type": "string",
+                        "description": "`(string)` - A non-sensitive identifier for this token that\ncan be logged and shared safely without granting any access to the cluster.\n"
+                    },
+                    "createTime": {
+                        "type": "string",
+                        "description": "`(string)` - The timestamp the token was created.\n"
+                    },
+                    "global": {
+                        "type": "boolean",
+                        "description": "`(bool: false)` - Whether the token should be replicated to all\nregions, or if it will only be used in the region it was created in.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "`(string: \"\")` - A human-friendly name for this token.\n"
+                    },
+                    "policies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "`(set: [])` - A set of policy names to associate with this\ntoken. Must be set on `client`-type tokens, must not be set on\n`management`-type tokens. Policies do not need to exist before being\nused here.\n"
+                    },
+                    "secretId": {
+                        "type": "string",
+                        "description": "`(string)` - The token value itself, which is presented for\naccess to the cluster.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - The type of token this is. Use `client`\nfor tokens that will have policies associated with them. Use `management`\nfor tokens that can perform any action.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "nomad:index/externalVolume:ExternalVolume": {
+            "properties": {
+                "capabilities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/ExternalVolumeCapability:ExternalVolumeCapability"
+                    },
+                    "description": "Capabilities intended to be used in a job. At least one capability must be provided.\n"
+                },
+                "capacityMax": {
+                    "type": "string",
+                    "description": "Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.\n"
+                },
+                "capacityMin": {
+                    "type": "string",
+                    "description": "Defines how small the volume can be. The storage provider may return a volume that is larger than this value.\n"
+                },
+                "cloneId": {
+                    "type": "string",
+                    "description": "The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.\n"
+                },
+                "controllerRequired": {
+                    "type": "boolean"
+                },
+                "controllersExpected": {
+                    "type": "integer"
+                },
+                "controllersHealthy": {
+                    "type": "integer"
+                },
+                "mountOptions": {
+                    "$ref": "#/types/nomad:index/ExternalVolumeMountOptions:ExternalVolumeMountOptions",
+                    "description": "Options for mounting 'block-device' volumes without a pre-formatted file system.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The display name of the volume.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace in which to create the volume.\n"
+                },
+                "nodesExpected": {
+                    "type": "integer"
+                },
+                "nodesHealthy": {
+                    "type": "integer"
+                },
+                "parameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "An optional key-value map of strings passed directly to the CSI plugin to configure the volume.\n"
+                },
+                "pluginId": {
+                    "type": "string",
+                    "description": "The ID of the CSI plugin that manages this volume.\n"
+                },
+                "pluginProvider": {
+                    "type": "string"
+                },
+                "pluginProviderVersion": {
+                    "type": "string"
+                },
+                "schedulable": {
+                    "type": "boolean"
+                },
+                "secrets": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "An optional key-value map of strings used as credentials for publishing and unpublishing volumes.\n"
+                },
+                "snapshotId": {
+                    "type": "string",
+                    "description": "The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with\n'clone_id'.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the volume. Currently, only 'csi' is supported.\n"
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "The unique ID of the volume, how jobs will refer to the volume.\n"
+                }
+            },
+            "required": [
+                "capabilities",
+                "controllerRequired",
+                "controllersExpected",
+                "controllersHealthy",
+                "name",
+                "nodesExpected",
+                "nodesHealthy",
+                "pluginId",
+                "pluginProvider",
+                "pluginProviderVersion",
+                "schedulable",
+                "volumeId"
+            ],
+            "inputProperties": {
+                "capabilities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/ExternalVolumeCapability:ExternalVolumeCapability"
+                    },
+                    "description": "Capabilities intended to be used in a job. At least one capability must be provided.\n"
+                },
+                "capacityMax": {
+                    "type": "string",
+                    "description": "Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.\n"
+                },
+                "capacityMin": {
+                    "type": "string",
+                    "description": "Defines how small the volume can be. The storage provider may return a volume that is larger than this value.\n"
+                },
+                "cloneId": {
+                    "type": "string",
+                    "description": "The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.\n"
+                },
+                "mountOptions": {
+                    "$ref": "#/types/nomad:index/ExternalVolumeMountOptions:ExternalVolumeMountOptions",
+                    "description": "Options for mounting 'block-device' volumes without a pre-formatted file system.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The display name of the volume.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace in which to create the volume.\n"
+                },
+                "parameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "An optional key-value map of strings passed directly to the CSI plugin to configure the volume.\n"
+                },
+                "pluginId": {
+                    "type": "string",
+                    "description": "The ID of the CSI plugin that manages this volume.\n"
+                },
+                "secrets": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "An optional key-value map of strings used as credentials for publishing and unpublishing volumes.\n"
+                },
+                "snapshotId": {
+                    "type": "string",
+                    "description": "The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with\n'clone_id'.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the volume. Currently, only 'csi' is supported.\n"
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "The unique ID of the volume, how jobs will refer to the volume.\n"
+                }
+            },
+            "requiredInputs": [
+                "capabilities",
+                "pluginId",
+                "volumeId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ExternalVolume resources.\n",
+                "properties": {
+                    "capabilities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/ExternalVolumeCapability:ExternalVolumeCapability"
+                        },
+                        "description": "Capabilities intended to be used in a job. At least one capability must be provided.\n"
+                    },
+                    "capacityMax": {
+                        "type": "string",
+                        "description": "Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.\n"
+                    },
+                    "capacityMin": {
+                        "type": "string",
+                        "description": "Defines how small the volume can be. The storage provider may return a volume that is larger than this value.\n"
+                    },
+                    "cloneId": {
+                        "type": "string",
+                        "description": "The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.\n"
+                    },
+                    "controllerRequired": {
+                        "type": "boolean"
+                    },
+                    "controllersExpected": {
+                        "type": "integer"
+                    },
+                    "controllersHealthy": {
+                        "type": "integer"
+                    },
+                    "mountOptions": {
+                        "$ref": "#/types/nomad:index/ExternalVolumeMountOptions:ExternalVolumeMountOptions",
+                        "description": "Options for mounting 'block-device' volumes without a pre-formatted file system.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The display name of the volume.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace in which to create the volume.\n"
+                    },
+                    "nodesExpected": {
+                        "type": "integer"
+                    },
+                    "nodesHealthy": {
+                        "type": "integer"
+                    },
+                    "parameters": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "An optional key-value map of strings passed directly to the CSI plugin to configure the volume.\n"
+                    },
+                    "pluginId": {
+                        "type": "string",
+                        "description": "The ID of the CSI plugin that manages this volume.\n"
+                    },
+                    "pluginProvider": {
+                        "type": "string"
+                    },
+                    "pluginProviderVersion": {
+                        "type": "string"
+                    },
+                    "schedulable": {
+                        "type": "boolean"
+                    },
+                    "secrets": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "An optional key-value map of strings used as credentials for publishing and unpublishing volumes.\n"
+                    },
+                    "snapshotId": {
+                        "type": "string",
+                        "description": "The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with\n'clone_id'.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the volume. Currently, only 'csi' is supported.\n"
+                    },
+                    "volumeId": {
+                        "type": "string",
+                        "description": "The unique ID of the volume, how jobs will refer to the volume.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "nomad:index/job:Job": {
+            "properties": {
+                "allocationIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The IDs for allocations associated with this job.\n"
+                },
+                "datacenters": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The target datacenters for the job, as derived from the jobspec.\n"
+                },
+                "deploymentId": {
+                    "type": "string",
+                    "description": "If detach = false, the ID for the deployment associated with the last job create/update, if one exists.\n"
+                },
+                "deploymentStatus": {
+                    "type": "string",
+                    "description": "If detach = false, the status for the deployment associated with the last job create/update, if one exists.\n"
+                },
+                "deregisterOnDestroy": {
+                    "type": "boolean",
+                    "description": "If true, the job will be deregistered on destroy.\n"
+                },
+                "deregisterOnIdChange": {
+                    "type": "boolean",
+                    "description": "`(boolean: true)` - Determines if the job will be\nderegistered if the ID of the job in the jobspec changes.\n"
+                },
+                "detach": {
+                    "type": "boolean",
+                    "description": "`(boolean: true)` - If true, the provider will return immediately\nafter creating or updating, instead of monitoring.\n"
+                },
+                "hcl2": {
+                    "$ref": "#/types/nomad:index/JobHcl2:JobHcl2",
+                    "description": "`(block: optional)` - Options for the HCL2 jobspec parser.\n"
+                },
+                "jobspec": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The contents of the jobspec to register.\n"
+                },
+                "json": {
+                    "type": "boolean",
+                    "description": "`(boolean: false)` - Set this to `true` if your jobspec is structured with\nJSON instead of the default HCL.\n"
+                },
+                "modifyIndex": {
+                    "type": "string",
+                    "description": "Integer that increments for each change. Used to detect any changes between plan and apply.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the job, as derived from the jobspec.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace of the job, as derived from the jobspec.\n"
+                },
+                "policyOverride": {
+                    "type": "boolean",
+                    "description": "`(boolean: false)` - Determines if the job will override any\nsoft-mandatory Sentinel policies and register even if they fail.\n"
+                },
+                "purgeOnDestroy": {
+                    "type": "boolean",
+                    "description": "`(boolean: false)` - Set this to true if you want the job to\nbe purged when the resource is destroyed.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The target region for the job, as derived from the jobspec.\n"
+                },
+                "taskGroups": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/JobTaskGroup:JobTaskGroup"
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the job, as derived from the jobspec.\n"
+                }
+            },
+            "required": [
+                "allocationIds",
+                "datacenters",
+                "deploymentId",
+                "deploymentStatus",
+                "jobspec",
+                "modifyIndex",
+                "name",
+                "namespace",
+                "region",
+                "taskGroups",
+                "type"
+            ],
+            "inputProperties": {
+                "deregisterOnDestroy": {
+                    "type": "boolean",
+                    "description": "If true, the job will be deregistered on destroy.\n"
+                },
+                "deregisterOnIdChange": {
+                    "type": "boolean",
+                    "description": "`(boolean: true)` - Determines if the job will be\nderegistered if the ID of the job in the jobspec changes.\n"
+                },
+                "detach": {
+                    "type": "boolean",
+                    "description": "`(boolean: true)` - If true, the provider will return immediately\nafter creating or updating, instead of monitoring.\n"
+                },
+                "hcl2": {
+                    "$ref": "#/types/nomad:index/JobHcl2:JobHcl2",
+                    "description": "`(block: optional)` - Options for the HCL2 jobspec parser.\n"
+                },
+                "jobspec": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The contents of the jobspec to register.\n"
+                },
+                "json": {
+                    "type": "boolean",
+                    "description": "`(boolean: false)` - Set this to `true` if your jobspec is structured with\nJSON instead of the default HCL.\n"
+                },
+                "policyOverride": {
+                    "type": "boolean",
+                    "description": "`(boolean: false)` - Determines if the job will override any\nsoft-mandatory Sentinel policies and register even if they fail.\n"
+                },
+                "purgeOnDestroy": {
+                    "type": "boolean",
+                    "description": "`(boolean: false)` - Set this to true if you want the job to\nbe purged when the resource is destroyed.\n"
+                }
+            },
+            "requiredInputs": [
+                "jobspec"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Job resources.\n",
+                "properties": {
+                    "allocationIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The IDs for allocations associated with this job.\n"
+                    },
+                    "datacenters": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The target datacenters for the job, as derived from the jobspec.\n"
+                    },
+                    "deploymentId": {
+                        "type": "string",
+                        "description": "If detach = false, the ID for the deployment associated with the last job create/update, if one exists.\n"
+                    },
+                    "deploymentStatus": {
+                        "type": "string",
+                        "description": "If detach = false, the status for the deployment associated with the last job create/update, if one exists.\n"
+                    },
+                    "deregisterOnDestroy": {
+                        "type": "boolean",
+                        "description": "If true, the job will be deregistered on destroy.\n"
+                    },
+                    "deregisterOnIdChange": {
+                        "type": "boolean",
+                        "description": "`(boolean: true)` - Determines if the job will be\nderegistered if the ID of the job in the jobspec changes.\n"
+                    },
+                    "detach": {
+                        "type": "boolean",
+                        "description": "`(boolean: true)` - If true, the provider will return immediately\nafter creating or updating, instead of monitoring.\n"
+                    },
+                    "hcl2": {
+                        "$ref": "#/types/nomad:index/JobHcl2:JobHcl2",
+                        "description": "`(block: optional)` - Options for the HCL2 jobspec parser.\n"
+                    },
+                    "jobspec": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - The contents of the jobspec to register.\n"
+                    },
+                    "json": {
+                        "type": "boolean",
+                        "description": "`(boolean: false)` - Set this to `true` if your jobspec is structured with\nJSON instead of the default HCL.\n"
+                    },
+                    "modifyIndex": {
+                        "type": "string",
+                        "description": "Integer that increments for each change. Used to detect any changes between plan and apply.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the job, as derived from the jobspec.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace of the job, as derived from the jobspec.\n"
+                    },
+                    "policyOverride": {
+                        "type": "boolean",
+                        "description": "`(boolean: false)` - Determines if the job will override any\nsoft-mandatory Sentinel policies and register even if they fail.\n"
+                    },
+                    "purgeOnDestroy": {
+                        "type": "boolean",
+                        "description": "`(boolean: false)` - Set this to true if you want the job to\nbe purged when the resource is destroyed.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The target region for the job, as derived from the jobspec.\n"
+                    },
+                    "taskGroups": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/JobTaskGroup:JobTaskGroup"
+                        }
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the job, as derived from the jobspec.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "nomad:index/namespace:Namespace": {
+            "description": "Provisions a namespace within a Nomad cluster.\n\nNomad auto-generates a default namespace called `default`. This namespace\ncannot be removed, so destroying a `nomad.Namespace` resource where\n`name = \"default\"` will cause the namespace to be reset to its default\nconfiguration.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a namespace:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dev = new nomad.Namespace(\"dev\", {\n    description: \"Shared development environment.\",\n    quota: \"dev\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndev = nomad.Namespace(\"dev\",\n    description=\"Shared development environment.\",\n    quota=\"dev\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var dev = new Nomad.Namespace(\"dev\", new Nomad.NamespaceArgs\n        {\n            Description = \"Shared development environment.\",\n            Quota = \"dev\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewNamespace(ctx, \"dev\", \u0026nomad.NamespaceArgs{\n\t\t\tDescription: pulumi.String(\"Shared development environment.\"),\n\t\t\tQuota:       pulumi.String(\"dev\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nRegistering a namespace with a quota:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst webTeam = new nomad.QuoteSpecification(\"webTeam\", {\n    description: \"web team quota\",\n    limits: [{\n        region: \"global\",\n        regionLimit: {\n            cpu: 1000,\n            memoryMb: 256,\n        },\n    }],\n});\nconst web = new nomad.Namespace(\"web\", {\n    description: \"Web team production environment.\",\n    quota: webTeam.name,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nweb_team = nomad.QuoteSpecification(\"webTeam\",\n    description=\"web team quota\",\n    limits=[nomad.QuoteSpecificationLimitArgs(\n        region=\"global\",\n        region_limit=nomad.QuoteSpecificationLimitRegionLimitArgs(\n            cpu=1000,\n            memory_mb=256,\n        ),\n    )])\nweb = nomad.Namespace(\"web\",\n    description=\"Web team production environment.\",\n    quota=web_team.name)\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var webTeam = new Nomad.QuoteSpecification(\"webTeam\", new Nomad.QuoteSpecificationArgs\n        {\n            Description = \"web team quota\",\n            Limits = \n            {\n                new Nomad.Inputs.QuoteSpecificationLimitArgs\n                {\n                    Region = \"global\",\n                    RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs\n                    {\n                        Cpu = 1000,\n                        MemoryMb = 256,\n                    },\n                },\n            },\n        });\n        var web = new Nomad.Namespace(\"web\", new Nomad.NamespaceArgs\n        {\n            Description = \"Web team production environment.\",\n            Quota = webTeam.Name,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\twebTeam, err := nomad.NewQuoteSpecification(ctx, \"webTeam\", \u0026nomad.QuoteSpecificationArgs{\n\t\t\tDescription: pulumi.String(\"web team quota\"),\n\t\t\tLimits: nomad.QuoteSpecificationLimitArray{\n\t\t\t\t\u0026nomad.QuoteSpecificationLimitArgs{\n\t\t\t\t\tRegion: pulumi.String(\"global\"),\n\t\t\t\t\tRegionLimit: \u0026nomad.QuoteSpecificationLimitRegionLimitArgs{\n\t\t\t\t\t\tCpu:      pulumi.Int(1000),\n\t\t\t\t\t\tMemoryMb: pulumi.Int(256),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewNamespace(ctx, \"web\", \u0026nomad.NamespaceArgs{\n\t\t\tDescription: pulumi.String(\"Web team production environment.\"),\n\t\t\tQuota:       webTeam.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A description of the namespace.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the namespace.\n"
+                },
+                "quota": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A resource quota to attach to the namespace.\n"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A description of the namespace.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the namespace.\n"
+                },
+                "quota": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A resource quota to attach to the namespace.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Namespace resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "`(string: \"\")` - A description of the namespace.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - A unique name for the namespace.\n"
+                    },
+                    "quota": {
+                        "type": "string",
+                        "description": "`(string: \"\")` - A resource quota to attach to the namespace.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "nomad:index/quoteSpecification:QuoteSpecification": {
+            "description": "Manages a quota specification in a Nomad cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a quota specification:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst prodApi = new nomad.QuoteSpecification(\"prod_api\", {\n    description: \"Production instances of backend API servers\",\n    limits: [{\n        region: \"global\",\n        regionLimit: {\n            cpu: 2400,\n            memoryMb: 1200,\n        },\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nprod_api = nomad.QuoteSpecification(\"prodApi\",\n    description=\"Production instances of backend API servers\",\n    limits=[nomad.QuoteSpecificationLimitArgs(\n        region=\"global\",\n        region_limit=nomad.QuoteSpecificationLimitRegionLimitArgs(\n            cpu=2400,\n            memory_mb=1200,\n        ),\n    )])\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var prodApi = new Nomad.QuoteSpecification(\"prodApi\", new Nomad.QuoteSpecificationArgs\n        {\n            Description = \"Production instances of backend API servers\",\n            Limits = \n            {\n                new Nomad.Inputs.QuoteSpecificationLimitArgs\n                {\n                    Region = \"global\",\n                    RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs\n                    {\n                        Cpu = 2400,\n                        MemoryMb = 1200,\n                    },\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewQuoteSpecification(ctx, \"prodApi\", \u0026nomad.QuoteSpecificationArgs{\n\t\t\tDescription: pulumi.String(\"Production instances of backend API servers\"),\n\t\t\tLimits: nomad.QuoteSpecificationLimitArray{\n\t\t\t\t\u0026nomad.QuoteSpecificationLimitArgs{\n\t\t\t\t\tRegion: pulumi.String(\"global\"),\n\t\t\t\t\tRegionLimit: \u0026nomad.QuoteSpecificationLimitRegionLimitArgs{\n\t\t\t\t\t\tCpu:      pulumi.Int(2400),\n\t\t\t\t\t\tMemoryMb: pulumi.Int(1200),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A description of the quota specification.\n"
+                },
+                "limits": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/QuoteSpecificationLimit:QuoteSpecificationLimit"
+                    },
+                    "description": "`(block: \u003crequired\u003e)` - A block of quota limits to enforce. Can\nbe repeated. See below for the structure of this block.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the quota specification.\n"
+                }
+            },
+            "required": [
+                "limits",
+                "name"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A description of the quota specification.\n"
+                },
+                "limits": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/QuoteSpecificationLimit:QuoteSpecificationLimit"
+                    },
+                    "description": "`(block: \u003crequired\u003e)` - A block of quota limits to enforce. Can\nbe repeated. See below for the structure of this block.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the quota specification.\n"
+                }
+            },
+            "requiredInputs": [
+                "limits"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering QuoteSpecification resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "`(string: \"\")` - A description of the quota specification.\n"
+                    },
+                    "limits": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/QuoteSpecificationLimit:QuoteSpecificationLimit"
+                        },
+                        "description": "`(block: \u003crequired\u003e)` - A block of quota limits to enforce. Can\nbe repeated. See below for the structure of this block.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - A unique name for the quota specification.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "nomad:index/schedulerConfig:SchedulerConfig": {
+            "description": "Manages scheduler configuration of the Nomad cluster.\n\n\u003e **Warning:** destroying this resource will not have any effect in the\ncluster configuration, since there's no clear definition of what a destroy\naction should do. The cluster will be left as-is and only the state reference\nwill be removed.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nSet cluster scheduler configuration:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst config = new nomad.SchedulerConfig(\"config\", {\n    preemptionConfig: {\n        batch_scheduler_enabled: true,\n        service_scheduler_enabled: true,\n        system_scheduler_enabled: true,\n    },\n    schedulerAlgorithm: \"spread\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nconfig = nomad.SchedulerConfig(\"config\",\n    preemption_config={\n        \"batch_scheduler_enabled\": True,\n        \"service_scheduler_enabled\": True,\n        \"system_scheduler_enabled\": True,\n    },\n    scheduler_algorithm=\"spread\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var config = new Nomad.SchedulerConfig(\"config\", new Nomad.SchedulerConfigArgs\n        {\n            PreemptionConfig = \n            {\n                { \"batch_scheduler_enabled\", true },\n                { \"service_scheduler_enabled\", true },\n                { \"system_scheduler_enabled\", true },\n            },\n            SchedulerAlgorithm = \"spread\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewSchedulerConfig(ctx, \"config\", \u0026nomad.SchedulerConfigArgs{\n\t\t\tPreemptionConfig: pulumi.BoolMap{\n\t\t\t\t\"batch_scheduler_enabled\":   pulumi.Bool(true),\n\t\t\t\t\"service_scheduler_enabled\": pulumi.Bool(true),\n\t\t\t\t\"system_scheduler_enabled\":  pulumi.Bool(true),\n\t\t\t},\n\t\t\tSchedulerAlgorithm: pulumi.String(\"spread\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "memoryOversubscriptionEnabled": {
+                    "type": "boolean",
+                    "description": "`(bool: false)` - When `true`, tasks may exceed their reserved memory limit.\n"
+                },
+                "preemptionConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "boolean"
+                    },
+                    "description": "`(map[string]bool)` - Options to enable preemption for various schedulers.\n"
+                },
+                "schedulerAlgorithm": {
+                    "type": "string",
+                    "description": "`(string: \"binpack\")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.\n"
+                }
+            },
+            "inputProperties": {
+                "memoryOversubscriptionEnabled": {
+                    "type": "boolean",
+                    "description": "`(bool: false)` - When `true`, tasks may exceed their reserved memory limit.\n"
+                },
+                "preemptionConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "boolean"
+                    },
+                    "description": "`(map[string]bool)` - Options to enable preemption for various schedulers.\n"
+                },
+                "schedulerAlgorithm": {
+                    "type": "string",
+                    "description": "`(string: \"binpack\")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SchedulerConfig resources.\n",
+                "properties": {
+                    "memoryOversubscriptionEnabled": {
+                        "type": "boolean",
+                        "description": "`(bool: false)` - When `true`, tasks may exceed their reserved memory limit.\n"
+                    },
+                    "preemptionConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "boolean"
+                        },
+                        "description": "`(map[string]bool)` - Options to enable preemption for various schedulers.\n"
+                    },
+                    "schedulerAlgorithm": {
+                        "type": "string",
+                        "description": "`(string: \"binpack\")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "nomad:index/sentinelPolicy:SentinelPolicy": {
+            "description": "Manages a Sentinel policy registered in Nomad.\n\n\u003e **Enterprise Only!** This API endpoint and functionality only exists in\n   Nomad Enterprise. This is not present in the open source version of Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst exec_only = new nomad.SentinelPolicy(\"exec-only\", {\n    description: \"Only allow jobs that are based on an exec driver.\",\n    // allow administrators to override\n    enforcementLevel: \"soft-mandatory\",\n    policy: `main = rule { all_drivers_exec }\n\n# all_drivers_exec checks that all the drivers in use are exec\nall_drivers_exec = rule {\n    all job.task_groups as tg {\n        all tg.tasks as task {\n            task.driver is \"exec\"\n        }\n    }\n}\n`,\n    scope: \"submit-job\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexec_only = nomad.SentinelPolicy(\"exec-only\",\n    description=\"Only allow jobs that are based on an exec driver.\",\n    enforcement_level=\"soft-mandatory\",\n    policy=\"\"\"main = rule { all_drivers_exec }\n\n# all_drivers_exec checks that all the drivers in use are exec\nall_drivers_exec = rule {\n    all job.task_groups as tg {\n        all tg.tasks as task {\n            task.driver is \"exec\"\n        }\n    }\n}\n\n\"\"\",\n    scope=\"submit-job\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exec_only = new Nomad.SentinelPolicy(\"exec-only\", new Nomad.SentinelPolicyArgs\n        {\n            Description = \"Only allow jobs that are based on an exec driver.\",\n            EnforcementLevel = \"soft-mandatory\",\n            Policy = @\"main = rule { all_drivers_exec }\n\n# all_drivers_exec checks that all the drivers in use are exec\nall_drivers_exec = rule {\n    all job.task_groups as tg {\n        all tg.tasks as task {\n            task.driver is \"\"exec\"\"\n        }\n    }\n}\n\n\",\n            Scope = \"submit-job\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewSentinelPolicy(ctx, \"exec_only\", \u0026nomad.SentinelPolicyArgs{\n\t\t\tDescription:      pulumi.String(\"Only allow jobs that are based on an exec driver.\"),\n\t\t\tEnforcementLevel: pulumi.String(\"soft-mandatory\"),\n\t\t\tPolicy:           pulumi.String(fmt.Sprintf(\"%v%v%v%v%v%v%v%v%v%v%v\", \"main = rule { all_drivers_exec }\\n\", \"\\n\", \"# all_drivers_exec checks that all the drivers in use are exec\\n\", \"all_drivers_exec = rule {\\n\", \"    all job.task_groups as tg {\\n\", \"        all tg.tasks as task {\\n\", \"            task.driver is \\\"exec\\\"\\n\", \"        }\\n\", \"    }\\n\", \"}\\n\", \"\\n\")),\n\t\t\tScope:            pulumi.String(\"submit-job\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A description of the policy.\n"
+                },
+                "enforcementLevel": {
+                    "type": "string",
+                    "description": "`(strings: \u003crequired\u003e)` - The [enforcement level][enforcement-level]\nfor this policy.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n"
+                },
+                "policy": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The contents of the policy to register.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "`(strings: \u003crequired\u003e)` - The [scope][scope] for this policy.\n"
+                }
+            },
+            "required": [
+                "enforcementLevel",
+                "name",
+                "policy",
+                "scope"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "`(string: \"\")` - A description of the policy.\n"
+                },
+                "enforcementLevel": {
+                    "type": "string",
+                    "description": "`(strings: \u003crequired\u003e)` - The [enforcement level][enforcement-level]\nfor this policy.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n"
+                },
+                "policy": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The contents of the policy to register.\n"
+                },
+                "scope": {
+                    "type": "string",
+                    "description": "`(strings: \u003crequired\u003e)` - The [scope][scope] for this policy.\n"
+                }
+            },
+            "requiredInputs": [
+                "enforcementLevel",
+                "policy",
+                "scope"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SentinelPolicy resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "`(string: \"\")` - A description of the policy.\n"
+                    },
+                    "enforcementLevel": {
+                        "type": "string",
+                        "description": "`(strings: \u003crequired\u003e)` - The [enforcement level][enforcement-level]\nfor this policy.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n"
+                    },
+                    "policy": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - The contents of the policy to register.\n"
+                    },
+                    "scope": {
+                        "type": "string",
+                        "description": "`(strings: \u003crequired\u003e)` - The [scope][scope] for this policy.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "nomad:index/volume:Volume": {
+            "properties": {
+                "accessMode": {
+                    "type": "string",
+                    "description": "Defines whether a volume should be available concurrently.\n",
+                    "deprecationMessage": "use capability instead"
+                },
+                "attachmentMode": {
+                    "type": "string",
+                    "description": "The storage API that will be used by the volume.\n",
+                    "deprecationMessage": "use capability instead"
+                },
+                "capabilities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/VolumeCapability:VolumeCapability"
+                    },
+                    "description": "Capabilities intended to be used in a job. At least one capability must be provided.\n"
+                },
+                "context": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "An optional key-value map of strings passed directly to the CSI plugin to validate the volume.\n"
+                },
+                "controllerRequired": {
+                    "type": "boolean"
+                },
+                "controllersExpected": {
+                    "type": "integer"
+                },
+                "controllersHealthy": {
+                    "type": "integer"
+                },
+                "deregisterOnDestroy": {
+                    "type": "boolean",
+                    "description": "If true, the volume will be deregistered on destroy.\n"
+                },
+                "externalId": {
+                    "type": "string",
+                    "description": "The ID of the physical volume from the storage provider.\n"
+                },
+                "mountOptions": {
+                    "$ref": "#/types/nomad:index/VolumeMountOptions:VolumeMountOptions",
+                    "description": "Options for mounting 'block-device' volumes without a pre-formatted file system.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The display name of the volume.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace in which to create the volume.\n"
+                },
+                "nodesExpected": {
+                    "type": "integer"
+                },
+                "nodesHealthy": {
+                    "type": "integer"
+                },
+                "parameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "An optional key-value map of strings passed directly to the CSI plugin to configure the volume.\n"
+                },
+                "pluginId": {
+                    "type": "string",
+                    "description": "The ID of the CSI plugin that manages this volume.\n"
+                },
+                "pluginProvider": {
+                    "type": "string"
+                },
+                "pluginProviderVersion": {
+                    "type": "string"
+                },
+                "schedulable": {
+                    "type": "boolean"
+                },
+                "secrets": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "An optional key-value map of strings used as credentials for publishing and unpublishing volumes.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the volume. Currently, only 'csi' is supported.\n"
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "The unique ID of the volume, how jobs will refer to the volume.\n"
+                }
+            },
+            "required": [
+                "controllerRequired",
+                "controllersExpected",
+                "controllersHealthy",
+                "externalId",
+                "name",
+                "nodesExpected",
+                "nodesHealthy",
+                "pluginId",
+                "pluginProvider",
+                "pluginProviderVersion",
+                "schedulable",
+                "volumeId"
+            ],
+            "inputProperties": {
+                "accessMode": {
+                    "type": "string",
+                    "description": "Defines whether a volume should be available concurrently.\n",
+                    "deprecationMessage": "use capability instead"
+                },
+                "attachmentMode": {
+                    "type": "string",
+                    "description": "The storage API that will be used by the volume.\n",
+                    "deprecationMessage": "use capability instead"
+                },
+                "capabilities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/VolumeCapability:VolumeCapability"
+                    },
+                    "description": "Capabilities intended to be used in a job. At least one capability must be provided.\n"
+                },
+                "context": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "An optional key-value map of strings passed directly to the CSI plugin to validate the volume.\n"
+                },
+                "deregisterOnDestroy": {
+                    "type": "boolean",
+                    "description": "If true, the volume will be deregistered on destroy.\n"
+                },
+                "externalId": {
+                    "type": "string",
+                    "description": "The ID of the physical volume from the storage provider.\n"
+                },
+                "mountOptions": {
+                    "$ref": "#/types/nomad:index/VolumeMountOptions:VolumeMountOptions",
+                    "description": "Options for mounting 'block-device' volumes without a pre-formatted file system.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The display name of the volume.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "The namespace in which to create the volume.\n"
+                },
+                "parameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "An optional key-value map of strings passed directly to the CSI plugin to configure the volume.\n"
+                },
+                "pluginId": {
+                    "type": "string",
+                    "description": "The ID of the CSI plugin that manages this volume.\n"
+                },
+                "secrets": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "An optional key-value map of strings used as credentials for publishing and unpublishing volumes.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the volume. Currently, only 'csi' is supported.\n"
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "The unique ID of the volume, how jobs will refer to the volume.\n"
+                }
+            },
+            "requiredInputs": [
+                "externalId",
+                "pluginId",
+                "volumeId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Volume resources.\n",
+                "properties": {
+                    "accessMode": {
+                        "type": "string",
+                        "description": "Defines whether a volume should be available concurrently.\n",
+                        "deprecationMessage": "use capability instead"
+                    },
+                    "attachmentMode": {
+                        "type": "string",
+                        "description": "The storage API that will be used by the volume.\n",
+                        "deprecationMessage": "use capability instead"
+                    },
+                    "capabilities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/VolumeCapability:VolumeCapability"
+                        },
+                        "description": "Capabilities intended to be used in a job. At least one capability must be provided.\n"
+                    },
+                    "context": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "An optional key-value map of strings passed directly to the CSI plugin to validate the volume.\n"
+                    },
+                    "controllerRequired": {
+                        "type": "boolean"
+                    },
+                    "controllersExpected": {
+                        "type": "integer"
+                    },
+                    "controllersHealthy": {
+                        "type": "integer"
+                    },
+                    "deregisterOnDestroy": {
+                        "type": "boolean",
+                        "description": "If true, the volume will be deregistered on destroy.\n"
+                    },
+                    "externalId": {
+                        "type": "string",
+                        "description": "The ID of the physical volume from the storage provider.\n"
+                    },
+                    "mountOptions": {
+                        "$ref": "#/types/nomad:index/VolumeMountOptions:VolumeMountOptions",
+                        "description": "Options for mounting 'block-device' volumes without a pre-formatted file system.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The display name of the volume.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "The namespace in which to create the volume.\n"
+                    },
+                    "nodesExpected": {
+                        "type": "integer"
+                    },
+                    "nodesHealthy": {
+                        "type": "integer"
+                    },
+                    "parameters": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "An optional key-value map of strings passed directly to the CSI plugin to configure the volume.\n"
+                    },
+                    "pluginId": {
+                        "type": "string",
+                        "description": "The ID of the CSI plugin that manages this volume.\n"
+                    },
+                    "pluginProvider": {
+                        "type": "string"
+                    },
+                    "pluginProviderVersion": {
+                        "type": "string"
+                    },
+                    "schedulable": {
+                        "type": "boolean"
+                    },
+                    "secrets": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "An optional key-value map of strings used as credentials for publishing and unpublishing volumes.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The type of the volume. Currently, only 'csi' is supported.\n"
+                    },
+                    "volumeId": {
+                        "type": "string",
+                        "description": "The unique ID of the volume, how jobs will refer to the volume.\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "nomad:index/getAclPolicies:getAclPolicies": {
+            "description": "Retrieve a list of ACL Policies.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getAclPolicies({\n    prefix: \"prod\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_acl_policies(prefix=\"prod\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetAclPolicies.InvokeAsync(new Nomad.GetAclPoliciesArgs\n        {\n            Prefix = \"prod\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"prod\"\n\t\t_, err := nomad.GetAclPolicies(ctx, \u0026nomad.GetAclPoliciesArgs{\n\t\t\tPrefix: \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAclPolicies.\n",
+                "properties": {
+                    "prefix": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAclPolicies.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "policies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/getAclPoliciesPolicy:getAclPoliciesPolicy"
+                        }
+                    },
+                    "prefix": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "policies",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getAclPolicy:getAclPolicy": {
+            "description": "Retrieve information on an ACL Policy.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst myPolicy = pulumi.output(nomad.getAclPolicy({\n    name: \"my-policy\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nmy_policy = nomad.get_acl_policy(name=\"my-policy\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myPolicy = Output.Create(Nomad.GetAclPolicy.InvokeAsync(new Nomad.GetAclPolicyArgs\n        {\n            Name = \"my-policy\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupAclPolicy(ctx, \u0026nomad.LookupAclPolicyArgs{\n\t\t\tName: \"my-policy\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAclPolicy.\n",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAclPolicy.\n",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "rules": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "name",
+                    "rules",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getAclToken:getAclToken": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getAclToken.\n",
+                "properties": {
+                    "accessorId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "accessorId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAclToken.\n",
+                "properties": {
+                    "accessorId": {
+                        "type": "string"
+                    },
+                    "createTime": {
+                        "type": "string"
+                    },
+                    "global": {
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "policies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "secretId": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "accessorId",
+                    "createTime",
+                    "global",
+                    "name",
+                    "policies",
+                    "secretId",
+                    "type",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getAclTokens:getAclTokens": {
+            "description": "Get a list of ACL tokens.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst tokens = pulumi.output(nomad.getAclTokens({\n    prefix: \"a242\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ntokens = nomad.get_acl_tokens(prefix=\"a242\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var tokens = Output.Create(Nomad.GetAclTokens.InvokeAsync(new Nomad.GetAclTokensArgs\n        {\n            Prefix = \"a242\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"a242\"\n\t\t_, err := nomad.GetAclTokens(ctx, \u0026nomad.GetAclTokensArgs{\n\t\t\tPrefix: \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getAclTokens.\n",
+                "properties": {
+                    "prefix": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getAclTokens.\n",
+                "properties": {
+                    "aclTokens": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/getAclTokensAclToken:getAclTokensAclToken"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "prefix": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "aclTokens",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getDatacenters:getDatacenters": {
+            "description": "Retrieve a list of datacenters.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst datacenters = pulumi.output(nomad.getDatacenters({\n    ignoreDownNodes: true,\n    prefix: \"prod\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndatacenters = nomad.get_datacenters(ignore_down_nodes=True,\n    prefix=\"prod\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var datacenters = Output.Create(Nomad.GetDatacenters.InvokeAsync(new Nomad.GetDatacentersArgs\n        {\n            IgnoreDownNodes = true,\n            Prefix = \"prod\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := true\n\t\topt1 := \"prod\"\n\t\t_, err := nomad.GetDatacenters(ctx, \u0026nomad.GetDatacentersArgs{\n\t\t\tIgnoreDownNodes: \u0026opt0,\n\t\t\tPrefix:          \u0026opt1,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDatacenters.\n",
+                "properties": {
+                    "ignoreDownNodes": {
+                        "type": "boolean",
+                        "description": "`(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.\n"
+                    },
+                    "prefix": {
+                        "type": "string",
+                        "description": "`(string)`: An optional string to filter datacenters based on name prefix. If not provided, all datacenters are returned.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDatacenters.\n",
+                "properties": {
+                    "datacenters": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "ignoreDownNodes": {
+                        "type": "boolean"
+                    },
+                    "prefix": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "datacenters",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getDeployments:getDeployments": {
+            "description": "Retrieve a list of deployments in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getDeployments());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_deployments()\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetDeployments.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetDeployments(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by getDeployments.\n",
+                "properties": {
+                    "deployments": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "deployments",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getJob:getJob": {
+            "description": "Get information on a job ID. The aim of this datasource is to enable\nyou to act on various settings and states of a particular job.\n\nAn error is triggered if zero or more than one result is returned by the query.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nGet the data about a snapshot:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getJob({\n    jobId: \"example\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_job(job_id=\"example\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetJob.InvokeAsync(new Nomad.GetJobArgs\n        {\n            JobId = \"example\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupJob(ctx, \u0026nomad.LookupJobArgs{\n\t\t\tJobId: \"example\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getJob.\n",
+                "properties": {
+                    "jobId": {
+                        "type": "string"
+                    },
+                    "namespace": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "jobId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getJob.\n",
+                "properties": {
+                    "allAtOnce": {
+                        "type": "boolean"
+                    },
+                    "constraints": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/getJobConstraint:getJobConstraint"
+                        }
+                    },
+                    "createIndex": {
+                        "type": "integer"
+                    },
+                    "datacenters": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "jobId": {
+                        "type": "string"
+                    },
+                    "jobModifyIndex": {
+                        "type": "integer"
+                    },
+                    "modifyIndex": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "namespace": {
+                        "type": "string"
+                    },
+                    "parentId": {
+                        "type": "string"
+                    },
+                    "periodicConfigs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/getJobPeriodicConfig:getJobPeriodicConfig"
+                        }
+                    },
+                    "priority": {
+                        "type": "integer"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "stable": {
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "statusDescription": {
+                        "type": "string"
+                    },
+                    "stop": {
+                        "type": "boolean"
+                    },
+                    "submitTime": {
+                        "type": "integer"
+                    },
+                    "taskGroups": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/getJobTaskGroup:getJobTaskGroup"
+                        }
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "allAtOnce",
+                    "constraints",
+                    "createIndex",
+                    "datacenters",
+                    "jobId",
+                    "jobModifyIndex",
+                    "modifyIndex",
+                    "name",
+                    "parentId",
+                    "periodicConfigs",
+                    "priority",
+                    "region",
+                    "stable",
+                    "status",
+                    "statusDescription",
+                    "stop",
+                    "submitTime",
+                    "taskGroups",
+                    "type",
+                    "version",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getJobParser:getJobParser": {
+            "description": "Parse a HCL jobspec and produce the equivalent JSON encoded job.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\nimport * from \"fs\";\n\nconst myJob = nomad.getJobParser({\n    hcl: fs.readFileSync(`${path.module}/jobspec.hcl`),\n    canonicalize: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nmy_job = nomad.get_job_parser(hcl=(lambda path: open(path).read())(f\"{path['module']}/jobspec.hcl\"),\n    canonicalize=False)\n```\n```csharp\nusing System.IO;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myJob = Output.Create(Nomad.GetJobParser.InvokeAsync(new Nomad.GetJobParserArgs\n        {\n            Hcl = File.ReadAllText($\"{path.Module}/jobspec.hcl\"),\n            Canonicalize = false,\n        }));\n    }\n\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getJobParser.\n",
+                "properties": {
+                    "canonicalize": {
+                        "type": "boolean"
+                    },
+                    "hcl": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "hcl"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getJobParser.\n",
+                "properties": {
+                    "canonicalize": {
+                        "type": "boolean"
+                    },
+                    "hcl": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "json": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "hcl",
+                    "json",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getNamespace:getNamespace": {
+            "description": "Get information about a namespace in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst namespaces = pulumi.output(nomad.getNamespace({\n    name: \"default\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nnamespaces = nomad.get_namespace(name=\"default\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var namespaces = Output.Create(Nomad.GetNamespace.InvokeAsync(new Nomad.GetNamespaceArgs\n        {\n            Name = \"default\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupNamespace(ctx, \u0026nomad.LookupNamespaceArgs{\n\t\t\tName: \"default\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getNamespace.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "`(string)` - The name of the namespace.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNamespace.\n",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "quota": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "name",
+                    "quota",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getNamespaces:getNamespaces": {
+            "description": "Retrieve a list of namespaces available in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nexport = async () =\u003e {\n    const namespaces = await nomad.getNamespaces({});\n    const namespace: nomad.AclPolicy[];\n    for (const range = {value: 0}; range.value \u003c namespaces.namespaces.length; range.value++) {\n        namespace.push(new nomad.AclPolicy(`namespace-${range.value}`, {\n            description: `Write to the namespace ${namespaces[range.value]}`,\n            rulesHcl: `namespace \"${namespaces[range.value]}\" {\n  policy = \"write\"\n}\n`,\n        }));\n    }\n}\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nnamespaces = nomad.get_namespaces()\nnamespace = []\nfor range in [{\"value\": i} for i in range(0, len(namespaces.namespaces))]:\n    namespace.append(nomad.AclPolicy(f\"namespace-{range['value']}\",\n        description=f\"Write to the namespace {namespaces[range['value']]}\",\n        rules_hcl=f\"\"\"namespace \"{namespaces[range[\"value\"]]}\" {{\n  policy = \"write\"\n}}\n\"\"\"))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Threading.Tasks;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var dict = Output.Create(Initialize());\n    }\n\n    private async Task\u003cIDictionary\u003cstring, Output\u003cstring\u003e\u003e\u003e Initialize()\n    {\n        var namespaces = await Nomad.GetNamespaces.InvokeAsync();\n        var @namespace = new List\u003cNomad.AclPolicy\u003e();\n        for (var rangeIndex = 0; rangeIndex \u003c namespaces.Namespaces.Length; rangeIndex++)\n        {\n            var range = new { Value = rangeIndex };\n            @namespace.Add(new Nomad.AclPolicy($\"namespace-{range.Value}\", new Nomad.AclPolicyArgs\n            {\n                Description = $\"Write to the namespace {namespaces[range.Value]}\",\n                RulesHcl = @$\"namespace \"\"{namespaces[range.Value]}\"\" {{\n  policy = \"\"write\"\"\n}}\n\",\n            }));\n        }\n\n        return new Dictionary\u003cstring, Output\u003cstring\u003e\u003e\n        {\n        };\n    }\n\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by getNamespaces.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "namespaces": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "namespaces",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getPlugin:getPlugin": {
+            "description": "Lookup a plugin by ID. The aim of this datasource is to determine whether\na particular plugin exists on the cluster, to find information on the health\nand availability of the plugin, and to optionally wait for the plugin\nbefore performing actions the require an available plugin controller.\n\nIf a plugin with the specified ID does not exist and the datasource is not\nconfigured to wait, it will result in an error. For simple existence checks,\nuse the `nomad.getPlugins` listing datasource.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nCheck for the existence of a plugin:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst ebs = pulumi.output(nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var ebs = Output.Create(Nomad.GetPlugin.InvokeAsync(new Nomad.GetPluginArgs\n        {\n            PluginId = \"aws-ebs0\",\n            WaitForHealthy = true,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := true\n\t\t_, err := nomad.GetPlugin(ctx, \u0026nomad.GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nThis will check for a plugin with the ID `aws-ebs0`, waiting until the plugin\nis healthy before returning.\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getPlugin.\n",
+                "properties": {
+                    "pluginId": {
+                        "type": "string"
+                    },
+                    "waitForHealthy": {
+                        "type": "boolean"
+                    },
+                    "waitForRegistration": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "pluginId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getPlugin.\n",
+                "properties": {
+                    "controllerRequired": {
+                        "type": "boolean"
+                    },
+                    "controllersExpected": {
+                        "type": "integer"
+                    },
+                    "controllersHealthy": {
+                        "type": "integer"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "nodes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/getPluginNode:getPluginNode"
+                        }
+                    },
+                    "nodesExpected": {
+                        "type": "integer"
+                    },
+                    "nodesHealthy": {
+                        "type": "integer"
+                    },
+                    "pluginId": {
+                        "type": "string"
+                    },
+                    "pluginProvider": {
+                        "type": "string"
+                    },
+                    "pluginProviderVersion": {
+                        "type": "string"
+                    },
+                    "waitForHealthy": {
+                        "type": "boolean"
+                    },
+                    "waitForRegistration": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "controllerRequired",
+                    "controllersExpected",
+                    "controllersHealthy",
+                    "nodes",
+                    "nodesExpected",
+                    "nodesHealthy",
+                    "pluginId",
+                    "pluginProvider",
+                    "pluginProviderVersion",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getPlugins:getPlugins": {
+            "description": "Retrieve a list of dynamic plugins in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getPlugins());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_plugins()\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetPlugins.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetPlugins(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getPlugins.\n",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getPlugins.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "plugins": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        }
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "plugins",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getRegions:getRegions": {
+            "description": "Retrieve a list of regions available in Nomad.\n",
+            "outputs": {
+                "description": "A collection of values returned by getRegions.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "regions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "regions",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getScalingPolicies:getScalingPolicies": {
+            "description": "Retrieve a list of Scaling Policies.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getScalingPolicies({\n    jobId: \"webapp\",\n    type: \"horizontal\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_scaling_policies(job_id=\"webapp\",\n    type=\"horizontal\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetScalingPolicies.InvokeAsync(new Nomad.GetScalingPoliciesArgs\n        {\n            JobId = \"webapp\",\n            Type = \"horizontal\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"webapp\"\n\t\topt1 := \"horizontal\"\n\t\t_, err := nomad.GetScalingPolicies(ctx, \u0026nomad.GetScalingPoliciesArgs{\n\t\t\tJobId: \u0026opt0,\n\t\t\tType:  \u0026opt1,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getScalingPolicies.\n",
+                "properties": {
+                    "jobId": {
+                        "type": "string",
+                        "description": "`(string)` - An optional string to filter scaling policies based on the target job. If not provided, policies for all jobs are returned.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "`(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getScalingPolicies.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "jobId": {
+                        "type": "string"
+                    },
+                    "policies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/getScalingPoliciesPolicy:getScalingPoliciesPolicy"
+                        }
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "policies",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getScalingPolicy:getScalingPolicy": {
+            "description": "Retrieve a Scaling Policy.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getScalingPolicy({\n    id: \"ad19848d-1921-179c-affa-244a3543be88\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_scaling_policy(id=\"ad19848d-1921-179c-affa-244a3543be88\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetScalingPolicy.InvokeAsync(new Nomad.GetScalingPolicyArgs\n        {\n            Id = \"ad19848d-1921-179c-affa-244a3543be88\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetScalingPolicy(ctx, \u0026nomad.GetScalingPolicyArgs{\n\t\t\tId: \"ad19848d-1921-179c-affa-244a3543be88\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getScalingPolicy.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - The  ID of the scaling policy.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getScalingPolicy.\n",
+                "properties": {
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "max": {
+                        "type": "integer"
+                    },
+                    "min": {
+                        "type": "integer"
+                    },
+                    "policy": {
+                        "type": "string"
+                    },
+                    "target": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        }
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "enabled",
+                    "id",
+                    "max",
+                    "min",
+                    "policy",
+                    "target",
+                    "type"
+                ]
+            }
+        },
+        "nomad:index/getSchedulerPolicy:getSchedulerPolicy": {
+            "description": "Retrieve the cluster's [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst global = pulumi.output(nomad.getSchedulerPolicy());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nglobal_ = nomad.get_scheduler_policy()\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @global = Output.Create(Nomad.GetSchedulerPolicy.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetSchedulerPolicy(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by getSchedulerPolicy.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "memoryOversubscriptionEnabled": {
+                        "type": "boolean"
+                    },
+                    "preemptionConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "boolean"
+                        }
+                    },
+                    "schedulerAlgorithm": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "memoryOversubscriptionEnabled",
+                    "preemptionConfig",
+                    "schedulerAlgorithm",
+                    "id"
+                ]
+            }
+        },
+        "nomad:index/getVolumes:getVolumes": {
+            "description": "Retrieve a list of volumes in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getVolumes());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_volumes()\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetVolumes.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetVolumes(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getVolumes.\n",
+                "properties": {
+                    "namespace": {
+                        "type": "string"
+                    },
+                    "nodeId": {
+                        "type": "string"
+                    },
+                    "pluginId": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getVolumes.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "namespace": {
+                        "type": "string"
+                    },
+                    "nodeId": {
+                        "type": "string"
+                    },
+                    "pluginId": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "volumes": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "pulumi.json#/Any"
+                            }
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "volumes",
+                    "id"
+                ]
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "3.*",
+                "System.Collections.Immutable": "1.6.0"
+            }
+        },
+        "go": {
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing nomad cloud resources.",
+            "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-nomad)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-nomad` repo](https://github.com/pulumi/pulumi-nomad/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-nomad` repo](https://github.com/hashicorp/terraform-provider-nomad/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-nomad)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-nomad` repo](https://github.com/pulumi/pulumi-nomad/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-nomad` repo](https://github.com/hashicorp/terraform-provider-nomad/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    }
+}
