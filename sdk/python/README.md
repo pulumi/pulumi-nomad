@@ -1,48 +1,14 @@
-# Terraform Bridge Provider Boilerplate
+[![Actions Status](https://github.com/pulumi/pulumi-nomad/workflows/master/badge.svg)](https://github.com/pulumi/pulumi-nomad/actions)
+[![Slack](http://www.pulumi.com/images/docs/badges/slack.svg)](https://slack.pulumi.com)
+[![NPM version](https://badge.fury.io/js/%40pulumi%2Fnomad.svg)](https://www.npmjs.com/package/@pulumi/nomad)
+[![Python version](https://badge.fury.io/py/pulumi-nomad.svg)](https://pypi.org/project/pulumi-nomad)
+[![NuGet version](https://badge.fury.io/nu/pulumi.nomad.svg)](https://badge.fury.io/nu/pulumi.nomad)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/pulumi/pulumi-nomad/sdk/go)](https://pkg.go.dev/github.com/pulumi/pulumi-nomad/sdk/go)
+[![License](https://img.shields.io/npm/l/%40pulumi%2Fpulumi.svg)](https://github.com/pulumi/pulumi-nomad/blob/master/LICENSE)
 
-This repository contains boilerplate code for building a new Pulumi provider which wraps an existing
-Terraform provider, if the existing provider uses _Go Modules_.
+# HashiCorp Nomad Resource Provider
 
-Modify this README to describe:
-
-- The type of resources the provider manages
-- Add a build status image from Travis at the top of the README
-- Update package names in the information below
-- Add any important documentation of concepts (e.g. the "serverless" components in the AWS provider).
-
-## Creating a Pulumi Terraform Bridge Provider
-
-First, clone this repo with the name of the desired provider in place of `nomad`:
-
-```
-git clone https://github.com/pulumi/pulumi-tf-provider-boilerplate pulumi-nomad
-```
-
-Second, replace references to `nomad` with the name of your provider:
-
-```
-make prepare NAME=foo REPOSITORY=github.com/pulumi/pulumi-foo
-```
-
-Next, list the configuration points for the provider in the area of the README.
-
-
-> Note: If the name of the desired Pulumi provider differs from the name of the Terraform provider, you will need to carefully distinguish between the references - see https://github.com/pulumi/pulumi-azure for an example.
-
-### Add dependencies
-
-In order to properly build the sdks, the following tools are expected:
-- `pulumictl` (See the project's README for installation instructions: https://github.com/pulumi/pulumictl)
-
-In the root of the repository, run:
-
-- `(cd provider && go get github.com/terraform-providers/terraform-provider-foo)`  (where `foo` is the name of the provider - note the parenthesis to run this in a subshell)
-- `(cd provider && go mod download)`
-
-### Build the provider:
-
-- Edit `provider/resources.go` to map each resource, and specify provider information
-- `make build_sdks`
+The HashiCorp Nomad Resource Provider lets you manage Nomad resources.
 
 ## Installing
 
@@ -52,17 +18,17 @@ This package is available in many languages in the standard packaging formats.
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
-    $ npm install @pulumi/xyx
+    $ npm install @pulumi/nomad
 
 or `yarn`:
 
-    $ yarn add @pulumi/xyx
+    $ yarn add @pulumi/nomad
 
 ### Python
 
 To use from Python, install using `pip`:
 
-    $ pip install pulumi_xyx
+    $ pip install pulumi_nomad
 
 ### Go
 
@@ -70,16 +36,24 @@ To use from Go, use `go get` to grab the latest version of the library
 
     $ go get github.com/pulumi/pulumi-nomad/sdk/go/...
 
+### .NET
+
+To use from .NET, install using `dotnet add package`:
+
+    $ dotnet add package Pulumi.Nomad
+
 ## Configuration
 
-The following configuration points are available for the `nomad` provider:
+The following configuration points are available:
 
-- `nomad:apiKey` (environment: `XYZ_API_KEY`) - the API key for `nomad`
-- `nomad:region` (environment: `XYZ_REGION`) - the region in which to deploy resources
+- `sumologic:accessId` - (Required) This is the Sumo Logic Access ID. It must be provided, but it can also be sourced
+  from the `SUMOLOGIC_ACCESSID` environment variable.
+- `sumologic:accessKey` - (Required) This is the Sumo Logic Access Key. It must be provided, but it can also be
+  sourced from the `SUMOLOGIC_ACCESSKEY` variable.
+- `sumologic:accessKey` - (Required) This is the API endpoint to use. See the [Sumo Logic documentation](https://help.sumologic.com/APIs/General_API_Information/Sumo_Logic_Endpoints_and_Firewall_Security) for details on
+  which environment you should use. It must be provided, but it can be sourced from the `SUMOLOGIC_ENVIRONMENT` variable.
 
 ## Reference
 
-For detailed reference documentation, please visit [the API docs][1].
-
-
-[1]: https://www.pulumi.com/docs/reference/pkg/x/
+For further information, please visit [the Nomad provider docs](https://www.pulumi.com/docs/intro/cloud-providers/nomad)
+or for detailed reference documentation, please visit [the API docs](https://www.pulumi.com/docs/reference/pkg/nomad).
