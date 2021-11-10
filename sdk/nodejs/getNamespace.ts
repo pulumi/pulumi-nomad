@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -53,4 +52,18 @@ export interface GetNamespaceResult {
     readonly id: string;
     readonly name: string;
     readonly quota: string;
+}
+
+export function getNamespaceOutput(args: GetNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNamespaceResult> {
+    return pulumi.output(args).apply(a => getNamespace(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getNamespace.
+ */
+export interface GetNamespaceOutputArgs {
+    /**
+     * `(string)` - The name of the namespace.
+     */
+    name: pulumi.Input<string>;
 }

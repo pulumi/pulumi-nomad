@@ -4,10 +4,49 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Parse a HCL jobspec and produce the equivalent JSON encoded job.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+// 	"io/ioutil"
+//
+// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := false
+// 		_, err := nomad.GetJobParser(ctx, &GetJobParserArgs{
+// 			Hcl:          readFileOrPanic(fmt.Sprintf("%v%v", path.Module, "/jobspec.hcl")),
+// 			Canonicalize: &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetJobParser(ctx *pulumi.Context, args *GetJobParserArgs, opts ...pulumi.InvokeOption) (*GetJobParserResult, error) {
 	var rv GetJobParserResult
 	err := ctx.Invoke("nomad:index/getJobParser:getJobParser", args, &rv, opts...)
@@ -30,4 +69,59 @@ type GetJobParserResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id   string `pulumi:"id"`
 	Json string `pulumi:"json"`
+}
+
+func GetJobParserOutput(ctx *pulumi.Context, args GetJobParserOutputArgs, opts ...pulumi.InvokeOption) GetJobParserResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetJobParserResult, error) {
+			args := v.(GetJobParserArgs)
+			r, err := GetJobParser(ctx, &args, opts...)
+			return *r, err
+		}).(GetJobParserResultOutput)
+}
+
+// A collection of arguments for invoking getJobParser.
+type GetJobParserOutputArgs struct {
+	Canonicalize pulumi.BoolPtrInput `pulumi:"canonicalize"`
+	Hcl          pulumi.StringInput  `pulumi:"hcl"`
+}
+
+func (GetJobParserOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobParserArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getJobParser.
+type GetJobParserResultOutput struct{ *pulumi.OutputState }
+
+func (GetJobParserResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobParserResult)(nil)).Elem()
+}
+
+func (o GetJobParserResultOutput) ToGetJobParserResultOutput() GetJobParserResultOutput {
+	return o
+}
+
+func (o GetJobParserResultOutput) ToGetJobParserResultOutputWithContext(ctx context.Context) GetJobParserResultOutput {
+	return o
+}
+
+func (o GetJobParserResultOutput) Canonicalize() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetJobParserResult) *bool { return v.Canonicalize }).(pulumi.BoolPtrOutput)
+}
+
+func (o GetJobParserResultOutput) Hcl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobParserResult) string { return v.Hcl }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetJobParserResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobParserResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetJobParserResultOutput) Json() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobParserResult) string { return v.Json }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetJobParserResultOutput{})
 }

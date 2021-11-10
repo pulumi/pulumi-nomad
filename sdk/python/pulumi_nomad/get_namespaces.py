@@ -54,23 +54,6 @@ class AwaitableGetNamespacesResult(GetNamespacesResult):
 def get_namespaces(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNamespacesResult:
     """
     Retrieve a list of namespaces available in Nomad.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_nomad as nomad
-
-    namespaces = nomad.get_namespaces()
-    namespace = []
-    for range in [{"value": i} for i in range(0, len(namespaces.namespaces))]:
-        namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",
-            description=f"Write to the namespace {namespaces[range['value']]}",
-            rules_hcl=f\"\"\"namespace "{namespaces[range["value"]]}" {{
-      policy = "write"
-    }}
-    \"\"\"))
-    ```
     """
     __args__ = dict()
     if opts is None:

@@ -4,6 +4,9 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +24,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.LookupAclPolicy(ctx, &nomad.LookupAclPolicyArgs{
+// 		_, err := nomad.LookupAclPolicy(ctx, &GetAclPolicyArgs{
 // 			Name: "my-policy",
 // 		}, nil)
 // 		if err != nil {
@@ -52,4 +55,58 @@ type LookupAclPolicyResult struct {
 	Id    string `pulumi:"id"`
 	Name  string `pulumi:"name"`
 	Rules string `pulumi:"rules"`
+}
+
+func LookupAclPolicyOutput(ctx *pulumi.Context, args LookupAclPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupAclPolicyResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupAclPolicyResult, error) {
+			args := v.(LookupAclPolicyArgs)
+			r, err := LookupAclPolicy(ctx, &args, opts...)
+			return *r, err
+		}).(LookupAclPolicyResultOutput)
+}
+
+// A collection of arguments for invoking getAclPolicy.
+type LookupAclPolicyOutputArgs struct {
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (LookupAclPolicyOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAclPolicyArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAclPolicy.
+type LookupAclPolicyResultOutput struct{ *pulumi.OutputState }
+
+func (LookupAclPolicyResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAclPolicyResult)(nil)).Elem()
+}
+
+func (o LookupAclPolicyResultOutput) ToLookupAclPolicyResultOutput() LookupAclPolicyResultOutput {
+	return o
+}
+
+func (o LookupAclPolicyResultOutput) ToLookupAclPolicyResultOutputWithContext(ctx context.Context) LookupAclPolicyResultOutput {
+	return o
+}
+
+func (o LookupAclPolicyResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclPolicyResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupAclPolicyResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclPolicyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupAclPolicyResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclPolicyResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupAclPolicyResultOutput) Rules() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclPolicyResult) string { return v.Rules }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupAclPolicyResultOutput{})
 }

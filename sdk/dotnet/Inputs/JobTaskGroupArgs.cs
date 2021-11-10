@@ -9,4 +9,41 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad.Inputs
 {
+
+    public sealed class JobTaskGroupArgs : Pulumi.ResourceArgs
+    {
+        [Input("count")]
+        public Input<int>? Count { get; set; }
+
+        [Input("meta")]
+        private InputMap<object>? _meta;
+        public InputMap<object> Meta
+        {
+            get => _meta ?? (_meta = new InputMap<object>());
+            set => _meta = value;
+        }
+
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        [Input("tasks")]
+        private InputList<Inputs.JobTaskGroupTaskArgs>? _tasks;
+        public InputList<Inputs.JobTaskGroupTaskArgs> Tasks
+        {
+            get => _tasks ?? (_tasks = new InputList<Inputs.JobTaskGroupTaskArgs>());
+            set => _tasks = value;
+        }
+
+        [Input("volumes")]
+        private InputList<Inputs.JobTaskGroupVolumeArgs>? _volumes;
+        public InputList<Inputs.JobTaskGroupVolumeArgs> Volumes
+        {
+            get => _volumes ?? (_volumes = new InputList<Inputs.JobTaskGroupVolumeArgs>());
+            set => _volumes = value;
+        }
+
+        public JobTaskGroupArgs()
+        {
+        }
+    }
 }

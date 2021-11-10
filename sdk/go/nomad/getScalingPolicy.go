@@ -4,6 +4,9 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +24,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.GetScalingPolicy(ctx, &nomad.GetScalingPolicyArgs{
+// 		_, err := nomad.GetScalingPolicy(ctx, &GetScalingPolicyArgs{
 // 			Id: "ad19848d-1921-179c-affa-244a3543be88",
 // 		}, nil)
 // 		if err != nil {
@@ -55,4 +58,70 @@ type GetScalingPolicyResult struct {
 	Policy  string                 `pulumi:"policy"`
 	Target  map[string]interface{} `pulumi:"target"`
 	Type    string                 `pulumi:"type"`
+}
+
+func GetScalingPolicyOutput(ctx *pulumi.Context, args GetScalingPolicyOutputArgs, opts ...pulumi.InvokeOption) GetScalingPolicyResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetScalingPolicyResult, error) {
+			args := v.(GetScalingPolicyArgs)
+			r, err := GetScalingPolicy(ctx, &args, opts...)
+			return *r, err
+		}).(GetScalingPolicyResultOutput)
+}
+
+// A collection of arguments for invoking getScalingPolicy.
+type GetScalingPolicyOutputArgs struct {
+	// `(string: <required>)` - The  ID of the scaling policy.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetScalingPolicyOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingPolicyArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getScalingPolicy.
+type GetScalingPolicyResultOutput struct{ *pulumi.OutputState }
+
+func (GetScalingPolicyResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetScalingPolicyResult)(nil)).Elem()
+}
+
+func (o GetScalingPolicyResultOutput) ToGetScalingPolicyResultOutput() GetScalingPolicyResultOutput {
+	return o
+}
+
+func (o GetScalingPolicyResultOutput) ToGetScalingPolicyResultOutputWithContext(ctx context.Context) GetScalingPolicyResultOutput {
+	return o
+}
+
+func (o GetScalingPolicyResultOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetScalingPolicyResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o GetScalingPolicyResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPolicyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetScalingPolicyResultOutput) Max() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingPolicyResult) int { return v.Max }).(pulumi.IntOutput)
+}
+
+func (o GetScalingPolicyResultOutput) Min() pulumi.IntOutput {
+	return o.ApplyT(func(v GetScalingPolicyResult) int { return v.Min }).(pulumi.IntOutput)
+}
+
+func (o GetScalingPolicyResultOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPolicyResult) string { return v.Policy }).(pulumi.StringOutput)
+}
+
+func (o GetScalingPolicyResultOutput) Target() pulumi.MapOutput {
+	return o.ApplyT(func(v GetScalingPolicyResult) map[string]interface{} { return v.Target }).(pulumi.MapOutput)
+}
+
+func (o GetScalingPolicyResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetScalingPolicyResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetScalingPolicyResultOutput{})
 }

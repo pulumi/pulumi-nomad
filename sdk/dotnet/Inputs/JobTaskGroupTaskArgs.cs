@@ -9,4 +9,33 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad.Inputs
 {
+
+    public sealed class JobTaskGroupTaskArgs : Pulumi.ResourceArgs
+    {
+        [Input("driver")]
+        public Input<string>? Driver { get; set; }
+
+        [Input("meta")]
+        private InputMap<object>? _meta;
+        public InputMap<object> Meta
+        {
+            get => _meta ?? (_meta = new InputMap<object>());
+            set => _meta = value;
+        }
+
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        [Input("volumeMounts")]
+        private InputList<Inputs.JobTaskGroupTaskVolumeMountArgs>? _volumeMounts;
+        public InputList<Inputs.JobTaskGroupTaskVolumeMountArgs> VolumeMounts
+        {
+            get => _volumeMounts ?? (_volumeMounts = new InputList<Inputs.JobTaskGroupTaskVolumeMountArgs>());
+            set => _volumeMounts = value;
+        }
+
+        public JobTaskGroupTaskArgs()
+        {
+        }
+    }
 }

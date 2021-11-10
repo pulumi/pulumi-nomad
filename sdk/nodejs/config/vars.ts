@@ -5,57 +5,149 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
-let __config = new pulumi.Config("nomad");
+declare var exports: any;
+const __config = new pulumi.Config("nomad");
 
 /**
  * URL of the root of the target Nomad agent.
  */
-export let address: string | undefined = __config.get("address");
+export declare const address: string | undefined;
+Object.defineProperty(exports, "address", {
+    get() {
+        return __config.get("address");
+    },
+    enumerable: true,
+});
+
 /**
  * A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
  */
-export let caFile: string | undefined = __config.get("caFile");
+export declare const caFile: string | undefined;
+Object.defineProperty(exports, "caFile", {
+    get() {
+        return __config.get("caFile");
+    },
+    enumerable: true,
+});
+
 /**
  * PEM-encoded certificate authority used to verify the remote agent's certificate.
  */
-export let caPem: string | undefined = __config.get("caPem");
+export declare const caPem: string | undefined;
+Object.defineProperty(exports, "caPem", {
+    get() {
+        return __config.get("caPem");
+    },
+    enumerable: true,
+});
+
 /**
  * A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
  */
-export let certFile: string | undefined = __config.get("certFile");
+export declare const certFile: string | undefined;
+Object.defineProperty(exports, "certFile", {
+    get() {
+        return __config.get("certFile");
+    },
+    enumerable: true,
+});
+
 /**
  * PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
  */
-export let certPem: string | undefined = __config.get("certPem");
+export declare const certPem: string | undefined;
+Object.defineProperty(exports, "certPem", {
+    get() {
+        return __config.get("certPem");
+    },
+    enumerable: true,
+});
+
 /**
  * Consul token to validate Consul Connect Service Identity policies specified in the job file.
  */
-export let consulToken: string | undefined = __config.get("consulToken");
+export declare const consulToken: string | undefined;
+Object.defineProperty(exports, "consulToken", {
+    get() {
+        return __config.get("consulToken");
+    },
+    enumerable: true,
+});
+
 /**
  * The headers to send with each Nomad request.
  */
-export let headers: outputs.config.Headers[] | undefined = __config.getObject<outputs.config.Headers[]>("headers");
+export declare const headers: outputs.config.Headers[] | undefined;
+Object.defineProperty(exports, "headers", {
+    get() {
+        return __config.getObject<outputs.config.Headers[]>("headers");
+    },
+    enumerable: true,
+});
+
 /**
  * HTTP basic auth configuration.
  */
-export let httpAuth: string | undefined = __config.get("httpAuth");
+export declare const httpAuth: string | undefined;
+Object.defineProperty(exports, "httpAuth", {
+    get() {
+        return __config.get("httpAuth");
+    },
+    enumerable: true,
+});
+
 /**
  * A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
  */
-export let keyFile: string | undefined = __config.get("keyFile");
+export declare const keyFile: string | undefined;
+Object.defineProperty(exports, "keyFile", {
+    get() {
+        return __config.get("keyFile");
+    },
+    enumerable: true,
+});
+
 /**
  * PEM-encoded private key, required if cert_file or cert_pem is specified.
  */
-export let keyPem: string | undefined = __config.get("keyPem");
+export declare const keyPem: string | undefined;
+Object.defineProperty(exports, "keyPem", {
+    get() {
+        return __config.get("keyPem");
+    },
+    enumerable: true,
+});
+
 /**
  * Region of the target Nomad agent.
  */
-export let region: string | undefined = __config.get("region");
+export declare const region: string | undefined;
+Object.defineProperty(exports, "region", {
+    get() {
+        return __config.get("region");
+    },
+    enumerable: true,
+});
+
 /**
  * ACL token secret for API requests.
  */
-export let secretId: string | undefined = __config.get("secretId");
+export declare const secretId: string | undefined;
+Object.defineProperty(exports, "secretId", {
+    get() {
+        return __config.get("secretId");
+    },
+    enumerable: true,
+});
+
 /**
  * Vault token if policies are specified in the job file.
  */
-export let vaultToken: string | undefined = __config.get("vaultToken");
+export declare const vaultToken: string | undefined;
+Object.defineProperty(exports, "vaultToken", {
+    get() {
+        return __config.get("vaultToken");
+    },
+    enumerable: true,
+});
+

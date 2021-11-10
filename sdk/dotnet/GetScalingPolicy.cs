@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -39,6 +40,35 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Task<GetScalingPolicyResult> InvokeAsync(GetScalingPolicyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetScalingPolicyResult>("nomad:index/getScalingPolicy:getScalingPolicy", args ?? new GetScalingPolicyArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Retrieve a Scaling Policy.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(Nomad.GetScalingPolicy.InvokeAsync(new Nomad.GetScalingPolicyArgs
+        ///         {
+        ///             Id = "ad19848d-1921-179c-affa-244a3543be88",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetScalingPolicyResult> Invoke(GetScalingPolicyInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetScalingPolicyResult>("nomad:index/getScalingPolicy:getScalingPolicy", args ?? new GetScalingPolicyInvokeArgs(), options.WithVersion());
     }
 
 
@@ -51,6 +81,19 @@ namespace Pulumi.Nomad
         public string Id { get; set; } = null!;
 
         public GetScalingPolicyArgs()
+        {
+        }
+    }
+
+    public sealed class GetScalingPolicyInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// `(string: &lt;required&gt;)` - The  ID of the scaling policy.
+        /// </summary>
+        [Input("id", required: true)]
+        public Input<string> Id { get; set; } = null!;
+
+        public GetScalingPolicyInvokeArgs()
         {
         }
     }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -36,6 +37,32 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Task<GetVolumesResult> InvokeAsync(GetVolumesArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Retrieve a list of volumes in Nomad.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(Nomad.GetVolumes.InvokeAsync());
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetVolumesResult> Invoke(GetVolumesInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesInvokeArgs(), options.WithVersion());
     }
 
 
@@ -54,6 +81,25 @@ namespace Pulumi.Nomad
         public string? Type { get; set; }
 
         public GetVolumesArgs()
+        {
+        }
+    }
+
+    public sealed class GetVolumesInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
+
+        [Input("nodeId")]
+        public Input<string>? NodeId { get; set; }
+
+        [Input("pluginId")]
+        public Input<string>? PluginId { get; set; }
+
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        public GetVolumesInvokeArgs()
         {
         }
     }

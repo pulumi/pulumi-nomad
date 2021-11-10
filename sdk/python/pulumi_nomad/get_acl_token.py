@@ -12,6 +12,7 @@ __all__ = [
     'GetAclTokenResult',
     'AwaitableGetAclTokenResult',
     'get_acl_token',
+    'get_acl_token_output',
 ]
 
 @pulumi.output_type
@@ -127,3 +128,12 @@ def get_acl_token(accessor_id: Optional[str] = None,
         policies=__ret__.policies,
         secret_id=__ret__.secret_id,
         type=__ret__.type)
+
+
+@_utilities.lift_output_func(get_acl_token)
+def get_acl_token_output(accessor_id: Optional[pulumi.Input[str]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclTokenResult]:
+    """
+    Use this data source to access information about an existing resource.
+    """
+    ...

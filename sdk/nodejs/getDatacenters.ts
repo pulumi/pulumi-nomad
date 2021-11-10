@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -60,4 +59,22 @@ export interface GetDatacentersResult {
     readonly id: string;
     readonly ignoreDownNodes?: boolean;
     readonly prefix?: string;
+}
+
+export function getDatacentersOutput(args?: GetDatacentersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatacentersResult> {
+    return pulumi.output(args).apply(a => getDatacenters(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getDatacenters.
+ */
+export interface GetDatacentersOutputArgs {
+    /**
+     * `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.
+     */
+    ignoreDownNodes?: pulumi.Input<boolean>;
+    /**
+     * `(string)`: An optional string to filter datacenters based on name prefix. If not provided, all datacenters are returned.
+     */
+    prefix?: pulumi.Input<string>;
 }

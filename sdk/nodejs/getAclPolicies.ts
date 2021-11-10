@@ -51,3 +51,14 @@ export interface GetAclPoliciesResult {
     readonly policies: outputs.GetAclPoliciesPolicy[];
     readonly prefix?: string;
 }
+
+export function getAclPoliciesOutput(args?: GetAclPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclPoliciesResult> {
+    return pulumi.output(args).apply(a => getAclPolicies(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAclPolicies.
+ */
+export interface GetAclPoliciesOutputArgs {
+    prefix?: pulumi.Input<string>;
+}

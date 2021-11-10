@@ -12,6 +12,69 @@ import (
 )
 
 // Manages an ACL policy registered in Nomad.
+//
+// ## Example Usage
+//
+// Registering a policy from a HCL file:
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+// 	"io/ioutil"
+//
+// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := nomad.NewAclPolicy(ctx, "dev", &nomad.AclPolicyArgs{
+// 			Description: pulumi.String("Submit jobs to the dev environment."),
+// 			RulesHcl:    readFileOrPanic(fmt.Sprintf("%v%v", path.Module, "/dev.hcl")),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Registering a policy from inline HCL:
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := nomad.NewAclPolicy(ctx, "dev", &nomad.AclPolicyArgs{
+// 			Description: pulumi.String("Submit jobs to the dev environment."),
+// 			RulesHcl:    pulumi.String(fmt.Sprintf("%v%v%v%v", "namespace \"dev\" {\n", "  policy = \"write\"\n", "}\n", "\n")),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AclPolicy struct {
 	pulumi.CustomResourceState
 
@@ -166,7 +229,7 @@ type AclPolicyArrayInput interface {
 type AclPolicyArray []AclPolicyInput
 
 func (AclPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AclPolicy)(nil))
+	return reflect.TypeOf((*[]*AclPolicy)(nil)).Elem()
 }
 
 func (i AclPolicyArray) ToAclPolicyArrayOutput() AclPolicyArrayOutput {
@@ -191,7 +254,7 @@ type AclPolicyMapInput interface {
 type AclPolicyMap map[string]AclPolicyInput
 
 func (AclPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AclPolicy)(nil))
+	return reflect.TypeOf((*map[string]*AclPolicy)(nil)).Elem()
 }
 
 func (i AclPolicyMap) ToAclPolicyMapOutput() AclPolicyMapOutput {
@@ -202,9 +265,7 @@ func (i AclPolicyMap) ToAclPolicyMapOutputWithContext(ctx context.Context) AclPo
 	return pulumi.ToOutputWithContext(ctx, i).(AclPolicyMapOutput)
 }
 
-type AclPolicyOutput struct {
-	*pulumi.OutputState
-}
+type AclPolicyOutput struct{ *pulumi.OutputState }
 
 func (AclPolicyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*AclPolicy)(nil))
@@ -223,14 +284,12 @@ func (o AclPolicyOutput) ToAclPolicyPtrOutput() AclPolicyPtrOutput {
 }
 
 func (o AclPolicyOutput) ToAclPolicyPtrOutputWithContext(ctx context.Context) AclPolicyPtrOutput {
-	return o.ApplyT(func(v AclPolicy) *AclPolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AclPolicy) *AclPolicy {
 		return &v
 	}).(AclPolicyPtrOutput)
 }
 
-type AclPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
+type AclPolicyPtrOutput struct{ *pulumi.OutputState }
 
 func (AclPolicyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**AclPolicy)(nil))
@@ -242,6 +301,16 @@ func (o AclPolicyPtrOutput) ToAclPolicyPtrOutput() AclPolicyPtrOutput {
 
 func (o AclPolicyPtrOutput) ToAclPolicyPtrOutputWithContext(ctx context.Context) AclPolicyPtrOutput {
 	return o
+}
+
+func (o AclPolicyPtrOutput) Elem() AclPolicyOutput {
+	return o.ApplyT(func(v *AclPolicy) AclPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret AclPolicy
+		return ret
+	}).(AclPolicyOutput)
 }
 
 type AclPolicyArrayOutput struct{ *pulumi.OutputState }
@@ -285,6 +354,10 @@ func (o AclPolicyMapOutput) MapIndex(k pulumi.StringInput) AclPolicyOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyInput)(nil)).Elem(), &AclPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyPtrInput)(nil)).Elem(), &AclPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyArrayInput)(nil)).Elem(), AclPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyMapInput)(nil)).Elem(), AclPolicyMap{})
 	pulumi.RegisterOutputType(AclPolicyOutput{})
 	pulumi.RegisterOutputType(AclPolicyPtrOutput{})
 	pulumi.RegisterOutputType(AclPolicyArrayOutput{})

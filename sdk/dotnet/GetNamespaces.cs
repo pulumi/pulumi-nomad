@@ -13,50 +13,6 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// Retrieve a list of namespaces available in Nomad.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Threading.Tasks;
-        /// using Pulumi;
-        /// using Nomad = Pulumi.Nomad;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var dict = Output.Create(Initialize());
-        ///     }
-        /// 
-        ///     private async Task&lt;IDictionary&lt;string, Output&lt;string&gt;&gt;&gt; Initialize()
-        ///     {
-        ///         var namespaces = await Nomad.GetNamespaces.InvokeAsync();
-        ///         var @namespace = new List&lt;Nomad.AclPolicy&gt;();
-        ///         for (var rangeIndex = 0; rangeIndex &lt; namespaces.Namespaces.Length; rangeIndex++)
-        ///         {
-        ///             var range = new { Value = rangeIndex };
-        ///             @namespace.Add(new Nomad.AclPolicy($"namespace-{range.Value}", new Nomad.AclPolicyArgs
-        ///             {
-        ///                 Description = $"Write to the namespace {namespaces[range.Value]}",
-        ///                 RulesHcl = @$"namespace ""{namespaces[range.Value]}"" {{
-        ///   policy = ""write""
-        /// }}
-        /// ",
-        ///             }));
-        ///         }
-        /// 
-        ///         return new Dictionary&lt;string, Output&lt;string&gt;&gt;
-        ///         {
-        ///         };
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetNamespacesResult> InvokeAsync(InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNamespacesResult>("nomad:index/getNamespaces:getNamespaces", InvokeArgs.Empty, options.WithVersion());

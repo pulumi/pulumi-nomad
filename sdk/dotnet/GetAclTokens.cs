@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -39,6 +40,35 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Task<GetAclTokensResult> InvokeAsync(GetAclTokensArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Get a list of ACL tokens.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var tokens = Output.Create(Nomad.GetAclTokens.InvokeAsync(new Nomad.GetAclTokensArgs
+        ///         {
+        ///             Prefix = "a242",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetAclTokensResult> Invoke(GetAclTokensInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensInvokeArgs(), options.WithVersion());
     }
 
 
@@ -48,6 +78,16 @@ namespace Pulumi.Nomad
         public string? Prefix { get; set; }
 
         public GetAclTokensArgs()
+        {
+        }
+    }
+
+    public sealed class GetAclTokensInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("prefix")]
+        public Input<string>? Prefix { get; set; }
+
+        public GetAclTokensInvokeArgs()
         {
         }
     }

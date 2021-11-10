@@ -203,10 +203,11 @@ func (o ExternalVolumeMountOptionsOutput) ToExternalVolumeMountOptionsPtrOutput(
 }
 
 func (o ExternalVolumeMountOptionsOutput) ToExternalVolumeMountOptionsPtrOutputWithContext(ctx context.Context) ExternalVolumeMountOptionsPtrOutput {
-	return o.ApplyT(func(v ExternalVolumeMountOptions) *ExternalVolumeMountOptions {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExternalVolumeMountOptions) *ExternalVolumeMountOptions {
 		return &v
 	}).(ExternalVolumeMountOptionsPtrOutput)
 }
+
 func (o ExternalVolumeMountOptionsOutput) FsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExternalVolumeMountOptions) *string { return v.FsType }).(pulumi.StringPtrOutput)
 }
@@ -230,7 +231,13 @@ func (o ExternalVolumeMountOptionsPtrOutput) ToExternalVolumeMountOptionsPtrOutp
 }
 
 func (o ExternalVolumeMountOptionsPtrOutput) Elem() ExternalVolumeMountOptionsOutput {
-	return o.ApplyT(func(v *ExternalVolumeMountOptions) ExternalVolumeMountOptions { return *v }).(ExternalVolumeMountOptionsOutput)
+	return o.ApplyT(func(v *ExternalVolumeMountOptions) ExternalVolumeMountOptions {
+		if v != nil {
+			return *v
+		}
+		var ret ExternalVolumeMountOptions
+		return ret
+	}).(ExternalVolumeMountOptionsOutput)
 }
 
 func (o ExternalVolumeMountOptionsPtrOutput) FsType() pulumi.StringPtrOutput {
@@ -354,7 +361,7 @@ func (o JobHcl2Output) ToJobHcl2PtrOutput() JobHcl2PtrOutput {
 }
 
 func (o JobHcl2Output) ToJobHcl2PtrOutputWithContext(ctx context.Context) JobHcl2PtrOutput {
-	return o.ApplyT(func(v JobHcl2) *JobHcl2 {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobHcl2) *JobHcl2 {
 		return &v
 	}).(JobHcl2PtrOutput)
 }
@@ -390,7 +397,13 @@ func (o JobHcl2PtrOutput) ToJobHcl2PtrOutputWithContext(ctx context.Context) Job
 }
 
 func (o JobHcl2PtrOutput) Elem() JobHcl2Output {
-	return o.ApplyT(func(v *JobHcl2) JobHcl2 { return *v }).(JobHcl2Output)
+	return o.ApplyT(func(v *JobHcl2) JobHcl2 {
+		if v != nil {
+			return *v
+		}
+		var ret JobHcl2
+		return ret
+	}).(JobHcl2Output)
 }
 
 // `(boolean: false)` - Set this to `true` to be able to use
@@ -1347,10 +1360,11 @@ func (o VolumeMountOptionsOutput) ToVolumeMountOptionsPtrOutput() VolumeMountOpt
 }
 
 func (o VolumeMountOptionsOutput) ToVolumeMountOptionsPtrOutputWithContext(ctx context.Context) VolumeMountOptionsPtrOutput {
-	return o.ApplyT(func(v VolumeMountOptions) *VolumeMountOptions {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VolumeMountOptions) *VolumeMountOptions {
 		return &v
 	}).(VolumeMountOptionsPtrOutput)
 }
+
 func (o VolumeMountOptionsOutput) FsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VolumeMountOptions) *string { return v.FsType }).(pulumi.StringPtrOutput)
 }
@@ -1374,7 +1388,13 @@ func (o VolumeMountOptionsPtrOutput) ToVolumeMountOptionsPtrOutputWithContext(ct
 }
 
 func (o VolumeMountOptionsPtrOutput) Elem() VolumeMountOptionsOutput {
-	return o.ApplyT(func(v *VolumeMountOptions) VolumeMountOptions { return *v }).(VolumeMountOptionsOutput)
+	return o.ApplyT(func(v *VolumeMountOptions) VolumeMountOptions {
+		if v != nil {
+			return *v
+		}
+		var ret VolumeMountOptions
+		return ret
+	}).(VolumeMountOptionsOutput)
 }
 
 func (o VolumeMountOptionsPtrOutput) FsType() pulumi.StringPtrOutput {
@@ -2513,6 +2533,49 @@ func (o GetScalingPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetScaling
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeCapabilityInput)(nil)).Elem(), ExternalVolumeCapabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeCapabilityArrayInput)(nil)).Elem(), ExternalVolumeCapabilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeMountOptionsInput)(nil)).Elem(), ExternalVolumeMountOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeMountOptionsPtrInput)(nil)).Elem(), ExternalVolumeMountOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobHcl2Input)(nil)).Elem(), JobHcl2Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobHcl2PtrInput)(nil)).Elem(), JobHcl2Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupInput)(nil)).Elem(), JobTaskGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupArrayInput)(nil)).Elem(), JobTaskGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupTaskInput)(nil)).Elem(), JobTaskGroupTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupTaskArrayInput)(nil)).Elem(), JobTaskGroupTaskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupTaskVolumeMountInput)(nil)).Elem(), JobTaskGroupTaskVolumeMountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupTaskVolumeMountArrayInput)(nil)).Elem(), JobTaskGroupTaskVolumeMountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupVolumeInput)(nil)).Elem(), JobTaskGroupVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupVolumeArrayInput)(nil)).Elem(), JobTaskGroupVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderInput)(nil)).Elem(), ProviderHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderArrayInput)(nil)).Elem(), ProviderHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitInput)(nil)).Elem(), QuoteSpecificationLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitArrayInput)(nil)).Elem(), QuoteSpecificationLimitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeCapabilityInput)(nil)).Elem(), VolumeCapabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeCapabilityArrayInput)(nil)).Elem(), VolumeCapabilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeMountOptionsInput)(nil)).Elem(), VolumeMountOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeMountOptionsPtrInput)(nil)).Elem(), VolumeMountOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclPoliciesPolicyInput)(nil)).Elem(), GetAclPoliciesPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclPoliciesPolicyArrayInput)(nil)).Elem(), GetAclPoliciesPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokensAclTokenInput)(nil)).Elem(), GetAclTokensAclTokenArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokensAclTokenArrayInput)(nil)).Elem(), GetAclTokensAclTokenArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobConstraintInput)(nil)).Elem(), GetJobConstraintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobConstraintArrayInput)(nil)).Elem(), GetJobConstraintArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobPeriodicConfigInput)(nil)).Elem(), GetJobPeriodicConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobPeriodicConfigArrayInput)(nil)).Elem(), GetJobPeriodicConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupInput)(nil)).Elem(), GetJobTaskGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupArrayInput)(nil)).Elem(), GetJobTaskGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupTaskInput)(nil)).Elem(), GetJobTaskGroupTaskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupTaskArrayInput)(nil)).Elem(), GetJobTaskGroupTaskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupTaskVolumeMountInput)(nil)).Elem(), GetJobTaskGroupTaskVolumeMountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupTaskVolumeMountArrayInput)(nil)).Elem(), GetJobTaskGroupTaskVolumeMountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupVolumeInput)(nil)).Elem(), GetJobTaskGroupVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupVolumeArrayInput)(nil)).Elem(), GetJobTaskGroupVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginNodeInput)(nil)).Elem(), GetPluginNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginNodeArrayInput)(nil)).Elem(), GetPluginNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesPolicyInput)(nil)).Elem(), GetScalingPoliciesPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesPolicyArrayInput)(nil)).Elem(), GetScalingPoliciesPolicyArray{})
 	pulumi.RegisterOutputType(ExternalVolumeCapabilityOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeCapabilityArrayOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeMountOptionsOutput{})

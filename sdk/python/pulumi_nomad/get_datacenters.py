@@ -12,6 +12,7 @@ __all__ = [
     'GetDatacentersResult',
     'AwaitableGetDatacentersResult',
     'get_datacenters',
+    'get_datacenters_output',
 ]
 
 @pulumi.output_type
@@ -103,3 +104,27 @@ def get_datacenters(ignore_down_nodes: Optional[bool] = None,
         id=__ret__.id,
         ignore_down_nodes=__ret__.ignore_down_nodes,
         prefix=__ret__.prefix)
+
+
+@_utilities.lift_output_func(get_datacenters)
+def get_datacenters_output(ignore_down_nodes: Optional[pulumi.Input[Optional[bool]]] = None,
+                           prefix: Optional[pulumi.Input[Optional[str]]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatacentersResult]:
+    """
+    Retrieve a list of datacenters.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    datacenters = nomad.get_datacenters(ignore_down_nodes=True,
+        prefix="prod")
+    ```
+
+
+    :param bool ignore_down_nodes: `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.
+    :param str prefix: `(string)`: An optional string to filter datacenters based on name prefix. If not provided, all datacenters are returned.
+    """
+    ...

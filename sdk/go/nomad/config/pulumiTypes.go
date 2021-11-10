@@ -111,6 +111,8 @@ func (o HeadersArrayOutput) Index(i pulumi.IntInput) HeadersOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*HeadersInput)(nil)).Elem(), HeadersArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeadersArrayInput)(nil)).Elem(), HeadersArray{})
 	pulumi.RegisterOutputType(HeadersOutput{})
 	pulumi.RegisterOutputType(HeadersArrayOutput{})
 }

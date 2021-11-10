@@ -4,6 +4,9 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,7 +34,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := true
-// 		_, err := nomad.GetPlugin(ctx, &nomad.GetPluginArgs{
+// 		_, err := nomad.GetPlugin(ctx, &GetPluginArgs{
 // 			PluginId:       "aws-ebs0",
 // 			WaitForHealthy: &opt0,
 // 		}, nil)
@@ -76,4 +79,92 @@ type GetPluginResult struct {
 	PluginProviderVersion string          `pulumi:"pluginProviderVersion"`
 	WaitForHealthy        *bool           `pulumi:"waitForHealthy"`
 	WaitForRegistration   *bool           `pulumi:"waitForRegistration"`
+}
+
+func GetPluginOutput(ctx *pulumi.Context, args GetPluginOutputArgs, opts ...pulumi.InvokeOption) GetPluginResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetPluginResult, error) {
+			args := v.(GetPluginArgs)
+			r, err := GetPlugin(ctx, &args, opts...)
+			return *r, err
+		}).(GetPluginResultOutput)
+}
+
+// A collection of arguments for invoking getPlugin.
+type GetPluginOutputArgs struct {
+	PluginId            pulumi.StringInput  `pulumi:"pluginId"`
+	WaitForHealthy      pulumi.BoolPtrInput `pulumi:"waitForHealthy"`
+	WaitForRegistration pulumi.BoolPtrInput `pulumi:"waitForRegistration"`
+}
+
+func (GetPluginOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPluginArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getPlugin.
+type GetPluginResultOutput struct{ *pulumi.OutputState }
+
+func (GetPluginResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPluginResult)(nil)).Elem()
+}
+
+func (o GetPluginResultOutput) ToGetPluginResultOutput() GetPluginResultOutput {
+	return o
+}
+
+func (o GetPluginResultOutput) ToGetPluginResultOutputWithContext(ctx context.Context) GetPluginResultOutput {
+	return o
+}
+
+func (o GetPluginResultOutput) ControllerRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPluginResult) bool { return v.ControllerRequired }).(pulumi.BoolOutput)
+}
+
+func (o GetPluginResultOutput) ControllersExpected() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPluginResult) int { return v.ControllersExpected }).(pulumi.IntOutput)
+}
+
+func (o GetPluginResultOutput) ControllersHealthy() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPluginResult) int { return v.ControllersHealthy }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetPluginResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetPluginResultOutput) Nodes() GetPluginNodeArrayOutput {
+	return o.ApplyT(func(v GetPluginResult) []GetPluginNode { return v.Nodes }).(GetPluginNodeArrayOutput)
+}
+
+func (o GetPluginResultOutput) NodesExpected() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPluginResult) int { return v.NodesExpected }).(pulumi.IntOutput)
+}
+
+func (o GetPluginResultOutput) NodesHealthy() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPluginResult) int { return v.NodesHealthy }).(pulumi.IntOutput)
+}
+
+func (o GetPluginResultOutput) PluginId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginResult) string { return v.PluginId }).(pulumi.StringOutput)
+}
+
+func (o GetPluginResultOutput) PluginProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginResult) string { return v.PluginProvider }).(pulumi.StringOutput)
+}
+
+func (o GetPluginResultOutput) PluginProviderVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginResult) string { return v.PluginProviderVersion }).(pulumi.StringOutput)
+}
+
+func (o GetPluginResultOutput) WaitForHealthy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetPluginResult) *bool { return v.WaitForHealthy }).(pulumi.BoolPtrOutput)
+}
+
+func (o GetPluginResultOutput) WaitForRegistration() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetPluginResult) *bool { return v.WaitForRegistration }).(pulumi.BoolPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetPluginResultOutput{})
 }

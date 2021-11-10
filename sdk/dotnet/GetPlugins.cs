@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -36,6 +37,32 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Task<GetPluginsResult> InvokeAsync(GetPluginsArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Retrieve a list of dynamic plugins in Nomad.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(Nomad.GetPlugins.InvokeAsync());
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetPluginsResult> Invoke(GetPluginsInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithVersion());
     }
 
 
@@ -45,6 +72,16 @@ namespace Pulumi.Nomad
         public string? Type { get; set; }
 
         public GetPluginsArgs()
+        {
+        }
+    }
+
+    public sealed class GetPluginsInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        public GetPluginsInvokeArgs()
         {
         }
     }

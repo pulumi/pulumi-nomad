@@ -13,6 +13,7 @@ __all__ = [
     'GetAclTokensResult',
     'AwaitableGetAclTokensResult',
     'get_acl_tokens',
+    'get_acl_tokens_output',
 ]
 
 @pulumi.output_type
@@ -87,3 +88,21 @@ def get_acl_tokens(prefix: Optional[str] = None,
         acl_tokens=__ret__.acl_tokens,
         id=__ret__.id,
         prefix=__ret__.prefix)
+
+
+@_utilities.lift_output_func(get_acl_tokens)
+def get_acl_tokens_output(prefix: Optional[pulumi.Input[Optional[str]]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclTokensResult]:
+    """
+    Get a list of ACL tokens.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    tokens = nomad.get_acl_tokens(prefix="a242")
+    ```
+    """
+    ...

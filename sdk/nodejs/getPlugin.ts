@@ -76,3 +76,16 @@ export interface GetPluginResult {
     readonly waitForHealthy?: boolean;
     readonly waitForRegistration?: boolean;
 }
+
+export function getPluginOutput(args: GetPluginOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginResult> {
+    return pulumi.output(args).apply(a => getPlugin(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getPlugin.
+ */
+export interface GetPluginOutputArgs {
+    pluginId: pulumi.Input<string>;
+    waitForHealthy?: pulumi.Input<boolean>;
+    waitForRegistration?: pulumi.Input<boolean>;
+}

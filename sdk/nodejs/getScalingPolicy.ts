@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -53,4 +52,18 @@ export interface GetScalingPolicyResult {
     readonly policy: string;
     readonly target: {[key: string]: any};
     readonly type: string;
+}
+
+export function getScalingPolicyOutput(args: GetScalingPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetScalingPolicyResult> {
+    return pulumi.output(args).apply(a => getScalingPolicy(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getScalingPolicy.
+ */
+export interface GetScalingPolicyOutputArgs {
+    /**
+     * `(string: <required>)` - The  ID of the scaling policy.
+     */
+    id: pulumi.Input<string>;
 }

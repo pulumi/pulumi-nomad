@@ -13,6 +13,7 @@ __all__ = [
     'GetAclPoliciesResult',
     'AwaitableGetAclPoliciesResult',
     'get_acl_policies',
+    'get_acl_policies_output',
 ]
 
 @pulumi.output_type
@@ -87,3 +88,21 @@ def get_acl_policies(prefix: Optional[str] = None,
         id=__ret__.id,
         policies=__ret__.policies,
         prefix=__ret__.prefix)
+
+
+@_utilities.lift_output_func(get_acl_policies)
+def get_acl_policies_output(prefix: Optional[pulumi.Input[Optional[str]]] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclPoliciesResult]:
+    """
+    Retrieve a list of ACL Policies.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    example = nomad.get_acl_policies(prefix="prod")
+    ```
+    """
+    ...

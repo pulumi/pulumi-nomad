@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -41,6 +42,37 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Task<GetJobParserResult> InvokeAsync(GetJobParserArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Parse a HCL jobspec and produce the equivalent JSON encoded job.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.IO;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var myJob = Output.Create(Nomad.GetJobParser.InvokeAsync(new Nomad.GetJobParserArgs
+        ///         {
+        ///             Hcl = File.ReadAllText($"{path.Module}/jobspec.hcl"),
+        ///             Canonicalize = false,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetJobParserResult> Invoke(GetJobParserInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserInvokeArgs(), options.WithVersion());
     }
 
 
@@ -53,6 +85,19 @@ namespace Pulumi.Nomad
         public string Hcl { get; set; } = null!;
 
         public GetJobParserArgs()
+        {
+        }
+    }
+
+    public sealed class GetJobParserInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("canonicalize")]
+        public Input<bool>? Canonicalize { get; set; }
+
+        [Input("hcl", required: true)]
+        public Input<string> Hcl { get; set; } = null!;
+
+        public GetJobParserInvokeArgs()
         {
         }
     }
