@@ -9,86 +9,100 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
 
-__all__ = [
-    'address',
-    'ca_file',
-    'ca_pem',
-    'cert_file',
-    'cert_pem',
-    'consul_token',
-    'headers',
-    'http_auth',
-    'key_file',
-    'key_pem',
-    'region',
-    'secret_id',
-    'vault_token',
-]
+import types
 
 __config__ = pulumi.Config('nomad')
 
-address = __config__.get('address')
-"""
-URL of the root of the target Nomad agent.
-"""
 
-ca_file = __config__.get('caFile')
-"""
-A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
-"""
+class _ExportableConfig(types.ModuleType):
+    @property
+    def address(self) -> Optional[str]:
+        """
+        URL of the root of the target Nomad agent.
+        """
+        return __config__.get('address')
 
-ca_pem = __config__.get('caPem')
-"""
-PEM-encoded certificate authority used to verify the remote agent's certificate.
-"""
+    @property
+    def ca_file(self) -> Optional[str]:
+        """
+        A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
+        """
+        return __config__.get('caFile')
 
-cert_file = __config__.get('certFile')
-"""
-A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
-"""
+    @property
+    def ca_pem(self) -> Optional[str]:
+        """
+        PEM-encoded certificate authority used to verify the remote agent's certificate.
+        """
+        return __config__.get('caPem')
 
-cert_pem = __config__.get('certPem')
-"""
-PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
-"""
+    @property
+    def cert_file(self) -> Optional[str]:
+        """
+        A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+        """
+        return __config__.get('certFile')
 
-consul_token = __config__.get('consulToken')
-"""
-Consul token to validate Consul Connect Service Identity policies specified in the job file.
-"""
+    @property
+    def cert_pem(self) -> Optional[str]:
+        """
+        PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+        """
+        return __config__.get('certPem')
 
-headers = __config__.get('headers')
-"""
-The headers to send with each Nomad request.
-"""
+    @property
+    def consul_token(self) -> Optional[str]:
+        """
+        Consul token to validate Consul Connect Service Identity policies specified in the job file.
+        """
+        return __config__.get('consulToken')
 
-http_auth = __config__.get('httpAuth')
-"""
-HTTP basic auth configuration.
-"""
+    @property
+    def headers(self) -> Optional[str]:
+        """
+        The headers to send with each Nomad request.
+        """
+        return __config__.get('headers')
 
-key_file = __config__.get('keyFile')
-"""
-A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
-"""
+    @property
+    def http_auth(self) -> Optional[str]:
+        """
+        HTTP basic auth configuration.
+        """
+        return __config__.get('httpAuth')
 
-key_pem = __config__.get('keyPem')
-"""
-PEM-encoded private key, required if cert_file or cert_pem is specified.
-"""
+    @property
+    def key_file(self) -> Optional[str]:
+        """
+        A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+        """
+        return __config__.get('keyFile')
 
-region = __config__.get('region')
-"""
-Region of the target Nomad agent.
-"""
+    @property
+    def key_pem(self) -> Optional[str]:
+        """
+        PEM-encoded private key, required if cert_file or cert_pem is specified.
+        """
+        return __config__.get('keyPem')
 
-secret_id = __config__.get('secretId')
-"""
-ACL token secret for API requests.
-"""
+    @property
+    def region(self) -> Optional[str]:
+        """
+        Region of the target Nomad agent.
+        """
+        return __config__.get('region')
 
-vault_token = __config__.get('vaultToken')
-"""
-Vault token if policies are specified in the job file.
-"""
+    @property
+    def secret_id(self) -> Optional[str]:
+        """
+        ACL token secret for API requests.
+        """
+        return __config__.get('secretId')
+
+    @property
+    def vault_token(self) -> Optional[str]:
+        """
+        Vault token if policies are specified in the job file.
+        """
+        return __config__.get('vaultToken')
 

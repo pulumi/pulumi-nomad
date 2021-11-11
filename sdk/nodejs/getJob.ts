@@ -76,3 +76,15 @@ export interface GetJobResult {
     readonly type: string;
     readonly version: number;
 }
+
+export function getJobOutput(args: GetJobOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJobResult> {
+    return pulumi.output(args).apply(a => getJob(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getJob.
+ */
+export interface GetJobOutputArgs {
+    jobId: pulumi.Input<string>;
+    namespace?: pulumi.Input<string>;
+}

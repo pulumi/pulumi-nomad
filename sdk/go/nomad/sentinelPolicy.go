@@ -223,7 +223,7 @@ type SentinelPolicyArrayInput interface {
 type SentinelPolicyArray []SentinelPolicyInput
 
 func (SentinelPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SentinelPolicy)(nil))
+	return reflect.TypeOf((*[]*SentinelPolicy)(nil)).Elem()
 }
 
 func (i SentinelPolicyArray) ToSentinelPolicyArrayOutput() SentinelPolicyArrayOutput {
@@ -248,7 +248,7 @@ type SentinelPolicyMapInput interface {
 type SentinelPolicyMap map[string]SentinelPolicyInput
 
 func (SentinelPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SentinelPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SentinelPolicy)(nil)).Elem()
 }
 
 func (i SentinelPolicyMap) ToSentinelPolicyMapOutput() SentinelPolicyMapOutput {
@@ -259,9 +259,7 @@ func (i SentinelPolicyMap) ToSentinelPolicyMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SentinelPolicyMapOutput)
 }
 
-type SentinelPolicyOutput struct {
-	*pulumi.OutputState
-}
+type SentinelPolicyOutput struct{ *pulumi.OutputState }
 
 func (SentinelPolicyOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*SentinelPolicy)(nil))
@@ -280,14 +278,12 @@ func (o SentinelPolicyOutput) ToSentinelPolicyPtrOutput() SentinelPolicyPtrOutpu
 }
 
 func (o SentinelPolicyOutput) ToSentinelPolicyPtrOutputWithContext(ctx context.Context) SentinelPolicyPtrOutput {
-	return o.ApplyT(func(v SentinelPolicy) *SentinelPolicy {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SentinelPolicy) *SentinelPolicy {
 		return &v
 	}).(SentinelPolicyPtrOutput)
 }
 
-type SentinelPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
+type SentinelPolicyPtrOutput struct{ *pulumi.OutputState }
 
 func (SentinelPolicyPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**SentinelPolicy)(nil))
@@ -299,6 +295,16 @@ func (o SentinelPolicyPtrOutput) ToSentinelPolicyPtrOutput() SentinelPolicyPtrOu
 
 func (o SentinelPolicyPtrOutput) ToSentinelPolicyPtrOutputWithContext(ctx context.Context) SentinelPolicyPtrOutput {
 	return o
+}
+
+func (o SentinelPolicyPtrOutput) Elem() SentinelPolicyOutput {
+	return o.ApplyT(func(v *SentinelPolicy) SentinelPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret SentinelPolicy
+		return ret
+	}).(SentinelPolicyOutput)
 }
 
 type SentinelPolicyArrayOutput struct{ *pulumi.OutputState }
@@ -342,6 +348,10 @@ func (o SentinelPolicyMapOutput) MapIndex(k pulumi.StringInput) SentinelPolicyOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SentinelPolicyInput)(nil)).Elem(), &SentinelPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SentinelPolicyPtrInput)(nil)).Elem(), &SentinelPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SentinelPolicyArrayInput)(nil)).Elem(), SentinelPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SentinelPolicyMapInput)(nil)).Elem(), SentinelPolicyMap{})
 	pulumi.RegisterOutputType(SentinelPolicyOutput{})
 	pulumi.RegisterOutputType(SentinelPolicyPtrOutput{})
 	pulumi.RegisterOutputType(SentinelPolicyArrayOutput{})

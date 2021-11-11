@@ -13,6 +13,7 @@ __all__ = [
     'GetPluginResult',
     'AwaitableGetPluginResult',
     'get_plugin',
+    'get_plugin_output',
 ]
 
 @pulumi.output_type
@@ -154,7 +155,7 @@ def get_plugin(plugin_id: Optional[str] = None,
 
     If a plugin with the specified ID does not exist and the datasource is not
     configured to wait, it will result in an error. For simple existence checks,
-    use the `getPlugins` listing datasource.
+    use the `get_plugins` listing datasource.
 
     ## Example Usage
 
@@ -194,3 +195,36 @@ def get_plugin(plugin_id: Optional[str] = None,
         plugin_provider_version=__ret__.plugin_provider_version,
         wait_for_healthy=__ret__.wait_for_healthy,
         wait_for_registration=__ret__.wait_for_registration)
+
+
+@_utilities.lift_output_func(get_plugin)
+def get_plugin_output(plugin_id: Optional[pulumi.Input[str]] = None,
+                      wait_for_healthy: Optional[pulumi.Input[Optional[bool]]] = None,
+                      wait_for_registration: Optional[pulumi.Input[Optional[bool]]] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginResult]:
+    """
+    Lookup a plugin by ID. The aim of this datasource is to determine whether
+    a particular plugin exists on the cluster, to find information on the health
+    and availability of the plugin, and to optionally wait for the plugin
+    before performing actions the require an available plugin controller.
+
+    If a plugin with the specified ID does not exist and the datasource is not
+    configured to wait, it will result in an error. For simple existence checks,
+    use the `get_plugins` listing datasource.
+
+    ## Example Usage
+
+    Check for the existence of a plugin:
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    ebs = nomad.get_plugin(plugin_id="aws-ebs0",
+        wait_for_healthy=True)
+    ```
+
+    This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
+    is healthy before returning.
+    """
+    ...

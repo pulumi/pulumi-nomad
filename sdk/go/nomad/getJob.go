@@ -4,6 +4,9 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -26,7 +29,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.LookupJob(ctx, &nomad.LookupJobArgs{
+// 		_, err := nomad.LookupJob(ctx, &GetJobArgs{
 // 			JobId: "example",
 // 		}, nil)
 // 		if err != nil {
@@ -76,4 +79,131 @@ type LookupJobResult struct {
 	TaskGroups        []GetJobTaskGroup      `pulumi:"taskGroups"`
 	Type              string                 `pulumi:"type"`
 	Version           int                    `pulumi:"version"`
+}
+
+func LookupJobOutput(ctx *pulumi.Context, args LookupJobOutputArgs, opts ...pulumi.InvokeOption) LookupJobResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupJobResult, error) {
+			args := v.(LookupJobArgs)
+			r, err := LookupJob(ctx, &args, opts...)
+			return *r, err
+		}).(LookupJobResultOutput)
+}
+
+// A collection of arguments for invoking getJob.
+type LookupJobOutputArgs struct {
+	JobId     pulumi.StringInput    `pulumi:"jobId"`
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+}
+
+func (LookupJobOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupJobArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getJob.
+type LookupJobResultOutput struct{ *pulumi.OutputState }
+
+func (LookupJobResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupJobResult)(nil)).Elem()
+}
+
+func (o LookupJobResultOutput) ToLookupJobResultOutput() LookupJobResultOutput {
+	return o
+}
+
+func (o LookupJobResultOutput) ToLookupJobResultOutputWithContext(ctx context.Context) LookupJobResultOutput {
+	return o
+}
+
+func (o LookupJobResultOutput) AllAtOnce() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupJobResult) bool { return v.AllAtOnce }).(pulumi.BoolOutput)
+}
+
+func (o LookupJobResultOutput) Constraints() GetJobConstraintArrayOutput {
+	return o.ApplyT(func(v LookupJobResult) []GetJobConstraint { return v.Constraints }).(GetJobConstraintArrayOutput)
+}
+
+func (o LookupJobResultOutput) CreateIndex() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupJobResult) int { return v.CreateIndex }).(pulumi.IntOutput)
+}
+
+func (o LookupJobResultOutput) Datacenters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupJobResult) []string { return v.Datacenters }).(pulumi.StringArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupJobResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) JobId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.JobId }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) JobModifyIndex() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupJobResult) int { return v.JobModifyIndex }).(pulumi.IntOutput)
+}
+
+func (o LookupJobResultOutput) ModifyIndex() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupJobResult) int { return v.ModifyIndex }).(pulumi.IntOutput)
+}
+
+func (o LookupJobResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupJobResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupJobResultOutput) ParentId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.ParentId }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) PeriodicConfigs() GetJobPeriodicConfigArrayOutput {
+	return o.ApplyT(func(v LookupJobResult) []GetJobPeriodicConfig { return v.PeriodicConfigs }).(GetJobPeriodicConfigArrayOutput)
+}
+
+func (o LookupJobResultOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupJobResult) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+func (o LookupJobResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) Stable() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupJobResult) bool { return v.Stable }).(pulumi.BoolOutput)
+}
+
+func (o LookupJobResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) StatusDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.StatusDescription }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) Stop() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupJobResult) bool { return v.Stop }).(pulumi.BoolOutput)
+}
+
+func (o LookupJobResultOutput) SubmitTime() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupJobResult) int { return v.SubmitTime }).(pulumi.IntOutput)
+}
+
+func (o LookupJobResultOutput) TaskGroups() GetJobTaskGroupArrayOutput {
+	return o.ApplyT(func(v LookupJobResult) []GetJobTaskGroup { return v.TaskGroups }).(GetJobTaskGroupArrayOutput)
+}
+
+func (o LookupJobResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o LookupJobResultOutput) Version() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupJobResult) int { return v.Version }).(pulumi.IntOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupJobResultOutput{})
 }

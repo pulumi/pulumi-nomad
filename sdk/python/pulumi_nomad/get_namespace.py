@@ -12,6 +12,7 @@ __all__ = [
     'GetNamespaceResult',
     'AwaitableGetNamespaceResult',
     'get_namespace',
+    'get_namespace_output',
 ]
 
 @pulumi.output_type
@@ -99,3 +100,24 @@ def get_namespace(name: Optional[str] = None,
         id=__ret__.id,
         name=__ret__.name,
         quota=__ret__.quota)
+
+
+@_utilities.lift_output_func(get_namespace)
+def get_namespace_output(name: Optional[pulumi.Input[str]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNamespaceResult]:
+    """
+    Get information about a namespace in Nomad.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    namespaces = nomad.get_namespace(name="default")
+    ```
+
+
+    :param str name: `(string)` - The name of the namespace.
+    """
+    ...

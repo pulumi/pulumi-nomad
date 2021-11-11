@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -54,4 +53,16 @@ export interface GetJobParserResult {
      */
     readonly id: string;
     readonly json: string;
+}
+
+export function getJobParserOutput(args: GetJobParserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJobParserResult> {
+    return pulumi.output(args).apply(a => getJobParser(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getJobParser.
+ */
+export interface GetJobParserOutputArgs {
+    canonicalize?: pulumi.Input<boolean>;
+    hcl: pulumi.Input<string>;
 }

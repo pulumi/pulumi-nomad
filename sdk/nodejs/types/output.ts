@@ -128,11 +128,6 @@ export interface JobTaskGroupVolume {
     type: string;
 }
 
-export interface ProviderHeader {
-    name?: string;
-    value?: string;
-}
-
 export interface QuoteSpecificationLimit {
     /**
      * `(string: <required>)` - The region these limits should apply to.
@@ -174,4 +169,5 @@ export namespace config {
         name: string;
         value: string;
     }
+
 }

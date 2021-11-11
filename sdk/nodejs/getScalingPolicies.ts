@@ -61,3 +61,21 @@ export interface GetScalingPoliciesResult {
     readonly policies: outputs.GetScalingPoliciesPolicy[];
     readonly type?: string;
 }
+
+export function getScalingPoliciesOutput(args?: GetScalingPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetScalingPoliciesResult> {
+    return pulumi.output(args).apply(a => getScalingPolicies(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getScalingPolicies.
+ */
+export interface GetScalingPoliciesOutputArgs {
+    /**
+     * `(string)` - An optional string to filter scaling policies based on the target job. If not provided, policies for all jobs are returned.
+     */
+    jobId?: pulumi.Input<string>;
+    /**
+     * `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
+     */
+    type?: pulumi.Input<string>;
+}

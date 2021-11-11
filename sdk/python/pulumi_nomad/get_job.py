@@ -13,6 +13,7 @@ __all__ = [
     'GetJobResult',
     'AwaitableGetJobResult',
     'get_job',
+    'get_job_output',
 ]
 
 @pulumi.output_type
@@ -284,3 +285,27 @@ def get_job(job_id: Optional[str] = None,
         task_groups=__ret__.task_groups,
         type=__ret__.type,
         version=__ret__.version)
+
+
+@_utilities.lift_output_func(get_job)
+def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
+                   namespace: Optional[pulumi.Input[Optional[str]]] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobResult]:
+    """
+    Get information on a job ID. The aim of this datasource is to enable
+    you to act on various settings and states of a particular job.
+
+    An error is triggered if zero or more than one result is returned by the query.
+
+    ## Example Usage
+
+    Get the data about a snapshot:
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    example = nomad.get_job(job_id="example")
+    ```
+    """
+    ...

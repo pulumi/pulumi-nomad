@@ -4,6 +4,9 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -49,4 +52,54 @@ type GetPluginsResult struct {
 	Id      string                   `pulumi:"id"`
 	Plugins []map[string]interface{} `pulumi:"plugins"`
 	Type    *string                  `pulumi:"type"`
+}
+
+func GetPluginsOutput(ctx *pulumi.Context, args GetPluginsOutputArgs, opts ...pulumi.InvokeOption) GetPluginsResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetPluginsResult, error) {
+			args := v.(GetPluginsArgs)
+			r, err := GetPlugins(ctx, &args, opts...)
+			return *r, err
+		}).(GetPluginsResultOutput)
+}
+
+// A collection of arguments for invoking getPlugins.
+type GetPluginsOutputArgs struct {
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (GetPluginsOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPluginsArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getPlugins.
+type GetPluginsResultOutput struct{ *pulumi.OutputState }
+
+func (GetPluginsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPluginsResult)(nil)).Elem()
+}
+
+func (o GetPluginsResultOutput) ToGetPluginsResultOutput() GetPluginsResultOutput {
+	return o
+}
+
+func (o GetPluginsResultOutput) ToGetPluginsResultOutputWithContext(ctx context.Context) GetPluginsResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetPluginsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetPluginsResultOutput) Plugins() pulumi.MapArrayOutput {
+	return o.ApplyT(func(v GetPluginsResult) []map[string]interface{} { return v.Plugins }).(pulumi.MapArrayOutput)
+}
+
+func (o GetPluginsResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetPluginsResult) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetPluginsResultOutput{})
 }

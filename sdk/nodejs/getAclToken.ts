@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 export function getAclToken(args: GetAclTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetAclTokenResult> {
@@ -40,4 +39,15 @@ export interface GetAclTokenResult {
     readonly policies: string[];
     readonly secretId: string;
     readonly type: string;
+}
+
+export function getAclTokenOutput(args: GetAclTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclTokenResult> {
+    return pulumi.output(args).apply(a => getAclToken(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAclToken.
+ */
+export interface GetAclTokenOutputArgs {
+    accessorId: pulumi.Input<string>;
 }

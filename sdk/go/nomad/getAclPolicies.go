@@ -4,6 +4,9 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,7 +25,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := "prod"
-// 		_, err := nomad.GetAclPolicies(ctx, &nomad.GetAclPoliciesArgs{
+// 		_, err := nomad.GetAclPolicies(ctx, &GetAclPoliciesArgs{
 // 			Prefix: &opt0,
 // 		}, nil)
 // 		if err != nil {
@@ -52,4 +55,54 @@ type GetAclPoliciesResult struct {
 	Id       string                 `pulumi:"id"`
 	Policies []GetAclPoliciesPolicy `pulumi:"policies"`
 	Prefix   *string                `pulumi:"prefix"`
+}
+
+func GetAclPoliciesOutput(ctx *pulumi.Context, args GetAclPoliciesOutputArgs, opts ...pulumi.InvokeOption) GetAclPoliciesResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetAclPoliciesResult, error) {
+			args := v.(GetAclPoliciesArgs)
+			r, err := GetAclPolicies(ctx, &args, opts...)
+			return *r, err
+		}).(GetAclPoliciesResultOutput)
+}
+
+// A collection of arguments for invoking getAclPolicies.
+type GetAclPoliciesOutputArgs struct {
+	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
+}
+
+func (GetAclPoliciesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclPoliciesArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAclPolicies.
+type GetAclPoliciesResultOutput struct{ *pulumi.OutputState }
+
+func (GetAclPoliciesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclPoliciesResult)(nil)).Elem()
+}
+
+func (o GetAclPoliciesResultOutput) ToGetAclPoliciesResultOutput() GetAclPoliciesResultOutput {
+	return o
+}
+
+func (o GetAclPoliciesResultOutput) ToGetAclPoliciesResultOutputWithContext(ctx context.Context) GetAclPoliciesResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetAclPoliciesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclPoliciesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetAclPoliciesResultOutput) Policies() GetAclPoliciesPolicyArrayOutput {
+	return o.ApplyT(func(v GetAclPoliciesResult) []GetAclPoliciesPolicy { return v.Policies }).(GetAclPoliciesPolicyArrayOutput)
+}
+
+func (o GetAclPoliciesResultOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAclPoliciesResult) *string { return v.Prefix }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetAclPoliciesResultOutput{})
 }

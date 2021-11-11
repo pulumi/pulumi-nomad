@@ -4,6 +4,9 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,4 +35,74 @@ type LookupAclTokenResult struct {
 	Policies []string `pulumi:"policies"`
 	SecretId string   `pulumi:"secretId"`
 	Type     string   `pulumi:"type"`
+}
+
+func LookupAclTokenOutput(ctx *pulumi.Context, args LookupAclTokenOutputArgs, opts ...pulumi.InvokeOption) LookupAclTokenResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupAclTokenResult, error) {
+			args := v.(LookupAclTokenArgs)
+			r, err := LookupAclToken(ctx, &args, opts...)
+			return *r, err
+		}).(LookupAclTokenResultOutput)
+}
+
+// A collection of arguments for invoking getAclToken.
+type LookupAclTokenOutputArgs struct {
+	AccessorId pulumi.StringInput `pulumi:"accessorId"`
+}
+
+func (LookupAclTokenOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAclTokenArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getAclToken.
+type LookupAclTokenResultOutput struct{ *pulumi.OutputState }
+
+func (LookupAclTokenResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupAclTokenResult)(nil)).Elem()
+}
+
+func (o LookupAclTokenResultOutput) ToLookupAclTokenResultOutput() LookupAclTokenResultOutput {
+	return o
+}
+
+func (o LookupAclTokenResultOutput) ToLookupAclTokenResultOutputWithContext(ctx context.Context) LookupAclTokenResultOutput {
+	return o
+}
+
+func (o LookupAclTokenResultOutput) AccessorId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclTokenResult) string { return v.AccessorId }).(pulumi.StringOutput)
+}
+
+func (o LookupAclTokenResultOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclTokenResult) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+func (o LookupAclTokenResultOutput) Global() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAclTokenResult) bool { return v.Global }).(pulumi.BoolOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupAclTokenResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclTokenResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupAclTokenResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclTokenResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupAclTokenResultOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupAclTokenResult) []string { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupAclTokenResultOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclTokenResult) string { return v.SecretId }).(pulumi.StringOutput)
+}
+
+func (o LookupAclTokenResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclTokenResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupAclTokenResultOutput{})
 }

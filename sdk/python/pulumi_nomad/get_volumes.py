@@ -12,6 +12,7 @@ __all__ = [
     'GetVolumesResult',
     'AwaitableGetVolumesResult',
     'get_volumes',
+    'get_volumes_output',
 ]
 
 @pulumi.output_type
@@ -122,3 +123,24 @@ def get_volumes(namespace: Optional[str] = None,
         plugin_id=__ret__.plugin_id,
         type=__ret__.type,
         volumes=__ret__.volumes)
+
+
+@_utilities.lift_output_func(get_volumes)
+def get_volumes_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
+                       node_id: Optional[pulumi.Input[Optional[str]]] = None,
+                       plugin_id: Optional[pulumi.Input[Optional[str]]] = None,
+                       type: Optional[pulumi.Input[Optional[str]]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVolumesResult]:
+    """
+    Retrieve a list of volumes in Nomad.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    example = nomad.get_volumes()
+    ```
+    """
+    ...

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -52,6 +53,48 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Task<GetPluginResult> InvokeAsync(GetPluginArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Lookup a plugin by ID. The aim of this datasource is to determine whether
+        /// a particular plugin exists on the cluster, to find information on the health
+        /// and availability of the plugin, and to optionally wait for the plugin
+        /// before performing actions the require an available plugin controller.
+        /// 
+        /// If a plugin with the specified ID does not exist and the datasource is not
+        /// configured to wait, it will result in an error. For simple existence checks,
+        /// use the `nomad.getPlugins` listing datasource.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// Check for the existence of a plugin:
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var ebs = Output.Create(Nomad.GetPlugin.InvokeAsync(new Nomad.GetPluginArgs
+        ///         {
+        ///             PluginId = "aws-ebs0",
+        ///             WaitForHealthy = true,
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// 
+        /// This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
+        /// is healthy before returning.
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetPluginResult> Invoke(GetPluginInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginInvokeArgs(), options.WithVersion());
     }
 
 
@@ -67,6 +110,22 @@ namespace Pulumi.Nomad
         public bool? WaitForRegistration { get; set; }
 
         public GetPluginArgs()
+        {
+        }
+    }
+
+    public sealed class GetPluginInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("pluginId", required: true)]
+        public Input<string> PluginId { get; set; } = null!;
+
+        [Input("waitForHealthy")]
+        public Input<bool>? WaitForHealthy { get; set; }
+
+        [Input("waitForRegistration")]
+        public Input<bool>? WaitForRegistration { get; set; }
+
+        public GetPluginInvokeArgs()
         {
         }
     }

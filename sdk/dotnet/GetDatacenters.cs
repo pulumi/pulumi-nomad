@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -40,6 +41,36 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Task<GetDatacentersResult> InvokeAsync(GetDatacentersArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Retrieve a list of datacenters.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var datacenters = Output.Create(Nomad.GetDatacenters.InvokeAsync(new Nomad.GetDatacentersArgs
+        ///         {
+        ///             IgnoreDownNodes = true,
+        ///             Prefix = "prod",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetDatacentersResult> Invoke(GetDatacentersInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersInvokeArgs(), options.WithVersion());
     }
 
 
@@ -58,6 +89,25 @@ namespace Pulumi.Nomad
         public string? Prefix { get; set; }
 
         public GetDatacentersArgs()
+        {
+        }
+    }
+
+    public sealed class GetDatacentersInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.
+        /// </summary>
+        [Input("ignoreDownNodes")]
+        public Input<bool>? IgnoreDownNodes { get; set; }
+
+        /// <summary>
+        /// `(string)`: An optional string to filter datacenters based on name prefix. If not provided, all datacenters are returned.
+        /// </summary>
+        [Input("prefix")]
+        public Input<string>? Prefix { get; set; }
+
+        public GetDatacentersInvokeArgs()
         {
         }
     }

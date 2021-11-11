@@ -29,10 +29,10 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := nomad.NewQuoteSpecification(ctx, "prodApi", &nomad.QuoteSpecificationArgs{
 // 			Description: pulumi.String("Production instances of backend API servers"),
-// 			Limits: nomad.QuoteSpecificationLimitArray{
-// 				&nomad.QuoteSpecificationLimitArgs{
+// 			Limits: QuoteSpecificationLimitArray{
+// 				&QuoteSpecificationLimitArgs{
 // 					Region: pulumi.String("global"),
-// 					RegionLimit: &nomad.QuoteSpecificationLimitRegionLimitArgs{
+// 					RegionLimit: &QuoteSpecificationLimitRegionLimitArgs{
 // 						Cpu:      pulumi.Int(2400),
 // 						MemoryMb: pulumi.Int(1200),
 // 					},
@@ -200,7 +200,7 @@ type QuoteSpecificationArrayInput interface {
 type QuoteSpecificationArray []QuoteSpecificationInput
 
 func (QuoteSpecificationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*QuoteSpecification)(nil))
+	return reflect.TypeOf((*[]*QuoteSpecification)(nil)).Elem()
 }
 
 func (i QuoteSpecificationArray) ToQuoteSpecificationArrayOutput() QuoteSpecificationArrayOutput {
@@ -225,7 +225,7 @@ type QuoteSpecificationMapInput interface {
 type QuoteSpecificationMap map[string]QuoteSpecificationInput
 
 func (QuoteSpecificationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*QuoteSpecification)(nil))
+	return reflect.TypeOf((*map[string]*QuoteSpecification)(nil)).Elem()
 }
 
 func (i QuoteSpecificationMap) ToQuoteSpecificationMapOutput() QuoteSpecificationMapOutput {
@@ -236,9 +236,7 @@ func (i QuoteSpecificationMap) ToQuoteSpecificationMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationMapOutput)
 }
 
-type QuoteSpecificationOutput struct {
-	*pulumi.OutputState
-}
+type QuoteSpecificationOutput struct{ *pulumi.OutputState }
 
 func (QuoteSpecificationOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((*QuoteSpecification)(nil))
@@ -257,14 +255,12 @@ func (o QuoteSpecificationOutput) ToQuoteSpecificationPtrOutput() QuoteSpecifica
 }
 
 func (o QuoteSpecificationOutput) ToQuoteSpecificationPtrOutputWithContext(ctx context.Context) QuoteSpecificationPtrOutput {
-	return o.ApplyT(func(v QuoteSpecification) *QuoteSpecification {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v QuoteSpecification) *QuoteSpecification {
 		return &v
 	}).(QuoteSpecificationPtrOutput)
 }
 
-type QuoteSpecificationPtrOutput struct {
-	*pulumi.OutputState
-}
+type QuoteSpecificationPtrOutput struct{ *pulumi.OutputState }
 
 func (QuoteSpecificationPtrOutput) ElementType() reflect.Type {
 	return reflect.TypeOf((**QuoteSpecification)(nil))
@@ -276,6 +272,16 @@ func (o QuoteSpecificationPtrOutput) ToQuoteSpecificationPtrOutput() QuoteSpecif
 
 func (o QuoteSpecificationPtrOutput) ToQuoteSpecificationPtrOutputWithContext(ctx context.Context) QuoteSpecificationPtrOutput {
 	return o
+}
+
+func (o QuoteSpecificationPtrOutput) Elem() QuoteSpecificationOutput {
+	return o.ApplyT(func(v *QuoteSpecification) QuoteSpecification {
+		if v != nil {
+			return *v
+		}
+		var ret QuoteSpecification
+		return ret
+	}).(QuoteSpecificationOutput)
 }
 
 type QuoteSpecificationArrayOutput struct{ *pulumi.OutputState }
@@ -319,6 +325,10 @@ func (o QuoteSpecificationMapOutput) MapIndex(k pulumi.StringInput) QuoteSpecifi
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationInput)(nil)).Elem(), &QuoteSpecification{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationPtrInput)(nil)).Elem(), &QuoteSpecification{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationArrayInput)(nil)).Elem(), QuoteSpecificationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationMapInput)(nil)).Elem(), QuoteSpecificationMap{})
 	pulumi.RegisterOutputType(QuoteSpecificationOutput{})
 	pulumi.RegisterOutputType(QuoteSpecificationPtrOutput{})
 	pulumi.RegisterOutputType(QuoteSpecificationArrayOutput{})

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -39,6 +40,35 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Task<GetAclPoliciesResult> InvokeAsync(GetAclPoliciesArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAclPoliciesResult>("nomad:index/getAclPolicies:getAclPolicies", args ?? new GetAclPoliciesArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Retrieve a list of ACL Policies.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(Nomad.GetAclPolicies.InvokeAsync(new Nomad.GetAclPoliciesArgs
+        ///         {
+        ///             Prefix = "prod",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetAclPoliciesResult> Invoke(GetAclPoliciesInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetAclPoliciesResult>("nomad:index/getAclPolicies:getAclPolicies", args ?? new GetAclPoliciesInvokeArgs(), options.WithVersion());
     }
 
 
@@ -48,6 +78,16 @@ namespace Pulumi.Nomad
         public string? Prefix { get; set; }
 
         public GetAclPoliciesArgs()
+        {
+        }
+    }
+
+    public sealed class GetAclPoliciesInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("prefix")]
+        public Input<string>? Prefix { get; set; }
+
+        public GetAclPoliciesInvokeArgs()
         {
         }
     }

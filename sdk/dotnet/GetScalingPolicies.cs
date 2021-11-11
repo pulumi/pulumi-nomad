@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -40,6 +41,36 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Task<GetScalingPoliciesResult> InvokeAsync(GetScalingPoliciesArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetScalingPoliciesResult>("nomad:index/getScalingPolicies:getScalingPolicies", args ?? new GetScalingPoliciesArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Retrieve a list of Scaling Policies.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var example = Output.Create(Nomad.GetScalingPolicies.InvokeAsync(new Nomad.GetScalingPoliciesArgs
+        ///         {
+        ///             JobId = "webapp",
+        ///             Type = "horizontal",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetScalingPoliciesResult> Invoke(GetScalingPoliciesInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetScalingPoliciesResult>("nomad:index/getScalingPolicies:getScalingPolicies", args ?? new GetScalingPoliciesInvokeArgs(), options.WithVersion());
     }
 
 
@@ -58,6 +89,25 @@ namespace Pulumi.Nomad
         public string? Type { get; set; }
 
         public GetScalingPoliciesArgs()
+        {
+        }
+    }
+
+    public sealed class GetScalingPoliciesInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// `(string)` - An optional string to filter scaling policies based on the target job. If not provided, policies for all jobs are returned.
+        /// </summary>
+        [Input("jobId")]
+        public Input<string>? JobId { get; set; }
+
+        /// <summary>
+        /// `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
+        /// </summary>
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        public GetScalingPoliciesInvokeArgs()
         {
         }
     }

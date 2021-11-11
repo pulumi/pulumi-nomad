@@ -2,32 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
  * Retrieve a list of namespaces available in Nomad.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as nomad from "@pulumi/nomad";
- *
- * export = async () => {
- *     const namespaces = await nomad.getNamespaces({});
- *     const namespace: nomad.AclPolicy[];
- *     for (const range = {value: 0}; range.value < namespaces.namespaces.length; range.value++) {
- *         namespace.push(new nomad.AclPolicy(`namespace-${range.value}`, {
- *             description: `Write to the namespace ${namespaces[range.value]}`,
- *             rulesHcl: `namespace "${namespaces[range.value]}" {
- *   policy = "write"
- * }
- * `,
- *         }));
- *     }
- * }
- * ```
  */
 export function getNamespaces(opts?: pulumi.InvokeOptions): Promise<GetNamespacesResult> {
     if (!opts) {

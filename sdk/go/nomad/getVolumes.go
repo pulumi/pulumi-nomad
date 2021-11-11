@@ -4,6 +4,9 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -55,4 +58,69 @@ type GetVolumesResult struct {
 	PluginId  *string                  `pulumi:"pluginId"`
 	Type      *string                  `pulumi:"type"`
 	Volumes   []map[string]interface{} `pulumi:"volumes"`
+}
+
+func GetVolumesOutput(ctx *pulumi.Context, args GetVolumesOutputArgs, opts ...pulumi.InvokeOption) GetVolumesResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetVolumesResult, error) {
+			args := v.(GetVolumesArgs)
+			r, err := GetVolumes(ctx, &args, opts...)
+			return *r, err
+		}).(GetVolumesResultOutput)
+}
+
+// A collection of arguments for invoking getVolumes.
+type GetVolumesOutputArgs struct {
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	NodeId    pulumi.StringPtrInput `pulumi:"nodeId"`
+	PluginId  pulumi.StringPtrInput `pulumi:"pluginId"`
+	Type      pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (GetVolumesOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVolumesArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getVolumes.
+type GetVolumesResultOutput struct{ *pulumi.OutputState }
+
+func (GetVolumesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVolumesResult)(nil)).Elem()
+}
+
+func (o GetVolumesResultOutput) ToGetVolumesResultOutput() GetVolumesResultOutput {
+	return o
+}
+
+func (o GetVolumesResultOutput) ToGetVolumesResultOutputWithContext(ctx context.Context) GetVolumesResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetVolumesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVolumesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetVolumesResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumesResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o GetVolumesResultOutput) NodeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumesResult) *string { return v.NodeId }).(pulumi.StringPtrOutput)
+}
+
+func (o GetVolumesResultOutput) PluginId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumesResult) *string { return v.PluginId }).(pulumi.StringPtrOutput)
+}
+
+func (o GetVolumesResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVolumesResult) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o GetVolumesResultOutput) Volumes() pulumi.MapArrayOutput {
+	return o.ApplyT(func(v GetVolumesResult) []map[string]interface{} { return v.Volumes }).(pulumi.MapArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetVolumesResultOutput{})
 }

@@ -51,3 +51,14 @@ export interface GetAclTokensResult {
     readonly id: string;
     readonly prefix?: string;
 }
+
+export function getAclTokensOutput(args?: GetAclTokensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclTokensResult> {
+    return pulumi.output(args).apply(a => getAclTokens(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAclTokens.
+ */
+export interface GetAclTokensOutputArgs {
+    prefix?: pulumi.Input<string>;
+}

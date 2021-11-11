@@ -13,6 +13,7 @@ __all__ = [
     'GetScalingPoliciesResult',
     'AwaitableGetScalingPoliciesResult',
     'get_scaling_policies',
+    'get_scaling_policies_output',
 ]
 
 @pulumi.output_type
@@ -104,3 +105,27 @@ def get_scaling_policies(job_id: Optional[str] = None,
         job_id=__ret__.job_id,
         policies=__ret__.policies,
         type=__ret__.type)
+
+
+@_utilities.lift_output_func(get_scaling_policies)
+def get_scaling_policies_output(job_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                type: Optional[pulumi.Input[Optional[str]]] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetScalingPoliciesResult]:
+    """
+    Retrieve a list of Scaling Policies.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    example = nomad.get_scaling_policies(job_id="webapp",
+        type="horizontal")
+    ```
+
+
+    :param str job_id: `(string)` - An optional string to filter scaling policies based on the target job. If not provided, policies for all jobs are returned.
+    :param str type: `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
+    """
+    ...

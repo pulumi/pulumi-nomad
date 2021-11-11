@@ -12,6 +12,7 @@ __all__ = [
     'GetScalingPolicyResult',
     'AwaitableGetScalingPolicyResult',
     'get_scaling_policy',
+    'get_scaling_policy_output',
 ]
 
 @pulumi.output_type
@@ -126,3 +127,24 @@ def get_scaling_policy(id: Optional[str] = None,
         policy=__ret__.policy,
         target=__ret__.target,
         type=__ret__.type)
+
+
+@_utilities.lift_output_func(get_scaling_policy)
+def get_scaling_policy_output(id: Optional[pulumi.Input[str]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetScalingPolicyResult]:
+    """
+    Retrieve a Scaling Policy.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    example = nomad.get_scaling_policy(id="ad19848d-1921-179c-affa-244a3543be88")
+    ```
+
+
+    :param str id: `(string: <required>)` - The  ID of the scaling policy.
+    """
+    ...

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -13,6 +14,9 @@ namespace Pulumi.Nomad
     {
         public static Task<GetAclTokenResult> InvokeAsync(GetAclTokenArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAclTokenResult>("nomad:index/getAclToken:getAclToken", args ?? new GetAclTokenArgs(), options.WithVersion());
+
+        public static Output<GetAclTokenResult> Invoke(GetAclTokenInvokeArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetAclTokenResult>("nomad:index/getAclToken:getAclToken", args ?? new GetAclTokenInvokeArgs(), options.WithVersion());
     }
 
 
@@ -22,6 +26,16 @@ namespace Pulumi.Nomad
         public string AccessorId { get; set; } = null!;
 
         public GetAclTokenArgs()
+        {
+        }
+    }
+
+    public sealed class GetAclTokenInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("accessorId", required: true)]
+        public Input<string> AccessorId { get; set; } = null!;
+
+        public GetAclTokenInvokeArgs()
         {
         }
     }

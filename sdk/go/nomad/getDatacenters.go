@@ -4,6 +4,9 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,7 +26,7 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		opt0 := true
 // 		opt1 := "prod"
-// 		_, err := nomad.GetDatacenters(ctx, &nomad.GetDatacentersArgs{
+// 		_, err := nomad.GetDatacenters(ctx, &GetDatacentersArgs{
 // 			IgnoreDownNodes: &opt0,
 // 			Prefix:          &opt1,
 // 		}, nil)
@@ -58,4 +61,61 @@ type GetDatacentersResult struct {
 	Id              string  `pulumi:"id"`
 	IgnoreDownNodes *bool   `pulumi:"ignoreDownNodes"`
 	Prefix          *string `pulumi:"prefix"`
+}
+
+func GetDatacentersOutput(ctx *pulumi.Context, args GetDatacentersOutputArgs, opts ...pulumi.InvokeOption) GetDatacentersResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetDatacentersResult, error) {
+			args := v.(GetDatacentersArgs)
+			r, err := GetDatacenters(ctx, &args, opts...)
+			return *r, err
+		}).(GetDatacentersResultOutput)
+}
+
+// A collection of arguments for invoking getDatacenters.
+type GetDatacentersOutputArgs struct {
+	// `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.
+	IgnoreDownNodes pulumi.BoolPtrInput `pulumi:"ignoreDownNodes"`
+	// `(string)`: An optional string to filter datacenters based on name prefix. If not provided, all datacenters are returned.
+	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
+}
+
+func (GetDatacentersOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatacentersArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getDatacenters.
+type GetDatacentersResultOutput struct{ *pulumi.OutputState }
+
+func (GetDatacentersResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatacentersResult)(nil)).Elem()
+}
+
+func (o GetDatacentersResultOutput) ToGetDatacentersResultOutput() GetDatacentersResultOutput {
+	return o
+}
+
+func (o GetDatacentersResultOutput) ToGetDatacentersResultOutputWithContext(ctx context.Context) GetDatacentersResultOutput {
+	return o
+}
+
+func (o GetDatacentersResultOutput) Datacenters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDatacentersResult) []string { return v.Datacenters }).(pulumi.StringArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetDatacentersResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatacentersResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetDatacentersResultOutput) IgnoreDownNodes() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetDatacentersResult) *bool { return v.IgnoreDownNodes }).(pulumi.BoolPtrOutput)
+}
+
+func (o GetDatacentersResultOutput) Prefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDatacentersResult) *string { return v.Prefix }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetDatacentersResultOutput{})
 }

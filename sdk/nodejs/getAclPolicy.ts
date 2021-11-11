@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -50,4 +49,15 @@ export interface GetAclPolicyResult {
     readonly id: string;
     readonly name: string;
     readonly rules: string;
+}
+
+export function getAclPolicyOutput(args: GetAclPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclPolicyResult> {
+    return pulumi.output(args).apply(a => getAclPolicy(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getAclPolicy.
+ */
+export interface GetAclPolicyOutputArgs {
+    name: pulumi.Input<string>;
 }
