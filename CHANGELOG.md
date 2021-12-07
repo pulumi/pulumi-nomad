@@ -3,7 +3,7 @@ CHANGELOG
 
 ## Notice (2021-12-07)
 
-* As of this notice, using CHANGELOG.md is DEPRECATED. We will be using [GitHub Releases](https://github.com/pulumi/pulumi-nomad/releases) for this repository*
+*As of this notice, using CHANGELOG.md is DEPRECATED. We will be using [GitHub Releases](https://github.com/pulumi/pulumi-nomad/releases) for this repository*
 
 ---
 
