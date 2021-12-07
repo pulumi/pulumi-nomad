@@ -8,7 +8,7 @@ replace (
 )
 
 require (
-	github.com/hashicorp/terraform-provider-nomad v1.4.15
+	github.com/hashicorp/terraform-provider-nomad v1.4.16
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.11.0
 	github.com/pulumi/pulumi/sdk/v3 v3.17.0
 )
