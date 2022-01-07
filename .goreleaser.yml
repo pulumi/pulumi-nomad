@@ -30,6 +30,7 @@ builds:
 changelog:
   use: git
   sort: asc
+  sort: asc
 release:
   disable: false
 snapshot:
