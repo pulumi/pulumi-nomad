@@ -15,7 +15,7 @@ namespace Pulumi.Nomad
         /// Retrieve a list of namespaces available in Nomad.
         /// </summary>
         public static Task<GetNamespacesResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNamespacesResult>("nomad:index/getNamespaces:getNamespaces", InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetNamespacesResult>("nomad:index/getNamespaces:getNamespaces", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

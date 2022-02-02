@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -39,7 +38,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAclTokensResult> InvokeAsync(GetAclTokensArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get a list of ACL tokens.
@@ -68,7 +67,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAclTokensResult> Invoke(GetAclTokensInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -52,7 +51,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPluginResult> InvokeAsync(GetPluginArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginArgs(), options.WithDefaults());
 
         /// <summary>
         /// Lookup a plugin by ID. The aim of this datasource is to determine whether
@@ -94,7 +93,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetPluginResult> Invoke(GetPluginInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginInvokeArgs(), options.WithDefaults());
     }
 
 

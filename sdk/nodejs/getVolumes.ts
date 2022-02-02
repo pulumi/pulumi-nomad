@@ -22,9 +22,7 @@ export function getVolumes(args?: GetVolumesArgs, opts?: pulumi.InvokeOptions): 
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("nomad:index/getVolumes:getVolumes", {
         "namespace": args.namespace,
         "nodeId": args.nodeId,

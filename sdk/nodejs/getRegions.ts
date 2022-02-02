@@ -12,9 +12,7 @@ export function getRegions(opts?: pulumi.InvokeOptions): Promise<GetRegionsResul
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("nomad:index/getRegions:getRegions", {
     }, opts);
 }

@@ -241,7 +241,7 @@ type ExternalVolumeInput interface {
 }
 
 func (*ExternalVolume) ElementType() reflect.Type {
-	return reflect.TypeOf((*ExternalVolume)(nil))
+	return reflect.TypeOf((**ExternalVolume)(nil)).Elem()
 }
 
 func (i *ExternalVolume) ToExternalVolumeOutput() ExternalVolumeOutput {
@@ -250,35 +250,6 @@ func (i *ExternalVolume) ToExternalVolumeOutput() ExternalVolumeOutput {
 
 func (i *ExternalVolume) ToExternalVolumeOutputWithContext(ctx context.Context) ExternalVolumeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeOutput)
-}
-
-func (i *ExternalVolume) ToExternalVolumePtrOutput() ExternalVolumePtrOutput {
-	return i.ToExternalVolumePtrOutputWithContext(context.Background())
-}
-
-func (i *ExternalVolume) ToExternalVolumePtrOutputWithContext(ctx context.Context) ExternalVolumePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumePtrOutput)
-}
-
-type ExternalVolumePtrInput interface {
-	pulumi.Input
-
-	ToExternalVolumePtrOutput() ExternalVolumePtrOutput
-	ToExternalVolumePtrOutputWithContext(ctx context.Context) ExternalVolumePtrOutput
-}
-
-type externalVolumePtrType ExternalVolumeArgs
-
-func (*externalVolumePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ExternalVolume)(nil))
-}
-
-func (i *externalVolumePtrType) ToExternalVolumePtrOutput() ExternalVolumePtrOutput {
-	return i.ToExternalVolumePtrOutputWithContext(context.Background())
-}
-
-func (i *externalVolumePtrType) ToExternalVolumePtrOutputWithContext(ctx context.Context) ExternalVolumePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumePtrOutput)
 }
 
 // ExternalVolumeArrayInput is an input type that accepts ExternalVolumeArray and ExternalVolumeArrayOutput values.
@@ -334,7 +305,7 @@ func (i ExternalVolumeMap) ToExternalVolumeMapOutputWithContext(ctx context.Cont
 type ExternalVolumeOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ExternalVolume)(nil))
+	return reflect.TypeOf((**ExternalVolume)(nil)).Elem()
 }
 
 func (o ExternalVolumeOutput) ToExternalVolumeOutput() ExternalVolumeOutput {
@@ -345,44 +316,10 @@ func (o ExternalVolumeOutput) ToExternalVolumeOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o ExternalVolumeOutput) ToExternalVolumePtrOutput() ExternalVolumePtrOutput {
-	return o.ToExternalVolumePtrOutputWithContext(context.Background())
-}
-
-func (o ExternalVolumeOutput) ToExternalVolumePtrOutputWithContext(ctx context.Context) ExternalVolumePtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExternalVolume) *ExternalVolume {
-		return &v
-	}).(ExternalVolumePtrOutput)
-}
-
-type ExternalVolumePtrOutput struct{ *pulumi.OutputState }
-
-func (ExternalVolumePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ExternalVolume)(nil))
-}
-
-func (o ExternalVolumePtrOutput) ToExternalVolumePtrOutput() ExternalVolumePtrOutput {
-	return o
-}
-
-func (o ExternalVolumePtrOutput) ToExternalVolumePtrOutputWithContext(ctx context.Context) ExternalVolumePtrOutput {
-	return o
-}
-
-func (o ExternalVolumePtrOutput) Elem() ExternalVolumeOutput {
-	return o.ApplyT(func(v *ExternalVolume) ExternalVolume {
-		if v != nil {
-			return *v
-		}
-		var ret ExternalVolume
-		return ret
-	}).(ExternalVolumeOutput)
-}
-
 type ExternalVolumeArrayOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ExternalVolume)(nil))
+	return reflect.TypeOf((*[]*ExternalVolume)(nil)).Elem()
 }
 
 func (o ExternalVolumeArrayOutput) ToExternalVolumeArrayOutput() ExternalVolumeArrayOutput {
@@ -394,15 +331,15 @@ func (o ExternalVolumeArrayOutput) ToExternalVolumeArrayOutputWithContext(ctx co
 }
 
 func (o ExternalVolumeArrayOutput) Index(i pulumi.IntInput) ExternalVolumeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExternalVolume {
-		return vs[0].([]ExternalVolume)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExternalVolume {
+		return vs[0].([]*ExternalVolume)[vs[1].(int)]
 	}).(ExternalVolumeOutput)
 }
 
 type ExternalVolumeMapOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ExternalVolume)(nil))
+	return reflect.TypeOf((*map[string]*ExternalVolume)(nil)).Elem()
 }
 
 func (o ExternalVolumeMapOutput) ToExternalVolumeMapOutput() ExternalVolumeMapOutput {
@@ -414,18 +351,16 @@ func (o ExternalVolumeMapOutput) ToExternalVolumeMapOutputWithContext(ctx contex
 }
 
 func (o ExternalVolumeMapOutput) MapIndex(k pulumi.StringInput) ExternalVolumeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ExternalVolume {
-		return vs[0].(map[string]ExternalVolume)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ExternalVolume {
+		return vs[0].(map[string]*ExternalVolume)[vs[1].(string)]
 	}).(ExternalVolumeOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeInput)(nil)).Elem(), &ExternalVolume{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumePtrInput)(nil)).Elem(), &ExternalVolume{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeArrayInput)(nil)).Elem(), ExternalVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeMapInput)(nil)).Elem(), ExternalVolumeMap{})
 	pulumi.RegisterOutputType(ExternalVolumeOutput{})
-	pulumi.RegisterOutputType(ExternalVolumePtrOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeArrayOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeMapOutput{})
 }

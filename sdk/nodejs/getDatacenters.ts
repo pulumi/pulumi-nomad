@@ -25,9 +25,7 @@ export function getDatacenters(args?: GetDatacentersArgs, opts?: pulumi.InvokeOp
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("nomad:index/getDatacenters:getDatacenters", {
         "ignoreDownNodes": args.ignoreDownNodes,
         "prefix": args.prefix,

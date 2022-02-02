@@ -117,56 +117,54 @@ export class Job extends pulumi.CustomResource {
      */
     constructor(name: string, args: JobArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: JobArgs | JobState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as JobState | undefined;
-            inputs["allocationIds"] = state ? state.allocationIds : undefined;
-            inputs["datacenters"] = state ? state.datacenters : undefined;
-            inputs["deploymentId"] = state ? state.deploymentId : undefined;
-            inputs["deploymentStatus"] = state ? state.deploymentStatus : undefined;
-            inputs["deregisterOnDestroy"] = state ? state.deregisterOnDestroy : undefined;
-            inputs["deregisterOnIdChange"] = state ? state.deregisterOnIdChange : undefined;
-            inputs["detach"] = state ? state.detach : undefined;
-            inputs["hcl2"] = state ? state.hcl2 : undefined;
-            inputs["jobspec"] = state ? state.jobspec : undefined;
-            inputs["json"] = state ? state.json : undefined;
-            inputs["modifyIndex"] = state ? state.modifyIndex : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["namespace"] = state ? state.namespace : undefined;
-            inputs["policyOverride"] = state ? state.policyOverride : undefined;
-            inputs["purgeOnDestroy"] = state ? state.purgeOnDestroy : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["taskGroups"] = state ? state.taskGroups : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["allocationIds"] = state ? state.allocationIds : undefined;
+            resourceInputs["datacenters"] = state ? state.datacenters : undefined;
+            resourceInputs["deploymentId"] = state ? state.deploymentId : undefined;
+            resourceInputs["deploymentStatus"] = state ? state.deploymentStatus : undefined;
+            resourceInputs["deregisterOnDestroy"] = state ? state.deregisterOnDestroy : undefined;
+            resourceInputs["deregisterOnIdChange"] = state ? state.deregisterOnIdChange : undefined;
+            resourceInputs["detach"] = state ? state.detach : undefined;
+            resourceInputs["hcl2"] = state ? state.hcl2 : undefined;
+            resourceInputs["jobspec"] = state ? state.jobspec : undefined;
+            resourceInputs["json"] = state ? state.json : undefined;
+            resourceInputs["modifyIndex"] = state ? state.modifyIndex : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["policyOverride"] = state ? state.policyOverride : undefined;
+            resourceInputs["purgeOnDestroy"] = state ? state.purgeOnDestroy : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["taskGroups"] = state ? state.taskGroups : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as JobArgs | undefined;
             if ((!args || args.jobspec === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'jobspec'");
             }
-            inputs["deregisterOnDestroy"] = args ? args.deregisterOnDestroy : undefined;
-            inputs["deregisterOnIdChange"] = args ? args.deregisterOnIdChange : undefined;
-            inputs["detach"] = args ? args.detach : undefined;
-            inputs["hcl2"] = args ? args.hcl2 : undefined;
-            inputs["jobspec"] = args ? args.jobspec : undefined;
-            inputs["json"] = args ? args.json : undefined;
-            inputs["policyOverride"] = args ? args.policyOverride : undefined;
-            inputs["purgeOnDestroy"] = args ? args.purgeOnDestroy : undefined;
-            inputs["allocationIds"] = undefined /*out*/;
-            inputs["datacenters"] = undefined /*out*/;
-            inputs["deploymentId"] = undefined /*out*/;
-            inputs["deploymentStatus"] = undefined /*out*/;
-            inputs["modifyIndex"] = undefined /*out*/;
-            inputs["name"] = undefined /*out*/;
-            inputs["namespace"] = undefined /*out*/;
-            inputs["region"] = undefined /*out*/;
-            inputs["taskGroups"] = undefined /*out*/;
-            inputs["type"] = undefined /*out*/;
+            resourceInputs["deregisterOnDestroy"] = args ? args.deregisterOnDestroy : undefined;
+            resourceInputs["deregisterOnIdChange"] = args ? args.deregisterOnIdChange : undefined;
+            resourceInputs["detach"] = args ? args.detach : undefined;
+            resourceInputs["hcl2"] = args ? args.hcl2 : undefined;
+            resourceInputs["jobspec"] = args ? args.jobspec : undefined;
+            resourceInputs["json"] = args ? args.json : undefined;
+            resourceInputs["policyOverride"] = args ? args.policyOverride : undefined;
+            resourceInputs["purgeOnDestroy"] = args ? args.purgeOnDestroy : undefined;
+            resourceInputs["allocationIds"] = undefined /*out*/;
+            resourceInputs["datacenters"] = undefined /*out*/;
+            resourceInputs["deploymentId"] = undefined /*out*/;
+            resourceInputs["deploymentStatus"] = undefined /*out*/;
+            resourceInputs["modifyIndex"] = undefined /*out*/;
+            resourceInputs["name"] = undefined /*out*/;
+            resourceInputs["namespace"] = undefined /*out*/;
+            resourceInputs["region"] = undefined /*out*/;
+            resourceInputs["taskGroups"] = undefined /*out*/;
+            resourceInputs["type"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Job.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Job.__pulumiType, name, resourceInputs, opts);
     }
 }
 

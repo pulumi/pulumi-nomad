@@ -94,15 +94,15 @@ export class SentinelPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: SentinelPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SentinelPolicyArgs | SentinelPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SentinelPolicyState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policy"] = state ? state.policy : undefined;
-            inputs["scope"] = state ? state.scope : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policy"] = state ? state.policy : undefined;
+            resourceInputs["scope"] = state ? state.scope : undefined;
         } else {
             const args = argsOrState as SentinelPolicyArgs | undefined;
             if ((!args || args.enforcementLevel === undefined) && !opts.urn) {
@@ -114,16 +114,14 @@ export class SentinelPolicy extends pulumi.CustomResource {
             if ((!args || args.scope === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'scope'");
             }
-            inputs["description"] = args ? args.description : undefined;
-            inputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policy"] = args ? args.policy : undefined;
-            inputs["scope"] = args ? args.scope : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policy"] = args ? args.policy : undefined;
+            resourceInputs["scope"] = args ? args.scope : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SentinelPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SentinelPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

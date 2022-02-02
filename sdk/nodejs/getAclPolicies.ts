@@ -25,9 +25,7 @@ export function getAclPolicies(args?: GetAclPoliciesArgs, opts?: pulumi.InvokeOp
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("nomad:index/getAclPolicies:getAclPolicies", {
         "prefix": args.prefix,
     }, opts);

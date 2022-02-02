@@ -35,7 +35,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDeploymentsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentsResult>("nomad:index/getDeployments:getDeployments", InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDeploymentsResult>("nomad:index/getDeployments:getDeployments", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

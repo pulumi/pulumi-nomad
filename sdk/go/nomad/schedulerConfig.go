@@ -138,7 +138,7 @@ type SchedulerConfigInput interface {
 }
 
 func (*SchedulerConfig) ElementType() reflect.Type {
-	return reflect.TypeOf((*SchedulerConfig)(nil))
+	return reflect.TypeOf((**SchedulerConfig)(nil)).Elem()
 }
 
 func (i *SchedulerConfig) ToSchedulerConfigOutput() SchedulerConfigOutput {
@@ -147,35 +147,6 @@ func (i *SchedulerConfig) ToSchedulerConfigOutput() SchedulerConfigOutput {
 
 func (i *SchedulerConfig) ToSchedulerConfigOutputWithContext(ctx context.Context) SchedulerConfigOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SchedulerConfigOutput)
-}
-
-func (i *SchedulerConfig) ToSchedulerConfigPtrOutput() SchedulerConfigPtrOutput {
-	return i.ToSchedulerConfigPtrOutputWithContext(context.Background())
-}
-
-func (i *SchedulerConfig) ToSchedulerConfigPtrOutputWithContext(ctx context.Context) SchedulerConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SchedulerConfigPtrOutput)
-}
-
-type SchedulerConfigPtrInput interface {
-	pulumi.Input
-
-	ToSchedulerConfigPtrOutput() SchedulerConfigPtrOutput
-	ToSchedulerConfigPtrOutputWithContext(ctx context.Context) SchedulerConfigPtrOutput
-}
-
-type schedulerConfigPtrType SchedulerConfigArgs
-
-func (*schedulerConfigPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SchedulerConfig)(nil))
-}
-
-func (i *schedulerConfigPtrType) ToSchedulerConfigPtrOutput() SchedulerConfigPtrOutput {
-	return i.ToSchedulerConfigPtrOutputWithContext(context.Background())
-}
-
-func (i *schedulerConfigPtrType) ToSchedulerConfigPtrOutputWithContext(ctx context.Context) SchedulerConfigPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SchedulerConfigPtrOutput)
 }
 
 // SchedulerConfigArrayInput is an input type that accepts SchedulerConfigArray and SchedulerConfigArrayOutput values.
@@ -231,7 +202,7 @@ func (i SchedulerConfigMap) ToSchedulerConfigMapOutputWithContext(ctx context.Co
 type SchedulerConfigOutput struct{ *pulumi.OutputState }
 
 func (SchedulerConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SchedulerConfig)(nil))
+	return reflect.TypeOf((**SchedulerConfig)(nil)).Elem()
 }
 
 func (o SchedulerConfigOutput) ToSchedulerConfigOutput() SchedulerConfigOutput {
@@ -242,44 +213,10 @@ func (o SchedulerConfigOutput) ToSchedulerConfigOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SchedulerConfigOutput) ToSchedulerConfigPtrOutput() SchedulerConfigPtrOutput {
-	return o.ToSchedulerConfigPtrOutputWithContext(context.Background())
-}
-
-func (o SchedulerConfigOutput) ToSchedulerConfigPtrOutputWithContext(ctx context.Context) SchedulerConfigPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SchedulerConfig) *SchedulerConfig {
-		return &v
-	}).(SchedulerConfigPtrOutput)
-}
-
-type SchedulerConfigPtrOutput struct{ *pulumi.OutputState }
-
-func (SchedulerConfigPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SchedulerConfig)(nil))
-}
-
-func (o SchedulerConfigPtrOutput) ToSchedulerConfigPtrOutput() SchedulerConfigPtrOutput {
-	return o
-}
-
-func (o SchedulerConfigPtrOutput) ToSchedulerConfigPtrOutputWithContext(ctx context.Context) SchedulerConfigPtrOutput {
-	return o
-}
-
-func (o SchedulerConfigPtrOutput) Elem() SchedulerConfigOutput {
-	return o.ApplyT(func(v *SchedulerConfig) SchedulerConfig {
-		if v != nil {
-			return *v
-		}
-		var ret SchedulerConfig
-		return ret
-	}).(SchedulerConfigOutput)
-}
-
 type SchedulerConfigArrayOutput struct{ *pulumi.OutputState }
 
 func (SchedulerConfigArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SchedulerConfig)(nil))
+	return reflect.TypeOf((*[]*SchedulerConfig)(nil)).Elem()
 }
 
 func (o SchedulerConfigArrayOutput) ToSchedulerConfigArrayOutput() SchedulerConfigArrayOutput {
@@ -291,15 +228,15 @@ func (o SchedulerConfigArrayOutput) ToSchedulerConfigArrayOutputWithContext(ctx 
 }
 
 func (o SchedulerConfigArrayOutput) Index(i pulumi.IntInput) SchedulerConfigOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SchedulerConfig {
-		return vs[0].([]SchedulerConfig)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SchedulerConfig {
+		return vs[0].([]*SchedulerConfig)[vs[1].(int)]
 	}).(SchedulerConfigOutput)
 }
 
 type SchedulerConfigMapOutput struct{ *pulumi.OutputState }
 
 func (SchedulerConfigMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SchedulerConfig)(nil))
+	return reflect.TypeOf((*map[string]*SchedulerConfig)(nil)).Elem()
 }
 
 func (o SchedulerConfigMapOutput) ToSchedulerConfigMapOutput() SchedulerConfigMapOutput {
@@ -311,18 +248,16 @@ func (o SchedulerConfigMapOutput) ToSchedulerConfigMapOutputWithContext(ctx cont
 }
 
 func (o SchedulerConfigMapOutput) MapIndex(k pulumi.StringInput) SchedulerConfigOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SchedulerConfig {
-		return vs[0].(map[string]SchedulerConfig)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SchedulerConfig {
+		return vs[0].(map[string]*SchedulerConfig)[vs[1].(string)]
 	}).(SchedulerConfigOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SchedulerConfigInput)(nil)).Elem(), &SchedulerConfig{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SchedulerConfigPtrInput)(nil)).Elem(), &SchedulerConfig{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SchedulerConfigArrayInput)(nil)).Elem(), SchedulerConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SchedulerConfigMapInput)(nil)).Elem(), SchedulerConfigMap{})
 	pulumi.RegisterOutputType(SchedulerConfigOutput{})
-	pulumi.RegisterOutputType(SchedulerConfigPtrOutput{})
 	pulumi.RegisterOutputType(SchedulerConfigArrayOutput{})
 	pulumi.RegisterOutputType(SchedulerConfigMapOutput{})
 }

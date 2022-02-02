@@ -35,7 +35,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetSchedulerPolicyResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSchedulerPolicyResult>("nomad:index/getSchedulerPolicy:getSchedulerPolicy", InvokeArgs.Empty, options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetSchedulerPolicyResult>("nomad:index/getSchedulerPolicy:getSchedulerPolicy", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
