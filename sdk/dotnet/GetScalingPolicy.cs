@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -39,7 +38,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetScalingPolicyResult> InvokeAsync(GetScalingPolicyArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetScalingPolicyResult>("nomad:index/getScalingPolicy:getScalingPolicy", args ?? new GetScalingPolicyArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetScalingPolicyResult>("nomad:index/getScalingPolicy:getScalingPolicy", args ?? new GetScalingPolicyArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve a Scaling Policy.
@@ -68,7 +67,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetScalingPolicyResult> Invoke(GetScalingPolicyInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetScalingPolicyResult>("nomad:index/getScalingPolicy:getScalingPolicy", args ?? new GetScalingPolicyInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetScalingPolicyResult>("nomad:index/getScalingPolicy:getScalingPolicy", args ?? new GetScalingPolicyInvokeArgs(), options.WithDefaults());
     }
 
 

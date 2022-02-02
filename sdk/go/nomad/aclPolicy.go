@@ -175,7 +175,7 @@ type AclPolicyInput interface {
 }
 
 func (*AclPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*AclPolicy)(nil))
+	return reflect.TypeOf((**AclPolicy)(nil)).Elem()
 }
 
 func (i *AclPolicy) ToAclPolicyOutput() AclPolicyOutput {
@@ -184,35 +184,6 @@ func (i *AclPolicy) ToAclPolicyOutput() AclPolicyOutput {
 
 func (i *AclPolicy) ToAclPolicyOutputWithContext(ctx context.Context) AclPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AclPolicyOutput)
-}
-
-func (i *AclPolicy) ToAclPolicyPtrOutput() AclPolicyPtrOutput {
-	return i.ToAclPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *AclPolicy) ToAclPolicyPtrOutputWithContext(ctx context.Context) AclPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AclPolicyPtrOutput)
-}
-
-type AclPolicyPtrInput interface {
-	pulumi.Input
-
-	ToAclPolicyPtrOutput() AclPolicyPtrOutput
-	ToAclPolicyPtrOutputWithContext(ctx context.Context) AclPolicyPtrOutput
-}
-
-type aclPolicyPtrType AclPolicyArgs
-
-func (*aclPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AclPolicy)(nil))
-}
-
-func (i *aclPolicyPtrType) ToAclPolicyPtrOutput() AclPolicyPtrOutput {
-	return i.ToAclPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *aclPolicyPtrType) ToAclPolicyPtrOutputWithContext(ctx context.Context) AclPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AclPolicyPtrOutput)
 }
 
 // AclPolicyArrayInput is an input type that accepts AclPolicyArray and AclPolicyArrayOutput values.
@@ -268,7 +239,7 @@ func (i AclPolicyMap) ToAclPolicyMapOutputWithContext(ctx context.Context) AclPo
 type AclPolicyOutput struct{ *pulumi.OutputState }
 
 func (AclPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AclPolicy)(nil))
+	return reflect.TypeOf((**AclPolicy)(nil)).Elem()
 }
 
 func (o AclPolicyOutput) ToAclPolicyOutput() AclPolicyOutput {
@@ -279,44 +250,10 @@ func (o AclPolicyOutput) ToAclPolicyOutputWithContext(ctx context.Context) AclPo
 	return o
 }
 
-func (o AclPolicyOutput) ToAclPolicyPtrOutput() AclPolicyPtrOutput {
-	return o.ToAclPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o AclPolicyOutput) ToAclPolicyPtrOutputWithContext(ctx context.Context) AclPolicyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v AclPolicy) *AclPolicy {
-		return &v
-	}).(AclPolicyPtrOutput)
-}
-
-type AclPolicyPtrOutput struct{ *pulumi.OutputState }
-
-func (AclPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AclPolicy)(nil))
-}
-
-func (o AclPolicyPtrOutput) ToAclPolicyPtrOutput() AclPolicyPtrOutput {
-	return o
-}
-
-func (o AclPolicyPtrOutput) ToAclPolicyPtrOutputWithContext(ctx context.Context) AclPolicyPtrOutput {
-	return o
-}
-
-func (o AclPolicyPtrOutput) Elem() AclPolicyOutput {
-	return o.ApplyT(func(v *AclPolicy) AclPolicy {
-		if v != nil {
-			return *v
-		}
-		var ret AclPolicy
-		return ret
-	}).(AclPolicyOutput)
-}
-
 type AclPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (AclPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AclPolicy)(nil))
+	return reflect.TypeOf((*[]*AclPolicy)(nil)).Elem()
 }
 
 func (o AclPolicyArrayOutput) ToAclPolicyArrayOutput() AclPolicyArrayOutput {
@@ -328,15 +265,15 @@ func (o AclPolicyArrayOutput) ToAclPolicyArrayOutputWithContext(ctx context.Cont
 }
 
 func (o AclPolicyArrayOutput) Index(i pulumi.IntInput) AclPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclPolicy {
-		return vs[0].([]AclPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AclPolicy {
+		return vs[0].([]*AclPolicy)[vs[1].(int)]
 	}).(AclPolicyOutput)
 }
 
 type AclPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (AclPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AclPolicy)(nil))
+	return reflect.TypeOf((*map[string]*AclPolicy)(nil)).Elem()
 }
 
 func (o AclPolicyMapOutput) ToAclPolicyMapOutput() AclPolicyMapOutput {
@@ -348,18 +285,16 @@ func (o AclPolicyMapOutput) ToAclPolicyMapOutputWithContext(ctx context.Context)
 }
 
 func (o AclPolicyMapOutput) MapIndex(k pulumi.StringInput) AclPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AclPolicy {
-		return vs[0].(map[string]AclPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AclPolicy {
+		return vs[0].(map[string]*AclPolicy)[vs[1].(string)]
 	}).(AclPolicyOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyInput)(nil)).Elem(), &AclPolicy{})
-	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyPtrInput)(nil)).Elem(), &AclPolicy{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyArrayInput)(nil)).Elem(), AclPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyMapInput)(nil)).Elem(), AclPolicyMap{})
 	pulumi.RegisterOutputType(AclPolicyOutput{})
-	pulumi.RegisterOutputType(AclPolicyPtrOutput{})
 	pulumi.RegisterOutputType(AclPolicyArrayOutput{})
 	pulumi.RegisterOutputType(AclPolicyMapOutput{})
 }

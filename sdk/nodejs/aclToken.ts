@@ -78,34 +78,32 @@ export class AclToken extends pulumi.CustomResource {
      */
     constructor(name: string, args: AclTokenArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AclTokenArgs | AclTokenState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AclTokenState | undefined;
-            inputs["accessorId"] = state ? state.accessorId : undefined;
-            inputs["createTime"] = state ? state.createTime : undefined;
-            inputs["global"] = state ? state.global : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policies"] = state ? state.policies : undefined;
-            inputs["secretId"] = state ? state.secretId : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["accessorId"] = state ? state.accessorId : undefined;
+            resourceInputs["createTime"] = state ? state.createTime : undefined;
+            resourceInputs["global"] = state ? state.global : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["secretId"] = state ? state.secretId : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AclTokenArgs | undefined;
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["global"] = args ? args.global : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policies"] = args ? args.policies : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["accessorId"] = undefined /*out*/;
-            inputs["createTime"] = undefined /*out*/;
-            inputs["secretId"] = undefined /*out*/;
+            resourceInputs["global"] = args ? args.global : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["accessorId"] = undefined /*out*/;
+            resourceInputs["createTime"] = undefined /*out*/;
+            resourceInputs["secretId"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AclToken.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AclToken.__pulumiType, name, resourceInputs, opts);
     }
 }
 

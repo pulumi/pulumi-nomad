@@ -21,9 +21,7 @@ export function getDeployments(opts?: pulumi.InvokeOptions): Promise<GetDeployme
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("nomad:index/getDeployments:getDeployments", {
     }, opts);
 }

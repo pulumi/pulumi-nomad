@@ -37,9 +37,7 @@ export function getPlugin(args: GetPluginArgs, opts?: pulumi.InvokeOptions): Pro
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("nomad:index/getPlugin:getPlugin", {
         "pluginId": args.pluginId,
         "waitForHealthy": args.waitForHealthy,

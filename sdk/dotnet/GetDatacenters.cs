@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -40,7 +39,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDatacentersResult> InvokeAsync(GetDatacentersArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve a list of datacenters.
@@ -70,7 +69,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDatacentersResult> Invoke(GetDatacentersInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersInvokeArgs(), options.WithDefaults());
     }
 
 

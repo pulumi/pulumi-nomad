@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -39,7 +38,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAclPolicyResult> InvokeAsync(GetAclPolicyArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAclPolicyResult>("nomad:index/getAclPolicy:getAclPolicy", args ?? new GetAclPolicyArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetAclPolicyResult>("nomad:index/getAclPolicy:getAclPolicy", args ?? new GetAclPolicyArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve information on an ACL Policy.
@@ -68,7 +67,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAclPolicyResult> Invoke(GetAclPolicyInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAclPolicyResult>("nomad:index/getAclPolicy:getAclPolicy", args ?? new GetAclPolicyInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetAclPolicyResult>("nomad:index/getAclPolicy:getAclPolicy", args ?? new GetAclPolicyInvokeArgs(), options.WithDefaults());
     }
 
 

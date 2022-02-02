@@ -55,6 +55,7 @@ setup(name='pulumi_nomad',
       package_data={
           'pulumi_nomad': [
               'py.typed',
+              'pulumi-plugin.json',
           ]
       },
       install_requires=[

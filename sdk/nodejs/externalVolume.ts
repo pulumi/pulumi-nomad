@@ -104,31 +104,31 @@ export class ExternalVolume extends pulumi.CustomResource {
      */
     constructor(name: string, args: ExternalVolumeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ExternalVolumeArgs | ExternalVolumeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ExternalVolumeState | undefined;
-            inputs["capabilities"] = state ? state.capabilities : undefined;
-            inputs["capacityMax"] = state ? state.capacityMax : undefined;
-            inputs["capacityMin"] = state ? state.capacityMin : undefined;
-            inputs["cloneId"] = state ? state.cloneId : undefined;
-            inputs["controllerRequired"] = state ? state.controllerRequired : undefined;
-            inputs["controllersExpected"] = state ? state.controllersExpected : undefined;
-            inputs["controllersHealthy"] = state ? state.controllersHealthy : undefined;
-            inputs["mountOptions"] = state ? state.mountOptions : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["namespace"] = state ? state.namespace : undefined;
-            inputs["nodesExpected"] = state ? state.nodesExpected : undefined;
-            inputs["nodesHealthy"] = state ? state.nodesHealthy : undefined;
-            inputs["parameters"] = state ? state.parameters : undefined;
-            inputs["pluginId"] = state ? state.pluginId : undefined;
-            inputs["pluginProvider"] = state ? state.pluginProvider : undefined;
-            inputs["pluginProviderVersion"] = state ? state.pluginProviderVersion : undefined;
-            inputs["schedulable"] = state ? state.schedulable : undefined;
-            inputs["secrets"] = state ? state.secrets : undefined;
-            inputs["snapshotId"] = state ? state.snapshotId : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["volumeId"] = state ? state.volumeId : undefined;
+            resourceInputs["capabilities"] = state ? state.capabilities : undefined;
+            resourceInputs["capacityMax"] = state ? state.capacityMax : undefined;
+            resourceInputs["capacityMin"] = state ? state.capacityMin : undefined;
+            resourceInputs["cloneId"] = state ? state.cloneId : undefined;
+            resourceInputs["controllerRequired"] = state ? state.controllerRequired : undefined;
+            resourceInputs["controllersExpected"] = state ? state.controllersExpected : undefined;
+            resourceInputs["controllersHealthy"] = state ? state.controllersHealthy : undefined;
+            resourceInputs["mountOptions"] = state ? state.mountOptions : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["namespace"] = state ? state.namespace : undefined;
+            resourceInputs["nodesExpected"] = state ? state.nodesExpected : undefined;
+            resourceInputs["nodesHealthy"] = state ? state.nodesHealthy : undefined;
+            resourceInputs["parameters"] = state ? state.parameters : undefined;
+            resourceInputs["pluginId"] = state ? state.pluginId : undefined;
+            resourceInputs["pluginProvider"] = state ? state.pluginProvider : undefined;
+            resourceInputs["pluginProviderVersion"] = state ? state.pluginProviderVersion : undefined;
+            resourceInputs["schedulable"] = state ? state.schedulable : undefined;
+            resourceInputs["secrets"] = state ? state.secrets : undefined;
+            resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["volumeId"] = state ? state.volumeId : undefined;
         } else {
             const args = argsOrState as ExternalVolumeArgs | undefined;
             if ((!args || args.capabilities === undefined) && !opts.urn) {
@@ -140,32 +140,30 @@ export class ExternalVolume extends pulumi.CustomResource {
             if ((!args || args.volumeId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'volumeId'");
             }
-            inputs["capabilities"] = args ? args.capabilities : undefined;
-            inputs["capacityMax"] = args ? args.capacityMax : undefined;
-            inputs["capacityMin"] = args ? args.capacityMin : undefined;
-            inputs["cloneId"] = args ? args.cloneId : undefined;
-            inputs["mountOptions"] = args ? args.mountOptions : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["namespace"] = args ? args.namespace : undefined;
-            inputs["parameters"] = args ? args.parameters : undefined;
-            inputs["pluginId"] = args ? args.pluginId : undefined;
-            inputs["secrets"] = args ? args.secrets : undefined;
-            inputs["snapshotId"] = args ? args.snapshotId : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["volumeId"] = args ? args.volumeId : undefined;
-            inputs["controllerRequired"] = undefined /*out*/;
-            inputs["controllersExpected"] = undefined /*out*/;
-            inputs["controllersHealthy"] = undefined /*out*/;
-            inputs["nodesExpected"] = undefined /*out*/;
-            inputs["nodesHealthy"] = undefined /*out*/;
-            inputs["pluginProvider"] = undefined /*out*/;
-            inputs["pluginProviderVersion"] = undefined /*out*/;
-            inputs["schedulable"] = undefined /*out*/;
+            resourceInputs["capabilities"] = args ? args.capabilities : undefined;
+            resourceInputs["capacityMax"] = args ? args.capacityMax : undefined;
+            resourceInputs["capacityMin"] = args ? args.capacityMin : undefined;
+            resourceInputs["cloneId"] = args ? args.cloneId : undefined;
+            resourceInputs["mountOptions"] = args ? args.mountOptions : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["namespace"] = args ? args.namespace : undefined;
+            resourceInputs["parameters"] = args ? args.parameters : undefined;
+            resourceInputs["pluginId"] = args ? args.pluginId : undefined;
+            resourceInputs["secrets"] = args ? args.secrets : undefined;
+            resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["volumeId"] = args ? args.volumeId : undefined;
+            resourceInputs["controllerRequired"] = undefined /*out*/;
+            resourceInputs["controllersExpected"] = undefined /*out*/;
+            resourceInputs["controllersHealthy"] = undefined /*out*/;
+            resourceInputs["nodesExpected"] = undefined /*out*/;
+            resourceInputs["nodesHealthy"] = undefined /*out*/;
+            resourceInputs["pluginProvider"] = undefined /*out*/;
+            resourceInputs["pluginProviderVersion"] = undefined /*out*/;
+            resourceInputs["schedulable"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ExternalVolume.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ExternalVolume.__pulumiType, name, resourceInputs, opts);
     }
 }
 

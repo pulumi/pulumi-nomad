@@ -26,9 +26,7 @@ export function getScalingPolicies(args?: GetScalingPoliciesArgs, opts?: pulumi.
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("nomad:index/getScalingPolicies:getScalingPolicies", {
         "jobId": args.jobId,
         "type": args.type,

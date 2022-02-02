@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -36,7 +35,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetVolumesResult> InvokeAsync(GetVolumesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve a list of volumes in Nomad.
@@ -62,7 +61,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetVolumesResult> Invoke(GetVolumesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesInvokeArgs(), options.WithDefaults());
     }
 
 

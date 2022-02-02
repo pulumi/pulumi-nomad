@@ -83,30 +83,28 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
             if ((!args || args.address === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'address'");
             }
-            inputs["address"] = args ? args.address : undefined;
-            inputs["caFile"] = args ? args.caFile : undefined;
-            inputs["caPem"] = args ? args.caPem : undefined;
-            inputs["certFile"] = args ? args.certFile : undefined;
-            inputs["certPem"] = args ? args.certPem : undefined;
-            inputs["consulToken"] = args ? args.consulToken : undefined;
-            inputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
-            inputs["httpAuth"] = args ? args.httpAuth : undefined;
-            inputs["keyFile"] = args ? args.keyFile : undefined;
-            inputs["keyPem"] = args ? args.keyPem : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["secretId"] = args ? args.secretId : undefined;
-            inputs["vaultToken"] = args ? args.vaultToken : undefined;
+            resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["caFile"] = args ? args.caFile : undefined;
+            resourceInputs["caPem"] = args ? args.caPem : undefined;
+            resourceInputs["certFile"] = args ? args.certFile : undefined;
+            resourceInputs["certPem"] = args ? args.certPem : undefined;
+            resourceInputs["consulToken"] = args ? args.consulToken : undefined;
+            resourceInputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
+            resourceInputs["httpAuth"] = args ? args.httpAuth : undefined;
+            resourceInputs["keyFile"] = args ? args.keyFile : undefined;
+            resourceInputs["keyPem"] = args ? args.keyPem : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["secretId"] = args ? args.secretId : undefined;
+            resourceInputs["vaultToken"] = args ? args.vaultToken : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Provider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 

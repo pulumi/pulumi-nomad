@@ -80,23 +80,21 @@ export class SchedulerConfig extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SchedulerConfigArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SchedulerConfigArgs | SchedulerConfigState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SchedulerConfigState | undefined;
-            inputs["memoryOversubscriptionEnabled"] = state ? state.memoryOversubscriptionEnabled : undefined;
-            inputs["preemptionConfig"] = state ? state.preemptionConfig : undefined;
-            inputs["schedulerAlgorithm"] = state ? state.schedulerAlgorithm : undefined;
+            resourceInputs["memoryOversubscriptionEnabled"] = state ? state.memoryOversubscriptionEnabled : undefined;
+            resourceInputs["preemptionConfig"] = state ? state.preemptionConfig : undefined;
+            resourceInputs["schedulerAlgorithm"] = state ? state.schedulerAlgorithm : undefined;
         } else {
             const args = argsOrState as SchedulerConfigArgs | undefined;
-            inputs["memoryOversubscriptionEnabled"] = args ? args.memoryOversubscriptionEnabled : undefined;
-            inputs["preemptionConfig"] = args ? args.preemptionConfig : undefined;
-            inputs["schedulerAlgorithm"] = args ? args.schedulerAlgorithm : undefined;
+            resourceInputs["memoryOversubscriptionEnabled"] = args ? args.memoryOversubscriptionEnabled : undefined;
+            resourceInputs["preemptionConfig"] = args ? args.preemptionConfig : undefined;
+            resourceInputs["schedulerAlgorithm"] = args ? args.schedulerAlgorithm : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SchedulerConfig.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SchedulerConfig.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -36,7 +35,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPluginsResult> InvokeAsync(GetPluginsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve a list of dynamic plugins in Nomad.
@@ -62,7 +61,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetPluginsResult> Invoke(GetPluginsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithDefaults());
     }
 
 

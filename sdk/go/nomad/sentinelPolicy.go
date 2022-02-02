@@ -30,7 +30,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.NewSentinelPolicy(ctx, "exec_only", &nomad.SentinelPolicyArgs{
+// 		_, err := nomad.NewSentinelPolicy(ctx, "exec-only", &nomad.SentinelPolicyArgs{
 // 			Description:      pulumi.String("Only allow jobs that are based on an exec driver."),
 // 			EnforcementLevel: pulumi.String("soft-mandatory"),
 // 			Policy:           pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v", "main = rule { all_drivers_exec }\n", "\n", "# all_drivers_exec checks that all the drivers in use are exec\n", "all_drivers_exec = rule {\n", "    all job.task_groups as tg {\n", "        all tg.tasks as task {\n", "            task.driver is \"exec\"\n", "        }\n", "    }\n", "}\n", "\n")),
@@ -169,7 +169,7 @@ type SentinelPolicyInput interface {
 }
 
 func (*SentinelPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SentinelPolicy)(nil))
+	return reflect.TypeOf((**SentinelPolicy)(nil)).Elem()
 }
 
 func (i *SentinelPolicy) ToSentinelPolicyOutput() SentinelPolicyOutput {
@@ -178,35 +178,6 @@ func (i *SentinelPolicy) ToSentinelPolicyOutput() SentinelPolicyOutput {
 
 func (i *SentinelPolicy) ToSentinelPolicyOutputWithContext(ctx context.Context) SentinelPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SentinelPolicyOutput)
-}
-
-func (i *SentinelPolicy) ToSentinelPolicyPtrOutput() SentinelPolicyPtrOutput {
-	return i.ToSentinelPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *SentinelPolicy) ToSentinelPolicyPtrOutputWithContext(ctx context.Context) SentinelPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SentinelPolicyPtrOutput)
-}
-
-type SentinelPolicyPtrInput interface {
-	pulumi.Input
-
-	ToSentinelPolicyPtrOutput() SentinelPolicyPtrOutput
-	ToSentinelPolicyPtrOutputWithContext(ctx context.Context) SentinelPolicyPtrOutput
-}
-
-type sentinelPolicyPtrType SentinelPolicyArgs
-
-func (*sentinelPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SentinelPolicy)(nil))
-}
-
-func (i *sentinelPolicyPtrType) ToSentinelPolicyPtrOutput() SentinelPolicyPtrOutput {
-	return i.ToSentinelPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *sentinelPolicyPtrType) ToSentinelPolicyPtrOutputWithContext(ctx context.Context) SentinelPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SentinelPolicyPtrOutput)
 }
 
 // SentinelPolicyArrayInput is an input type that accepts SentinelPolicyArray and SentinelPolicyArrayOutput values.
@@ -262,7 +233,7 @@ func (i SentinelPolicyMap) ToSentinelPolicyMapOutputWithContext(ctx context.Cont
 type SentinelPolicyOutput struct{ *pulumi.OutputState }
 
 func (SentinelPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SentinelPolicy)(nil))
+	return reflect.TypeOf((**SentinelPolicy)(nil)).Elem()
 }
 
 func (o SentinelPolicyOutput) ToSentinelPolicyOutput() SentinelPolicyOutput {
@@ -273,44 +244,10 @@ func (o SentinelPolicyOutput) ToSentinelPolicyOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o SentinelPolicyOutput) ToSentinelPolicyPtrOutput() SentinelPolicyPtrOutput {
-	return o.ToSentinelPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o SentinelPolicyOutput) ToSentinelPolicyPtrOutputWithContext(ctx context.Context) SentinelPolicyPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v SentinelPolicy) *SentinelPolicy {
-		return &v
-	}).(SentinelPolicyPtrOutput)
-}
-
-type SentinelPolicyPtrOutput struct{ *pulumi.OutputState }
-
-func (SentinelPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SentinelPolicy)(nil))
-}
-
-func (o SentinelPolicyPtrOutput) ToSentinelPolicyPtrOutput() SentinelPolicyPtrOutput {
-	return o
-}
-
-func (o SentinelPolicyPtrOutput) ToSentinelPolicyPtrOutputWithContext(ctx context.Context) SentinelPolicyPtrOutput {
-	return o
-}
-
-func (o SentinelPolicyPtrOutput) Elem() SentinelPolicyOutput {
-	return o.ApplyT(func(v *SentinelPolicy) SentinelPolicy {
-		if v != nil {
-			return *v
-		}
-		var ret SentinelPolicy
-		return ret
-	}).(SentinelPolicyOutput)
-}
-
 type SentinelPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (SentinelPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SentinelPolicy)(nil))
+	return reflect.TypeOf((*[]*SentinelPolicy)(nil)).Elem()
 }
 
 func (o SentinelPolicyArrayOutput) ToSentinelPolicyArrayOutput() SentinelPolicyArrayOutput {
@@ -322,15 +259,15 @@ func (o SentinelPolicyArrayOutput) ToSentinelPolicyArrayOutputWithContext(ctx co
 }
 
 func (o SentinelPolicyArrayOutput) Index(i pulumi.IntInput) SentinelPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SentinelPolicy {
-		return vs[0].([]SentinelPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SentinelPolicy {
+		return vs[0].([]*SentinelPolicy)[vs[1].(int)]
 	}).(SentinelPolicyOutput)
 }
 
 type SentinelPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (SentinelPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SentinelPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SentinelPolicy)(nil)).Elem()
 }
 
 func (o SentinelPolicyMapOutput) ToSentinelPolicyMapOutput() SentinelPolicyMapOutput {
@@ -342,18 +279,16 @@ func (o SentinelPolicyMapOutput) ToSentinelPolicyMapOutputWithContext(ctx contex
 }
 
 func (o SentinelPolicyMapOutput) MapIndex(k pulumi.StringInput) SentinelPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SentinelPolicy {
-		return vs[0].(map[string]SentinelPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SentinelPolicy {
+		return vs[0].(map[string]*SentinelPolicy)[vs[1].(string)]
 	}).(SentinelPolicyOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SentinelPolicyInput)(nil)).Elem(), &SentinelPolicy{})
-	pulumi.RegisterInputType(reflect.TypeOf((*SentinelPolicyPtrInput)(nil)).Elem(), &SentinelPolicy{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SentinelPolicyArrayInput)(nil)).Elem(), SentinelPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SentinelPolicyMapInput)(nil)).Elem(), SentinelPolicyMap{})
 	pulumi.RegisterOutputType(SentinelPolicyOutput{})
-	pulumi.RegisterOutputType(SentinelPolicyPtrOutput{})
 	pulumi.RegisterOutputType(SentinelPolicyArrayOutput{})
 	pulumi.RegisterOutputType(SentinelPolicyMapOutput{})
 }

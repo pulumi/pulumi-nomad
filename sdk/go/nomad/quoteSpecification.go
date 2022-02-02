@@ -146,7 +146,7 @@ type QuoteSpecificationInput interface {
 }
 
 func (*QuoteSpecification) ElementType() reflect.Type {
-	return reflect.TypeOf((*QuoteSpecification)(nil))
+	return reflect.TypeOf((**QuoteSpecification)(nil)).Elem()
 }
 
 func (i *QuoteSpecification) ToQuoteSpecificationOutput() QuoteSpecificationOutput {
@@ -155,35 +155,6 @@ func (i *QuoteSpecification) ToQuoteSpecificationOutput() QuoteSpecificationOutp
 
 func (i *QuoteSpecification) ToQuoteSpecificationOutputWithContext(ctx context.Context) QuoteSpecificationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationOutput)
-}
-
-func (i *QuoteSpecification) ToQuoteSpecificationPtrOutput() QuoteSpecificationPtrOutput {
-	return i.ToQuoteSpecificationPtrOutputWithContext(context.Background())
-}
-
-func (i *QuoteSpecification) ToQuoteSpecificationPtrOutputWithContext(ctx context.Context) QuoteSpecificationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationPtrOutput)
-}
-
-type QuoteSpecificationPtrInput interface {
-	pulumi.Input
-
-	ToQuoteSpecificationPtrOutput() QuoteSpecificationPtrOutput
-	ToQuoteSpecificationPtrOutputWithContext(ctx context.Context) QuoteSpecificationPtrOutput
-}
-
-type quoteSpecificationPtrType QuoteSpecificationArgs
-
-func (*quoteSpecificationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**QuoteSpecification)(nil))
-}
-
-func (i *quoteSpecificationPtrType) ToQuoteSpecificationPtrOutput() QuoteSpecificationPtrOutput {
-	return i.ToQuoteSpecificationPtrOutputWithContext(context.Background())
-}
-
-func (i *quoteSpecificationPtrType) ToQuoteSpecificationPtrOutputWithContext(ctx context.Context) QuoteSpecificationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationPtrOutput)
 }
 
 // QuoteSpecificationArrayInput is an input type that accepts QuoteSpecificationArray and QuoteSpecificationArrayOutput values.
@@ -239,7 +210,7 @@ func (i QuoteSpecificationMap) ToQuoteSpecificationMapOutputWithContext(ctx cont
 type QuoteSpecificationOutput struct{ *pulumi.OutputState }
 
 func (QuoteSpecificationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*QuoteSpecification)(nil))
+	return reflect.TypeOf((**QuoteSpecification)(nil)).Elem()
 }
 
 func (o QuoteSpecificationOutput) ToQuoteSpecificationOutput() QuoteSpecificationOutput {
@@ -250,44 +221,10 @@ func (o QuoteSpecificationOutput) ToQuoteSpecificationOutputWithContext(ctx cont
 	return o
 }
 
-func (o QuoteSpecificationOutput) ToQuoteSpecificationPtrOutput() QuoteSpecificationPtrOutput {
-	return o.ToQuoteSpecificationPtrOutputWithContext(context.Background())
-}
-
-func (o QuoteSpecificationOutput) ToQuoteSpecificationPtrOutputWithContext(ctx context.Context) QuoteSpecificationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v QuoteSpecification) *QuoteSpecification {
-		return &v
-	}).(QuoteSpecificationPtrOutput)
-}
-
-type QuoteSpecificationPtrOutput struct{ *pulumi.OutputState }
-
-func (QuoteSpecificationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**QuoteSpecification)(nil))
-}
-
-func (o QuoteSpecificationPtrOutput) ToQuoteSpecificationPtrOutput() QuoteSpecificationPtrOutput {
-	return o
-}
-
-func (o QuoteSpecificationPtrOutput) ToQuoteSpecificationPtrOutputWithContext(ctx context.Context) QuoteSpecificationPtrOutput {
-	return o
-}
-
-func (o QuoteSpecificationPtrOutput) Elem() QuoteSpecificationOutput {
-	return o.ApplyT(func(v *QuoteSpecification) QuoteSpecification {
-		if v != nil {
-			return *v
-		}
-		var ret QuoteSpecification
-		return ret
-	}).(QuoteSpecificationOutput)
-}
-
 type QuoteSpecificationArrayOutput struct{ *pulumi.OutputState }
 
 func (QuoteSpecificationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]QuoteSpecification)(nil))
+	return reflect.TypeOf((*[]*QuoteSpecification)(nil)).Elem()
 }
 
 func (o QuoteSpecificationArrayOutput) ToQuoteSpecificationArrayOutput() QuoteSpecificationArrayOutput {
@@ -299,15 +236,15 @@ func (o QuoteSpecificationArrayOutput) ToQuoteSpecificationArrayOutputWithContex
 }
 
 func (o QuoteSpecificationArrayOutput) Index(i pulumi.IntInput) QuoteSpecificationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QuoteSpecification {
-		return vs[0].([]QuoteSpecification)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *QuoteSpecification {
+		return vs[0].([]*QuoteSpecification)[vs[1].(int)]
 	}).(QuoteSpecificationOutput)
 }
 
 type QuoteSpecificationMapOutput struct{ *pulumi.OutputState }
 
 func (QuoteSpecificationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]QuoteSpecification)(nil))
+	return reflect.TypeOf((*map[string]*QuoteSpecification)(nil)).Elem()
 }
 
 func (o QuoteSpecificationMapOutput) ToQuoteSpecificationMapOutput() QuoteSpecificationMapOutput {
@@ -319,18 +256,16 @@ func (o QuoteSpecificationMapOutput) ToQuoteSpecificationMapOutputWithContext(ct
 }
 
 func (o QuoteSpecificationMapOutput) MapIndex(k pulumi.StringInput) QuoteSpecificationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) QuoteSpecification {
-		return vs[0].(map[string]QuoteSpecification)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *QuoteSpecification {
+		return vs[0].(map[string]*QuoteSpecification)[vs[1].(string)]
 	}).(QuoteSpecificationOutput)
 }
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationInput)(nil)).Elem(), &QuoteSpecification{})
-	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationPtrInput)(nil)).Elem(), &QuoteSpecification{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationArrayInput)(nil)).Elem(), QuoteSpecificationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationMapInput)(nil)).Elem(), QuoteSpecificationMap{})
 	pulumi.RegisterOutputType(QuoteSpecificationOutput{})
-	pulumi.RegisterOutputType(QuoteSpecificationPtrOutput{})
 	pulumi.RegisterOutputType(QuoteSpecificationArrayOutput{})
 	pulumi.RegisterOutputType(QuoteSpecificationMapOutput{})
 }

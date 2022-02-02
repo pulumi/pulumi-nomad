@@ -79,26 +79,24 @@ export class QuoteSpecification extends pulumi.CustomResource {
      */
     constructor(name: string, args: QuoteSpecificationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: QuoteSpecificationArgs | QuoteSpecificationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as QuoteSpecificationState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["limits"] = state ? state.limits : undefined;
-            inputs["name"] = state ? state.name : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["limits"] = state ? state.limits : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as QuoteSpecificationArgs | undefined;
             if ((!args || args.limits === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'limits'");
             }
-            inputs["description"] = args ? args.description : undefined;
-            inputs["limits"] = args ? args.limits : undefined;
-            inputs["name"] = args ? args.name : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["limits"] = args ? args.limits : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(QuoteSpecification.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(QuoteSpecification.__pulumiType, name, resourceInputs, opts);
     }
 }
 

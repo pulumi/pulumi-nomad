@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Nomad
 {
@@ -41,7 +40,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetJobParserResult> InvokeAsync(GetJobParserArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserArgs(), options.WithDefaults());
 
         /// <summary>
         /// Parse a HCL jobspec and produce the equivalent JSON encoded job.
@@ -72,7 +71,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetJobParserResult> Invoke(GetJobParserInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserInvokeArgs(), options.WithDefaults());
     }
 
 
