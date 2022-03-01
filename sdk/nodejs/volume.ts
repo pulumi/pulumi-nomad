@@ -5,6 +5,36 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * Registering a volume:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const ebs = nomad.getPlugin({
+ *     pluginId: "aws-ebs0",
+ *     waitForHealthy: true,
+ * });
+ * const mysqlVolume = new nomad.Volume("mysqlVolume", {
+ *     type: "csi",
+ *     pluginId: "aws-ebs0",
+ *     volumeId: "mysql_volume",
+ *     externalId: module.hashistack.ebs_test_volume_id,
+ *     capabilities: [{
+ *         accessMode: "single-node-writer",
+ *         attachmentMode: "file-system",
+ *     }],
+ *     mountOptions: {
+ *         fsType: "ext4",
+ *     },
+ * }, {
+ *     dependsOn: [ebs],
+ * });
+ * ```
+ */
 export class Volume extends pulumi.CustomResource {
     /**
      * Get an existing Volume resource's state with the given name, ID, and optional extra

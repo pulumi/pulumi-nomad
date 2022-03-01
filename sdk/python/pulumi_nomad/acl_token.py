@@ -240,7 +240,58 @@ class AclToken(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a AclToken resource with the given unique name, props, and options.
+        ## Example Usage
+
+        Creating a token with limited policies:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        dakota = nomad.AclToken("dakota",
+            policies=[
+                "dev",
+                "qa",
+            ],
+            type="client")
+        ```
+
+        Creating a global token that will be replicated to all regions:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        dakota = nomad.AclToken("dakota",
+            global_=True,
+            policies=[
+                "dev",
+                "qa",
+            ],
+            type="client")
+        ```
+
+        Creating a token with full access to the cluster:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        iman = nomad.AclToken("iman", type="management")
+        ```
+
+        Accessing the token:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        token = nomad.AclToken("token",
+            type="client",
+            policies=["dev"])
+        pulumi.export("nomadToken", token.secret_id)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] global_: `(bool: false)` - Whether the token should be replicated to all
@@ -261,7 +312,58 @@ class AclToken(pulumi.CustomResource):
                  args: AclTokenArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AclToken resource with the given unique name, props, and options.
+        ## Example Usage
+
+        Creating a token with limited policies:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        dakota = nomad.AclToken("dakota",
+            policies=[
+                "dev",
+                "qa",
+            ],
+            type="client")
+        ```
+
+        Creating a global token that will be replicated to all regions:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        dakota = nomad.AclToken("dakota",
+            global_=True,
+            policies=[
+                "dev",
+                "qa",
+            ],
+            type="client")
+        ```
+
+        Creating a token with full access to the cluster:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        iman = nomad.AclToken("iman", type="management")
+        ```
+
+        Accessing the token:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        token = nomad.AclToken("token",
+            type="client",
+            policies=["dev"])
+        pulumi.export("nomadToken", token.secret_id)
+        ```
+
         :param str resource_name: The name of the resource.
         :param AclTokenArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

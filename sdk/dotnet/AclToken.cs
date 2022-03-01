@@ -9,6 +9,103 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// Creating a token with limited policies:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Nomad = Pulumi.Nomad;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var dakota = new Nomad.AclToken("dakota", new Nomad.AclTokenArgs
+    ///         {
+    ///             Policies = 
+    ///             {
+    ///                 "dev",
+    ///                 "qa",
+    ///             },
+    ///             Type = "client",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Creating a global token that will be replicated to all regions:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Nomad = Pulumi.Nomad;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var dakota = new Nomad.AclToken("dakota", new Nomad.AclTokenArgs
+    ///         {
+    ///             Global = true,
+    ///             Policies = 
+    ///             {
+    ///                 "dev",
+    ///                 "qa",
+    ///             },
+    ///             Type = "client",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Creating a token with full access to the cluster:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Nomad = Pulumi.Nomad;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var iman = new Nomad.AclToken("iman", new Nomad.AclTokenArgs
+    ///         {
+    ///             Type = "management",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Accessing the token:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Nomad = Pulumi.Nomad;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var token = new Nomad.AclToken("token", new Nomad.AclTokenArgs
+    ///         {
+    ///             Type = "client",
+    ///             Policies = 
+    ///             {
+    ///                 "dev",
+    ///             },
+    ///         });
+    ///         this.NomadToken = token.SecretId;
+    ///     }
+    /// 
+    ///     [Output("nomadToken")]
+    ///     public Output&lt;string&gt; NomadToken { get; set; }
+    /// }
+    /// ```
+    /// </summary>
     [NomadResourceType("nomad:index/aclToken:AclToken")]
     public partial class AclToken : Pulumi.CustomResource
     {

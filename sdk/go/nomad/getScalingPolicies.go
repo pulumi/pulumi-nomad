@@ -24,11 +24,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "webapp"
-// 		opt1 := "horizontal"
 // 		_, err := nomad.GetScalingPolicies(ctx, &GetScalingPoliciesArgs{
-// 			JobId: &opt0,
-// 			Type:  &opt1,
+// 			JobId: pulumi.StringRef("webapp"),
+// 			Type:  pulumi.StringRef("horizontal"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
