@@ -561,7 +561,32 @@ class ExternalVolume(pulumi.CustomResource):
                  volume_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ExternalVolume resource with the given unique name, props, and options.
+        ## Example Usage
+
+        Creating a volume:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        ebs = nomad.get_plugin(plugin_id="aws-ebs0",
+            wait_for_healthy=True)
+        mysql_volume = nomad.ExternalVolume("mysqlVolume",
+            type="csi",
+            plugin_id="aws-ebs0",
+            volume_id="mysql_volume",
+            capacity_min="10GiB",
+            capacity_max="20GiB",
+            capabilities=[nomad.ExternalVolumeCapabilityArgs(
+                access_mode="single-node-writer",
+                attachment_mode="file-system",
+            )],
+            mount_options=nomad.ExternalVolumeMountOptionsArgs(
+                fs_type="ext4",
+            ),
+            opts=pulumi.ResourceOptions(depends_on=[ebs]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExternalVolumeCapabilityArgs']]]] capabilities: Capabilities intended to be used in a job. At least one capability must be provided.
@@ -586,7 +611,32 @@ class ExternalVolume(pulumi.CustomResource):
                  args: ExternalVolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ExternalVolume resource with the given unique name, props, and options.
+        ## Example Usage
+
+        Creating a volume:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        ebs = nomad.get_plugin(plugin_id="aws-ebs0",
+            wait_for_healthy=True)
+        mysql_volume = nomad.ExternalVolume("mysqlVolume",
+            type="csi",
+            plugin_id="aws-ebs0",
+            volume_id="mysql_volume",
+            capacity_min="10GiB",
+            capacity_max="20GiB",
+            capabilities=[nomad.ExternalVolumeCapabilityArgs(
+                access_mode="single-node-writer",
+                attachment_mode="file-system",
+            )],
+            mount_options=nomad.ExternalVolumeMountOptionsArgs(
+                fs_type="ext4",
+            ),
+            opts=pulumi.ResourceOptions(depends_on=[ebs]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param ExternalVolumeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

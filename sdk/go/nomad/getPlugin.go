@@ -33,10 +33,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := true
 // 		_, err := nomad.GetPlugin(ctx, &GetPluginArgs{
 // 			PluginId:       "aws-ebs0",
-// 			WaitForHealthy: &opt0,
+// 			WaitForHealthy: pulumi.BoolRef(true),
 // 		}, nil)
 // 		if err != nil {
 // 			return err

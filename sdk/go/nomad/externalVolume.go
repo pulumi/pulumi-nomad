@@ -11,6 +11,52 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// Creating a volume:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		ebs, err := nomad.GetPlugin(ctx, &GetPluginArgs{
+// 			PluginId:       "aws-ebs0",
+// 			WaitForHealthy: pulumi.BoolRef(true),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = nomad.NewExternalVolume(ctx, "mysqlVolume", &nomad.ExternalVolumeArgs{
+// 			Type:        pulumi.String("csi"),
+// 			PluginId:    pulumi.String("aws-ebs0"),
+// 			VolumeId:    pulumi.String("mysql_volume"),
+// 			CapacityMin: pulumi.String("10GiB"),
+// 			CapacityMax: pulumi.String("20GiB"),
+// 			Capabilities: ExternalVolumeCapabilityArray{
+// 				&ExternalVolumeCapabilityArgs{
+// 					AccessMode:     pulumi.String("single-node-writer"),
+// 					AttachmentMode: pulumi.String("file-system"),
+// 				},
+// 			},
+// 			MountOptions: &ExternalVolumeMountOptionsArgs{
+// 				FsType: pulumi.String("ext4"),
+// 			},
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			ebs,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ExternalVolume struct {
 	pulumi.CustomResourceState
 

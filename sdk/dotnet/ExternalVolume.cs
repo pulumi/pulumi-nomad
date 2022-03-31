@@ -9,6 +9,55 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// Creating a volume:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Nomad = Pulumi.Nomad;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var ebs = Output.Create(Nomad.GetPlugin.InvokeAsync(new Nomad.GetPluginArgs
+    ///         {
+    ///             PluginId = "aws-ebs0",
+    ///             WaitForHealthy = true,
+    ///         }));
+    ///         var mysqlVolume = new Nomad.ExternalVolume("mysqlVolume", new Nomad.ExternalVolumeArgs
+    ///         {
+    ///             Type = "csi",
+    ///             PluginId = "aws-ebs0",
+    ///             VolumeId = "mysql_volume",
+    ///             CapacityMin = "10GiB",
+    ///             CapacityMax = "20GiB",
+    ///             Capabilities = 
+    ///             {
+    ///                 new Nomad.Inputs.ExternalVolumeCapabilityArgs
+    ///                 {
+    ///                     AccessMode = "single-node-writer",
+    ///                     AttachmentMode = "file-system",
+    ///                 },
+    ///             },
+    ///             MountOptions = new Nomad.Inputs.ExternalVolumeMountOptionsArgs
+    ///             {
+    ///                 FsType = "ext4",
+    ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 ebs,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     [NomadResourceType("nomad:index/externalVolume:ExternalVolume")]
     public partial class ExternalVolume : Pulumi.CustomResource
     {

@@ -4,6 +4,64 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * Creating a token with limited policies:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const dakota = new nomad.AclToken("dakota", {
+ *     policies: [
+ *         "dev",
+ *         "qa",
+ *     ],
+ *     type: "client",
+ * });
+ * ```
+ *
+ * Creating a global token that will be replicated to all regions:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const dakota = new nomad.AclToken("dakota", {
+ *     global: true,
+ *     policies: [
+ *         "dev",
+ *         "qa",
+ *     ],
+ *     type: "client",
+ * });
+ * ```
+ *
+ * Creating a token with full access to the cluster:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const iman = new nomad.AclToken("iman", {
+ *     type: "management",
+ * });
+ * ```
+ *
+ * Accessing the token:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const token = new nomad.AclToken("token", {
+ *     type: "client",
+ *     policies: ["dev"],
+ * });
+ * export const nomadToken = token.secretId;
+ * ```
+ */
 export class AclToken extends pulumi.CustomResource {
     /**
      * Get an existing AclToken resource's state with the given name, ID, and optional extra

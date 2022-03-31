@@ -24,9 +24,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "prod"
 // 		_, err := nomad.GetAclPolicies(ctx, &GetAclPoliciesArgs{
-// 			Prefix: &opt0,
+// 			Prefix: pulumi.StringRef("prod"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err

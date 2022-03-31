@@ -109,7 +109,14 @@ class AwaitableGetAclTokenResult(GetAclTokenResult):
 def get_acl_token(accessor_id: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAclTokenResult:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    my_token = nomad.get_acl_token(accessor_id="aa534e09-6a07-0a45-2295-a7f77063d429")
+    ```
     """
     __args__ = dict()
     __args__['accessorId'] = accessor_id
@@ -134,6 +141,13 @@ def get_acl_token(accessor_id: Optional[str] = None,
 def get_acl_token_output(accessor_id: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclTokenResult]:
     """
-    Use this data source to access information about an existing resource.
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    my_token = nomad.get_acl_token(accessor_id="aa534e09-6a07-0a45-2295-a7f77063d429")
+    ```
     """
     ...

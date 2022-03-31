@@ -11,6 +11,51 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// Registering a volume:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		ebs, err := nomad.GetPlugin(ctx, &GetPluginArgs{
+// 			PluginId:       "aws-ebs0",
+// 			WaitForHealthy: pulumi.BoolRef(true),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = nomad.NewVolume(ctx, "mysqlVolume", &nomad.VolumeArgs{
+// 			Type:       pulumi.String("csi"),
+// 			PluginId:   pulumi.String("aws-ebs0"),
+// 			VolumeId:   pulumi.String("mysql_volume"),
+// 			ExternalId: pulumi.Any(module.Hashistack.Ebs_test_volume_id),
+// 			Capabilities: VolumeCapabilityArray{
+// 				&VolumeCapabilityArgs{
+// 					AccessMode:     pulumi.String("single-node-writer"),
+// 					AttachmentMode: pulumi.String("file-system"),
+// 				},
+// 			},
+// 			MountOptions: &VolumeMountOptionsArgs{
+// 				FsType: pulumi.String("ext4"),
+// 			},
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			ebs,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Volume struct {
 	pulumi.CustomResourceState
 
