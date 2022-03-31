@@ -35,10 +35,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := false
 // 		_, err := nomad.GetJobParser(ctx, &GetJobParserArgs{
 // 			Hcl:          readFileOrPanic(fmt.Sprintf("%v%v", path.Module, "/jobspec.hcl")),
-// 			Canonicalize: &opt0,
+// 			Canonicalize: pulumi.BoolRef(false),
 // 		}, nil)
 // 		if err != nil {
 // 			return err

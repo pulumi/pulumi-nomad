@@ -602,7 +602,31 @@ class Volume(pulumi.CustomResource):
                  volume_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Volume resource with the given unique name, props, and options.
+        ## Example Usage
+
+        Registering a volume:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        ebs = nomad.get_plugin(plugin_id="aws-ebs0",
+            wait_for_healthy=True)
+        mysql_volume = nomad.Volume("mysqlVolume",
+            type="csi",
+            plugin_id="aws-ebs0",
+            volume_id="mysql_volume",
+            external_id=module["hashistack"]["ebs_test_volume_id"],
+            capabilities=[nomad.VolumeCapabilityArgs(
+                access_mode="single-node-writer",
+                attachment_mode="file-system",
+            )],
+            mount_options=nomad.VolumeMountOptionsArgs(
+                fs_type="ext4",
+            ),
+            opts=pulumi.ResourceOptions(depends_on=[ebs]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_mode: Defines whether a volume should be available concurrently.
@@ -627,7 +651,31 @@ class Volume(pulumi.CustomResource):
                  args: VolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Volume resource with the given unique name, props, and options.
+        ## Example Usage
+
+        Registering a volume:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        ebs = nomad.get_plugin(plugin_id="aws-ebs0",
+            wait_for_healthy=True)
+        mysql_volume = nomad.Volume("mysqlVolume",
+            type="csi",
+            plugin_id="aws-ebs0",
+            volume_id="mysql_volume",
+            external_id=module["hashistack"]["ebs_test_volume_id"],
+            capabilities=[nomad.VolumeCapabilityArgs(
+                access_mode="single-node-writer",
+                attachment_mode="file-system",
+            )],
+            mount_options=nomad.VolumeMountOptionsArgs(
+                fs_type="ext4",
+            ),
+            opts=pulumi.ResourceOptions(depends_on=[ebs]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param VolumeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

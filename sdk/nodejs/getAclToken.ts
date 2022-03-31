@@ -4,6 +4,18 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const myToken = pulumi.output(nomad.getAclToken({
+ *     accessorId: "aa534e09-6a07-0a45-2295-a7f77063d429",
+ * }));
+ * ```
+ */
 export function getAclToken(args: GetAclTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetAclTokenResult> {
     if (!opts) {
         opts = {}

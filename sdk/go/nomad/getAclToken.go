@@ -10,6 +10,28 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := nomad.LookupAclToken(ctx, &GetAclTokenArgs{
+// 			AccessorId: "aa534e09-6a07-0a45-2295-a7f77063d429",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupAclToken(ctx *pulumi.Context, args *LookupAclTokenArgs, opts ...pulumi.InvokeOption) (*LookupAclTokenResult, error) {
 	var rv LookupAclTokenResult
 	err := ctx.Invoke("nomad:index/getAclToken:getAclToken", args, &rv, opts...)

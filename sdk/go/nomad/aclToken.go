@@ -11,6 +11,112 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// Creating a token with limited policies:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := nomad.NewAclToken(ctx, "dakota", &nomad.AclTokenArgs{
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("dev"),
+// 				pulumi.String("qa"),
+// 			},
+// 			Type: pulumi.String("client"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Creating a global token that will be replicated to all regions:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := nomad.NewAclToken(ctx, "dakota", &nomad.AclTokenArgs{
+// 			Global: pulumi.Bool(true),
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("dev"),
+// 				pulumi.String("qa"),
+// 			},
+// 			Type: pulumi.String("client"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Creating a token with full access to the cluster:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := nomad.NewAclToken(ctx, "iman", &nomad.AclTokenArgs{
+// 			Type: pulumi.String("management"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Accessing the token:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		token, err := nomad.NewAclToken(ctx, "token", &nomad.AclTokenArgs{
+// 			Type: pulumi.String("client"),
+// 			Policies: pulumi.StringArray{
+// 				pulumi.String("dev"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("nomadToken", token.SecretId)
+// 		return nil
+// 	})
+// }
+// ```
 type AclToken struct {
 	pulumi.CustomResourceState
 
