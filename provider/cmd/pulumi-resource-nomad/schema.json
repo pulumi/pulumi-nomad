@@ -12,6 +12,42 @@
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },
+    "language": {
+        "csharp": {
+            "compatibility": "tfbridge20",
+            "namespaces": null,
+            "packageReferences": {
+                "Pulumi": "3.*"
+            }
+        },
+        "go": {
+            "generateExtraInputTypes": true,
+            "generateResourceContainerTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+        },
+        "nodejs": {
+            "compatibility": "tfbridge20",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing nomad cloud resources.",
+            "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-nomad)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-nomad` repo](https://github.com/pulumi/pulumi-nomad/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-nomad` repo](https://github.com/hashicorp/terraform-provider-nomad/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "compatibility": "tfbridge20",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-nomad)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-nomad` repo](https://github.com/pulumi/pulumi-nomad/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-nomad` repo](https://github.com/hashicorp/terraform-provider-nomad/issues).",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            }
+        }
+    },
     "config": {
         "variables": {
             "address": {
@@ -48,6 +84,13 @@
             "httpAuth": {
                 "type": "string",
                 "description": "HTTP basic auth configuration.\n"
+            },
+            "ignoreEnvVars": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "boolean"
+                },
+                "description": "A set of environment variables that are ignored by the provider when configuring the Nomad API client.\n"
             },
             "keyFile": {
                 "type": "string",
@@ -143,6 +186,126 @@
                 }
             },
             "type": "object"
+        },
+        "nomad:index/ExternalVolumeTopology:ExternalVolumeTopology": {
+            "properties": {
+                "segments": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "segments"
+                    ]
+                }
+            }
+        },
+        "nomad:index/ExternalVolumeTopologyRequest:ExternalVolumeTopologyRequest": {
+            "properties": {
+                "preferred": {
+                    "$ref": "#/types/nomad:index/ExternalVolumeTopologyRequestPreferred:ExternalVolumeTopologyRequestPreferred",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "required": {
+                    "$ref": "#/types/nomad:index/ExternalVolumeTopologyRequestRequired:ExternalVolumeTopologyRequestRequired",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "nomad:index/ExternalVolumeTopologyRequestPreferred:ExternalVolumeTopologyRequestPreferred": {
+            "properties": {
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/ExternalVolumeTopologyRequestPreferredTopology:ExternalVolumeTopologyRequestPreferredTopology"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "topologies"
+            ]
+        },
+        "nomad:index/ExternalVolumeTopologyRequestPreferredTopology:ExternalVolumeTopologyRequestPreferredTopology": {
+            "properties": {
+                "segments": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "segments"
+            ]
+        },
+        "nomad:index/ExternalVolumeTopologyRequestRequired:ExternalVolumeTopologyRequestRequired": {
+            "properties": {
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/ExternalVolumeTopologyRequestRequiredTopology:ExternalVolumeTopologyRequestRequiredTopology"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "topologies"
+            ]
+        },
+        "nomad:index/ExternalVolumeTopologyRequestRequiredTopology:ExternalVolumeTopologyRequestRequiredTopology": {
+            "properties": {
+                "segments": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "segments"
+            ]
         },
         "nomad:index/JobHcl2:JobHcl2": {
             "properties": {
@@ -509,6 +672,80 @@
                 }
             },
             "type": "object"
+        },
+        "nomad:index/VolumeTopology:VolumeTopology": {
+            "properties": {
+                "segments": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "segments"
+                    ]
+                }
+            }
+        },
+        "nomad:index/VolumeTopologyRequest:VolumeTopologyRequest": {
+            "properties": {
+                "required": {
+                    "$ref": "#/types/nomad:index/VolumeTopologyRequestRequired:VolumeTopologyRequestRequired",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "nomad:index/VolumeTopologyRequestRequired:VolumeTopologyRequestRequired": {
+            "properties": {
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/VolumeTopologyRequestRequiredTopology:VolumeTopologyRequestRequiredTopology"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "topologies"
+            ]
+        },
+        "nomad:index/VolumeTopologyRequestRequiredTopology:VolumeTopologyRequestRequiredTopology": {
+            "properties": {
+                "segments": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "segments"
+            ]
         },
         "nomad:index/getAclPoliciesPolicy:getAclPoliciesPolicy": {
             "properties": {
@@ -1042,6 +1279,13 @@
                 "type": "string",
                 "description": "HTTP basic auth configuration.\n"
             },
+            "ignoreEnvVars": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "boolean"
+                },
+                "description": "A set of environment variables that are ignored by the provider when configuring the Nomad API client.\n"
+            },
             "keyFile": {
                 "type": "string",
                 "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
@@ -1102,6 +1346,13 @@
                 "type": "string",
                 "description": "HTTP basic auth configuration.\n"
             },
+            "ignoreEnvVars": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "boolean"
+                },
+                "description": "A set of environment variables that are ignored by the provider when configuring the Nomad API client.\n"
+            },
             "keyFile": {
                 "type": "string",
                 "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
@@ -1129,7 +1380,7 @@
     },
     "resources": {
         "nomad:index/aclPolicy:AclPolicy": {
-            "description": "Manages an ACL policy registered in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a policy from a HCL file:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\nimport * from \"fs\";\n\nconst dev = new nomad.AclPolicy(\"dev\", {\n    description: \"Submit jobs to the dev environment.\",\n    rulesHcl: fs.readFileSync(`${path.module}/dev.hcl`),\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndev = nomad.AclPolicy(\"dev\",\n    description=\"Submit jobs to the dev environment.\",\n    rules_hcl=(lambda path: open(path).read())(f\"{path['module']}/dev.hcl\"))\n```\n```csharp\nusing System.IO;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var dev = new Nomad.AclPolicy(\"dev\", new Nomad.AclPolicyArgs\n        {\n            Description = \"Submit jobs to the dev environment.\",\n            RulesHcl = File.ReadAllText($\"{path.Module}/dev.hcl\"),\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclPolicy(ctx, \"dev\", \u0026nomad.AclPolicyArgs{\n\t\t\tDescription: pulumi.String(\"Submit jobs to the dev environment.\"),\n\t\t\tRulesHcl:    readFileOrPanic(fmt.Sprintf(\"%v%v\", path.Module, \"/dev.hcl\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nRegistering a policy from inline HCL:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dev = new nomad.AclPolicy(\"dev\", {\n    description: \"Submit jobs to the dev environment.\",\n    rulesHcl: `namespace \"dev\" {\n  policy = \"write\"\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndev = nomad.AclPolicy(\"dev\",\n    description=\"Submit jobs to the dev environment.\",\n    rules_hcl=\"\"\"namespace \"dev\" {\n  policy = \"write\"\n}\n\n\"\"\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var dev = new Nomad.AclPolicy(\"dev\", new Nomad.AclPolicyArgs\n        {\n            Description = \"Submit jobs to the dev environment.\",\n            RulesHcl = @\"namespace \"\"dev\"\" {\n  policy = \"\"write\"\"\n}\n\n\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclPolicy(ctx, \"dev\", \u0026nomad.AclPolicyArgs{\n\t\t\tDescription: pulumi.String(\"Submit jobs to the dev environment.\"),\n\t\t\tRulesHcl:    pulumi.String(fmt.Sprintf(\"%v%v%v%v\", \"namespace \\\"dev\\\" {\\n\", \"  policy = \\\"write\\\"\\n\", \"}\\n\", \"\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages an ACL policy registered in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a policy from a HCL file:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dev = new nomad.AclPolicy(\"dev\", {\n    description: \"Submit jobs to the dev environment.\",\n    rulesHcl: fs.readFileSync(`${path.module}/dev.hcl`),\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndev = nomad.AclPolicy(\"dev\",\n    description=\"Submit jobs to the dev environment.\",\n    rules_hcl=(lambda path: open(path).read())(f\"{path['module']}/dev.hcl\"))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dev = new Nomad.AclPolicy(\"dev\", new()\n    {\n        Description = \"Submit jobs to the dev environment.\",\n        RulesHcl = File.ReadAllText($\"{path.Module}/dev.hcl\"),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclPolicy(ctx, \"dev\", \u0026nomad.AclPolicyArgs{\n\t\t\tDescription: pulumi.String(\"Submit jobs to the dev environment.\"),\n\t\t\tRulesHcl:    readFileOrPanic(fmt.Sprintf(\"%v/dev.hcl\", path.Module)),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.AclPolicy;\nimport com.pulumi.nomad.AclPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dev = new AclPolicy(\"dev\", AclPolicyArgs.builder()        \n            .description(\"Submit jobs to the dev environment.\")\n            .rulesHcl(Files.readString(Paths.get(String.format(\"%s/dev.hcl\", path.module()))))\n            .build());\n\n    }\n}\n```\n\nRegistering a policy from inline HCL:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dev = new nomad.AclPolicy(\"dev\", {\n    description: \"Submit jobs to the dev environment.\",\n    rulesHcl: `namespace \"dev\" {\n  policy = \"write\"\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndev = nomad.AclPolicy(\"dev\",\n    description=\"Submit jobs to the dev environment.\",\n    rules_hcl=\"\"\"namespace \"dev\" {\n  policy = \"write\"\n}\n\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dev = new Nomad.AclPolicy(\"dev\", new()\n    {\n        Description = \"Submit jobs to the dev environment.\",\n        RulesHcl = @\"namespace \"\"dev\"\" {\n  policy = \"\"write\"\"\n}\n\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclPolicy(ctx, \"dev\", \u0026nomad.AclPolicyArgs{\n\t\t\tDescription: pulumi.String(\"Submit jobs to the dev environment.\"),\n\t\t\tRulesHcl:    pulumi.String(fmt.Sprintf(\"namespace \\\"dev\\\" {\\n  policy = \\\"write\\\"\\n}\\n\\n\")),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.AclPolicy;\nimport com.pulumi.nomad.AclPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dev = new AclPolicy(\"dev\", AclPolicyArgs.builder()        \n            .description(\"Submit jobs to the dev environment.\")\n            .rulesHcl(\"\"\"\nnamespace \"dev\" {\n  policy = \"write\"\n}\n\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dev:\n    type: nomad:AclPolicy\n    properties:\n      description: Submit jobs to the dev environment.\n      rulesHcl: |+\n        namespace \"dev\" {\n          policy = \"write\"\n        }\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "description": {
                     "type": "string",
@@ -1155,7 +1406,8 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n"
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n",
+                    "willReplaceOnChanges": true
                 },
                 "rulesHcl": {
                     "type": "string",
@@ -1174,7 +1426,8 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n"
+                        "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n",
+                        "willReplaceOnChanges": true
                     },
                     "rulesHcl": {
                         "type": "string",
@@ -1185,7 +1438,7 @@
             }
         },
         "nomad:index/aclToken:AclToken": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\nCreating a token with limited policies:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dakota = new nomad.AclToken(\"dakota\", {\n    policies: [\n        \"dev\",\n        \"qa\",\n    ],\n    type: \"client\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndakota = nomad.AclToken(\"dakota\",\n    policies=[\n        \"dev\",\n        \"qa\",\n    ],\n    type=\"client\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var dakota = new Nomad.AclToken(\"dakota\", new Nomad.AclTokenArgs\n        {\n            Policies = \n            {\n                \"dev\",\n                \"qa\",\n            },\n            Type = \"client\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclToken(ctx, \"dakota\", \u0026nomad.AclTokenArgs{\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"qa\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nCreating a global token that will be replicated to all regions:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dakota = new nomad.AclToken(\"dakota\", {\n    global: true,\n    policies: [\n        \"dev\",\n        \"qa\",\n    ],\n    type: \"client\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndakota = nomad.AclToken(\"dakota\",\n    global_=True,\n    policies=[\n        \"dev\",\n        \"qa\",\n    ],\n    type=\"client\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var dakota = new Nomad.AclToken(\"dakota\", new Nomad.AclTokenArgs\n        {\n            Global = true,\n            Policies = \n            {\n                \"dev\",\n                \"qa\",\n            },\n            Type = \"client\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclToken(ctx, \"dakota\", \u0026nomad.AclTokenArgs{\n\t\t\tGlobal: pulumi.Bool(true),\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"qa\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nCreating a token with full access to the cluster:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst iman = new nomad.AclToken(\"iman\", {\n    type: \"management\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\niman = nomad.AclToken(\"iman\", type=\"management\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var iman = new Nomad.AclToken(\"iman\", new Nomad.AclTokenArgs\n        {\n            Type = \"management\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclToken(ctx, \"iman\", \u0026nomad.AclTokenArgs{\n\t\t\tType: pulumi.String(\"management\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nAccessing the token:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst token = new nomad.AclToken(\"token\", {\n    type: \"client\",\n    policies: [\"dev\"],\n});\nexport const nomadToken = token.secretId;\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ntoken = nomad.AclToken(\"token\",\n    type=\"client\",\n    policies=[\"dev\"])\npulumi.export(\"nomadToken\", token.secret_id)\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var token = new Nomad.AclToken(\"token\", new Nomad.AclTokenArgs\n        {\n            Type = \"client\",\n            Policies = \n            {\n                \"dev\",\n            },\n        });\n        this.NomadToken = token.SecretId;\n    }\n\n    [Output(\"nomadToken\")]\n    public Output\u003cstring\u003e NomadToken { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttoken, err := nomad.NewAclToken(ctx, \"token\", \u0026nomad.AclTokenArgs{\n\t\t\tType: pulumi.String(\"client\"),\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"nomadToken\", token.SecretId)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\nCreating a token with limited policies:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dakota = new nomad.AclToken(\"dakota\", {\n    policies: [\n        \"dev\",\n        \"qa\",\n    ],\n    type: \"client\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndakota = nomad.AclToken(\"dakota\",\n    policies=[\n        \"dev\",\n        \"qa\",\n    ],\n    type=\"client\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dakota = new Nomad.AclToken(\"dakota\", new()\n    {\n        Policies = new[]\n        {\n            \"dev\",\n            \"qa\",\n        },\n        Type = \"client\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclToken(ctx, \"dakota\", \u0026nomad.AclTokenArgs{\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"qa\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.AclToken;\nimport com.pulumi.nomad.AclTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dakota = new AclToken(\"dakota\", AclTokenArgs.builder()        \n            .policies(            \n                \"dev\",\n                \"qa\")\n            .type(\"client\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dakota:\n    type: nomad:AclToken\n    properties:\n      policies:\n        - dev\n        - qa\n      type: client\n```\n\nCreating a global token that will be replicated to all regions:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dakota = new nomad.AclToken(\"dakota\", {\n    global: true,\n    policies: [\n        \"dev\",\n        \"qa\",\n    ],\n    type: \"client\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndakota = nomad.AclToken(\"dakota\",\n    global_=True,\n    policies=[\n        \"dev\",\n        \"qa\",\n    ],\n    type=\"client\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dakota = new Nomad.AclToken(\"dakota\", new()\n    {\n        Global = true,\n        Policies = new[]\n        {\n            \"dev\",\n            \"qa\",\n        },\n        Type = \"client\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclToken(ctx, \"dakota\", \u0026nomad.AclTokenArgs{\n\t\t\tGlobal: pulumi.Bool(true),\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t\tpulumi.String(\"qa\"),\n\t\t\t},\n\t\t\tType: pulumi.String(\"client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.AclToken;\nimport com.pulumi.nomad.AclTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dakota = new AclToken(\"dakota\", AclTokenArgs.builder()        \n            .global(true)\n            .policies(            \n                \"dev\",\n                \"qa\")\n            .type(\"client\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dakota:\n    type: nomad:AclToken\n    properties:\n      global: true\n      policies:\n        - dev\n        - qa\n      type: client\n```\n\nCreating a token with full access to the cluster:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst iman = new nomad.AclToken(\"iman\", {\n    type: \"management\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\niman = nomad.AclToken(\"iman\", type=\"management\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var iman = new Nomad.AclToken(\"iman\", new()\n    {\n        Type = \"management\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclToken(ctx, \"iman\", \u0026nomad.AclTokenArgs{\n\t\t\tType: pulumi.String(\"management\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.AclToken;\nimport com.pulumi.nomad.AclTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var iman = new AclToken(\"iman\", AclTokenArgs.builder()        \n            .type(\"management\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  iman:\n    type: nomad:AclToken\n    properties:\n      type: management\n```\n\nAccessing the token:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst token = new nomad.AclToken(\"token\", {\n    type: \"client\",\n    policies: [\"dev\"],\n});\nexport const nomadToken = token.secretId;\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ntoken = nomad.AclToken(\"token\",\n    type=\"client\",\n    policies=[\"dev\"])\npulumi.export(\"nomadToken\", token.secret_id)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var token = new Nomad.AclToken(\"token\", new()\n    {\n        Type = \"client\",\n        Policies = new[]\n        {\n            \"dev\",\n        },\n    });\n\n    return new Dictionary\u003cstring, object?\u003e\n    {\n        [\"nomadToken\"] = token.SecretId,\n    };\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttoken, err := nomad.NewAclToken(ctx, \"token\", \u0026nomad.AclTokenArgs{\n\t\t\tType: pulumi.String(\"client\"),\n\t\t\tPolicies: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"dev\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"nomadToken\", token.SecretId)\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.AclToken;\nimport com.pulumi.nomad.AclTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var token = new AclToken(\"token\", AclTokenArgs.builder()        \n            .type(\"client\")\n            .policies(\"dev\")\n            .build());\n\n        ctx.export(\"nomadToken\", token.secretId());\n    }\n}\n```\n```yaml\nresources:\n  token:\n    type: nomad:AclToken\n    properties:\n      type: client\n      policies:\n        - dev\noutputs:\n  nomadToken: ${token.secretId}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "accessorId": {
                     "type": "string",
@@ -1229,7 +1482,8 @@
             "inputProperties": {
                 "global": {
                     "type": "boolean",
-                    "description": "`(bool: false)` - Whether the token should be replicated to all\nregions, or if it will only be used in the region it was created in.\n"
+                    "description": "`(bool: false)` - Whether the token should be replicated to all\nregions, or if it will only be used in the region it was created in.\n",
+                    "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
@@ -1263,7 +1517,8 @@
                     },
                     "global": {
                         "type": "boolean",
-                        "description": "`(bool: false)` - Whether the token should be replicated to all\nregions, or if it will only be used in the region it was created in.\n"
+                        "description": "`(bool: false)` - Whether the token should be replicated to all\nregions, or if it will only be used in the region it was created in.\n",
+                        "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
@@ -1289,7 +1544,7 @@
             }
         },
         "nomad:index/externalVolume:ExternalVolume": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\nCreating a volume:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst ebs = nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n});\nconst mysqlVolume = new nomad.ExternalVolume(\"mysqlVolume\", {\n    type: \"csi\",\n    pluginId: \"aws-ebs0\",\n    volumeId: \"mysql_volume\",\n    capacityMin: \"10GiB\",\n    capacityMax: \"20GiB\",\n    capabilities: [{\n        accessMode: \"single-node-writer\",\n        attachmentMode: \"file-system\",\n    }],\n    mountOptions: {\n        fsType: \"ext4\",\n    },\n}, {\n    dependsOn: [ebs],\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\nmysql_volume = nomad.ExternalVolume(\"mysqlVolume\",\n    type=\"csi\",\n    plugin_id=\"aws-ebs0\",\n    volume_id=\"mysql_volume\",\n    capacity_min=\"10GiB\",\n    capacity_max=\"20GiB\",\n    capabilities=[nomad.ExternalVolumeCapabilityArgs(\n        access_mode=\"single-node-writer\",\n        attachment_mode=\"file-system\",\n    )],\n    mount_options=nomad.ExternalVolumeMountOptionsArgs(\n        fs_type=\"ext4\",\n    ),\n    opts=pulumi.ResourceOptions(depends_on=[ebs]))\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var ebs = Output.Create(Nomad.GetPlugin.InvokeAsync(new Nomad.GetPluginArgs\n        {\n            PluginId = \"aws-ebs0\",\n            WaitForHealthy = true,\n        }));\n        var mysqlVolume = new Nomad.ExternalVolume(\"mysqlVolume\", new Nomad.ExternalVolumeArgs\n        {\n            Type = \"csi\",\n            PluginId = \"aws-ebs0\",\n            VolumeId = \"mysql_volume\",\n            CapacityMin = \"10GiB\",\n            CapacityMax = \"20GiB\",\n            Capabilities = \n            {\n                new Nomad.Inputs.ExternalVolumeCapabilityArgs\n                {\n                    AccessMode = \"single-node-writer\",\n                    AttachmentMode = \"file-system\",\n                },\n            },\n            MountOptions = new Nomad.Inputs.ExternalVolumeMountOptionsArgs\n            {\n                FsType = \"ext4\",\n            },\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                ebs,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tebs, err := nomad.GetPlugin(ctx, \u0026GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewExternalVolume(ctx, \"mysqlVolume\", \u0026nomad.ExternalVolumeArgs{\n\t\t\tType:        pulumi.String(\"csi\"),\n\t\t\tPluginId:    pulumi.String(\"aws-ebs0\"),\n\t\t\tVolumeId:    pulumi.String(\"mysql_volume\"),\n\t\t\tCapacityMin: pulumi.String(\"10GiB\"),\n\t\t\tCapacityMax: pulumi.String(\"20GiB\"),\n\t\t\tCapabilities: ExternalVolumeCapabilityArray{\n\t\t\t\t\u0026ExternalVolumeCapabilityArgs{\n\t\t\t\t\tAccessMode:     pulumi.String(\"single-node-writer\"),\n\t\t\t\t\tAttachmentMode: pulumi.String(\"file-system\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tMountOptions: \u0026ExternalVolumeMountOptionsArgs{\n\t\t\t\tFsType: pulumi.String(\"ext4\"),\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tebs,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\nCreating a volume:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst ebs = nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n});\nconst mysqlVolume = new nomad.ExternalVolume(\"mysqlVolume\", {\n    type: \"csi\",\n    pluginId: \"aws-ebs0\",\n    volumeId: \"mysql_volume\",\n    capacityMin: \"10GiB\",\n    capacityMax: \"20GiB\",\n    capabilities: [{\n        accessMode: \"single-node-writer\",\n        attachmentMode: \"file-system\",\n    }],\n    mountOptions: {\n        fsType: \"ext4\",\n    },\n    topologyRequest: {\n        required: {\n            topologies: [\n                {\n                    segments: {\n                        rack: \"R1\",\n                        zone: \"us-east-1a\",\n                    },\n                },\n                {\n                    segments: {\n                        rack: \"R2\",\n                    },\n                },\n            ],\n        },\n    },\n}, {\n    dependsOn: [ebs],\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\nmysql_volume = nomad.ExternalVolume(\"mysqlVolume\",\n    type=\"csi\",\n    plugin_id=\"aws-ebs0\",\n    volume_id=\"mysql_volume\",\n    capacity_min=\"10GiB\",\n    capacity_max=\"20GiB\",\n    capabilities=[nomad.ExternalVolumeCapabilityArgs(\n        access_mode=\"single-node-writer\",\n        attachment_mode=\"file-system\",\n    )],\n    mount_options=nomad.ExternalVolumeMountOptionsArgs(\n        fs_type=\"ext4\",\n    ),\n    topology_request=nomad.ExternalVolumeTopologyRequestArgs(\n        required=nomad.ExternalVolumeTopologyRequestRequiredArgs(\n            topologies=[\n                nomad.ExternalVolumeTopologyRequestRequiredTopologyArgs(\n                    segments={\n                        \"rack\": \"R1\",\n                        \"zone\": \"us-east-1a\",\n                    },\n                ),\n                nomad.ExternalVolumeTopologyRequestRequiredTopologyArgs(\n                    segments={\n                        \"rack\": \"R2\",\n                    },\n                ),\n            ],\n        ),\n    ),\n    opts=pulumi.ResourceOptions(depends_on=[ebs]))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ebs = Nomad.GetPlugin.Invoke(new()\n    {\n        PluginId = \"aws-ebs0\",\n        WaitForHealthy = true,\n    });\n\n    var mysqlVolume = new Nomad.ExternalVolume(\"mysqlVolume\", new()\n    {\n        Type = \"csi\",\n        PluginId = \"aws-ebs0\",\n        VolumeId = \"mysql_volume\",\n        CapacityMin = \"10GiB\",\n        CapacityMax = \"20GiB\",\n        Capabilities = new[]\n        {\n            new Nomad.Inputs.ExternalVolumeCapabilityArgs\n            {\n                AccessMode = \"single-node-writer\",\n                AttachmentMode = \"file-system\",\n            },\n        },\n        MountOptions = new Nomad.Inputs.ExternalVolumeMountOptionsArgs\n        {\n            FsType = \"ext4\",\n        },\n        TopologyRequest = new Nomad.Inputs.ExternalVolumeTopologyRequestArgs\n        {\n            Required = new Nomad.Inputs.ExternalVolumeTopologyRequestRequiredArgs\n            {\n                Topologies = new[]\n                {\n                    new Nomad.Inputs.ExternalVolumeTopologyRequestRequiredTopologyArgs\n                    {\n                        Segments = \n                        {\n                            { \"rack\", \"R1\" },\n                            { \"zone\", \"us-east-1a\" },\n                        },\n                    },\n                    new Nomad.Inputs.ExternalVolumeTopologyRequestRequiredTopologyArgs\n                    {\n                        Segments = \n                        {\n                            { \"rack\", \"R2\" },\n                        },\n                    },\n                },\n            },\n        },\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            ebs.Apply(getPluginResult =\u003e getPluginResult),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tebs, err := nomad.GetPlugin(ctx, \u0026GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewExternalVolume(ctx, \"mysqlVolume\", \u0026nomad.ExternalVolumeArgs{\n\t\t\tType:        pulumi.String(\"csi\"),\n\t\t\tPluginId:    pulumi.String(\"aws-ebs0\"),\n\t\t\tVolumeId:    pulumi.String(\"mysql_volume\"),\n\t\t\tCapacityMin: pulumi.String(\"10GiB\"),\n\t\t\tCapacityMax: pulumi.String(\"20GiB\"),\n\t\t\tCapabilities: ExternalVolumeCapabilityArray{\n\t\t\t\t\u0026ExternalVolumeCapabilityArgs{\n\t\t\t\t\tAccessMode:     pulumi.String(\"single-node-writer\"),\n\t\t\t\t\tAttachmentMode: pulumi.String(\"file-system\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tMountOptions: \u0026ExternalVolumeMountOptionsArgs{\n\t\t\t\tFsType: pulumi.String(\"ext4\"),\n\t\t\t},\n\t\t\tTopologyRequest: \u0026ExternalVolumeTopologyRequestArgs{\n\t\t\t\tRequired: \u0026ExternalVolumeTopologyRequestRequiredArgs{\n\t\t\t\t\tTopologies: ExternalVolumeTopologyRequestRequiredTopologyArray{\n\t\t\t\t\t\t\u0026ExternalVolumeTopologyRequestRequiredTopologyArgs{\n\t\t\t\t\t\t\tSegments: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"rack\": pulumi.String(\"R1\"),\n\t\t\t\t\t\t\t\t\"zone\": pulumi.String(\"us-east-1a\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\u0026ExternalVolumeTopologyRequestRequiredTopologyArgs{\n\t\t\t\t\t\t\tSegments: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"rack\": pulumi.String(\"R2\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tebs,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetPluginArgs;\nimport com.pulumi.nomad.ExternalVolume;\nimport com.pulumi.nomad.ExternalVolumeArgs;\nimport com.pulumi.nomad.inputs.ExternalVolumeCapabilityArgs;\nimport com.pulumi.nomad.inputs.ExternalVolumeMountOptionsArgs;\nimport com.pulumi.nomad.inputs.ExternalVolumeTopologyRequestArgs;\nimport com.pulumi.nomad.inputs.ExternalVolumeTopologyRequestRequiredArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()\n            .pluginId(\"aws-ebs0\")\n            .waitForHealthy(true)\n            .build());\n\n        var mysqlVolume = new ExternalVolume(\"mysqlVolume\", ExternalVolumeArgs.builder()        \n            .type(\"csi\")\n            .pluginId(\"aws-ebs0\")\n            .volumeId(\"mysql_volume\")\n            .capacityMin(\"10GiB\")\n            .capacityMax(\"20GiB\")\n            .capabilities(ExternalVolumeCapabilityArgs.builder()\n                .accessMode(\"single-node-writer\")\n                .attachmentMode(\"file-system\")\n                .build())\n            .mountOptions(ExternalVolumeMountOptionsArgs.builder()\n                .fsType(\"ext4\")\n                .build())\n            .topologyRequest(ExternalVolumeTopologyRequestArgs.builder()\n                .required(ExternalVolumeTopologyRequestRequiredArgs.builder()\n                    .topologies(                    \n                        ExternalVolumeTopologyRequestRequiredTopologyArgs.builder()\n                            .segments(Map.ofEntries(\n                                Map.entry(\"rack\", \"R1\"),\n                                Map.entry(\"zone\", \"us-east-1a\")\n                            ))\n                            .build(),\n                        ExternalVolumeTopologyRequestRequiredTopologyArgs.builder()\n                            .segments(Map.of(\"rack\", \"R2\"))\n                            .build())\n                    .build())\n                .build())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(ebs.applyValue(getPluginResult -\u003e getPluginResult))\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mysqlVolume:\n    type: nomad:ExternalVolume\n    properties:\n      type: csi\n      pluginId: aws-ebs0\n      volumeId: mysql_volume\n      capacityMin: 10GiB\n      capacityMax: 20GiB\n      capabilities:\n        - accessMode: single-node-writer\n          attachmentMode: file-system\n      mountOptions:\n        fsType: ext4\n      topologyRequest:\n        required:\n          topologies:\n            - segments:\n                rack: R1\n                zone: us-east-1a\n            - segments:\n                rack: R2\n    options:\n      dependson:\n        - ${ebs}\nvariables:\n  ebs:\n    Fn::Invoke:\n      Function: nomad:getPlugin\n      Arguments:\n        pluginId: aws-ebs0\n        waitForHealthy: true\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "capabilities": {
                     "type": "array",
@@ -1368,6 +1623,16 @@
                     "type": "string",
                     "description": "The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with\n'clone_id'.\n"
                 },
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/ExternalVolumeTopology:ExternalVolumeTopology"
+                    }
+                },
+                "topologyRequest": {
+                    "$ref": "#/types/nomad:index/ExternalVolumeTopologyRequest:ExternalVolumeTopologyRequest",
+                    "description": "Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.\n"
+                },
                 "type": {
                     "type": "string",
                     "description": "The type of the volume. Currently, only 'csi' is supported.\n"
@@ -1389,6 +1654,7 @@
                 "pluginProvider",
                 "pluginProviderVersion",
                 "schedulable",
+                "topologies",
                 "volumeId"
             ],
             "inputProperties": {
@@ -1397,19 +1663,23 @@
                     "items": {
                         "$ref": "#/types/nomad:index/ExternalVolumeCapability:ExternalVolumeCapability"
                     },
-                    "description": "Capabilities intended to be used in a job. At least one capability must be provided.\n"
+                    "description": "Capabilities intended to be used in a job. At least one capability must be provided.\n",
+                    "willReplaceOnChanges": true
                 },
                 "capacityMax": {
                     "type": "string",
-                    "description": "Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.\n"
+                    "description": "Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.\n",
+                    "willReplaceOnChanges": true
                 },
                 "capacityMin": {
                     "type": "string",
-                    "description": "Defines how small the volume can be. The storage provider may return a volume that is larger than this value.\n"
+                    "description": "Defines how small the volume can be. The storage provider may return a volume that is larger than this value.\n",
+                    "willReplaceOnChanges": true
                 },
                 "cloneId": {
                     "type": "string",
-                    "description": "The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.\n"
+                    "description": "The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.\n",
+                    "willReplaceOnChanges": true
                 },
                 "mountOptions": {
                     "$ref": "#/types/nomad:index/ExternalVolumeMountOptions:ExternalVolumeMountOptions",
@@ -1421,7 +1691,8 @@
                 },
                 "namespace": {
                     "type": "string",
-                    "description": "The namespace in which to create the volume.\n"
+                    "description": "The namespace in which to create the volume.\n",
+                    "willReplaceOnChanges": true
                 },
                 "parameters": {
                     "type": "object",
@@ -1432,7 +1703,8 @@
                 },
                 "pluginId": {
                     "type": "string",
-                    "description": "The ID of the CSI plugin that manages this volume.\n"
+                    "description": "The ID of the CSI plugin that manages this volume.\n",
+                    "willReplaceOnChanges": true
                 },
                 "secrets": {
                     "type": "object",
@@ -1443,15 +1715,22 @@
                 },
                 "snapshotId": {
                     "type": "string",
-                    "description": "The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with\n'clone_id'.\n"
+                    "description": "The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with\n'clone_id'.\n",
+                    "willReplaceOnChanges": true
+                },
+                "topologyRequest": {
+                    "$ref": "#/types/nomad:index/ExternalVolumeTopologyRequest:ExternalVolumeTopologyRequest",
+                    "description": "Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of the volume. Currently, only 'csi' is supported.\n"
+                    "description": "The type of the volume. Currently, only 'csi' is supported.\n",
+                    "willReplaceOnChanges": true
                 },
                 "volumeId": {
                     "type": "string",
-                    "description": "The unique ID of the volume, how jobs will refer to the volume.\n"
+                    "description": "The unique ID of the volume, how jobs will refer to the volume.\n",
+                    "willReplaceOnChanges": true
                 }
             },
             "requiredInputs": [
@@ -1467,19 +1746,23 @@
                         "items": {
                             "$ref": "#/types/nomad:index/ExternalVolumeCapability:ExternalVolumeCapability"
                         },
-                        "description": "Capabilities intended to be used in a job. At least one capability must be provided.\n"
+                        "description": "Capabilities intended to be used in a job. At least one capability must be provided.\n",
+                        "willReplaceOnChanges": true
                     },
                     "capacityMax": {
                         "type": "string",
-                        "description": "Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.\n"
+                        "description": "Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.\n",
+                        "willReplaceOnChanges": true
                     },
                     "capacityMin": {
                         "type": "string",
-                        "description": "Defines how small the volume can be. The storage provider may return a volume that is larger than this value.\n"
+                        "description": "Defines how small the volume can be. The storage provider may return a volume that is larger than this value.\n",
+                        "willReplaceOnChanges": true
                     },
                     "cloneId": {
                         "type": "string",
-                        "description": "The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.\n"
+                        "description": "The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.\n",
+                        "willReplaceOnChanges": true
                     },
                     "controllerRequired": {
                         "type": "boolean"
@@ -1500,7 +1783,8 @@
                     },
                     "namespace": {
                         "type": "string",
-                        "description": "The namespace in which to create the volume.\n"
+                        "description": "The namespace in which to create the volume.\n",
+                        "willReplaceOnChanges": true
                     },
                     "nodesExpected": {
                         "type": "integer"
@@ -1517,7 +1801,8 @@
                     },
                     "pluginId": {
                         "type": "string",
-                        "description": "The ID of the CSI plugin that manages this volume.\n"
+                        "description": "The ID of the CSI plugin that manages this volume.\n",
+                        "willReplaceOnChanges": true
                     },
                     "pluginProvider": {
                         "type": "string"
@@ -1537,15 +1822,28 @@
                     },
                     "snapshotId": {
                         "type": "string",
-                        "description": "The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with\n'clone_id'.\n"
+                        "description": "The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with\n'clone_id'.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "topologies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/ExternalVolumeTopology:ExternalVolumeTopology"
+                        }
+                    },
+                    "topologyRequest": {
+                        "$ref": "#/types/nomad:index/ExternalVolumeTopologyRequest:ExternalVolumeTopologyRequest",
+                        "description": "Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.\n"
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of the volume. Currently, only 'csi' is supported.\n"
+                        "description": "The type of the volume. Currently, only 'csi' is supported.\n",
+                        "willReplaceOnChanges": true
                     },
                     "volumeId": {
                         "type": "string",
-                        "description": "The unique ID of the volume, how jobs will refer to the volume.\n"
+                        "description": "The unique ID of the volume, how jobs will refer to the volume.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -1559,6 +1857,10 @@
                         "type": "string"
                     },
                     "description": "The IDs for allocations associated with this job.\n"
+                },
+                "consulToken": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Consul token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n"
                 },
                 "datacenters": {
                     "type": "array",
@@ -1632,6 +1934,10 @@
                 "type": {
                     "type": "string",
                     "description": "The type of the job, as derived from the jobspec.\n"
+                },
+                "vaultToken": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Vault token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n"
                 }
             },
             "required": [
@@ -1648,6 +1954,10 @@
                 "type"
             ],
             "inputProperties": {
+                "consulToken": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Consul token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n"
+                },
                 "deregisterOnDestroy": {
                     "type": "boolean",
                     "description": "If true, the job will be deregistered on destroy.\n"
@@ -1679,6 +1989,10 @@
                 "purgeOnDestroy": {
                     "type": "boolean",
                     "description": "`(boolean: false)` - Set this to true if you want the job to\nbe purged when the resource is destroyed.\n"
+                },
+                "vaultToken": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Vault token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n"
                 }
             },
             "requiredInputs": [
@@ -1693,6 +2007,10 @@
                             "type": "string"
                         },
                         "description": "The IDs for allocations associated with this job.\n"
+                    },
+                    "consulToken": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - Consul token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n"
                     },
                     "datacenters": {
                         "type": "array",
@@ -1766,13 +2084,17 @@
                     "type": {
                         "type": "string",
                         "description": "The type of the job, as derived from the jobspec.\n"
+                    },
+                    "vaultToken": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - Vault token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "nomad:index/namespace:Namespace": {
-            "description": "Provisions a namespace within a Nomad cluster.\n\nNomad auto-generates a default namespace called `default`. This namespace\ncannot be removed, so destroying a `nomad.Namespace` resource where\n`name = \"default\"` will cause the namespace to be reset to its default\nconfiguration.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a namespace:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dev = new nomad.Namespace(\"dev\", {\n    description: \"Shared development environment.\",\n    quota: \"dev\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndev = nomad.Namespace(\"dev\",\n    description=\"Shared development environment.\",\n    quota=\"dev\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var dev = new Nomad.Namespace(\"dev\", new Nomad.NamespaceArgs\n        {\n            Description = \"Shared development environment.\",\n            Quota = \"dev\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewNamespace(ctx, \"dev\", \u0026nomad.NamespaceArgs{\n\t\t\tDescription: pulumi.String(\"Shared development environment.\"),\n\t\t\tQuota:       pulumi.String(\"dev\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nRegistering a namespace with a quota:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst webTeam = new nomad.QuoteSpecification(\"webTeam\", {\n    description: \"web team quota\",\n    limits: [{\n        region: \"global\",\n        regionLimit: {\n            cpu: 1000,\n            memoryMb: 256,\n        },\n    }],\n});\nconst web = new nomad.Namespace(\"web\", {\n    description: \"Web team production environment.\",\n    quota: webTeam.name,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nweb_team = nomad.QuoteSpecification(\"webTeam\",\n    description=\"web team quota\",\n    limits=[nomad.QuoteSpecificationLimitArgs(\n        region=\"global\",\n        region_limit=nomad.QuoteSpecificationLimitRegionLimitArgs(\n            cpu=1000,\n            memory_mb=256,\n        ),\n    )])\nweb = nomad.Namespace(\"web\",\n    description=\"Web team production environment.\",\n    quota=web_team.name)\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var webTeam = new Nomad.QuoteSpecification(\"webTeam\", new Nomad.QuoteSpecificationArgs\n        {\n            Description = \"web team quota\",\n            Limits = \n            {\n                new Nomad.Inputs.QuoteSpecificationLimitArgs\n                {\n                    Region = \"global\",\n                    RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs\n                    {\n                        Cpu = 1000,\n                        MemoryMb = 256,\n                    },\n                },\n            },\n        });\n        var web = new Nomad.Namespace(\"web\", new Nomad.NamespaceArgs\n        {\n            Description = \"Web team production environment.\",\n            Quota = webTeam.Name,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\twebTeam, err := nomad.NewQuoteSpecification(ctx, \"webTeam\", \u0026nomad.QuoteSpecificationArgs{\n\t\t\tDescription: pulumi.String(\"web team quota\"),\n\t\t\tLimits: QuoteSpecificationLimitArray{\n\t\t\t\t\u0026QuoteSpecificationLimitArgs{\n\t\t\t\t\tRegion: pulumi.String(\"global\"),\n\t\t\t\t\tRegionLimit: \u0026QuoteSpecificationLimitRegionLimitArgs{\n\t\t\t\t\t\tCpu:      pulumi.Int(1000),\n\t\t\t\t\t\tMemoryMb: pulumi.Int(256),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewNamespace(ctx, \"web\", \u0026nomad.NamespaceArgs{\n\t\t\tDescription: pulumi.String(\"Web team production environment.\"),\n\t\t\tQuota:       webTeam.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Provisions a namespace within a Nomad cluster.\n\nNomad auto-generates a default namespace called `default`. This namespace\ncannot be removed, so destroying a `nomad.Namespace` resource where\n`name = \"default\"` will cause the namespace to be reset to its default\nconfiguration.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a namespace:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dev = new nomad.Namespace(\"dev\", {\n    description: \"Shared development environment.\",\n    quota: \"dev\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndev = nomad.Namespace(\"dev\",\n    description=\"Shared development environment.\",\n    quota=\"dev\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dev = new Nomad.Namespace(\"dev\", new()\n    {\n        Description = \"Shared development environment.\",\n        Quota = \"dev\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewNamespace(ctx, \"dev\", \u0026nomad.NamespaceArgs{\n\t\t\tDescription: pulumi.String(\"Shared development environment.\"),\n\t\t\tQuota:       pulumi.String(\"dev\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.Namespace;\nimport com.pulumi.nomad.NamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dev = new Namespace(\"dev\", NamespaceArgs.builder()        \n            .description(\"Shared development environment.\")\n            .quota(\"dev\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dev:\n    type: nomad:Namespace\n    properties:\n      description: Shared development environment.\n      quota: dev\n```\n\nRegistering a namespace with a quota:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst webTeam = new nomad.QuoteSpecification(\"webTeam\", {\n    description: \"web team quota\",\n    limits: [{\n        region: \"global\",\n        regionLimit: {\n            cpu: 1000,\n            memoryMb: 256,\n        },\n    }],\n});\nconst web = new nomad.Namespace(\"web\", {\n    description: \"Web team production environment.\",\n    quota: webTeam.name,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nweb_team = nomad.QuoteSpecification(\"webTeam\",\n    description=\"web team quota\",\n    limits=[nomad.QuoteSpecificationLimitArgs(\n        region=\"global\",\n        region_limit=nomad.QuoteSpecificationLimitRegionLimitArgs(\n            cpu=1000,\n            memory_mb=256,\n        ),\n    )])\nweb = nomad.Namespace(\"web\",\n    description=\"Web team production environment.\",\n    quota=web_team.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var webTeam = new Nomad.QuoteSpecification(\"webTeam\", new()\n    {\n        Description = \"web team quota\",\n        Limits = new[]\n        {\n            new Nomad.Inputs.QuoteSpecificationLimitArgs\n            {\n                Region = \"global\",\n                RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs\n                {\n                    Cpu = 1000,\n                    MemoryMb = 256,\n                },\n            },\n        },\n    });\n\n    var web = new Nomad.Namespace(\"web\", new()\n    {\n        Description = \"Web team production environment.\",\n        Quota = webTeam.Name,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\twebTeam, err := nomad.NewQuoteSpecification(ctx, \"webTeam\", \u0026nomad.QuoteSpecificationArgs{\n\t\t\tDescription: pulumi.String(\"web team quota\"),\n\t\t\tLimits: QuoteSpecificationLimitArray{\n\t\t\t\t\u0026QuoteSpecificationLimitArgs{\n\t\t\t\t\tRegion: pulumi.String(\"global\"),\n\t\t\t\t\tRegionLimit: \u0026QuoteSpecificationLimitRegionLimitArgs{\n\t\t\t\t\t\tCpu:      pulumi.Int(1000),\n\t\t\t\t\t\tMemoryMb: pulumi.Int(256),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewNamespace(ctx, \"web\", \u0026nomad.NamespaceArgs{\n\t\t\tDescription: pulumi.String(\"Web team production environment.\"),\n\t\t\tQuota:       webTeam.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.QuoteSpecification;\nimport com.pulumi.nomad.QuoteSpecificationArgs;\nimport com.pulumi.nomad.inputs.QuoteSpecificationLimitArgs;\nimport com.pulumi.nomad.inputs.QuoteSpecificationLimitRegionLimitArgs;\nimport com.pulumi.nomad.Namespace;\nimport com.pulumi.nomad.NamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var webTeam = new QuoteSpecification(\"webTeam\", QuoteSpecificationArgs.builder()        \n            .description(\"web team quota\")\n            .limits(QuoteSpecificationLimitArgs.builder()\n                .region(\"global\")\n                .regionLimit(QuoteSpecificationLimitRegionLimitArgs.builder()\n                    .cpu(1000)\n                    .memoryMb(256)\n                    .build())\n                .build())\n            .build());\n\n        var web = new Namespace(\"web\", NamespaceArgs.builder()        \n            .description(\"Web team production environment.\")\n            .quota(webTeam.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  webTeam:\n    type: nomad:QuoteSpecification\n    properties:\n      description: web team quota\n      limits:\n        - region: global\n          regionLimit:\n            cpu: 1000\n            memoryMb: 256\n  web:\n    type: nomad:Namespace\n    properties:\n      description: Web team production environment.\n      quota: ${webTeam.name}\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "description": {
                     "type": "string",
@@ -1797,7 +2119,8 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - A unique name for the namespace.\n"
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the namespace.\n",
+                    "willReplaceOnChanges": true
                 },
                 "quota": {
                     "type": "string",
@@ -1813,7 +2136,8 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - A unique name for the namespace.\n"
+                        "description": "`(string: \u003crequired\u003e)` - A unique name for the namespace.\n",
+                        "willReplaceOnChanges": true
                     },
                     "quota": {
                         "type": "string",
@@ -1824,7 +2148,7 @@
             }
         },
         "nomad:index/quoteSpecification:QuoteSpecification": {
-            "description": "Manages a quota specification in a Nomad cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a quota specification:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst prodApi = new nomad.QuoteSpecification(\"prod_api\", {\n    description: \"Production instances of backend API servers\",\n    limits: [{\n        region: \"global\",\n        regionLimit: {\n            cpu: 2400,\n            memoryMb: 1200,\n        },\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nprod_api = nomad.QuoteSpecification(\"prodApi\",\n    description=\"Production instances of backend API servers\",\n    limits=[nomad.QuoteSpecificationLimitArgs(\n        region=\"global\",\n        region_limit=nomad.QuoteSpecificationLimitRegionLimitArgs(\n            cpu=2400,\n            memory_mb=1200,\n        ),\n    )])\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var prodApi = new Nomad.QuoteSpecification(\"prodApi\", new Nomad.QuoteSpecificationArgs\n        {\n            Description = \"Production instances of backend API servers\",\n            Limits = \n            {\n                new Nomad.Inputs.QuoteSpecificationLimitArgs\n                {\n                    Region = \"global\",\n                    RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs\n                    {\n                        Cpu = 2400,\n                        MemoryMb = 1200,\n                    },\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewQuoteSpecification(ctx, \"prodApi\", \u0026nomad.QuoteSpecificationArgs{\n\t\t\tDescription: pulumi.String(\"Production instances of backend API servers\"),\n\t\t\tLimits: QuoteSpecificationLimitArray{\n\t\t\t\t\u0026QuoteSpecificationLimitArgs{\n\t\t\t\t\tRegion: pulumi.String(\"global\"),\n\t\t\t\t\tRegionLimit: \u0026QuoteSpecificationLimitRegionLimitArgs{\n\t\t\t\t\t\tCpu:      pulumi.Int(2400),\n\t\t\t\t\t\tMemoryMb: pulumi.Int(1200),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages a quota specification in a Nomad cluster.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a quota specification:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst prodApi = new nomad.QuoteSpecification(\"prod_api\", {\n    description: \"Production instances of backend API servers\",\n    limits: [{\n        region: \"global\",\n        regionLimit: {\n            cpu: 2400,\n            memoryMb: 1200,\n        },\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nprod_api = nomad.QuoteSpecification(\"prodApi\",\n    description=\"Production instances of backend API servers\",\n    limits=[nomad.QuoteSpecificationLimitArgs(\n        region=\"global\",\n        region_limit=nomad.QuoteSpecificationLimitRegionLimitArgs(\n            cpu=2400,\n            memory_mb=1200,\n        ),\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var prodApi = new Nomad.QuoteSpecification(\"prodApi\", new()\n    {\n        Description = \"Production instances of backend API servers\",\n        Limits = new[]\n        {\n            new Nomad.Inputs.QuoteSpecificationLimitArgs\n            {\n                Region = \"global\",\n                RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs\n                {\n                    Cpu = 2400,\n                    MemoryMb = 1200,\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewQuoteSpecification(ctx, \"prodApi\", \u0026nomad.QuoteSpecificationArgs{\n\t\t\tDescription: pulumi.String(\"Production instances of backend API servers\"),\n\t\t\tLimits: QuoteSpecificationLimitArray{\n\t\t\t\t\u0026QuoteSpecificationLimitArgs{\n\t\t\t\t\tRegion: pulumi.String(\"global\"),\n\t\t\t\t\tRegionLimit: \u0026QuoteSpecificationLimitRegionLimitArgs{\n\t\t\t\t\t\tCpu:      pulumi.Int(2400),\n\t\t\t\t\t\tMemoryMb: pulumi.Int(1200),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.QuoteSpecification;\nimport com.pulumi.nomad.QuoteSpecificationArgs;\nimport com.pulumi.nomad.inputs.QuoteSpecificationLimitArgs;\nimport com.pulumi.nomad.inputs.QuoteSpecificationLimitRegionLimitArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var prodApi = new QuoteSpecification(\"prodApi\", QuoteSpecificationArgs.builder()        \n            .description(\"Production instances of backend API servers\")\n            .limits(QuoteSpecificationLimitArgs.builder()\n                .region(\"global\")\n                .regionLimit(QuoteSpecificationLimitRegionLimitArgs.builder()\n                    .cpu(2400)\n                    .memoryMb(1200)\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  prodApi:\n    type: nomad:QuoteSpecification\n    properties:\n      description: Production instances of backend API servers\n      limits:\n        - region: global\n          regionLimit:\n            cpu: 2400\n            memoryMb: 1200\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "description": {
                     "type": "string",
@@ -1860,7 +2184,8 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - A unique name for the quota specification.\n"
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the quota specification.\n",
+                    "willReplaceOnChanges": true
                 }
             },
             "requiredInputs": [
@@ -1882,14 +2207,15 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - A unique name for the quota specification.\n"
+                        "description": "`(string: \u003crequired\u003e)` - A unique name for the quota specification.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
             }
         },
         "nomad:index/schedulerConfig:SchedulerConfig": {
-            "description": "Manages scheduler configuration of the Nomad cluster.\n\n\u003e **Warning:** destroying this resource will not have any effect in the\ncluster configuration, since there's no clear definition of what a destroy\naction should do. The cluster will be left as-is and only the state reference\nwill be removed.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nSet cluster scheduler configuration:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst config = new nomad.SchedulerConfig(\"config\", {\n    preemptionConfig: {\n        batch_scheduler_enabled: true,\n        service_scheduler_enabled: true,\n        system_scheduler_enabled: true,\n    },\n    schedulerAlgorithm: \"spread\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nconfig = nomad.SchedulerConfig(\"config\",\n    preemption_config={\n        \"batch_scheduler_enabled\": True,\n        \"service_scheduler_enabled\": True,\n        \"system_scheduler_enabled\": True,\n    },\n    scheduler_algorithm=\"spread\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var config = new Nomad.SchedulerConfig(\"config\", new Nomad.SchedulerConfigArgs\n        {\n            PreemptionConfig = \n            {\n                { \"batch_scheduler_enabled\", true },\n                { \"service_scheduler_enabled\", true },\n                { \"system_scheduler_enabled\", true },\n            },\n            SchedulerAlgorithm = \"spread\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewSchedulerConfig(ctx, \"config\", \u0026nomad.SchedulerConfigArgs{\n\t\t\tPreemptionConfig: pulumi.BoolMap{\n\t\t\t\t\"batch_scheduler_enabled\":   pulumi.Bool(true),\n\t\t\t\t\"service_scheduler_enabled\": pulumi.Bool(true),\n\t\t\t\t\"system_scheduler_enabled\":  pulumi.Bool(true),\n\t\t\t},\n\t\t\tSchedulerAlgorithm: pulumi.String(\"spread\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages scheduler configuration of the Nomad cluster.\n\n\u003e **Warning:** destroying this resource will not have any effect in the\ncluster configuration, since there's no clear definition of what a destroy\naction should do. The cluster will be left as-is and only the state reference\nwill be removed.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nSet cluster scheduler configuration:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst config = new nomad.SchedulerConfig(\"config\", {\n    memoryOversubscriptionEnabled: true,\n    preemptionConfig: {\n        batch_scheduler_enabled: true,\n        service_scheduler_enabled: true,\n        sysbatch_scheduler_enabled: true,\n        system_scheduler_enabled: true,\n    },\n    schedulerAlgorithm: \"spread\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nconfig = nomad.SchedulerConfig(\"config\",\n    memory_oversubscription_enabled=True,\n    preemption_config={\n        \"batch_scheduler_enabled\": True,\n        \"service_scheduler_enabled\": True,\n        \"sysbatch_scheduler_enabled\": True,\n        \"system_scheduler_enabled\": True,\n    },\n    scheduler_algorithm=\"spread\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Nomad.SchedulerConfig(\"config\", new()\n    {\n        MemoryOversubscriptionEnabled = true,\n        PreemptionConfig = \n        {\n            { \"batch_scheduler_enabled\", true },\n            { \"service_scheduler_enabled\", true },\n            { \"sysbatch_scheduler_enabled\", true },\n            { \"system_scheduler_enabled\", true },\n        },\n        SchedulerAlgorithm = \"spread\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewSchedulerConfig(ctx, \"config\", \u0026nomad.SchedulerConfigArgs{\n\t\t\tMemoryOversubscriptionEnabled: pulumi.Bool(true),\n\t\t\tPreemptionConfig: pulumi.BoolMap{\n\t\t\t\t\"batch_scheduler_enabled\":    pulumi.Bool(true),\n\t\t\t\t\"service_scheduler_enabled\":  pulumi.Bool(true),\n\t\t\t\t\"sysbatch_scheduler_enabled\": pulumi.Bool(true),\n\t\t\t\t\"system_scheduler_enabled\":   pulumi.Bool(true),\n\t\t\t},\n\t\t\tSchedulerAlgorithm: pulumi.String(\"spread\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.SchedulerConfig;\nimport com.pulumi.nomad.SchedulerConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var config = new SchedulerConfig(\"config\", SchedulerConfigArgs.builder()        \n            .memoryOversubscriptionEnabled(true)\n            .preemptionConfig(Map.ofEntries(\n                Map.entry(\"batch_scheduler_enabled\", true),\n                Map.entry(\"service_scheduler_enabled\", true),\n                Map.entry(\"sysbatch_scheduler_enabled\", true),\n                Map.entry(\"system_scheduler_enabled\", true)\n            ))\n            .schedulerAlgorithm(\"spread\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  config:\n    type: nomad:SchedulerConfig\n    properties:\n      memoryOversubscriptionEnabled: true\n      preemptionConfig:\n        batch_scheduler_enabled: true\n        service_scheduler_enabled: true\n        sysbatch_scheduler_enabled: true\n        system_scheduler_enabled: true\n      schedulerAlgorithm: spread\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "memoryOversubscriptionEnabled": {
                     "type": "boolean",
@@ -1947,7 +2273,7 @@
             }
         },
         "nomad:index/sentinelPolicy:SentinelPolicy": {
-            "description": "Manages a Sentinel policy registered in Nomad.\n\n\u003e **Enterprise Only!** This API endpoint and functionality only exists in\n   Nomad Enterprise. This is not present in the open source version of Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst exec_only = new nomad.SentinelPolicy(\"exec-only\", {\n    description: \"Only allow jobs that are based on an exec driver.\",\n    // allow administrators to override\n    enforcementLevel: \"soft-mandatory\",\n    policy: `main = rule { all_drivers_exec }\n\n# all_drivers_exec checks that all the drivers in use are exec\nall_drivers_exec = rule {\n    all job.task_groups as tg {\n        all tg.tasks as task {\n            task.driver is \"exec\"\n        }\n    }\n}\n`,\n    scope: \"submit-job\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexec_only = nomad.SentinelPolicy(\"exec-only\",\n    description=\"Only allow jobs that are based on an exec driver.\",\n    enforcement_level=\"soft-mandatory\",\n    policy=\"\"\"main = rule { all_drivers_exec }\n\n# all_drivers_exec checks that all the drivers in use are exec\nall_drivers_exec = rule {\n    all job.task_groups as tg {\n        all tg.tasks as task {\n            task.driver is \"exec\"\n        }\n    }\n}\n\n\"\"\",\n    scope=\"submit-job\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var exec_only = new Nomad.SentinelPolicy(\"exec-only\", new Nomad.SentinelPolicyArgs\n        {\n            Description = \"Only allow jobs that are based on an exec driver.\",\n            EnforcementLevel = \"soft-mandatory\",\n            Policy = @\"main = rule { all_drivers_exec }\n\n# all_drivers_exec checks that all the drivers in use are exec\nall_drivers_exec = rule {\n    all job.task_groups as tg {\n        all tg.tasks as task {\n            task.driver is \"\"exec\"\"\n        }\n    }\n}\n\n\",\n            Scope = \"submit-job\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewSentinelPolicy(ctx, \"exec-only\", \u0026nomad.SentinelPolicyArgs{\n\t\t\tDescription:      pulumi.String(\"Only allow jobs that are based on an exec driver.\"),\n\t\t\tEnforcementLevel: pulumi.String(\"soft-mandatory\"),\n\t\t\tPolicy:           pulumi.String(fmt.Sprintf(\"%v%v%v%v%v%v%v%v%v%v%v\", \"main = rule { all_drivers_exec }\\n\", \"\\n\", \"# all_drivers_exec checks that all the drivers in use are exec\\n\", \"all_drivers_exec = rule {\\n\", \"    all job.task_groups as tg {\\n\", \"        all tg.tasks as task {\\n\", \"            task.driver is \\\"exec\\\"\\n\", \"        }\\n\", \"    }\\n\", \"}\\n\", \"\\n\")),\n\t\t\tScope:            pulumi.String(\"submit-job\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages a Sentinel policy registered in Nomad.\n\n\u003e **Enterprise Only!** This API endpoint and functionality only exists in\n   Nomad Enterprise. This is not present in the open source version of Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst exec_only = new nomad.SentinelPolicy(\"exec-only\", {\n    description: \"Only allow jobs that are based on an exec driver.\",\n    // allow administrators to override\n    enforcementLevel: \"soft-mandatory\",\n    policy: `main = rule { all_drivers_exec }\n\n# all_drivers_exec checks that all the drivers in use are exec\nall_drivers_exec = rule {\n    all job.task_groups as tg {\n        all tg.tasks as task {\n            task.driver is \"exec\"\n        }\n    }\n}\n`,\n    scope: \"submit-job\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexec_only = nomad.SentinelPolicy(\"exec-only\",\n    description=\"Only allow jobs that are based on an exec driver.\",\n    enforcement_level=\"soft-mandatory\",\n    policy=\"\"\"main = rule { all_drivers_exec }\n\n# all_drivers_exec checks that all the drivers in use are exec\nall_drivers_exec = rule {\n    all job.task_groups as tg {\n        all tg.tasks as task {\n            task.driver is \"exec\"\n        }\n    }\n}\n\n\"\"\",\n    scope=\"submit-job\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exec_only = new Nomad.SentinelPolicy(\"exec-only\", new()\n    {\n        Description = \"Only allow jobs that are based on an exec driver.\",\n        EnforcementLevel = \"soft-mandatory\",\n        Policy = @\"main = rule { all_drivers_exec }\n\n# all_drivers_exec checks that all the drivers in use are exec\nall_drivers_exec = rule {\n    all job.task_groups as tg {\n        all tg.tasks as task {\n            task.driver is \"\"exec\"\"\n        }\n    }\n}\n\n\",\n        Scope = \"submit-job\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewSentinelPolicy(ctx, \"exec-only\", \u0026nomad.SentinelPolicyArgs{\n\t\t\tDescription:      pulumi.String(\"Only allow jobs that are based on an exec driver.\"),\n\t\t\tEnforcementLevel: pulumi.String(\"soft-mandatory\"),\n\t\t\tPolicy: pulumi.String(fmt.Sprintf(`main = rule { all_drivers_exec }\n\n# all_drivers_exec checks that all the drivers in use are exec\nall_drivers_exec = rule {\n    all job.task_groups as tg {\n        all tg.tasks as task {\n            task.driver is \"exec\"\n        }\n    }\n}\n\n`)),\n\t\t\tScope: pulumi.String(\"submit-job\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.SentinelPolicy;\nimport com.pulumi.nomad.SentinelPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exec_only = new SentinelPolicy(\"exec-only\", SentinelPolicyArgs.builder()        \n            .description(\"Only allow jobs that are based on an exec driver.\")\n            .enforcementLevel(\"soft-mandatory\")\n            .policy(\"\"\"\nmain = rule { all_drivers_exec }\n\n# all_drivers_exec checks that all the drivers in use are exec\nall_drivers_exec = rule {\n    all job.task_groups as tg {\n        all tg.tasks as task {\n            task.driver is \"exec\"\n        }\n    }\n}\n\n            \"\"\")\n            .scope(\"submit-job\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  exec-only:\n    type: nomad:SentinelPolicy\n    properties:\n      description: Only allow jobs that are based on an exec driver.\n      # allow administrators to override\n      enforcementLevel: soft-mandatory\n      policy: |+\n        main = rule { all_drivers_exec }\n\n        # all_drivers_exec checks that all the drivers in use are exec\n        all_drivers_exec = rule {\n            all job.task_groups as tg {\n                all tg.tasks as task {\n                    task.driver is \"exec\"\n                }\n            }\n        }\n\n      scope: submit-job\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "description": {
                     "type": "string",
@@ -1987,7 +2313,8 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n"
+                    "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n",
+                    "willReplaceOnChanges": true
                 },
                 "policy": {
                     "type": "string",
@@ -2016,7 +2343,8 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n"
+                        "description": "`(string: \u003crequired\u003e)` - A unique name for the policy.\n",
+                        "willReplaceOnChanges": true
                     },
                     "policy": {
                         "type": "string",
@@ -2031,7 +2359,7 @@
             }
         },
         "nomad:index/volume:Volume": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a volume:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst ebs = nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n});\nconst mysqlVolume = new nomad.Volume(\"mysqlVolume\", {\n    type: \"csi\",\n    pluginId: \"aws-ebs0\",\n    volumeId: \"mysql_volume\",\n    externalId: module.hashistack.ebs_test_volume_id,\n    capabilities: [{\n        accessMode: \"single-node-writer\",\n        attachmentMode: \"file-system\",\n    }],\n    mountOptions: {\n        fsType: \"ext4\",\n    },\n}, {\n    dependsOn: [ebs],\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\nmysql_volume = nomad.Volume(\"mysqlVolume\",\n    type=\"csi\",\n    plugin_id=\"aws-ebs0\",\n    volume_id=\"mysql_volume\",\n    external_id=module[\"hashistack\"][\"ebs_test_volume_id\"],\n    capabilities=[nomad.VolumeCapabilityArgs(\n        access_mode=\"single-node-writer\",\n        attachment_mode=\"file-system\",\n    )],\n    mount_options=nomad.VolumeMountOptionsArgs(\n        fs_type=\"ext4\",\n    ),\n    opts=pulumi.ResourceOptions(depends_on=[ebs]))\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var ebs = Output.Create(Nomad.GetPlugin.InvokeAsync(new Nomad.GetPluginArgs\n        {\n            PluginId = \"aws-ebs0\",\n            WaitForHealthy = true,\n        }));\n        var mysqlVolume = new Nomad.Volume(\"mysqlVolume\", new Nomad.VolumeArgs\n        {\n            Type = \"csi\",\n            PluginId = \"aws-ebs0\",\n            VolumeId = \"mysql_volume\",\n            ExternalId = module.Hashistack.Ebs_test_volume_id,\n            Capabilities = \n            {\n                new Nomad.Inputs.VolumeCapabilityArgs\n                {\n                    AccessMode = \"single-node-writer\",\n                    AttachmentMode = \"file-system\",\n                },\n            },\n            MountOptions = new Nomad.Inputs.VolumeMountOptionsArgs\n            {\n                FsType = \"ext4\",\n            },\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                ebs,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tebs, err := nomad.GetPlugin(ctx, \u0026GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewVolume(ctx, \"mysqlVolume\", \u0026nomad.VolumeArgs{\n\t\t\tType:       pulumi.String(\"csi\"),\n\t\t\tPluginId:   pulumi.String(\"aws-ebs0\"),\n\t\t\tVolumeId:   pulumi.String(\"mysql_volume\"),\n\t\t\tExternalId: pulumi.Any(module.Hashistack.Ebs_test_volume_id),\n\t\t\tCapabilities: VolumeCapabilityArray{\n\t\t\t\t\u0026VolumeCapabilityArgs{\n\t\t\t\t\tAccessMode:     pulumi.String(\"single-node-writer\"),\n\t\t\t\t\tAttachmentMode: pulumi.String(\"file-system\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tMountOptions: \u0026VolumeMountOptionsArgs{\n\t\t\t\tFsType: pulumi.String(\"ext4\"),\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tebs,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a volume:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst ebs = nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n});\nconst mysqlVolume = new nomad.Volume(\"mysqlVolume\", {\n    type: \"csi\",\n    pluginId: \"aws-ebs0\",\n    volumeId: \"mysql_volume\",\n    externalId: module.hashistack.ebs_test_volume_id,\n    capabilities: [{\n        accessMode: \"single-node-writer\",\n        attachmentMode: \"file-system\",\n    }],\n    mountOptions: {\n        fsType: \"ext4\",\n    },\n    topologyRequest: {\n        required: {\n            topologies: [\n                {\n                    segments: {\n                        rack: \"R1\",\n                        zone: \"us-east-1a\",\n                    },\n                },\n                {\n                    segments: {\n                        rack: \"R2\",\n                    },\n                },\n            ],\n        },\n    },\n}, {\n    dependsOn: [ebs],\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\nmysql_volume = nomad.Volume(\"mysqlVolume\",\n    type=\"csi\",\n    plugin_id=\"aws-ebs0\",\n    volume_id=\"mysql_volume\",\n    external_id=module[\"hashistack\"][\"ebs_test_volume_id\"],\n    capabilities=[nomad.VolumeCapabilityArgs(\n        access_mode=\"single-node-writer\",\n        attachment_mode=\"file-system\",\n    )],\n    mount_options=nomad.VolumeMountOptionsArgs(\n        fs_type=\"ext4\",\n    ),\n    topology_request=nomad.VolumeTopologyRequestArgs(\n        required=nomad.VolumeTopologyRequestRequiredArgs(\n            topologies=[\n                nomad.VolumeTopologyRequestRequiredTopologyArgs(\n                    segments={\n                        \"rack\": \"R1\",\n                        \"zone\": \"us-east-1a\",\n                    },\n                ),\n                nomad.VolumeTopologyRequestRequiredTopologyArgs(\n                    segments={\n                        \"rack\": \"R2\",\n                    },\n                ),\n            ],\n        ),\n    ),\n    opts=pulumi.ResourceOptions(depends_on=[ebs]))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ebs = Nomad.GetPlugin.Invoke(new()\n    {\n        PluginId = \"aws-ebs0\",\n        WaitForHealthy = true,\n    });\n\n    var mysqlVolume = new Nomad.Volume(\"mysqlVolume\", new()\n    {\n        Type = \"csi\",\n        PluginId = \"aws-ebs0\",\n        VolumeId = \"mysql_volume\",\n        ExternalId = module.Hashistack.Ebs_test_volume_id,\n        Capabilities = new[]\n        {\n            new Nomad.Inputs.VolumeCapabilityArgs\n            {\n                AccessMode = \"single-node-writer\",\n                AttachmentMode = \"file-system\",\n            },\n        },\n        MountOptions = new Nomad.Inputs.VolumeMountOptionsArgs\n        {\n            FsType = \"ext4\",\n        },\n        TopologyRequest = new Nomad.Inputs.VolumeTopologyRequestArgs\n        {\n            Required = new Nomad.Inputs.VolumeTopologyRequestRequiredArgs\n            {\n                Topologies = new[]\n                {\n                    new Nomad.Inputs.VolumeTopologyRequestRequiredTopologyArgs\n                    {\n                        Segments = \n                        {\n                            { \"rack\", \"R1\" },\n                            { \"zone\", \"us-east-1a\" },\n                        },\n                    },\n                    new Nomad.Inputs.VolumeTopologyRequestRequiredTopologyArgs\n                    {\n                        Segments = \n                        {\n                            { \"rack\", \"R2\" },\n                        },\n                    },\n                },\n            },\n        },\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            ebs.Apply(getPluginResult =\u003e getPluginResult),\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tebs, err := nomad.GetPlugin(ctx, \u0026GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewVolume(ctx, \"mysqlVolume\", \u0026nomad.VolumeArgs{\n\t\t\tType:       pulumi.String(\"csi\"),\n\t\t\tPluginId:   pulumi.String(\"aws-ebs0\"),\n\t\t\tVolumeId:   pulumi.String(\"mysql_volume\"),\n\t\t\tExternalId: pulumi.Any(module.Hashistack.Ebs_test_volume_id),\n\t\t\tCapabilities: VolumeCapabilityArray{\n\t\t\t\t\u0026VolumeCapabilityArgs{\n\t\t\t\t\tAccessMode:     pulumi.String(\"single-node-writer\"),\n\t\t\t\t\tAttachmentMode: pulumi.String(\"file-system\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tMountOptions: \u0026VolumeMountOptionsArgs{\n\t\t\t\tFsType: pulumi.String(\"ext4\"),\n\t\t\t},\n\t\t\tTopologyRequest: \u0026VolumeTopologyRequestArgs{\n\t\t\t\tRequired: \u0026VolumeTopologyRequestRequiredArgs{\n\t\t\t\t\tTopologies: VolumeTopologyRequestRequiredTopologyArray{\n\t\t\t\t\t\t\u0026VolumeTopologyRequestRequiredTopologyArgs{\n\t\t\t\t\t\t\tSegments: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"rack\": pulumi.String(\"R1\"),\n\t\t\t\t\t\t\t\t\"zone\": pulumi.String(\"us-east-1a\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\u0026VolumeTopologyRequestRequiredTopologyArgs{\n\t\t\t\t\t\t\tSegments: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"rack\": pulumi.String(\"R2\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tebs,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetPluginArgs;\nimport com.pulumi.nomad.Volume;\nimport com.pulumi.nomad.VolumeArgs;\nimport com.pulumi.nomad.inputs.VolumeCapabilityArgs;\nimport com.pulumi.nomad.inputs.VolumeMountOptionsArgs;\nimport com.pulumi.nomad.inputs.VolumeTopologyRequestArgs;\nimport com.pulumi.nomad.inputs.VolumeTopologyRequestRequiredArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()\n            .pluginId(\"aws-ebs0\")\n            .waitForHealthy(true)\n            .build());\n\n        var mysqlVolume = new Volume(\"mysqlVolume\", VolumeArgs.builder()        \n            .type(\"csi\")\n            .pluginId(\"aws-ebs0\")\n            .volumeId(\"mysql_volume\")\n            .externalId(module.hashistack().ebs_test_volume_id())\n            .capabilities(VolumeCapabilityArgs.builder()\n                .accessMode(\"single-node-writer\")\n                .attachmentMode(\"file-system\")\n                .build())\n            .mountOptions(VolumeMountOptionsArgs.builder()\n                .fsType(\"ext4\")\n                .build())\n            .topologyRequest(VolumeTopologyRequestArgs.builder()\n                .required(VolumeTopologyRequestRequiredArgs.builder()\n                    .topologies(                    \n                        VolumeTopologyRequestRequiredTopologyArgs.builder()\n                            .segments(Map.ofEntries(\n                                Map.entry(\"rack\", \"R1\"),\n                                Map.entry(\"zone\", \"us-east-1a\")\n                            ))\n                            .build(),\n                        VolumeTopologyRequestRequiredTopologyArgs.builder()\n                            .segments(Map.of(\"rack\", \"R2\"))\n                            .build())\n                    .build())\n                .build())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(ebs.applyValue(getPluginResult -\u003e getPluginResult))\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mysqlVolume:\n    type: nomad:Volume\n    properties:\n      type: csi\n      pluginId: aws-ebs0\n      volumeId: mysql_volume\n      externalId: ${module.hashistack.ebs_test_volume_id}\n      capabilities:\n        - accessMode: single-node-writer\n          attachmentMode: file-system\n      mountOptions:\n        fsType: ext4\n      topologyRequest:\n        required:\n          topologies:\n            - segments:\n                rack: R1\n                zone: us-east-1a\n            - segments:\n                rack: R2\n    options:\n      dependson:\n        - ${ebs}\nvariables:\n  ebs:\n    Fn::Invoke:\n      Function: nomad:getPlugin\n      Arguments:\n        pluginId: aws-ebs0\n        waitForHealthy: true\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "accessMode": {
                     "type": "string",
@@ -2119,6 +2447,16 @@
                     },
                     "description": "An optional key-value map of strings used as credentials for publishing and unpublishing volumes.\n"
                 },
+                "topologies": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/VolumeTopology:VolumeTopology"
+                    }
+                },
+                "topologyRequest": {
+                    "$ref": "#/types/nomad:index/VolumeTopologyRequest:VolumeTopologyRequest",
+                    "description": "Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.\n"
+                },
                 "type": {
                     "type": "string",
                     "description": "The type of the volume. Currently, only 'csi' is supported.\n"
@@ -2140,6 +2478,7 @@
                 "pluginProvider",
                 "pluginProviderVersion",
                 "schedulable",
+                "topologies",
                 "volumeId"
             ],
             "inputProperties": {
@@ -2173,7 +2512,8 @@
                 },
                 "externalId": {
                     "type": "string",
-                    "description": "The ID of the physical volume from the storage provider.\n"
+                    "description": "The ID of the physical volume from the storage provider.\n",
+                    "willReplaceOnChanges": true
                 },
                 "mountOptions": {
                     "$ref": "#/types/nomad:index/VolumeMountOptions:VolumeMountOptions",
@@ -2185,7 +2525,8 @@
                 },
                 "namespace": {
                     "type": "string",
-                    "description": "The namespace in which to create the volume.\n"
+                    "description": "The namespace in which to create the volume.\n",
+                    "willReplaceOnChanges": true
                 },
                 "parameters": {
                     "type": "object",
@@ -2196,7 +2537,8 @@
                 },
                 "pluginId": {
                     "type": "string",
-                    "description": "The ID of the CSI plugin that manages this volume.\n"
+                    "description": "The ID of the CSI plugin that manages this volume.\n",
+                    "willReplaceOnChanges": true
                 },
                 "secrets": {
                     "type": "object",
@@ -2205,13 +2547,19 @@
                     },
                     "description": "An optional key-value map of strings used as credentials for publishing and unpublishing volumes.\n"
                 },
+                "topologyRequest": {
+                    "$ref": "#/types/nomad:index/VolumeTopologyRequest:VolumeTopologyRequest",
+                    "description": "Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.\n"
+                },
                 "type": {
                     "type": "string",
-                    "description": "The type of the volume. Currently, only 'csi' is supported.\n"
+                    "description": "The type of the volume. Currently, only 'csi' is supported.\n",
+                    "willReplaceOnChanges": true
                 },
                 "volumeId": {
                     "type": "string",
-                    "description": "The unique ID of the volume, how jobs will refer to the volume.\n"
+                    "description": "The unique ID of the volume, how jobs will refer to the volume.\n",
+                    "willReplaceOnChanges": true
                 }
             },
             "requiredInputs": [
@@ -2261,7 +2609,8 @@
                     },
                     "externalId": {
                         "type": "string",
-                        "description": "The ID of the physical volume from the storage provider.\n"
+                        "description": "The ID of the physical volume from the storage provider.\n",
+                        "willReplaceOnChanges": true
                     },
                     "mountOptions": {
                         "$ref": "#/types/nomad:index/VolumeMountOptions:VolumeMountOptions",
@@ -2273,7 +2622,8 @@
                     },
                     "namespace": {
                         "type": "string",
-                        "description": "The namespace in which to create the volume.\n"
+                        "description": "The namespace in which to create the volume.\n",
+                        "willReplaceOnChanges": true
                     },
                     "nodesExpected": {
                         "type": "integer"
@@ -2290,7 +2640,8 @@
                     },
                     "pluginId": {
                         "type": "string",
-                        "description": "The ID of the CSI plugin that manages this volume.\n"
+                        "description": "The ID of the CSI plugin that manages this volume.\n",
+                        "willReplaceOnChanges": true
                     },
                     "pluginProvider": {
                         "type": "string"
@@ -2308,13 +2659,25 @@
                         },
                         "description": "An optional key-value map of strings used as credentials for publishing and unpublishing volumes.\n"
                     },
+                    "topologies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/VolumeTopology:VolumeTopology"
+                        }
+                    },
+                    "topologyRequest": {
+                        "$ref": "#/types/nomad:index/VolumeTopologyRequest:VolumeTopologyRequest",
+                        "description": "Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.\n"
+                    },
                     "type": {
                         "type": "string",
-                        "description": "The type of the volume. Currently, only 'csi' is supported.\n"
+                        "description": "The type of the volume. Currently, only 'csi' is supported.\n",
+                        "willReplaceOnChanges": true
                     },
                     "volumeId": {
                         "type": "string",
-                        "description": "The unique ID of the volume, how jobs will refer to the volume.\n"
+                        "description": "The unique ID of the volume, how jobs will refer to the volume.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -2323,7 +2686,7 @@
     },
     "functions": {
         "nomad:index/getAclPolicies:getAclPolicies": {
-            "description": "Retrieve a list of ACL Policies.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getAclPolicies({\n    prefix: \"prod\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_acl_policies(prefix=\"prod\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetAclPolicies.InvokeAsync(new Nomad.GetAclPoliciesArgs\n        {\n            Prefix = \"prod\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetAclPolicies(ctx, \u0026GetAclPoliciesArgs{\n\t\t\tPrefix: pulumi.StringRef(\"prod\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Retrieve a list of ACL Policies.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getAclPolicies({\n    prefix: \"prod\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_acl_policies(prefix=\"prod\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetAclPolicies.Invoke(new()\n    {\n        Prefix = \"prod\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetAclPolicies(ctx, \u0026GetAclPoliciesArgs{\n\t\t\tPrefix: pulumi.StringRef(\"prod\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetAclPoliciesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getAclPolicies(GetAclPoliciesArgs.builder()\n            .prefix(\"prod\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    Fn::Invoke:\n      Function: nomad:getAclPolicies\n      Arguments:\n        prefix: prod\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getAclPolicies.\n",
                 "properties": {
@@ -2358,7 +2721,7 @@
             }
         },
         "nomad:index/getAclPolicy:getAclPolicy": {
-            "description": "Retrieve information on an ACL Policy.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst myPolicy = pulumi.output(nomad.getAclPolicy({\n    name: \"my-policy\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nmy_policy = nomad.get_acl_policy(name=\"my-policy\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myPolicy = Output.Create(Nomad.GetAclPolicy.InvokeAsync(new Nomad.GetAclPolicyArgs\n        {\n            Name = \"my-policy\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupAclPolicy(ctx, \u0026GetAclPolicyArgs{\n\t\t\tName: \"my-policy\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Retrieve information on an ACL Policy.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst myPolicy = pulumi.output(nomad.getAclPolicy({\n    name: \"my-policy\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nmy_policy = nomad.get_acl_policy(name=\"my-policy\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myPolicy = Nomad.GetAclPolicy.Invoke(new()\n    {\n        Name = \"my-policy\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupAclPolicy(ctx, \u0026GetAclPolicyArgs{\n\t\t\tName: \"my-policy\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetAclPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myPolicy = NomadFunctions.getAclPolicy(GetAclPolicyArgs.builder()\n            .name(\"my-policy\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myPolicy:\n    Fn::Invoke:\n      Function: nomad:getAclPolicy\n      Arguments:\n        name: my-policy\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getAclPolicy.\n",
                 "properties": {
@@ -2398,7 +2761,7 @@
             }
         },
         "nomad:index/getAclToken:getAclToken": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst myToken = pulumi.output(nomad.getAclToken({\n    accessorId: \"aa534e09-6a07-0a45-2295-a7f77063d429\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nmy_token = nomad.get_acl_token(accessor_id=\"aa534e09-6a07-0a45-2295-a7f77063d429\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myToken = Output.Create(Nomad.GetAclToken.InvokeAsync(new Nomad.GetAclTokenArgs\n        {\n            AccessorId = \"aa534e09-6a07-0a45-2295-a7f77063d429\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupAclToken(ctx, \u0026GetAclTokenArgs{\n\t\t\tAccessorId: \"aa534e09-6a07-0a45-2295-a7f77063d429\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst myToken = pulumi.output(nomad.getAclToken({\n    accessorId: \"aa534e09-6a07-0a45-2295-a7f77063d429\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nmy_token = nomad.get_acl_token(accessor_id=\"aa534e09-6a07-0a45-2295-a7f77063d429\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myToken = Nomad.GetAclToken.Invoke(new()\n    {\n        AccessorId = \"aa534e09-6a07-0a45-2295-a7f77063d429\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupAclToken(ctx, \u0026GetAclTokenArgs{\n\t\t\tAccessorId: \"aa534e09-6a07-0a45-2295-a7f77063d429\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetAclTokenArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myToken = NomadFunctions.getAclToken(GetAclTokenArgs.builder()\n            .accessorId(\"aa534e09-6a07-0a45-2295-a7f77063d429\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myToken:\n    Fn::Invoke:\n      Function: nomad:getAclToken\n      Arguments:\n        accessorId: aa534e09-6a07-0a45-2295-a7f77063d429\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getAclToken.\n",
                 "properties": {
@@ -2457,7 +2820,7 @@
             }
         },
         "nomad:index/getAclTokens:getAclTokens": {
-            "description": "Get a list of ACL tokens.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst tokens = pulumi.output(nomad.getAclTokens({\n    prefix: \"a242\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ntokens = nomad.get_acl_tokens(prefix=\"a242\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var tokens = Output.Create(Nomad.GetAclTokens.InvokeAsync(new Nomad.GetAclTokensArgs\n        {\n            Prefix = \"a242\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetAclTokens(ctx, \u0026GetAclTokensArgs{\n\t\t\tPrefix: pulumi.StringRef(\"a242\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Get a list of ACL tokens.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst tokens = pulumi.output(nomad.getAclTokens({\n    prefix: \"a242\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ntokens = nomad.get_acl_tokens(prefix=\"a242\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var tokens = Nomad.GetAclTokens.Invoke(new()\n    {\n        Prefix = \"a242\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetAclTokens(ctx, \u0026GetAclTokensArgs{\n\t\t\tPrefix: pulumi.StringRef(\"a242\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetAclTokensArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var tokens = NomadFunctions.getAclTokens(GetAclTokensArgs.builder()\n            .prefix(\"a242\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  tokens:\n    Fn::Invoke:\n      Function: nomad:getAclTokens\n      Arguments:\n        prefix: a242\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getAclTokens.\n",
                 "properties": {
@@ -2492,7 +2855,7 @@
             }
         },
         "nomad:index/getDatacenters:getDatacenters": {
-            "description": "Retrieve a list of datacenters.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst datacenters = pulumi.output(nomad.getDatacenters({\n    ignoreDownNodes: true,\n    prefix: \"prod\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndatacenters = nomad.get_datacenters(ignore_down_nodes=True,\n    prefix=\"prod\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var datacenters = Output.Create(Nomad.GetDatacenters.InvokeAsync(new Nomad.GetDatacentersArgs\n        {\n            IgnoreDownNodes = true,\n            Prefix = \"prod\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetDatacenters(ctx, \u0026GetDatacentersArgs{\n\t\t\tIgnoreDownNodes: pulumi.BoolRef(true),\n\t\t\tPrefix:          pulumi.StringRef(\"prod\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Retrieve a list of datacenters.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst datacenters = pulumi.output(nomad.getDatacenters({\n    ignoreDownNodes: true,\n    prefix: \"prod\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndatacenters = nomad.get_datacenters(ignore_down_nodes=True,\n    prefix=\"prod\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var datacenters = Nomad.GetDatacenters.Invoke(new()\n    {\n        IgnoreDownNodes = true,\n        Prefix = \"prod\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetDatacenters(ctx, \u0026GetDatacentersArgs{\n\t\t\tIgnoreDownNodes: pulumi.BoolRef(true),\n\t\t\tPrefix:          pulumi.StringRef(\"prod\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetDatacentersArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()\n            .ignoreDownNodes(true)\n            .prefix(\"prod\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  datacenters:\n    Fn::Invoke:\n      Function: nomad:getDatacenters\n      Arguments:\n        ignoreDownNodes: true\n        prefix: prod\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getDatacenters.\n",
                 "properties": {
@@ -2535,7 +2898,7 @@
             }
         },
         "nomad:index/getDeployments:getDeployments": {
-            "description": "Retrieve a list of deployments in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getDeployments());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_deployments()\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetDeployments.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetDeployments(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Retrieve a list of deployments in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getDeployments());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_deployments()\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetDeployments.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetDeployments(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getDeployments();\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    Fn::Invoke:\n      Function: nomad:getDeployments\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
             "outputs": {
                 "description": "A collection of values returned by getDeployments.\n",
                 "properties": {
@@ -2561,7 +2924,7 @@
             }
         },
         "nomad:index/getJob:getJob": {
-            "description": "Get information on a job ID. The aim of this datasource is to enable\nyou to act on various settings and states of a particular job.\n\nAn error is triggered if zero or more than one result is returned by the query.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nGet the data about a snapshot:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getJob({\n    jobId: \"example\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_job(job_id=\"example\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetJob.InvokeAsync(new Nomad.GetJobArgs\n        {\n            JobId = \"example\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupJob(ctx, \u0026GetJobArgs{\n\t\t\tJobId: \"example\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Get information on a job ID. The aim of this datasource is to enable\nyou to act on various settings and states of a particular job.\n\nAn error is triggered if zero or more than one result is returned by the query.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nGet the data about a snapshot:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getJob({\n    jobId: \"example\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_job(job_id=\"example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetJob.Invoke(new()\n    {\n        JobId = \"example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupJob(ctx, \u0026GetJobArgs{\n\t\t\tJobId: \"example\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetJobArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getJob(GetJobArgs.builder()\n            .jobId(\"example\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    Fn::Invoke:\n      Function: nomad:getJob\n      Arguments:\n        jobId: example\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getJob.\n",
                 "properties": {
@@ -2687,7 +3050,7 @@
             }
         },
         "nomad:index/getJobParser:getJobParser": {
-            "description": "Parse a HCL jobspec and produce the equivalent JSON encoded job.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\nimport * from \"fs\";\n\nconst myJob = nomad.getJobParser({\n    hcl: fs.readFileSync(`${path.module}/jobspec.hcl`),\n    canonicalize: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nmy_job = nomad.get_job_parser(hcl=(lambda path: open(path).read())(f\"{path['module']}/jobspec.hcl\"),\n    canonicalize=False)\n```\n```csharp\nusing System.IO;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myJob = Output.Create(Nomad.GetJobParser.InvokeAsync(new Nomad.GetJobParserArgs\n        {\n            Hcl = File.ReadAllText($\"{path.Module}/jobspec.hcl\"),\n            Canonicalize = false,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetJobParser(ctx, \u0026GetJobParserArgs{\n\t\t\tHcl:          readFileOrPanic(fmt.Sprintf(\"%v%v\", path.Module, \"/jobspec.hcl\")),\n\t\t\tCanonicalize: pulumi.BoolRef(false),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Parse a HCL jobspec and produce the equivalent JSON encoded job.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as fs from \"fs\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst myJob = nomad.getJobParser({\n    hcl: fs.readFileSync(`${path.module}/jobspec.hcl`),\n    canonicalize: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nmy_job = nomad.get_job_parser(hcl=(lambda path: open(path).read())(f\"{path['module']}/jobspec.hcl\"),\n    canonicalize=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.IO;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myJob = Nomad.GetJobParser.Invoke(new()\n    {\n        Hcl = File.ReadAllText($\"{path.Module}/jobspec.hcl\"),\n        Canonicalize = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc readFileOrPanic(path string) pulumi.StringPtrInput {\n\tdata, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\tpanic(err.Error())\n\t}\n\treturn pulumi.String(string(data))\n}\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetJobParser(ctx, \u0026GetJobParserArgs{\n\t\t\tHcl:          readFileOrPanic(fmt.Sprintf(\"%v/jobspec.hcl\", path.Module)),\n\t\t\tCanonicalize: pulumi.BoolRef(false),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetJobParserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myJob = NomadFunctions.getJobParser(GetJobParserArgs.builder()\n            .hcl(Files.readString(Paths.get(String.format(\"%s/jobspec.hcl\", path.module()))))\n            .canonicalize(false)\n            .build());\n\n    }\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getJobParser.\n",
                 "properties": {
@@ -2729,7 +3092,7 @@
             }
         },
         "nomad:index/getNamespace:getNamespace": {
-            "description": "Get information about a namespace in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst namespaces = pulumi.output(nomad.getNamespace({\n    name: \"default\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nnamespaces = nomad.get_namespace(name=\"default\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var namespaces = Output.Create(Nomad.GetNamespace.InvokeAsync(new Nomad.GetNamespaceArgs\n        {\n            Name = \"default\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupNamespace(ctx, \u0026GetNamespaceArgs{\n\t\t\tName: \"default\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Get information about a namespace in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst namespaces = pulumi.output(nomad.getNamespace({\n    name: \"default\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nnamespaces = nomad.get_namespace(name=\"default\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var namespaces = Nomad.GetNamespace.Invoke(new()\n    {\n        Name = \"default\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupNamespace(ctx, \u0026GetNamespaceArgs{\n\t\t\tName: \"default\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetNamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var namespaces = NomadFunctions.getNamespace(GetNamespaceArgs.builder()\n            .name(\"default\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  namespaces:\n    Fn::Invoke:\n      Function: nomad:getNamespace\n      Arguments:\n        name: default\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getNamespace.\n",
                 "properties": {
@@ -2793,7 +3156,7 @@
             }
         },
         "nomad:index/getPlugin:getPlugin": {
-            "description": "Lookup a plugin by ID. The aim of this datasource is to determine whether\na particular plugin exists on the cluster, to find information on the health\nand availability of the plugin, and to optionally wait for the plugin\nbefore performing actions the require an available plugin controller.\n\nIf a plugin with the specified ID does not exist and the datasource is not\nconfigured to wait, it will result in an error. For simple existence checks,\nuse the `nomad.getPlugins` listing datasource.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nCheck for the existence of a plugin:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst ebs = pulumi.output(nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var ebs = Output.Create(Nomad.GetPlugin.InvokeAsync(new Nomad.GetPluginArgs\n        {\n            PluginId = \"aws-ebs0\",\n            WaitForHealthy = true,\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetPlugin(ctx, \u0026GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n\nThis will check for a plugin with the ID `aws-ebs0`, waiting until the plugin\nis healthy before returning.\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Lookup a plugin by ID. The aim of this datasource is to determine whether\na particular plugin exists on the cluster, to find information on the health\nand availability of the plugin, and to optionally wait for the plugin\nbefore performing actions the require an available plugin controller.\n\nIf a plugin with the specified ID does not exist and the datasource is not\nconfigured to wait, it will result in an error. For simple existence checks,\nuse the `nomad.getPlugins` listing datasource.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nCheck for the existence of a plugin:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst ebs = pulumi.output(nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ebs = Nomad.GetPlugin.Invoke(new()\n    {\n        PluginId = \"aws-ebs0\",\n        WaitForHealthy = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetPlugin(ctx, \u0026GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetPluginArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()\n            .pluginId(\"aws-ebs0\")\n            .waitForHealthy(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  ebs:\n    Fn::Invoke:\n      Function: nomad:getPlugin\n      Arguments:\n        pluginId: aws-ebs0\n        waitForHealthy: true\n```\n\nThis will check for a plugin with the ID `aws-ebs0`, waiting until the plugin\nis healthy before returning.\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getPlugin.\n",
                 "properties": {
@@ -2872,7 +3235,7 @@
             }
         },
         "nomad:index/getPlugins:getPlugins": {
-            "description": "Retrieve a list of dynamic plugins in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getPlugins());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_plugins()\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetPlugins.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetPlugins(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Retrieve a list of dynamic plugins in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getPlugins());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_plugins()\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetPlugins.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetPlugins(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetPluginsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getPlugins();\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    Fn::Invoke:\n      Function: nomad:getPlugins\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getPlugins.\n",
                 "properties": {
@@ -2933,7 +3296,7 @@
             }
         },
         "nomad:index/getScalingPolicies:getScalingPolicies": {
-            "description": "Retrieve a list of Scaling Policies.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getScalingPolicies({\n    jobId: \"webapp\",\n    type: \"horizontal\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_scaling_policies(job_id=\"webapp\",\n    type=\"horizontal\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetScalingPolicies.InvokeAsync(new Nomad.GetScalingPoliciesArgs\n        {\n            JobId = \"webapp\",\n            Type = \"horizontal\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetScalingPolicies(ctx, \u0026GetScalingPoliciesArgs{\n\t\t\tJobId: pulumi.StringRef(\"webapp\"),\n\t\t\tType:  pulumi.StringRef(\"horizontal\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Retrieve a list of Scaling Policies.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getScalingPolicies({\n    jobId: \"webapp\",\n    type: \"horizontal\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_scaling_policies(job_id=\"webapp\",\n    type=\"horizontal\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetScalingPolicies.Invoke(new()\n    {\n        JobId = \"webapp\",\n        Type = \"horizontal\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetScalingPolicies(ctx, \u0026GetScalingPoliciesArgs{\n\t\t\tJobId: pulumi.StringRef(\"webapp\"),\n\t\t\tType:  pulumi.StringRef(\"horizontal\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetScalingPoliciesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getScalingPolicies(GetScalingPoliciesArgs.builder()\n            .jobId(\"webapp\")\n            .type(\"horizontal\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    Fn::Invoke:\n      Function: nomad:getScalingPolicies\n      Arguments:\n        jobId: webapp\n        type: horizontal\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getScalingPolicies.\n",
                 "properties": {
@@ -2976,7 +3339,7 @@
             }
         },
         "nomad:index/getScalingPolicy:getScalingPolicy": {
-            "description": "Retrieve a Scaling Policy.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getScalingPolicy({\n    id: \"ad19848d-1921-179c-affa-244a3543be88\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_scaling_policy(id=\"ad19848d-1921-179c-affa-244a3543be88\")\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetScalingPolicy.InvokeAsync(new Nomad.GetScalingPolicyArgs\n        {\n            Id = \"ad19848d-1921-179c-affa-244a3543be88\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetScalingPolicy(ctx, \u0026GetScalingPolicyArgs{\n\t\t\tId: \"ad19848d-1921-179c-affa-244a3543be88\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Retrieve a Scaling Policy.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getScalingPolicy({\n    id: \"ad19848d-1921-179c-affa-244a3543be88\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_scaling_policy(id=\"ad19848d-1921-179c-affa-244a3543be88\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetScalingPolicy.Invoke(new()\n    {\n        Id = \"ad19848d-1921-179c-affa-244a3543be88\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetScalingPolicy(ctx, \u0026GetScalingPolicyArgs{\n\t\t\tId: \"ad19848d-1921-179c-affa-244a3543be88\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetScalingPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getScalingPolicy(GetScalingPolicyArgs.builder()\n            .id(\"ad19848d-1921-179c-affa-244a3543be88\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    Fn::Invoke:\n      Function: nomad:getScalingPolicy\n      Arguments:\n        id: ad19848d-1921-179c-affa-244a3543be88\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getScalingPolicy.\n",
                 "properties": {
@@ -3031,7 +3394,7 @@
             }
         },
         "nomad:index/getSchedulerPolicy:getSchedulerPolicy": {
-            "description": "Retrieve the cluster's [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst global = pulumi.output(nomad.getSchedulerPolicy());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nglobal_ = nomad.get_scheduler_policy()\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var @global = Output.Create(Nomad.GetSchedulerPolicy.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetSchedulerPolicy(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Retrieve the cluster's [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst global = pulumi.output(nomad.getSchedulerPolicy());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nglobal_ = nomad.get_scheduler_policy()\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @global = Nomad.GetSchedulerPolicy.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetSchedulerPolicy(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var global = NomadFunctions.getSchedulerPolicy();\n\n    }\n}\n```\n```yaml\nvariables:\n  global:\n    Fn::Invoke:\n      Function: nomad:getSchedulerPolicy\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
             "outputs": {
                 "description": "A collection of values returned by getSchedulerPolicy.\n",
                 "properties": {
@@ -3062,7 +3425,7 @@
             }
         },
         "nomad:index/getVolumes:getVolumes": {
-            "description": "Retrieve a list of volumes in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getVolumes());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_volumes()\n```\n```csharp\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var example = Output.Create(Nomad.GetVolumes.InvokeAsync());\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetVolumes(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Retrieve a list of volumes in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = pulumi.output(nomad.getVolumes());\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_volumes()\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetVolumes.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetVolumes(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetVolumesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getVolumes();\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    Fn::Invoke:\n      Function: nomad:getVolumes\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getVolumes.\n",
                 "properties": {
@@ -3115,42 +3478,6 @@
                     "volumes",
                     "id"
                 ]
-            }
-        }
-    },
-    "language": {
-        "csharp": {
-            "compatibility": "tfbridge20",
-            "namespaces": null,
-            "packageReferences": {
-                "Pulumi": "3.*"
-            }
-        },
-        "go": {
-            "generateExtraInputTypes": true,
-            "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-        },
-        "nodejs": {
-            "compatibility": "tfbridge20",
-            "dependencies": {
-                "@pulumi/pulumi": "^3.0.0"
-            },
-            "devDependencies": {
-                "@types/mime": "^2.0.0",
-                "@types/node": "^10.0.0"
-            },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing nomad cloud resources.",
-            "packageName": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-nomad)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-nomad` repo](https://github.com/pulumi/pulumi-nomad/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-nomad` repo](https://github.com/hashicorp/terraform-provider-nomad/issues).",
-            "typescriptVersion": ""
-        },
-        "python": {
-            "compatibility": "tfbridge20",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/hashicorp/terraform-provider-nomad)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-nomad` repo](https://github.com/pulumi/pulumi-nomad/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`hashicorp/terraform-provider-nomad` repo](https://github.com/hashicorp/terraform-provider-nomad/issues).",
-            "requires": {
-                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
         }
     }
