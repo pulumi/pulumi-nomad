@@ -22,30 +22,30 @@ namespace Pulumi.Nomad
     /// Set cluster scheduler configuration:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var config = new Nomad.SchedulerConfig("config", new()
     ///     {
-    ///         var config = new Nomad.SchedulerConfig("config", new Nomad.SchedulerConfigArgs
+    ///         MemoryOversubscriptionEnabled = true,
+    ///         PreemptionConfig = 
     ///         {
-    ///             PreemptionConfig = 
-    ///             {
-    ///                 { "batch_scheduler_enabled", true },
-    ///                 { "service_scheduler_enabled", true },
-    ///                 { "system_scheduler_enabled", true },
-    ///             },
-    ///             SchedulerAlgorithm = "spread",
-    ///         });
-    ///     }
+    ///             { "batch_scheduler_enabled", true },
+    ///             { "service_scheduler_enabled", true },
+    ///             { "sysbatch_scheduler_enabled", true },
+    ///             { "system_scheduler_enabled", true },
+    ///         },
+    ///         SchedulerAlgorithm = "spread",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [NomadResourceType("nomad:index/schedulerConfig:SchedulerConfig")]
-    public partial class SchedulerConfig : Pulumi.CustomResource
+    public partial class SchedulerConfig : global::Pulumi.CustomResource
     {
         /// <summary>
         /// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
@@ -109,7 +109,7 @@ namespace Pulumi.Nomad
         }
     }
 
-    public sealed class SchedulerConfigArgs : Pulumi.ResourceArgs
+    public sealed class SchedulerConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
@@ -138,9 +138,10 @@ namespace Pulumi.Nomad
         public SchedulerConfigArgs()
         {
         }
+        public static new SchedulerConfigArgs Empty => new SchedulerConfigArgs();
     }
 
-    public sealed class SchedulerConfigState : Pulumi.ResourceArgs
+    public sealed class SchedulerConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
@@ -169,5 +170,6 @@ namespace Pulumi.Nomad
         public SchedulerConfigState()
         {
         }
+        public static new SchedulerConfigState Empty => new SchedulerConfigState();
     }
 }

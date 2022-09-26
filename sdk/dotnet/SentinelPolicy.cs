@@ -18,18 +18,17 @@ namespace Pulumi.Nomad
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var exec_only = new Nomad.SentinelPolicy("exec-only", new()
     ///     {
-    ///         var exec_only = new Nomad.SentinelPolicy("exec-only", new Nomad.SentinelPolicyArgs
-    ///         {
-    ///             Description = "Only allow jobs that are based on an exec driver.",
-    ///             EnforcementLevel = "soft-mandatory",
-    ///             Policy = @"main = rule { all_drivers_exec }
+    ///         Description = "Only allow jobs that are based on an exec driver.",
+    ///         EnforcementLevel = "soft-mandatory",
+    ///         Policy = @"main = rule { all_drivers_exec }
     /// 
     /// # all_drivers_exec checks that all the drivers in use are exec
     /// all_drivers_exec = rule {
@@ -41,15 +40,14 @@ namespace Pulumi.Nomad
     /// }
     /// 
     /// ",
-    ///             Scope = "submit-job",
-    ///         });
-    ///     }
+    ///         Scope = "submit-job",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [NomadResourceType("nomad:index/sentinelPolicy:SentinelPolicy")]
-    public partial class SentinelPolicy : Pulumi.CustomResource
+    public partial class SentinelPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
@@ -126,7 +124,7 @@ namespace Pulumi.Nomad
         }
     }
 
-    public sealed class SentinelPolicyArgs : Pulumi.ResourceArgs
+    public sealed class SentinelPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
@@ -162,9 +160,10 @@ namespace Pulumi.Nomad
         public SentinelPolicyArgs()
         {
         }
+        public static new SentinelPolicyArgs Empty => new SentinelPolicyArgs();
     }
 
-    public sealed class SentinelPolicyState : Pulumi.ResourceArgs
+    public sealed class SentinelPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
@@ -200,5 +199,6 @@ namespace Pulumi.Nomad
         public SentinelPolicyState()
         {
         }
+        public static new SentinelPolicyState Empty => new SentinelPolicyState();
     }
 }

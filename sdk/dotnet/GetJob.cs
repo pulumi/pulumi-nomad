@@ -24,26 +24,24 @@ namespace Pulumi.Nomad
         /// Get the data about a snapshot:
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Nomad.GetJob.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Nomad.GetJob.InvokeAsync(new Nomad.GetJobArgs
-        ///         {
-        ///             JobId = "example",
-        ///         }));
-        ///     }
+        ///         JobId = "example",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetJobResult> InvokeAsync(GetJobArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetJobResult>("nomad:index/getJob:getJob", args ?? new GetJobArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetJobResult>("nomad:index/getJob:getJob", args ?? new GetJobArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information on a job ID. The aim of this datasource is to enable
@@ -58,30 +56,28 @@ namespace Pulumi.Nomad
         /// Get the data about a snapshot:
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Nomad.GetJob.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Nomad.GetJob.InvokeAsync(new Nomad.GetJobArgs
-        ///         {
-        ///             JobId = "example",
-        ///         }));
-        ///     }
+        ///         JobId = "example",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetJobResult> Invoke(GetJobInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetJobResult>("nomad:index/getJob:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetJobResult>("nomad:index/getJob:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetJobArgs : Pulumi.InvokeArgs
+    public sealed class GetJobArgs : global::Pulumi.InvokeArgs
     {
         [Input("jobId", required: true)]
         public string JobId { get; set; } = null!;
@@ -92,9 +88,10 @@ namespace Pulumi.Nomad
         public GetJobArgs()
         {
         }
+        public static new GetJobArgs Empty => new GetJobArgs();
     }
 
-    public sealed class GetJobInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetJobInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("jobId", required: true)]
         public Input<string> JobId { get; set; } = null!;
@@ -105,6 +102,7 @@ namespace Pulumi.Nomad
         public GetJobInvokeArgs()
         {
         }
+        public static new GetJobInvokeArgs Empty => new GetJobInvokeArgs();
     }
 
 

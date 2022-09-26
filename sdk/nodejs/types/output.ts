@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface ExternalVolumeCapability {
     accessMode: string;
@@ -12,6 +13,31 @@ export interface ExternalVolumeCapability {
 export interface ExternalVolumeMountOptions {
     fsType?: string;
     mountFlags?: string[];
+}
+
+export interface ExternalVolumeTopology {
+    segments: {[key: string]: string};
+}
+
+export interface ExternalVolumeTopologyRequest {
+    preferred?: outputs.ExternalVolumeTopologyRequestPreferred;
+    required?: outputs.ExternalVolumeTopologyRequestRequired;
+}
+
+export interface ExternalVolumeTopologyRequestPreferred {
+    topologies: outputs.ExternalVolumeTopologyRequestPreferredTopology[];
+}
+
+export interface ExternalVolumeTopologyRequestPreferredTopology {
+    segments: {[key: string]: string};
+}
+
+export interface ExternalVolumeTopologyRequestRequired {
+    topologies: outputs.ExternalVolumeTopologyRequestRequiredTopology[];
+}
+
+export interface ExternalVolumeTopologyRequestRequiredTopology {
+    segments: {[key: string]: string};
 }
 
 export interface GetAclPoliciesPolicy {
@@ -163,6 +189,22 @@ export interface VolumeCapability {
 export interface VolumeMountOptions {
     fsType?: string;
     mountFlags?: string[];
+}
+
+export interface VolumeTopology {
+    segments: {[key: string]: string};
+}
+
+export interface VolumeTopologyRequest {
+    required?: outputs.VolumeTopologyRequestRequired;
+}
+
+export interface VolumeTopologyRequestRequired {
+    topologies: outputs.VolumeTopologyRequestRequiredTopology[];
+}
+
+export interface VolumeTopologyRequestRequiredTopology {
+    segments: {[key: string]: string};
 }
 export namespace config {
     export interface Headers {

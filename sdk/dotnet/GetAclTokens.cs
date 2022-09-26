@@ -19,26 +19,24 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var tokens = Nomad.GetAclTokens.Invoke(new()
         ///     {
-        ///         var tokens = Output.Create(Nomad.GetAclTokens.InvokeAsync(new Nomad.GetAclTokensArgs
-        ///         {
-        ///             Prefix = "a242",
-        ///         }));
-        ///     }
+        ///         Prefix = "a242",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAclTokensResult> InvokeAsync(GetAclTokensArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get a list of ACL tokens.
@@ -48,30 +46,28 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var tokens = Nomad.GetAclTokens.Invoke(new()
         ///     {
-        ///         var tokens = Output.Create(Nomad.GetAclTokens.InvokeAsync(new Nomad.GetAclTokensArgs
-        ///         {
-        ///             Prefix = "a242",
-        ///         }));
-        ///     }
+        ///         Prefix = "a242",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAclTokensResult> Invoke(GetAclTokensInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetAclTokensArgs : Pulumi.InvokeArgs
+    public sealed class GetAclTokensArgs : global::Pulumi.InvokeArgs
     {
         [Input("prefix")]
         public string? Prefix { get; set; }
@@ -79,9 +75,10 @@ namespace Pulumi.Nomad
         public GetAclTokensArgs()
         {
         }
+        public static new GetAclTokensArgs Empty => new GetAclTokensArgs();
     }
 
-    public sealed class GetAclTokensInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAclTokensInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
@@ -89,6 +86,7 @@ namespace Pulumi.Nomad
         public GetAclTokensInvokeArgs()
         {
         }
+        public static new GetAclTokensInvokeArgs Empty => new GetAclTokensInvokeArgs();
     }
 
 

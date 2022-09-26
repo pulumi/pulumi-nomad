@@ -48,6 +48,11 @@ func GetHttpAuth(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:httpAuth")
 }
 
+// A set of environment variables that are ignored by the provider when configuring the Nomad API client.
+func GetIgnoreEnvVars(ctx *pulumi.Context) string {
+	return config.Get(ctx, "nomad:ignoreEnvVars")
+}
+
 // A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
 func GetKeyFile(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:keyFile")

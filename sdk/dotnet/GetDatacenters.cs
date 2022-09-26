@@ -19,27 +19,25 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var datacenters = Nomad.GetDatacenters.Invoke(new()
         ///     {
-        ///         var datacenters = Output.Create(Nomad.GetDatacenters.InvokeAsync(new Nomad.GetDatacentersArgs
-        ///         {
-        ///             IgnoreDownNodes = true,
-        ///             Prefix = "prod",
-        ///         }));
-        ///     }
+        ///         IgnoreDownNodes = true,
+        ///         Prefix = "prod",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDatacentersResult> InvokeAsync(GetDatacentersArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve a list of datacenters.
@@ -49,31 +47,29 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var datacenters = Nomad.GetDatacenters.Invoke(new()
         ///     {
-        ///         var datacenters = Output.Create(Nomad.GetDatacenters.InvokeAsync(new Nomad.GetDatacentersArgs
-        ///         {
-        ///             IgnoreDownNodes = true,
-        ///             Prefix = "prod",
-        ///         }));
-        ///     }
+        ///         IgnoreDownNodes = true,
+        ///         Prefix = "prod",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDatacentersResult> Invoke(GetDatacentersInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetDatacentersArgs : Pulumi.InvokeArgs
+    public sealed class GetDatacentersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.
@@ -90,9 +86,10 @@ namespace Pulumi.Nomad
         public GetDatacentersArgs()
         {
         }
+        public static new GetDatacentersArgs Empty => new GetDatacentersArgs();
     }
 
-    public sealed class GetDatacentersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetDatacentersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.
@@ -109,6 +106,7 @@ namespace Pulumi.Nomad
         public GetDatacentersInvokeArgs()
         {
         }
+        public static new GetDatacentersInvokeArgs Empty => new GetDatacentersInvokeArgs();
     }
 
 

@@ -19,26 +19,24 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var myPolicy = Nomad.GetAclPolicy.Invoke(new()
         ///     {
-        ///         var myPolicy = Output.Create(Nomad.GetAclPolicy.InvokeAsync(new Nomad.GetAclPolicyArgs
-        ///         {
-        ///             Name = "my-policy",
-        ///         }));
-        ///     }
+        ///         Name = "my-policy",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAclPolicyResult> InvokeAsync(GetAclPolicyArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAclPolicyResult>("nomad:index/getAclPolicy:getAclPolicy", args ?? new GetAclPolicyArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAclPolicyResult>("nomad:index/getAclPolicy:getAclPolicy", args ?? new GetAclPolicyArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve information on an ACL Policy.
@@ -48,30 +46,28 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var myPolicy = Nomad.GetAclPolicy.Invoke(new()
         ///     {
-        ///         var myPolicy = Output.Create(Nomad.GetAclPolicy.InvokeAsync(new Nomad.GetAclPolicyArgs
-        ///         {
-        ///             Name = "my-policy",
-        ///         }));
-        ///     }
+        ///         Name = "my-policy",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAclPolicyResult> Invoke(GetAclPolicyInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAclPolicyResult>("nomad:index/getAclPolicy:getAclPolicy", args ?? new GetAclPolicyInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAclPolicyResult>("nomad:index/getAclPolicy:getAclPolicy", args ?? new GetAclPolicyInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetAclPolicyArgs : Pulumi.InvokeArgs
+    public sealed class GetAclPolicyArgs : global::Pulumi.InvokeArgs
     {
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
@@ -79,9 +75,10 @@ namespace Pulumi.Nomad
         public GetAclPolicyArgs()
         {
         }
+        public static new GetAclPolicyArgs Empty => new GetAclPolicyArgs();
     }
 
-    public sealed class GetAclPolicyInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAclPolicyInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
@@ -89,6 +86,7 @@ namespace Pulumi.Nomad
         public GetAclPolicyInvokeArgs()
         {
         }
+        public static new GetAclPolicyInvokeArgs Empty => new GetAclPolicyInvokeArgs();
     }
 
 

@@ -15,50 +15,73 @@ namespace Pulumi.Nomad
     /// Registering a volume:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var ebs = Nomad.GetPlugin.Invoke(new()
     ///     {
-    ///         var ebs = Output.Create(Nomad.GetPlugin.InvokeAsync(new Nomad.GetPluginArgs
+    ///         PluginId = "aws-ebs0",
+    ///         WaitForHealthy = true,
+    ///     });
+    /// 
+    ///     var mysqlVolume = new Nomad.Volume("mysqlVolume", new()
+    ///     {
+    ///         Type = "csi",
+    ///         PluginId = "aws-ebs0",
+    ///         VolumeId = "mysql_volume",
+    ///         ExternalId = module.Hashistack.Ebs_test_volume_id,
+    ///         Capabilities = new[]
     ///         {
-    ///             PluginId = "aws-ebs0",
-    ///             WaitForHealthy = true,
-    ///         }));
-    ///         var mysqlVolume = new Nomad.Volume("mysqlVolume", new Nomad.VolumeArgs
-    ///         {
-    ///             Type = "csi",
-    ///             PluginId = "aws-ebs0",
-    ///             VolumeId = "mysql_volume",
-    ///             ExternalId = module.Hashistack.Ebs_test_volume_id,
-    ///             Capabilities = 
+    ///             new Nomad.Inputs.VolumeCapabilityArgs
     ///             {
-    ///                 new Nomad.Inputs.VolumeCapabilityArgs
+    ///                 AccessMode = "single-node-writer",
+    ///                 AttachmentMode = "file-system",
+    ///             },
+    ///         },
+    ///         MountOptions = new Nomad.Inputs.VolumeMountOptionsArgs
+    ///         {
+    ///             FsType = "ext4",
+    ///         },
+    ///         TopologyRequest = new Nomad.Inputs.VolumeTopologyRequestArgs
+    ///         {
+    ///             Required = new Nomad.Inputs.VolumeTopologyRequestRequiredArgs
+    ///             {
+    ///                 Topologies = new[]
     ///                 {
-    ///                     AccessMode = "single-node-writer",
-    ///                     AttachmentMode = "file-system",
+    ///                     new Nomad.Inputs.VolumeTopologyRequestRequiredTopologyArgs
+    ///                     {
+    ///                         Segments = 
+    ///                         {
+    ///                             { "rack", "R1" },
+    ///                             { "zone", "us-east-1a" },
+    ///                         },
+    ///                     },
+    ///                     new Nomad.Inputs.VolumeTopologyRequestRequiredTopologyArgs
+    ///                     {
+    ///                         Segments = 
+    ///                         {
+    ///                             { "rack", "R2" },
+    ///                         },
+    ///                     },
     ///                 },
     ///             },
-    ///             MountOptions = new Nomad.Inputs.VolumeMountOptionsArgs
-    ///             {
-    ///                 FsType = "ext4",
-    ///             },
-    ///         }, new CustomResourceOptions
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
     ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 ebs,
-    ///             },
-    ///         });
-    ///     }
+    ///             ebs.Apply(getPluginResult =&gt; getPluginResult),
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [NomadResourceType("nomad:index/volume:Volume")]
-    public partial class Volume : Pulumi.CustomResource
+    public partial class Volume : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Defines whether a volume should be available concurrently.
@@ -156,6 +179,15 @@ namespace Pulumi.Nomad
         [Output("secrets")]
         public Output<ImmutableDictionary<string, string>?> Secrets { get; private set; } = null!;
 
+        [Output("topologies")]
+        public Output<ImmutableArray<Outputs.VolumeTopology>> Topologies { get; private set; } = null!;
+
+        /// <summary>
+        /// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        /// </summary>
+        [Output("topologyRequest")]
+        public Output<Outputs.VolumeTopologyRequest?> TopologyRequest { get; private set; } = null!;
+
         /// <summary>
         /// The type of the volume. Currently, only 'csi' is supported.
         /// </summary>
@@ -212,7 +244,7 @@ namespace Pulumi.Nomad
         }
     }
 
-    public sealed class VolumeArgs : Pulumi.ResourceArgs
+    public sealed class VolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Defines whether a volume should be available concurrently.
@@ -311,6 +343,12 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
+        /// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        /// </summary>
+        [Input("topologyRequest")]
+        public Input<Inputs.VolumeTopologyRequestArgs>? TopologyRequest { get; set; }
+
+        /// <summary>
         /// The type of the volume. Currently, only 'csi' is supported.
         /// </summary>
         [Input("type")]
@@ -325,9 +363,10 @@ namespace Pulumi.Nomad
         public VolumeArgs()
         {
         }
+        public static new VolumeArgs Empty => new VolumeArgs();
     }
 
-    public sealed class VolumeState : Pulumi.ResourceArgs
+    public sealed class VolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Defines whether a volume should be available concurrently.
@@ -449,6 +488,20 @@ namespace Pulumi.Nomad
             set => _secrets = value;
         }
 
+        [Input("topologies")]
+        private InputList<Inputs.VolumeTopologyGetArgs>? _topologies;
+        public InputList<Inputs.VolumeTopologyGetArgs> Topologies
+        {
+            get => _topologies ?? (_topologies = new InputList<Inputs.VolumeTopologyGetArgs>());
+            set => _topologies = value;
+        }
+
+        /// <summary>
+        /// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        /// </summary>
+        [Input("topologyRequest")]
+        public Input<Inputs.VolumeTopologyRequestGetArgs>? TopologyRequest { get; set; }
+
         /// <summary>
         /// The type of the volume. Currently, only 'csi' is supported.
         /// </summary>
@@ -464,5 +517,6 @@ namespace Pulumi.Nomad
         public VolumeState()
         {
         }
+        public static new VolumeState Empty => new VolumeState();
     }
 }

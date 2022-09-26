@@ -19,27 +19,25 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Nomad.GetScalingPolicies.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Nomad.GetScalingPolicies.InvokeAsync(new Nomad.GetScalingPoliciesArgs
-        ///         {
-        ///             JobId = "webapp",
-        ///             Type = "horizontal",
-        ///         }));
-        ///     }
+        ///         JobId = "webapp",
+        ///         Type = "horizontal",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetScalingPoliciesResult> InvokeAsync(GetScalingPoliciesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetScalingPoliciesResult>("nomad:index/getScalingPolicies:getScalingPolicies", args ?? new GetScalingPoliciesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetScalingPoliciesResult>("nomad:index/getScalingPolicies:getScalingPolicies", args ?? new GetScalingPoliciesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve a list of Scaling Policies.
@@ -49,31 +47,29 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Nomad.GetScalingPolicies.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Nomad.GetScalingPolicies.InvokeAsync(new Nomad.GetScalingPoliciesArgs
-        ///         {
-        ///             JobId = "webapp",
-        ///             Type = "horizontal",
-        ///         }));
-        ///     }
+        ///         JobId = "webapp",
+        ///         Type = "horizontal",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetScalingPoliciesResult> Invoke(GetScalingPoliciesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetScalingPoliciesResult>("nomad:index/getScalingPolicies:getScalingPolicies", args ?? new GetScalingPoliciesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetScalingPoliciesResult>("nomad:index/getScalingPolicies:getScalingPolicies", args ?? new GetScalingPoliciesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetScalingPoliciesArgs : Pulumi.InvokeArgs
+    public sealed class GetScalingPoliciesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// `(string)` - An optional string to filter scaling policies based on the target job. If not provided, policies for all jobs are returned.
@@ -90,9 +86,10 @@ namespace Pulumi.Nomad
         public GetScalingPoliciesArgs()
         {
         }
+        public static new GetScalingPoliciesArgs Empty => new GetScalingPoliciesArgs();
     }
 
-    public sealed class GetScalingPoliciesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetScalingPoliciesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// `(string)` - An optional string to filter scaling policies based on the target job. If not provided, policies for all jobs are returned.
@@ -109,6 +106,7 @@ namespace Pulumi.Nomad
         public GetScalingPoliciesInvokeArgs()
         {
         }
+        public static new GetScalingPoliciesInvokeArgs Empty => new GetScalingPoliciesInvokeArgs();
     }
 
 

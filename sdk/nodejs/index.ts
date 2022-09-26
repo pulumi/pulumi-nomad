@@ -5,33 +5,137 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./aclPolicy";
-export * from "./aclToken";
-export * from "./externalVolume";
-export * from "./getAclPolicies";
-export * from "./getAclPolicy";
-export * from "./getAclToken";
-export * from "./getAclTokens";
-export * from "./getDatacenters";
-export * from "./getDeployments";
-export * from "./getJob";
-export * from "./getJobParser";
-export * from "./getNamespace";
-export * from "./getNamespaces";
-export * from "./getPlugin";
-export * from "./getPlugins";
-export * from "./getRegions";
-export * from "./getScalingPolicies";
-export * from "./getScalingPolicy";
-export * from "./getSchedulerPolicy";
-export * from "./getVolumes";
-export * from "./job";
-export * from "./namespace";
-export * from "./provider";
-export * from "./quoteSpecification";
-export * from "./schedulerConfig";
-export * from "./sentinelPolicy";
-export * from "./volume";
+export { AclPolicyArgs, AclPolicyState } from "./aclPolicy";
+export type AclPolicy = import("./aclPolicy").AclPolicy;
+export const AclPolicy: typeof import("./aclPolicy").AclPolicy = null as any;
+
+export { AclTokenArgs, AclTokenState } from "./aclToken";
+export type AclToken = import("./aclToken").AclToken;
+export const AclToken: typeof import("./aclToken").AclToken = null as any;
+
+export { ExternalVolumeArgs, ExternalVolumeState } from "./externalVolume";
+export type ExternalVolume = import("./externalVolume").ExternalVolume;
+export const ExternalVolume: typeof import("./externalVolume").ExternalVolume = null as any;
+
+export { GetAclPoliciesArgs, GetAclPoliciesResult, GetAclPoliciesOutputArgs } from "./getAclPolicies";
+export const getAclPolicies: typeof import("./getAclPolicies").getAclPolicies = null as any;
+export const getAclPoliciesOutput: typeof import("./getAclPolicies").getAclPoliciesOutput = null as any;
+
+export { GetAclPolicyArgs, GetAclPolicyResult, GetAclPolicyOutputArgs } from "./getAclPolicy";
+export const getAclPolicy: typeof import("./getAclPolicy").getAclPolicy = null as any;
+export const getAclPolicyOutput: typeof import("./getAclPolicy").getAclPolicyOutput = null as any;
+
+export { GetAclTokenArgs, GetAclTokenResult, GetAclTokenOutputArgs } from "./getAclToken";
+export const getAclToken: typeof import("./getAclToken").getAclToken = null as any;
+export const getAclTokenOutput: typeof import("./getAclToken").getAclTokenOutput = null as any;
+
+export { GetAclTokensArgs, GetAclTokensResult, GetAclTokensOutputArgs } from "./getAclTokens";
+export const getAclTokens: typeof import("./getAclTokens").getAclTokens = null as any;
+export const getAclTokensOutput: typeof import("./getAclTokens").getAclTokensOutput = null as any;
+
+export { GetDatacentersArgs, GetDatacentersResult, GetDatacentersOutputArgs } from "./getDatacenters";
+export const getDatacenters: typeof import("./getDatacenters").getDatacenters = null as any;
+export const getDatacentersOutput: typeof import("./getDatacenters").getDatacentersOutput = null as any;
+
+export { GetDeploymentsResult } from "./getDeployments";
+export const getDeployments: typeof import("./getDeployments").getDeployments = null as any;
+
+export { GetJobArgs, GetJobResult, GetJobOutputArgs } from "./getJob";
+export const getJob: typeof import("./getJob").getJob = null as any;
+export const getJobOutput: typeof import("./getJob").getJobOutput = null as any;
+
+export { GetJobParserArgs, GetJobParserResult, GetJobParserOutputArgs } from "./getJobParser";
+export const getJobParser: typeof import("./getJobParser").getJobParser = null as any;
+export const getJobParserOutput: typeof import("./getJobParser").getJobParserOutput = null as any;
+
+export { GetNamespaceArgs, GetNamespaceResult, GetNamespaceOutputArgs } from "./getNamespace";
+export const getNamespace: typeof import("./getNamespace").getNamespace = null as any;
+export const getNamespaceOutput: typeof import("./getNamespace").getNamespaceOutput = null as any;
+
+export { GetNamespacesResult } from "./getNamespaces";
+export const getNamespaces: typeof import("./getNamespaces").getNamespaces = null as any;
+
+export { GetPluginArgs, GetPluginResult, GetPluginOutputArgs } from "./getPlugin";
+export const getPlugin: typeof import("./getPlugin").getPlugin = null as any;
+export const getPluginOutput: typeof import("./getPlugin").getPluginOutput = null as any;
+
+export { GetPluginsArgs, GetPluginsResult, GetPluginsOutputArgs } from "./getPlugins";
+export const getPlugins: typeof import("./getPlugins").getPlugins = null as any;
+export const getPluginsOutput: typeof import("./getPlugins").getPluginsOutput = null as any;
+
+export { GetRegionsResult } from "./getRegions";
+export const getRegions: typeof import("./getRegions").getRegions = null as any;
+
+export { GetScalingPoliciesArgs, GetScalingPoliciesResult, GetScalingPoliciesOutputArgs } from "./getScalingPolicies";
+export const getScalingPolicies: typeof import("./getScalingPolicies").getScalingPolicies = null as any;
+export const getScalingPoliciesOutput: typeof import("./getScalingPolicies").getScalingPoliciesOutput = null as any;
+
+export { GetScalingPolicyArgs, GetScalingPolicyResult, GetScalingPolicyOutputArgs } from "./getScalingPolicy";
+export const getScalingPolicy: typeof import("./getScalingPolicy").getScalingPolicy = null as any;
+export const getScalingPolicyOutput: typeof import("./getScalingPolicy").getScalingPolicyOutput = null as any;
+
+export { GetSchedulerPolicyResult } from "./getSchedulerPolicy";
+export const getSchedulerPolicy: typeof import("./getSchedulerPolicy").getSchedulerPolicy = null as any;
+
+export { GetVolumesArgs, GetVolumesResult, GetVolumesOutputArgs } from "./getVolumes";
+export const getVolumes: typeof import("./getVolumes").getVolumes = null as any;
+export const getVolumesOutput: typeof import("./getVolumes").getVolumesOutput = null as any;
+
+export { JobArgs, JobState } from "./job";
+export type Job = import("./job").Job;
+export const Job: typeof import("./job").Job = null as any;
+
+export { NamespaceArgs, NamespaceState } from "./namespace";
+export type Namespace = import("./namespace").Namespace;
+export const Namespace: typeof import("./namespace").Namespace = null as any;
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+
+export { QuoteSpecificationArgs, QuoteSpecificationState } from "./quoteSpecification";
+export type QuoteSpecification = import("./quoteSpecification").QuoteSpecification;
+export const QuoteSpecification: typeof import("./quoteSpecification").QuoteSpecification = null as any;
+
+export { SchedulerConfigArgs, SchedulerConfigState } from "./schedulerConfig";
+export type SchedulerConfig = import("./schedulerConfig").SchedulerConfig;
+export const SchedulerConfig: typeof import("./schedulerConfig").SchedulerConfig = null as any;
+
+export { SentinelPolicyArgs, SentinelPolicyState } from "./sentinelPolicy";
+export type SentinelPolicy = import("./sentinelPolicy").SentinelPolicy;
+export const SentinelPolicy: typeof import("./sentinelPolicy").SentinelPolicy = null as any;
+
+export { VolumeArgs, VolumeState } from "./volume";
+export type Volume = import("./volume").Volume;
+export const Volume: typeof import("./volume").Volume = null as any;
+
+utilities.lazyLoad(exports, ["AclPolicy"], () => require("./aclPolicy"));
+utilities.lazyLoad(exports, ["AclToken"], () => require("./aclToken"));
+utilities.lazyLoad(exports, ["ExternalVolume"], () => require("./externalVolume"));
+utilities.lazyLoad(exports, ["getAclPolicies","getAclPoliciesOutput"], () => require("./getAclPolicies"));
+utilities.lazyLoad(exports, ["getAclPolicy","getAclPolicyOutput"], () => require("./getAclPolicy"));
+utilities.lazyLoad(exports, ["getAclToken","getAclTokenOutput"], () => require("./getAclToken"));
+utilities.lazyLoad(exports, ["getAclTokens","getAclTokensOutput"], () => require("./getAclTokens"));
+utilities.lazyLoad(exports, ["getDatacenters","getDatacentersOutput"], () => require("./getDatacenters"));
+utilities.lazyLoad(exports, ["getDeployments"], () => require("./getDeployments"));
+utilities.lazyLoad(exports, ["getJob","getJobOutput"], () => require("./getJob"));
+utilities.lazyLoad(exports, ["getJobParser","getJobParserOutput"], () => require("./getJobParser"));
+utilities.lazyLoad(exports, ["getNamespace","getNamespaceOutput"], () => require("./getNamespace"));
+utilities.lazyLoad(exports, ["getNamespaces"], () => require("./getNamespaces"));
+utilities.lazyLoad(exports, ["getPlugin","getPluginOutput"], () => require("./getPlugin"));
+utilities.lazyLoad(exports, ["getPlugins","getPluginsOutput"], () => require("./getPlugins"));
+utilities.lazyLoad(exports, ["getRegions"], () => require("./getRegions"));
+utilities.lazyLoad(exports, ["getScalingPolicies","getScalingPoliciesOutput"], () => require("./getScalingPolicies"));
+utilities.lazyLoad(exports, ["getScalingPolicy","getScalingPolicyOutput"], () => require("./getScalingPolicy"));
+utilities.lazyLoad(exports, ["getSchedulerPolicy"], () => require("./getSchedulerPolicy"));
+utilities.lazyLoad(exports, ["getVolumes","getVolumesOutput"], () => require("./getVolumes"));
+utilities.lazyLoad(exports, ["Job"], () => require("./job"));
+utilities.lazyLoad(exports, ["Namespace"], () => require("./namespace"));
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+utilities.lazyLoad(exports, ["QuoteSpecification"], () => require("./quoteSpecification"));
+utilities.lazyLoad(exports, ["SchedulerConfig"], () => require("./schedulerConfig"));
+utilities.lazyLoad(exports, ["SentinelPolicy"], () => require("./sentinelPolicy"));
+utilities.lazyLoad(exports, ["Volume"], () => require("./volume"));
 
 // Export sub-modules:
 import * as config from "./config";
@@ -41,17 +145,6 @@ export {
     config,
     types,
 };
-
-// Import resources to register:
-import { AclPolicy } from "./aclPolicy";
-import { AclToken } from "./aclToken";
-import { ExternalVolume } from "./externalVolume";
-import { Job } from "./job";
-import { Namespace } from "./namespace";
-import { QuoteSpecification } from "./quoteSpecification";
-import { SchedulerConfig } from "./schedulerConfig";
-import { SentinelPolicy } from "./sentinelPolicy";
-import { Volume } from "./volume";
 
 const _module = {
     version: utilities.getVersion(),
@@ -89,9 +182,6 @@ pulumi.runtime.registerResourceModule("nomad", "index/quoteSpecification", _modu
 pulumi.runtime.registerResourceModule("nomad", "index/schedulerConfig", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/sentinelPolicy", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/volume", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("nomad", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

@@ -16,6 +16,9 @@ type Job struct {
 
 	// The IDs for allocations associated with this job.
 	AllocationIds pulumi.StringArrayOutput `pulumi:"allocationIds"`
+	// `(string: <optional>)` - Consul token used when registering this job.
+	// Will fallback to the value declared in Nomad provider configuration, if any.
+	ConsulToken pulumi.StringPtrOutput `pulumi:"consulToken"`
 	// The target datacenters for the job, as derived from the jobspec.
 	Datacenters pulumi.StringArrayOutput `pulumi:"datacenters"`
 	// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
@@ -54,6 +57,9 @@ type Job struct {
 	TaskGroups JobTaskGroupArrayOutput `pulumi:"taskGroups"`
 	// The type of the job, as derived from the jobspec.
 	Type pulumi.StringOutput `pulumi:"type"`
+	// `(string: <optional>)` - Vault token used when registering this job.
+	// Will fallback to the value declared in Nomad provider configuration, if any.
+	VaultToken pulumi.StringPtrOutput `pulumi:"vaultToken"`
 }
 
 // NewJob registers a new resource with the given unique name, arguments, and options.
@@ -90,6 +96,9 @@ func GetJob(ctx *pulumi.Context,
 type jobState struct {
 	// The IDs for allocations associated with this job.
 	AllocationIds []string `pulumi:"allocationIds"`
+	// `(string: <optional>)` - Consul token used when registering this job.
+	// Will fallback to the value declared in Nomad provider configuration, if any.
+	ConsulToken *string `pulumi:"consulToken"`
 	// The target datacenters for the job, as derived from the jobspec.
 	Datacenters []string `pulumi:"datacenters"`
 	// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
@@ -128,11 +137,17 @@ type jobState struct {
 	TaskGroups []JobTaskGroup `pulumi:"taskGroups"`
 	// The type of the job, as derived from the jobspec.
 	Type *string `pulumi:"type"`
+	// `(string: <optional>)` - Vault token used when registering this job.
+	// Will fallback to the value declared in Nomad provider configuration, if any.
+	VaultToken *string `pulumi:"vaultToken"`
 }
 
 type JobState struct {
 	// The IDs for allocations associated with this job.
 	AllocationIds pulumi.StringArrayInput
+	// `(string: <optional>)` - Consul token used when registering this job.
+	// Will fallback to the value declared in Nomad provider configuration, if any.
+	ConsulToken pulumi.StringPtrInput
 	// The target datacenters for the job, as derived from the jobspec.
 	Datacenters pulumi.StringArrayInput
 	// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
@@ -171,6 +186,9 @@ type JobState struct {
 	TaskGroups JobTaskGroupArrayInput
 	// The type of the job, as derived from the jobspec.
 	Type pulumi.StringPtrInput
+	// `(string: <optional>)` - Vault token used when registering this job.
+	// Will fallback to the value declared in Nomad provider configuration, if any.
+	VaultToken pulumi.StringPtrInput
 }
 
 func (JobState) ElementType() reflect.Type {
@@ -178,6 +196,9 @@ func (JobState) ElementType() reflect.Type {
 }
 
 type jobArgs struct {
+	// `(string: <optional>)` - Consul token used when registering this job.
+	// Will fallback to the value declared in Nomad provider configuration, if any.
+	ConsulToken *string `pulumi:"consulToken"`
 	// If true, the job will be deregistered on destroy.
 	DeregisterOnDestroy *bool `pulumi:"deregisterOnDestroy"`
 	// `(boolean: true)` - Determines if the job will be
@@ -199,10 +220,16 @@ type jobArgs struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy *bool `pulumi:"purgeOnDestroy"`
+	// `(string: <optional>)` - Vault token used when registering this job.
+	// Will fallback to the value declared in Nomad provider configuration, if any.
+	VaultToken *string `pulumi:"vaultToken"`
 }
 
 // The set of arguments for constructing a Job resource.
 type JobArgs struct {
+	// `(string: <optional>)` - Consul token used when registering this job.
+	// Will fallback to the value declared in Nomad provider configuration, if any.
+	ConsulToken pulumi.StringPtrInput
 	// If true, the job will be deregistered on destroy.
 	DeregisterOnDestroy pulumi.BoolPtrInput
 	// `(boolean: true)` - Determines if the job will be
@@ -224,6 +251,9 @@ type JobArgs struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy pulumi.BoolPtrInput
+	// `(string: <optional>)` - Vault token used when registering this job.
+	// Will fallback to the value declared in Nomad provider configuration, if any.
+	VaultToken pulumi.StringPtrInput
 }
 
 func (JobArgs) ElementType() reflect.Type {
@@ -252,7 +282,7 @@ func (i *Job) ToJobOutputWithContext(ctx context.Context) JobOutput {
 // JobArrayInput is an input type that accepts JobArray and JobArrayOutput values.
 // You can construct a concrete instance of `JobArrayInput` via:
 //
-//          JobArray{ JobArgs{...} }
+//	JobArray{ JobArgs{...} }
 type JobArrayInput interface {
 	pulumi.Input
 
@@ -277,7 +307,7 @@ func (i JobArray) ToJobArrayOutputWithContext(ctx context.Context) JobArrayOutpu
 // JobMapInput is an input type that accepts JobMap and JobMapOutput values.
 // You can construct a concrete instance of `JobMapInput` via:
 //
-//          JobMap{ "key": JobArgs{...} }
+//	JobMap{ "key": JobArgs{...} }
 type JobMapInput interface {
 	pulumi.Input
 
@@ -311,6 +341,112 @@ func (o JobOutput) ToJobOutput() JobOutput {
 
 func (o JobOutput) ToJobOutputWithContext(ctx context.Context) JobOutput {
 	return o
+}
+
+// The IDs for allocations associated with this job.
+func (o JobOutput) AllocationIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.AllocationIds }).(pulumi.StringArrayOutput)
+}
+
+// `(string: <optional>)` - Consul token used when registering this job.
+// Will fallback to the value declared in Nomad provider configuration, if any.
+func (o JobOutput) ConsulToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.ConsulToken }).(pulumi.StringPtrOutput)
+}
+
+// The target datacenters for the job, as derived from the jobspec.
+func (o JobOutput) Datacenters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.Datacenters }).(pulumi.StringArrayOutput)
+}
+
+// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+func (o JobOutput) DeploymentId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.DeploymentId }).(pulumi.StringOutput)
+}
+
+// If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+func (o JobOutput) DeploymentStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.DeploymentStatus }).(pulumi.StringOutput)
+}
+
+// If true, the job will be deregistered on destroy.
+func (o JobOutput) DeregisterOnDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.DeregisterOnDestroy }).(pulumi.BoolPtrOutput)
+}
+
+// `(boolean: true)` - Determines if the job will be
+// deregistered if the ID of the job in the jobspec changes.
+func (o JobOutput) DeregisterOnIdChange() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.DeregisterOnIdChange }).(pulumi.BoolPtrOutput)
+}
+
+// `(boolean: true)` - If true, the provider will return immediately
+// after creating or updating, instead of monitoring.
+func (o JobOutput) Detach() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.Detach }).(pulumi.BoolPtrOutput)
+}
+
+// `(block: optional)` - Options for the HCL2 jobspec parser.
+func (o JobOutput) Hcl2() JobHcl2PtrOutput {
+	return o.ApplyT(func(v *Job) JobHcl2PtrOutput { return v.Hcl2 }).(JobHcl2PtrOutput)
+}
+
+// `(string: <required>)` - The contents of the jobspec to register.
+func (o JobOutput) Jobspec() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Jobspec }).(pulumi.StringOutput)
+}
+
+// `(boolean: false)` - Set this to `true` if your jobspec is structured with
+// JSON instead of the default HCL.
+func (o JobOutput) Json() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.Json }).(pulumi.BoolPtrOutput)
+}
+
+// Integer that increments for each change. Used to detect any changes between plan and apply.
+func (o JobOutput) ModifyIndex() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.ModifyIndex }).(pulumi.StringOutput)
+}
+
+// The name of the job, as derived from the jobspec.
+func (o JobOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace of the job, as derived from the jobspec.
+func (o JobOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Namespace }).(pulumi.StringOutput)
+}
+
+// `(boolean: false)` - Determines if the job will override any
+// soft-mandatory Sentinel policies and register even if they fail.
+func (o JobOutput) PolicyOverride() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.PolicyOverride }).(pulumi.BoolPtrOutput)
+}
+
+// `(boolean: false)` - Set this to true if you want the job to
+// be purged when the resource is destroyed.
+func (o JobOutput) PurgeOnDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.PurgeOnDestroy }).(pulumi.BoolPtrOutput)
+}
+
+// The target region for the job, as derived from the jobspec.
+func (o JobOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o JobOutput) TaskGroups() JobTaskGroupArrayOutput {
+	return o.ApplyT(func(v *Job) JobTaskGroupArrayOutput { return v.TaskGroups }).(JobTaskGroupArrayOutput)
+}
+
+// The type of the job, as derived from the jobspec.
+func (o JobOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// `(string: <optional>)` - Vault token used when registering this job.
+// Will fallback to the value declared in Nomad provider configuration, if any.
+func (o JobOutput) VaultToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.VaultToken }).(pulumi.StringPtrOutput)
 }
 
 type JobArrayOutput struct{ *pulumi.OutputState }

@@ -19,26 +19,24 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Nomad.GetScalingPolicy.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Nomad.GetScalingPolicy.InvokeAsync(new Nomad.GetScalingPolicyArgs
-        ///         {
-        ///             Id = "ad19848d-1921-179c-affa-244a3543be88",
-        ///         }));
-        ///     }
+        ///         Id = "ad19848d-1921-179c-affa-244a3543be88",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetScalingPolicyResult> InvokeAsync(GetScalingPolicyArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetScalingPolicyResult>("nomad:index/getScalingPolicy:getScalingPolicy", args ?? new GetScalingPolicyArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetScalingPolicyResult>("nomad:index/getScalingPolicy:getScalingPolicy", args ?? new GetScalingPolicyArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve a Scaling Policy.
@@ -48,30 +46,28 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var example = Nomad.GetScalingPolicy.Invoke(new()
         ///     {
-        ///         var example = Output.Create(Nomad.GetScalingPolicy.InvokeAsync(new Nomad.GetScalingPolicyArgs
-        ///         {
-        ///             Id = "ad19848d-1921-179c-affa-244a3543be88",
-        ///         }));
-        ///     }
+        ///         Id = "ad19848d-1921-179c-affa-244a3543be88",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetScalingPolicyResult> Invoke(GetScalingPolicyInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetScalingPolicyResult>("nomad:index/getScalingPolicy:getScalingPolicy", args ?? new GetScalingPolicyInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetScalingPolicyResult>("nomad:index/getScalingPolicy:getScalingPolicy", args ?? new GetScalingPolicyInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetScalingPolicyArgs : Pulumi.InvokeArgs
+    public sealed class GetScalingPolicyArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - The  ID of the scaling policy.
@@ -82,9 +78,10 @@ namespace Pulumi.Nomad
         public GetScalingPolicyArgs()
         {
         }
+        public static new GetScalingPolicyArgs Empty => new GetScalingPolicyArgs();
     }
 
-    public sealed class GetScalingPolicyInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetScalingPolicyInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - The  ID of the scaling policy.
@@ -95,6 +92,7 @@ namespace Pulumi.Nomad
         public GetScalingPolicyInvokeArgs()
         {
         }
+        public static new GetScalingPolicyInvokeArgs Empty => new GetScalingPolicyInvokeArgs();
     }
 
 

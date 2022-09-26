@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface ExternalVolumeCapability {
     accessMode: pulumi.Input<string>;
@@ -12,6 +13,31 @@ export interface ExternalVolumeCapability {
 export interface ExternalVolumeMountOptions {
     fsType?: pulumi.Input<string>;
     mountFlags?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface ExternalVolumeTopology {
+    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface ExternalVolumeTopologyRequest {
+    preferred?: pulumi.Input<inputs.ExternalVolumeTopologyRequestPreferred>;
+    required?: pulumi.Input<inputs.ExternalVolumeTopologyRequestRequired>;
+}
+
+export interface ExternalVolumeTopologyRequestPreferred {
+    topologies: pulumi.Input<pulumi.Input<inputs.ExternalVolumeTopologyRequestPreferredTopology>[]>;
+}
+
+export interface ExternalVolumeTopologyRequestPreferredTopology {
+    segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface ExternalVolumeTopologyRequestRequired {
+    topologies: pulumi.Input<pulumi.Input<inputs.ExternalVolumeTopologyRequestRequiredTopology>[]>;
+}
+
+export interface ExternalVolumeTopologyRequestRequiredTopology {
+    segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface JobHcl2 {
@@ -97,5 +123,22 @@ export interface VolumeMountOptions {
     fsType?: pulumi.Input<string>;
     mountFlags?: pulumi.Input<pulumi.Input<string>[]>;
 }
+
+export interface VolumeTopology {
+    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface VolumeTopologyRequest {
+    required?: pulumi.Input<inputs.VolumeTopologyRequestRequired>;
+}
+
+export interface VolumeTopologyRequestRequired {
+    topologies: pulumi.Input<pulumi.Input<inputs.VolumeTopologyRequestRequiredTopology>[]>;
+}
+
+export interface VolumeTopologyRequestRequiredTopology {
+    segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
 export namespace config {
 }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Nomad.Inputs
 {
 
-    public sealed class QuoteSpecificationLimitArgs : Pulumi.ResourceArgs
+    public sealed class QuoteSpecificationLimitArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - The region these limits should apply to.
@@ -29,5 +29,6 @@ namespace Pulumi.Nomad.Inputs
         public QuoteSpecificationLimitArgs()
         {
         }
+        public static new QuoteSpecificationLimitArgs Empty => new QuoteSpecificationLimitArgs();
     }
 }

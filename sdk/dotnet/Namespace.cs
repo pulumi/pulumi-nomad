@@ -22,61 +22,58 @@ namespace Pulumi.Nomad
     /// Registering a namespace:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var dev = new Nomad.Namespace("dev", new()
     ///     {
-    ///         var dev = new Nomad.Namespace("dev", new Nomad.NamespaceArgs
-    ///         {
-    ///             Description = "Shared development environment.",
-    ///             Quota = "dev",
-    ///         });
-    ///     }
+    ///         Description = "Shared development environment.",
+    ///         Quota = "dev",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// Registering a namespace with a quota:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var webTeam = new Nomad.QuoteSpecification("webTeam", new()
     ///     {
-    ///         var webTeam = new Nomad.QuoteSpecification("webTeam", new Nomad.QuoteSpecificationArgs
+    ///         Description = "web team quota",
+    ///         Limits = new[]
     ///         {
-    ///             Description = "web team quota",
-    ///             Limits = 
+    ///             new Nomad.Inputs.QuoteSpecificationLimitArgs
     ///             {
-    ///                 new Nomad.Inputs.QuoteSpecificationLimitArgs
+    ///                 Region = "global",
+    ///                 RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs
     ///                 {
-    ///                     Region = "global",
-    ///                     RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs
-    ///                     {
-    ///                         Cpu = 1000,
-    ///                         MemoryMb = 256,
-    ///                     },
+    ///                     Cpu = 1000,
+    ///                     MemoryMb = 256,
     ///                 },
     ///             },
-    ///         });
-    ///         var web = new Nomad.Namespace("web", new Nomad.NamespaceArgs
-    ///         {
-    ///             Description = "Web team production environment.",
-    ///             Quota = webTeam.Name,
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var web = new Nomad.Namespace("web", new()
+    ///     {
+    ///         Description = "Web team production environment.",
+    ///         Quota = webTeam.Name,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [NomadResourceType("nomad:index/namespace:Namespace")]
-    public partial class Namespace : Pulumi.CustomResource
+    public partial class Namespace : global::Pulumi.CustomResource
     {
         /// <summary>
         /// `(string: "")` - A description of the namespace.
@@ -140,7 +137,7 @@ namespace Pulumi.Nomad
         }
     }
 
-    public sealed class NamespaceArgs : Pulumi.ResourceArgs
+    public sealed class NamespaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: "")` - A description of the namespace.
@@ -163,9 +160,10 @@ namespace Pulumi.Nomad
         public NamespaceArgs()
         {
         }
+        public static new NamespaceArgs Empty => new NamespaceArgs();
     }
 
-    public sealed class NamespaceState : Pulumi.ResourceArgs
+    public sealed class NamespaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: "")` - A description of the namespace.
@@ -188,5 +186,6 @@ namespace Pulumi.Nomad
         public NamespaceState()
         {
         }
+        public static new NamespaceState Empty => new NamespaceState();
     }
 }

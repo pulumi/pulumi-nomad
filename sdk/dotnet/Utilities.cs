@@ -74,7 +74,7 @@ namespace Pulumi.Nomad
         }
     }
 
-    internal sealed class NomadResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    internal sealed class NomadResourceTypeAttribute : global::Pulumi.ResourceTypeAttribute
     {
         public NomadResourceTypeAttribute(string type) : base(type, Utilities.Version)
         {

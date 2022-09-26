@@ -19,42 +19,62 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		ebs, err := nomad.GetPlugin(ctx, &GetPluginArgs{
-// 			PluginId:       "aws-ebs0",
-// 			WaitForHealthy: pulumi.BoolRef(true),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = nomad.NewVolume(ctx, "mysqlVolume", &nomad.VolumeArgs{
-// 			Type:       pulumi.String("csi"),
-// 			PluginId:   pulumi.String("aws-ebs0"),
-// 			VolumeId:   pulumi.String("mysql_volume"),
-// 			ExternalId: pulumi.Any(module.Hashistack.Ebs_test_volume_id),
-// 			Capabilities: VolumeCapabilityArray{
-// 				&VolumeCapabilityArgs{
-// 					AccessMode:     pulumi.String("single-node-writer"),
-// 					AttachmentMode: pulumi.String("file-system"),
-// 				},
-// 			},
-// 			MountOptions: &VolumeMountOptionsArgs{
-// 				FsType: pulumi.String("ext4"),
-// 			},
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			ebs,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ebs, err := nomad.GetPlugin(ctx, &GetPluginArgs{
+//				PluginId:       "aws-ebs0",
+//				WaitForHealthy: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nomad.NewVolume(ctx, "mysqlVolume", &nomad.VolumeArgs{
+//				Type:       pulumi.String("csi"),
+//				PluginId:   pulumi.String("aws-ebs0"),
+//				VolumeId:   pulumi.String("mysql_volume"),
+//				ExternalId: pulumi.Any(module.Hashistack.Ebs_test_volume_id),
+//				Capabilities: VolumeCapabilityArray{
+//					&VolumeCapabilityArgs{
+//						AccessMode:     pulumi.String("single-node-writer"),
+//						AttachmentMode: pulumi.String("file-system"),
+//					},
+//				},
+//				MountOptions: &VolumeMountOptionsArgs{
+//					FsType: pulumi.String("ext4"),
+//				},
+//				TopologyRequest: &VolumeTopologyRequestArgs{
+//					Required: &VolumeTopologyRequestRequiredArgs{
+//						Topologies: VolumeTopologyRequestRequiredTopologyArray{
+//							&VolumeTopologyRequestRequiredTopologyArgs{
+//								Segments: pulumi.StringMap{
+//									"rack": pulumi.String("R1"),
+//									"zone": pulumi.String("us-east-1a"),
+//								},
+//							},
+//							&VolumeTopologyRequestRequiredTopologyArgs{
+//								Segments: pulumi.StringMap{
+//									"rack": pulumi.String("R2"),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				ebs,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Volume struct {
 	pulumi.CustomResourceState
@@ -94,7 +114,10 @@ type Volume struct {
 	PluginProviderVersion pulumi.StringOutput `pulumi:"pluginProviderVersion"`
 	Schedulable           pulumi.BoolOutput   `pulumi:"schedulable"`
 	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-	Secrets pulumi.StringMapOutput `pulumi:"secrets"`
+	Secrets    pulumi.StringMapOutput    `pulumi:"secrets"`
+	Topologies VolumeTopologyArrayOutput `pulumi:"topologies"`
+	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	TopologyRequest VolumeTopologyRequestPtrOutput `pulumi:"topologyRequest"`
 	// The type of the volume. Currently, only 'csi' is supported.
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 	// The unique ID of the volume, how jobs will refer to the volume.
@@ -174,7 +197,10 @@ type volumeState struct {
 	PluginProviderVersion *string `pulumi:"pluginProviderVersion"`
 	Schedulable           *bool   `pulumi:"schedulable"`
 	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-	Secrets map[string]string `pulumi:"secrets"`
+	Secrets    map[string]string `pulumi:"secrets"`
+	Topologies []VolumeTopology  `pulumi:"topologies"`
+	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	TopologyRequest *VolumeTopologyRequest `pulumi:"topologyRequest"`
 	// The type of the volume. Currently, only 'csi' is supported.
 	Type *string `pulumi:"type"`
 	// The unique ID of the volume, how jobs will refer to the volume.
@@ -217,7 +243,10 @@ type VolumeState struct {
 	PluginProviderVersion pulumi.StringPtrInput
 	Schedulable           pulumi.BoolPtrInput
 	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-	Secrets pulumi.StringMapInput
+	Secrets    pulumi.StringMapInput
+	Topologies VolumeTopologyArrayInput
+	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	TopologyRequest VolumeTopologyRequestPtrInput
 	// The type of the volume. Currently, only 'csi' is supported.
 	Type pulumi.StringPtrInput
 	// The unique ID of the volume, how jobs will refer to the volume.
@@ -257,6 +286,8 @@ type volumeArgs struct {
 	PluginId string `pulumi:"pluginId"`
 	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
 	Secrets map[string]string `pulumi:"secrets"`
+	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	TopologyRequest *VolumeTopologyRequest `pulumi:"topologyRequest"`
 	// The type of the volume. Currently, only 'csi' is supported.
 	Type *string `pulumi:"type"`
 	// The unique ID of the volume, how jobs will refer to the volume.
@@ -293,6 +324,8 @@ type VolumeArgs struct {
 	PluginId pulumi.StringInput
 	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
 	Secrets pulumi.StringMapInput
+	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	TopologyRequest VolumeTopologyRequestPtrInput
 	// The type of the volume. Currently, only 'csi' is supported.
 	Type pulumi.StringPtrInput
 	// The unique ID of the volume, how jobs will refer to the volume.
@@ -325,7 +358,7 @@ func (i *Volume) ToVolumeOutputWithContext(ctx context.Context) VolumeOutput {
 // VolumeArrayInput is an input type that accepts VolumeArray and VolumeArrayOutput values.
 // You can construct a concrete instance of `VolumeArrayInput` via:
 //
-//          VolumeArray{ VolumeArgs{...} }
+//	VolumeArray{ VolumeArgs{...} }
 type VolumeArrayInput interface {
 	pulumi.Input
 
@@ -350,7 +383,7 @@ func (i VolumeArray) ToVolumeArrayOutputWithContext(ctx context.Context) VolumeA
 // VolumeMapInput is an input type that accepts VolumeMap and VolumeMapOutput values.
 // You can construct a concrete instance of `VolumeMapInput` via:
 //
-//          VolumeMap{ "key": VolumeArgs{...} }
+//	VolumeMap{ "key": VolumeArgs{...} }
 type VolumeMapInput interface {
 	pulumi.Input
 
@@ -384,6 +417,121 @@ func (o VolumeOutput) ToVolumeOutput() VolumeOutput {
 
 func (o VolumeOutput) ToVolumeOutputWithContext(ctx context.Context) VolumeOutput {
 	return o
+}
+
+// Defines whether a volume should be available concurrently.
+//
+// Deprecated: use capability instead
+func (o VolumeOutput) AccessMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.AccessMode }).(pulumi.StringPtrOutput)
+}
+
+// The storage API that will be used by the volume.
+//
+// Deprecated: use capability instead
+func (o VolumeOutput) AttachmentMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.AttachmentMode }).(pulumi.StringPtrOutput)
+}
+
+// Capabilities intended to be used in a job. At least one capability must be provided.
+func (o VolumeOutput) Capabilities() VolumeCapabilityArrayOutput {
+	return o.ApplyT(func(v *Volume) VolumeCapabilityArrayOutput { return v.Capabilities }).(VolumeCapabilityArrayOutput)
+}
+
+// An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+func (o VolumeOutput) Context() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringMapOutput { return v.Context }).(pulumi.StringMapOutput)
+}
+
+func (o VolumeOutput) ControllerRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.ControllerRequired }).(pulumi.BoolOutput)
+}
+
+func (o VolumeOutput) ControllersExpected() pulumi.IntOutput {
+	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.ControllersExpected }).(pulumi.IntOutput)
+}
+
+func (o VolumeOutput) ControllersHealthy() pulumi.IntOutput {
+	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.ControllersHealthy }).(pulumi.IntOutput)
+}
+
+// If true, the volume will be deregistered on destroy.
+func (o VolumeOutput) DeregisterOnDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.BoolPtrOutput { return v.DeregisterOnDestroy }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the physical volume from the storage provider.
+func (o VolumeOutput) ExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.ExternalId }).(pulumi.StringOutput)
+}
+
+// Options for mounting 'block-device' volumes without a pre-formatted file system.
+func (o VolumeOutput) MountOptions() VolumeMountOptionsPtrOutput {
+	return o.ApplyT(func(v *Volume) VolumeMountOptionsPtrOutput { return v.MountOptions }).(VolumeMountOptionsPtrOutput)
+}
+
+// The display name of the volume.
+func (o VolumeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The namespace in which to create the volume.
+func (o VolumeOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o VolumeOutput) NodesExpected() pulumi.IntOutput {
+	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.NodesExpected }).(pulumi.IntOutput)
+}
+
+func (o VolumeOutput) NodesHealthy() pulumi.IntOutput {
+	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.NodesHealthy }).(pulumi.IntOutput)
+}
+
+// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+func (o VolumeOutput) Parameters() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringMapOutput { return v.Parameters }).(pulumi.StringMapOutput)
+}
+
+// The ID of the CSI plugin that manages this volume.
+func (o VolumeOutput) PluginId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.PluginId }).(pulumi.StringOutput)
+}
+
+func (o VolumeOutput) PluginProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.PluginProvider }).(pulumi.StringOutput)
+}
+
+func (o VolumeOutput) PluginProviderVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.PluginProviderVersion }).(pulumi.StringOutput)
+}
+
+func (o VolumeOutput) Schedulable() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.Schedulable }).(pulumi.BoolOutput)
+}
+
+// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+func (o VolumeOutput) Secrets() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringMapOutput { return v.Secrets }).(pulumi.StringMapOutput)
+}
+
+func (o VolumeOutput) Topologies() VolumeTopologyArrayOutput {
+	return o.ApplyT(func(v *Volume) VolumeTopologyArrayOutput { return v.Topologies }).(VolumeTopologyArrayOutput)
+}
+
+// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+func (o VolumeOutput) TopologyRequest() VolumeTopologyRequestPtrOutput {
+	return o.ApplyT(func(v *Volume) VolumeTopologyRequestPtrOutput { return v.TopologyRequest }).(VolumeTopologyRequestPtrOutput)
+}
+
+// The type of the volume. Currently, only 'csi' is supported.
+func (o VolumeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// The unique ID of the volume, how jobs will refer to the volume.
+func (o VolumeOutput) VolumeId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.VolumeId }).(pulumi.StringOutput)
 }
 
 type VolumeArrayOutput struct{ *pulumi.OutputState }

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Nomad.Inputs
 {
 
-    public sealed class JobTaskGroupTaskGetArgs : Pulumi.ResourceArgs
+    public sealed class JobTaskGroupTaskGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("driver")]
         public Input<string>? Driver { get; set; }
@@ -37,5 +37,6 @@ namespace Pulumi.Nomad.Inputs
         public JobTaskGroupTaskGetArgs()
         {
         }
+        public static new JobTaskGroupTaskGetArgs Empty => new JobTaskGroupTaskGetArgs();
     }
 }

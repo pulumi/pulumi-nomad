@@ -14,7 +14,8 @@ import (
 // Manages a Sentinel policy registered in Nomad.
 //
 // > **Enterprise Only!** This API endpoint and functionality only exists in
-//    Nomad Enterprise. This is not present in the open source version of Nomad.
+//
+//	Nomad Enterprise. This is not present in the open source version of Nomad.
 //
 // ## Example Usage
 //
@@ -22,26 +23,42 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.NewSentinelPolicy(ctx, "exec-only", &nomad.SentinelPolicyArgs{
-// 			Description:      pulumi.String("Only allow jobs that are based on an exec driver."),
-// 			EnforcementLevel: pulumi.String("soft-mandatory"),
-// 			Policy:           pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v", "main = rule { all_drivers_exec }\n", "\n", "# all_drivers_exec checks that all the drivers in use are exec\n", "all_drivers_exec = rule {\n", "    all job.task_groups as tg {\n", "        all tg.tasks as task {\n", "            task.driver is \"exec\"\n", "        }\n", "    }\n", "}\n", "\n")),
-// 			Scope:            pulumi.String("submit-job"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.NewSentinelPolicy(ctx, "exec-only", &nomad.SentinelPolicyArgs{
+//				Description:      pulumi.String("Only allow jobs that are based on an exec driver."),
+//				EnforcementLevel: pulumi.String("soft-mandatory"),
+//				Policy: pulumi.String(fmt.Sprintf(`main = rule { all_drivers_exec }
+//
+// # all_drivers_exec checks that all the drivers in use are exec
+//
+//	all_drivers_exec = rule {
+//	    all job.task_groups as tg {
+//	        all tg.tasks as task {
+//	            task.driver is "exec"
+//	        }
+//	    }
+//	}
+//
+// `)),
+//
+//				Scope: pulumi.String("submit-job"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type SentinelPolicy struct {
 	pulumi.CustomResourceState
@@ -183,7 +200,7 @@ func (i *SentinelPolicy) ToSentinelPolicyOutputWithContext(ctx context.Context) 
 // SentinelPolicyArrayInput is an input type that accepts SentinelPolicyArray and SentinelPolicyArrayOutput values.
 // You can construct a concrete instance of `SentinelPolicyArrayInput` via:
 //
-//          SentinelPolicyArray{ SentinelPolicyArgs{...} }
+//	SentinelPolicyArray{ SentinelPolicyArgs{...} }
 type SentinelPolicyArrayInput interface {
 	pulumi.Input
 
@@ -208,7 +225,7 @@ func (i SentinelPolicyArray) ToSentinelPolicyArrayOutputWithContext(ctx context.
 // SentinelPolicyMapInput is an input type that accepts SentinelPolicyMap and SentinelPolicyMapOutput values.
 // You can construct a concrete instance of `SentinelPolicyMapInput` via:
 //
-//          SentinelPolicyMap{ "key": SentinelPolicyArgs{...} }
+//	SentinelPolicyMap{ "key": SentinelPolicyArgs{...} }
 type SentinelPolicyMapInput interface {
 	pulumi.Input
 
@@ -242,6 +259,32 @@ func (o SentinelPolicyOutput) ToSentinelPolicyOutput() SentinelPolicyOutput {
 
 func (o SentinelPolicyOutput) ToSentinelPolicyOutputWithContext(ctx context.Context) SentinelPolicyOutput {
 	return o
+}
+
+// `(string: "")` - A description of the policy.
+func (o SentinelPolicyOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SentinelPolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// `(strings: <required>)` - The [enforcement level][enforcement-level]
+// for this policy.
+func (o SentinelPolicyOutput) EnforcementLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *SentinelPolicy) pulumi.StringOutput { return v.EnforcementLevel }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - A unique name for the policy.
+func (o SentinelPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SentinelPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - The contents of the policy to register.
+func (o SentinelPolicyOutput) Policy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SentinelPolicy) pulumi.StringOutput { return v.Policy }).(pulumi.StringOutput)
+}
+
+// `(strings: <required>)` - The [scope][scope] for this policy.
+func (o SentinelPolicyOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v *SentinelPolicy) pulumi.StringOutput { return v.Scope }).(pulumi.StringOutput)
 }
 
 type SentinelPolicyArrayOutput struct{ *pulumi.OutputState }

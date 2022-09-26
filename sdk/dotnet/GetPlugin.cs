@@ -28,21 +28,19 @@ namespace Pulumi.Nomad
         /// Check for the existence of a plugin:
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var ebs = Nomad.GetPlugin.Invoke(new()
         ///     {
-        ///         var ebs = Output.Create(Nomad.GetPlugin.InvokeAsync(new Nomad.GetPluginArgs
-        ///         {
-        ///             PluginId = "aws-ebs0",
-        ///             WaitForHealthy = true,
-        ///         }));
-        ///     }
+        ///         PluginId = "aws-ebs0",
+        ///         WaitForHealthy = true,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// 
         /// This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
@@ -51,7 +49,7 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPluginResult> InvokeAsync(GetPluginArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginArgs(), options.WithDefaults());
 
         /// <summary>
         /// Lookup a plugin by ID. The aim of this datasource is to determine whether
@@ -70,21 +68,19 @@ namespace Pulumi.Nomad
         /// Check for the existence of a plugin:
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var ebs = Nomad.GetPlugin.Invoke(new()
         ///     {
-        ///         var ebs = Output.Create(Nomad.GetPlugin.InvokeAsync(new Nomad.GetPluginArgs
-        ///         {
-        ///             PluginId = "aws-ebs0",
-        ///             WaitForHealthy = true,
-        ///         }));
-        ///     }
+        ///         PluginId = "aws-ebs0",
+        ///         WaitForHealthy = true,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// 
         /// This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
@@ -93,11 +89,11 @@ namespace Pulumi.Nomad
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetPluginResult> Invoke(GetPluginInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetPluginArgs : Pulumi.InvokeArgs
+    public sealed class GetPluginArgs : global::Pulumi.InvokeArgs
     {
         [Input("pluginId", required: true)]
         public string PluginId { get; set; } = null!;
@@ -111,9 +107,10 @@ namespace Pulumi.Nomad
         public GetPluginArgs()
         {
         }
+        public static new GetPluginArgs Empty => new GetPluginArgs();
     }
 
-    public sealed class GetPluginInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetPluginInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("pluginId", required: true)]
         public Input<string> PluginId { get; set; } = null!;
@@ -127,6 +124,7 @@ namespace Pulumi.Nomad
         public GetPluginInvokeArgs()
         {
         }
+        public static new GetPluginInvokeArgs Empty => new GetPluginInvokeArgs();
     }
 
 

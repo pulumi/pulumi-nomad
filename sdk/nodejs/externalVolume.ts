@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -30,6 +31,23 @@ import * as utilities from "./utilities";
  *     }],
  *     mountOptions: {
  *         fsType: "ext4",
+ *     },
+ *     topologyRequest: {
+ *         required: {
+ *             topologies: [
+ *                 {
+ *                     segments: {
+ *                         rack: "R1",
+ *                         zone: "us-east-1a",
+ *                     },
+ *                 },
+ *                 {
+ *                     segments: {
+ *                         rack: "R2",
+ *                     },
+ *                 },
+ *             ],
+ *         },
  *     },
  * }, {
  *     dependsOn: [ebs],
@@ -117,6 +135,11 @@ export class ExternalVolume extends pulumi.CustomResource {
      * 'clone_id'.
      */
     public readonly snapshotId!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly topologies!: pulumi.Output<outputs.ExternalVolumeTopology[]>;
+    /**
+     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     */
+    public readonly topologyRequest!: pulumi.Output<outputs.ExternalVolumeTopologyRequest | undefined>;
     /**
      * The type of the volume. Currently, only 'csi' is supported.
      */
@@ -158,6 +181,8 @@ export class ExternalVolume extends pulumi.CustomResource {
             resourceInputs["schedulable"] = state ? state.schedulable : undefined;
             resourceInputs["secrets"] = state ? state.secrets : undefined;
             resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
+            resourceInputs["topologies"] = state ? state.topologies : undefined;
+            resourceInputs["topologyRequest"] = state ? state.topologyRequest : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["volumeId"] = state ? state.volumeId : undefined;
         } else {
@@ -182,6 +207,7 @@ export class ExternalVolume extends pulumi.CustomResource {
             resourceInputs["pluginId"] = args ? args.pluginId : undefined;
             resourceInputs["secrets"] = args ? args.secrets : undefined;
             resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
+            resourceInputs["topologyRequest"] = args ? args.topologyRequest : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["volumeId"] = args ? args.volumeId : undefined;
             resourceInputs["controllerRequired"] = undefined /*out*/;
@@ -192,6 +218,7 @@ export class ExternalVolume extends pulumi.CustomResource {
             resourceInputs["pluginProvider"] = undefined /*out*/;
             resourceInputs["pluginProviderVersion"] = undefined /*out*/;
             resourceInputs["schedulable"] = undefined /*out*/;
+            resourceInputs["topologies"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ExternalVolume.__pulumiType, name, resourceInputs, opts);
@@ -255,6 +282,11 @@ export interface ExternalVolumeState {
      * 'clone_id'.
      */
     snapshotId?: pulumi.Input<string>;
+    topologies?: pulumi.Input<pulumi.Input<inputs.ExternalVolumeTopology>[]>;
+    /**
+     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     */
+    topologyRequest?: pulumi.Input<inputs.ExternalVolumeTopologyRequest>;
     /**
      * The type of the volume. Currently, only 'csi' is supported.
      */
@@ -314,6 +346,10 @@ export interface ExternalVolumeArgs {
      * 'clone_id'.
      */
     snapshotId?: pulumi.Input<string>;
+    /**
+     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     */
+    topologyRequest?: pulumi.Input<inputs.ExternalVolumeTopologyRequest>;
     /**
      * The type of the volume. Currently, only 'csi' is supported.
      */

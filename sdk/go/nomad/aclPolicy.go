@@ -21,33 +21,36 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.NewAclPolicy(ctx, "dev", &nomad.AclPolicyArgs{
-// 			Description: pulumi.String("Submit jobs to the dev environment."),
-// 			RulesHcl:    readFileOrPanic(fmt.Sprintf("%v%v", path.Module, "/dev.hcl")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.NewAclPolicy(ctx, "dev", &nomad.AclPolicyArgs{
+//				Description: pulumi.String("Submit jobs to the dev environment."),
+//				RulesHcl:    readFileOrPanic(fmt.Sprintf("%v/dev.hcl", path.Module)),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // Registering a policy from inline HCL:
@@ -56,24 +59,27 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.NewAclPolicy(ctx, "dev", &nomad.AclPolicyArgs{
-// 			Description: pulumi.String("Submit jobs to the dev environment."),
-// 			RulesHcl:    pulumi.String(fmt.Sprintf("%v%v%v%v", "namespace \"dev\" {\n", "  policy = \"write\"\n", "}\n", "\n")),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.NewAclPolicy(ctx, "dev", &nomad.AclPolicyArgs{
+//				Description: pulumi.String("Submit jobs to the dev environment."),
+//				RulesHcl:    pulumi.String(fmt.Sprintf("namespace \"dev\" {\n  policy = \"write\"\n}\n\n")),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type AclPolicy struct {
 	pulumi.CustomResourceState
@@ -189,7 +195,7 @@ func (i *AclPolicy) ToAclPolicyOutputWithContext(ctx context.Context) AclPolicyO
 // AclPolicyArrayInput is an input type that accepts AclPolicyArray and AclPolicyArrayOutput values.
 // You can construct a concrete instance of `AclPolicyArrayInput` via:
 //
-//          AclPolicyArray{ AclPolicyArgs{...} }
+//	AclPolicyArray{ AclPolicyArgs{...} }
 type AclPolicyArrayInput interface {
 	pulumi.Input
 
@@ -214,7 +220,7 @@ func (i AclPolicyArray) ToAclPolicyArrayOutputWithContext(ctx context.Context) A
 // AclPolicyMapInput is an input type that accepts AclPolicyMap and AclPolicyMapOutput values.
 // You can construct a concrete instance of `AclPolicyMapInput` via:
 //
-//          AclPolicyMap{ "key": AclPolicyArgs{...} }
+//	AclPolicyMap{ "key": AclPolicyArgs{...} }
 type AclPolicyMapInput interface {
 	pulumi.Input
 
@@ -248,6 +254,22 @@ func (o AclPolicyOutput) ToAclPolicyOutput() AclPolicyOutput {
 
 func (o AclPolicyOutput) ToAclPolicyOutputWithContext(ctx context.Context) AclPolicyOutput {
 	return o
+}
+
+// `(string: "")` - A description of the policy.
+func (o AclPolicyOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclPolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// `(string: <required>)` - A unique name for the policy.
+func (o AclPolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *AclPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - The contents of the policy to register,
+// as HCL or JSON.
+func (o AclPolicyOutput) RulesHcl() pulumi.StringOutput {
+	return o.ApplyT(func(v *AclPolicy) pulumi.StringOutput { return v.RulesHcl }).(pulumi.StringOutput)
 }
 
 type AclPolicyArrayOutput struct{ *pulumi.OutputState }

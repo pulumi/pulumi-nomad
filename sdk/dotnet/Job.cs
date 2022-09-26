@@ -10,13 +10,20 @@ using Pulumi.Serialization;
 namespace Pulumi.Nomad
 {
     [NomadResourceType("nomad:index/job:Job")]
-    public partial class Job : Pulumi.CustomResource
+    public partial class Job : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The IDs for allocations associated with this job.
         /// </summary>
         [Output("allocationIds")]
         public Output<ImmutableArray<string>> AllocationIds { get; private set; } = null!;
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Consul token used when registering this job.
+        /// Will fallback to the value declared in Nomad provider configuration, if any.
+        /// </summary>
+        [Output("consulToken")]
+        public Output<string?> ConsulToken { get; private set; } = null!;
 
         /// <summary>
         /// The target datacenters for the job, as derived from the jobspec.
@@ -122,6 +129,13 @@ namespace Pulumi.Nomad
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Vault token used when registering this job.
+        /// Will fallback to the value declared in Nomad provider configuration, if any.
+        /// </summary>
+        [Output("vaultToken")]
+        public Output<string?> VaultToken { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Job resource with the given unique name, arguments, and options.
@@ -166,8 +180,15 @@ namespace Pulumi.Nomad
         }
     }
 
-    public sealed class JobArgs : Pulumi.ResourceArgs
+    public sealed class JobArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Consul token used when registering this job.
+        /// Will fallback to the value declared in Nomad provider configuration, if any.
+        /// </summary>
+        [Input("consulToken")]
+        public Input<string>? ConsulToken { get; set; }
+
         /// <summary>
         /// If true, the job will be deregistered on destroy.
         /// </summary>
@@ -221,12 +242,20 @@ namespace Pulumi.Nomad
         [Input("purgeOnDestroy")]
         public Input<bool>? PurgeOnDestroy { get; set; }
 
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Vault token used when registering this job.
+        /// Will fallback to the value declared in Nomad provider configuration, if any.
+        /// </summary>
+        [Input("vaultToken")]
+        public Input<string>? VaultToken { get; set; }
+
         public JobArgs()
         {
         }
+        public static new JobArgs Empty => new JobArgs();
     }
 
-    public sealed class JobState : Pulumi.ResourceArgs
+    public sealed class JobState : global::Pulumi.ResourceArgs
     {
         [Input("allocationIds")]
         private InputList<string>? _allocationIds;
@@ -239,6 +268,13 @@ namespace Pulumi.Nomad
             get => _allocationIds ?? (_allocationIds = new InputList<string>());
             set => _allocationIds = value;
         }
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Consul token used when registering this job.
+        /// Will fallback to the value declared in Nomad provider configuration, if any.
+        /// </summary>
+        [Input("consulToken")]
+        public Input<string>? ConsulToken { get; set; }
 
         [Input("datacenters")]
         private InputList<string>? _datacenters;
@@ -355,8 +391,16 @@ namespace Pulumi.Nomad
         [Input("type")]
         public Input<string>? Type { get; set; }
 
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Vault token used when registering this job.
+        /// Will fallback to the value declared in Nomad provider configuration, if any.
+        /// </summary>
+        [Input("vaultToken")]
+        public Input<string>? VaultToken { get; set; }
+
         public JobState()
         {
         }
+        public static new JobState Empty => new JobState();
     }
 }

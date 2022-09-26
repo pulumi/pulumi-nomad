@@ -16,7 +16,7 @@ namespace Pulumi.Nomad
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [NomadResourceType("pulumi:providers:nomad")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// URL of the root of the target Nomad agent.
@@ -116,7 +116,7 @@ namespace Pulumi.Nomad
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// URL of the root of the target Nomad agent.
@@ -172,6 +172,18 @@ namespace Pulumi.Nomad
         [Input("httpAuth")]
         public Input<string>? HttpAuth { get; set; }
 
+        [Input("ignoreEnvVars", json: true)]
+        private InputMap<bool>? _ignoreEnvVars;
+
+        /// <summary>
+        /// A set of environment variables that are ignored by the provider when configuring the Nomad API client.
+        /// </summary>
+        public InputMap<bool> IgnoreEnvVars
+        {
+            get => _ignoreEnvVars ?? (_ignoreEnvVars = new InputMap<bool>());
+            set => _ignoreEnvVars = value;
+        }
+
         /// <summary>
         /// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
         /// </summary>
@@ -205,5 +217,6 @@ namespace Pulumi.Nomad
         public ProviderArgs()
         {
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

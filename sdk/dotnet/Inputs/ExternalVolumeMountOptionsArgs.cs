@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Nomad.Inputs
 {
 
-    public sealed class ExternalVolumeMountOptionsArgs : Pulumi.ResourceArgs
+    public sealed class ExternalVolumeMountOptionsArgs : global::Pulumi.ResourceArgs
     {
         [Input("fsType")]
         public Input<string>? FsType { get; set; }
@@ -26,5 +26,6 @@ namespace Pulumi.Nomad.Inputs
         public ExternalVolumeMountOptionsArgs()
         {
         }
+        public static new ExternalVolumeMountOptionsArgs Empty => new ExternalVolumeMountOptionsArgs();
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -97,6 +98,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["consulToken"] = args ? args.consulToken : undefined;
             resourceInputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
             resourceInputs["httpAuth"] = args ? args.httpAuth : undefined;
+            resourceInputs["ignoreEnvVars"] = pulumi.output(args ? args.ignoreEnvVars : undefined).apply(JSON.stringify);
             resourceInputs["keyFile"] = args ? args.keyFile : undefined;
             resourceInputs["keyPem"] = args ? args.keyPem : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -144,6 +146,10 @@ export interface ProviderArgs {
      * HTTP basic auth configuration.
      */
     httpAuth?: pulumi.Input<string>;
+    /**
+     * A set of environment variables that are ignored by the provider when configuring the Nomad API client.
+     */
+    ignoreEnvVars?: pulumi.Input<{[key: string]: pulumi.Input<boolean>}>;
     /**
      * A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
      */
