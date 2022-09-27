@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Nomad.Inputs
 {
 
-    public sealed class JobTaskGroupVolumeArgs : Pulumi.ResourceArgs
+    public sealed class JobTaskGroupVolumeArgs : global::Pulumi.ResourceArgs
     {
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -27,5 +27,6 @@ namespace Pulumi.Nomad.Inputs
         public JobTaskGroupVolumeArgs()
         {
         }
+        public static new JobTaskGroupVolumeArgs Empty => new JobTaskGroupVolumeArgs();
     }
 }

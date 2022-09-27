@@ -18,7 +18,7 @@ type ExternalVolumeCapability struct {
 // ExternalVolumeCapabilityInput is an input type that accepts ExternalVolumeCapabilityArgs and ExternalVolumeCapabilityOutput values.
 // You can construct a concrete instance of `ExternalVolumeCapabilityInput` via:
 //
-//          ExternalVolumeCapabilityArgs{...}
+//	ExternalVolumeCapabilityArgs{...}
 type ExternalVolumeCapabilityInput interface {
 	pulumi.Input
 
@@ -46,7 +46,7 @@ func (i ExternalVolumeCapabilityArgs) ToExternalVolumeCapabilityOutputWithContex
 // ExternalVolumeCapabilityArrayInput is an input type that accepts ExternalVolumeCapabilityArray and ExternalVolumeCapabilityArrayOutput values.
 // You can construct a concrete instance of `ExternalVolumeCapabilityArrayInput` via:
 //
-//          ExternalVolumeCapabilityArray{ ExternalVolumeCapabilityArgs{...} }
+//	ExternalVolumeCapabilityArray{ ExternalVolumeCapabilityArgs{...} }
 type ExternalVolumeCapabilityArrayInput interface {
 	pulumi.Input
 
@@ -118,7 +118,7 @@ type ExternalVolumeMountOptions struct {
 // ExternalVolumeMountOptionsInput is an input type that accepts ExternalVolumeMountOptionsArgs and ExternalVolumeMountOptionsOutput values.
 // You can construct a concrete instance of `ExternalVolumeMountOptionsInput` via:
 //
-//          ExternalVolumeMountOptionsArgs{...}
+//	ExternalVolumeMountOptionsArgs{...}
 type ExternalVolumeMountOptionsInput interface {
 	pulumi.Input
 
@@ -154,11 +154,11 @@ func (i ExternalVolumeMountOptionsArgs) ToExternalVolumeMountOptionsPtrOutputWit
 // ExternalVolumeMountOptionsPtrInput is an input type that accepts ExternalVolumeMountOptionsArgs, ExternalVolumeMountOptionsPtr and ExternalVolumeMountOptionsPtrOutput values.
 // You can construct a concrete instance of `ExternalVolumeMountOptionsPtrInput` via:
 //
-//          ExternalVolumeMountOptionsArgs{...}
+//	        ExternalVolumeMountOptionsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ExternalVolumeMountOptionsPtrInput interface {
 	pulumi.Input
 
@@ -258,6 +258,706 @@ func (o ExternalVolumeMountOptionsPtrOutput) MountFlags() pulumi.StringArrayOutp
 	}).(pulumi.StringArrayOutput)
 }
 
+type ExternalVolumeTopology struct {
+	Segments map[string]string `pulumi:"segments"`
+}
+
+// ExternalVolumeTopologyInput is an input type that accepts ExternalVolumeTopologyArgs and ExternalVolumeTopologyOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyInput` via:
+//
+//	ExternalVolumeTopologyArgs{...}
+type ExternalVolumeTopologyInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyOutput() ExternalVolumeTopologyOutput
+	ToExternalVolumeTopologyOutputWithContext(context.Context) ExternalVolumeTopologyOutput
+}
+
+type ExternalVolumeTopologyArgs struct {
+	Segments pulumi.StringMapInput `pulumi:"segments"`
+}
+
+func (ExternalVolumeTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopology)(nil)).Elem()
+}
+
+func (i ExternalVolumeTopologyArgs) ToExternalVolumeTopologyOutput() ExternalVolumeTopologyOutput {
+	return i.ToExternalVolumeTopologyOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyArgs) ToExternalVolumeTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyOutput)
+}
+
+// ExternalVolumeTopologyArrayInput is an input type that accepts ExternalVolumeTopologyArray and ExternalVolumeTopologyArrayOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyArrayInput` via:
+//
+//	ExternalVolumeTopologyArray{ ExternalVolumeTopologyArgs{...} }
+type ExternalVolumeTopologyArrayInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyArrayOutput() ExternalVolumeTopologyArrayOutput
+	ToExternalVolumeTopologyArrayOutputWithContext(context.Context) ExternalVolumeTopologyArrayOutput
+}
+
+type ExternalVolumeTopologyArray []ExternalVolumeTopologyInput
+
+func (ExternalVolumeTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExternalVolumeTopology)(nil)).Elem()
+}
+
+func (i ExternalVolumeTopologyArray) ToExternalVolumeTopologyArrayOutput() ExternalVolumeTopologyArrayOutput {
+	return i.ToExternalVolumeTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyArray) ToExternalVolumeTopologyArrayOutputWithContext(ctx context.Context) ExternalVolumeTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyArrayOutput)
+}
+
+type ExternalVolumeTopologyOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopology)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyOutput) ToExternalVolumeTopologyOutput() ExternalVolumeTopologyOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyOutput) ToExternalVolumeTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyOutput) Segments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ExternalVolumeTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
+}
+
+type ExternalVolumeTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExternalVolumeTopology)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyArrayOutput) ToExternalVolumeTopologyArrayOutput() ExternalVolumeTopologyArrayOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyArrayOutput) ToExternalVolumeTopologyArrayOutputWithContext(ctx context.Context) ExternalVolumeTopologyArrayOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyArrayOutput) Index(i pulumi.IntInput) ExternalVolumeTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExternalVolumeTopology {
+		return vs[0].([]ExternalVolumeTopology)[vs[1].(int)]
+	}).(ExternalVolumeTopologyOutput)
+}
+
+type ExternalVolumeTopologyRequest struct {
+	Preferred *ExternalVolumeTopologyRequestPreferred `pulumi:"preferred"`
+	Required  *ExternalVolumeTopologyRequestRequired  `pulumi:"required"`
+}
+
+// ExternalVolumeTopologyRequestInput is an input type that accepts ExternalVolumeTopologyRequestArgs and ExternalVolumeTopologyRequestOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyRequestInput` via:
+//
+//	ExternalVolumeTopologyRequestArgs{...}
+type ExternalVolumeTopologyRequestInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyRequestOutput() ExternalVolumeTopologyRequestOutput
+	ToExternalVolumeTopologyRequestOutputWithContext(context.Context) ExternalVolumeTopologyRequestOutput
+}
+
+type ExternalVolumeTopologyRequestArgs struct {
+	Preferred ExternalVolumeTopologyRequestPreferredPtrInput `pulumi:"preferred"`
+	Required  ExternalVolumeTopologyRequestRequiredPtrInput  `pulumi:"required"`
+}
+
+func (ExternalVolumeTopologyRequestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopologyRequest)(nil)).Elem()
+}
+
+func (i ExternalVolumeTopologyRequestArgs) ToExternalVolumeTopologyRequestOutput() ExternalVolumeTopologyRequestOutput {
+	return i.ToExternalVolumeTopologyRequestOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyRequestArgs) ToExternalVolumeTopologyRequestOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestOutput)
+}
+
+func (i ExternalVolumeTopologyRequestArgs) ToExternalVolumeTopologyRequestPtrOutput() ExternalVolumeTopologyRequestPtrOutput {
+	return i.ToExternalVolumeTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyRequestArgs) ToExternalVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestOutput).ToExternalVolumeTopologyRequestPtrOutputWithContext(ctx)
+}
+
+// ExternalVolumeTopologyRequestPtrInput is an input type that accepts ExternalVolumeTopologyRequestArgs, ExternalVolumeTopologyRequestPtr and ExternalVolumeTopologyRequestPtrOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyRequestPtrInput` via:
+//
+//	        ExternalVolumeTopologyRequestArgs{...}
+//
+//	or:
+//
+//	        nil
+type ExternalVolumeTopologyRequestPtrInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyRequestPtrOutput() ExternalVolumeTopologyRequestPtrOutput
+	ToExternalVolumeTopologyRequestPtrOutputWithContext(context.Context) ExternalVolumeTopologyRequestPtrOutput
+}
+
+type externalVolumeTopologyRequestPtrType ExternalVolumeTopologyRequestArgs
+
+func ExternalVolumeTopologyRequestPtr(v *ExternalVolumeTopologyRequestArgs) ExternalVolumeTopologyRequestPtrInput {
+	return (*externalVolumeTopologyRequestPtrType)(v)
+}
+
+func (*externalVolumeTopologyRequestPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExternalVolumeTopologyRequest)(nil)).Elem()
+}
+
+func (i *externalVolumeTopologyRequestPtrType) ToExternalVolumeTopologyRequestPtrOutput() ExternalVolumeTopologyRequestPtrOutput {
+	return i.ToExternalVolumeTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (i *externalVolumeTopologyRequestPtrType) ToExternalVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPtrOutput)
+}
+
+type ExternalVolumeTopologyRequestOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopologyRequest)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyRequestOutput) ToExternalVolumeTopologyRequestOutput() ExternalVolumeTopologyRequestOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestOutput) ToExternalVolumeTopologyRequestOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestOutput) ToExternalVolumeTopologyRequestPtrOutput() ExternalVolumeTopologyRequestPtrOutput {
+	return o.ToExternalVolumeTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (o ExternalVolumeTopologyRequestOutput) ToExternalVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExternalVolumeTopologyRequest) *ExternalVolumeTopologyRequest {
+		return &v
+	}).(ExternalVolumeTopologyRequestPtrOutput)
+}
+
+func (o ExternalVolumeTopologyRequestOutput) Preferred() ExternalVolumeTopologyRequestPreferredPtrOutput {
+	return o.ApplyT(func(v ExternalVolumeTopologyRequest) *ExternalVolumeTopologyRequestPreferred { return v.Preferred }).(ExternalVolumeTopologyRequestPreferredPtrOutput)
+}
+
+func (o ExternalVolumeTopologyRequestOutput) Required() ExternalVolumeTopologyRequestRequiredPtrOutput {
+	return o.ApplyT(func(v ExternalVolumeTopologyRequest) *ExternalVolumeTopologyRequestRequired { return v.Required }).(ExternalVolumeTopologyRequestRequiredPtrOutput)
+}
+
+type ExternalVolumeTopologyRequestPtrOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyRequestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExternalVolumeTopologyRequest)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyRequestPtrOutput) ToExternalVolumeTopologyRequestPtrOutput() ExternalVolumeTopologyRequestPtrOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestPtrOutput) ToExternalVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPtrOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestPtrOutput) Elem() ExternalVolumeTopologyRequestOutput {
+	return o.ApplyT(func(v *ExternalVolumeTopologyRequest) ExternalVolumeTopologyRequest {
+		if v != nil {
+			return *v
+		}
+		var ret ExternalVolumeTopologyRequest
+		return ret
+	}).(ExternalVolumeTopologyRequestOutput)
+}
+
+func (o ExternalVolumeTopologyRequestPtrOutput) Preferred() ExternalVolumeTopologyRequestPreferredPtrOutput {
+	return o.ApplyT(func(v *ExternalVolumeTopologyRequest) *ExternalVolumeTopologyRequestPreferred {
+		if v == nil {
+			return nil
+		}
+		return v.Preferred
+	}).(ExternalVolumeTopologyRequestPreferredPtrOutput)
+}
+
+func (o ExternalVolumeTopologyRequestPtrOutput) Required() ExternalVolumeTopologyRequestRequiredPtrOutput {
+	return o.ApplyT(func(v *ExternalVolumeTopologyRequest) *ExternalVolumeTopologyRequestRequired {
+		if v == nil {
+			return nil
+		}
+		return v.Required
+	}).(ExternalVolumeTopologyRequestRequiredPtrOutput)
+}
+
+type ExternalVolumeTopologyRequestPreferred struct {
+	Topologies []ExternalVolumeTopologyRequestPreferredTopology `pulumi:"topologies"`
+}
+
+// ExternalVolumeTopologyRequestPreferredInput is an input type that accepts ExternalVolumeTopologyRequestPreferredArgs and ExternalVolumeTopologyRequestPreferredOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyRequestPreferredInput` via:
+//
+//	ExternalVolumeTopologyRequestPreferredArgs{...}
+type ExternalVolumeTopologyRequestPreferredInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyRequestPreferredOutput() ExternalVolumeTopologyRequestPreferredOutput
+	ToExternalVolumeTopologyRequestPreferredOutputWithContext(context.Context) ExternalVolumeTopologyRequestPreferredOutput
+}
+
+type ExternalVolumeTopologyRequestPreferredArgs struct {
+	Topologies ExternalVolumeTopologyRequestPreferredTopologyArrayInput `pulumi:"topologies"`
+}
+
+func (ExternalVolumeTopologyRequestPreferredArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopologyRequestPreferred)(nil)).Elem()
+}
+
+func (i ExternalVolumeTopologyRequestPreferredArgs) ToExternalVolumeTopologyRequestPreferredOutput() ExternalVolumeTopologyRequestPreferredOutput {
+	return i.ToExternalVolumeTopologyRequestPreferredOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyRequestPreferredArgs) ToExternalVolumeTopologyRequestPreferredOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredOutput)
+}
+
+func (i ExternalVolumeTopologyRequestPreferredArgs) ToExternalVolumeTopologyRequestPreferredPtrOutput() ExternalVolumeTopologyRequestPreferredPtrOutput {
+	return i.ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyRequestPreferredArgs) ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredOutput).ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(ctx)
+}
+
+// ExternalVolumeTopologyRequestPreferredPtrInput is an input type that accepts ExternalVolumeTopologyRequestPreferredArgs, ExternalVolumeTopologyRequestPreferredPtr and ExternalVolumeTopologyRequestPreferredPtrOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyRequestPreferredPtrInput` via:
+//
+//	        ExternalVolumeTopologyRequestPreferredArgs{...}
+//
+//	or:
+//
+//	        nil
+type ExternalVolumeTopologyRequestPreferredPtrInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyRequestPreferredPtrOutput() ExternalVolumeTopologyRequestPreferredPtrOutput
+	ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(context.Context) ExternalVolumeTopologyRequestPreferredPtrOutput
+}
+
+type externalVolumeTopologyRequestPreferredPtrType ExternalVolumeTopologyRequestPreferredArgs
+
+func ExternalVolumeTopologyRequestPreferredPtr(v *ExternalVolumeTopologyRequestPreferredArgs) ExternalVolumeTopologyRequestPreferredPtrInput {
+	return (*externalVolumeTopologyRequestPreferredPtrType)(v)
+}
+
+func (*externalVolumeTopologyRequestPreferredPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExternalVolumeTopologyRequestPreferred)(nil)).Elem()
+}
+
+func (i *externalVolumeTopologyRequestPreferredPtrType) ToExternalVolumeTopologyRequestPreferredPtrOutput() ExternalVolumeTopologyRequestPreferredPtrOutput {
+	return i.ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(context.Background())
+}
+
+func (i *externalVolumeTopologyRequestPreferredPtrType) ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredPtrOutput)
+}
+
+type ExternalVolumeTopologyRequestPreferredOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyRequestPreferredOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopologyRequestPreferred)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyRequestPreferredOutput) ToExternalVolumeTopologyRequestPreferredOutput() ExternalVolumeTopologyRequestPreferredOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredOutput) ToExternalVolumeTopologyRequestPreferredOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredOutput) ToExternalVolumeTopologyRequestPreferredPtrOutput() ExternalVolumeTopologyRequestPreferredPtrOutput {
+	return o.ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(context.Background())
+}
+
+func (o ExternalVolumeTopologyRequestPreferredOutput) ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExternalVolumeTopologyRequestPreferred) *ExternalVolumeTopologyRequestPreferred {
+		return &v
+	}).(ExternalVolumeTopologyRequestPreferredPtrOutput)
+}
+
+func (o ExternalVolumeTopologyRequestPreferredOutput) Topologies() ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return o.ApplyT(func(v ExternalVolumeTopologyRequestPreferred) []ExternalVolumeTopologyRequestPreferredTopology {
+		return v.Topologies
+	}).(ExternalVolumeTopologyRequestPreferredTopologyArrayOutput)
+}
+
+type ExternalVolumeTopologyRequestPreferredPtrOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyRequestPreferredPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExternalVolumeTopologyRequestPreferred)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyRequestPreferredPtrOutput) ToExternalVolumeTopologyRequestPreferredPtrOutput() ExternalVolumeTopologyRequestPreferredPtrOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredPtrOutput) ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredPtrOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredPtrOutput) Elem() ExternalVolumeTopologyRequestPreferredOutput {
+	return o.ApplyT(func(v *ExternalVolumeTopologyRequestPreferred) ExternalVolumeTopologyRequestPreferred {
+		if v != nil {
+			return *v
+		}
+		var ret ExternalVolumeTopologyRequestPreferred
+		return ret
+	}).(ExternalVolumeTopologyRequestPreferredOutput)
+}
+
+func (o ExternalVolumeTopologyRequestPreferredPtrOutput) Topologies() ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return o.ApplyT(func(v *ExternalVolumeTopologyRequestPreferred) []ExternalVolumeTopologyRequestPreferredTopology {
+		if v == nil {
+			return nil
+		}
+		return v.Topologies
+	}).(ExternalVolumeTopologyRequestPreferredTopologyArrayOutput)
+}
+
+type ExternalVolumeTopologyRequestPreferredTopology struct {
+	Segments map[string]string `pulumi:"segments"`
+}
+
+// ExternalVolumeTopologyRequestPreferredTopologyInput is an input type that accepts ExternalVolumeTopologyRequestPreferredTopologyArgs and ExternalVolumeTopologyRequestPreferredTopologyOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyRequestPreferredTopologyInput` via:
+//
+//	ExternalVolumeTopologyRequestPreferredTopologyArgs{...}
+type ExternalVolumeTopologyRequestPreferredTopologyInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyRequestPreferredTopologyOutput() ExternalVolumeTopologyRequestPreferredTopologyOutput
+	ToExternalVolumeTopologyRequestPreferredTopologyOutputWithContext(context.Context) ExternalVolumeTopologyRequestPreferredTopologyOutput
+}
+
+type ExternalVolumeTopologyRequestPreferredTopologyArgs struct {
+	Segments pulumi.StringMapInput `pulumi:"segments"`
+}
+
+func (ExternalVolumeTopologyRequestPreferredTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopologyRequestPreferredTopology)(nil)).Elem()
+}
+
+func (i ExternalVolumeTopologyRequestPreferredTopologyArgs) ToExternalVolumeTopologyRequestPreferredTopologyOutput() ExternalVolumeTopologyRequestPreferredTopologyOutput {
+	return i.ToExternalVolumeTopologyRequestPreferredTopologyOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyRequestPreferredTopologyArgs) ToExternalVolumeTopologyRequestPreferredTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredTopologyOutput)
+}
+
+// ExternalVolumeTopologyRequestPreferredTopologyArrayInput is an input type that accepts ExternalVolumeTopologyRequestPreferredTopologyArray and ExternalVolumeTopologyRequestPreferredTopologyArrayOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyRequestPreferredTopologyArrayInput` via:
+//
+//	ExternalVolumeTopologyRequestPreferredTopologyArray{ ExternalVolumeTopologyRequestPreferredTopologyArgs{...} }
+type ExternalVolumeTopologyRequestPreferredTopologyArrayInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyRequestPreferredTopologyArrayOutput() ExternalVolumeTopologyRequestPreferredTopologyArrayOutput
+	ToExternalVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(context.Context) ExternalVolumeTopologyRequestPreferredTopologyArrayOutput
+}
+
+type ExternalVolumeTopologyRequestPreferredTopologyArray []ExternalVolumeTopologyRequestPreferredTopologyInput
+
+func (ExternalVolumeTopologyRequestPreferredTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExternalVolumeTopologyRequestPreferredTopology)(nil)).Elem()
+}
+
+func (i ExternalVolumeTopologyRequestPreferredTopologyArray) ToExternalVolumeTopologyRequestPreferredTopologyArrayOutput() ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return i.ToExternalVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyRequestPreferredTopologyArray) ToExternalVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredTopologyArrayOutput)
+}
+
+type ExternalVolumeTopologyRequestPreferredTopologyOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyRequestPreferredTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopologyRequestPreferredTopology)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) ToExternalVolumeTopologyRequestPreferredTopologyOutput() ExternalVolumeTopologyRequestPreferredTopologyOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) ToExternalVolumeTopologyRequestPreferredTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredTopologyOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) Segments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ExternalVolumeTopologyRequestPreferredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
+}
+
+type ExternalVolumeTopologyRequestPreferredTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExternalVolumeTopologyRequestPreferredTopology)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) ToExternalVolumeTopologyRequestPreferredTopologyArrayOutput() ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) ToExternalVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) Index(i pulumi.IntInput) ExternalVolumeTopologyRequestPreferredTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExternalVolumeTopologyRequestPreferredTopology {
+		return vs[0].([]ExternalVolumeTopologyRequestPreferredTopology)[vs[1].(int)]
+	}).(ExternalVolumeTopologyRequestPreferredTopologyOutput)
+}
+
+type ExternalVolumeTopologyRequestRequired struct {
+	Topologies []ExternalVolumeTopologyRequestRequiredTopology `pulumi:"topologies"`
+}
+
+// ExternalVolumeTopologyRequestRequiredInput is an input type that accepts ExternalVolumeTopologyRequestRequiredArgs and ExternalVolumeTopologyRequestRequiredOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyRequestRequiredInput` via:
+//
+//	ExternalVolumeTopologyRequestRequiredArgs{...}
+type ExternalVolumeTopologyRequestRequiredInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyRequestRequiredOutput() ExternalVolumeTopologyRequestRequiredOutput
+	ToExternalVolumeTopologyRequestRequiredOutputWithContext(context.Context) ExternalVolumeTopologyRequestRequiredOutput
+}
+
+type ExternalVolumeTopologyRequestRequiredArgs struct {
+	Topologies ExternalVolumeTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
+}
+
+func (ExternalVolumeTopologyRequestRequiredArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (i ExternalVolumeTopologyRequestRequiredArgs) ToExternalVolumeTopologyRequestRequiredOutput() ExternalVolumeTopologyRequestRequiredOutput {
+	return i.ToExternalVolumeTopologyRequestRequiredOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyRequestRequiredArgs) ToExternalVolumeTopologyRequestRequiredOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredOutput)
+}
+
+func (i ExternalVolumeTopologyRequestRequiredArgs) ToExternalVolumeTopologyRequestRequiredPtrOutput() ExternalVolumeTopologyRequestRequiredPtrOutput {
+	return i.ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyRequestRequiredArgs) ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredOutput).ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(ctx)
+}
+
+// ExternalVolumeTopologyRequestRequiredPtrInput is an input type that accepts ExternalVolumeTopologyRequestRequiredArgs, ExternalVolumeTopologyRequestRequiredPtr and ExternalVolumeTopologyRequestRequiredPtrOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyRequestRequiredPtrInput` via:
+//
+//	        ExternalVolumeTopologyRequestRequiredArgs{...}
+//
+//	or:
+//
+//	        nil
+type ExternalVolumeTopologyRequestRequiredPtrInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyRequestRequiredPtrOutput() ExternalVolumeTopologyRequestRequiredPtrOutput
+	ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(context.Context) ExternalVolumeTopologyRequestRequiredPtrOutput
+}
+
+type externalVolumeTopologyRequestRequiredPtrType ExternalVolumeTopologyRequestRequiredArgs
+
+func ExternalVolumeTopologyRequestRequiredPtr(v *ExternalVolumeTopologyRequestRequiredArgs) ExternalVolumeTopologyRequestRequiredPtrInput {
+	return (*externalVolumeTopologyRequestRequiredPtrType)(v)
+}
+
+func (*externalVolumeTopologyRequestRequiredPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExternalVolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (i *externalVolumeTopologyRequestRequiredPtrType) ToExternalVolumeTopologyRequestRequiredPtrOutput() ExternalVolumeTopologyRequestRequiredPtrOutput {
+	return i.ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (i *externalVolumeTopologyRequestRequiredPtrType) ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredPtrOutput)
+}
+
+type ExternalVolumeTopologyRequestRequiredOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyRequestRequiredOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyRequestRequiredOutput) ToExternalVolumeTopologyRequestRequiredOutput() ExternalVolumeTopologyRequestRequiredOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredOutput) ToExternalVolumeTopologyRequestRequiredOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredOutput) ToExternalVolumeTopologyRequestRequiredPtrOutput() ExternalVolumeTopologyRequestRequiredPtrOutput {
+	return o.ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (o ExternalVolumeTopologyRequestRequiredOutput) ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExternalVolumeTopologyRequestRequired) *ExternalVolumeTopologyRequestRequired {
+		return &v
+	}).(ExternalVolumeTopologyRequestRequiredPtrOutput)
+}
+
+func (o ExternalVolumeTopologyRequestRequiredOutput) Topologies() ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o.ApplyT(func(v ExternalVolumeTopologyRequestRequired) []ExternalVolumeTopologyRequestRequiredTopology {
+		return v.Topologies
+	}).(ExternalVolumeTopologyRequestRequiredTopologyArrayOutput)
+}
+
+type ExternalVolumeTopologyRequestRequiredPtrOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyRequestRequiredPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExternalVolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyRequestRequiredPtrOutput) ToExternalVolumeTopologyRequestRequiredPtrOutput() ExternalVolumeTopologyRequestRequiredPtrOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredPtrOutput) ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredPtrOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredPtrOutput) Elem() ExternalVolumeTopologyRequestRequiredOutput {
+	return o.ApplyT(func(v *ExternalVolumeTopologyRequestRequired) ExternalVolumeTopologyRequestRequired {
+		if v != nil {
+			return *v
+		}
+		var ret ExternalVolumeTopologyRequestRequired
+		return ret
+	}).(ExternalVolumeTopologyRequestRequiredOutput)
+}
+
+func (o ExternalVolumeTopologyRequestRequiredPtrOutput) Topologies() ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o.ApplyT(func(v *ExternalVolumeTopologyRequestRequired) []ExternalVolumeTopologyRequestRequiredTopology {
+		if v == nil {
+			return nil
+		}
+		return v.Topologies
+	}).(ExternalVolumeTopologyRequestRequiredTopologyArrayOutput)
+}
+
+type ExternalVolumeTopologyRequestRequiredTopology struct {
+	Segments map[string]string `pulumi:"segments"`
+}
+
+// ExternalVolumeTopologyRequestRequiredTopologyInput is an input type that accepts ExternalVolumeTopologyRequestRequiredTopologyArgs and ExternalVolumeTopologyRequestRequiredTopologyOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyRequestRequiredTopologyInput` via:
+//
+//	ExternalVolumeTopologyRequestRequiredTopologyArgs{...}
+type ExternalVolumeTopologyRequestRequiredTopologyInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyRequestRequiredTopologyOutput() ExternalVolumeTopologyRequestRequiredTopologyOutput
+	ToExternalVolumeTopologyRequestRequiredTopologyOutputWithContext(context.Context) ExternalVolumeTopologyRequestRequiredTopologyOutput
+}
+
+type ExternalVolumeTopologyRequestRequiredTopologyArgs struct {
+	Segments pulumi.StringMapInput `pulumi:"segments"`
+}
+
+func (ExternalVolumeTopologyRequestRequiredTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (i ExternalVolumeTopologyRequestRequiredTopologyArgs) ToExternalVolumeTopologyRequestRequiredTopologyOutput() ExternalVolumeTopologyRequestRequiredTopologyOutput {
+	return i.ToExternalVolumeTopologyRequestRequiredTopologyOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyRequestRequiredTopologyArgs) ToExternalVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredTopologyOutput)
+}
+
+// ExternalVolumeTopologyRequestRequiredTopologyArrayInput is an input type that accepts ExternalVolumeTopologyRequestRequiredTopologyArray and ExternalVolumeTopologyRequestRequiredTopologyArrayOutput values.
+// You can construct a concrete instance of `ExternalVolumeTopologyRequestRequiredTopologyArrayInput` via:
+//
+//	ExternalVolumeTopologyRequestRequiredTopologyArray{ ExternalVolumeTopologyRequestRequiredTopologyArgs{...} }
+type ExternalVolumeTopologyRequestRequiredTopologyArrayInput interface {
+	pulumi.Input
+
+	ToExternalVolumeTopologyRequestRequiredTopologyArrayOutput() ExternalVolumeTopologyRequestRequiredTopologyArrayOutput
+	ToExternalVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(context.Context) ExternalVolumeTopologyRequestRequiredTopologyArrayOutput
+}
+
+type ExternalVolumeTopologyRequestRequiredTopologyArray []ExternalVolumeTopologyRequestRequiredTopologyInput
+
+func (ExternalVolumeTopologyRequestRequiredTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExternalVolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (i ExternalVolumeTopologyRequestRequiredTopologyArray) ToExternalVolumeTopologyRequestRequiredTopologyArrayOutput() ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return i.ToExternalVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i ExternalVolumeTopologyRequestRequiredTopologyArray) ToExternalVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredTopologyArrayOutput)
+}
+
+type ExternalVolumeTopologyRequestRequiredTopologyOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyRequestRequiredTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExternalVolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) ToExternalVolumeTopologyRequestRequiredTopologyOutput() ExternalVolumeTopologyRequestRequiredTopologyOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) ToExternalVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredTopologyOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) Segments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ExternalVolumeTopologyRequestRequiredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
+}
+
+type ExternalVolumeTopologyRequestRequiredTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ExternalVolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (o ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) ToExternalVolumeTopologyRequestRequiredTopologyArrayOutput() ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) ToExternalVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi.IntInput) ExternalVolumeTopologyRequestRequiredTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExternalVolumeTopologyRequestRequiredTopology {
+		return vs[0].([]ExternalVolumeTopologyRequestRequiredTopology)[vs[1].(int)]
+	}).(ExternalVolumeTopologyRequestRequiredTopologyOutput)
+}
+
 type JobHcl2 struct {
 	// `(boolean: false)` - Set this to `true` to be able to use
 	// HCL2 filesystem functions
@@ -271,7 +971,7 @@ type JobHcl2 struct {
 // JobHcl2Input is an input type that accepts JobHcl2Args and JobHcl2Output values.
 // You can construct a concrete instance of `JobHcl2Input` via:
 //
-//          JobHcl2Args{...}
+//	JobHcl2Args{...}
 type JobHcl2Input interface {
 	pulumi.Input
 
@@ -312,11 +1012,11 @@ func (i JobHcl2Args) ToJobHcl2PtrOutputWithContext(ctx context.Context) JobHcl2P
 // JobHcl2PtrInput is an input type that accepts JobHcl2Args, JobHcl2Ptr and JobHcl2PtrOutput values.
 // You can construct a concrete instance of `JobHcl2PtrInput` via:
 //
-//          JobHcl2Args{...}
+//	        JobHcl2Args{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type JobHcl2PtrInput interface {
 	pulumi.Input
 
@@ -448,7 +1148,7 @@ type JobTaskGroup struct {
 // JobTaskGroupInput is an input type that accepts JobTaskGroupArgs and JobTaskGroupOutput values.
 // You can construct a concrete instance of `JobTaskGroupInput` via:
 //
-//          JobTaskGroupArgs{...}
+//	JobTaskGroupArgs{...}
 type JobTaskGroupInput interface {
 	pulumi.Input
 
@@ -479,7 +1179,7 @@ func (i JobTaskGroupArgs) ToJobTaskGroupOutputWithContext(ctx context.Context) J
 // JobTaskGroupArrayInput is an input type that accepts JobTaskGroupArray and JobTaskGroupArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupArrayInput` via:
 //
-//          JobTaskGroupArray{ JobTaskGroupArgs{...} }
+//	JobTaskGroupArray{ JobTaskGroupArgs{...} }
 type JobTaskGroupArrayInput interface {
 	pulumi.Input
 
@@ -565,7 +1265,7 @@ type JobTaskGroupTask struct {
 // JobTaskGroupTaskInput is an input type that accepts JobTaskGroupTaskArgs and JobTaskGroupTaskOutput values.
 // You can construct a concrete instance of `JobTaskGroupTaskInput` via:
 //
-//          JobTaskGroupTaskArgs{...}
+//	JobTaskGroupTaskArgs{...}
 type JobTaskGroupTaskInput interface {
 	pulumi.Input
 
@@ -595,7 +1295,7 @@ func (i JobTaskGroupTaskArgs) ToJobTaskGroupTaskOutputWithContext(ctx context.Co
 // JobTaskGroupTaskArrayInput is an input type that accepts JobTaskGroupTaskArray and JobTaskGroupTaskArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupTaskArrayInput` via:
 //
-//          JobTaskGroupTaskArray{ JobTaskGroupTaskArgs{...} }
+//	JobTaskGroupTaskArray{ JobTaskGroupTaskArgs{...} }
 type JobTaskGroupTaskArrayInput interface {
 	pulumi.Input
 
@@ -676,7 +1376,7 @@ type JobTaskGroupTaskVolumeMount struct {
 // JobTaskGroupTaskVolumeMountInput is an input type that accepts JobTaskGroupTaskVolumeMountArgs and JobTaskGroupTaskVolumeMountOutput values.
 // You can construct a concrete instance of `JobTaskGroupTaskVolumeMountInput` via:
 //
-//          JobTaskGroupTaskVolumeMountArgs{...}
+//	JobTaskGroupTaskVolumeMountArgs{...}
 type JobTaskGroupTaskVolumeMountInput interface {
 	pulumi.Input
 
@@ -705,7 +1405,7 @@ func (i JobTaskGroupTaskVolumeMountArgs) ToJobTaskGroupTaskVolumeMountOutputWith
 // JobTaskGroupTaskVolumeMountArrayInput is an input type that accepts JobTaskGroupTaskVolumeMountArray and JobTaskGroupTaskVolumeMountArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupTaskVolumeMountArrayInput` via:
 //
-//          JobTaskGroupTaskVolumeMountArray{ JobTaskGroupTaskVolumeMountArgs{...} }
+//	JobTaskGroupTaskVolumeMountArray{ JobTaskGroupTaskVolumeMountArgs{...} }
 type JobTaskGroupTaskVolumeMountArrayInput interface {
 	pulumi.Input
 
@@ -783,7 +1483,7 @@ type JobTaskGroupVolume struct {
 // JobTaskGroupVolumeInput is an input type that accepts JobTaskGroupVolumeArgs and JobTaskGroupVolumeOutput values.
 // You can construct a concrete instance of `JobTaskGroupVolumeInput` via:
 //
-//          JobTaskGroupVolumeArgs{...}
+//	JobTaskGroupVolumeArgs{...}
 type JobTaskGroupVolumeInput interface {
 	pulumi.Input
 
@@ -813,7 +1513,7 @@ func (i JobTaskGroupVolumeArgs) ToJobTaskGroupVolumeOutputWithContext(ctx contex
 // JobTaskGroupVolumeArrayInput is an input type that accepts JobTaskGroupVolumeArray and JobTaskGroupVolumeArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupVolumeArrayInput` via:
 //
-//          JobTaskGroupVolumeArray{ JobTaskGroupVolumeArgs{...} }
+//	JobTaskGroupVolumeArray{ JobTaskGroupVolumeArgs{...} }
 type JobTaskGroupVolumeArrayInput interface {
 	pulumi.Input
 
@@ -893,7 +1593,7 @@ type ProviderHeader struct {
 // ProviderHeaderInput is an input type that accepts ProviderHeaderArgs and ProviderHeaderOutput values.
 // You can construct a concrete instance of `ProviderHeaderInput` via:
 //
-//          ProviderHeaderArgs{...}
+//	ProviderHeaderArgs{...}
 type ProviderHeaderInput interface {
 	pulumi.Input
 
@@ -921,7 +1621,7 @@ func (i ProviderHeaderArgs) ToProviderHeaderOutputWithContext(ctx context.Contex
 // ProviderHeaderArrayInput is an input type that accepts ProviderHeaderArray and ProviderHeaderArrayOutput values.
 // You can construct a concrete instance of `ProviderHeaderArrayInput` via:
 //
-//          ProviderHeaderArray{ ProviderHeaderArgs{...} }
+//	ProviderHeaderArray{ ProviderHeaderArgs{...} }
 type ProviderHeaderArrayInput interface {
 	pulumi.Input
 
@@ -997,7 +1697,7 @@ type QuoteSpecificationLimit struct {
 // QuoteSpecificationLimitInput is an input type that accepts QuoteSpecificationLimitArgs and QuoteSpecificationLimitOutput values.
 // You can construct a concrete instance of `QuoteSpecificationLimitInput` via:
 //
-//          QuoteSpecificationLimitArgs{...}
+//	QuoteSpecificationLimitArgs{...}
 type QuoteSpecificationLimitInput interface {
 	pulumi.Input
 
@@ -1029,7 +1729,7 @@ func (i QuoteSpecificationLimitArgs) ToQuoteSpecificationLimitOutputWithContext(
 // QuoteSpecificationLimitArrayInput is an input type that accepts QuoteSpecificationLimitArray and QuoteSpecificationLimitArrayOutput values.
 // You can construct a concrete instance of `QuoteSpecificationLimitArrayInput` via:
 //
-//          QuoteSpecificationLimitArray{ QuoteSpecificationLimitArgs{...} }
+//	QuoteSpecificationLimitArray{ QuoteSpecificationLimitArgs{...} }
 type QuoteSpecificationLimitArrayInput interface {
 	pulumi.Input
 
@@ -1110,7 +1810,7 @@ type QuoteSpecificationLimitRegionLimit struct {
 // QuoteSpecificationLimitRegionLimitInput is an input type that accepts QuoteSpecificationLimitRegionLimitArgs and QuoteSpecificationLimitRegionLimitOutput values.
 // You can construct a concrete instance of `QuoteSpecificationLimitRegionLimitInput` via:
 //
-//          QuoteSpecificationLimitRegionLimitArgs{...}
+//	QuoteSpecificationLimitRegionLimitArgs{...}
 type QuoteSpecificationLimitRegionLimitInput interface {
 	pulumi.Input
 
@@ -1175,7 +1875,7 @@ type VolumeCapability struct {
 // VolumeCapabilityInput is an input type that accepts VolumeCapabilityArgs and VolumeCapabilityOutput values.
 // You can construct a concrete instance of `VolumeCapabilityInput` via:
 //
-//          VolumeCapabilityArgs{...}
+//	VolumeCapabilityArgs{...}
 type VolumeCapabilityInput interface {
 	pulumi.Input
 
@@ -1203,7 +1903,7 @@ func (i VolumeCapabilityArgs) ToVolumeCapabilityOutputWithContext(ctx context.Co
 // VolumeCapabilityArrayInput is an input type that accepts VolumeCapabilityArray and VolumeCapabilityArrayOutput values.
 // You can construct a concrete instance of `VolumeCapabilityArrayInput` via:
 //
-//          VolumeCapabilityArray{ VolumeCapabilityArgs{...} }
+//	VolumeCapabilityArray{ VolumeCapabilityArgs{...} }
 type VolumeCapabilityArrayInput interface {
 	pulumi.Input
 
@@ -1275,7 +1975,7 @@ type VolumeMountOptions struct {
 // VolumeMountOptionsInput is an input type that accepts VolumeMountOptionsArgs and VolumeMountOptionsOutput values.
 // You can construct a concrete instance of `VolumeMountOptionsInput` via:
 //
-//          VolumeMountOptionsArgs{...}
+//	VolumeMountOptionsArgs{...}
 type VolumeMountOptionsInput interface {
 	pulumi.Input
 
@@ -1311,11 +2011,11 @@ func (i VolumeMountOptionsArgs) ToVolumeMountOptionsPtrOutputWithContext(ctx con
 // VolumeMountOptionsPtrInput is an input type that accepts VolumeMountOptionsArgs, VolumeMountOptionsPtr and VolumeMountOptionsPtrOutput values.
 // You can construct a concrete instance of `VolumeMountOptionsPtrInput` via:
 //
-//          VolumeMountOptionsArgs{...}
+//	        VolumeMountOptionsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type VolumeMountOptionsPtrInput interface {
 	pulumi.Input
 
@@ -1415,6 +2115,460 @@ func (o VolumeMountOptionsPtrOutput) MountFlags() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
+type VolumeTopology struct {
+	Segments map[string]string `pulumi:"segments"`
+}
+
+// VolumeTopologyInput is an input type that accepts VolumeTopologyArgs and VolumeTopologyOutput values.
+// You can construct a concrete instance of `VolumeTopologyInput` via:
+//
+//	VolumeTopologyArgs{...}
+type VolumeTopologyInput interface {
+	pulumi.Input
+
+	ToVolumeTopologyOutput() VolumeTopologyOutput
+	ToVolumeTopologyOutputWithContext(context.Context) VolumeTopologyOutput
+}
+
+type VolumeTopologyArgs struct {
+	Segments pulumi.StringMapInput `pulumi:"segments"`
+}
+
+func (VolumeTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeTopology)(nil)).Elem()
+}
+
+func (i VolumeTopologyArgs) ToVolumeTopologyOutput() VolumeTopologyOutput {
+	return i.ToVolumeTopologyOutputWithContext(context.Background())
+}
+
+func (i VolumeTopologyArgs) ToVolumeTopologyOutputWithContext(ctx context.Context) VolumeTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyOutput)
+}
+
+// VolumeTopologyArrayInput is an input type that accepts VolumeTopologyArray and VolumeTopologyArrayOutput values.
+// You can construct a concrete instance of `VolumeTopologyArrayInput` via:
+//
+//	VolumeTopologyArray{ VolumeTopologyArgs{...} }
+type VolumeTopologyArrayInput interface {
+	pulumi.Input
+
+	ToVolumeTopologyArrayOutput() VolumeTopologyArrayOutput
+	ToVolumeTopologyArrayOutputWithContext(context.Context) VolumeTopologyArrayOutput
+}
+
+type VolumeTopologyArray []VolumeTopologyInput
+
+func (VolumeTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeTopology)(nil)).Elem()
+}
+
+func (i VolumeTopologyArray) ToVolumeTopologyArrayOutput() VolumeTopologyArrayOutput {
+	return i.ToVolumeTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i VolumeTopologyArray) ToVolumeTopologyArrayOutputWithContext(ctx context.Context) VolumeTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyArrayOutput)
+}
+
+type VolumeTopologyOutput struct{ *pulumi.OutputState }
+
+func (VolumeTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeTopology)(nil)).Elem()
+}
+
+func (o VolumeTopologyOutput) ToVolumeTopologyOutput() VolumeTopologyOutput {
+	return o
+}
+
+func (o VolumeTopologyOutput) ToVolumeTopologyOutputWithContext(ctx context.Context) VolumeTopologyOutput {
+	return o
+}
+
+func (o VolumeTopologyOutput) Segments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v VolumeTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
+}
+
+type VolumeTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (VolumeTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeTopology)(nil)).Elem()
+}
+
+func (o VolumeTopologyArrayOutput) ToVolumeTopologyArrayOutput() VolumeTopologyArrayOutput {
+	return o
+}
+
+func (o VolumeTopologyArrayOutput) ToVolumeTopologyArrayOutputWithContext(ctx context.Context) VolumeTopologyArrayOutput {
+	return o
+}
+
+func (o VolumeTopologyArrayOutput) Index(i pulumi.IntInput) VolumeTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumeTopology {
+		return vs[0].([]VolumeTopology)[vs[1].(int)]
+	}).(VolumeTopologyOutput)
+}
+
+type VolumeTopologyRequest struct {
+	Required *VolumeTopologyRequestRequired `pulumi:"required"`
+}
+
+// VolumeTopologyRequestInput is an input type that accepts VolumeTopologyRequestArgs and VolumeTopologyRequestOutput values.
+// You can construct a concrete instance of `VolumeTopologyRequestInput` via:
+//
+//	VolumeTopologyRequestArgs{...}
+type VolumeTopologyRequestInput interface {
+	pulumi.Input
+
+	ToVolumeTopologyRequestOutput() VolumeTopologyRequestOutput
+	ToVolumeTopologyRequestOutputWithContext(context.Context) VolumeTopologyRequestOutput
+}
+
+type VolumeTopologyRequestArgs struct {
+	Required VolumeTopologyRequestRequiredPtrInput `pulumi:"required"`
+}
+
+func (VolumeTopologyRequestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeTopologyRequest)(nil)).Elem()
+}
+
+func (i VolumeTopologyRequestArgs) ToVolumeTopologyRequestOutput() VolumeTopologyRequestOutput {
+	return i.ToVolumeTopologyRequestOutputWithContext(context.Background())
+}
+
+func (i VolumeTopologyRequestArgs) ToVolumeTopologyRequestOutputWithContext(ctx context.Context) VolumeTopologyRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestOutput)
+}
+
+func (i VolumeTopologyRequestArgs) ToVolumeTopologyRequestPtrOutput() VolumeTopologyRequestPtrOutput {
+	return i.ToVolumeTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (i VolumeTopologyRequestArgs) ToVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestOutput).ToVolumeTopologyRequestPtrOutputWithContext(ctx)
+}
+
+// VolumeTopologyRequestPtrInput is an input type that accepts VolumeTopologyRequestArgs, VolumeTopologyRequestPtr and VolumeTopologyRequestPtrOutput values.
+// You can construct a concrete instance of `VolumeTopologyRequestPtrInput` via:
+//
+//	        VolumeTopologyRequestArgs{...}
+//
+//	or:
+//
+//	        nil
+type VolumeTopologyRequestPtrInput interface {
+	pulumi.Input
+
+	ToVolumeTopologyRequestPtrOutput() VolumeTopologyRequestPtrOutput
+	ToVolumeTopologyRequestPtrOutputWithContext(context.Context) VolumeTopologyRequestPtrOutput
+}
+
+type volumeTopologyRequestPtrType VolumeTopologyRequestArgs
+
+func VolumeTopologyRequestPtr(v *VolumeTopologyRequestArgs) VolumeTopologyRequestPtrInput {
+	return (*volumeTopologyRequestPtrType)(v)
+}
+
+func (*volumeTopologyRequestPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VolumeTopologyRequest)(nil)).Elem()
+}
+
+func (i *volumeTopologyRequestPtrType) ToVolumeTopologyRequestPtrOutput() VolumeTopologyRequestPtrOutput {
+	return i.ToVolumeTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (i *volumeTopologyRequestPtrType) ToVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestPtrOutput)
+}
+
+type VolumeTopologyRequestOutput struct{ *pulumi.OutputState }
+
+func (VolumeTopologyRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeTopologyRequest)(nil)).Elem()
+}
+
+func (o VolumeTopologyRequestOutput) ToVolumeTopologyRequestOutput() VolumeTopologyRequestOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestOutput) ToVolumeTopologyRequestOutputWithContext(ctx context.Context) VolumeTopologyRequestOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestOutput) ToVolumeTopologyRequestPtrOutput() VolumeTopologyRequestPtrOutput {
+	return o.ToVolumeTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (o VolumeTopologyRequestOutput) ToVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VolumeTopologyRequest) *VolumeTopologyRequest {
+		return &v
+	}).(VolumeTopologyRequestPtrOutput)
+}
+
+func (o VolumeTopologyRequestOutput) Required() VolumeTopologyRequestRequiredPtrOutput {
+	return o.ApplyT(func(v VolumeTopologyRequest) *VolumeTopologyRequestRequired { return v.Required }).(VolumeTopologyRequestRequiredPtrOutput)
+}
+
+type VolumeTopologyRequestPtrOutput struct{ *pulumi.OutputState }
+
+func (VolumeTopologyRequestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VolumeTopologyRequest)(nil)).Elem()
+}
+
+func (o VolumeTopologyRequestPtrOutput) ToVolumeTopologyRequestPtrOutput() VolumeTopologyRequestPtrOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestPtrOutput) ToVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestPtrOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestPtrOutput) Elem() VolumeTopologyRequestOutput {
+	return o.ApplyT(func(v *VolumeTopologyRequest) VolumeTopologyRequest {
+		if v != nil {
+			return *v
+		}
+		var ret VolumeTopologyRequest
+		return ret
+	}).(VolumeTopologyRequestOutput)
+}
+
+func (o VolumeTopologyRequestPtrOutput) Required() VolumeTopologyRequestRequiredPtrOutput {
+	return o.ApplyT(func(v *VolumeTopologyRequest) *VolumeTopologyRequestRequired {
+		if v == nil {
+			return nil
+		}
+		return v.Required
+	}).(VolumeTopologyRequestRequiredPtrOutput)
+}
+
+type VolumeTopologyRequestRequired struct {
+	Topologies []VolumeTopologyRequestRequiredTopology `pulumi:"topologies"`
+}
+
+// VolumeTopologyRequestRequiredInput is an input type that accepts VolumeTopologyRequestRequiredArgs and VolumeTopologyRequestRequiredOutput values.
+// You can construct a concrete instance of `VolumeTopologyRequestRequiredInput` via:
+//
+//	VolumeTopologyRequestRequiredArgs{...}
+type VolumeTopologyRequestRequiredInput interface {
+	pulumi.Input
+
+	ToVolumeTopologyRequestRequiredOutput() VolumeTopologyRequestRequiredOutput
+	ToVolumeTopologyRequestRequiredOutputWithContext(context.Context) VolumeTopologyRequestRequiredOutput
+}
+
+type VolumeTopologyRequestRequiredArgs struct {
+	Topologies VolumeTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
+}
+
+func (VolumeTopologyRequestRequiredArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (i VolumeTopologyRequestRequiredArgs) ToVolumeTopologyRequestRequiredOutput() VolumeTopologyRequestRequiredOutput {
+	return i.ToVolumeTopologyRequestRequiredOutputWithContext(context.Background())
+}
+
+func (i VolumeTopologyRequestRequiredArgs) ToVolumeTopologyRequestRequiredOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredOutput)
+}
+
+func (i VolumeTopologyRequestRequiredArgs) ToVolumeTopologyRequestRequiredPtrOutput() VolumeTopologyRequestRequiredPtrOutput {
+	return i.ToVolumeTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (i VolumeTopologyRequestRequiredArgs) ToVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredOutput).ToVolumeTopologyRequestRequiredPtrOutputWithContext(ctx)
+}
+
+// VolumeTopologyRequestRequiredPtrInput is an input type that accepts VolumeTopologyRequestRequiredArgs, VolumeTopologyRequestRequiredPtr and VolumeTopologyRequestRequiredPtrOutput values.
+// You can construct a concrete instance of `VolumeTopologyRequestRequiredPtrInput` via:
+//
+//	        VolumeTopologyRequestRequiredArgs{...}
+//
+//	or:
+//
+//	        nil
+type VolumeTopologyRequestRequiredPtrInput interface {
+	pulumi.Input
+
+	ToVolumeTopologyRequestRequiredPtrOutput() VolumeTopologyRequestRequiredPtrOutput
+	ToVolumeTopologyRequestRequiredPtrOutputWithContext(context.Context) VolumeTopologyRequestRequiredPtrOutput
+}
+
+type volumeTopologyRequestRequiredPtrType VolumeTopologyRequestRequiredArgs
+
+func VolumeTopologyRequestRequiredPtr(v *VolumeTopologyRequestRequiredArgs) VolumeTopologyRequestRequiredPtrInput {
+	return (*volumeTopologyRequestRequiredPtrType)(v)
+}
+
+func (*volumeTopologyRequestRequiredPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (i *volumeTopologyRequestRequiredPtrType) ToVolumeTopologyRequestRequiredPtrOutput() VolumeTopologyRequestRequiredPtrOutput {
+	return i.ToVolumeTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (i *volumeTopologyRequestRequiredPtrType) ToVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredPtrOutput)
+}
+
+type VolumeTopologyRequestRequiredOutput struct{ *pulumi.OutputState }
+
+func (VolumeTopologyRequestRequiredOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (o VolumeTopologyRequestRequiredOutput) ToVolumeTopologyRequestRequiredOutput() VolumeTopologyRequestRequiredOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestRequiredOutput) ToVolumeTopologyRequestRequiredOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestRequiredOutput) ToVolumeTopologyRequestRequiredPtrOutput() VolumeTopologyRequestRequiredPtrOutput {
+	return o.ToVolumeTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (o VolumeTopologyRequestRequiredOutput) ToVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VolumeTopologyRequestRequired) *VolumeTopologyRequestRequired {
+		return &v
+	}).(VolumeTopologyRequestRequiredPtrOutput)
+}
+
+func (o VolumeTopologyRequestRequiredOutput) Topologies() VolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o.ApplyT(func(v VolumeTopologyRequestRequired) []VolumeTopologyRequestRequiredTopology { return v.Topologies }).(VolumeTopologyRequestRequiredTopologyArrayOutput)
+}
+
+type VolumeTopologyRequestRequiredPtrOutput struct{ *pulumi.OutputState }
+
+func (VolumeTopologyRequestRequiredPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (o VolumeTopologyRequestRequiredPtrOutput) ToVolumeTopologyRequestRequiredPtrOutput() VolumeTopologyRequestRequiredPtrOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestRequiredPtrOutput) ToVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredPtrOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestRequiredPtrOutput) Elem() VolumeTopologyRequestRequiredOutput {
+	return o.ApplyT(func(v *VolumeTopologyRequestRequired) VolumeTopologyRequestRequired {
+		if v != nil {
+			return *v
+		}
+		var ret VolumeTopologyRequestRequired
+		return ret
+	}).(VolumeTopologyRequestRequiredOutput)
+}
+
+func (o VolumeTopologyRequestRequiredPtrOutput) Topologies() VolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o.ApplyT(func(v *VolumeTopologyRequestRequired) []VolumeTopologyRequestRequiredTopology {
+		if v == nil {
+			return nil
+		}
+		return v.Topologies
+	}).(VolumeTopologyRequestRequiredTopologyArrayOutput)
+}
+
+type VolumeTopologyRequestRequiredTopology struct {
+	Segments map[string]string `pulumi:"segments"`
+}
+
+// VolumeTopologyRequestRequiredTopologyInput is an input type that accepts VolumeTopologyRequestRequiredTopologyArgs and VolumeTopologyRequestRequiredTopologyOutput values.
+// You can construct a concrete instance of `VolumeTopologyRequestRequiredTopologyInput` via:
+//
+//	VolumeTopologyRequestRequiredTopologyArgs{...}
+type VolumeTopologyRequestRequiredTopologyInput interface {
+	pulumi.Input
+
+	ToVolumeTopologyRequestRequiredTopologyOutput() VolumeTopologyRequestRequiredTopologyOutput
+	ToVolumeTopologyRequestRequiredTopologyOutputWithContext(context.Context) VolumeTopologyRequestRequiredTopologyOutput
+}
+
+type VolumeTopologyRequestRequiredTopologyArgs struct {
+	Segments pulumi.StringMapInput `pulumi:"segments"`
+}
+
+func (VolumeTopologyRequestRequiredTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (i VolumeTopologyRequestRequiredTopologyArgs) ToVolumeTopologyRequestRequiredTopologyOutput() VolumeTopologyRequestRequiredTopologyOutput {
+	return i.ToVolumeTopologyRequestRequiredTopologyOutputWithContext(context.Background())
+}
+
+func (i VolumeTopologyRequestRequiredTopologyArgs) ToVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredTopologyOutput)
+}
+
+// VolumeTopologyRequestRequiredTopologyArrayInput is an input type that accepts VolumeTopologyRequestRequiredTopologyArray and VolumeTopologyRequestRequiredTopologyArrayOutput values.
+// You can construct a concrete instance of `VolumeTopologyRequestRequiredTopologyArrayInput` via:
+//
+//	VolumeTopologyRequestRequiredTopologyArray{ VolumeTopologyRequestRequiredTopologyArgs{...} }
+type VolumeTopologyRequestRequiredTopologyArrayInput interface {
+	pulumi.Input
+
+	ToVolumeTopologyRequestRequiredTopologyArrayOutput() VolumeTopologyRequestRequiredTopologyArrayOutput
+	ToVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(context.Context) VolumeTopologyRequestRequiredTopologyArrayOutput
+}
+
+type VolumeTopologyRequestRequiredTopologyArray []VolumeTopologyRequestRequiredTopologyInput
+
+func (VolumeTopologyRequestRequiredTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (i VolumeTopologyRequestRequiredTopologyArray) ToVolumeTopologyRequestRequiredTopologyArrayOutput() VolumeTopologyRequestRequiredTopologyArrayOutput {
+	return i.ToVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i VolumeTopologyRequestRequiredTopologyArray) ToVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredTopologyArrayOutput)
+}
+
+type VolumeTopologyRequestRequiredTopologyOutput struct{ *pulumi.OutputState }
+
+func (VolumeTopologyRequestRequiredTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (o VolumeTopologyRequestRequiredTopologyOutput) ToVolumeTopologyRequestRequiredTopologyOutput() VolumeTopologyRequestRequiredTopologyOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestRequiredTopologyOutput) ToVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredTopologyOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestRequiredTopologyOutput) Segments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v VolumeTopologyRequestRequiredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
+}
+
+type VolumeTopologyRequestRequiredTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (VolumeTopologyRequestRequiredTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (o VolumeTopologyRequestRequiredTopologyArrayOutput) ToVolumeTopologyRequestRequiredTopologyArrayOutput() VolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestRequiredTopologyArrayOutput) ToVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o
+}
+
+func (o VolumeTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi.IntInput) VolumeTopologyRequestRequiredTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumeTopologyRequestRequiredTopology {
+		return vs[0].([]VolumeTopologyRequestRequiredTopology)[vs[1].(int)]
+	}).(VolumeTopologyRequestRequiredTopologyOutput)
+}
+
 type GetAclPoliciesPolicy struct {
 	Description string `pulumi:"description"`
 	Name        string `pulumi:"name"`
@@ -1423,7 +2577,7 @@ type GetAclPoliciesPolicy struct {
 // GetAclPoliciesPolicyInput is an input type that accepts GetAclPoliciesPolicyArgs and GetAclPoliciesPolicyOutput values.
 // You can construct a concrete instance of `GetAclPoliciesPolicyInput` via:
 //
-//          GetAclPoliciesPolicyArgs{...}
+//	GetAclPoliciesPolicyArgs{...}
 type GetAclPoliciesPolicyInput interface {
 	pulumi.Input
 
@@ -1451,7 +2605,7 @@ func (i GetAclPoliciesPolicyArgs) ToGetAclPoliciesPolicyOutputWithContext(ctx co
 // GetAclPoliciesPolicyArrayInput is an input type that accepts GetAclPoliciesPolicyArray and GetAclPoliciesPolicyArrayOutput values.
 // You can construct a concrete instance of `GetAclPoliciesPolicyArrayInput` via:
 //
-//          GetAclPoliciesPolicyArray{ GetAclPoliciesPolicyArgs{...} }
+//	GetAclPoliciesPolicyArray{ GetAclPoliciesPolicyArgs{...} }
 type GetAclPoliciesPolicyArrayInput interface {
 	pulumi.Input
 
@@ -1527,7 +2681,7 @@ type GetAclTokensAclToken struct {
 // GetAclTokensAclTokenInput is an input type that accepts GetAclTokensAclTokenArgs and GetAclTokensAclTokenOutput values.
 // You can construct a concrete instance of `GetAclTokensAclTokenInput` via:
 //
-//          GetAclTokensAclTokenArgs{...}
+//	GetAclTokensAclTokenArgs{...}
 type GetAclTokensAclTokenInput interface {
 	pulumi.Input
 
@@ -1559,7 +2713,7 @@ func (i GetAclTokensAclTokenArgs) ToGetAclTokensAclTokenOutputWithContext(ctx co
 // GetAclTokensAclTokenArrayInput is an input type that accepts GetAclTokensAclTokenArray and GetAclTokensAclTokenArrayOutput values.
 // You can construct a concrete instance of `GetAclTokensAclTokenArrayInput` via:
 //
-//          GetAclTokensAclTokenArray{ GetAclTokensAclTokenArgs{...} }
+//	GetAclTokensAclTokenArray{ GetAclTokensAclTokenArgs{...} }
 type GetAclTokensAclTokenArrayInput interface {
 	pulumi.Input
 
@@ -1648,7 +2802,7 @@ type GetJobConstraint struct {
 // GetJobConstraintInput is an input type that accepts GetJobConstraintArgs and GetJobConstraintOutput values.
 // You can construct a concrete instance of `GetJobConstraintInput` via:
 //
-//          GetJobConstraintArgs{...}
+//	GetJobConstraintArgs{...}
 type GetJobConstraintInput interface {
 	pulumi.Input
 
@@ -1677,7 +2831,7 @@ func (i GetJobConstraintArgs) ToGetJobConstraintOutputWithContext(ctx context.Co
 // GetJobConstraintArrayInput is an input type that accepts GetJobConstraintArray and GetJobConstraintArrayOutput values.
 // You can construct a concrete instance of `GetJobConstraintArrayInput` via:
 //
-//          GetJobConstraintArray{ GetJobConstraintArgs{...} }
+//	GetJobConstraintArray{ GetJobConstraintArgs{...} }
 type GetJobConstraintArrayInput interface {
 	pulumi.Input
 
@@ -1756,7 +2910,7 @@ type GetJobPeriodicConfig struct {
 // GetJobPeriodicConfigInput is an input type that accepts GetJobPeriodicConfigArgs and GetJobPeriodicConfigOutput values.
 // You can construct a concrete instance of `GetJobPeriodicConfigInput` via:
 //
-//          GetJobPeriodicConfigArgs{...}
+//	GetJobPeriodicConfigArgs{...}
 type GetJobPeriodicConfigInput interface {
 	pulumi.Input
 
@@ -1787,7 +2941,7 @@ func (i GetJobPeriodicConfigArgs) ToGetJobPeriodicConfigOutputWithContext(ctx co
 // GetJobPeriodicConfigArrayInput is an input type that accepts GetJobPeriodicConfigArray and GetJobPeriodicConfigArrayOutput values.
 // You can construct a concrete instance of `GetJobPeriodicConfigArrayInput` via:
 //
-//          GetJobPeriodicConfigArray{ GetJobPeriodicConfigArgs{...} }
+//	GetJobPeriodicConfigArray{ GetJobPeriodicConfigArgs{...} }
 type GetJobPeriodicConfigArrayInput interface {
 	pulumi.Input
 
@@ -1874,7 +3028,7 @@ type GetJobTaskGroup struct {
 // GetJobTaskGroupInput is an input type that accepts GetJobTaskGroupArgs and GetJobTaskGroupOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupInput` via:
 //
-//          GetJobTaskGroupArgs{...}
+//	GetJobTaskGroupArgs{...}
 type GetJobTaskGroupInput interface {
 	pulumi.Input
 
@@ -1905,7 +3059,7 @@ func (i GetJobTaskGroupArgs) ToGetJobTaskGroupOutputWithContext(ctx context.Cont
 // GetJobTaskGroupArrayInput is an input type that accepts GetJobTaskGroupArray and GetJobTaskGroupArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupArrayInput` via:
 //
-//          GetJobTaskGroupArray{ GetJobTaskGroupArgs{...} }
+//	GetJobTaskGroupArray{ GetJobTaskGroupArgs{...} }
 type GetJobTaskGroupArrayInput interface {
 	pulumi.Input
 
@@ -1991,7 +3145,7 @@ type GetJobTaskGroupTask struct {
 // GetJobTaskGroupTaskInput is an input type that accepts GetJobTaskGroupTaskArgs and GetJobTaskGroupTaskOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupTaskInput` via:
 //
-//          GetJobTaskGroupTaskArgs{...}
+//	GetJobTaskGroupTaskArgs{...}
 type GetJobTaskGroupTaskInput interface {
 	pulumi.Input
 
@@ -2021,7 +3175,7 @@ func (i GetJobTaskGroupTaskArgs) ToGetJobTaskGroupTaskOutputWithContext(ctx cont
 // GetJobTaskGroupTaskArrayInput is an input type that accepts GetJobTaskGroupTaskArray and GetJobTaskGroupTaskArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupTaskArrayInput` via:
 //
-//          GetJobTaskGroupTaskArray{ GetJobTaskGroupTaskArgs{...} }
+//	GetJobTaskGroupTaskArray{ GetJobTaskGroupTaskArgs{...} }
 type GetJobTaskGroupTaskArrayInput interface {
 	pulumi.Input
 
@@ -2102,7 +3256,7 @@ type GetJobTaskGroupTaskVolumeMount struct {
 // GetJobTaskGroupTaskVolumeMountInput is an input type that accepts GetJobTaskGroupTaskVolumeMountArgs and GetJobTaskGroupTaskVolumeMountOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupTaskVolumeMountInput` via:
 //
-//          GetJobTaskGroupTaskVolumeMountArgs{...}
+//	GetJobTaskGroupTaskVolumeMountArgs{...}
 type GetJobTaskGroupTaskVolumeMountInput interface {
 	pulumi.Input
 
@@ -2131,7 +3285,7 @@ func (i GetJobTaskGroupTaskVolumeMountArgs) ToGetJobTaskGroupTaskVolumeMountOutp
 // GetJobTaskGroupTaskVolumeMountArrayInput is an input type that accepts GetJobTaskGroupTaskVolumeMountArray and GetJobTaskGroupTaskVolumeMountArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupTaskVolumeMountArrayInput` via:
 //
-//          GetJobTaskGroupTaskVolumeMountArray{ GetJobTaskGroupTaskVolumeMountArgs{...} }
+//	GetJobTaskGroupTaskVolumeMountArray{ GetJobTaskGroupTaskVolumeMountArgs{...} }
 type GetJobTaskGroupTaskVolumeMountArrayInput interface {
 	pulumi.Input
 
@@ -2209,7 +3363,7 @@ type GetJobTaskGroupVolume struct {
 // GetJobTaskGroupVolumeInput is an input type that accepts GetJobTaskGroupVolumeArgs and GetJobTaskGroupVolumeOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupVolumeInput` via:
 //
-//          GetJobTaskGroupVolumeArgs{...}
+//	GetJobTaskGroupVolumeArgs{...}
 type GetJobTaskGroupVolumeInput interface {
 	pulumi.Input
 
@@ -2239,7 +3393,7 @@ func (i GetJobTaskGroupVolumeArgs) ToGetJobTaskGroupVolumeOutputWithContext(ctx 
 // GetJobTaskGroupVolumeArrayInput is an input type that accepts GetJobTaskGroupVolumeArray and GetJobTaskGroupVolumeArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupVolumeArrayInput` via:
 //
-//          GetJobTaskGroupVolumeArray{ GetJobTaskGroupVolumeArgs{...} }
+//	GetJobTaskGroupVolumeArray{ GetJobTaskGroupVolumeArgs{...} }
 type GetJobTaskGroupVolumeArrayInput interface {
 	pulumi.Input
 
@@ -2320,7 +3474,7 @@ type GetPluginNode struct {
 // GetPluginNodeInput is an input type that accepts GetPluginNodeArgs and GetPluginNodeOutput values.
 // You can construct a concrete instance of `GetPluginNodeInput` via:
 //
-//          GetPluginNodeArgs{...}
+//	GetPluginNodeArgs{...}
 type GetPluginNodeInput interface {
 	pulumi.Input
 
@@ -2349,7 +3503,7 @@ func (i GetPluginNodeArgs) ToGetPluginNodeOutputWithContext(ctx context.Context)
 // GetPluginNodeArrayInput is an input type that accepts GetPluginNodeArray and GetPluginNodeArrayOutput values.
 // You can construct a concrete instance of `GetPluginNodeArrayInput` via:
 //
-//          GetPluginNodeArray{ GetPluginNodeArgs{...} }
+//	GetPluginNodeArray{ GetPluginNodeArgs{...} }
 type GetPluginNodeArrayInput interface {
 	pulumi.Input
 
@@ -2428,7 +3582,7 @@ type GetScalingPoliciesPolicy struct {
 // GetScalingPoliciesPolicyInput is an input type that accepts GetScalingPoliciesPolicyArgs and GetScalingPoliciesPolicyOutput values.
 // You can construct a concrete instance of `GetScalingPoliciesPolicyInput` via:
 //
-//          GetScalingPoliciesPolicyArgs{...}
+//	GetScalingPoliciesPolicyArgs{...}
 type GetScalingPoliciesPolicyInput interface {
 	pulumi.Input
 
@@ -2459,7 +3613,7 @@ func (i GetScalingPoliciesPolicyArgs) ToGetScalingPoliciesPolicyOutputWithContex
 // GetScalingPoliciesPolicyArrayInput is an input type that accepts GetScalingPoliciesPolicyArray and GetScalingPoliciesPolicyArrayOutput values.
 // You can construct a concrete instance of `GetScalingPoliciesPolicyArrayInput` via:
 //
-//          GetScalingPoliciesPolicyArray{ GetScalingPoliciesPolicyArgs{...} }
+//	GetScalingPoliciesPolicyArray{ GetScalingPoliciesPolicyArgs{...} }
 type GetScalingPoliciesPolicyArrayInput interface {
 	pulumi.Input
 
@@ -2537,6 +3691,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeCapabilityArrayInput)(nil)).Elem(), ExternalVolumeCapabilityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeMountOptionsInput)(nil)).Elem(), ExternalVolumeMountOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeMountOptionsPtrInput)(nil)).Elem(), ExternalVolumeMountOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyInput)(nil)).Elem(), ExternalVolumeTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyArrayInput)(nil)).Elem(), ExternalVolumeTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestInput)(nil)).Elem(), ExternalVolumeTopologyRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestPtrInput)(nil)).Elem(), ExternalVolumeTopologyRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestPreferredInput)(nil)).Elem(), ExternalVolumeTopologyRequestPreferredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestPreferredPtrInput)(nil)).Elem(), ExternalVolumeTopologyRequestPreferredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestPreferredTopologyInput)(nil)).Elem(), ExternalVolumeTopologyRequestPreferredTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestPreferredTopologyArrayInput)(nil)).Elem(), ExternalVolumeTopologyRequestPreferredTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestRequiredInput)(nil)).Elem(), ExternalVolumeTopologyRequestRequiredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestRequiredPtrInput)(nil)).Elem(), ExternalVolumeTopologyRequestRequiredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestRequiredTopologyInput)(nil)).Elem(), ExternalVolumeTopologyRequestRequiredTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestRequiredTopologyArrayInput)(nil)).Elem(), ExternalVolumeTopologyRequestRequiredTopologyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobHcl2Input)(nil)).Elem(), JobHcl2Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobHcl2PtrInput)(nil)).Elem(), JobHcl2Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupInput)(nil)).Elem(), JobTaskGroupArgs{})
@@ -2556,6 +3722,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeCapabilityArrayInput)(nil)).Elem(), VolumeCapabilityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeMountOptionsInput)(nil)).Elem(), VolumeMountOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeMountOptionsPtrInput)(nil)).Elem(), VolumeMountOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTopologyInput)(nil)).Elem(), VolumeTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTopologyArrayInput)(nil)).Elem(), VolumeTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTopologyRequestInput)(nil)).Elem(), VolumeTopologyRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTopologyRequestPtrInput)(nil)).Elem(), VolumeTopologyRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTopologyRequestRequiredInput)(nil)).Elem(), VolumeTopologyRequestRequiredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTopologyRequestRequiredPtrInput)(nil)).Elem(), VolumeTopologyRequestRequiredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTopologyRequestRequiredTopologyInput)(nil)).Elem(), VolumeTopologyRequestRequiredTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTopologyRequestRequiredTopologyArrayInput)(nil)).Elem(), VolumeTopologyRequestRequiredTopologyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclPoliciesPolicyInput)(nil)).Elem(), GetAclPoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclPoliciesPolicyArrayInput)(nil)).Elem(), GetAclPoliciesPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokensAclTokenInput)(nil)).Elem(), GetAclTokensAclTokenArgs{})
@@ -2580,6 +3754,18 @@ func init() {
 	pulumi.RegisterOutputType(ExternalVolumeCapabilityArrayOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeMountOptionsOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeMountOptionsPtrOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyArrayOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestPtrOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestPreferredOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestPreferredPtrOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestPreferredTopologyOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestPreferredTopologyArrayOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestRequiredOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestRequiredPtrOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestRequiredTopologyOutput{})
+	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestRequiredTopologyArrayOutput{})
 	pulumi.RegisterOutputType(JobHcl2Output{})
 	pulumi.RegisterOutputType(JobHcl2PtrOutput{})
 	pulumi.RegisterOutputType(JobTaskGroupOutput{})
@@ -2599,6 +3785,14 @@ func init() {
 	pulumi.RegisterOutputType(VolumeCapabilityArrayOutput{})
 	pulumi.RegisterOutputType(VolumeMountOptionsOutput{})
 	pulumi.RegisterOutputType(VolumeMountOptionsPtrOutput{})
+	pulumi.RegisterOutputType(VolumeTopologyOutput{})
+	pulumi.RegisterOutputType(VolumeTopologyArrayOutput{})
+	pulumi.RegisterOutputType(VolumeTopologyRequestOutput{})
+	pulumi.RegisterOutputType(VolumeTopologyRequestPtrOutput{})
+	pulumi.RegisterOutputType(VolumeTopologyRequestRequiredOutput{})
+	pulumi.RegisterOutputType(VolumeTopologyRequestRequiredPtrOutput{})
+	pulumi.RegisterOutputType(VolumeTopologyRequestRequiredTopologyOutput{})
+	pulumi.RegisterOutputType(VolumeTopologyRequestRequiredTopologyArrayOutput{})
 	pulumi.RegisterOutputType(GetAclPoliciesPolicyOutput{})
 	pulumi.RegisterOutputType(GetAclPoliciesPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetAclTokensAclTokenOutput{})

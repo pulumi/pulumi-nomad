@@ -15,7 +15,7 @@ namespace Pulumi.Nomad
         /// Retrieve a list of regions available in Nomad.
         /// </summary>
         public static Task<GetRegionsResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetRegionsResult>("nomad:index/getRegions:getRegions", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegionsResult>("nomad:index/getRegions:getRegions", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

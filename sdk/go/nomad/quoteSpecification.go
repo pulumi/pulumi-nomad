@@ -21,30 +21,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.NewQuoteSpecification(ctx, "prodApi", &nomad.QuoteSpecificationArgs{
-// 			Description: pulumi.String("Production instances of backend API servers"),
-// 			Limits: QuoteSpecificationLimitArray{
-// 				&QuoteSpecificationLimitArgs{
-// 					Region: pulumi.String("global"),
-// 					RegionLimit: &QuoteSpecificationLimitRegionLimitArgs{
-// 						Cpu:      pulumi.Int(2400),
-// 						MemoryMb: pulumi.Int(1200),
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.NewQuoteSpecification(ctx, "prodApi", &nomad.QuoteSpecificationArgs{
+//				Description: pulumi.String("Production instances of backend API servers"),
+//				Limits: QuoteSpecificationLimitArray{
+//					&QuoteSpecificationLimitArgs{
+//						Region: pulumi.String("global"),
+//						RegionLimit: &QuoteSpecificationLimitRegionLimitArgs{
+//							Cpu:      pulumi.Int(2400),
+//							MemoryMb: pulumi.Int(1200),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type QuoteSpecification struct {
 	pulumi.CustomResourceState
@@ -160,7 +163,7 @@ func (i *QuoteSpecification) ToQuoteSpecificationOutputWithContext(ctx context.C
 // QuoteSpecificationArrayInput is an input type that accepts QuoteSpecificationArray and QuoteSpecificationArrayOutput values.
 // You can construct a concrete instance of `QuoteSpecificationArrayInput` via:
 //
-//          QuoteSpecificationArray{ QuoteSpecificationArgs{...} }
+//	QuoteSpecificationArray{ QuoteSpecificationArgs{...} }
 type QuoteSpecificationArrayInput interface {
 	pulumi.Input
 
@@ -185,7 +188,7 @@ func (i QuoteSpecificationArray) ToQuoteSpecificationArrayOutputWithContext(ctx 
 // QuoteSpecificationMapInput is an input type that accepts QuoteSpecificationMap and QuoteSpecificationMapOutput values.
 // You can construct a concrete instance of `QuoteSpecificationMapInput` via:
 //
-//          QuoteSpecificationMap{ "key": QuoteSpecificationArgs{...} }
+//	QuoteSpecificationMap{ "key": QuoteSpecificationArgs{...} }
 type QuoteSpecificationMapInput interface {
 	pulumi.Input
 
@@ -219,6 +222,22 @@ func (o QuoteSpecificationOutput) ToQuoteSpecificationOutput() QuoteSpecificatio
 
 func (o QuoteSpecificationOutput) ToQuoteSpecificationOutputWithContext(ctx context.Context) QuoteSpecificationOutput {
 	return o
+}
+
+// `(string: "")` - A description of the quota specification.
+func (o QuoteSpecificationOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *QuoteSpecification) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// `(block: <required>)` - A block of quota limits to enforce. Can
+// be repeated. See below for the structure of this block.
+func (o QuoteSpecificationOutput) Limits() QuoteSpecificationLimitArrayOutput {
+	return o.ApplyT(func(v *QuoteSpecification) QuoteSpecificationLimitArrayOutput { return v.Limits }).(QuoteSpecificationLimitArrayOutput)
+}
+
+// `(string: <required>)` - A unique name for the quota specification.
+func (o QuoteSpecificationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *QuoteSpecification) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
 type QuoteSpecificationArrayOutput struct{ *pulumi.OutputState }

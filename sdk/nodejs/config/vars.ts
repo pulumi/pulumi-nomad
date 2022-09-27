@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 declare var exports: any;
@@ -92,6 +93,17 @@ export declare const httpAuth: string | undefined;
 Object.defineProperty(exports, "httpAuth", {
     get() {
         return __config.get("httpAuth");
+    },
+    enumerable: true,
+});
+
+/**
+ * A set of environment variables that are ignored by the provider when configuring the Nomad API client.
+ */
+export declare const ignoreEnvVars: {[key: string]: boolean} | undefined;
+Object.defineProperty(exports, "ignoreEnvVars", {
+    get() {
+        return __config.getObject<{[key: string]: boolean}>("ignoreEnvVars");
     },
     enumerable: true,
 });

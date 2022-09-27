@@ -17,26 +17,24 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var myToken = Nomad.GetAclToken.Invoke(new()
         ///     {
-        ///         var myToken = Output.Create(Nomad.GetAclToken.InvokeAsync(new Nomad.GetAclTokenArgs
-        ///         {
-        ///             AccessorId = "aa534e09-6a07-0a45-2295-a7f77063d429",
-        ///         }));
-        ///     }
+        ///         AccessorId = "aa534e09-6a07-0a45-2295-a7f77063d429",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAclTokenResult> InvokeAsync(GetAclTokenArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAclTokenResult>("nomad:index/getAclToken:getAclToken", args ?? new GetAclTokenArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAclTokenResult>("nomad:index/getAclToken:getAclToken", args ?? new GetAclTokenArgs(), options.WithDefaults());
 
         /// <summary>
         /// {{% examples %}}
@@ -44,30 +42,28 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var myToken = Nomad.GetAclToken.Invoke(new()
         ///     {
-        ///         var myToken = Output.Create(Nomad.GetAclToken.InvokeAsync(new Nomad.GetAclTokenArgs
-        ///         {
-        ///             AccessorId = "aa534e09-6a07-0a45-2295-a7f77063d429",
-        ///         }));
-        ///     }
+        ///         AccessorId = "aa534e09-6a07-0a45-2295-a7f77063d429",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAclTokenResult> Invoke(GetAclTokenInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAclTokenResult>("nomad:index/getAclToken:getAclToken", args ?? new GetAclTokenInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAclTokenResult>("nomad:index/getAclToken:getAclToken", args ?? new GetAclTokenInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetAclTokenArgs : Pulumi.InvokeArgs
+    public sealed class GetAclTokenArgs : global::Pulumi.InvokeArgs
     {
         [Input("accessorId", required: true)]
         public string AccessorId { get; set; } = null!;
@@ -75,9 +71,10 @@ namespace Pulumi.Nomad
         public GetAclTokenArgs()
         {
         }
+        public static new GetAclTokenArgs Empty => new GetAclTokenArgs();
     }
 
-    public sealed class GetAclTokenInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetAclTokenInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("accessorId", required: true)]
         public Input<string> AccessorId { get; set; } = null!;
@@ -85,6 +82,7 @@ namespace Pulumi.Nomad
         public GetAclTokenInvokeArgs()
         {
         }
+        public static new GetAclTokenInvokeArgs Empty => new GetAclTokenInvokeArgs();
     }
 
 

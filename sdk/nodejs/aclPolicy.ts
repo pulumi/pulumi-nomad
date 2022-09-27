@@ -13,8 +13,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as fs from "fs";
  * import * as nomad from "@pulumi/nomad";
- * import * from "fs";
  *
  * const dev = new nomad.AclPolicy("dev", {
  *     description: "Submit jobs to the dev environment.",

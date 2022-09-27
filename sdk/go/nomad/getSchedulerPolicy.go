@@ -15,19 +15,22 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.GetSchedulerPolicy(ctx, nil, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.GetSchedulerPolicy(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetSchedulerPolicy(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetSchedulerPolicyResult, error) {
 	var rv GetSchedulerPolicyResult

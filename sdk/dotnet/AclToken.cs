@@ -15,99 +15,92 @@ namespace Pulumi.Nomad
     /// Creating a token with limited policies:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var dakota = new Nomad.AclToken("dakota", new()
     ///     {
-    ///         var dakota = new Nomad.AclToken("dakota", new Nomad.AclTokenArgs
+    ///         Policies = new[]
     ///         {
-    ///             Policies = 
-    ///             {
-    ///                 "dev",
-    ///                 "qa",
-    ///             },
-    ///             Type = "client",
-    ///         });
-    ///     }
+    ///             "dev",
+    ///             "qa",
+    ///         },
+    ///         Type = "client",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// Creating a global token that will be replicated to all regions:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var dakota = new Nomad.AclToken("dakota", new()
     ///     {
-    ///         var dakota = new Nomad.AclToken("dakota", new Nomad.AclTokenArgs
+    ///         Global = true,
+    ///         Policies = new[]
     ///         {
-    ///             Global = true,
-    ///             Policies = 
-    ///             {
-    ///                 "dev",
-    ///                 "qa",
-    ///             },
-    ///             Type = "client",
-    ///         });
-    ///     }
+    ///             "dev",
+    ///             "qa",
+    ///         },
+    ///         Type = "client",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// Creating a token with full access to the cluster:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var iman = new Nomad.AclToken("iman", new()
     ///     {
-    ///         var iman = new Nomad.AclToken("iman", new Nomad.AclTokenArgs
-    ///         {
-    ///             Type = "management",
-    ///         });
-    ///     }
+    ///         Type = "management",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// Accessing the token:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var token = new Nomad.AclToken("token", new()
     ///     {
-    ///         var token = new Nomad.AclToken("token", new Nomad.AclTokenArgs
+    ///         Type = "client",
+    ///         Policies = new[]
     ///         {
-    ///             Type = "client",
-    ///             Policies = 
-    ///             {
-    ///                 "dev",
-    ///             },
-    ///         });
-    ///         this.NomadToken = token.SecretId;
-    ///     }
+    ///             "dev",
+    ///         },
+    ///     });
     /// 
-    ///     [Output("nomadToken")]
-    ///     public Output&lt;string&gt; NomadToken { get; set; }
-    /// }
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["nomadToken"] = token.SecretId,
+    ///     };
+    /// });
     /// ```
     /// </summary>
     [NomadResourceType("nomad:index/aclToken:AclToken")]
-    public partial class AclToken : Pulumi.CustomResource
+    public partial class AclToken : global::Pulumi.CustomResource
     {
         /// <summary>
         /// `(string)` - A non-sensitive identifier for this token that
@@ -203,7 +196,7 @@ namespace Pulumi.Nomad
         }
     }
 
-    public sealed class AclTokenArgs : Pulumi.ResourceArgs
+    public sealed class AclTokenArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(bool: false)` - Whether the token should be replicated to all
@@ -244,9 +237,10 @@ namespace Pulumi.Nomad
         public AclTokenArgs()
         {
         }
+        public static new AclTokenArgs Empty => new AclTokenArgs();
     }
 
-    public sealed class AclTokenState : Pulumi.ResourceArgs
+    public sealed class AclTokenState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string)` - A non-sensitive identifier for this token that
@@ -307,5 +301,6 @@ namespace Pulumi.Nomad
         public AclTokenState()
         {
         }
+        public static new AclTokenState Empty => new AclTokenState();
     }
 }

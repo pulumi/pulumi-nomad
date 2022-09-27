@@ -18,22 +18,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.GetDatacenters(ctx, &GetDatacentersArgs{
-// 			IgnoreDownNodes: pulumi.BoolRef(true),
-// 			Prefix:          pulumi.StringRef("prod"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.GetDatacenters(ctx, &GetDatacentersArgs{
+//				IgnoreDownNodes: pulumi.BoolRef(true),
+//				Prefix:          pulumi.StringRef("prod"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetDatacenters(ctx *pulumi.Context, args *GetDatacentersArgs, opts ...pulumi.InvokeOption) (*GetDatacentersResult, error) {
 	var rv GetDatacentersResult

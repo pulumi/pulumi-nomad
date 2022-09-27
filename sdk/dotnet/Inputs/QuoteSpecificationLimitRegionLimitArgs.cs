@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Nomad.Inputs
 {
 
-    public sealed class QuoteSpecificationLimitRegionLimitArgs : Pulumi.ResourceArgs
+    public sealed class QuoteSpecificationLimitRegionLimitArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
@@ -30,5 +30,6 @@ namespace Pulumi.Nomad.Inputs
         public QuoteSpecificationLimitRegionLimitArgs()
         {
         }
+        public static new QuoteSpecificationLimitRegionLimitArgs Empty => new QuoteSpecificationLimitRegionLimitArgs();
     }
 }

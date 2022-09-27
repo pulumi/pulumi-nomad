@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Nomad.Inputs
 {
 
-    public sealed class VolumeCapabilityArgs : Pulumi.ResourceArgs
+    public sealed class VolumeCapabilityArgs : global::Pulumi.ResourceArgs
     {
         [Input("accessMode", required: true)]
         public Input<string> AccessMode { get; set; } = null!;
@@ -21,5 +21,6 @@ namespace Pulumi.Nomad.Inputs
         public VolumeCapabilityArgs()
         {
         }
+        public static new VolumeCapabilityArgs Empty => new VolumeCapabilityArgs();
     }
 }

@@ -21,9 +21,11 @@ import * as utilities from "./utilities";
  * import * as nomad from "@pulumi/nomad";
  *
  * const config = new nomad.SchedulerConfig("config", {
+ *     memoryOversubscriptionEnabled: true,
  *     preemptionConfig: {
  *         batch_scheduler_enabled: true,
  *         service_scheduler_enabled: true,
+ *         sysbatch_scheduler_enabled: true,
  *         system_scheduler_enabled: true,
  *     },
  *     schedulerAlgorithm: "spread",

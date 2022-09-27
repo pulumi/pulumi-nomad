@@ -18,21 +18,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.GetScalingPolicy(ctx, &GetScalingPolicyArgs{
-// 			Id: "ad19848d-1921-179c-affa-244a3543be88",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.GetScalingPolicy(ctx, &GetScalingPolicyArgs{
+//				Id: "ad19848d-1921-179c-affa-244a3543be88",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetScalingPolicy(ctx *pulumi.Context, args *GetScalingPolicyArgs, opts ...pulumi.InvokeOption) (*GetScalingPolicyResult, error) {
 	var rv GetScalingPolicyResult

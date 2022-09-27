@@ -19,23 +19,21 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @global = Output.Create(Nomad.GetSchedulerPolicy.InvokeAsync());
-        ///     }
+        ///     var @global = Nomad.GetSchedulerPolicy.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetSchedulerPolicyResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSchedulerPolicyResult>("nomad:index/getSchedulerPolicy:getSchedulerPolicy", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSchedulerPolicyResult>("nomad:index/getSchedulerPolicy:getSchedulerPolicy", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

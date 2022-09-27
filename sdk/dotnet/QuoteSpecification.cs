@@ -17,36 +17,34 @@ namespace Pulumi.Nomad
     /// Registering a quota specification:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var prodApi = new Nomad.QuoteSpecification("prodApi", new()
     ///     {
-    ///         var prodApi = new Nomad.QuoteSpecification("prodApi", new Nomad.QuoteSpecificationArgs
+    ///         Description = "Production instances of backend API servers",
+    ///         Limits = new[]
     ///         {
-    ///             Description = "Production instances of backend API servers",
-    ///             Limits = 
+    ///             new Nomad.Inputs.QuoteSpecificationLimitArgs
     ///             {
-    ///                 new Nomad.Inputs.QuoteSpecificationLimitArgs
+    ///                 Region = "global",
+    ///                 RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs
     ///                 {
-    ///                     Region = "global",
-    ///                     RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs
-    ///                     {
-    ///                         Cpu = 2400,
-    ///                         MemoryMb = 1200,
-    ///                     },
+    ///                     Cpu = 2400,
+    ///                     MemoryMb = 1200,
     ///                 },
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [NomadResourceType("nomad:index/quoteSpecification:QuoteSpecification")]
-    public partial class QuoteSpecification : Pulumi.CustomResource
+    public partial class QuoteSpecification : global::Pulumi.CustomResource
     {
         /// <summary>
         /// `(string: "")` - A description of the quota specification.
@@ -111,7 +109,7 @@ namespace Pulumi.Nomad
         }
     }
 
-    public sealed class QuoteSpecificationArgs : Pulumi.ResourceArgs
+    public sealed class QuoteSpecificationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: "")` - A description of the quota specification.
@@ -141,9 +139,10 @@ namespace Pulumi.Nomad
         public QuoteSpecificationArgs()
         {
         }
+        public static new QuoteSpecificationArgs Empty => new QuoteSpecificationArgs();
     }
 
-    public sealed class QuoteSpecificationState : Pulumi.ResourceArgs
+    public sealed class QuoteSpecificationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: "")` - A description of the quota specification.
@@ -173,5 +172,6 @@ namespace Pulumi.Nomad
         public QuoteSpecificationState()
         {
         }
+        public static new QuoteSpecificationState Empty => new QuoteSpecificationState();
     }
 }

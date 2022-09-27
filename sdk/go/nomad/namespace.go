@@ -25,22 +25,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.NewNamespace(ctx, "dev", &nomad.NamespaceArgs{
-// 			Description: pulumi.String("Shared development environment."),
-// 			Quota:       pulumi.String("dev"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.NewNamespace(ctx, "dev", &nomad.NamespaceArgs{
+//				Description: pulumi.String("Shared development environment."),
+//				Quota:       pulumi.String("dev"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // Registering a namespace with a quota:
@@ -49,37 +52,40 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		webTeam, err := nomad.NewQuoteSpecification(ctx, "webTeam", &nomad.QuoteSpecificationArgs{
-// 			Description: pulumi.String("web team quota"),
-// 			Limits: QuoteSpecificationLimitArray{
-// 				&QuoteSpecificationLimitArgs{
-// 					Region: pulumi.String("global"),
-// 					RegionLimit: &QuoteSpecificationLimitRegionLimitArgs{
-// 						Cpu:      pulumi.Int(1000),
-// 						MemoryMb: pulumi.Int(256),
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = nomad.NewNamespace(ctx, "web", &nomad.NamespaceArgs{
-// 			Description: pulumi.String("Web team production environment."),
-// 			Quota:       webTeam.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			webTeam, err := nomad.NewQuoteSpecification(ctx, "webTeam", &nomad.QuoteSpecificationArgs{
+//				Description: pulumi.String("web team quota"),
+//				Limits: QuoteSpecificationLimitArray{
+//					&QuoteSpecificationLimitArgs{
+//						Region: pulumi.String("global"),
+//						RegionLimit: &QuoteSpecificationLimitRegionLimitArgs{
+//							Cpu:      pulumi.Int(1000),
+//							MemoryMb: pulumi.Int(256),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nomad.NewNamespace(ctx, "web", &nomad.NamespaceArgs{
+//				Description: pulumi.String("Web team production environment."),
+//				Quota:       webTeam.Name,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Namespace struct {
 	pulumi.CustomResourceState
@@ -187,7 +193,7 @@ func (i *Namespace) ToNamespaceOutputWithContext(ctx context.Context) NamespaceO
 // NamespaceArrayInput is an input type that accepts NamespaceArray and NamespaceArrayOutput values.
 // You can construct a concrete instance of `NamespaceArrayInput` via:
 //
-//          NamespaceArray{ NamespaceArgs{...} }
+//	NamespaceArray{ NamespaceArgs{...} }
 type NamespaceArrayInput interface {
 	pulumi.Input
 
@@ -212,7 +218,7 @@ func (i NamespaceArray) ToNamespaceArrayOutputWithContext(ctx context.Context) N
 // NamespaceMapInput is an input type that accepts NamespaceMap and NamespaceMapOutput values.
 // You can construct a concrete instance of `NamespaceMapInput` via:
 //
-//          NamespaceMap{ "key": NamespaceArgs{...} }
+//	NamespaceMap{ "key": NamespaceArgs{...} }
 type NamespaceMapInput interface {
 	pulumi.Input
 
@@ -246,6 +252,21 @@ func (o NamespaceOutput) ToNamespaceOutput() NamespaceOutput {
 
 func (o NamespaceOutput) ToNamespaceOutputWithContext(ctx context.Context) NamespaceOutput {
 	return o
+}
+
+// `(string: "")` - A description of the namespace.
+func (o NamespaceOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// `(string: <required>)` - A unique name for the namespace.
+func (o NamespaceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string: "")` - A resource quota to attach to the namespace.
+func (o NamespaceOutput) Quota() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringPtrOutput { return v.Quota }).(pulumi.StringPtrOutput)
 }
 
 type NamespaceArrayOutput struct{ *pulumi.OutputState }

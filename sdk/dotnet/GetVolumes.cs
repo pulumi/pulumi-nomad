@@ -19,23 +19,21 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var example = Output.Create(Nomad.GetVolumes.InvokeAsync());
-        ///     }
+        ///     var example = Nomad.GetVolumes.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetVolumesResult> InvokeAsync(GetVolumesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve a list of volumes in Nomad.
@@ -45,27 +43,25 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var example = Output.Create(Nomad.GetVolumes.InvokeAsync());
-        ///     }
+        ///     var example = Nomad.GetVolumes.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetVolumesResult> Invoke(GetVolumesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetVolumesArgs : Pulumi.InvokeArgs
+    public sealed class GetVolumesArgs : global::Pulumi.InvokeArgs
     {
         [Input("namespace")]
         public string? Namespace { get; set; }
@@ -82,9 +78,10 @@ namespace Pulumi.Nomad
         public GetVolumesArgs()
         {
         }
+        public static new GetVolumesArgs Empty => new GetVolumesArgs();
     }
 
-    public sealed class GetVolumesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetVolumesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
@@ -101,6 +98,7 @@ namespace Pulumi.Nomad
         public GetVolumesInvokeArgs()
         {
         }
+        public static new GetVolumesInvokeArgs Empty => new GetVolumesInvokeArgs();
     }
 
 

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -29,6 +30,23 @@ import * as utilities from "./utilities";
  *     }],
  *     mountOptions: {
  *         fsType: "ext4",
+ *     },
+ *     topologyRequest: {
+ *         required: {
+ *             topologies: [
+ *                 {
+ *                     segments: {
+ *                         rack: "R1",
+ *                         zone: "us-east-1a",
+ *                     },
+ *                 },
+ *                 {
+ *                     segments: {
+ *                         rack: "R2",
+ *                     },
+ *                 },
+ *             ],
+ *         },
  *     },
  * }, {
  *     dependsOn: [ebs],
@@ -123,6 +141,11 @@ export class Volume extends pulumi.CustomResource {
      * An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
     public readonly secrets!: pulumi.Output<{[key: string]: string} | undefined>;
+    public /*out*/ readonly topologies!: pulumi.Output<outputs.VolumeTopology[]>;
+    /**
+     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     */
+    public readonly topologyRequest!: pulumi.Output<outputs.VolumeTopologyRequest | undefined>;
     /**
      * The type of the volume. Currently, only 'csi' is supported.
      */
@@ -165,6 +188,8 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["pluginProviderVersion"] = state ? state.pluginProviderVersion : undefined;
             resourceInputs["schedulable"] = state ? state.schedulable : undefined;
             resourceInputs["secrets"] = state ? state.secrets : undefined;
+            resourceInputs["topologies"] = state ? state.topologies : undefined;
+            resourceInputs["topologyRequest"] = state ? state.topologyRequest : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["volumeId"] = state ? state.volumeId : undefined;
         } else {
@@ -190,6 +215,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["parameters"] = args ? args.parameters : undefined;
             resourceInputs["pluginId"] = args ? args.pluginId : undefined;
             resourceInputs["secrets"] = args ? args.secrets : undefined;
+            resourceInputs["topologyRequest"] = args ? args.topologyRequest : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["volumeId"] = args ? args.volumeId : undefined;
             resourceInputs["controllerRequired"] = undefined /*out*/;
@@ -200,6 +226,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["pluginProvider"] = undefined /*out*/;
             resourceInputs["pluginProviderVersion"] = undefined /*out*/;
             resourceInputs["schedulable"] = undefined /*out*/;
+            resourceInputs["topologies"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Volume.__pulumiType, name, resourceInputs, opts);
@@ -270,6 +297,11 @@ export interface VolumeState {
      * An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
     secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    topologies?: pulumi.Input<pulumi.Input<inputs.VolumeTopology>[]>;
+    /**
+     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     */
+    topologyRequest?: pulumi.Input<inputs.VolumeTopologyRequest>;
     /**
      * The type of the volume. Currently, only 'csi' is supported.
      */
@@ -336,6 +368,10 @@ export interface VolumeArgs {
      * An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
     secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     */
+    topologyRequest?: pulumi.Input<inputs.VolumeTopologyRequest>;
     /**
      * The type of the volume. Currently, only 'csi' is supported.
      */

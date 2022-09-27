@@ -19,25 +19,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.NewAclToken(ctx, "dakota", &nomad.AclTokenArgs{
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("dev"),
-// 				pulumi.String("qa"),
-// 			},
-// 			Type: pulumi.String("client"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.NewAclToken(ctx, "dakota", &nomad.AclTokenArgs{
+//				Policies: pulumi.StringArray{
+//					pulumi.String("dev"),
+//					pulumi.String("qa"),
+//				},
+//				Type: pulumi.String("client"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // Creating a global token that will be replicated to all regions:
@@ -46,26 +49,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.NewAclToken(ctx, "dakota", &nomad.AclTokenArgs{
-// 			Global: pulumi.Bool(true),
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("dev"),
-// 				pulumi.String("qa"),
-// 			},
-// 			Type: pulumi.String("client"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.NewAclToken(ctx, "dakota", &nomad.AclTokenArgs{
+//				Global: pulumi.Bool(true),
+//				Policies: pulumi.StringArray{
+//					pulumi.String("dev"),
+//					pulumi.String("qa"),
+//				},
+//				Type: pulumi.String("client"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // Creating a token with full access to the cluster:
@@ -74,21 +80,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.NewAclToken(ctx, "iman", &nomad.AclTokenArgs{
-// 			Type: pulumi.String("management"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.NewAclToken(ctx, "iman", &nomad.AclTokenArgs{
+//				Type: pulumi.String("management"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // Accessing the token:
@@ -97,25 +106,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		token, err := nomad.NewAclToken(ctx, "token", &nomad.AclTokenArgs{
-// 			Type: pulumi.String("client"),
-// 			Policies: pulumi.StringArray{
-// 				pulumi.String("dev"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("nomadToken", token.SecretId)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			token, err := nomad.NewAclToken(ctx, "token", &nomad.AclTokenArgs{
+//				Type: pulumi.String("client"),
+//				Policies: pulumi.StringArray{
+//					pulumi.String("dev"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("nomadToken", token.SecretId)
+//			return nil
+//		})
+//	}
+//
 // ```
 type AclToken struct {
 	pulumi.CustomResourceState
@@ -290,7 +302,7 @@ func (i *AclToken) ToAclTokenOutputWithContext(ctx context.Context) AclTokenOutp
 // AclTokenArrayInput is an input type that accepts AclTokenArray and AclTokenArrayOutput values.
 // You can construct a concrete instance of `AclTokenArrayInput` via:
 //
-//          AclTokenArray{ AclTokenArgs{...} }
+//	AclTokenArray{ AclTokenArgs{...} }
 type AclTokenArrayInput interface {
 	pulumi.Input
 
@@ -315,7 +327,7 @@ func (i AclTokenArray) ToAclTokenArrayOutputWithContext(ctx context.Context) Acl
 // AclTokenMapInput is an input type that accepts AclTokenMap and AclTokenMapOutput values.
 // You can construct a concrete instance of `AclTokenMapInput` via:
 //
-//          AclTokenMap{ "key": AclTokenArgs{...} }
+//	AclTokenMap{ "key": AclTokenArgs{...} }
 type AclTokenMapInput interface {
 	pulumi.Input
 
@@ -349,6 +361,49 @@ func (o AclTokenOutput) ToAclTokenOutput() AclTokenOutput {
 
 func (o AclTokenOutput) ToAclTokenOutputWithContext(ctx context.Context) AclTokenOutput {
 	return o
+}
+
+// `(string)` - A non-sensitive identifier for this token that
+// can be logged and shared safely without granting any access to the cluster.
+func (o AclTokenOutput) AccessorId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AclToken) pulumi.StringOutput { return v.AccessorId }).(pulumi.StringOutput)
+}
+
+// `(string)` - The timestamp the token was created.
+func (o AclTokenOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *AclToken) pulumi.StringOutput { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// `(bool: false)` - Whether the token should be replicated to all
+// regions, or if it will only be used in the region it was created in.
+func (o AclTokenOutput) Global() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AclToken) pulumi.BoolPtrOutput { return v.Global }).(pulumi.BoolPtrOutput)
+}
+
+// `(string: "")` - A human-friendly name for this token.
+func (o AclTokenOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *AclToken) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(set: [])` - A set of policy names to associate with this
+// token. Must be set on `client`-type tokens, must not be set on
+// `management`-type tokens. Policies do not need to exist before being
+// used here.
+func (o AclTokenOutput) Policies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AclToken) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+// `(string)` - The token value itself, which is presented for
+// access to the cluster.
+func (o AclTokenOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v *AclToken) pulumi.StringOutput { return v.SecretId }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - The type of token this is. Use `client`
+// for tokens that will have policies associated with them. Use `management`
+// for tokens that can perform any action.
+func (o AclTokenOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *AclToken) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 type AclTokenArrayOutput struct{ *pulumi.OutputState }

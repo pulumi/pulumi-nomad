@@ -79,6 +79,8 @@ type providerArgs struct {
 	Headers []ProviderHeader `pulumi:"headers"`
 	// HTTP basic auth configuration.
 	HttpAuth *string `pulumi:"httpAuth"`
+	// A set of environment variables that are ignored by the provider when configuring the Nomad API client.
+	IgnoreEnvVars map[string]bool `pulumi:"ignoreEnvVars"`
 	// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
 	KeyFile *string `pulumi:"keyFile"`
 	// PEM-encoded private key, required if cert_file or cert_pem is specified.
@@ -109,6 +111,8 @@ type ProviderArgs struct {
 	Headers ProviderHeaderArrayInput
 	// HTTP basic auth configuration.
 	HttpAuth pulumi.StringPtrInput
+	// A set of environment variables that are ignored by the provider when configuring the Nomad API client.
+	IgnoreEnvVars pulumi.BoolMapInput
 	// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
 	KeyFile pulumi.StringPtrInput
 	// PEM-encoded private key, required if cert_file or cert_pem is specified.
@@ -156,6 +160,66 @@ func (o ProviderOutput) ToProviderOutput() ProviderOutput {
 
 func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
 	return o
+}
+
+// URL of the root of the target Nomad agent.
+func (o ProviderOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
+}
+
+// A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
+func (o ProviderOutput) CaFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CaFile }).(pulumi.StringPtrOutput)
+}
+
+// PEM-encoded certificate authority used to verify the remote agent's certificate.
+func (o ProviderOutput) CaPem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CaPem }).(pulumi.StringPtrOutput)
+}
+
+// A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+func (o ProviderOutput) CertFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CertFile }).(pulumi.StringPtrOutput)
+}
+
+// PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+func (o ProviderOutput) CertPem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CertPem }).(pulumi.StringPtrOutput)
+}
+
+// Consul token to validate Consul Connect Service Identity policies specified in the job file.
+func (o ProviderOutput) ConsulToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ConsulToken }).(pulumi.StringPtrOutput)
+}
+
+// HTTP basic auth configuration.
+func (o ProviderOutput) HttpAuth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.HttpAuth }).(pulumi.StringPtrOutput)
+}
+
+// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+func (o ProviderOutput) KeyFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.KeyFile }).(pulumi.StringPtrOutput)
+}
+
+// PEM-encoded private key, required if cert_file or cert_pem is specified.
+func (o ProviderOutput) KeyPem() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.KeyPem }).(pulumi.StringPtrOutput)
+}
+
+// Region of the target Nomad agent.
+func (o ProviderOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// ACL token secret for API requests.
+func (o ProviderOutput) SecretId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.SecretId }).(pulumi.StringPtrOutput)
+}
+
+// Vault token if policies are specified in the job file.
+func (o ProviderOutput) VaultToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.VaultToken }).(pulumi.StringPtrOutput)
 }
 
 func init() {

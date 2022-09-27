@@ -18,7 +18,7 @@ type Headers struct {
 // HeadersInput is an input type that accepts HeadersArgs and HeadersOutput values.
 // You can construct a concrete instance of `HeadersInput` via:
 //
-//          HeadersArgs{...}
+//	HeadersArgs{...}
 type HeadersInput interface {
 	pulumi.Input
 
@@ -46,7 +46,7 @@ func (i HeadersArgs) ToHeadersOutputWithContext(ctx context.Context) HeadersOutp
 // HeadersArrayInput is an input type that accepts HeadersArray and HeadersArrayOutput values.
 // You can construct a concrete instance of `HeadersArrayInput` via:
 //
-//          HeadersArray{ HeadersArgs{...} }
+//	HeadersArray{ HeadersArgs{...} }
 type HeadersArrayInput interface {
 	pulumi.Input
 

@@ -19,28 +19,26 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using System.IO;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var myJob = Nomad.GetJobParser.Invoke(new()
         ///     {
-        ///         var myJob = Output.Create(Nomad.GetJobParser.InvokeAsync(new Nomad.GetJobParserArgs
-        ///         {
-        ///             Hcl = File.ReadAllText($"{path.Module}/jobspec.hcl"),
-        ///             Canonicalize = false,
-        ///         }));
-        ///     }
+        ///         Hcl = File.ReadAllText($"{path.Module}/jobspec.hcl"),
+        ///         Canonicalize = false,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetJobParserResult> InvokeAsync(GetJobParserArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserArgs(), options.WithDefaults());
 
         /// <summary>
         /// Parse a HCL jobspec and produce the equivalent JSON encoded job.
@@ -50,32 +48,30 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using System.IO;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var myJob = Nomad.GetJobParser.Invoke(new()
         ///     {
-        ///         var myJob = Output.Create(Nomad.GetJobParser.InvokeAsync(new Nomad.GetJobParserArgs
-        ///         {
-        ///             Hcl = File.ReadAllText($"{path.Module}/jobspec.hcl"),
-        ///             Canonicalize = false,
-        ///         }));
-        ///     }
+        ///         Hcl = File.ReadAllText($"{path.Module}/jobspec.hcl"),
+        ///         Canonicalize = false,
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetJobParserResult> Invoke(GetJobParserInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetJobParserArgs : Pulumi.InvokeArgs
+    public sealed class GetJobParserArgs : global::Pulumi.InvokeArgs
     {
         [Input("canonicalize")]
         public bool? Canonicalize { get; set; }
@@ -86,9 +82,10 @@ namespace Pulumi.Nomad
         public GetJobParserArgs()
         {
         }
+        public static new GetJobParserArgs Empty => new GetJobParserArgs();
     }
 
-    public sealed class GetJobParserInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetJobParserInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("canonicalize")]
         public Input<bool>? Canonicalize { get; set; }
@@ -99,6 +96,7 @@ namespace Pulumi.Nomad
         public GetJobParserInvokeArgs()
         {
         }
+        public static new GetJobParserInvokeArgs Empty => new GetJobParserInvokeArgs();
     }
 
 

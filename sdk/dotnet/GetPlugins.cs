@@ -19,23 +19,21 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var example = Output.Create(Nomad.GetPlugins.InvokeAsync());
-        ///     }
+        ///     var example = Nomad.GetPlugins.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetPluginsResult> InvokeAsync(GetPluginsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve a list of dynamic plugins in Nomad.
@@ -45,27 +43,25 @@ namespace Pulumi.Nomad
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var example = Output.Create(Nomad.GetPlugins.InvokeAsync());
-        ///     }
+        ///     var example = Nomad.GetPlugins.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetPluginsResult> Invoke(GetPluginsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetPluginsArgs : Pulumi.InvokeArgs
+    public sealed class GetPluginsArgs : global::Pulumi.InvokeArgs
     {
         [Input("type")]
         public string? Type { get; set; }
@@ -73,9 +69,10 @@ namespace Pulumi.Nomad
         public GetPluginsArgs()
         {
         }
+        public static new GetPluginsArgs Empty => new GetPluginsArgs();
     }
 
-    public sealed class GetPluginsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetPluginsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -83,6 +80,7 @@ namespace Pulumi.Nomad
         public GetPluginsInvokeArgs()
         {
         }
+        public static new GetPluginsInvokeArgs Empty => new GetPluginsInvokeArgs();
     }
 
 

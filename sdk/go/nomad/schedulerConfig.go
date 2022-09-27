@@ -25,26 +25,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := nomad.NewSchedulerConfig(ctx, "config", &nomad.SchedulerConfigArgs{
-// 			PreemptionConfig: pulumi.BoolMap{
-// 				"batch_scheduler_enabled":   pulumi.Bool(true),
-// 				"service_scheduler_enabled": pulumi.Bool(true),
-// 				"system_scheduler_enabled":  pulumi.Bool(true),
-// 			},
-// 			SchedulerAlgorithm: pulumi.String("spread"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nomad.NewSchedulerConfig(ctx, "config", &nomad.SchedulerConfigArgs{
+//				MemoryOversubscriptionEnabled: pulumi.Bool(true),
+//				PreemptionConfig: pulumi.BoolMap{
+//					"batch_scheduler_enabled":    pulumi.Bool(true),
+//					"service_scheduler_enabled":  pulumi.Bool(true),
+//					"sysbatch_scheduler_enabled": pulumi.Bool(true),
+//					"system_scheduler_enabled":   pulumi.Bool(true),
+//				},
+//				SchedulerAlgorithm: pulumi.String("spread"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type SchedulerConfig struct {
 	pulumi.CustomResourceState
@@ -152,7 +157,7 @@ func (i *SchedulerConfig) ToSchedulerConfigOutputWithContext(ctx context.Context
 // SchedulerConfigArrayInput is an input type that accepts SchedulerConfigArray and SchedulerConfigArrayOutput values.
 // You can construct a concrete instance of `SchedulerConfigArrayInput` via:
 //
-//          SchedulerConfigArray{ SchedulerConfigArgs{...} }
+//	SchedulerConfigArray{ SchedulerConfigArgs{...} }
 type SchedulerConfigArrayInput interface {
 	pulumi.Input
 
@@ -177,7 +182,7 @@ func (i SchedulerConfigArray) ToSchedulerConfigArrayOutputWithContext(ctx contex
 // SchedulerConfigMapInput is an input type that accepts SchedulerConfigMap and SchedulerConfigMapOutput values.
 // You can construct a concrete instance of `SchedulerConfigMapInput` via:
 //
-//          SchedulerConfigMap{ "key": SchedulerConfigArgs{...} }
+//	SchedulerConfigMap{ "key": SchedulerConfigArgs{...} }
 type SchedulerConfigMapInput interface {
 	pulumi.Input
 
@@ -211,6 +216,21 @@ func (o SchedulerConfigOutput) ToSchedulerConfigOutput() SchedulerConfigOutput {
 
 func (o SchedulerConfigOutput) ToSchedulerConfigOutputWithContext(ctx context.Context) SchedulerConfigOutput {
 	return o
+}
+
+// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+func (o SchedulerConfigOutput) MemoryOversubscriptionEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SchedulerConfig) pulumi.BoolPtrOutput { return v.MemoryOversubscriptionEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// `(map[string]bool)` - Options to enable preemption for various schedulers.
+func (o SchedulerConfigOutput) PreemptionConfig() pulumi.BoolMapOutput {
+	return o.ApplyT(func(v *SchedulerConfig) pulumi.BoolMapOutput { return v.PreemptionConfig }).(pulumi.BoolMapOutput)
+}
+
+// `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
+func (o SchedulerConfigOutput) SchedulerAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SchedulerConfig) pulumi.StringPtrOutput { return v.SchedulerAlgorithm }).(pulumi.StringPtrOutput)
 }
 
 type SchedulerConfigArrayOutput struct{ *pulumi.OutputState }

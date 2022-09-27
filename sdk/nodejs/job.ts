@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class Job extends pulumi.CustomResource {
@@ -37,6 +38,11 @@ export class Job extends pulumi.CustomResource {
      * The IDs for allocations associated with this job.
      */
     public /*out*/ readonly allocationIds!: pulumi.Output<string[]>;
+    /**
+     * `(string: <optional>)` - Consul token used when registering this job.
+     * Will fallback to the value declared in Nomad provider configuration, if any.
+     */
+    public readonly consulToken!: pulumi.Output<string | undefined>;
     /**
      * The target datacenters for the job, as derived from the jobspec.
      */
@@ -107,6 +113,11 @@ export class Job extends pulumi.CustomResource {
      * The type of the job, as derived from the jobspec.
      */
     public /*out*/ readonly type!: pulumi.Output<string>;
+    /**
+     * `(string: <optional>)` - Vault token used when registering this job.
+     * Will fallback to the value declared in Nomad provider configuration, if any.
+     */
+    public readonly vaultToken!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Job resource with the given unique name, arguments, and options.
@@ -122,6 +133,7 @@ export class Job extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as JobState | undefined;
             resourceInputs["allocationIds"] = state ? state.allocationIds : undefined;
+            resourceInputs["consulToken"] = state ? state.consulToken : undefined;
             resourceInputs["datacenters"] = state ? state.datacenters : undefined;
             resourceInputs["deploymentId"] = state ? state.deploymentId : undefined;
             resourceInputs["deploymentStatus"] = state ? state.deploymentStatus : undefined;
@@ -139,11 +151,13 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["taskGroups"] = state ? state.taskGroups : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vaultToken"] = state ? state.vaultToken : undefined;
         } else {
             const args = argsOrState as JobArgs | undefined;
             if ((!args || args.jobspec === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'jobspec'");
             }
+            resourceInputs["consulToken"] = args ? args.consulToken : undefined;
             resourceInputs["deregisterOnDestroy"] = args ? args.deregisterOnDestroy : undefined;
             resourceInputs["deregisterOnIdChange"] = args ? args.deregisterOnIdChange : undefined;
             resourceInputs["detach"] = args ? args.detach : undefined;
@@ -152,6 +166,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["json"] = args ? args.json : undefined;
             resourceInputs["policyOverride"] = args ? args.policyOverride : undefined;
             resourceInputs["purgeOnDestroy"] = args ? args.purgeOnDestroy : undefined;
+            resourceInputs["vaultToken"] = args ? args.vaultToken : undefined;
             resourceInputs["allocationIds"] = undefined /*out*/;
             resourceInputs["datacenters"] = undefined /*out*/;
             resourceInputs["deploymentId"] = undefined /*out*/;
@@ -176,6 +191,11 @@ export interface JobState {
      * The IDs for allocations associated with this job.
      */
     allocationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * `(string: <optional>)` - Consul token used when registering this job.
+     * Will fallback to the value declared in Nomad provider configuration, if any.
+     */
+    consulToken?: pulumi.Input<string>;
     /**
      * The target datacenters for the job, as derived from the jobspec.
      */
@@ -246,12 +266,22 @@ export interface JobState {
      * The type of the job, as derived from the jobspec.
      */
     type?: pulumi.Input<string>;
+    /**
+     * `(string: <optional>)` - Vault token used when registering this job.
+     * Will fallback to the value declared in Nomad provider configuration, if any.
+     */
+    vaultToken?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a Job resource.
  */
 export interface JobArgs {
+    /**
+     * `(string: <optional>)` - Consul token used when registering this job.
+     * Will fallback to the value declared in Nomad provider configuration, if any.
+     */
+    consulToken?: pulumi.Input<string>;
     /**
      * If true, the job will be deregistered on destroy.
      */
@@ -289,4 +319,9 @@ export interface JobArgs {
      * be purged when the resource is destroyed.
      */
     purgeOnDestroy?: pulumi.Input<boolean>;
+    /**
+     * `(string: <optional>)` - Vault token used when registering this job.
+     * Will fallback to the value declared in Nomad provider configuration, if any.
+     */
+    vaultToken?: pulumi.Input<string>;
 }

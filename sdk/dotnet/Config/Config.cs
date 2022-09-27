@@ -30,7 +30,7 @@ namespace Pulumi.Nomad
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("nomad");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("nomad");
 
         private static readonly __Value<string?> _address = new __Value<string?>(() => __config.Get("address"));
         /// <summary>
@@ -110,6 +110,16 @@ namespace Pulumi.Nomad
         {
             get => _httpAuth.Get();
             set => _httpAuth.Set(value);
+        }
+
+        private static readonly __Value<ImmutableDictionary<string, bool>?> _ignoreEnvVars = new __Value<ImmutableDictionary<string, bool>?>(() => __config.GetObject<ImmutableDictionary<string, bool>>("ignoreEnvVars"));
+        /// <summary>
+        /// A set of environment variables that are ignored by the provider when configuring the Nomad API client.
+        /// </summary>
+        public static ImmutableDictionary<string, bool>? IgnoreEnvVars
+        {
+            get => _ignoreEnvVars.Get();
+            set => _ignoreEnvVars.Set(value);
         }
 
         private static readonly __Value<string?> _keyFile = new __Value<string?>(() => __config.Get("keyFile"));

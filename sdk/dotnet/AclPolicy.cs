@@ -17,50 +17,46 @@ namespace Pulumi.Nomad
     /// Registering a policy from a HCL file:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var dev = new Nomad.AclPolicy("dev", new()
     ///     {
-    ///         var dev = new Nomad.AclPolicy("dev", new Nomad.AclPolicyArgs
-    ///         {
-    ///             Description = "Submit jobs to the dev environment.",
-    ///             RulesHcl = File.ReadAllText($"{path.Module}/dev.hcl"),
-    ///         });
-    ///     }
+    ///         Description = "Submit jobs to the dev environment.",
+    ///         RulesHcl = File.ReadAllText($"{path.Module}/dev.hcl"),
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// Registering a policy from inline HCL:
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Nomad = Pulumi.Nomad;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var dev = new Nomad.AclPolicy("dev", new()
     ///     {
-    ///         var dev = new Nomad.AclPolicy("dev", new Nomad.AclPolicyArgs
-    ///         {
-    ///             Description = "Submit jobs to the dev environment.",
-    ///             RulesHcl = @"namespace ""dev"" {
+    ///         Description = "Submit jobs to the dev environment.",
+    ///         RulesHcl = @"namespace ""dev"" {
     ///   policy = ""write""
     /// }
     /// 
     /// ",
-    ///         });
-    ///     }
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// </summary>
     [NomadResourceType("nomad:index/aclPolicy:AclPolicy")]
-    public partial class AclPolicy : Pulumi.CustomResource
+    public partial class AclPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
@@ -125,7 +121,7 @@ namespace Pulumi.Nomad
         }
     }
 
-    public sealed class AclPolicyArgs : Pulumi.ResourceArgs
+    public sealed class AclPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
@@ -149,9 +145,10 @@ namespace Pulumi.Nomad
         public AclPolicyArgs()
         {
         }
+        public static new AclPolicyArgs Empty => new AclPolicyArgs();
     }
 
-    public sealed class AclPolicyState : Pulumi.ResourceArgs
+    public sealed class AclPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
@@ -175,5 +172,6 @@ namespace Pulumi.Nomad
         public AclPolicyState()
         {
         }
+        public static new AclPolicyState Empty => new AclPolicyState();
     }
 }

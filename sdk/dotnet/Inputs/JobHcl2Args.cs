@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Nomad.Inputs
 {
 
-    public sealed class JobHcl2Args : Pulumi.ResourceArgs
+    public sealed class JobHcl2Args : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// `(boolean: false)` - Set this to `true` to be able to use
@@ -37,5 +37,6 @@ namespace Pulumi.Nomad.Inputs
         public JobHcl2Args()
         {
         }
+        public static new JobHcl2Args Empty => new JobHcl2Args();
     }
 }

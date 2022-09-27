@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Nomad.Inputs
 {
 
-    public sealed class JobTaskGroupGetArgs : Pulumi.ResourceArgs
+    public sealed class JobTaskGroupGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("count")]
         public Input<int>? Count { get; set; }
@@ -45,5 +45,6 @@ namespace Pulumi.Nomad.Inputs
         public JobTaskGroupGetArgs()
         {
         }
+        public static new JobTaskGroupGetArgs Empty => new JobTaskGroupGetArgs();
     }
 }
