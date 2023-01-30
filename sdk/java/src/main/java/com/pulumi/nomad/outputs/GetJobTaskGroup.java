@@ -17,6 +17,10 @@ import java.util.Objects;
 public final class GetJobTaskGroup {
     private Integer count;
     private Map<String,Object> meta;
+    /**
+     * @return `(string)` Name of the job.
+     * 
+     */
     private String name;
     private List<GetJobTaskGroupTask> tasks;
     private List<GetJobTaskGroupVolume> volumes;
@@ -28,6 +32,10 @@ public final class GetJobTaskGroup {
     public Map<String,Object> meta() {
         return this.meta;
     }
+    /**
+     * @return `(string)` Name of the job.
+     * 
+     */
     public String name() {
         return this.name;
     }

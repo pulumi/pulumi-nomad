@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.LookupAclPolicy(ctx, &GetAclPolicyArgs{
+//			_, err := nomad.LookupAclPolicy(ctx, &nomad.LookupAclPolicyArgs{
 //				Name: "my-policy",
 //			}, nil)
 //			if err != nil {
@@ -48,15 +48,19 @@ func LookupAclPolicy(ctx *pulumi.Context, args *LookupAclPolicyArgs, opts ...pul
 
 // A collection of arguments for invoking getAclPolicy.
 type LookupAclPolicyArgs struct {
+	// `(string)` - the name of the ACL Policy.
 	Name string `pulumi:"name"`
 }
 
 // A collection of values returned by getAclPolicy.
 type LookupAclPolicyResult struct {
+	// `(string)` - the description of the ACL Policy.
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
-	Id    string `pulumi:"id"`
-	Name  string `pulumi:"name"`
+	Id string `pulumi:"id"`
+	// `(string)` - the name of the ACL Policy.
+	Name string `pulumi:"name"`
+	// `(string)` - the ACL Policy rules in HCL format.
 	Rules string `pulumi:"rules"`
 }
 
@@ -75,6 +79,7 @@ func LookupAclPolicyOutput(ctx *pulumi.Context, args LookupAclPolicyOutputArgs, 
 
 // A collection of arguments for invoking getAclPolicy.
 type LookupAclPolicyOutputArgs struct {
+	// `(string)` - the name of the ACL Policy.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -97,6 +102,7 @@ func (o LookupAclPolicyResultOutput) ToLookupAclPolicyResultOutputWithContext(ct
 	return o
 }
 
+// `(string)` - the description of the ACL Policy.
 func (o LookupAclPolicyResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclPolicyResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -106,10 +112,12 @@ func (o LookupAclPolicyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclPolicyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// `(string)` - the name of the ACL Policy.
 func (o LookupAclPolicyResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclPolicyResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// `(string)` - the ACL Policy rules in HCL format.
 func (o LookupAclPolicyResultOutput) Rules() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclPolicyResult) string { return v.Rules }).(pulumi.StringOutput)
 }

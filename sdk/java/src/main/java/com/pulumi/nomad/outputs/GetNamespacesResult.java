@@ -15,6 +15,10 @@ public final class GetNamespacesResult {
      * 
      */
     private String id;
+    /**
+     * @return `(list of strings)` - a list of namespaces available in the cluster.
+     * 
+     */
     private List<String> namespaces;
 
     private GetNamespacesResult() {}
@@ -25,6 +29,10 @@ public final class GetNamespacesResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return `(list of strings)` - a list of namespaces available in the cluster.
+     * 
+     */
     public List<String> namespaces() {
         return this.namespaces;
     }

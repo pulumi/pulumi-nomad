@@ -63,16 +63,25 @@ class GetPluginResult:
     @property
     @pulumi.getter(name="controllerRequired")
     def controller_required(self) -> bool:
+        """
+        `(boolean)` Whether a controller is required.
+        """
         return pulumi.get(self, "controller_required")
 
     @property
     @pulumi.getter(name="controllersExpected")
     def controllers_expected(self) -> int:
+        """
+        `(integer)` The number of registered controllers.
+        """
         return pulumi.get(self, "controllers_expected")
 
     @property
     @pulumi.getter(name="controllersHealthy")
     def controllers_healthy(self) -> int:
+        """
+        `(integer)` The number of healthy controllers.
+        """
         return pulumi.get(self, "controllers_healthy")
 
     @property
@@ -91,26 +100,41 @@ class GetPluginResult:
     @property
     @pulumi.getter(name="nodesExpected")
     def nodes_expected(self) -> int:
+        """
+        `(integer)` The number of registered nodes.
+        """
         return pulumi.get(self, "nodes_expected")
 
     @property
     @pulumi.getter(name="nodesHealthy")
     def nodes_healthy(self) -> int:
+        """
+        `(integer)` The number of healthy nodes.
+        """
         return pulumi.get(self, "nodes_healthy")
 
     @property
     @pulumi.getter(name="pluginId")
     def plugin_id(self) -> str:
+        """
+        `(string)` ID of the plugin
+        """
         return pulumi.get(self, "plugin_id")
 
     @property
     @pulumi.getter(name="pluginProvider")
     def plugin_provider(self) -> str:
+        """
+        `(string)` Plugin provider name
+        """
         return pulumi.get(self, "plugin_provider")
 
     @property
     @pulumi.getter(name="pluginProviderVersion")
     def plugin_provider_version(self) -> str:
+        """
+        `(string)` Plugin provider version
+        """
         return pulumi.get(self, "plugin_provider_version")
 
     @property
@@ -172,6 +196,11 @@ def get_plugin(plugin_id: Optional[str] = None,
 
     This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
     is healthy before returning.
+
+
+    :param str plugin_id: `(string)` ID of the plugin.
+    :param bool wait_for_healthy: `(boolean)` retry until the plugin exists and all controllers are healthy
+    :param bool wait_for_registration: `(boolean)` if the plugin doesn't exist, retry until it does
     """
     __args__ = dict()
     __args__['pluginId'] = plugin_id
@@ -224,5 +253,10 @@ def get_plugin_output(plugin_id: Optional[pulumi.Input[str]] = None,
 
     This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
     is healthy before returning.
+
+
+    :param str plugin_id: `(string)` ID of the plugin.
+    :param bool wait_for_healthy: `(boolean)` retry until the plugin exists and all controllers are healthy
+    :param bool wait_for_registration: `(boolean)` if the plugin doesn't exist, retry until it does
     """
     ...

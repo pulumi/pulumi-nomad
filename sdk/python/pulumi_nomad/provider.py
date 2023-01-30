@@ -343,15 +343,17 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["ca_pem"] = ca_pem
             __props__.__dict__["cert_file"] = cert_file
             __props__.__dict__["cert_pem"] = cert_pem
-            __props__.__dict__["consul_token"] = consul_token
-            __props__.__dict__["headers"] = pulumi.Output.from_input(headers).apply(pulumi.runtime.to_json) if headers is not None else None
+            __props__.__dict__["consul_token"] = None if consul_token is None else pulumi.Output.secret(consul_token)
+            __props__.__dict__["headers"] = pulumi.Output.secret(headers).apply(pulumi.runtime.to_json) if headers is not None else None
             __props__.__dict__["http_auth"] = http_auth
             __props__.__dict__["ignore_env_vars"] = pulumi.Output.from_input(ignore_env_vars).apply(pulumi.runtime.to_json) if ignore_env_vars is not None else None
             __props__.__dict__["key_file"] = key_file
             __props__.__dict__["key_pem"] = key_pem
             __props__.__dict__["region"] = region
             __props__.__dict__["secret_id"] = secret_id
-            __props__.__dict__["vault_token"] = vault_token
+            __props__.__dict__["vault_token"] = None if vault_token is None else pulumi.Output.secret(vault_token)
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["consulToken", "vaultToken"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'nomad',
             resource_name,

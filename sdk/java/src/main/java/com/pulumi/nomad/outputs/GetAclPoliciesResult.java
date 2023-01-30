@@ -18,6 +18,10 @@ public final class GetAclPoliciesResult {
      * 
      */
     private String id;
+    /**
+     * @return `list of maps` a list of ACL policies.
+     * 
+     */
     private List<GetAclPoliciesPolicy> policies;
     private @Nullable String prefix;
 
@@ -29,6 +33,10 @@ public final class GetAclPoliciesResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return `list of maps` a list of ACL policies.
+     * 
+     */
     public List<GetAclPoliciesPolicy> policies() {
         return this.policies;
     }

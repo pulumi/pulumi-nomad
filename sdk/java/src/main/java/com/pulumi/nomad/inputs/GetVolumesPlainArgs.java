@@ -14,30 +14,62 @@ public final class GetVolumesPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetVolumesPlainArgs Empty = new GetVolumesPlainArgs();
 
+    /**
+     * `(string: &#34;default&#34;)` Nomad namespace.
+     * 
+     */
     @Import(name="namespace")
     private @Nullable String namespace;
 
+    /**
+     * @return `(string: &#34;default&#34;)` Nomad namespace.
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * `(string: optional)` Volume node filter.
+     * 
+     */
     @Import(name="nodeId")
     private @Nullable String nodeId;
 
+    /**
+     * @return `(string: optional)` Volume node filter.
+     * 
+     */
     public Optional<String> nodeId() {
         return Optional.ofNullable(this.nodeId);
     }
 
+    /**
+     * `(string: optional)` Plugin ID filter.
+     * 
+     */
     @Import(name="pluginId")
     private @Nullable String pluginId;
 
+    /**
+     * @return `(string: optional)` Plugin ID filter.
+     * 
+     */
     public Optional<String> pluginId() {
         return Optional.ofNullable(this.pluginId);
     }
 
+    /**
+     * `(string: &#34;csi&#34;)` Volume type (currently only supports `csi`)
+     * 
+     */
     @Import(name="type")
     private @Nullable String type;
 
+    /**
+     * @return `(string: &#34;csi&#34;)` Volume type (currently only supports `csi`)
+     * 
+     */
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
     }
@@ -69,21 +101,45 @@ public final class GetVolumesPlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetVolumesPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param namespace `(string: &#34;default&#34;)` Nomad namespace.
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(@Nullable String namespace) {
             $.namespace = namespace;
             return this;
         }
 
+        /**
+         * @param nodeId `(string: optional)` Volume node filter.
+         * 
+         * @return builder
+         * 
+         */
         public Builder nodeId(@Nullable String nodeId) {
             $.nodeId = nodeId;
             return this;
         }
 
+        /**
+         * @param pluginId `(string: optional)` Plugin ID filter.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pluginId(@Nullable String pluginId) {
             $.pluginId = pluginId;
             return this;
         }
 
+        /**
+         * @param type `(string: &#34;csi&#34;)` Volume type (currently only supports `csi`)
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(@Nullable String type) {
             $.type = type;
             return this;

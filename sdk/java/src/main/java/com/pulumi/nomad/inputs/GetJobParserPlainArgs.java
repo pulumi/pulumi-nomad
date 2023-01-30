@@ -15,16 +15,32 @@ public final class GetJobParserPlainArgs extends com.pulumi.resources.InvokeArgs
 
     public static final GetJobParserPlainArgs Empty = new GetJobParserPlainArgs();
 
+    /**
+     * `(boolean: true)` - flag to enable setting any unset fields to their default values.
+     * 
+     */
     @Import(name="canonicalize")
     private @Nullable Boolean canonicalize;
 
+    /**
+     * @return `(boolean: true)` - flag to enable setting any unset fields to their default values.
+     * 
+     */
     public Optional<Boolean> canonicalize() {
         return Optional.ofNullable(this.canonicalize);
     }
 
+    /**
+     * `(string)` - the HCL definition of the job.
+     * 
+     */
     @Import(name="hcl", required=true)
     private String hcl;
 
+    /**
+     * @return `(string)` - the HCL definition of the job.
+     * 
+     */
     public String hcl() {
         return this.hcl;
     }
@@ -54,11 +70,23 @@ public final class GetJobParserPlainArgs extends com.pulumi.resources.InvokeArgs
             $ = new GetJobParserPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param canonicalize `(boolean: true)` - flag to enable setting any unset fields to their default values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder canonicalize(@Nullable Boolean canonicalize) {
             $.canonicalize = canonicalize;
             return this;
         }
 
+        /**
+         * @param hcl `(string)` - the HCL definition of the job.
+         * 
+         * @return builder
+         * 
+         */
         public Builder hcl(String hcl) {
             $.hcl = hcl;
             return this;

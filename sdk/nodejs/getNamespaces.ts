@@ -8,11 +8,8 @@ import * as utilities from "./utilities";
  * Retrieve a list of namespaces available in Nomad.
  */
 export function getNamespaces(opts?: pulumi.InvokeOptions): Promise<GetNamespacesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getNamespaces:getNamespaces", {
     }, opts);
 }
@@ -25,5 +22,8 @@ export interface GetNamespacesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * `(list of strings)` - a list of namespaces available in the cluster.
+     */
     readonly namespaces: string[];
 }

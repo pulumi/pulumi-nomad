@@ -8,11 +8,8 @@ import * as utilities from "./utilities";
  * Retrieve a list of regions available in Nomad.
  */
 export function getRegions(opts?: pulumi.InvokeOptions): Promise<GetRegionsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getRegions:getRegions", {
     }, opts);
 }
@@ -25,5 +22,8 @@ export interface GetRegionsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * `(list of strings)` - a list of regions available in the cluster.
+     */
     readonly regions: string[];
 }

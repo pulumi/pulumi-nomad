@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.GetScalingPolicy(ctx, &GetScalingPolicyArgs{
+//			_, err := nomad.GetScalingPolicy(ctx, &nomad.GetScalingPolicyArgs{
 //				Id: "ad19848d-1921-179c-affa-244a3543be88",
 //			}, nil)
 //			if err != nil {
@@ -54,13 +54,19 @@ type GetScalingPolicyArgs struct {
 
 // A collection of values returned by getScalingPolicy.
 type GetScalingPolicyResult struct {
-	Enabled bool                   `pulumi:"enabled"`
-	Id      string                 `pulumi:"id"`
-	Max     int                    `pulumi:"max"`
-	Min     int                    `pulumi:"min"`
-	Policy  string                 `pulumi:"policy"`
-	Target  map[string]interface{} `pulumi:"target"`
-	Type    string                 `pulumi:"type"`
+	// `(boolean)` - Whether or not the scaling policy is enabled.
+	Enabled bool   `pulumi:"enabled"`
+	Id      string `pulumi:"id"`
+	// `(integer)` - The maximum value set in the scaling policy.
+	Max int `pulumi:"max"`
+	// `(integer)` - The minimum value set in the scaling policy.
+	Min int `pulumi:"min"`
+	// `(string)` - The policy inside the scaling policy.
+	Policy string `pulumi:"policy"`
+	// `(map[string]string)` - The scaling policy target.
+	Target map[string]interface{} `pulumi:"target"`
+	// `(string)` - The scaling policy type.
+	Type string `pulumi:"type"`
 }
 
 func GetScalingPolicyOutput(ctx *pulumi.Context, args GetScalingPolicyOutputArgs, opts ...pulumi.InvokeOption) GetScalingPolicyResultOutput {
@@ -101,6 +107,7 @@ func (o GetScalingPolicyResultOutput) ToGetScalingPolicyResultOutputWithContext(
 	return o
 }
 
+// `(boolean)` - Whether or not the scaling policy is enabled.
 func (o GetScalingPolicyResultOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetScalingPolicyResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -109,22 +116,27 @@ func (o GetScalingPolicyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetScalingPolicyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// `(integer)` - The maximum value set in the scaling policy.
 func (o GetScalingPolicyResultOutput) Max() pulumi.IntOutput {
 	return o.ApplyT(func(v GetScalingPolicyResult) int { return v.Max }).(pulumi.IntOutput)
 }
 
+// `(integer)` - The minimum value set in the scaling policy.
 func (o GetScalingPolicyResultOutput) Min() pulumi.IntOutput {
 	return o.ApplyT(func(v GetScalingPolicyResult) int { return v.Min }).(pulumi.IntOutput)
 }
 
+// `(string)` - The policy inside the scaling policy.
 func (o GetScalingPolicyResultOutput) Policy() pulumi.StringOutput {
 	return o.ApplyT(func(v GetScalingPolicyResult) string { return v.Policy }).(pulumi.StringOutput)
 }
 
+// `(map[string]string)` - The scaling policy target.
 func (o GetScalingPolicyResultOutput) Target() pulumi.MapOutput {
 	return o.ApplyT(func(v GetScalingPolicyResult) map[string]interface{} { return v.Target }).(pulumi.MapOutput)
 }
 
+// `(string)` - The scaling policy type.
 func (o GetScalingPolicyResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetScalingPolicyResult) string { return v.Type }).(pulumi.StringOutput)
 }

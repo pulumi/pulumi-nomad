@@ -10,12 +10,24 @@ import java.util.Objects;
 
 @CustomType
 public final class GetJobTaskGroupVolume {
+    /**
+     * @return `(string)` Name of the job.
+     * 
+     */
     private String name;
     private Boolean readOnly;
     private String source;
+    /**
+     * @return `(string)` Scheduler type used during job creation.
+     * 
+     */
     private String type;
 
     private GetJobTaskGroupVolume() {}
+    /**
+     * @return `(string)` Name of the job.
+     * 
+     */
     public String name() {
         return this.name;
     }
@@ -25,6 +37,10 @@ public final class GetJobTaskGroupVolume {
     public String source() {
         return this.source;
     }
+    /**
+     * @return `(string)` Scheduler type used during job creation.
+     * 
+     */
     public String type() {
         return this.type;
     }

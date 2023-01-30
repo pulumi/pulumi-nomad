@@ -16,9 +16,17 @@ public final class ExternalVolumeTopologyArgs extends com.pulumi.resources.Resou
 
     public static final ExternalVolumeTopologyArgs Empty = new ExternalVolumeTopologyArgs();
 
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     */
     @Import(name="segments")
     private @Nullable Output<Map<String,String>> segments;
 
+    /**
+     * @return `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     */
     public Optional<Output<Map<String,String>>> segments() {
         return Optional.ofNullable(this.segments);
     }
@@ -47,11 +55,23 @@ public final class ExternalVolumeTopologyArgs extends com.pulumi.resources.Resou
             $ = new ExternalVolumeTopologyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param segments `(map[string]string)` - Define the attributes for the topology request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder segments(@Nullable Output<Map<String,String>> segments) {
             $.segments = segments;
             return this;
         }
 
+        /**
+         * @param segments `(map[string]string)` - Define the attributes for the topology request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder segments(Map<String,String> segments) {
             return segments(Output.of(segments));
         }

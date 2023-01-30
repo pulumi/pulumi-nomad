@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const example = pulumi.output(nomad.getScalingPolicy({
+ * const example = nomad.getScalingPolicy({
  *     id: "ad19848d-1921-179c-affa-244a3543be88",
- * }));
+ * });
  * ```
  */
 export function getScalingPolicy(args: GetScalingPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetScalingPolicyResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getScalingPolicy:getScalingPolicy", {
         "id": args.id,
     }, opts);
@@ -43,17 +40,48 @@ export interface GetScalingPolicyArgs {
  * A collection of values returned by getScalingPolicy.
  */
 export interface GetScalingPolicyResult {
+    /**
+     * `(boolean)` - Whether or not the scaling policy is enabled.
+     */
     readonly enabled: boolean;
     readonly id: string;
+    /**
+     * `(integer)` - The maximum value set in the scaling policy.
+     */
     readonly max: number;
+    /**
+     * `(integer)` - The minimum value set in the scaling policy.
+     */
     readonly min: number;
+    /**
+     * `(string)` - The policy inside the scaling policy.
+     */
     readonly policy: string;
+    /**
+     * `(map[string]string)` - The scaling policy target.
+     */
     readonly target: {[key: string]: any};
+    /**
+     * `(string)` - The scaling policy type.
+     */
     readonly type: string;
 }
-
+/**
+ * Retrieve a Scaling Policy.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const example = nomad.getScalingPolicy({
+ *     id: "ad19848d-1921-179c-affa-244a3543be88",
+ * });
+ * ```
+ */
 export function getScalingPolicyOutput(args: GetScalingPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetScalingPolicyResult> {
-    return pulumi.output(args).apply(a => getScalingPolicy(a, opts))
+    return pulumi.output(args).apply((a: any) => getScalingPolicy(a, opts))
 }
 
 /**

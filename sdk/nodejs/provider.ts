@@ -95,17 +95,19 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["caPem"] = args ? args.caPem : undefined;
             resourceInputs["certFile"] = args ? args.certFile : undefined;
             resourceInputs["certPem"] = args ? args.certPem : undefined;
-            resourceInputs["consulToken"] = args ? args.consulToken : undefined;
-            resourceInputs["headers"] = pulumi.output(args ? args.headers : undefined).apply(JSON.stringify);
+            resourceInputs["consulToken"] = args?.consulToken ? pulumi.secret(args.consulToken) : undefined;
+            resourceInputs["headers"] = pulumi.output(args?.headers ? pulumi.secret(args.headers) : undefined).apply(JSON.stringify);
             resourceInputs["httpAuth"] = args ? args.httpAuth : undefined;
             resourceInputs["ignoreEnvVars"] = pulumi.output(args ? args.ignoreEnvVars : undefined).apply(JSON.stringify);
             resourceInputs["keyFile"] = args ? args.keyFile : undefined;
             resourceInputs["keyPem"] = args ? args.keyPem : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["secretId"] = args ? args.secretId : undefined;
-            resourceInputs["vaultToken"] = args ? args.vaultToken : undefined;
+            resourceInputs["vaultToken"] = args?.vaultToken ? pulumi.secret(args.vaultToken) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["consulToken", "vaultToken"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }

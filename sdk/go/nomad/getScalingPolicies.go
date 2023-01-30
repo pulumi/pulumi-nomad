@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.GetScalingPolicies(ctx, &GetScalingPoliciesArgs{
+//			_, err := nomad.GetScalingPolicies(ctx, &nomad.GetScalingPoliciesArgs{
 //				JobId: pulumi.StringRef("webapp"),
 //				Type:  pulumi.StringRef("horizontal"),
 //			}, nil)
@@ -58,10 +58,12 @@ type GetScalingPoliciesArgs struct {
 // A collection of values returned by getScalingPolicies.
 type GetScalingPoliciesResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id       string                     `pulumi:"id"`
-	JobId    *string                    `pulumi:"jobId"`
+	Id    string  `pulumi:"id"`
+	JobId *string `pulumi:"jobId"`
+	// `list of maps` - A list of scaling policies.
 	Policies []GetScalingPoliciesPolicy `pulumi:"policies"`
-	Type     *string                    `pulumi:"type"`
+	// `(string)` - The scaling policy type.
+	Type *string `pulumi:"type"`
 }
 
 func GetScalingPoliciesOutput(ctx *pulumi.Context, args GetScalingPoliciesOutputArgs, opts ...pulumi.InvokeOption) GetScalingPoliciesResultOutput {
@@ -113,10 +115,12 @@ func (o GetScalingPoliciesResultOutput) JobId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetScalingPoliciesResult) *string { return v.JobId }).(pulumi.StringPtrOutput)
 }
 
+// `list of maps` - A list of scaling policies.
 func (o GetScalingPoliciesResultOutput) Policies() GetScalingPoliciesPolicyArrayOutput {
 	return o.ApplyT(func(v GetScalingPoliciesResult) []GetScalingPoliciesPolicy { return v.Policies }).(GetScalingPoliciesPolicyArrayOutput)
 }
 
+// `(string)` - The scaling policy type.
 func (o GetScalingPoliciesResultOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetScalingPoliciesResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }

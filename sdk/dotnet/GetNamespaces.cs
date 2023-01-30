@@ -26,6 +26,9 @@ namespace Pulumi.Nomad
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// `(list of strings)` - a list of namespaces available in the cluster.
+        /// </summary>
         public readonly ImmutableArray<string> Namespaces;
 
         [OutputConstructor]

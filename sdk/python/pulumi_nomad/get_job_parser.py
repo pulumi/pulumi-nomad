@@ -38,11 +38,17 @@ class GetJobParserResult:
     @property
     @pulumi.getter
     def canonicalize(self) -> Optional[bool]:
+        """
+        `(boolean: true)` - flag to enable setting any unset fields to their default values.
+        """
         return pulumi.get(self, "canonicalize")
 
     @property
     @pulumi.getter
     def hcl(self) -> str:
+        """
+        `(string)` - the HCL definition of the job.
+        """
         return pulumi.get(self, "hcl")
 
     @property
@@ -56,6 +62,9 @@ class GetJobParserResult:
     @property
     @pulumi.getter
     def json(self) -> str:
+        """
+        `(string)` - the parsed job as JSON string.
+        """
         return pulumi.get(self, "json")
 
 
@@ -86,6 +95,10 @@ def get_job_parser(canonicalize: Optional[bool] = None,
     my_job = nomad.get_job_parser(hcl=(lambda path: open(path).read())(f"{path['module']}/jobspec.hcl"),
         canonicalize=False)
     ```
+
+
+    :param bool canonicalize: `(boolean: true)` - flag to enable setting any unset fields to their default values.
+    :param str hcl: `(string)` - the HCL definition of the job.
     """
     __args__ = dict()
     __args__['canonicalize'] = canonicalize
@@ -116,5 +129,9 @@ def get_job_parser_output(canonicalize: Optional[pulumi.Input[Optional[bool]]] =
     my_job = nomad.get_job_parser(hcl=(lambda path: open(path).read())(f"{path['module']}/jobspec.hcl"),
         canonicalize=False)
     ```
+
+
+    :param bool canonicalize: `(boolean: true)` - flag to enable setting any unset fields to their default values.
+    :param str hcl: `(string)` - the HCL definition of the job.
     """
     ...

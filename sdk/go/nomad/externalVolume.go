@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ebs, err := nomad.GetPlugin(ctx, &GetPluginArgs{
+//			ebs, err := nomad.GetPlugin(ctx, &nomad.GetPluginArgs{
 //				PluginId:       "aws-ebs0",
 //				WaitForHealthy: pulumi.BoolRef(true),
 //			}, nil)
@@ -40,25 +40,25 @@ import (
 //				VolumeId:    pulumi.String("mysql_volume"),
 //				CapacityMin: pulumi.String("10GiB"),
 //				CapacityMax: pulumi.String("20GiB"),
-//				Capabilities: ExternalVolumeCapabilityArray{
-//					&ExternalVolumeCapabilityArgs{
+//				Capabilities: nomad.ExternalVolumeCapabilityArray{
+//					&nomad.ExternalVolumeCapabilityArgs{
 //						AccessMode:     pulumi.String("single-node-writer"),
 //						AttachmentMode: pulumi.String("file-system"),
 //					},
 //				},
-//				MountOptions: &ExternalVolumeMountOptionsArgs{
+//				MountOptions: &nomad.ExternalVolumeMountOptionsArgs{
 //					FsType: pulumi.String("ext4"),
 //				},
-//				TopologyRequest: &ExternalVolumeTopologyRequestArgs{
-//					Required: &ExternalVolumeTopologyRequestRequiredArgs{
-//						Topologies: ExternalVolumeTopologyRequestRequiredTopologyArray{
-//							&ExternalVolumeTopologyRequestRequiredTopologyArgs{
+//				TopologyRequest: &nomad.ExternalVolumeTopologyRequestArgs{
+//					Required: &nomad.ExternalVolumeTopologyRequestRequiredArgs{
+//						Topologies: nomad.ExternalVolumeTopologyRequestRequiredTopologyArray{
+//							&nomad.ExternalVolumeTopologyRequestRequiredTopologyArgs{
 //								Segments: pulumi.StringMap{
 //									"rack": pulumi.String("R1"),
 //									"zone": pulumi.String("us-east-1a"),
 //								},
 //							},
-//							&ExternalVolumeTopologyRequestRequiredTopologyArgs{
+//							&nomad.ExternalVolumeTopologyRequestRequiredTopologyArgs{
 //								Segments: pulumi.StringMap{
 //									"rack": pulumi.String("R2"),
 //								},
@@ -80,43 +80,51 @@ import (
 type ExternalVolume struct {
 	pulumi.CustomResourceState
 
-	// Capabilities intended to be used in a job. At least one capability must be provided.
+	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities ExternalVolumeCapabilityArrayOutput `pulumi:"capabilities"`
-	// Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
 	CapacityMax pulumi.StringPtrOutput `pulumi:"capacityMax"`
-	// Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
 	CapacityMin pulumi.StringPtrOutput `pulumi:"capacityMin"`
-	// The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
-	CloneId             pulumi.StringPtrOutput `pulumi:"cloneId"`
-	ControllerRequired  pulumi.BoolOutput      `pulumi:"controllerRequired"`
-	ControllersExpected pulumi.IntOutput       `pulumi:"controllersExpected"`
-	ControllersHealthy  pulumi.IntOutput       `pulumi:"controllersHealthy"`
-	// Options for mounting 'block-device' volumes without a pre-formatted file system.
+	// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
+	CloneId pulumi.StringPtrOutput `pulumi:"cloneId"`
+	// `(boolean)`
+	ControllerRequired pulumi.BoolOutput `pulumi:"controllerRequired"`
+	// `(integer)`
+	ControllersExpected pulumi.IntOutput `pulumi:"controllersExpected"`
+	// `(integer)`
+	ControllersHealthy pulumi.IntOutput `pulumi:"controllersHealthy"`
+	// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions ExternalVolumeMountOptionsPtrOutput `pulumi:"mountOptions"`
-	// The display name of the volume.
+	// `(string: <required>)` - The display name for the volume.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The namespace in which to create the volume.
-	Namespace     pulumi.StringPtrOutput `pulumi:"namespace"`
-	NodesExpected pulumi.IntOutput       `pulumi:"nodesExpected"`
-	NodesHealthy  pulumi.IntOutput       `pulumi:"nodesHealthy"`
-	// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+	// `(string: "default")` - The namespace in which to register the volume.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// `(integer)`
+	NodesExpected pulumi.IntOutput `pulumi:"nodesExpected"`
+	// `(integer)`
+	NodesHealthy pulumi.IntOutput `pulumi:"nodesHealthy"`
+	// `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 	Parameters pulumi.StringMapOutput `pulumi:"parameters"`
-	// The ID of the CSI plugin that manages this volume.
-	PluginId              pulumi.StringOutput `pulumi:"pluginId"`
-	PluginProvider        pulumi.StringOutput `pulumi:"pluginProvider"`
+	// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
+	PluginId pulumi.StringOutput `pulumi:"pluginId"`
+	// `(string)`
+	PluginProvider pulumi.StringOutput `pulumi:"pluginProvider"`
+	// `(string)`
 	PluginProviderVersion pulumi.StringOutput `pulumi:"pluginProviderVersion"`
-	Schedulable           pulumi.BoolOutput   `pulumi:"schedulable"`
-	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+	// `(boolean)`
+	Schedulable pulumi.BoolOutput `pulumi:"schedulable"`
+	// `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
 	Secrets pulumi.StringMapOutput `pulumi:"secrets"`
-	// The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-	// 'clone_id'.
-	SnapshotId pulumi.StringPtrOutput            `pulumi:"snapshotId"`
+	// `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
+	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
+	// `(List of topologies)`
 	Topologies ExternalVolumeTopologyArrayOutput `pulumi:"topologies"`
-	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	// `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 	TopologyRequest ExternalVolumeTopologyRequestPtrOutput `pulumi:"topologyRequest"`
-	// The type of the volume. Currently, only 'csi' is supported.
+	// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 	Type pulumi.StringPtrOutput `pulumi:"type"`
-	// The unique ID of the volume, how jobs will refer to the volume.
+	// `(string: <required>)` - The unique ID of the volume.
 	VolumeId pulumi.StringOutput `pulumi:"volumeId"`
 }
 
@@ -136,6 +144,13 @@ func NewExternalVolume(ctx *pulumi.Context,
 	if args.VolumeId == nil {
 		return nil, errors.New("invalid value for required argument 'VolumeId'")
 	}
+	if args.Secrets != nil {
+		args.Secrets = pulumi.ToSecret(args.Secrets).(pulumi.StringMapInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secrets",
+	})
+	opts = append(opts, secrets)
 	var resource ExternalVolume
 	err := ctx.RegisterResource("nomad:index/externalVolume:ExternalVolume", name, args, &resource, opts...)
 	if err != nil {
@@ -158,84 +173,100 @@ func GetExternalVolume(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ExternalVolume resources.
 type externalVolumeState struct {
-	// Capabilities intended to be used in a job. At least one capability must be provided.
+	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities []ExternalVolumeCapability `pulumi:"capabilities"`
-	// Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
 	CapacityMax *string `pulumi:"capacityMax"`
-	// Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
 	CapacityMin *string `pulumi:"capacityMin"`
-	// The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
-	CloneId             *string `pulumi:"cloneId"`
-	ControllerRequired  *bool   `pulumi:"controllerRequired"`
-	ControllersExpected *int    `pulumi:"controllersExpected"`
-	ControllersHealthy  *int    `pulumi:"controllersHealthy"`
-	// Options for mounting 'block-device' volumes without a pre-formatted file system.
+	// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
+	CloneId *string `pulumi:"cloneId"`
+	// `(boolean)`
+	ControllerRequired *bool `pulumi:"controllerRequired"`
+	// `(integer)`
+	ControllersExpected *int `pulumi:"controllersExpected"`
+	// `(integer)`
+	ControllersHealthy *int `pulumi:"controllersHealthy"`
+	// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions *ExternalVolumeMountOptions `pulumi:"mountOptions"`
-	// The display name of the volume.
+	// `(string: <required>)` - The display name for the volume.
 	Name *string `pulumi:"name"`
-	// The namespace in which to create the volume.
-	Namespace     *string `pulumi:"namespace"`
-	NodesExpected *int    `pulumi:"nodesExpected"`
-	NodesHealthy  *int    `pulumi:"nodesHealthy"`
-	// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+	// `(string: "default")` - The namespace in which to register the volume.
+	Namespace *string `pulumi:"namespace"`
+	// `(integer)`
+	NodesExpected *int `pulumi:"nodesExpected"`
+	// `(integer)`
+	NodesHealthy *int `pulumi:"nodesHealthy"`
+	// `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 	Parameters map[string]string `pulumi:"parameters"`
-	// The ID of the CSI plugin that manages this volume.
-	PluginId              *string `pulumi:"pluginId"`
-	PluginProvider        *string `pulumi:"pluginProvider"`
+	// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
+	PluginId *string `pulumi:"pluginId"`
+	// `(string)`
+	PluginProvider *string `pulumi:"pluginProvider"`
+	// `(string)`
 	PluginProviderVersion *string `pulumi:"pluginProviderVersion"`
-	Schedulable           *bool   `pulumi:"schedulable"`
-	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+	// `(boolean)`
+	Schedulable *bool `pulumi:"schedulable"`
+	// `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
 	Secrets map[string]string `pulumi:"secrets"`
-	// The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-	// 'clone_id'.
-	SnapshotId *string                  `pulumi:"snapshotId"`
+	// `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
+	SnapshotId *string `pulumi:"snapshotId"`
+	// `(List of topologies)`
 	Topologies []ExternalVolumeTopology `pulumi:"topologies"`
-	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	// `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 	TopologyRequest *ExternalVolumeTopologyRequest `pulumi:"topologyRequest"`
-	// The type of the volume. Currently, only 'csi' is supported.
+	// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 	Type *string `pulumi:"type"`
-	// The unique ID of the volume, how jobs will refer to the volume.
+	// `(string: <required>)` - The unique ID of the volume.
 	VolumeId *string `pulumi:"volumeId"`
 }
 
 type ExternalVolumeState struct {
-	// Capabilities intended to be used in a job. At least one capability must be provided.
+	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities ExternalVolumeCapabilityArrayInput
-	// Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
 	CapacityMax pulumi.StringPtrInput
-	// Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
 	CapacityMin pulumi.StringPtrInput
-	// The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
-	CloneId             pulumi.StringPtrInput
-	ControllerRequired  pulumi.BoolPtrInput
+	// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
+	CloneId pulumi.StringPtrInput
+	// `(boolean)`
+	ControllerRequired pulumi.BoolPtrInput
+	// `(integer)`
 	ControllersExpected pulumi.IntPtrInput
-	ControllersHealthy  pulumi.IntPtrInput
-	// Options for mounting 'block-device' volumes without a pre-formatted file system.
+	// `(integer)`
+	ControllersHealthy pulumi.IntPtrInput
+	// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions ExternalVolumeMountOptionsPtrInput
-	// The display name of the volume.
+	// `(string: <required>)` - The display name for the volume.
 	Name pulumi.StringPtrInput
-	// The namespace in which to create the volume.
-	Namespace     pulumi.StringPtrInput
+	// `(string: "default")` - The namespace in which to register the volume.
+	Namespace pulumi.StringPtrInput
+	// `(integer)`
 	NodesExpected pulumi.IntPtrInput
-	NodesHealthy  pulumi.IntPtrInput
-	// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+	// `(integer)`
+	NodesHealthy pulumi.IntPtrInput
+	// `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 	Parameters pulumi.StringMapInput
-	// The ID of the CSI plugin that manages this volume.
-	PluginId              pulumi.StringPtrInput
-	PluginProvider        pulumi.StringPtrInput
+	// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
+	PluginId pulumi.StringPtrInput
+	// `(string)`
+	PluginProvider pulumi.StringPtrInput
+	// `(string)`
 	PluginProviderVersion pulumi.StringPtrInput
-	Schedulable           pulumi.BoolPtrInput
-	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+	// `(boolean)`
+	Schedulable pulumi.BoolPtrInput
+	// `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
 	Secrets pulumi.StringMapInput
-	// The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-	// 'clone_id'.
+	// `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
 	SnapshotId pulumi.StringPtrInput
+	// `(List of topologies)`
 	Topologies ExternalVolumeTopologyArrayInput
-	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	// `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 	TopologyRequest ExternalVolumeTopologyRequestPtrInput
-	// The type of the volume. Currently, only 'csi' is supported.
+	// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 	Type pulumi.StringPtrInput
-	// The unique ID of the volume, how jobs will refer to the volume.
+	// `(string: <required>)` - The unique ID of the volume.
 	VolumeId pulumi.StringPtrInput
 }
 
@@ -244,67 +275,65 @@ func (ExternalVolumeState) ElementType() reflect.Type {
 }
 
 type externalVolumeArgs struct {
-	// Capabilities intended to be used in a job. At least one capability must be provided.
+	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities []ExternalVolumeCapability `pulumi:"capabilities"`
-	// Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
 	CapacityMax *string `pulumi:"capacityMax"`
-	// Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
 	CapacityMin *string `pulumi:"capacityMin"`
-	// The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
+	// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
 	CloneId *string `pulumi:"cloneId"`
-	// Options for mounting 'block-device' volumes without a pre-formatted file system.
+	// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions *ExternalVolumeMountOptions `pulumi:"mountOptions"`
-	// The display name of the volume.
+	// `(string: <required>)` - The display name for the volume.
 	Name *string `pulumi:"name"`
-	// The namespace in which to create the volume.
+	// `(string: "default")` - The namespace in which to register the volume.
 	Namespace *string `pulumi:"namespace"`
-	// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+	// `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 	Parameters map[string]string `pulumi:"parameters"`
-	// The ID of the CSI plugin that manages this volume.
+	// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
 	PluginId string `pulumi:"pluginId"`
-	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+	// `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
 	Secrets map[string]string `pulumi:"secrets"`
-	// The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-	// 'clone_id'.
+	// `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
 	SnapshotId *string `pulumi:"snapshotId"`
-	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	// `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 	TopologyRequest *ExternalVolumeTopologyRequest `pulumi:"topologyRequest"`
-	// The type of the volume. Currently, only 'csi' is supported.
+	// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 	Type *string `pulumi:"type"`
-	// The unique ID of the volume, how jobs will refer to the volume.
+	// `(string: <required>)` - The unique ID of the volume.
 	VolumeId string `pulumi:"volumeId"`
 }
 
 // The set of arguments for constructing a ExternalVolume resource.
 type ExternalVolumeArgs struct {
-	// Capabilities intended to be used in a job. At least one capability must be provided.
+	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities ExternalVolumeCapabilityArrayInput
-	// Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
 	CapacityMax pulumi.StringPtrInput
-	// Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
 	CapacityMin pulumi.StringPtrInput
-	// The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
+	// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
 	CloneId pulumi.StringPtrInput
-	// Options for mounting 'block-device' volumes without a pre-formatted file system.
+	// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions ExternalVolumeMountOptionsPtrInput
-	// The display name of the volume.
+	// `(string: <required>)` - The display name for the volume.
 	Name pulumi.StringPtrInput
-	// The namespace in which to create the volume.
+	// `(string: "default")` - The namespace in which to register the volume.
 	Namespace pulumi.StringPtrInput
-	// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+	// `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 	Parameters pulumi.StringMapInput
-	// The ID of the CSI plugin that manages this volume.
+	// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
 	PluginId pulumi.StringInput
-	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+	// `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
 	Secrets pulumi.StringMapInput
-	// The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-	// 'clone_id'.
+	// `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
 	SnapshotId pulumi.StringPtrInput
-	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	// `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 	TopologyRequest ExternalVolumeTopologyRequestPtrInput
-	// The type of the volume. Currently, only 'csi' is supported.
+	// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 	Type pulumi.StringPtrInput
-	// The unique ID of the volume, how jobs will refer to the volume.
+	// `(string: <required>)` - The unique ID of the volume.
 	VolumeId pulumi.StringInput
 }
 
@@ -395,109 +424,117 @@ func (o ExternalVolumeOutput) ToExternalVolumeOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Capabilities intended to be used in a job. At least one capability must be provided.
+// `(“Capability“: <required>)` - Options for validating the capability of a volume.
 func (o ExternalVolumeOutput) Capabilities() ExternalVolumeCapabilityArrayOutput {
 	return o.ApplyT(func(v *ExternalVolume) ExternalVolumeCapabilityArrayOutput { return v.Capabilities }).(ExternalVolumeCapabilityArrayOutput)
 }
 
-// Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
 func (o ExternalVolumeOutput) CapacityMax() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringPtrOutput { return v.CapacityMax }).(pulumi.StringPtrOutput)
 }
 
-// Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
 func (o ExternalVolumeOutput) CapacityMin() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringPtrOutput { return v.CapacityMin }).(pulumi.StringPtrOutput)
 }
 
-// The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
+// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
 func (o ExternalVolumeOutput) CloneId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringPtrOutput { return v.CloneId }).(pulumi.StringPtrOutput)
 }
 
+// `(boolean)`
 func (o ExternalVolumeOutput) ControllerRequired() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.BoolOutput { return v.ControllerRequired }).(pulumi.BoolOutput)
 }
 
+// `(integer)`
 func (o ExternalVolumeOutput) ControllersExpected() pulumi.IntOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.IntOutput { return v.ControllersExpected }).(pulumi.IntOutput)
 }
 
+// `(integer)`
 func (o ExternalVolumeOutput) ControllersHealthy() pulumi.IntOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.IntOutput { return v.ControllersHealthy }).(pulumi.IntOutput)
 }
 
-// Options for mounting 'block-device' volumes without a pre-formatted file system.
+// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
 func (o ExternalVolumeOutput) MountOptions() ExternalVolumeMountOptionsPtrOutput {
 	return o.ApplyT(func(v *ExternalVolume) ExternalVolumeMountOptionsPtrOutput { return v.MountOptions }).(ExternalVolumeMountOptionsPtrOutput)
 }
 
-// The display name of the volume.
+// `(string: <required>)` - The display name for the volume.
 func (o ExternalVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The namespace in which to create the volume.
+// `(string: "default")` - The namespace in which to register the volume.
 func (o ExternalVolumeOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+// `(integer)`
 func (o ExternalVolumeOutput) NodesExpected() pulumi.IntOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.IntOutput { return v.NodesExpected }).(pulumi.IntOutput)
 }
 
+// `(integer)`
 func (o ExternalVolumeOutput) NodesHealthy() pulumi.IntOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.IntOutput { return v.NodesHealthy }).(pulumi.IntOutput)
 }
 
-// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+// `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 func (o ExternalVolumeOutput) Parameters() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringMapOutput { return v.Parameters }).(pulumi.StringMapOutput)
 }
 
-// The ID of the CSI plugin that manages this volume.
+// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
 func (o ExternalVolumeOutput) PluginId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringOutput { return v.PluginId }).(pulumi.StringOutput)
 }
 
+// `(string)`
 func (o ExternalVolumeOutput) PluginProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringOutput { return v.PluginProvider }).(pulumi.StringOutput)
 }
 
+// `(string)`
 func (o ExternalVolumeOutput) PluginProviderVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringOutput { return v.PluginProviderVersion }).(pulumi.StringOutput)
 }
 
+// `(boolean)`
 func (o ExternalVolumeOutput) Schedulable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.BoolOutput { return v.Schedulable }).(pulumi.BoolOutput)
 }
 
-// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+// `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
 func (o ExternalVolumeOutput) Secrets() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringMapOutput { return v.Secrets }).(pulumi.StringMapOutput)
 }
 
-// The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-// 'clone_id'.
+// `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
 func (o ExternalVolumeOutput) SnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringPtrOutput { return v.SnapshotId }).(pulumi.StringPtrOutput)
 }
 
+// `(List of topologies)`
 func (o ExternalVolumeOutput) Topologies() ExternalVolumeTopologyArrayOutput {
 	return o.ApplyT(func(v *ExternalVolume) ExternalVolumeTopologyArrayOutput { return v.Topologies }).(ExternalVolumeTopologyArrayOutput)
 }
 
-// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+// `(“TopologyRequest“: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 func (o ExternalVolumeOutput) TopologyRequest() ExternalVolumeTopologyRequestPtrOutput {
 	return o.ApplyT(func(v *ExternalVolume) ExternalVolumeTopologyRequestPtrOutput { return v.TopologyRequest }).(ExternalVolumeTopologyRequestPtrOutput)
 }
 
-// The type of the volume. Currently, only 'csi' is supported.
+// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 func (o ExternalVolumeOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-// The unique ID of the volume, how jobs will refer to the volume.
+// `(string: <required>)` - The unique ID of the volume.
 func (o ExternalVolumeOutput) VolumeId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ExternalVolume) pulumi.StringOutput { return v.VolumeId }).(pulumi.StringOutput)
 }

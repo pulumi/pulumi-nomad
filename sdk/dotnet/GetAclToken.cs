@@ -65,6 +65,9 @@ namespace Pulumi.Nomad
 
     public sealed class GetAclTokenArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` Non-sensitive identifier for this token.
+        /// </summary>
         [Input("accessorId", required: true)]
         public string AccessorId { get; set; } = null!;
 
@@ -76,6 +79,9 @@ namespace Pulumi.Nomad
 
     public sealed class GetAclTokenInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` Non-sensitive identifier for this token.
+        /// </summary>
         [Input("accessorId", required: true)]
         public Input<string> AccessorId { get; set; } = null!;
 
@@ -89,16 +95,52 @@ namespace Pulumi.Nomad
     [OutputType]
     public sealed class GetAclTokenResult
     {
+        /// <summary>
+        /// `(string)` Non-sensitive identifier for this token.
+        /// </summary>
         public readonly string AccessorId;
+        /// <summary>
+        /// `(string)` Date and time the token was created.
+        /// </summary>
         public readonly string CreateTime;
+        /// <summary>
+        /// `(string)` - The timestamp after which the token is
+        /// considered expired and eligible for destruction.
+        /// </summary>
+        public readonly string ExpirationTime;
+        /// <summary>
+        /// `(string)` The expiration TTL for the token.
+        /// </summary>
+        public readonly string ExpirationTtl;
+        /// <summary>
+        /// `(bool)` Whether the token is replicated to all regions, or if it 
+        /// will only be used in the region it was created.
+        /// </summary>
         public readonly bool Global;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// `(string)` Non-sensitive identifier for this token.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// `(list of strings)` List of policy names associated with this token.
+        /// </summary>
         public readonly ImmutableArray<string> Policies;
+        /// <summary>
+        /// `(set: [])` - The list of roles attached to the token. Each entry has
+        /// `name` and `id` attributes.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetAclTokenRoleResult> Roles;
+        /// <summary>
+        /// `(string)` The token value itself.
+        /// </summary>
         public readonly string SecretId;
+        /// <summary>
+        /// `(string)` The type of the token.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
@@ -106,6 +148,10 @@ namespace Pulumi.Nomad
             string accessorId,
 
             string createTime,
+
+            string expirationTime,
+
+            string expirationTtl,
 
             bool global,
 
@@ -115,16 +161,21 @@ namespace Pulumi.Nomad
 
             ImmutableArray<string> policies,
 
+            ImmutableArray<Outputs.GetAclTokenRoleResult> roles,
+
             string secretId,
 
             string type)
         {
             AccessorId = accessorId;
             CreateTime = createTime;
+            ExpirationTime = expirationTime;
+            ExpirationTtl = expirationTtl;
             Global = global;
             Id = id;
             Name = name;
             Policies = policies;
+            Roles = roles;
             SecretId = secretId;
             Type = type;
         }

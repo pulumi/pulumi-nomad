@@ -52,7 +52,8 @@ type GetPluginsArgs struct {
 // A collection of values returned by getPlugins.
 type GetPluginsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id      string                   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// `(list of maps)` a list of dynamic plugins registered in the cluster.
 	Plugins []map[string]interface{} `pulumi:"plugins"`
 	Type    *string                  `pulumi:"type"`
 }
@@ -99,6 +100,7 @@ func (o GetPluginsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// `(list of maps)` a list of dynamic plugins registered in the cluster.
 func (o GetPluginsResultOutput) Plugins() pulumi.MapArrayOutput {
 	return o.ApplyT(func(v GetPluginsResult) []map[string]interface{} { return v.Plugins }).(pulumi.MapArrayOutput)
 }

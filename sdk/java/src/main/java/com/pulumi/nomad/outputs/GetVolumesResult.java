@@ -19,10 +19,18 @@ public final class GetVolumesResult {
      * 
      */
     private String id;
+    /**
+     * @return `string` Volume namespace.
+     * 
+     */
     private @Nullable String namespace;
     private @Nullable String nodeId;
     private @Nullable String pluginId;
     private @Nullable String type;
+    /**
+     * @return `list of maps` a list of volumes in the cluster.
+     * 
+     */
     private List<Map<String,Object>> volumes;
 
     private GetVolumesResult() {}
@@ -33,6 +41,10 @@ public final class GetVolumesResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return `string` Volume namespace.
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
@@ -45,6 +57,10 @@ public final class GetVolumesResult {
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
     }
+    /**
+     * @return `list of maps` a list of volumes in the cluster.
+     * 
+     */
     public List<Map<String,Object>> volumes() {
         return this.volumes;
     }

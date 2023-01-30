@@ -31,10 +31,10 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewQuoteSpecification(ctx, "prodApi", &nomad.QuoteSpecificationArgs{
 //				Description: pulumi.String("Production instances of backend API servers"),
-//				Limits: QuoteSpecificationLimitArray{
-//					&QuoteSpecificationLimitArgs{
+//				Limits: nomad.QuoteSpecificationLimitArray{
+//					&nomad.QuoteSpecificationLimitArgs{
 //						Region: pulumi.String("global"),
-//						RegionLimit: &QuoteSpecificationLimitRegionLimitArgs{
+//						RegionLimit: &nomad.QuoteSpecificationLimitRegionLimitArgs{
 //							Cpu:      pulumi.Int(2400),
 //							MemoryMb: pulumi.Int(1200),
 //						},

@@ -33,6 +33,7 @@ import * as utilities from "./utilities";
  *     rulesHcl: `namespace "dev" {
  *   policy = "write"
  * }
+ *
  * `,
  * });
  * ```

@@ -15,6 +15,10 @@ public final class GetRegionsResult {
      * 
      */
     private String id;
+    /**
+     * @return `(list of strings)` - a list of regions available in the cluster.
+     * 
+     */
     private List<String> regions;
 
     private GetRegionsResult() {}
@@ -25,6 +29,10 @@ public final class GetRegionsResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return `(list of strings)` - a list of regions available in the cluster.
+     * 
+     */
     public List<String> regions() {
         return this.regions;
     }

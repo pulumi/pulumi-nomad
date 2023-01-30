@@ -13,15 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const global = pulumi.output(nomad.getSchedulerPolicy());
+ * const global = nomad.getSchedulerPolicy({});
  * ```
  */
 export function getSchedulerPolicy(opts?: pulumi.InvokeOptions): Promise<GetSchedulerPolicyResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getSchedulerPolicy:getSchedulerPolicy", {
     }, opts);
 }
@@ -34,7 +31,16 @@ export interface GetSchedulerPolicyResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+     */
     readonly memoryOversubscriptionEnabled: boolean;
+    /**
+     * `(map[string]bool)` - Options to enable preemption for various schedulers.
+     */
     readonly preemptionConfig: {[key: string]: boolean};
+    /**
+     * `(string)` - Specifies whether scheduler binpacks or spreads allocations on available nodes.
+     */
     readonly schedulerAlgorithm: string;
 }

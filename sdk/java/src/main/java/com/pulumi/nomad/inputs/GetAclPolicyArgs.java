@@ -13,9 +13,17 @@ public final class GetAclPolicyArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetAclPolicyArgs Empty = new GetAclPolicyArgs();
 
+    /**
+     * `(string)` - the name of the ACL Policy.
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return `(string)` - the name of the ACL Policy.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
@@ -44,11 +52,23 @@ public final class GetAclPolicyArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetAclPolicyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name `(string)` - the name of the ACL Policy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name `(string)` - the name of the ACL Policy.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }

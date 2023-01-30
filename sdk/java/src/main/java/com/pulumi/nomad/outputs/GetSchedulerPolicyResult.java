@@ -16,8 +16,20 @@ public final class GetSchedulerPolicyResult {
      * 
      */
     private String id;
+    /**
+     * @return `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+     * 
+     */
     private Boolean memoryOversubscriptionEnabled;
+    /**
+     * @return `(map[string]bool)` - Options to enable preemption for various schedulers.
+     * 
+     */
     private Map<String,Boolean> preemptionConfig;
+    /**
+     * @return `(string)` - Specifies whether scheduler binpacks or spreads allocations on available nodes.
+     * 
+     */
     private String schedulerAlgorithm;
 
     private GetSchedulerPolicyResult() {}
@@ -28,12 +40,24 @@ public final class GetSchedulerPolicyResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+     * 
+     */
     public Boolean memoryOversubscriptionEnabled() {
         return this.memoryOversubscriptionEnabled;
     }
+    /**
+     * @return `(map[string]bool)` - Options to enable preemption for various schedulers.
+     * 
+     */
     public Map<String,Boolean> preemptionConfig() {
         return this.preemptionConfig;
     }
+    /**
+     * @return `(string)` - Specifies whether scheduler binpacks or spreads allocations on available nodes.
+     * 
+     */
     public String schedulerAlgorithm() {
         return this.schedulerAlgorithm;
     }

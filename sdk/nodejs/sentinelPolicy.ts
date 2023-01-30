@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  *
  * const exec_only = new nomad.SentinelPolicy("exec-only", {
  *     description: "Only allow jobs that are based on an exec driver.",
- *     // allow administrators to override
  *     enforcementLevel: "soft-mandatory",
  *     policy: `main = rule { all_drivers_exec }
  *
@@ -30,6 +29,7 @@ import * as utilities from "./utilities";
  *         }
  *     }
  * }
+ *
  * `,
  *     scope: "submit-job",
  * });

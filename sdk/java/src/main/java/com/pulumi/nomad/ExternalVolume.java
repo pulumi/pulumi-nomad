@@ -98,252 +98,322 @@ import javax.annotation.Nullable;
 @ResourceType(type="nomad:index/externalVolume:ExternalVolume")
 public class ExternalVolume extends com.pulumi.resources.CustomResource {
     /**
-     * Capabilities intended to be used in a job. At least one capability must be provided.
+     * `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
      * 
      */
     @Export(name="capabilities", type=List.class, parameters={ExternalVolumeCapability.class})
     private Output<List<ExternalVolumeCapability>> capabilities;
 
     /**
-     * @return Capabilities intended to be used in a job. At least one capability must be provided.
+     * @return `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
      * 
      */
     public Output<List<ExternalVolumeCapability>> capabilities() {
         return this.capabilities;
     }
     /**
-     * Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+     * `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      * 
      */
     @Export(name="capacityMax", type=String.class, parameters={})
     private Output</* @Nullable */ String> capacityMax;
 
     /**
-     * @return Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+     * @return `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      * 
      */
     public Output<Optional<String>> capacityMax() {
         return Codegen.optional(this.capacityMax);
     }
     /**
-     * Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+     * `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      * 
      */
     @Export(name="capacityMin", type=String.class, parameters={})
     private Output</* @Nullable */ String> capacityMin;
 
     /**
-     * @return Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+     * @return `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      * 
      */
     public Output<Optional<String>> capacityMin() {
         return Codegen.optional(this.capacityMin);
     }
     /**
-     * The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with &#39;snapshot_id&#39;.
+     * `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
      * 
      */
     @Export(name="cloneId", type=String.class, parameters={})
     private Output</* @Nullable */ String> cloneId;
 
     /**
-     * @return The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with &#39;snapshot_id&#39;.
+     * @return `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
      * 
      */
     public Output<Optional<String>> cloneId() {
         return Codegen.optional(this.cloneId);
     }
+    /**
+     * `(boolean)`
+     * 
+     */
     @Export(name="controllerRequired", type=Boolean.class, parameters={})
     private Output<Boolean> controllerRequired;
 
+    /**
+     * @return `(boolean)`
+     * 
+     */
     public Output<Boolean> controllerRequired() {
         return this.controllerRequired;
     }
+    /**
+     * `(integer)`
+     * 
+     */
     @Export(name="controllersExpected", type=Integer.class, parameters={})
     private Output<Integer> controllersExpected;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Output<Integer> controllersExpected() {
         return this.controllersExpected;
     }
+    /**
+     * `(integer)`
+     * 
+     */
     @Export(name="controllersHealthy", type=Integer.class, parameters={})
     private Output<Integer> controllersHealthy;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Output<Integer> controllersHealthy() {
         return this.controllersHealthy;
     }
     /**
-     * Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+     * `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
      * 
      */
     @Export(name="mountOptions", type=ExternalVolumeMountOptions.class, parameters={})
     private Output</* @Nullable */ ExternalVolumeMountOptions> mountOptions;
 
     /**
-     * @return Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+     * @return `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
      * 
      */
     public Output<Optional<ExternalVolumeMountOptions>> mountOptions() {
         return Codegen.optional(this.mountOptions);
     }
     /**
-     * The display name of the volume.
+     * `(string: &lt;required&gt;)` - The display name for the volume.
      * 
      */
     @Export(name="name", type=String.class, parameters={})
     private Output<String> name;
 
     /**
-     * @return The display name of the volume.
+     * @return `(string: &lt;required&gt;)` - The display name for the volume.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The namespace in which to create the volume.
+     * `(string: &#34;default&#34;)` - The namespace in which to register the volume.
      * 
      */
     @Export(name="namespace", type=String.class, parameters={})
     private Output</* @Nullable */ String> namespace;
 
     /**
-     * @return The namespace in which to create the volume.
+     * @return `(string: &#34;default&#34;)` - The namespace in which to register the volume.
      * 
      */
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
     }
+    /**
+     * `(integer)`
+     * 
+     */
     @Export(name="nodesExpected", type=Integer.class, parameters={})
     private Output<Integer> nodesExpected;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Output<Integer> nodesExpected() {
         return this.nodesExpected;
     }
+    /**
+     * `(integer)`
+     * 
+     */
     @Export(name="nodesHealthy", type=Integer.class, parameters={})
     private Output<Integer> nodesHealthy;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Output<Integer> nodesHealthy() {
         return this.nodesHealthy;
     }
     /**
-     * An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+     * `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      * 
      */
     @Export(name="parameters", type=Map.class, parameters={String.class, String.class})
     private Output</* @Nullable */ Map<String,String>> parameters;
 
     /**
-     * @return An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+     * @return `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      * 
      */
     public Output<Optional<Map<String,String>>> parameters() {
         return Codegen.optional(this.parameters);
     }
     /**
-     * The ID of the CSI plugin that manages this volume.
+     * `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
      * 
      */
     @Export(name="pluginId", type=String.class, parameters={})
     private Output<String> pluginId;
 
     /**
-     * @return The ID of the CSI plugin that manages this volume.
+     * @return `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
      * 
      */
     public Output<String> pluginId() {
         return this.pluginId;
     }
+    /**
+     * `(string)`
+     * 
+     */
     @Export(name="pluginProvider", type=String.class, parameters={})
     private Output<String> pluginProvider;
 
+    /**
+     * @return `(string)`
+     * 
+     */
     public Output<String> pluginProvider() {
         return this.pluginProvider;
     }
+    /**
+     * `(string)`
+     * 
+     */
     @Export(name="pluginProviderVersion", type=String.class, parameters={})
     private Output<String> pluginProviderVersion;
 
+    /**
+     * @return `(string)`
+     * 
+     */
     public Output<String> pluginProviderVersion() {
         return this.pluginProviderVersion;
     }
+    /**
+     * `(boolean)`
+     * 
+     */
     @Export(name="schedulable", type=Boolean.class, parameters={})
     private Output<Boolean> schedulable;
 
+    /**
+     * @return `(boolean)`
+     * 
+     */
     public Output<Boolean> schedulable() {
         return this.schedulable;
     }
     /**
-     * An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+     * `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      * 
      */
     @Export(name="secrets", type=Map.class, parameters={String.class, String.class})
     private Output</* @Nullable */ Map<String,String>> secrets;
 
     /**
-     * @return An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+     * @return `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      * 
      */
     public Output<Optional<Map<String,String>>> secrets() {
         return Codegen.optional(this.secrets);
     }
     /**
-     * The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-     * &#39;clone_id&#39;.
+     * `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
      * 
      */
     @Export(name="snapshotId", type=String.class, parameters={})
     private Output</* @Nullable */ String> snapshotId;
 
     /**
-     * @return The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-     * &#39;clone_id&#39;.
+     * @return `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
      * 
      */
     public Output<Optional<String>> snapshotId() {
         return Codegen.optional(this.snapshotId);
     }
+    /**
+     * `(List of topologies)`
+     * 
+     */
     @Export(name="topologies", type=List.class, parameters={ExternalVolumeTopology.class})
     private Output<List<ExternalVolumeTopology>> topologies;
 
+    /**
+     * @return `(List of topologies)`
+     * 
+     */
     public Output<List<ExternalVolumeTopology>> topologies() {
         return this.topologies;
     }
     /**
-     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     * `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      * 
      */
     @Export(name="topologyRequest", type=ExternalVolumeTopologyRequest.class, parameters={})
     private Output</* @Nullable */ ExternalVolumeTopologyRequest> topologyRequest;
 
     /**
-     * @return Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     * @return `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      * 
      */
     public Output<Optional<ExternalVolumeTopologyRequest>> topologyRequest() {
         return Codegen.optional(this.topologyRequest);
     }
     /**
-     * The type of the volume. Currently, only &#39;csi&#39; is supported.
+     * `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
      * 
      */
     @Export(name="type", type=String.class, parameters={})
     private Output</* @Nullable */ String> type;
 
     /**
-     * @return The type of the volume. Currently, only &#39;csi&#39; is supported.
+     * @return `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
      * 
      */
     public Output<Optional<String>> type() {
         return Codegen.optional(this.type);
     }
     /**
-     * The unique ID of the volume, how jobs will refer to the volume.
+     * `(string: &lt;required&gt;)` - The unique ID of the volume.
      * 
      */
     @Export(name="volumeId", type=String.class, parameters={})
     private Output<String> volumeId;
 
     /**
-     * @return The unique ID of the volume, how jobs will refer to the volume.
+     * @return `(string: &lt;required&gt;)` - The unique ID of the volume.
      * 
      */
     public Output<String> volumeId() {
@@ -382,6 +452,9 @@ public class ExternalVolume extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "secrets"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

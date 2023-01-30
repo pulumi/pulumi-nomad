@@ -14,6 +14,10 @@ namespace Pulumi.Nomad.Inputs
     {
         [Input("segments")]
         private InputMap<string>? _segments;
+
+        /// <summary>
+        /// `(map[string]string)` - Define the attributes for the topology request.
+        /// </summary>
         public InputMap<string> Segments
         {
             get => _segments ?? (_segments = new InputMap<string>());

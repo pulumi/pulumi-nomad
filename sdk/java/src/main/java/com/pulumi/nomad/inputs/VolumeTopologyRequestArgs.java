@@ -15,9 +15,17 @@ public final class VolumeTopologyRequestArgs extends com.pulumi.resources.Resour
 
     public static final VolumeTopologyRequestArgs Empty = new VolumeTopologyRequestArgs();
 
+    /**
+     * `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     * 
+     */
     @Import(name="required")
     private @Nullable Output<VolumeTopologyRequestRequiredArgs> required;
 
+    /**
+     * @return `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     * 
+     */
     public Optional<Output<VolumeTopologyRequestRequiredArgs>> required() {
         return Optional.ofNullable(this.required);
     }
@@ -46,11 +54,23 @@ public final class VolumeTopologyRequestArgs extends com.pulumi.resources.Resour
             $ = new VolumeTopologyRequestArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param required `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+         * 
+         * @return builder
+         * 
+         */
         public Builder required(@Nullable Output<VolumeTopologyRequestRequiredArgs> required) {
             $.required = required;
             return this;
         }
 
+        /**
+         * @param required `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+         * 
+         * @return builder
+         * 
+         */
         public Builder required(VolumeTopologyRequestRequiredArgs required) {
             return required(Output.of(required));
         }

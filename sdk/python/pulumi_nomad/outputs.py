@@ -11,6 +11,8 @@ from . import _utilities
 from . import outputs
 
 __all__ = [
+    'AclRolePolicy',
+    'AclTokenRole',
     'ExternalVolumeCapability',
     'ExternalVolumeMountOptions',
     'ExternalVolumeTopology',
@@ -24,6 +26,7 @@ __all__ = [
     'JobTaskGroupTask',
     'JobTaskGroupTaskVolumeMount',
     'JobTaskGroupVolume',
+    'NamespaceCapabilities',
     'QuoteSpecificationLimit',
     'QuoteSpecificationLimitRegionLimit',
     'VolumeCapability',
@@ -33,16 +36,66 @@ __all__ = [
     'VolumeTopologyRequestRequired',
     'VolumeTopologyRequestRequiredTopology',
     'GetAclPoliciesPolicyResult',
+    'GetAclRolePolicyResult',
+    'GetAclRolesAclRoleResult',
+    'GetAclRolesAclRolePolicyResult',
+    'GetAclTokenRoleResult',
     'GetAclTokensAclTokenResult',
+    'GetAclTokensAclTokenRoleResult',
     'GetJobConstraintResult',
     'GetJobPeriodicConfigResult',
     'GetJobTaskGroupResult',
     'GetJobTaskGroupTaskResult',
     'GetJobTaskGroupTaskVolumeMountResult',
     'GetJobTaskGroupVolumeResult',
+    'GetNamespaceCapabilityResult',
     'GetPluginNodeResult',
     'GetScalingPoliciesPolicyResult',
 ]
+
+@pulumi.output_type
+class AclRolePolicy(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: `(string: <required>)` - A human-friendly name for this ACL Role.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        `(string: <required>)` - A human-friendly name for this ACL Role.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class AclTokenRole(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: Optional[str] = None):
+        """
+        :param str name: `(string: "")` - A human-friendly name for this token.
+        """
+        pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        `(string: "")` - A human-friendly name for this token.
+        """
+        return pulumi.get(self, "name")
+
 
 @pulumi.output_type
 class ExternalVolumeCapability(dict):
@@ -68,17 +121,41 @@ class ExternalVolumeCapability(dict):
     def __init__(__self__, *,
                  access_mode: str,
                  attachment_mode: str):
+        """
+        :param str access_mode: `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+               - `single-node-reader-only`
+               - `single-node-writer`
+               - `multi-node-reader-only`
+               - `multi-node-single-writer`
+               - `multi-node-multi-writer`
+        :param str attachment_mode: `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+               - `block-device`
+               - `file-system`
+        """
         pulumi.set(__self__, "access_mode", access_mode)
         pulumi.set(__self__, "attachment_mode", attachment_mode)
 
     @property
     @pulumi.getter(name="accessMode")
     def access_mode(self) -> str:
+        """
+        `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
+        """
         return pulumi.get(self, "access_mode")
 
     @property
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> str:
+        """
+        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+        - `block-device`
+        - `file-system`
+        """
         return pulumi.get(self, "attachment_mode")
 
 
@@ -106,6 +183,10 @@ class ExternalVolumeMountOptions(dict):
     def __init__(__self__, *,
                  fs_type: Optional[str] = None,
                  mount_flags: Optional[Sequence[str]] = None):
+        """
+        :param str fs_type: `(string: optional)` - The file system type.
+        :param Sequence[str] mount_flags: `[]string: optional` - The flags passed to `mount`.
+        """
         if fs_type is not None:
             pulumi.set(__self__, "fs_type", fs_type)
         if mount_flags is not None:
@@ -114,11 +195,17 @@ class ExternalVolumeMountOptions(dict):
     @property
     @pulumi.getter(name="fsType")
     def fs_type(self) -> Optional[str]:
+        """
+        `(string: optional)` - The file system type.
+        """
         return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="mountFlags")
     def mount_flags(self) -> Optional[Sequence[str]]:
+        """
+        `[]string: optional` - The flags passed to `mount`.
+        """
         return pulumi.get(self, "mount_flags")
 
 
@@ -126,12 +213,18 @@ class ExternalVolumeMountOptions(dict):
 class ExternalVolumeTopology(dict):
     def __init__(__self__, *,
                  segments: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[Mapping[str, str]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+        """
         return pulumi.get(self, "segments")
 
 
@@ -140,6 +233,10 @@ class ExternalVolumeTopologyRequest(dict):
     def __init__(__self__, *,
                  preferred: Optional['outputs.ExternalVolumeTopologyRequestPreferred'] = None,
                  required: Optional['outputs.ExternalVolumeTopologyRequestRequired'] = None):
+        """
+        :param 'ExternalVolumeTopologyRequestPreferredArgs' preferred: `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+        :param 'ExternalVolumeTopologyRequestRequiredArgs' required: `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
         if preferred is not None:
             pulumi.set(__self__, "preferred", preferred)
         if required is not None:
@@ -148,11 +245,17 @@ class ExternalVolumeTopologyRequest(dict):
     @property
     @pulumi.getter
     def preferred(self) -> Optional['outputs.ExternalVolumeTopologyRequestPreferred']:
+        """
+        `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+        """
         return pulumi.get(self, "preferred")
 
     @property
     @pulumi.getter
     def required(self) -> Optional['outputs.ExternalVolumeTopologyRequestRequired']:
+        """
+        `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
         return pulumi.get(self, "required")
 
 
@@ -172,11 +275,17 @@ class ExternalVolumeTopologyRequestPreferred(dict):
 class ExternalVolumeTopologyRequestPreferredTopology(dict):
     def __init__(__self__, *,
                  segments: Mapping[str, str]):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+        """
         pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Mapping[str, str]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+        """
         return pulumi.get(self, "segments")
 
 
@@ -196,11 +305,17 @@ class ExternalVolumeTopologyRequestRequired(dict):
 class ExternalVolumeTopologyRequestRequiredTopology(dict):
     def __init__(__self__, *,
                  segments: Mapping[str, str]):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+        """
         pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Mapping[str, str]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+        """
         return pulumi.get(self, "segments")
 
 
@@ -464,6 +579,56 @@ class JobTaskGroupVolume(dict):
 
 
 @pulumi.output_type
+class NamespaceCapabilities(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disabledTaskDrivers":
+            suggest = "disabled_task_drivers"
+        elif key == "enabledTaskDrivers":
+            suggest = "enabled_task_drivers"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NamespaceCapabilities. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NamespaceCapabilities.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NamespaceCapabilities.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disabled_task_drivers: Optional[Sequence[str]] = None,
+                 enabled_task_drivers: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] disabled_task_drivers: `([]string: <optional>)` - Task drivers disabled for the namespace.
+        :param Sequence[str] enabled_task_drivers: `([]string: <optional>)` - Task drivers enabled for the namespace.
+        """
+        if disabled_task_drivers is not None:
+            pulumi.set(__self__, "disabled_task_drivers", disabled_task_drivers)
+        if enabled_task_drivers is not None:
+            pulumi.set(__self__, "enabled_task_drivers", enabled_task_drivers)
+
+    @property
+    @pulumi.getter(name="disabledTaskDrivers")
+    def disabled_task_drivers(self) -> Optional[Sequence[str]]:
+        """
+        `([]string: <optional>)` - Task drivers disabled for the namespace.
+        """
+        return pulumi.get(self, "disabled_task_drivers")
+
+    @property
+    @pulumi.getter(name="enabledTaskDrivers")
+    def enabled_task_drivers(self) -> Optional[Sequence[str]]:
+        """
+        `([]string: <optional>)` - Task drivers enabled for the namespace.
+        """
+        return pulumi.get(self, "enabled_task_drivers")
+
+
+@pulumi.output_type
 class QuoteSpecificationLimit(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -591,17 +756,41 @@ class VolumeCapability(dict):
     def __init__(__self__, *,
                  access_mode: str,
                  attachment_mode: str):
+        """
+        :param str access_mode: `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+               - `single-node-reader-only`
+               - `single-node-writer`
+               - `multi-node-reader-only`
+               - `multi-node-single-writer`
+               - `multi-node-multi-writer`
+        :param str attachment_mode: `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+               - `block-device`
+               - `file-system`
+        """
         pulumi.set(__self__, "access_mode", access_mode)
         pulumi.set(__self__, "attachment_mode", attachment_mode)
 
     @property
     @pulumi.getter(name="accessMode")
     def access_mode(self) -> str:
+        """
+        `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
+        """
         return pulumi.get(self, "access_mode")
 
     @property
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> str:
+        """
+        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+        - `block-device`
+        - `file-system`
+        """
         return pulumi.get(self, "attachment_mode")
 
 
@@ -629,6 +818,10 @@ class VolumeMountOptions(dict):
     def __init__(__self__, *,
                  fs_type: Optional[str] = None,
                  mount_flags: Optional[Sequence[str]] = None):
+        """
+        :param str fs_type: `(string: <optional>)` - The file system type.
+        :param Sequence[str] mount_flags: `([]string: <optional>)` - The flags passed to `mount`.
+        """
         if fs_type is not None:
             pulumi.set(__self__, "fs_type", fs_type)
         if mount_flags is not None:
@@ -637,11 +830,17 @@ class VolumeMountOptions(dict):
     @property
     @pulumi.getter(name="fsType")
     def fs_type(self) -> Optional[str]:
+        """
+        `(string: <optional>)` - The file system type.
+        """
         return pulumi.get(self, "fs_type")
 
     @property
     @pulumi.getter(name="mountFlags")
     def mount_flags(self) -> Optional[Sequence[str]]:
+        """
+        `([]string: <optional>)` - The flags passed to `mount`.
+        """
         return pulumi.get(self, "mount_flags")
 
 
@@ -649,12 +848,18 @@ class VolumeMountOptions(dict):
 class VolumeTopology(dict):
     def __init__(__self__, *,
                  segments: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[Mapping[str, str]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+        """
         return pulumi.get(self, "segments")
 
 
@@ -662,12 +867,18 @@ class VolumeTopology(dict):
 class VolumeTopologyRequest(dict):
     def __init__(__self__, *,
                  required: Optional['outputs.VolumeTopologyRequestRequired'] = None):
+        """
+        :param 'VolumeTopologyRequestRequiredArgs' required: `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
         if required is not None:
             pulumi.set(__self__, "required", required)
 
     @property
     @pulumi.getter
     def required(self) -> Optional['outputs.VolumeTopologyRequestRequired']:
+        """
+        `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
         return pulumi.get(self, "required")
 
 
@@ -687,11 +898,17 @@ class VolumeTopologyRequestRequired(dict):
 class VolumeTopologyRequestRequiredTopology(dict):
     def __init__(__self__, *,
                  segments: Mapping[str, str]):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+        """
         pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Mapping[str, str]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+        """
         return pulumi.get(self, "segments")
 
 
@@ -700,17 +917,139 @@ class GetAclPoliciesPolicyResult(dict):
     def __init__(__self__, *,
                  description: str,
                  name: str):
+        """
+        :param str description: `(string)` - the description of the ACL Policy.
+        :param str name: `(string)` - the name of the ACL Policy.
+        """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        `(string)` - the description of the ACL Policy.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        `(string)` - the name of the ACL Policy.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetAclRolePolicyResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: `(string)` - Unique name of the ACL role.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        `(string)` - Unique name of the ACL role.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetAclRolesAclRoleResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 id: str,
+                 name: str,
+                 policies: Sequence['outputs.GetAclRolesAclRolePolicyResult']):
+        """
+        :param str description: `(string)` - The description of the ACL Role.
+        :param str id: `(string)` - The ACL Role unique identifier.
+        :param str name: `(string)` - Unique name of the ACL role.
+        :param Sequence['GetAclRolesAclRolePolicyArgs'] policies: `(set)` - The policies applied to the role.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "policies", policies)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        `(string)` - The description of the ACL Role.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        `(string)` - The ACL Role unique identifier.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        `(string)` - Unique name of the ACL role.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Sequence['outputs.GetAclRolesAclRolePolicyResult']:
+        """
+        `(set)` - The policies applied to the role.
+        """
+        return pulumi.get(self, "policies")
+
+
+@pulumi.output_type
+class GetAclRolesAclRolePolicyResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: `(string)` - Unique name of the ACL role.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        `(string)` - Unique name of the ACL role.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetAclTokenRoleResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str):
+        """
+        :param str name: `(string)` Non-sensitive identifier for this token.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        `(string)` Non-sensitive identifier for this token.
+        """
         return pulumi.get(self, "name")
 
 
@@ -719,46 +1058,123 @@ class GetAclTokensAclTokenResult(dict):
     def __init__(__self__, *,
                  accessor_id: str,
                  create_time: str,
+                 expiration_time: str,
                  global_: bool,
                  name: str,
                  policies: Sequence[str],
+                 roles: Sequence['outputs.GetAclTokensAclTokenRoleResult'],
                  type: str):
+        """
+        :param str accessor_id: `(TypeString)` Non-sensitive identifier for the token.
+        :param str create_time: `(string)` Date and time the token was created at.
+        :param str expiration_time: `(string)` - The timestamp after which the token is
+               considered expired and eligible for destruction.
+        :param bool global_: `(bool)` Whether the token is replicated to all regions.
+        :param str name: `(TypeString)` The name of the token.
+        :param Sequence[str] policies: `(list of strings)` The list of policies attached to the token.
+        :param Sequence['GetAclTokensAclTokenRoleArgs'] roles: `(set: [])` - The list of roles attached to the token. Each entry has
+               `name` and `id` attributes.
+        :param str type: `(TypeString)` The type of the token.
+        """
         pulumi.set(__self__, "accessor_id", accessor_id)
         pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "expiration_time", expiration_time)
         pulumi.set(__self__, "global_", global_)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "policies", policies)
+        pulumi.set(__self__, "roles", roles)
         pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="accessorId")
     def accessor_id(self) -> str:
+        """
+        `(TypeString)` Non-sensitive identifier for the token.
+        """
         return pulumi.get(self, "accessor_id")
 
     @property
     @pulumi.getter(name="createTime")
     def create_time(self) -> str:
+        """
+        `(string)` Date and time the token was created at.
+        """
         return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="expirationTime")
+    def expiration_time(self) -> str:
+        """
+        `(string)` - The timestamp after which the token is
+        considered expired and eligible for destruction.
+        """
+        return pulumi.get(self, "expiration_time")
 
     @property
     @pulumi.getter(name="global")
     def global_(self) -> bool:
+        """
+        `(bool)` Whether the token is replicated to all regions.
+        """
         return pulumi.get(self, "global_")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        `(TypeString)` The name of the token.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def policies(self) -> Sequence[str]:
+        """
+        `(list of strings)` The list of policies attached to the token.
+        """
         return pulumi.get(self, "policies")
 
     @property
     @pulumi.getter
+    def roles(self) -> Sequence['outputs.GetAclTokensAclTokenRoleResult']:
+        """
+        `(set: [])` - The list of roles attached to the token. Each entry has
+        `name` and `id` attributes.
+        """
+        return pulumi.get(self, "roles")
+
+    @property
+    @pulumi.getter
     def type(self) -> str:
+        """
+        `(TypeString)` The type of the token.
+        """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetAclTokensAclTokenRoleResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 name: str):
+        """
+        :param str name: `(TypeString)` The name of the token.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        `(TypeString)` The name of the token.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -767,6 +1183,11 @@ class GetJobConstraintResult(dict):
                  ltarget: str,
                  operand: str,
                  rtarget: str):
+        """
+        :param str ltarget: `(string)` Attribute being constrained.
+        :param str operand: `(string)` Operator used to compare the attribute to the constraint.
+        :param str rtarget: `(string)` Constraint value.
+        """
         pulumi.set(__self__, "ltarget", ltarget)
         pulumi.set(__self__, "operand", operand)
         pulumi.set(__self__, "rtarget", rtarget)
@@ -774,16 +1195,25 @@ class GetJobConstraintResult(dict):
     @property
     @pulumi.getter
     def ltarget(self) -> str:
+        """
+        `(string)` Attribute being constrained.
+        """
         return pulumi.get(self, "ltarget")
 
     @property
     @pulumi.getter
     def operand(self) -> str:
+        """
+        `(string)` Operator used to compare the attribute to the constraint.
+        """
         return pulumi.get(self, "operand")
 
     @property
     @pulumi.getter
     def rtarget(self) -> str:
+        """
+        `(string)` Constraint value.
+        """
         return pulumi.get(self, "rtarget")
 
 
@@ -795,6 +1225,13 @@ class GetJobPeriodicConfigResult(dict):
                  spec: str,
                  spec_type: str,
                  timezone: str):
+        """
+        :param bool enabled: `(boolean)` If periodic scheduling is enabled for the specified job.
+        :param bool prohibit_overlap: `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+        :param str spec: `(string)`
+        :param str spec_type: `(string)`
+        :param str timezone: `(string)` Time zone to evaluate the next launch interval against.
+        """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "prohibit_overlap", prohibit_overlap)
         pulumi.set(__self__, "spec", spec)
@@ -804,26 +1241,41 @@ class GetJobPeriodicConfigResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        `(boolean)` If periodic scheduling is enabled for the specified job.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="prohibitOverlap")
     def prohibit_overlap(self) -> bool:
+        """
+        `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+        """
         return pulumi.get(self, "prohibit_overlap")
 
     @property
     @pulumi.getter
     def spec(self) -> str:
+        """
+        `(string)`
+        """
         return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter(name="specType")
     def spec_type(self) -> str:
+        """
+        `(string)`
+        """
         return pulumi.get(self, "spec_type")
 
     @property
     @pulumi.getter
     def timezone(self) -> str:
+        """
+        `(string)` Time zone to evaluate the next launch interval against.
+        """
         return pulumi.get(self, "timezone")
 
 
@@ -835,6 +1287,9 @@ class GetJobTaskGroupResult(dict):
                  name: str,
                  tasks: Sequence['outputs.GetJobTaskGroupTaskResult'],
                  volumes: Sequence['outputs.GetJobTaskGroupVolumeResult']):
+        """
+        :param str name: `(string)` Name of the job.
+        """
         pulumi.set(__self__, "count", count)
         pulumi.set(__self__, "meta", meta)
         pulumi.set(__self__, "name", name)
@@ -854,6 +1309,9 @@ class GetJobTaskGroupResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        `(string)` Name of the job.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -874,6 +1332,9 @@ class GetJobTaskGroupTaskResult(dict):
                  meta: Mapping[str, Any],
                  name: str,
                  volume_mounts: Sequence['outputs.GetJobTaskGroupTaskVolumeMountResult']):
+        """
+        :param str name: `(string)` Name of the job.
+        """
         pulumi.set(__self__, "driver", driver)
         pulumi.set(__self__, "meta", meta)
         pulumi.set(__self__, "name", name)
@@ -892,6 +1353,9 @@ class GetJobTaskGroupTaskResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        `(string)` Name of the job.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -933,6 +1397,10 @@ class GetJobTaskGroupVolumeResult(dict):
                  read_only: bool,
                  source: str,
                  type: str):
+        """
+        :param str name: `(string)` Name of the job.
+        :param str type: `(string)` Scheduler type used during job creation.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "read_only", read_only)
         pulumi.set(__self__, "source", source)
@@ -941,6 +1409,9 @@ class GetJobTaskGroupVolumeResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        `(string)` Name of the job.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -956,7 +1427,41 @@ class GetJobTaskGroupVolumeResult(dict):
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        `(string)` Scheduler type used during job creation.
+        """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetNamespaceCapabilityResult(dict):
+    def __init__(__self__, *,
+                 disabled_task_drivers: Optional[Sequence[str]] = None,
+                 enabled_task_drivers: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] disabled_task_drivers: `([]string)` - Task drivers disabled for the namespace.
+        :param Sequence[str] enabled_task_drivers: `([]string)` - Task drivers enabled for the namespace.
+        """
+        if disabled_task_drivers is not None:
+            pulumi.set(__self__, "disabled_task_drivers", disabled_task_drivers)
+        if enabled_task_drivers is not None:
+            pulumi.set(__self__, "enabled_task_drivers", enabled_task_drivers)
+
+    @property
+    @pulumi.getter(name="disabledTaskDrivers")
+    def disabled_task_drivers(self) -> Optional[Sequence[str]]:
+        """
+        `([]string)` - Task drivers disabled for the namespace.
+        """
+        return pulumi.get(self, "disabled_task_drivers")
+
+    @property
+    @pulumi.getter(name="enabledTaskDrivers")
+    def enabled_task_drivers(self) -> Optional[Sequence[str]]:
+        """
+        `([]string)` - Task drivers enabled for the namespace.
+        """
+        return pulumi.get(self, "enabled_task_drivers")
 
 
 @pulumi.output_type
@@ -993,6 +1498,9 @@ class GetScalingPoliciesPolicyResult(dict):
                  target: Mapping[str, Any],
                  type: str):
         """
+        :param bool enabled: `(boolean)` - Whether or not the scaling policy is enabled.
+        :param str id: `(string)` - The scaling policy ID.
+        :param Mapping[str, Any] target: `(map[string]string)` - The scaling policy target.
         :param str type: `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
         """
         pulumi.set(__self__, "enabled", enabled)
@@ -1003,16 +1511,25 @@ class GetScalingPoliciesPolicyResult(dict):
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        `(boolean)` - Whether or not the scaling policy is enabled.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        `(string)` - The scaling policy ID.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def target(self) -> Mapping[str, Any]:
+        """
+        `(map[string]string)` - The scaling policy target.
+        """
         return pulumi.get(self, "target")
 
     @property

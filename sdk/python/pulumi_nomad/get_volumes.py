@@ -52,6 +52,9 @@ class GetVolumesResult:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        `string` Volume namespace.
+        """
         return pulumi.get(self, "namespace")
 
     @property
@@ -72,6 +75,9 @@ class GetVolumesResult:
     @property
     @pulumi.getter
     def volumes(self) -> Sequence[Mapping[str, Any]]:
+        """
+        `list of maps` a list of volumes in the cluster.
+        """
         return pulumi.get(self, "volumes")
 
 
@@ -105,6 +111,12 @@ def get_volumes(namespace: Optional[str] = None,
 
     example = nomad.get_volumes()
     ```
+
+
+    :param str namespace: `(string: "default")` Nomad namespace.
+    :param str node_id: `(string: optional)` Volume node filter.
+    :param str plugin_id: `(string: optional)` Plugin ID filter.
+    :param str type: `(string: "csi")` Volume type (currently only supports `csi`)
     """
     __args__ = dict()
     __args__['namespace'] = namespace
@@ -140,5 +152,11 @@ def get_volumes_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
 
     example = nomad.get_volumes()
     ```
+
+
+    :param str namespace: `(string: "default")` Nomad namespace.
+    :param str node_id: `(string: optional)` Volume node filter.
+    :param str plugin_id: `(string: optional)` Plugin ID filter.
+    :param str type: `(string: "csi")` Volume type (currently only supports `csi`)
     """
     ...

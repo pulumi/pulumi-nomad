@@ -63,15 +63,27 @@ namespace Pulumi.Nomad
 
     public sealed class GetVolumesArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string: "default")` Nomad namespace.
+        /// </summary>
         [Input("namespace")]
         public string? Namespace { get; set; }
 
+        /// <summary>
+        /// `(string: optional)` Volume node filter.
+        /// </summary>
         [Input("nodeId")]
         public string? NodeId { get; set; }
 
+        /// <summary>
+        /// `(string: optional)` Plugin ID filter.
+        /// </summary>
         [Input("pluginId")]
         public string? PluginId { get; set; }
 
+        /// <summary>
+        /// `(string: "csi")` Volume type (currently only supports `csi`)
+        /// </summary>
         [Input("type")]
         public string? Type { get; set; }
 
@@ -83,15 +95,27 @@ namespace Pulumi.Nomad
 
     public sealed class GetVolumesInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string: "default")` Nomad namespace.
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// `(string: optional)` Volume node filter.
+        /// </summary>
         [Input("nodeId")]
         public Input<string>? NodeId { get; set; }
 
+        /// <summary>
+        /// `(string: optional)` Plugin ID filter.
+        /// </summary>
         [Input("pluginId")]
         public Input<string>? PluginId { get; set; }
 
+        /// <summary>
+        /// `(string: "csi")` Volume type (currently only supports `csi`)
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
@@ -109,10 +133,16 @@ namespace Pulumi.Nomad
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// `string` Volume namespace.
+        /// </summary>
         public readonly string? Namespace;
         public readonly string? NodeId;
         public readonly string? PluginId;
         public readonly string? Type;
+        /// <summary>
+        /// `list of maps` a list of volumes in the cluster.
+        /// </summary>
         public readonly ImmutableArray<ImmutableDictionary<string, object>> Volumes;
 
         [OutputConstructor]

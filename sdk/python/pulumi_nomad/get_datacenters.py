@@ -38,6 +38,9 @@ class GetDatacentersResult:
     @property
     @pulumi.getter
     def datacenters(self) -> Sequence[str]:
+        """
+        `list(string)` a list of datacenters.
+        """
         return pulumi.get(self, "datacenters")
 
     @property

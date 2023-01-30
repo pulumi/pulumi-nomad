@@ -54,6 +54,20 @@ func NewProvider(ctx *pulumi.Context,
 	if args.Address == nil {
 		return nil, errors.New("invalid value for required argument 'Address'")
 	}
+	if args.ConsulToken != nil {
+		args.ConsulToken = pulumi.ToSecret(args.ConsulToken).(pulumi.StringPtrInput)
+	}
+	if args.Headers != nil {
+		args.Headers = pulumi.ToSecret(args.Headers).(ProviderHeaderArrayInput)
+	}
+	if args.VaultToken != nil {
+		args.VaultToken = pulumi.ToSecret(args.VaultToken).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"consulToken",
+		"vaultToken",
+	})
+	opts = append(opts, secrets)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:nomad", name, args, &resource, opts...)
 	if err != nil {

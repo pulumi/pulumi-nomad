@@ -12,6 +12,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDeploymentsResult {
+    /**
+     * @return `list of maps` a list of deployments in the cluster.
+     * 
+     */
     private List<Map<String,Object>> deployments;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -20,6 +24,10 @@ public final class GetDeploymentsResult {
     private String id;
 
     private GetDeploymentsResult() {}
+    /**
+     * @return `list of maps` a list of deployments in the cluster.
+     * 
+     */
     public List<Map<String,Object>> deployments() {
         return this.deployments;
     }

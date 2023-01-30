@@ -13,19 +13,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const datacenters = pulumi.output(nomad.getDatacenters({
+ * const datacenters = nomad.getDatacenters({
  *     ignoreDownNodes: true,
  *     prefix: "prod",
- * }));
+ * });
  * ```
  */
 export function getDatacenters(args?: GetDatacentersArgs, opts?: pulumi.InvokeOptions): Promise<GetDatacentersResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getDatacenters:getDatacenters", {
         "ignoreDownNodes": args.ignoreDownNodes,
         "prefix": args.prefix,
@@ -50,6 +47,9 @@ export interface GetDatacentersArgs {
  * A collection of values returned by getDatacenters.
  */
 export interface GetDatacentersResult {
+    /**
+     * `list(string)` a list of datacenters.
+     */
     readonly datacenters: string[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -58,9 +58,23 @@ export interface GetDatacentersResult {
     readonly ignoreDownNodes?: boolean;
     readonly prefix?: string;
 }
-
+/**
+ * Retrieve a list of datacenters.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const datacenters = nomad.getDatacenters({
+ *     ignoreDownNodes: true,
+ *     prefix: "prod",
+ * });
+ * ```
+ */
 export function getDatacentersOutput(args?: GetDatacentersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatacentersResult> {
-    return pulumi.output(args).apply(a => getDatacenters(a, opts))
+    return pulumi.output(args).apply((a: any) => getDatacenters(a, opts))
 }
 
 /**

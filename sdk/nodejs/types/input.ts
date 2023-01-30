@@ -5,22 +5,65 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AclRolePolicy {
+    /**
+     * `(string: <required>)` - A human-friendly name for this ACL Role.
+     */
+    name: pulumi.Input<string>;
+}
+
+export interface AclTokenRole {
+    id: pulumi.Input<string>;
+    /**
+     * `(string: "")` - A human-friendly name for this token.
+     */
+    name?: pulumi.Input<string>;
+}
+
 export interface ExternalVolumeCapability {
+    /**
+     * `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
+     */
     accessMode: pulumi.Input<string>;
+    /**
+     * `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+     * - `block-device`
+     * - `file-system`
+     */
     attachmentMode: pulumi.Input<string>;
 }
 
 export interface ExternalVolumeMountOptions {
+    /**
+     * `(string: optional)` - The file system type.
+     */
     fsType?: pulumi.Input<string>;
+    /**
+     * `[]string: optional` - The flags passed to `mount`.
+     */
     mountFlags?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface ExternalVolumeTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     */
     segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface ExternalVolumeTopologyRequest {
+    /**
+     * `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+     */
     preferred?: pulumi.Input<inputs.ExternalVolumeTopologyRequestPreferred>;
+    /**
+     * `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     */
     required?: pulumi.Input<inputs.ExternalVolumeTopologyRequestRequired>;
 }
 
@@ -29,6 +72,9 @@ export interface ExternalVolumeTopologyRequestPreferred {
 }
 
 export interface ExternalVolumeTopologyRequestPreferredTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
@@ -37,6 +83,9 @@ export interface ExternalVolumeTopologyRequestRequired {
 }
 
 export interface ExternalVolumeTopologyRequestRequiredTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
@@ -82,6 +131,17 @@ export interface JobTaskGroupVolume {
     type?: pulumi.Input<string>;
 }
 
+export interface NamespaceCapabilities {
+    /**
+     * `([]string: <optional>)` - Task drivers disabled for the namespace.
+     */
+    disabledTaskDrivers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * `([]string: <optional>)` - Task drivers enabled for the namespace.
+     */
+    enabledTaskDrivers?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface ProviderHeader {
     name: pulumi.Input<string>;
     value: pulumi.Input<string>;
@@ -115,20 +175,45 @@ export interface QuoteSpecificationLimitRegionLimit {
 }
 
 export interface VolumeCapability {
+    /**
+     * `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
+     */
     accessMode: pulumi.Input<string>;
+    /**
+     * `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+     * - `block-device`
+     * - `file-system`
+     */
     attachmentMode: pulumi.Input<string>;
 }
 
 export interface VolumeMountOptions {
+    /**
+     * `(string: <optional>)` - The file system type.
+     */
     fsType?: pulumi.Input<string>;
+    /**
+     * `([]string: <optional>)` - The flags passed to `mount`.
+     */
     mountFlags?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface VolumeTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     */
     segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface VolumeTopologyRequest {
+    /**
+     * `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     */
     required?: pulumi.Input<inputs.VolumeTopologyRequestRequired>;
 }
 
@@ -137,8 +222,10 @@ export interface VolumeTopologyRequestRequired {
 }
 
 export interface VolumeTopologyRequestRequiredTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
-
 export namespace config {
 }

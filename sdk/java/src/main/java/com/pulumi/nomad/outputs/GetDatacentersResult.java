@@ -13,6 +13,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDatacentersResult {
+    /**
+     * @return `list(string)` a list of datacenters.
+     * 
+     */
     private List<String> datacenters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -23,6 +27,10 @@ public final class GetDatacentersResult {
     private @Nullable String prefix;
 
     private GetDatacentersResult() {}
+    /**
+     * @return `list(string)` a list of datacenters.
+     * 
+     */
     public List<String> datacenters() {
         return this.datacenters;
     }

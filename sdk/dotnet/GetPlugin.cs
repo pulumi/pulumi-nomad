@@ -95,12 +95,21 @@ namespace Pulumi.Nomad
 
     public sealed class GetPluginArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` ID of the plugin.
+        /// </summary>
         [Input("pluginId", required: true)]
         public string PluginId { get; set; } = null!;
 
+        /// <summary>
+        /// `(boolean)` retry until the plugin exists and all controllers are healthy
+        /// </summary>
         [Input("waitForHealthy")]
         public bool? WaitForHealthy { get; set; }
 
+        /// <summary>
+        /// `(boolean)` if the plugin doesn't exist, retry until it does
+        /// </summary>
         [Input("waitForRegistration")]
         public bool? WaitForRegistration { get; set; }
 
@@ -112,12 +121,21 @@ namespace Pulumi.Nomad
 
     public sealed class GetPluginInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` ID of the plugin.
+        /// </summary>
         [Input("pluginId", required: true)]
         public Input<string> PluginId { get; set; } = null!;
 
+        /// <summary>
+        /// `(boolean)` retry until the plugin exists and all controllers are healthy
+        /// </summary>
         [Input("waitForHealthy")]
         public Input<bool>? WaitForHealthy { get; set; }
 
+        /// <summary>
+        /// `(boolean)` if the plugin doesn't exist, retry until it does
+        /// </summary>
         [Input("waitForRegistration")]
         public Input<bool>? WaitForRegistration { get; set; }
 
@@ -131,18 +149,42 @@ namespace Pulumi.Nomad
     [OutputType]
     public sealed class GetPluginResult
     {
+        /// <summary>
+        /// `(boolean)` Whether a controller is required.
+        /// </summary>
         public readonly bool ControllerRequired;
+        /// <summary>
+        /// `(integer)` The number of registered controllers.
+        /// </summary>
         public readonly int ControllersExpected;
+        /// <summary>
+        /// `(integer)` The number of healthy controllers.
+        /// </summary>
         public readonly int ControllersHealthy;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetPluginNodeResult> Nodes;
+        /// <summary>
+        /// `(integer)` The number of registered nodes.
+        /// </summary>
         public readonly int NodesExpected;
+        /// <summary>
+        /// `(integer)` The number of healthy nodes.
+        /// </summary>
         public readonly int NodesHealthy;
+        /// <summary>
+        /// `(string)` ID of the plugin
+        /// </summary>
         public readonly string PluginId;
+        /// <summary>
+        /// `(string)` Plugin provider name
+        /// </summary>
         public readonly string PluginProvider;
+        /// <summary>
+        /// `(string)` Plugin provider version
+        /// </summary>
         public readonly string PluginProviderVersion;
         public readonly bool? WaitForHealthy;
         public readonly bool? WaitForRegistration;

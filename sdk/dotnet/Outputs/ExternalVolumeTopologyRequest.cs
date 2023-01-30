@@ -13,7 +13,13 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class ExternalVolumeTopologyRequest
     {
+        /// <summary>
+        /// `(``Topology``: &lt;optional&gt;)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+        /// </summary>
         public readonly Outputs.ExternalVolumeTopologyRequestPreferred? Preferred;
+        /// <summary>
+        /// `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        /// </summary>
         public readonly Outputs.ExternalVolumeTopologyRequestRequired? Required;
 
         [OutputConstructor]

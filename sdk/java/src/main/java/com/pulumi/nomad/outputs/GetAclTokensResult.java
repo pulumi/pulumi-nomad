@@ -13,6 +13,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAclTokensResult {
+    /**
+     * @return `(list of objects)` The list of tokens found in the given prefix.
+     * 
+     */
     private List<GetAclTokensAclToken> aclTokens;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -22,6 +26,10 @@ public final class GetAclTokensResult {
     private @Nullable String prefix;
 
     private GetAclTokensResult() {}
+    /**
+     * @return `(list of objects)` The list of tokens found in the given prefix.
+     * 
+     */
     public List<GetAclTokensAclToken> aclTokens() {
         return this.aclTokens;
     }

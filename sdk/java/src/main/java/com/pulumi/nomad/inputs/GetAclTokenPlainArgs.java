@@ -12,9 +12,17 @@ public final class GetAclTokenPlainArgs extends com.pulumi.resources.InvokeArgs 
 
     public static final GetAclTokenPlainArgs Empty = new GetAclTokenPlainArgs();
 
+    /**
+     * `(string)` Non-sensitive identifier for this token.
+     * 
+     */
     @Import(name="accessorId", required=true)
     private String accessorId;
 
+    /**
+     * @return `(string)` Non-sensitive identifier for this token.
+     * 
+     */
     public String accessorId() {
         return this.accessorId;
     }
@@ -43,6 +51,12 @@ public final class GetAclTokenPlainArgs extends com.pulumi.resources.InvokeArgs 
             $ = new GetAclTokenPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param accessorId `(string)` Non-sensitive identifier for this token.
+         * 
+         * @return builder
+         * 
+         */
         public Builder accessorId(String accessorId) {
             $.accessorId = accessorId;
             return this;

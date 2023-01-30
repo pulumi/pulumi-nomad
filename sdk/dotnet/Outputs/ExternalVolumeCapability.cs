@@ -13,7 +13,20 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class ExternalVolumeCapability
     {
+        /// <summary>
+        /// `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
+        /// - `single-node-reader-only`
+        /// - `single-node-writer`
+        /// - `multi-node-reader-only`
+        /// - `multi-node-single-writer`
+        /// - `multi-node-multi-writer`
+        /// </summary>
         public readonly string AccessMode;
+        /// <summary>
+        /// `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
+        /// - `block-device`
+        /// - `file-system`
+        /// </summary>
         public readonly string AttachmentMode;
 
         [OutputConstructor]

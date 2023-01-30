@@ -113,6 +113,9 @@ namespace Pulumi.Nomad
     [OutputType]
     public sealed class GetDatacentersResult
     {
+        /// <summary>
+        /// `list(string)` a list of datacenters.
+        /// </summary>
         public readonly ImmutableArray<string> Datacenters;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.

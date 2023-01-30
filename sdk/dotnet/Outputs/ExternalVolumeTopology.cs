@@ -13,6 +13,9 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class ExternalVolumeTopology
     {
+        /// <summary>
+        /// `(map[string]string)` - Define the attributes for the topology request.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Segments;
 
         [OutputConstructor]

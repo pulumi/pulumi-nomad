@@ -31,6 +31,11 @@ namespace Pulumi.Nomad
     ///     var dev = new Nomad.Namespace("dev", new()
     ///     {
     ///         Description = "Shared development environment.",
+    ///         Meta = 
+    ///         {
+    ///             { "foo", "bar" },
+    ///             { "owner", "John Doe" },
+    ///         },
     ///         Quota = "dev",
     ///     });
     /// 
@@ -76,10 +81,23 @@ namespace Pulumi.Nomad
     public partial class Namespace : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can't 
+        /// be repeated. See below for the structure of this block.
+        /// </summary>
+        [Output("capabilities")]
+        public Output<Outputs.NamespaceCapabilities?> Capabilities { get; private set; } = null!;
+
+        /// <summary>
         /// `(string: "")` - A description of the namespace.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// `(map[string]string: &lt;optional&gt;)` -  Specifies arbitrary KV metadata to associate with the namespace.
+        /// </summary>
+        [Output("meta")]
+        public Output<ImmutableDictionary<string, string>?> Meta { get; private set; } = null!;
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - A unique name for the namespace.
@@ -140,10 +158,29 @@ namespace Pulumi.Nomad
     public sealed class NamespaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can't 
+        /// be repeated. See below for the structure of this block.
+        /// </summary>
+        [Input("capabilities")]
+        public Input<Inputs.NamespaceCapabilitiesArgs>? Capabilities { get; set; }
+
+        /// <summary>
         /// `(string: "")` - A description of the namespace.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        [Input("meta")]
+        private InputMap<string>? _meta;
+
+        /// <summary>
+        /// `(map[string]string: &lt;optional&gt;)` -  Specifies arbitrary KV metadata to associate with the namespace.
+        /// </summary>
+        public InputMap<string> Meta
+        {
+            get => _meta ?? (_meta = new InputMap<string>());
+            set => _meta = value;
+        }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - A unique name for the namespace.
@@ -166,10 +203,29 @@ namespace Pulumi.Nomad
     public sealed class NamespaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can't 
+        /// be repeated. See below for the structure of this block.
+        /// </summary>
+        [Input("capabilities")]
+        public Input<Inputs.NamespaceCapabilitiesGetArgs>? Capabilities { get; set; }
+
+        /// <summary>
         /// `(string: "")` - A description of the namespace.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        [Input("meta")]
+        private InputMap<string>? _meta;
+
+        /// <summary>
+        /// `(map[string]string: &lt;optional&gt;)` -  Specifies arbitrary KV metadata to associate with the namespace.
+        /// </summary>
+        public InputMap<string> Meta
+        {
+            get => _meta ?? (_meta = new InputMap<string>());
+            set => _meta = value;
+        }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - A unique name for the namespace.

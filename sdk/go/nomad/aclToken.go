@@ -137,6 +137,12 @@ type AclToken struct {
 	AccessorId pulumi.StringOutput `pulumi:"accessorId"`
 	// `(string)` - The timestamp the token was created.
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
+	// `(string)` - The timestamp after which the token is
+	// considered expired and eligible for destruction.
+	ExpirationTime pulumi.StringOutput `pulumi:"expirationTime"`
+	// `(string: "")` - Provides a TTL for the token in the form of
+	// a time duration such as `"5m"` or `"1h"`.
+	ExpirationTtl pulumi.StringPtrOutput `pulumi:"expirationTtl"`
 	// `(bool: false)` - Whether the token should be replicated to all
 	// regions, or if it will only be used in the region it was created in.
 	Global pulumi.BoolPtrOutput `pulumi:"global"`
@@ -147,6 +153,9 @@ type AclToken struct {
 	// `management`-type tokens. Policies do not need to exist before being
 	// used here.
 	Policies pulumi.StringArrayOutput `pulumi:"policies"`
+	// `(set: [])` - The list of roles attached to the token. Each entry has
+	// `name` and `id` attributes. It may be used multiple times.
+	Roles AclTokenRoleArrayOutput `pulumi:"roles"`
 	// `(string)` - The token value itself, which is presented for
 	// access to the cluster.
 	SecretId pulumi.StringOutput `pulumi:"secretId"`
@@ -166,6 +175,10 @@ func NewAclToken(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secretId",
+	})
+	opts = append(opts, secrets)
 	var resource AclToken
 	err := ctx.RegisterResource("nomad:index/aclToken:AclToken", name, args, &resource, opts...)
 	if err != nil {
@@ -193,6 +206,12 @@ type aclTokenState struct {
 	AccessorId *string `pulumi:"accessorId"`
 	// `(string)` - The timestamp the token was created.
 	CreateTime *string `pulumi:"createTime"`
+	// `(string)` - The timestamp after which the token is
+	// considered expired and eligible for destruction.
+	ExpirationTime *string `pulumi:"expirationTime"`
+	// `(string: "")` - Provides a TTL for the token in the form of
+	// a time duration such as `"5m"` or `"1h"`.
+	ExpirationTtl *string `pulumi:"expirationTtl"`
 	// `(bool: false)` - Whether the token should be replicated to all
 	// regions, or if it will only be used in the region it was created in.
 	Global *bool `pulumi:"global"`
@@ -203,6 +222,9 @@ type aclTokenState struct {
 	// `management`-type tokens. Policies do not need to exist before being
 	// used here.
 	Policies []string `pulumi:"policies"`
+	// `(set: [])` - The list of roles attached to the token. Each entry has
+	// `name` and `id` attributes. It may be used multiple times.
+	Roles []AclTokenRole `pulumi:"roles"`
 	// `(string)` - The token value itself, which is presented for
 	// access to the cluster.
 	SecretId *string `pulumi:"secretId"`
@@ -218,6 +240,12 @@ type AclTokenState struct {
 	AccessorId pulumi.StringPtrInput
 	// `(string)` - The timestamp the token was created.
 	CreateTime pulumi.StringPtrInput
+	// `(string)` - The timestamp after which the token is
+	// considered expired and eligible for destruction.
+	ExpirationTime pulumi.StringPtrInput
+	// `(string: "")` - Provides a TTL for the token in the form of
+	// a time duration such as `"5m"` or `"1h"`.
+	ExpirationTtl pulumi.StringPtrInput
 	// `(bool: false)` - Whether the token should be replicated to all
 	// regions, or if it will only be used in the region it was created in.
 	Global pulumi.BoolPtrInput
@@ -228,6 +256,9 @@ type AclTokenState struct {
 	// `management`-type tokens. Policies do not need to exist before being
 	// used here.
 	Policies pulumi.StringArrayInput
+	// `(set: [])` - The list of roles attached to the token. Each entry has
+	// `name` and `id` attributes. It may be used multiple times.
+	Roles AclTokenRoleArrayInput
 	// `(string)` - The token value itself, which is presented for
 	// access to the cluster.
 	SecretId pulumi.StringPtrInput
@@ -242,6 +273,9 @@ func (AclTokenState) ElementType() reflect.Type {
 }
 
 type aclTokenArgs struct {
+	// `(string: "")` - Provides a TTL for the token in the form of
+	// a time duration such as `"5m"` or `"1h"`.
+	ExpirationTtl *string `pulumi:"expirationTtl"`
 	// `(bool: false)` - Whether the token should be replicated to all
 	// regions, or if it will only be used in the region it was created in.
 	Global *bool `pulumi:"global"`
@@ -252,6 +286,9 @@ type aclTokenArgs struct {
 	// `management`-type tokens. Policies do not need to exist before being
 	// used here.
 	Policies []string `pulumi:"policies"`
+	// `(set: [])` - The list of roles attached to the token. Each entry has
+	// `name` and `id` attributes. It may be used multiple times.
+	Roles []AclTokenRole `pulumi:"roles"`
 	// `(string: <required>)` - The type of token this is. Use `client`
 	// for tokens that will have policies associated with them. Use `management`
 	// for tokens that can perform any action.
@@ -260,6 +297,9 @@ type aclTokenArgs struct {
 
 // The set of arguments for constructing a AclToken resource.
 type AclTokenArgs struct {
+	// `(string: "")` - Provides a TTL for the token in the form of
+	// a time duration such as `"5m"` or `"1h"`.
+	ExpirationTtl pulumi.StringPtrInput
 	// `(bool: false)` - Whether the token should be replicated to all
 	// regions, or if it will only be used in the region it was created in.
 	Global pulumi.BoolPtrInput
@@ -270,6 +310,9 @@ type AclTokenArgs struct {
 	// `management`-type tokens. Policies do not need to exist before being
 	// used here.
 	Policies pulumi.StringArrayInput
+	// `(set: [])` - The list of roles attached to the token. Each entry has
+	// `name` and `id` attributes. It may be used multiple times.
+	Roles AclTokenRoleArrayInput
 	// `(string: <required>)` - The type of token this is. Use `client`
 	// for tokens that will have policies associated with them. Use `management`
 	// for tokens that can perform any action.
@@ -374,6 +417,18 @@ func (o AclTokenOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *AclToken) pulumi.StringOutput { return v.CreateTime }).(pulumi.StringOutput)
 }
 
+// `(string)` - The timestamp after which the token is
+// considered expired and eligible for destruction.
+func (o AclTokenOutput) ExpirationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *AclToken) pulumi.StringOutput { return v.ExpirationTime }).(pulumi.StringOutput)
+}
+
+// `(string: "")` - Provides a TTL for the token in the form of
+// a time duration such as `"5m"` or `"1h"`.
+func (o AclTokenOutput) ExpirationTtl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclToken) pulumi.StringPtrOutput { return v.ExpirationTtl }).(pulumi.StringPtrOutput)
+}
+
 // `(bool: false)` - Whether the token should be replicated to all
 // regions, or if it will only be used in the region it was created in.
 func (o AclTokenOutput) Global() pulumi.BoolPtrOutput {
@@ -391,6 +446,12 @@ func (o AclTokenOutput) Name() pulumi.StringOutput {
 // used here.
 func (o AclTokenOutput) Policies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AclToken) pulumi.StringArrayOutput { return v.Policies }).(pulumi.StringArrayOutput)
+}
+
+// `(set: [])` - The list of roles attached to the token. Each entry has
+// `name` and `id` attributes. It may be used multiple times.
+func (o AclTokenOutput) Roles() AclTokenRoleArrayOutput {
+	return o.ApplyT(func(v *AclToken) AclTokenRoleArrayOutput { return v.Roles }).(AclTokenRoleArrayOutput)
 }
 
 // `(string)` - The token value itself, which is presented for

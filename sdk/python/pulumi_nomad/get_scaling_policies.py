@@ -52,11 +52,17 @@ class GetScalingPoliciesResult:
     @property
     @pulumi.getter
     def policies(self) -> Sequence['outputs.GetScalingPoliciesPolicyResult']:
+        """
+        `list of maps` - A list of scaling policies.
+        """
         return pulumi.get(self, "policies")
 
     @property
     @pulumi.getter
     def type(self) -> Optional[str]:
+        """
+        `(string)` - The scaling policy type.
+        """
         return pulumi.get(self, "type")
 
 

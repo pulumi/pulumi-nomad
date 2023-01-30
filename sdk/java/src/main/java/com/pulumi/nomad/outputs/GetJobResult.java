@@ -17,9 +17,21 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetJobResult {
+    /**
+     * @return `(boolean)`  If the scheduler can make partial placements on oversubscribed nodes.
+     * 
+     */
     private Boolean allAtOnce;
     private List<GetJobConstraint> constraints;
+    /**
+     * @return `(integer)` Creation Index.
+     * 
+     */
     private Integer createIndex;
+    /**
+     * @return `(list of strings)` Datacenters allowed to run the specified job.
+     * 
+     */
     private List<String> datacenters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -27,33 +39,109 @@ public final class GetJobResult {
      */
     private String id;
     private String jobId;
+    /**
+     * @return `(integer)` Job modify index (used for version verification).
+     * 
+     */
     private Integer jobModifyIndex;
+    /**
+     * @return `(integer)` Modification Index.
+     * 
+     */
     private Integer modifyIndex;
+    /**
+     * @return `(string)` Name of the job.
+     * 
+     */
     private String name;
+    /**
+     * @return `(string)` Namespace of the specified job.
+     * 
+     */
     private @Nullable String namespace;
+    /**
+     * @return `(string)` Job&#39;s parent ID.
+     * 
+     */
     private String parentId;
+    /**
+     * @return `(list of maps)` Job&#39;s periodic configuration (time based scheduling).
+     * 
+     */
     private List<GetJobPeriodicConfig> periodicConfigs;
+    /**
+     * @return `(integer)` Used for the prioritization of scheduling and resource access.
+     * 
+     */
     private Integer priority;
+    /**
+     * @return `(string)` Region where the Nomad cluster resides.
+     * 
+     */
     private String region;
+    /**
+     * @return `(boolean)` Job stability status.
+     * 
+     */
     private Boolean stable;
+    /**
+     * @return `(string)` Execution status of the specified job.
+     * 
+     */
     private String status;
+    /**
+     * @return `(string)` Status description of the specified job.
+     * 
+     */
     private String statusDescription;
+    /**
+     * @return `(boolean)` Job enabled status.
+     * 
+     */
     private Boolean stop;
+    /**
+     * @return `(integer)` Job submission date.
+     * 
+     */
     private Integer submitTime;
+    /**
+     * @return `(list of maps)` A list of of the job&#39;s task groups.
+     * 
+     */
     private List<GetJobTaskGroup> taskGroups;
+    /**
+     * @return `(string)` Scheduler type used during job creation.
+     * 
+     */
     private String type;
+    /**
+     * @return `(integer)` Version of the specified job.
+     * 
+     */
     private Integer version;
 
     private GetJobResult() {}
+    /**
+     * @return `(boolean)`  If the scheduler can make partial placements on oversubscribed nodes.
+     * 
+     */
     public Boolean allAtOnce() {
         return this.allAtOnce;
     }
     public List<GetJobConstraint> constraints() {
         return this.constraints;
     }
+    /**
+     * @return `(integer)` Creation Index.
+     * 
+     */
     public Integer createIndex() {
         return this.createIndex;
     }
+    /**
+     * @return `(list of strings)` Datacenters allowed to run the specified job.
+     * 
+     */
     public List<String> datacenters() {
         return this.datacenters;
     }
@@ -67,51 +155,115 @@ public final class GetJobResult {
     public String jobId() {
         return this.jobId;
     }
+    /**
+     * @return `(integer)` Job modify index (used for version verification).
+     * 
+     */
     public Integer jobModifyIndex() {
         return this.jobModifyIndex;
     }
+    /**
+     * @return `(integer)` Modification Index.
+     * 
+     */
     public Integer modifyIndex() {
         return this.modifyIndex;
     }
+    /**
+     * @return `(string)` Name of the job.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return `(string)` Namespace of the specified job.
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
+    /**
+     * @return `(string)` Job&#39;s parent ID.
+     * 
+     */
     public String parentId() {
         return this.parentId;
     }
+    /**
+     * @return `(list of maps)` Job&#39;s periodic configuration (time based scheduling).
+     * 
+     */
     public List<GetJobPeriodicConfig> periodicConfigs() {
         return this.periodicConfigs;
     }
+    /**
+     * @return `(integer)` Used for the prioritization of scheduling and resource access.
+     * 
+     */
     public Integer priority() {
         return this.priority;
     }
+    /**
+     * @return `(string)` Region where the Nomad cluster resides.
+     * 
+     */
     public String region() {
         return this.region;
     }
+    /**
+     * @return `(boolean)` Job stability status.
+     * 
+     */
     public Boolean stable() {
         return this.stable;
     }
+    /**
+     * @return `(string)` Execution status of the specified job.
+     * 
+     */
     public String status() {
         return this.status;
     }
+    /**
+     * @return `(string)` Status description of the specified job.
+     * 
+     */
     public String statusDescription() {
         return this.statusDescription;
     }
+    /**
+     * @return `(boolean)` Job enabled status.
+     * 
+     */
     public Boolean stop() {
         return this.stop;
     }
+    /**
+     * @return `(integer)` Job submission date.
+     * 
+     */
     public Integer submitTime() {
         return this.submitTime;
     }
+    /**
+     * @return `(list of maps)` A list of of the job&#39;s task groups.
+     * 
+     */
     public List<GetJobTaskGroup> taskGroups() {
         return this.taskGroups;
     }
+    /**
+     * @return `(string)` Scheduler type used during job creation.
+     * 
+     */
     public String type() {
         return this.type;
     }
+    /**
+     * @return `(integer)` Version of the specified job.
+     * 
+     */
     public Integer version() {
         return this.version;
     }

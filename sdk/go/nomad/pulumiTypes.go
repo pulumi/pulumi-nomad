@@ -10,8 +10,217 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type AclRolePolicy struct {
+	// `(string: <required>)` - A human-friendly name for this ACL Role.
+	Name string `pulumi:"name"`
+}
+
+// AclRolePolicyInput is an input type that accepts AclRolePolicyArgs and AclRolePolicyOutput values.
+// You can construct a concrete instance of `AclRolePolicyInput` via:
+//
+//	AclRolePolicyArgs{...}
+type AclRolePolicyInput interface {
+	pulumi.Input
+
+	ToAclRolePolicyOutput() AclRolePolicyOutput
+	ToAclRolePolicyOutputWithContext(context.Context) AclRolePolicyOutput
+}
+
+type AclRolePolicyArgs struct {
+	// `(string: <required>)` - A human-friendly name for this ACL Role.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (AclRolePolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclRolePolicy)(nil)).Elem()
+}
+
+func (i AclRolePolicyArgs) ToAclRolePolicyOutput() AclRolePolicyOutput {
+	return i.ToAclRolePolicyOutputWithContext(context.Background())
+}
+
+func (i AclRolePolicyArgs) ToAclRolePolicyOutputWithContext(ctx context.Context) AclRolePolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclRolePolicyOutput)
+}
+
+// AclRolePolicyArrayInput is an input type that accepts AclRolePolicyArray and AclRolePolicyArrayOutput values.
+// You can construct a concrete instance of `AclRolePolicyArrayInput` via:
+//
+//	AclRolePolicyArray{ AclRolePolicyArgs{...} }
+type AclRolePolicyArrayInput interface {
+	pulumi.Input
+
+	ToAclRolePolicyArrayOutput() AclRolePolicyArrayOutput
+	ToAclRolePolicyArrayOutputWithContext(context.Context) AclRolePolicyArrayOutput
+}
+
+type AclRolePolicyArray []AclRolePolicyInput
+
+func (AclRolePolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclRolePolicy)(nil)).Elem()
+}
+
+func (i AclRolePolicyArray) ToAclRolePolicyArrayOutput() AclRolePolicyArrayOutput {
+	return i.ToAclRolePolicyArrayOutputWithContext(context.Background())
+}
+
+func (i AclRolePolicyArray) ToAclRolePolicyArrayOutputWithContext(ctx context.Context) AclRolePolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclRolePolicyArrayOutput)
+}
+
+type AclRolePolicyOutput struct{ *pulumi.OutputState }
+
+func (AclRolePolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclRolePolicy)(nil)).Elem()
+}
+
+func (o AclRolePolicyOutput) ToAclRolePolicyOutput() AclRolePolicyOutput {
+	return o
+}
+
+func (o AclRolePolicyOutput) ToAclRolePolicyOutputWithContext(ctx context.Context) AclRolePolicyOutput {
+	return o
+}
+
+// `(string: <required>)` - A human-friendly name for this ACL Role.
+func (o AclRolePolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AclRolePolicy) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type AclRolePolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (AclRolePolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclRolePolicy)(nil)).Elem()
+}
+
+func (o AclRolePolicyArrayOutput) ToAclRolePolicyArrayOutput() AclRolePolicyArrayOutput {
+	return o
+}
+
+func (o AclRolePolicyArrayOutput) ToAclRolePolicyArrayOutputWithContext(ctx context.Context) AclRolePolicyArrayOutput {
+	return o
+}
+
+func (o AclRolePolicyArrayOutput) Index(i pulumi.IntInput) AclRolePolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclRolePolicy {
+		return vs[0].([]AclRolePolicy)[vs[1].(int)]
+	}).(AclRolePolicyOutput)
+}
+
+type AclTokenRole struct {
+	Id string `pulumi:"id"`
+	// `(string: "")` - A human-friendly name for this token.
+	Name *string `pulumi:"name"`
+}
+
+// AclTokenRoleInput is an input type that accepts AclTokenRoleArgs and AclTokenRoleOutput values.
+// You can construct a concrete instance of `AclTokenRoleInput` via:
+//
+//	AclTokenRoleArgs{...}
+type AclTokenRoleInput interface {
+	pulumi.Input
+
+	ToAclTokenRoleOutput() AclTokenRoleOutput
+	ToAclTokenRoleOutputWithContext(context.Context) AclTokenRoleOutput
+}
+
+type AclTokenRoleArgs struct {
+	Id pulumi.StringInput `pulumi:"id"`
+	// `(string: "")` - A human-friendly name for this token.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (AclTokenRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclTokenRole)(nil)).Elem()
+}
+
+func (i AclTokenRoleArgs) ToAclTokenRoleOutput() AclTokenRoleOutput {
+	return i.ToAclTokenRoleOutputWithContext(context.Background())
+}
+
+func (i AclTokenRoleArgs) ToAclTokenRoleOutputWithContext(ctx context.Context) AclTokenRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclTokenRoleOutput)
+}
+
+// AclTokenRoleArrayInput is an input type that accepts AclTokenRoleArray and AclTokenRoleArrayOutput values.
+// You can construct a concrete instance of `AclTokenRoleArrayInput` via:
+//
+//	AclTokenRoleArray{ AclTokenRoleArgs{...} }
+type AclTokenRoleArrayInput interface {
+	pulumi.Input
+
+	ToAclTokenRoleArrayOutput() AclTokenRoleArrayOutput
+	ToAclTokenRoleArrayOutputWithContext(context.Context) AclTokenRoleArrayOutput
+}
+
+type AclTokenRoleArray []AclTokenRoleInput
+
+func (AclTokenRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclTokenRole)(nil)).Elem()
+}
+
+func (i AclTokenRoleArray) ToAclTokenRoleArrayOutput() AclTokenRoleArrayOutput {
+	return i.ToAclTokenRoleArrayOutputWithContext(context.Background())
+}
+
+func (i AclTokenRoleArray) ToAclTokenRoleArrayOutputWithContext(ctx context.Context) AclTokenRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclTokenRoleArrayOutput)
+}
+
+type AclTokenRoleOutput struct{ *pulumi.OutputState }
+
+func (AclTokenRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclTokenRole)(nil)).Elem()
+}
+
+func (o AclTokenRoleOutput) ToAclTokenRoleOutput() AclTokenRoleOutput {
+	return o
+}
+
+func (o AclTokenRoleOutput) ToAclTokenRoleOutputWithContext(ctx context.Context) AclTokenRoleOutput {
+	return o
+}
+
+func (o AclTokenRoleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v AclTokenRole) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// `(string: "")` - A human-friendly name for this token.
+func (o AclTokenRoleOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclTokenRole) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type AclTokenRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (AclTokenRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclTokenRole)(nil)).Elem()
+}
+
+func (o AclTokenRoleArrayOutput) ToAclTokenRoleArrayOutput() AclTokenRoleArrayOutput {
+	return o
+}
+
+func (o AclTokenRoleArrayOutput) ToAclTokenRoleArrayOutputWithContext(ctx context.Context) AclTokenRoleArrayOutput {
+	return o
+}
+
+func (o AclTokenRoleArrayOutput) Index(i pulumi.IntInput) AclTokenRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclTokenRole {
+		return vs[0].([]AclTokenRole)[vs[1].(int)]
+	}).(AclTokenRoleOutput)
+}
+
 type ExternalVolumeCapability struct {
-	AccessMode     string `pulumi:"accessMode"`
+	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
+	AccessMode string `pulumi:"accessMode"`
+	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+	// - `block-device`
+	// - `file-system`
 	AttachmentMode string `pulumi:"attachmentMode"`
 }
 
@@ -27,7 +236,16 @@ type ExternalVolumeCapabilityInput interface {
 }
 
 type ExternalVolumeCapabilityArgs struct {
-	AccessMode     pulumi.StringInput `pulumi:"accessMode"`
+	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
+	AccessMode pulumi.StringInput `pulumi:"accessMode"`
+	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+	// - `block-device`
+	// - `file-system`
 	AttachmentMode pulumi.StringInput `pulumi:"attachmentMode"`
 }
 
@@ -82,10 +300,19 @@ func (o ExternalVolumeCapabilityOutput) ToExternalVolumeCapabilityOutputWithCont
 	return o
 }
 
+// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+// - `single-node-reader-only`
+// - `single-node-writer`
+// - `multi-node-reader-only`
+// - `multi-node-single-writer`
+// - `multi-node-multi-writer`
 func (o ExternalVolumeCapabilityOutput) AccessMode() pulumi.StringOutput {
 	return o.ApplyT(func(v ExternalVolumeCapability) string { return v.AccessMode }).(pulumi.StringOutput)
 }
 
+// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+// - `block-device`
+// - `file-system`
 func (o ExternalVolumeCapabilityOutput) AttachmentMode() pulumi.StringOutput {
 	return o.ApplyT(func(v ExternalVolumeCapability) string { return v.AttachmentMode }).(pulumi.StringOutput)
 }
@@ -111,7 +338,9 @@ func (o ExternalVolumeCapabilityArrayOutput) Index(i pulumi.IntInput) ExternalVo
 }
 
 type ExternalVolumeMountOptions struct {
-	FsType     *string  `pulumi:"fsType"`
+	// `(string: optional)` - The file system type.
+	FsType *string `pulumi:"fsType"`
+	// `[]string: optional` - The flags passed to `mount`.
 	MountFlags []string `pulumi:"mountFlags"`
 }
 
@@ -127,7 +356,9 @@ type ExternalVolumeMountOptionsInput interface {
 }
 
 type ExternalVolumeMountOptionsArgs struct {
-	FsType     pulumi.StringPtrInput   `pulumi:"fsType"`
+	// `(string: optional)` - The file system type.
+	FsType pulumi.StringPtrInput `pulumi:"fsType"`
+	// `[]string: optional` - The flags passed to `mount`.
 	MountFlags pulumi.StringArrayInput `pulumi:"mountFlags"`
 }
 
@@ -208,10 +439,12 @@ func (o ExternalVolumeMountOptionsOutput) ToExternalVolumeMountOptionsPtrOutputW
 	}).(ExternalVolumeMountOptionsPtrOutput)
 }
 
+// `(string: optional)` - The file system type.
 func (o ExternalVolumeMountOptionsOutput) FsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExternalVolumeMountOptions) *string { return v.FsType }).(pulumi.StringPtrOutput)
 }
 
+// `[]string: optional` - The flags passed to `mount`.
 func (o ExternalVolumeMountOptionsOutput) MountFlags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ExternalVolumeMountOptions) []string { return v.MountFlags }).(pulumi.StringArrayOutput)
 }
@@ -240,6 +473,7 @@ func (o ExternalVolumeMountOptionsPtrOutput) Elem() ExternalVolumeMountOptionsOu
 	}).(ExternalVolumeMountOptionsOutput)
 }
 
+// `(string: optional)` - The file system type.
 func (o ExternalVolumeMountOptionsPtrOutput) FsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ExternalVolumeMountOptions) *string {
 		if v == nil {
@@ -249,6 +483,7 @@ func (o ExternalVolumeMountOptionsPtrOutput) FsType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// `[]string: optional` - The flags passed to `mount`.
 func (o ExternalVolumeMountOptionsPtrOutput) MountFlags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ExternalVolumeMountOptions) []string {
 		if v == nil {
@@ -259,6 +494,7 @@ func (o ExternalVolumeMountOptionsPtrOutput) MountFlags() pulumi.StringArrayOutp
 }
 
 type ExternalVolumeTopology struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -274,6 +510,7 @@ type ExternalVolumeTopologyInput interface {
 }
 
 type ExternalVolumeTopologyArgs struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -328,6 +565,7 @@ func (o ExternalVolumeTopologyOutput) ToExternalVolumeTopologyOutputWithContext(
 	return o
 }
 
+// `(map[string]string)` - Define the attributes for the topology request.
 func (o ExternalVolumeTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ExternalVolumeTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -353,8 +591,10 @@ func (o ExternalVolumeTopologyArrayOutput) Index(i pulumi.IntInput) ExternalVolu
 }
 
 type ExternalVolumeTopologyRequest struct {
+	// `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
 	Preferred *ExternalVolumeTopologyRequestPreferred `pulumi:"preferred"`
-	Required  *ExternalVolumeTopologyRequestRequired  `pulumi:"required"`
+	// `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+	Required *ExternalVolumeTopologyRequestRequired `pulumi:"required"`
 }
 
 // ExternalVolumeTopologyRequestInput is an input type that accepts ExternalVolumeTopologyRequestArgs and ExternalVolumeTopologyRequestOutput values.
@@ -369,8 +609,10 @@ type ExternalVolumeTopologyRequestInput interface {
 }
 
 type ExternalVolumeTopologyRequestArgs struct {
+	// `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
 	Preferred ExternalVolumeTopologyRequestPreferredPtrInput `pulumi:"preferred"`
-	Required  ExternalVolumeTopologyRequestRequiredPtrInput  `pulumi:"required"`
+	// `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+	Required ExternalVolumeTopologyRequestRequiredPtrInput `pulumi:"required"`
 }
 
 func (ExternalVolumeTopologyRequestArgs) ElementType() reflect.Type {
@@ -450,10 +692,12 @@ func (o ExternalVolumeTopologyRequestOutput) ToExternalVolumeTopologyRequestPtrO
 	}).(ExternalVolumeTopologyRequestPtrOutput)
 }
 
+// `(“Topology“: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
 func (o ExternalVolumeTopologyRequestOutput) Preferred() ExternalVolumeTopologyRequestPreferredPtrOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequest) *ExternalVolumeTopologyRequestPreferred { return v.Preferred }).(ExternalVolumeTopologyRequestPreferredPtrOutput)
 }
 
+// `(“Topology“: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
 func (o ExternalVolumeTopologyRequestOutput) Required() ExternalVolumeTopologyRequestRequiredPtrOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequest) *ExternalVolumeTopologyRequestRequired { return v.Required }).(ExternalVolumeTopologyRequestRequiredPtrOutput)
 }
@@ -482,6 +726,7 @@ func (o ExternalVolumeTopologyRequestPtrOutput) Elem() ExternalVolumeTopologyReq
 	}).(ExternalVolumeTopologyRequestOutput)
 }
 
+// `(“Topology“: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
 func (o ExternalVolumeTopologyRequestPtrOutput) Preferred() ExternalVolumeTopologyRequestPreferredPtrOutput {
 	return o.ApplyT(func(v *ExternalVolumeTopologyRequest) *ExternalVolumeTopologyRequestPreferred {
 		if v == nil {
@@ -491,6 +736,7 @@ func (o ExternalVolumeTopologyRequestPtrOutput) Preferred() ExternalVolumeTopolo
 	}).(ExternalVolumeTopologyRequestPreferredPtrOutput)
 }
 
+// `(“Topology“: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
 func (o ExternalVolumeTopologyRequestPtrOutput) Required() ExternalVolumeTopologyRequestRequiredPtrOutput {
 	return o.ApplyT(func(v *ExternalVolumeTopologyRequest) *ExternalVolumeTopologyRequestRequired {
 		if v == nil {
@@ -636,6 +882,7 @@ func (o ExternalVolumeTopologyRequestPreferredPtrOutput) Topologies() ExternalVo
 }
 
 type ExternalVolumeTopologyRequestPreferredTopology struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -651,6 +898,7 @@ type ExternalVolumeTopologyRequestPreferredTopologyInput interface {
 }
 
 type ExternalVolumeTopologyRequestPreferredTopologyArgs struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -705,6 +953,7 @@ func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) ToExternalVolumeTo
 	return o
 }
 
+// `(map[string]string)` - Define the attributes for the topology request.
 func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestPreferredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -865,6 +1114,7 @@ func (o ExternalVolumeTopologyRequestRequiredPtrOutput) Topologies() ExternalVol
 }
 
 type ExternalVolumeTopologyRequestRequiredTopology struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -880,6 +1130,7 @@ type ExternalVolumeTopologyRequestRequiredTopologyInput interface {
 }
 
 type ExternalVolumeTopologyRequestRequiredTopologyArgs struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -934,6 +1185,7 @@ func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) ToExternalVolumeTop
 	return o
 }
 
+// `(map[string]string)` - Define the attributes for the topology request.
 func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestRequiredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -1585,6 +1837,162 @@ func (o JobTaskGroupVolumeArrayOutput) Index(i pulumi.IntInput) JobTaskGroupVolu
 	}).(JobTaskGroupVolumeOutput)
 }
 
+type NamespaceCapabilities struct {
+	// `([]string: <optional>)` - Task drivers disabled for the namespace.
+	DisabledTaskDrivers []string `pulumi:"disabledTaskDrivers"`
+	// `([]string: <optional>)` - Task drivers enabled for the namespace.
+	EnabledTaskDrivers []string `pulumi:"enabledTaskDrivers"`
+}
+
+// NamespaceCapabilitiesInput is an input type that accepts NamespaceCapabilitiesArgs and NamespaceCapabilitiesOutput values.
+// You can construct a concrete instance of `NamespaceCapabilitiesInput` via:
+//
+//	NamespaceCapabilitiesArgs{...}
+type NamespaceCapabilitiesInput interface {
+	pulumi.Input
+
+	ToNamespaceCapabilitiesOutput() NamespaceCapabilitiesOutput
+	ToNamespaceCapabilitiesOutputWithContext(context.Context) NamespaceCapabilitiesOutput
+}
+
+type NamespaceCapabilitiesArgs struct {
+	// `([]string: <optional>)` - Task drivers disabled for the namespace.
+	DisabledTaskDrivers pulumi.StringArrayInput `pulumi:"disabledTaskDrivers"`
+	// `([]string: <optional>)` - Task drivers enabled for the namespace.
+	EnabledTaskDrivers pulumi.StringArrayInput `pulumi:"enabledTaskDrivers"`
+}
+
+func (NamespaceCapabilitiesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceCapabilities)(nil)).Elem()
+}
+
+func (i NamespaceCapabilitiesArgs) ToNamespaceCapabilitiesOutput() NamespaceCapabilitiesOutput {
+	return i.ToNamespaceCapabilitiesOutputWithContext(context.Background())
+}
+
+func (i NamespaceCapabilitiesArgs) ToNamespaceCapabilitiesOutputWithContext(ctx context.Context) NamespaceCapabilitiesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceCapabilitiesOutput)
+}
+
+func (i NamespaceCapabilitiesArgs) ToNamespaceCapabilitiesPtrOutput() NamespaceCapabilitiesPtrOutput {
+	return i.ToNamespaceCapabilitiesPtrOutputWithContext(context.Background())
+}
+
+func (i NamespaceCapabilitiesArgs) ToNamespaceCapabilitiesPtrOutputWithContext(ctx context.Context) NamespaceCapabilitiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceCapabilitiesOutput).ToNamespaceCapabilitiesPtrOutputWithContext(ctx)
+}
+
+// NamespaceCapabilitiesPtrInput is an input type that accepts NamespaceCapabilitiesArgs, NamespaceCapabilitiesPtr and NamespaceCapabilitiesPtrOutput values.
+// You can construct a concrete instance of `NamespaceCapabilitiesPtrInput` via:
+//
+//	        NamespaceCapabilitiesArgs{...}
+//
+//	or:
+//
+//	        nil
+type NamespaceCapabilitiesPtrInput interface {
+	pulumi.Input
+
+	ToNamespaceCapabilitiesPtrOutput() NamespaceCapabilitiesPtrOutput
+	ToNamespaceCapabilitiesPtrOutputWithContext(context.Context) NamespaceCapabilitiesPtrOutput
+}
+
+type namespaceCapabilitiesPtrType NamespaceCapabilitiesArgs
+
+func NamespaceCapabilitiesPtr(v *NamespaceCapabilitiesArgs) NamespaceCapabilitiesPtrInput {
+	return (*namespaceCapabilitiesPtrType)(v)
+}
+
+func (*namespaceCapabilitiesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceCapabilities)(nil)).Elem()
+}
+
+func (i *namespaceCapabilitiesPtrType) ToNamespaceCapabilitiesPtrOutput() NamespaceCapabilitiesPtrOutput {
+	return i.ToNamespaceCapabilitiesPtrOutputWithContext(context.Background())
+}
+
+func (i *namespaceCapabilitiesPtrType) ToNamespaceCapabilitiesPtrOutputWithContext(ctx context.Context) NamespaceCapabilitiesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceCapabilitiesPtrOutput)
+}
+
+type NamespaceCapabilitiesOutput struct{ *pulumi.OutputState }
+
+func (NamespaceCapabilitiesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceCapabilities)(nil)).Elem()
+}
+
+func (o NamespaceCapabilitiesOutput) ToNamespaceCapabilitiesOutput() NamespaceCapabilitiesOutput {
+	return o
+}
+
+func (o NamespaceCapabilitiesOutput) ToNamespaceCapabilitiesOutputWithContext(ctx context.Context) NamespaceCapabilitiesOutput {
+	return o
+}
+
+func (o NamespaceCapabilitiesOutput) ToNamespaceCapabilitiesPtrOutput() NamespaceCapabilitiesPtrOutput {
+	return o.ToNamespaceCapabilitiesPtrOutputWithContext(context.Background())
+}
+
+func (o NamespaceCapabilitiesOutput) ToNamespaceCapabilitiesPtrOutputWithContext(ctx context.Context) NamespaceCapabilitiesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NamespaceCapabilities) *NamespaceCapabilities {
+		return &v
+	}).(NamespaceCapabilitiesPtrOutput)
+}
+
+// `([]string: <optional>)` - Task drivers disabled for the namespace.
+func (o NamespaceCapabilitiesOutput) DisabledTaskDrivers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NamespaceCapabilities) []string { return v.DisabledTaskDrivers }).(pulumi.StringArrayOutput)
+}
+
+// `([]string: <optional>)` - Task drivers enabled for the namespace.
+func (o NamespaceCapabilitiesOutput) EnabledTaskDrivers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NamespaceCapabilities) []string { return v.EnabledTaskDrivers }).(pulumi.StringArrayOutput)
+}
+
+type NamespaceCapabilitiesPtrOutput struct{ *pulumi.OutputState }
+
+func (NamespaceCapabilitiesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceCapabilities)(nil)).Elem()
+}
+
+func (o NamespaceCapabilitiesPtrOutput) ToNamespaceCapabilitiesPtrOutput() NamespaceCapabilitiesPtrOutput {
+	return o
+}
+
+func (o NamespaceCapabilitiesPtrOutput) ToNamespaceCapabilitiesPtrOutputWithContext(ctx context.Context) NamespaceCapabilitiesPtrOutput {
+	return o
+}
+
+func (o NamespaceCapabilitiesPtrOutput) Elem() NamespaceCapabilitiesOutput {
+	return o.ApplyT(func(v *NamespaceCapabilities) NamespaceCapabilities {
+		if v != nil {
+			return *v
+		}
+		var ret NamespaceCapabilities
+		return ret
+	}).(NamespaceCapabilitiesOutput)
+}
+
+// `([]string: <optional>)` - Task drivers disabled for the namespace.
+func (o NamespaceCapabilitiesPtrOutput) DisabledTaskDrivers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NamespaceCapabilities) []string {
+		if v == nil {
+			return nil
+		}
+		return v.DisabledTaskDrivers
+	}).(pulumi.StringArrayOutput)
+}
+
+// `([]string: <optional>)` - Task drivers enabled for the namespace.
+func (o NamespaceCapabilitiesPtrOutput) EnabledTaskDrivers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NamespaceCapabilities) []string {
+		if v == nil {
+			return nil
+		}
+		return v.EnabledTaskDrivers
+	}).(pulumi.StringArrayOutput)
+}
+
 type ProviderHeader struct {
 	Name  string `pulumi:"name"`
 	Value string `pulumi:"value"`
@@ -1868,7 +2276,16 @@ func (o QuoteSpecificationLimitRegionLimitOutput) MemoryMb() pulumi.IntPtrOutput
 }
 
 type VolumeCapability struct {
-	AccessMode     string `pulumi:"accessMode"`
+	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
+	AccessMode string `pulumi:"accessMode"`
+	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+	// - `block-device`
+	// - `file-system`
 	AttachmentMode string `pulumi:"attachmentMode"`
 }
 
@@ -1884,7 +2301,16 @@ type VolumeCapabilityInput interface {
 }
 
 type VolumeCapabilityArgs struct {
-	AccessMode     pulumi.StringInput `pulumi:"accessMode"`
+	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
+	AccessMode pulumi.StringInput `pulumi:"accessMode"`
+	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+	// - `block-device`
+	// - `file-system`
 	AttachmentMode pulumi.StringInput `pulumi:"attachmentMode"`
 }
 
@@ -1939,10 +2365,19 @@ func (o VolumeCapabilityOutput) ToVolumeCapabilityOutputWithContext(ctx context.
 	return o
 }
 
+// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+// - `single-node-reader-only`
+// - `single-node-writer`
+// - `multi-node-reader-only`
+// - `multi-node-single-writer`
+// - `multi-node-multi-writer`
 func (o VolumeCapabilityOutput) AccessMode() pulumi.StringOutput {
 	return o.ApplyT(func(v VolumeCapability) string { return v.AccessMode }).(pulumi.StringOutput)
 }
 
+// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+// - `block-device`
+// - `file-system`
 func (o VolumeCapabilityOutput) AttachmentMode() pulumi.StringOutput {
 	return o.ApplyT(func(v VolumeCapability) string { return v.AttachmentMode }).(pulumi.StringOutput)
 }
@@ -1968,7 +2403,9 @@ func (o VolumeCapabilityArrayOutput) Index(i pulumi.IntInput) VolumeCapabilityOu
 }
 
 type VolumeMountOptions struct {
-	FsType     *string  `pulumi:"fsType"`
+	// `(string: <optional>)` - The file system type.
+	FsType *string `pulumi:"fsType"`
+	// `([]string: <optional>)` - The flags passed to `mount`.
 	MountFlags []string `pulumi:"mountFlags"`
 }
 
@@ -1984,7 +2421,9 @@ type VolumeMountOptionsInput interface {
 }
 
 type VolumeMountOptionsArgs struct {
-	FsType     pulumi.StringPtrInput   `pulumi:"fsType"`
+	// `(string: <optional>)` - The file system type.
+	FsType pulumi.StringPtrInput `pulumi:"fsType"`
+	// `([]string: <optional>)` - The flags passed to `mount`.
 	MountFlags pulumi.StringArrayInput `pulumi:"mountFlags"`
 }
 
@@ -2065,10 +2504,12 @@ func (o VolumeMountOptionsOutput) ToVolumeMountOptionsPtrOutputWithContext(ctx c
 	}).(VolumeMountOptionsPtrOutput)
 }
 
+// `(string: <optional>)` - The file system type.
 func (o VolumeMountOptionsOutput) FsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VolumeMountOptions) *string { return v.FsType }).(pulumi.StringPtrOutput)
 }
 
+// `([]string: <optional>)` - The flags passed to `mount`.
 func (o VolumeMountOptionsOutput) MountFlags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v VolumeMountOptions) []string { return v.MountFlags }).(pulumi.StringArrayOutput)
 }
@@ -2097,6 +2538,7 @@ func (o VolumeMountOptionsPtrOutput) Elem() VolumeMountOptionsOutput {
 	}).(VolumeMountOptionsOutput)
 }
 
+// `(string: <optional>)` - The file system type.
 func (o VolumeMountOptionsPtrOutput) FsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VolumeMountOptions) *string {
 		if v == nil {
@@ -2106,6 +2548,7 @@ func (o VolumeMountOptionsPtrOutput) FsType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// `([]string: <optional>)` - The flags passed to `mount`.
 func (o VolumeMountOptionsPtrOutput) MountFlags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VolumeMountOptions) []string {
 		if v == nil {
@@ -2116,6 +2559,7 @@ func (o VolumeMountOptionsPtrOutput) MountFlags() pulumi.StringArrayOutput {
 }
 
 type VolumeTopology struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -2131,6 +2575,7 @@ type VolumeTopologyInput interface {
 }
 
 type VolumeTopologyArgs struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -2185,6 +2630,7 @@ func (o VolumeTopologyOutput) ToVolumeTopologyOutputWithContext(ctx context.Cont
 	return o
 }
 
+// `(map[string]string)` - Define the attributes for the topology request.
 func (o VolumeTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v VolumeTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -2210,6 +2656,7 @@ func (o VolumeTopologyArrayOutput) Index(i pulumi.IntInput) VolumeTopologyOutput
 }
 
 type VolumeTopologyRequest struct {
+	// `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
 	Required *VolumeTopologyRequestRequired `pulumi:"required"`
 }
 
@@ -2225,6 +2672,7 @@ type VolumeTopologyRequestInput interface {
 }
 
 type VolumeTopologyRequestArgs struct {
+	// `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
 	Required VolumeTopologyRequestRequiredPtrInput `pulumi:"required"`
 }
 
@@ -2305,6 +2753,7 @@ func (o VolumeTopologyRequestOutput) ToVolumeTopologyRequestPtrOutputWithContext
 	}).(VolumeTopologyRequestPtrOutput)
 }
 
+// `(“Topology“: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
 func (o VolumeTopologyRequestOutput) Required() VolumeTopologyRequestRequiredPtrOutput {
 	return o.ApplyT(func(v VolumeTopologyRequest) *VolumeTopologyRequestRequired { return v.Required }).(VolumeTopologyRequestRequiredPtrOutput)
 }
@@ -2333,6 +2782,7 @@ func (o VolumeTopologyRequestPtrOutput) Elem() VolumeTopologyRequestOutput {
 	}).(VolumeTopologyRequestOutput)
 }
 
+// `(“Topology“: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
 func (o VolumeTopologyRequestPtrOutput) Required() VolumeTopologyRequestRequiredPtrOutput {
 	return o.ApplyT(func(v *VolumeTopologyRequest) *VolumeTopologyRequestRequired {
 		if v == nil {
@@ -2476,6 +2926,7 @@ func (o VolumeTopologyRequestRequiredPtrOutput) Topologies() VolumeTopologyReque
 }
 
 type VolumeTopologyRequestRequiredTopology struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -2491,6 +2942,7 @@ type VolumeTopologyRequestRequiredTopologyInput interface {
 }
 
 type VolumeTopologyRequestRequiredTopologyArgs struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -2545,6 +2997,7 @@ func (o VolumeTopologyRequestRequiredTopologyOutput) ToVolumeTopologyRequestRequ
 	return o
 }
 
+// `(map[string]string)` - Define the attributes for the topology request.
 func (o VolumeTopologyRequestRequiredTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v VolumeTopologyRequestRequiredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -2570,8 +3023,10 @@ func (o VolumeTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi.IntInpu
 }
 
 type GetAclPoliciesPolicy struct {
+	// `(string)` - the description of the ACL Policy.
 	Description string `pulumi:"description"`
-	Name        string `pulumi:"name"`
+	// `(string)` - the name of the ACL Policy.
+	Name string `pulumi:"name"`
 }
 
 // GetAclPoliciesPolicyInput is an input type that accepts GetAclPoliciesPolicyArgs and GetAclPoliciesPolicyOutput values.
@@ -2586,8 +3041,10 @@ type GetAclPoliciesPolicyInput interface {
 }
 
 type GetAclPoliciesPolicyArgs struct {
+	// `(string)` - the description of the ACL Policy.
 	Description pulumi.StringInput `pulumi:"description"`
-	Name        pulumi.StringInput `pulumi:"name"`
+	// `(string)` - the name of the ACL Policy.
+	Name pulumi.StringInput `pulumi:"name"`
 }
 
 func (GetAclPoliciesPolicyArgs) ElementType() reflect.Type {
@@ -2641,10 +3098,12 @@ func (o GetAclPoliciesPolicyOutput) ToGetAclPoliciesPolicyOutputWithContext(ctx 
 	return o
 }
 
+// `(string)` - the description of the ACL Policy.
 func (o GetAclPoliciesPolicyOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclPoliciesPolicy) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// `(string)` - the name of the ACL Policy.
 func (o GetAclPoliciesPolicyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclPoliciesPolicy) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2669,13 +3128,446 @@ func (o GetAclPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetAclPolicies
 	}).(GetAclPoliciesPolicyOutput)
 }
 
+type GetAclRolePolicy struct {
+	// `(string)` - Unique name of the ACL role.
+	Name string `pulumi:"name"`
+}
+
+// GetAclRolePolicyInput is an input type that accepts GetAclRolePolicyArgs and GetAclRolePolicyOutput values.
+// You can construct a concrete instance of `GetAclRolePolicyInput` via:
+//
+//	GetAclRolePolicyArgs{...}
+type GetAclRolePolicyInput interface {
+	pulumi.Input
+
+	ToGetAclRolePolicyOutput() GetAclRolePolicyOutput
+	ToGetAclRolePolicyOutputWithContext(context.Context) GetAclRolePolicyOutput
+}
+
+type GetAclRolePolicyArgs struct {
+	// `(string)` - Unique name of the ACL role.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetAclRolePolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclRolePolicy)(nil)).Elem()
+}
+
+func (i GetAclRolePolicyArgs) ToGetAclRolePolicyOutput() GetAclRolePolicyOutput {
+	return i.ToGetAclRolePolicyOutputWithContext(context.Background())
+}
+
+func (i GetAclRolePolicyArgs) ToGetAclRolePolicyOutputWithContext(ctx context.Context) GetAclRolePolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolePolicyOutput)
+}
+
+// GetAclRolePolicyArrayInput is an input type that accepts GetAclRolePolicyArray and GetAclRolePolicyArrayOutput values.
+// You can construct a concrete instance of `GetAclRolePolicyArrayInput` via:
+//
+//	GetAclRolePolicyArray{ GetAclRolePolicyArgs{...} }
+type GetAclRolePolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetAclRolePolicyArrayOutput() GetAclRolePolicyArrayOutput
+	ToGetAclRolePolicyArrayOutputWithContext(context.Context) GetAclRolePolicyArrayOutput
+}
+
+type GetAclRolePolicyArray []GetAclRolePolicyInput
+
+func (GetAclRolePolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclRolePolicy)(nil)).Elem()
+}
+
+func (i GetAclRolePolicyArray) ToGetAclRolePolicyArrayOutput() GetAclRolePolicyArrayOutput {
+	return i.ToGetAclRolePolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetAclRolePolicyArray) ToGetAclRolePolicyArrayOutputWithContext(ctx context.Context) GetAclRolePolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolePolicyArrayOutput)
+}
+
+type GetAclRolePolicyOutput struct{ *pulumi.OutputState }
+
+func (GetAclRolePolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclRolePolicy)(nil)).Elem()
+}
+
+func (o GetAclRolePolicyOutput) ToGetAclRolePolicyOutput() GetAclRolePolicyOutput {
+	return o
+}
+
+func (o GetAclRolePolicyOutput) ToGetAclRolePolicyOutputWithContext(ctx context.Context) GetAclRolePolicyOutput {
+	return o
+}
+
+// `(string)` - Unique name of the ACL role.
+func (o GetAclRolePolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclRolePolicy) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetAclRolePolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAclRolePolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclRolePolicy)(nil)).Elem()
+}
+
+func (o GetAclRolePolicyArrayOutput) ToGetAclRolePolicyArrayOutput() GetAclRolePolicyArrayOutput {
+	return o
+}
+
+func (o GetAclRolePolicyArrayOutput) ToGetAclRolePolicyArrayOutputWithContext(ctx context.Context) GetAclRolePolicyArrayOutput {
+	return o
+}
+
+func (o GetAclRolePolicyArrayOutput) Index(i pulumi.IntInput) GetAclRolePolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAclRolePolicy {
+		return vs[0].([]GetAclRolePolicy)[vs[1].(int)]
+	}).(GetAclRolePolicyOutput)
+}
+
+type GetAclRolesAclRole struct {
+	// `(string)` - The description of the ACL Role.
+	Description string `pulumi:"description"`
+	// `(string)` - The ACL Role unique identifier.
+	Id string `pulumi:"id"`
+	// `(string)` - Unique name of the ACL role.
+	Name string `pulumi:"name"`
+	// `(set)` - The policies applied to the role.
+	Policies []GetAclRolesAclRolePolicy `pulumi:"policies"`
+}
+
+// GetAclRolesAclRoleInput is an input type that accepts GetAclRolesAclRoleArgs and GetAclRolesAclRoleOutput values.
+// You can construct a concrete instance of `GetAclRolesAclRoleInput` via:
+//
+//	GetAclRolesAclRoleArgs{...}
+type GetAclRolesAclRoleInput interface {
+	pulumi.Input
+
+	ToGetAclRolesAclRoleOutput() GetAclRolesAclRoleOutput
+	ToGetAclRolesAclRoleOutputWithContext(context.Context) GetAclRolesAclRoleOutput
+}
+
+type GetAclRolesAclRoleArgs struct {
+	// `(string)` - The description of the ACL Role.
+	Description pulumi.StringInput `pulumi:"description"`
+	// `(string)` - The ACL Role unique identifier.
+	Id pulumi.StringInput `pulumi:"id"`
+	// `(string)` - Unique name of the ACL role.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `(set)` - The policies applied to the role.
+	Policies GetAclRolesAclRolePolicyArrayInput `pulumi:"policies"`
+}
+
+func (GetAclRolesAclRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclRolesAclRole)(nil)).Elem()
+}
+
+func (i GetAclRolesAclRoleArgs) ToGetAclRolesAclRoleOutput() GetAclRolesAclRoleOutput {
+	return i.ToGetAclRolesAclRoleOutputWithContext(context.Background())
+}
+
+func (i GetAclRolesAclRoleArgs) ToGetAclRolesAclRoleOutputWithContext(ctx context.Context) GetAclRolesAclRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRoleOutput)
+}
+
+// GetAclRolesAclRoleArrayInput is an input type that accepts GetAclRolesAclRoleArray and GetAclRolesAclRoleArrayOutput values.
+// You can construct a concrete instance of `GetAclRolesAclRoleArrayInput` via:
+//
+//	GetAclRolesAclRoleArray{ GetAclRolesAclRoleArgs{...} }
+type GetAclRolesAclRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetAclRolesAclRoleArrayOutput() GetAclRolesAclRoleArrayOutput
+	ToGetAclRolesAclRoleArrayOutputWithContext(context.Context) GetAclRolesAclRoleArrayOutput
+}
+
+type GetAclRolesAclRoleArray []GetAclRolesAclRoleInput
+
+func (GetAclRolesAclRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclRolesAclRole)(nil)).Elem()
+}
+
+func (i GetAclRolesAclRoleArray) ToGetAclRolesAclRoleArrayOutput() GetAclRolesAclRoleArrayOutput {
+	return i.ToGetAclRolesAclRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetAclRolesAclRoleArray) ToGetAclRolesAclRoleArrayOutputWithContext(ctx context.Context) GetAclRolesAclRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRoleArrayOutput)
+}
+
+type GetAclRolesAclRoleOutput struct{ *pulumi.OutputState }
+
+func (GetAclRolesAclRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclRolesAclRole)(nil)).Elem()
+}
+
+func (o GetAclRolesAclRoleOutput) ToGetAclRolesAclRoleOutput() GetAclRolesAclRoleOutput {
+	return o
+}
+
+func (o GetAclRolesAclRoleOutput) ToGetAclRolesAclRoleOutputWithContext(ctx context.Context) GetAclRolesAclRoleOutput {
+	return o
+}
+
+// `(string)` - The description of the ACL Role.
+func (o GetAclRolesAclRoleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclRolesAclRole) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// `(string)` - The ACL Role unique identifier.
+func (o GetAclRolesAclRoleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclRolesAclRole) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// `(string)` - Unique name of the ACL role.
+func (o GetAclRolesAclRoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclRolesAclRole) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(set)` - The policies applied to the role.
+func (o GetAclRolesAclRoleOutput) Policies() GetAclRolesAclRolePolicyArrayOutput {
+	return o.ApplyT(func(v GetAclRolesAclRole) []GetAclRolesAclRolePolicy { return v.Policies }).(GetAclRolesAclRolePolicyArrayOutput)
+}
+
+type GetAclRolesAclRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAclRolesAclRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclRolesAclRole)(nil)).Elem()
+}
+
+func (o GetAclRolesAclRoleArrayOutput) ToGetAclRolesAclRoleArrayOutput() GetAclRolesAclRoleArrayOutput {
+	return o
+}
+
+func (o GetAclRolesAclRoleArrayOutput) ToGetAclRolesAclRoleArrayOutputWithContext(ctx context.Context) GetAclRolesAclRoleArrayOutput {
+	return o
+}
+
+func (o GetAclRolesAclRoleArrayOutput) Index(i pulumi.IntInput) GetAclRolesAclRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAclRolesAclRole {
+		return vs[0].([]GetAclRolesAclRole)[vs[1].(int)]
+	}).(GetAclRolesAclRoleOutput)
+}
+
+type GetAclRolesAclRolePolicy struct {
+	// `(string)` - Unique name of the ACL role.
+	Name string `pulumi:"name"`
+}
+
+// GetAclRolesAclRolePolicyInput is an input type that accepts GetAclRolesAclRolePolicyArgs and GetAclRolesAclRolePolicyOutput values.
+// You can construct a concrete instance of `GetAclRolesAclRolePolicyInput` via:
+//
+//	GetAclRolesAclRolePolicyArgs{...}
+type GetAclRolesAclRolePolicyInput interface {
+	pulumi.Input
+
+	ToGetAclRolesAclRolePolicyOutput() GetAclRolesAclRolePolicyOutput
+	ToGetAclRolesAclRolePolicyOutputWithContext(context.Context) GetAclRolesAclRolePolicyOutput
+}
+
+type GetAclRolesAclRolePolicyArgs struct {
+	// `(string)` - Unique name of the ACL role.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetAclRolesAclRolePolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclRolesAclRolePolicy)(nil)).Elem()
+}
+
+func (i GetAclRolesAclRolePolicyArgs) ToGetAclRolesAclRolePolicyOutput() GetAclRolesAclRolePolicyOutput {
+	return i.ToGetAclRolesAclRolePolicyOutputWithContext(context.Background())
+}
+
+func (i GetAclRolesAclRolePolicyArgs) ToGetAclRolesAclRolePolicyOutputWithContext(ctx context.Context) GetAclRolesAclRolePolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRolePolicyOutput)
+}
+
+// GetAclRolesAclRolePolicyArrayInput is an input type that accepts GetAclRolesAclRolePolicyArray and GetAclRolesAclRolePolicyArrayOutput values.
+// You can construct a concrete instance of `GetAclRolesAclRolePolicyArrayInput` via:
+//
+//	GetAclRolesAclRolePolicyArray{ GetAclRolesAclRolePolicyArgs{...} }
+type GetAclRolesAclRolePolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetAclRolesAclRolePolicyArrayOutput() GetAclRolesAclRolePolicyArrayOutput
+	ToGetAclRolesAclRolePolicyArrayOutputWithContext(context.Context) GetAclRolesAclRolePolicyArrayOutput
+}
+
+type GetAclRolesAclRolePolicyArray []GetAclRolesAclRolePolicyInput
+
+func (GetAclRolesAclRolePolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclRolesAclRolePolicy)(nil)).Elem()
+}
+
+func (i GetAclRolesAclRolePolicyArray) ToGetAclRolesAclRolePolicyArrayOutput() GetAclRolesAclRolePolicyArrayOutput {
+	return i.ToGetAclRolesAclRolePolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetAclRolesAclRolePolicyArray) ToGetAclRolesAclRolePolicyArrayOutputWithContext(ctx context.Context) GetAclRolesAclRolePolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRolePolicyArrayOutput)
+}
+
+type GetAclRolesAclRolePolicyOutput struct{ *pulumi.OutputState }
+
+func (GetAclRolesAclRolePolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclRolesAclRolePolicy)(nil)).Elem()
+}
+
+func (o GetAclRolesAclRolePolicyOutput) ToGetAclRolesAclRolePolicyOutput() GetAclRolesAclRolePolicyOutput {
+	return o
+}
+
+func (o GetAclRolesAclRolePolicyOutput) ToGetAclRolesAclRolePolicyOutputWithContext(ctx context.Context) GetAclRolesAclRolePolicyOutput {
+	return o
+}
+
+// `(string)` - Unique name of the ACL role.
+func (o GetAclRolesAclRolePolicyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclRolesAclRolePolicy) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetAclRolesAclRolePolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAclRolesAclRolePolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclRolesAclRolePolicy)(nil)).Elem()
+}
+
+func (o GetAclRolesAclRolePolicyArrayOutput) ToGetAclRolesAclRolePolicyArrayOutput() GetAclRolesAclRolePolicyArrayOutput {
+	return o
+}
+
+func (o GetAclRolesAclRolePolicyArrayOutput) ToGetAclRolesAclRolePolicyArrayOutputWithContext(ctx context.Context) GetAclRolesAclRolePolicyArrayOutput {
+	return o
+}
+
+func (o GetAclRolesAclRolePolicyArrayOutput) Index(i pulumi.IntInput) GetAclRolesAclRolePolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAclRolesAclRolePolicy {
+		return vs[0].([]GetAclRolesAclRolePolicy)[vs[1].(int)]
+	}).(GetAclRolesAclRolePolicyOutput)
+}
+
+type GetAclTokenRole struct {
+	Id string `pulumi:"id"`
+	// `(string)` Non-sensitive identifier for this token.
+	Name string `pulumi:"name"`
+}
+
+// GetAclTokenRoleInput is an input type that accepts GetAclTokenRoleArgs and GetAclTokenRoleOutput values.
+// You can construct a concrete instance of `GetAclTokenRoleInput` via:
+//
+//	GetAclTokenRoleArgs{...}
+type GetAclTokenRoleInput interface {
+	pulumi.Input
+
+	ToGetAclTokenRoleOutput() GetAclTokenRoleOutput
+	ToGetAclTokenRoleOutputWithContext(context.Context) GetAclTokenRoleOutput
+}
+
+type GetAclTokenRoleArgs struct {
+	Id pulumi.StringInput `pulumi:"id"`
+	// `(string)` Non-sensitive identifier for this token.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetAclTokenRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclTokenRole)(nil)).Elem()
+}
+
+func (i GetAclTokenRoleArgs) ToGetAclTokenRoleOutput() GetAclTokenRoleOutput {
+	return i.ToGetAclTokenRoleOutputWithContext(context.Background())
+}
+
+func (i GetAclTokenRoleArgs) ToGetAclTokenRoleOutputWithContext(ctx context.Context) GetAclTokenRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokenRoleOutput)
+}
+
+// GetAclTokenRoleArrayInput is an input type that accepts GetAclTokenRoleArray and GetAclTokenRoleArrayOutput values.
+// You can construct a concrete instance of `GetAclTokenRoleArrayInput` via:
+//
+//	GetAclTokenRoleArray{ GetAclTokenRoleArgs{...} }
+type GetAclTokenRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetAclTokenRoleArrayOutput() GetAclTokenRoleArrayOutput
+	ToGetAclTokenRoleArrayOutputWithContext(context.Context) GetAclTokenRoleArrayOutput
+}
+
+type GetAclTokenRoleArray []GetAclTokenRoleInput
+
+func (GetAclTokenRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclTokenRole)(nil)).Elem()
+}
+
+func (i GetAclTokenRoleArray) ToGetAclTokenRoleArrayOutput() GetAclTokenRoleArrayOutput {
+	return i.ToGetAclTokenRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetAclTokenRoleArray) ToGetAclTokenRoleArrayOutputWithContext(ctx context.Context) GetAclTokenRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokenRoleArrayOutput)
+}
+
+type GetAclTokenRoleOutput struct{ *pulumi.OutputState }
+
+func (GetAclTokenRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclTokenRole)(nil)).Elem()
+}
+
+func (o GetAclTokenRoleOutput) ToGetAclTokenRoleOutput() GetAclTokenRoleOutput {
+	return o
+}
+
+func (o GetAclTokenRoleOutput) ToGetAclTokenRoleOutputWithContext(ctx context.Context) GetAclTokenRoleOutput {
+	return o
+}
+
+func (o GetAclTokenRoleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclTokenRole) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// `(string)` Non-sensitive identifier for this token.
+func (o GetAclTokenRoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclTokenRole) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetAclTokenRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAclTokenRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclTokenRole)(nil)).Elem()
+}
+
+func (o GetAclTokenRoleArrayOutput) ToGetAclTokenRoleArrayOutput() GetAclTokenRoleArrayOutput {
+	return o
+}
+
+func (o GetAclTokenRoleArrayOutput) ToGetAclTokenRoleArrayOutputWithContext(ctx context.Context) GetAclTokenRoleArrayOutput {
+	return o
+}
+
+func (o GetAclTokenRoleArrayOutput) Index(i pulumi.IntInput) GetAclTokenRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAclTokenRole {
+		return vs[0].([]GetAclTokenRole)[vs[1].(int)]
+	}).(GetAclTokenRoleOutput)
+}
+
 type GetAclTokensAclToken struct {
-	AccessorId string   `pulumi:"accessorId"`
-	CreateTime string   `pulumi:"createTime"`
-	Global     bool     `pulumi:"global"`
-	Name       string   `pulumi:"name"`
-	Policies   []string `pulumi:"policies"`
-	Type       string   `pulumi:"type"`
+	// `(TypeString)` Non-sensitive identifier for the token.
+	AccessorId string `pulumi:"accessorId"`
+	// `(string)` Date and time the token was created at.
+	CreateTime string `pulumi:"createTime"`
+	// `(string)` - The timestamp after which the token is
+	// considered expired and eligible for destruction.
+	ExpirationTime string `pulumi:"expirationTime"`
+	// `(bool)` Whether the token is replicated to all regions.
+	Global bool `pulumi:"global"`
+	// `(TypeString)` The name of the token.
+	Name string `pulumi:"name"`
+	// `(list of strings)` The list of policies attached to the token.
+	Policies []string `pulumi:"policies"`
+	// `(set: [])` - The list of roles attached to the token. Each entry has
+	// `name` and `id` attributes.
+	Roles []GetAclTokensAclTokenRole `pulumi:"roles"`
+	// `(TypeString)` The type of the token.
+	Type string `pulumi:"type"`
 }
 
 // GetAclTokensAclTokenInput is an input type that accepts GetAclTokensAclTokenArgs and GetAclTokensAclTokenOutput values.
@@ -2690,12 +3582,24 @@ type GetAclTokensAclTokenInput interface {
 }
 
 type GetAclTokensAclTokenArgs struct {
-	AccessorId pulumi.StringInput      `pulumi:"accessorId"`
-	CreateTime pulumi.StringInput      `pulumi:"createTime"`
-	Global     pulumi.BoolInput        `pulumi:"global"`
-	Name       pulumi.StringInput      `pulumi:"name"`
-	Policies   pulumi.StringArrayInput `pulumi:"policies"`
-	Type       pulumi.StringInput      `pulumi:"type"`
+	// `(TypeString)` Non-sensitive identifier for the token.
+	AccessorId pulumi.StringInput `pulumi:"accessorId"`
+	// `(string)` Date and time the token was created at.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// `(string)` - The timestamp after which the token is
+	// considered expired and eligible for destruction.
+	ExpirationTime pulumi.StringInput `pulumi:"expirationTime"`
+	// `(bool)` Whether the token is replicated to all regions.
+	Global pulumi.BoolInput `pulumi:"global"`
+	// `(TypeString)` The name of the token.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `(list of strings)` The list of policies attached to the token.
+	Policies pulumi.StringArrayInput `pulumi:"policies"`
+	// `(set: [])` - The list of roles attached to the token. Each entry has
+	// `name` and `id` attributes.
+	Roles GetAclTokensAclTokenRoleArrayInput `pulumi:"roles"`
+	// `(TypeString)` The type of the token.
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetAclTokensAclTokenArgs) ElementType() reflect.Type {
@@ -2749,26 +3653,44 @@ func (o GetAclTokensAclTokenOutput) ToGetAclTokensAclTokenOutputWithContext(ctx 
 	return o
 }
 
+// `(TypeString)` Non-sensitive identifier for the token.
 func (o GetAclTokensAclTokenOutput) AccessorId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclTokensAclToken) string { return v.AccessorId }).(pulumi.StringOutput)
 }
 
+// `(string)` Date and time the token was created at.
 func (o GetAclTokensAclTokenOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclTokensAclToken) string { return v.CreateTime }).(pulumi.StringOutput)
 }
 
+// `(string)` - The timestamp after which the token is
+// considered expired and eligible for destruction.
+func (o GetAclTokensAclTokenOutput) ExpirationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclTokensAclToken) string { return v.ExpirationTime }).(pulumi.StringOutput)
+}
+
+// `(bool)` Whether the token is replicated to all regions.
 func (o GetAclTokensAclTokenOutput) Global() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAclTokensAclToken) bool { return v.Global }).(pulumi.BoolOutput)
 }
 
+// `(TypeString)` The name of the token.
 func (o GetAclTokensAclTokenOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclTokensAclToken) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// `(list of strings)` The list of policies attached to the token.
 func (o GetAclTokensAclTokenOutput) Policies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetAclTokensAclToken) []string { return v.Policies }).(pulumi.StringArrayOutput)
 }
 
+// `(set: [])` - The list of roles attached to the token. Each entry has
+// `name` and `id` attributes.
+func (o GetAclTokensAclTokenOutput) Roles() GetAclTokensAclTokenRoleArrayOutput {
+	return o.ApplyT(func(v GetAclTokensAclToken) []GetAclTokensAclTokenRole { return v.Roles }).(GetAclTokensAclTokenRoleArrayOutput)
+}
+
+// `(TypeString)` The type of the token.
 func (o GetAclTokensAclTokenOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclTokensAclToken) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -2793,9 +3715,115 @@ func (o GetAclTokensAclTokenArrayOutput) Index(i pulumi.IntInput) GetAclTokensAc
 	}).(GetAclTokensAclTokenOutput)
 }
 
+type GetAclTokensAclTokenRole struct {
+	Id string `pulumi:"id"`
+	// `(TypeString)` The name of the token.
+	Name string `pulumi:"name"`
+}
+
+// GetAclTokensAclTokenRoleInput is an input type that accepts GetAclTokensAclTokenRoleArgs and GetAclTokensAclTokenRoleOutput values.
+// You can construct a concrete instance of `GetAclTokensAclTokenRoleInput` via:
+//
+//	GetAclTokensAclTokenRoleArgs{...}
+type GetAclTokensAclTokenRoleInput interface {
+	pulumi.Input
+
+	ToGetAclTokensAclTokenRoleOutput() GetAclTokensAclTokenRoleOutput
+	ToGetAclTokensAclTokenRoleOutputWithContext(context.Context) GetAclTokensAclTokenRoleOutput
+}
+
+type GetAclTokensAclTokenRoleArgs struct {
+	Id pulumi.StringInput `pulumi:"id"`
+	// `(TypeString)` The name of the token.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetAclTokensAclTokenRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclTokensAclTokenRole)(nil)).Elem()
+}
+
+func (i GetAclTokensAclTokenRoleArgs) ToGetAclTokensAclTokenRoleOutput() GetAclTokensAclTokenRoleOutput {
+	return i.ToGetAclTokensAclTokenRoleOutputWithContext(context.Background())
+}
+
+func (i GetAclTokensAclTokenRoleArgs) ToGetAclTokensAclTokenRoleOutputWithContext(ctx context.Context) GetAclTokensAclTokenRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokensAclTokenRoleOutput)
+}
+
+// GetAclTokensAclTokenRoleArrayInput is an input type that accepts GetAclTokensAclTokenRoleArray and GetAclTokensAclTokenRoleArrayOutput values.
+// You can construct a concrete instance of `GetAclTokensAclTokenRoleArrayInput` via:
+//
+//	GetAclTokensAclTokenRoleArray{ GetAclTokensAclTokenRoleArgs{...} }
+type GetAclTokensAclTokenRoleArrayInput interface {
+	pulumi.Input
+
+	ToGetAclTokensAclTokenRoleArrayOutput() GetAclTokensAclTokenRoleArrayOutput
+	ToGetAclTokensAclTokenRoleArrayOutputWithContext(context.Context) GetAclTokensAclTokenRoleArrayOutput
+}
+
+type GetAclTokensAclTokenRoleArray []GetAclTokensAclTokenRoleInput
+
+func (GetAclTokensAclTokenRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclTokensAclTokenRole)(nil)).Elem()
+}
+
+func (i GetAclTokensAclTokenRoleArray) ToGetAclTokensAclTokenRoleArrayOutput() GetAclTokensAclTokenRoleArrayOutput {
+	return i.ToGetAclTokensAclTokenRoleArrayOutputWithContext(context.Background())
+}
+
+func (i GetAclTokensAclTokenRoleArray) ToGetAclTokensAclTokenRoleArrayOutputWithContext(ctx context.Context) GetAclTokensAclTokenRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokensAclTokenRoleArrayOutput)
+}
+
+type GetAclTokensAclTokenRoleOutput struct{ *pulumi.OutputState }
+
+func (GetAclTokensAclTokenRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAclTokensAclTokenRole)(nil)).Elem()
+}
+
+func (o GetAclTokensAclTokenRoleOutput) ToGetAclTokensAclTokenRoleOutput() GetAclTokensAclTokenRoleOutput {
+	return o
+}
+
+func (o GetAclTokensAclTokenRoleOutput) ToGetAclTokensAclTokenRoleOutputWithContext(ctx context.Context) GetAclTokensAclTokenRoleOutput {
+	return o
+}
+
+func (o GetAclTokensAclTokenRoleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclTokensAclTokenRole) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// `(TypeString)` The name of the token.
+func (o GetAclTokensAclTokenRoleOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAclTokensAclTokenRole) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetAclTokensAclTokenRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAclTokensAclTokenRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAclTokensAclTokenRole)(nil)).Elem()
+}
+
+func (o GetAclTokensAclTokenRoleArrayOutput) ToGetAclTokensAclTokenRoleArrayOutput() GetAclTokensAclTokenRoleArrayOutput {
+	return o
+}
+
+func (o GetAclTokensAclTokenRoleArrayOutput) ToGetAclTokensAclTokenRoleArrayOutputWithContext(ctx context.Context) GetAclTokensAclTokenRoleArrayOutput {
+	return o
+}
+
+func (o GetAclTokensAclTokenRoleArrayOutput) Index(i pulumi.IntInput) GetAclTokensAclTokenRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAclTokensAclTokenRole {
+		return vs[0].([]GetAclTokensAclTokenRole)[vs[1].(int)]
+	}).(GetAclTokensAclTokenRoleOutput)
+}
+
 type GetJobConstraint struct {
+	// `(string)` Attribute being constrained.
 	Ltarget string `pulumi:"ltarget"`
+	// `(string)` Operator used to compare the attribute to the constraint.
 	Operand string `pulumi:"operand"`
+	// `(string)` Constraint value.
 	Rtarget string `pulumi:"rtarget"`
 }
 
@@ -2811,8 +3839,11 @@ type GetJobConstraintInput interface {
 }
 
 type GetJobConstraintArgs struct {
+	// `(string)` Attribute being constrained.
 	Ltarget pulumi.StringInput `pulumi:"ltarget"`
+	// `(string)` Operator used to compare the attribute to the constraint.
 	Operand pulumi.StringInput `pulumi:"operand"`
+	// `(string)` Constraint value.
 	Rtarget pulumi.StringInput `pulumi:"rtarget"`
 }
 
@@ -2867,14 +3898,17 @@ func (o GetJobConstraintOutput) ToGetJobConstraintOutputWithContext(ctx context.
 	return o
 }
 
+// `(string)` Attribute being constrained.
 func (o GetJobConstraintOutput) Ltarget() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobConstraint) string { return v.Ltarget }).(pulumi.StringOutput)
 }
 
+// `(string)` Operator used to compare the attribute to the constraint.
 func (o GetJobConstraintOutput) Operand() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobConstraint) string { return v.Operand }).(pulumi.StringOutput)
 }
 
+// `(string)` Constraint value.
 func (o GetJobConstraintOutput) Rtarget() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobConstraint) string { return v.Rtarget }).(pulumi.StringOutput)
 }
@@ -2900,11 +3934,16 @@ func (o GetJobConstraintArrayOutput) Index(i pulumi.IntInput) GetJobConstraintOu
 }
 
 type GetJobPeriodicConfig struct {
-	Enabled         bool   `pulumi:"enabled"`
-	ProhibitOverlap bool   `pulumi:"prohibitOverlap"`
-	Spec            string `pulumi:"spec"`
-	SpecType        string `pulumi:"specType"`
-	Timezone        string `pulumi:"timezone"`
+	// `(boolean)` If periodic scheduling is enabled for the specified job.
+	Enabled bool `pulumi:"enabled"`
+	// `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+	ProhibitOverlap bool `pulumi:"prohibitOverlap"`
+	// `(string)`
+	Spec string `pulumi:"spec"`
+	// `(string)`
+	SpecType string `pulumi:"specType"`
+	// `(string)` Time zone to evaluate the next launch interval against.
+	Timezone string `pulumi:"timezone"`
 }
 
 // GetJobPeriodicConfigInput is an input type that accepts GetJobPeriodicConfigArgs and GetJobPeriodicConfigOutput values.
@@ -2919,11 +3958,16 @@ type GetJobPeriodicConfigInput interface {
 }
 
 type GetJobPeriodicConfigArgs struct {
-	Enabled         pulumi.BoolInput   `pulumi:"enabled"`
-	ProhibitOverlap pulumi.BoolInput   `pulumi:"prohibitOverlap"`
-	Spec            pulumi.StringInput `pulumi:"spec"`
-	SpecType        pulumi.StringInput `pulumi:"specType"`
-	Timezone        pulumi.StringInput `pulumi:"timezone"`
+	// `(boolean)` If periodic scheduling is enabled for the specified job.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+	ProhibitOverlap pulumi.BoolInput `pulumi:"prohibitOverlap"`
+	// `(string)`
+	Spec pulumi.StringInput `pulumi:"spec"`
+	// `(string)`
+	SpecType pulumi.StringInput `pulumi:"specType"`
+	// `(string)` Time zone to evaluate the next launch interval against.
+	Timezone pulumi.StringInput `pulumi:"timezone"`
 }
 
 func (GetJobPeriodicConfigArgs) ElementType() reflect.Type {
@@ -2977,22 +4021,27 @@ func (o GetJobPeriodicConfigOutput) ToGetJobPeriodicConfigOutputWithContext(ctx 
 	return o
 }
 
+// `(boolean)` If periodic scheduling is enabled for the specified job.
 func (o GetJobPeriodicConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetJobPeriodicConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
+// `(boolean)`  If the specified job should wait until previous instances of the job have completed.
 func (o GetJobPeriodicConfigOutput) ProhibitOverlap() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetJobPeriodicConfig) bool { return v.ProhibitOverlap }).(pulumi.BoolOutput)
 }
 
+// `(string)`
 func (o GetJobPeriodicConfigOutput) Spec() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobPeriodicConfig) string { return v.Spec }).(pulumi.StringOutput)
 }
 
+// `(string)`
 func (o GetJobPeriodicConfigOutput) SpecType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobPeriodicConfig) string { return v.SpecType }).(pulumi.StringOutput)
 }
 
+// `(string)` Time zone to evaluate the next launch interval against.
 func (o GetJobPeriodicConfigOutput) Timezone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobPeriodicConfig) string { return v.Timezone }).(pulumi.StringOutput)
 }
@@ -3018,8 +4067,9 @@ func (o GetJobPeriodicConfigArrayOutput) Index(i pulumi.IntInput) GetJobPeriodic
 }
 
 type GetJobTaskGroup struct {
-	Count   int                     `pulumi:"count"`
-	Meta    map[string]interface{}  `pulumi:"meta"`
+	Count int                    `pulumi:"count"`
+	Meta  map[string]interface{} `pulumi:"meta"`
+	// `(string)` Name of the job.
 	Name    string                  `pulumi:"name"`
 	Tasks   []GetJobTaskGroupTask   `pulumi:"tasks"`
 	Volumes []GetJobTaskGroupVolume `pulumi:"volumes"`
@@ -3037,8 +4087,9 @@ type GetJobTaskGroupInput interface {
 }
 
 type GetJobTaskGroupArgs struct {
-	Count   pulumi.IntInput                 `pulumi:"count"`
-	Meta    pulumi.MapInput                 `pulumi:"meta"`
+	Count pulumi.IntInput `pulumi:"count"`
+	Meta  pulumi.MapInput `pulumi:"meta"`
+	// `(string)` Name of the job.
 	Name    pulumi.StringInput              `pulumi:"name"`
 	Tasks   GetJobTaskGroupTaskArrayInput   `pulumi:"tasks"`
 	Volumes GetJobTaskGroupVolumeArrayInput `pulumi:"volumes"`
@@ -3103,6 +4154,7 @@ func (o GetJobTaskGroupOutput) Meta() pulumi.MapOutput {
 	return o.ApplyT(func(v GetJobTaskGroup) map[string]interface{} { return v.Meta }).(pulumi.MapOutput)
 }
 
+// `(string)` Name of the job.
 func (o GetJobTaskGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroup) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3136,8 +4188,9 @@ func (o GetJobTaskGroupArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupOutp
 }
 
 type GetJobTaskGroupTask struct {
-	Driver       string                           `pulumi:"driver"`
-	Meta         map[string]interface{}           `pulumi:"meta"`
+	Driver string                 `pulumi:"driver"`
+	Meta   map[string]interface{} `pulumi:"meta"`
+	// `(string)` Name of the job.
 	Name         string                           `pulumi:"name"`
 	VolumeMounts []GetJobTaskGroupTaskVolumeMount `pulumi:"volumeMounts"`
 }
@@ -3154,8 +4207,9 @@ type GetJobTaskGroupTaskInput interface {
 }
 
 type GetJobTaskGroupTaskArgs struct {
-	Driver       pulumi.StringInput                       `pulumi:"driver"`
-	Meta         pulumi.MapInput                          `pulumi:"meta"`
+	Driver pulumi.StringInput `pulumi:"driver"`
+	Meta   pulumi.MapInput    `pulumi:"meta"`
+	// `(string)` Name of the job.
 	Name         pulumi.StringInput                       `pulumi:"name"`
 	VolumeMounts GetJobTaskGroupTaskVolumeMountArrayInput `pulumi:"volumeMounts"`
 }
@@ -3219,6 +4273,7 @@ func (o GetJobTaskGroupTaskOutput) Meta() pulumi.MapOutput {
 	return o.ApplyT(func(v GetJobTaskGroupTask) map[string]interface{} { return v.Meta }).(pulumi.MapOutput)
 }
 
+// `(string)` Name of the job.
 func (o GetJobTaskGroupTaskOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupTask) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3354,10 +4409,12 @@ func (o GetJobTaskGroupTaskVolumeMountArrayOutput) Index(i pulumi.IntInput) GetJ
 }
 
 type GetJobTaskGroupVolume struct {
+	// `(string)` Name of the job.
 	Name     string `pulumi:"name"`
 	ReadOnly bool   `pulumi:"readOnly"`
 	Source   string `pulumi:"source"`
-	Type     string `pulumi:"type"`
+	// `(string)` Scheduler type used during job creation.
+	Type string `pulumi:"type"`
 }
 
 // GetJobTaskGroupVolumeInput is an input type that accepts GetJobTaskGroupVolumeArgs and GetJobTaskGroupVolumeOutput values.
@@ -3372,10 +4429,12 @@ type GetJobTaskGroupVolumeInput interface {
 }
 
 type GetJobTaskGroupVolumeArgs struct {
+	// `(string)` Name of the job.
 	Name     pulumi.StringInput `pulumi:"name"`
 	ReadOnly pulumi.BoolInput   `pulumi:"readOnly"`
 	Source   pulumi.StringInput `pulumi:"source"`
-	Type     pulumi.StringInput `pulumi:"type"`
+	// `(string)` Scheduler type used during job creation.
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetJobTaskGroupVolumeArgs) ElementType() reflect.Type {
@@ -3429,6 +4488,7 @@ func (o GetJobTaskGroupVolumeOutput) ToGetJobTaskGroupVolumeOutputWithContext(ct
 	return o
 }
 
+// `(string)` Name of the job.
 func (o GetJobTaskGroupVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupVolume) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3441,6 +4501,7 @@ func (o GetJobTaskGroupVolumeOutput) Source() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupVolume) string { return v.Source }).(pulumi.StringOutput)
 }
 
+// `(string)` Scheduler type used during job creation.
 func (o GetJobTaskGroupVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupVolume) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -3463,6 +4524,112 @@ func (o GetJobTaskGroupVolumeArrayOutput) Index(i pulumi.IntInput) GetJobTaskGro
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetJobTaskGroupVolume {
 		return vs[0].([]GetJobTaskGroupVolume)[vs[1].(int)]
 	}).(GetJobTaskGroupVolumeOutput)
+}
+
+type GetNamespaceCapability struct {
+	// `([]string)` - Task drivers disabled for the namespace.
+	DisabledTaskDrivers []string `pulumi:"disabledTaskDrivers"`
+	// `([]string)` - Task drivers enabled for the namespace.
+	EnabledTaskDrivers []string `pulumi:"enabledTaskDrivers"`
+}
+
+// GetNamespaceCapabilityInput is an input type that accepts GetNamespaceCapabilityArgs and GetNamespaceCapabilityOutput values.
+// You can construct a concrete instance of `GetNamespaceCapabilityInput` via:
+//
+//	GetNamespaceCapabilityArgs{...}
+type GetNamespaceCapabilityInput interface {
+	pulumi.Input
+
+	ToGetNamespaceCapabilityOutput() GetNamespaceCapabilityOutput
+	ToGetNamespaceCapabilityOutputWithContext(context.Context) GetNamespaceCapabilityOutput
+}
+
+type GetNamespaceCapabilityArgs struct {
+	// `([]string)` - Task drivers disabled for the namespace.
+	DisabledTaskDrivers pulumi.StringArrayInput `pulumi:"disabledTaskDrivers"`
+	// `([]string)` - Task drivers enabled for the namespace.
+	EnabledTaskDrivers pulumi.StringArrayInput `pulumi:"enabledTaskDrivers"`
+}
+
+func (GetNamespaceCapabilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespaceCapability)(nil)).Elem()
+}
+
+func (i GetNamespaceCapabilityArgs) ToGetNamespaceCapabilityOutput() GetNamespaceCapabilityOutput {
+	return i.ToGetNamespaceCapabilityOutputWithContext(context.Background())
+}
+
+func (i GetNamespaceCapabilityArgs) ToGetNamespaceCapabilityOutputWithContext(ctx context.Context) GetNamespaceCapabilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceCapabilityOutput)
+}
+
+// GetNamespaceCapabilityArrayInput is an input type that accepts GetNamespaceCapabilityArray and GetNamespaceCapabilityArrayOutput values.
+// You can construct a concrete instance of `GetNamespaceCapabilityArrayInput` via:
+//
+//	GetNamespaceCapabilityArray{ GetNamespaceCapabilityArgs{...} }
+type GetNamespaceCapabilityArrayInput interface {
+	pulumi.Input
+
+	ToGetNamespaceCapabilityArrayOutput() GetNamespaceCapabilityArrayOutput
+	ToGetNamespaceCapabilityArrayOutputWithContext(context.Context) GetNamespaceCapabilityArrayOutput
+}
+
+type GetNamespaceCapabilityArray []GetNamespaceCapabilityInput
+
+func (GetNamespaceCapabilityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespaceCapability)(nil)).Elem()
+}
+
+func (i GetNamespaceCapabilityArray) ToGetNamespaceCapabilityArrayOutput() GetNamespaceCapabilityArrayOutput {
+	return i.ToGetNamespaceCapabilityArrayOutputWithContext(context.Background())
+}
+
+func (i GetNamespaceCapabilityArray) ToGetNamespaceCapabilityArrayOutputWithContext(ctx context.Context) GetNamespaceCapabilityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceCapabilityArrayOutput)
+}
+
+type GetNamespaceCapabilityOutput struct{ *pulumi.OutputState }
+
+func (GetNamespaceCapabilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespaceCapability)(nil)).Elem()
+}
+
+func (o GetNamespaceCapabilityOutput) ToGetNamespaceCapabilityOutput() GetNamespaceCapabilityOutput {
+	return o
+}
+
+func (o GetNamespaceCapabilityOutput) ToGetNamespaceCapabilityOutputWithContext(ctx context.Context) GetNamespaceCapabilityOutput {
+	return o
+}
+
+// `([]string)` - Task drivers disabled for the namespace.
+func (o GetNamespaceCapabilityOutput) DisabledTaskDrivers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespaceCapability) []string { return v.DisabledTaskDrivers }).(pulumi.StringArrayOutput)
+}
+
+// `([]string)` - Task drivers enabled for the namespace.
+func (o GetNamespaceCapabilityOutput) EnabledTaskDrivers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespaceCapability) []string { return v.EnabledTaskDrivers }).(pulumi.StringArrayOutput)
+}
+
+type GetNamespaceCapabilityArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNamespaceCapabilityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespaceCapability)(nil)).Elem()
+}
+
+func (o GetNamespaceCapabilityArrayOutput) ToGetNamespaceCapabilityArrayOutput() GetNamespaceCapabilityArrayOutput {
+	return o
+}
+
+func (o GetNamespaceCapabilityArrayOutput) ToGetNamespaceCapabilityArrayOutputWithContext(ctx context.Context) GetNamespaceCapabilityArrayOutput {
+	return o
+}
+
+func (o GetNamespaceCapabilityArrayOutput) Index(i pulumi.IntInput) GetNamespaceCapabilityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNamespaceCapability {
+		return vs[0].([]GetNamespaceCapability)[vs[1].(int)]
+	}).(GetNamespaceCapabilityOutput)
 }
 
 type GetPluginNode struct {
@@ -3572,9 +4739,12 @@ func (o GetPluginNodeArrayOutput) Index(i pulumi.IntInput) GetPluginNodeOutput {
 }
 
 type GetScalingPoliciesPolicy struct {
-	Enabled bool                   `pulumi:"enabled"`
-	Id      string                 `pulumi:"id"`
-	Target  map[string]interface{} `pulumi:"target"`
+	// `(boolean)` - Whether or not the scaling policy is enabled.
+	Enabled bool `pulumi:"enabled"`
+	// `(string)` - The scaling policy ID.
+	Id string `pulumi:"id"`
+	// `(map[string]string)` - The scaling policy target.
+	Target map[string]interface{} `pulumi:"target"`
 	// `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
 	Type string `pulumi:"type"`
 }
@@ -3591,9 +4761,12 @@ type GetScalingPoliciesPolicyInput interface {
 }
 
 type GetScalingPoliciesPolicyArgs struct {
-	Enabled pulumi.BoolInput   `pulumi:"enabled"`
-	Id      pulumi.StringInput `pulumi:"id"`
-	Target  pulumi.MapInput    `pulumi:"target"`
+	// `(boolean)` - Whether or not the scaling policy is enabled.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// `(string)` - The scaling policy ID.
+	Id pulumi.StringInput `pulumi:"id"`
+	// `(map[string]string)` - The scaling policy target.
+	Target pulumi.MapInput `pulumi:"target"`
 	// `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
 	Type pulumi.StringInput `pulumi:"type"`
 }
@@ -3649,14 +4822,17 @@ func (o GetScalingPoliciesPolicyOutput) ToGetScalingPoliciesPolicyOutputWithCont
 	return o
 }
 
+// `(boolean)` - Whether or not the scaling policy is enabled.
 func (o GetScalingPoliciesPolicyOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetScalingPoliciesPolicy) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
+// `(string)` - The scaling policy ID.
 func (o GetScalingPoliciesPolicyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetScalingPoliciesPolicy) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// `(map[string]string)` - The scaling policy target.
 func (o GetScalingPoliciesPolicyOutput) Target() pulumi.MapOutput {
 	return o.ApplyT(func(v GetScalingPoliciesPolicy) map[string]interface{} { return v.Target }).(pulumi.MapOutput)
 }
@@ -3687,6 +4863,10 @@ func (o GetScalingPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetScaling
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AclRolePolicyInput)(nil)).Elem(), AclRolePolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclRolePolicyArrayInput)(nil)).Elem(), AclRolePolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclTokenRoleInput)(nil)).Elem(), AclTokenRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclTokenRoleArrayInput)(nil)).Elem(), AclTokenRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeCapabilityInput)(nil)).Elem(), ExternalVolumeCapabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeCapabilityArrayInput)(nil)).Elem(), ExternalVolumeCapabilityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeMountOptionsInput)(nil)).Elem(), ExternalVolumeMountOptionsArgs{})
@@ -3713,6 +4893,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupTaskVolumeMountArrayInput)(nil)).Elem(), JobTaskGroupTaskVolumeMountArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupVolumeInput)(nil)).Elem(), JobTaskGroupVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupVolumeArrayInput)(nil)).Elem(), JobTaskGroupVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceCapabilitiesInput)(nil)).Elem(), NamespaceCapabilitiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceCapabilitiesPtrInput)(nil)).Elem(), NamespaceCapabilitiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderInput)(nil)).Elem(), ProviderHeaderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderArrayInput)(nil)).Elem(), ProviderHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitInput)(nil)).Elem(), QuoteSpecificationLimitArgs{})
@@ -3732,8 +4914,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTopologyRequestRequiredTopologyArrayInput)(nil)).Elem(), VolumeTopologyRequestRequiredTopologyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclPoliciesPolicyInput)(nil)).Elem(), GetAclPoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclPoliciesPolicyArrayInput)(nil)).Elem(), GetAclPoliciesPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclRolePolicyInput)(nil)).Elem(), GetAclRolePolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclRolePolicyArrayInput)(nil)).Elem(), GetAclRolePolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclRolesAclRoleInput)(nil)).Elem(), GetAclRolesAclRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclRolesAclRoleArrayInput)(nil)).Elem(), GetAclRolesAclRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclRolesAclRolePolicyInput)(nil)).Elem(), GetAclRolesAclRolePolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclRolesAclRolePolicyArrayInput)(nil)).Elem(), GetAclRolesAclRolePolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokenRoleInput)(nil)).Elem(), GetAclTokenRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokenRoleArrayInput)(nil)).Elem(), GetAclTokenRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokensAclTokenInput)(nil)).Elem(), GetAclTokensAclTokenArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokensAclTokenArrayInput)(nil)).Elem(), GetAclTokensAclTokenArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokensAclTokenRoleInput)(nil)).Elem(), GetAclTokensAclTokenRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokensAclTokenRoleArrayInput)(nil)).Elem(), GetAclTokensAclTokenRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobConstraintInput)(nil)).Elem(), GetJobConstraintArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobConstraintArrayInput)(nil)).Elem(), GetJobConstraintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobPeriodicConfigInput)(nil)).Elem(), GetJobPeriodicConfigArgs{})
@@ -3746,10 +4938,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupTaskVolumeMountArrayInput)(nil)).Elem(), GetJobTaskGroupTaskVolumeMountArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupVolumeInput)(nil)).Elem(), GetJobTaskGroupVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupVolumeArrayInput)(nil)).Elem(), GetJobTaskGroupVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceCapabilityInput)(nil)).Elem(), GetNamespaceCapabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceCapabilityArrayInput)(nil)).Elem(), GetNamespaceCapabilityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginNodeInput)(nil)).Elem(), GetPluginNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginNodeArrayInput)(nil)).Elem(), GetPluginNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesPolicyInput)(nil)).Elem(), GetScalingPoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesPolicyArrayInput)(nil)).Elem(), GetScalingPoliciesPolicyArray{})
+	pulumi.RegisterOutputType(AclRolePolicyOutput{})
+	pulumi.RegisterOutputType(AclRolePolicyArrayOutput{})
+	pulumi.RegisterOutputType(AclTokenRoleOutput{})
+	pulumi.RegisterOutputType(AclTokenRoleArrayOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeCapabilityOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeCapabilityArrayOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeMountOptionsOutput{})
@@ -3776,6 +4974,8 @@ func init() {
 	pulumi.RegisterOutputType(JobTaskGroupTaskVolumeMountArrayOutput{})
 	pulumi.RegisterOutputType(JobTaskGroupVolumeOutput{})
 	pulumi.RegisterOutputType(JobTaskGroupVolumeArrayOutput{})
+	pulumi.RegisterOutputType(NamespaceCapabilitiesOutput{})
+	pulumi.RegisterOutputType(NamespaceCapabilitiesPtrOutput{})
 	pulumi.RegisterOutputType(ProviderHeaderOutput{})
 	pulumi.RegisterOutputType(ProviderHeaderArrayOutput{})
 	pulumi.RegisterOutputType(QuoteSpecificationLimitOutput{})
@@ -3795,8 +4995,18 @@ func init() {
 	pulumi.RegisterOutputType(VolumeTopologyRequestRequiredTopologyArrayOutput{})
 	pulumi.RegisterOutputType(GetAclPoliciesPolicyOutput{})
 	pulumi.RegisterOutputType(GetAclPoliciesPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetAclRolePolicyOutput{})
+	pulumi.RegisterOutputType(GetAclRolePolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetAclRolesAclRoleOutput{})
+	pulumi.RegisterOutputType(GetAclRolesAclRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetAclRolesAclRolePolicyOutput{})
+	pulumi.RegisterOutputType(GetAclRolesAclRolePolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetAclTokenRoleOutput{})
+	pulumi.RegisterOutputType(GetAclTokenRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetAclTokensAclTokenOutput{})
 	pulumi.RegisterOutputType(GetAclTokensAclTokenArrayOutput{})
+	pulumi.RegisterOutputType(GetAclTokensAclTokenRoleOutput{})
+	pulumi.RegisterOutputType(GetAclTokensAclTokenRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetJobConstraintOutput{})
 	pulumi.RegisterOutputType(GetJobConstraintArrayOutput{})
 	pulumi.RegisterOutputType(GetJobPeriodicConfigOutput{})
@@ -3809,6 +5019,8 @@ func init() {
 	pulumi.RegisterOutputType(GetJobTaskGroupTaskVolumeMountArrayOutput{})
 	pulumi.RegisterOutputType(GetJobTaskGroupVolumeOutput{})
 	pulumi.RegisterOutputType(GetJobTaskGroupVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetNamespaceCapabilityOutput{})
+	pulumi.RegisterOutputType(GetNamespaceCapabilityArrayOutput{})
 	pulumi.RegisterOutputType(GetPluginNodeOutput{})
 	pulumi.RegisterOutputType(GetPluginNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetScalingPoliciesPolicyOutput{})

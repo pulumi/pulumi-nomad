@@ -78,6 +78,7 @@ func Provider() tfbridge.ProviderInfo {
 		Config:      map[string]*tfbridge.SchemaInfo{},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"nomad_acl_policy":          {Tok: makeResource(mainMod, "AclPolicy")},
+			"nomad_acl_role":            {Tok: makeResource(mainMod, "AclRole")},
 			"nomad_acl_token":           {Tok: makeResource(mainMod, "AclToken")},
 			"nomad_external_volume":     {Tok: makeResource(mainMod, "ExternalVolume")},
 			"nomad_job":                 {Tok: makeResource(mainMod, "Job")},
@@ -90,6 +91,8 @@ func Provider() tfbridge.ProviderInfo {
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"nomad_acl_policies":     {Tok: makeDataSource(mainMod, "getAclPolicies")},
 			"nomad_acl_policy":       {Tok: makeDataSource(mainMod, "getAclPolicy")},
+			"nomad_acl_role":         {Tok: makeDataSource(mainMod, "getAclRole")},
+			"nomad_acl_roles":        {Tok: makeDataSource(mainMod, "getAclRoles")},
 			"nomad_acl_token":        {Tok: makeDataSource(mainMod, "getAclToken")},
 			"nomad_acl_tokens":       {Tok: makeDataSource(mainMod, "getAclTokens")},
 			"nomad_datacenters":      {Tok: makeDataSource(mainMod, "getDatacenters")},

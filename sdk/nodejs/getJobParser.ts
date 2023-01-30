@@ -21,11 +21,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getJobParser(args: GetJobParserArgs, opts?: pulumi.InvokeOptions): Promise<GetJobParserResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getJobParser:getJobParser", {
         "canonicalize": args.canonicalize,
         "hcl": args.hcl,
@@ -36,7 +33,13 @@ export function getJobParser(args: GetJobParserArgs, opts?: pulumi.InvokeOptions
  * A collection of arguments for invoking getJobParser.
  */
 export interface GetJobParserArgs {
+    /**
+     * `(boolean: true)` - flag to enable setting any unset fields to their default values.
+     */
     canonicalize?: boolean;
+    /**
+     * `(string)` - the HCL definition of the job.
+     */
     hcl: string;
 }
 
@@ -44,23 +47,53 @@ export interface GetJobParserArgs {
  * A collection of values returned by getJobParser.
  */
 export interface GetJobParserResult {
+    /**
+     * `(boolean: true)` - flag to enable setting any unset fields to their default values.
+     */
     readonly canonicalize?: boolean;
+    /**
+     * `(string)` - the HCL definition of the job.
+     */
     readonly hcl: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * `(string)` - the parsed job as JSON string.
+     */
     readonly json: string;
 }
-
+/**
+ * Parse a HCL jobspec and produce the equivalent JSON encoded job.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as fs from "fs";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const myJob = nomad.getJobParser({
+ *     hcl: fs.readFileSync(`${path.module}/jobspec.hcl`),
+ *     canonicalize: false,
+ * });
+ * ```
+ */
 export function getJobParserOutput(args: GetJobParserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJobParserResult> {
-    return pulumi.output(args).apply(a => getJobParser(a, opts))
+    return pulumi.output(args).apply((a: any) => getJobParser(a, opts))
 }
 
 /**
  * A collection of arguments for invoking getJobParser.
  */
 export interface GetJobParserOutputArgs {
+    /**
+     * `(boolean: true)` - flag to enable setting any unset fields to their default values.
+     */
     canonicalize?: pulumi.Input<boolean>;
+    /**
+     * `(string)` - the HCL definition of the job.
+     */
     hcl: pulumi.Input<string>;
 }

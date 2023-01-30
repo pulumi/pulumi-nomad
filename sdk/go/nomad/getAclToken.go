@@ -24,7 +24,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.LookupAclToken(ctx, &GetAclTokenArgs{
+//			_, err := nomad.LookupAclToken(ctx, &nomad.LookupAclTokenArgs{
 //				AccessorId: "aa534e09-6a07-0a45-2295-a7f77063d429",
 //			}, nil)
 //			if err != nil {
@@ -46,20 +46,37 @@ func LookupAclToken(ctx *pulumi.Context, args *LookupAclTokenArgs, opts ...pulum
 
 // A collection of arguments for invoking getAclToken.
 type LookupAclTokenArgs struct {
+	// `(string)` Non-sensitive identifier for this token.
 	AccessorId string `pulumi:"accessorId"`
 }
 
 // A collection of values returned by getAclToken.
 type LookupAclTokenResult struct {
+	// `(string)` Non-sensitive identifier for this token.
 	AccessorId string `pulumi:"accessorId"`
+	// `(string)` Date and time the token was created.
 	CreateTime string `pulumi:"createTime"`
-	Global     bool   `pulumi:"global"`
+	// `(string)` - The timestamp after which the token is
+	// considered expired and eligible for destruction.
+	ExpirationTime string `pulumi:"expirationTime"`
+	// `(string)` The expiration TTL for the token.
+	ExpirationTtl string `pulumi:"expirationTtl"`
+	// `(bool)` Whether the token is replicated to all regions, or if it
+	// will only be used in the region it was created.
+	Global bool `pulumi:"global"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string   `pulumi:"id"`
-	Name     string   `pulumi:"name"`
+	Id string `pulumi:"id"`
+	// `(string)` Non-sensitive identifier for this token.
+	Name string `pulumi:"name"`
+	// `(list of strings)` List of policy names associated with this token.
 	Policies []string `pulumi:"policies"`
-	SecretId string   `pulumi:"secretId"`
-	Type     string   `pulumi:"type"`
+	// `(set: [])` - The list of roles attached to the token. Each entry has
+	// `name` and `id` attributes.
+	Roles []GetAclTokenRole `pulumi:"roles"`
+	// `(string)` The token value itself.
+	SecretId string `pulumi:"secretId"`
+	// `(string)` The type of the token.
+	Type string `pulumi:"type"`
 }
 
 func LookupAclTokenOutput(ctx *pulumi.Context, args LookupAclTokenOutputArgs, opts ...pulumi.InvokeOption) LookupAclTokenResultOutput {
@@ -77,6 +94,7 @@ func LookupAclTokenOutput(ctx *pulumi.Context, args LookupAclTokenOutputArgs, op
 
 // A collection of arguments for invoking getAclToken.
 type LookupAclTokenOutputArgs struct {
+	// `(string)` Non-sensitive identifier for this token.
 	AccessorId pulumi.StringInput `pulumi:"accessorId"`
 }
 
@@ -99,14 +117,29 @@ func (o LookupAclTokenResultOutput) ToLookupAclTokenResultOutputWithContext(ctx 
 	return o
 }
 
+// `(string)` Non-sensitive identifier for this token.
 func (o LookupAclTokenResultOutput) AccessorId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclTokenResult) string { return v.AccessorId }).(pulumi.StringOutput)
 }
 
+// `(string)` Date and time the token was created.
 func (o LookupAclTokenResultOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclTokenResult) string { return v.CreateTime }).(pulumi.StringOutput)
 }
 
+// `(string)` - The timestamp after which the token is
+// considered expired and eligible for destruction.
+func (o LookupAclTokenResultOutput) ExpirationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclTokenResult) string { return v.ExpirationTime }).(pulumi.StringOutput)
+}
+
+// `(string)` The expiration TTL for the token.
+func (o LookupAclTokenResultOutput) ExpirationTtl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAclTokenResult) string { return v.ExpirationTtl }).(pulumi.StringOutput)
+}
+
+// `(bool)` Whether the token is replicated to all regions, or if it
+// will only be used in the region it was created.
 func (o LookupAclTokenResultOutput) Global() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAclTokenResult) bool { return v.Global }).(pulumi.BoolOutput)
 }
@@ -116,18 +149,28 @@ func (o LookupAclTokenResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclTokenResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// `(string)` Non-sensitive identifier for this token.
 func (o LookupAclTokenResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclTokenResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// `(list of strings)` List of policy names associated with this token.
 func (o LookupAclTokenResultOutput) Policies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupAclTokenResult) []string { return v.Policies }).(pulumi.StringArrayOutput)
 }
 
+// `(set: [])` - The list of roles attached to the token. Each entry has
+// `name` and `id` attributes.
+func (o LookupAclTokenResultOutput) Roles() GetAclTokenRoleArrayOutput {
+	return o.ApplyT(func(v LookupAclTokenResult) []GetAclTokenRole { return v.Roles }).(GetAclTokenRoleArrayOutput)
+}
+
+// `(string)` The token value itself.
 func (o LookupAclTokenResultOutput) SecretId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclTokenResult) string { return v.SecretId }).(pulumi.StringOutput)
 }
 
+// `(string)` The type of the token.
 func (o LookupAclTokenResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAclTokenResult) string { return v.Type }).(pulumi.StringOutput)
 }

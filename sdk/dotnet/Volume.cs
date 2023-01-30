@@ -73,7 +73,7 @@ namespace Pulumi.Nomad
     ///     {
     ///         DependsOn = new[]
     ///         {
-    ///             ebs.Apply(getPluginResult =&gt; getPluginResult),
+    ///             ebs,
     ///         },
     ///     });
     /// 
@@ -84,118 +84,150 @@ namespace Pulumi.Nomad
     public partial class Volume : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Defines whether a volume should be available concurrently.
+        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+        /// - `single-node-reader-only`
+        /// - `single-node-writer`
+        /// - `multi-node-reader-only`
+        /// - `multi-node-single-writer`
+        /// - `multi-node-multi-writer`
         /// </summary>
         [Output("accessMode")]
         public Output<string?> AccessMode { get; private set; } = null!;
 
         /// <summary>
-        /// The storage API that will be used by the volume.
+        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
         /// </summary>
         [Output("attachmentMode")]
         public Output<string?> AttachmentMode { get; private set; } = null!;
 
         /// <summary>
-        /// Capabilities intended to be used in a job. At least one capability must be provided.
+        /// `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
         /// </summary>
         [Output("capabilities")]
         public Output<ImmutableArray<Outputs.VolumeCapability>> Capabilities { get; private set; } = null!;
 
         /// <summary>
-        /// An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+        /// `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         /// </summary>
         [Output("context")]
         public Output<ImmutableDictionary<string, string>?> Context { get; private set; } = null!;
 
+        /// <summary>
+        /// `(boolean)`
+        /// </summary>
         [Output("controllerRequired")]
         public Output<bool> ControllerRequired { get; private set; } = null!;
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Output("controllersExpected")]
         public Output<int> ControllersExpected { get; private set; } = null!;
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Output("controllersHealthy")]
         public Output<int> ControllersHealthy { get; private set; } = null!;
 
         /// <summary>
-        /// If true, the volume will be deregistered on destroy.
+        /// `(boolean: false)` - If true, the volume will be deregistered on destroy.
         /// </summary>
         [Output("deregisterOnDestroy")]
         public Output<bool?> DeregisterOnDestroy { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the physical volume from the storage provider.
+        /// `(string: &lt;required&gt;)` - The ID of the physical volume from the storage provider.
         /// </summary>
         [Output("externalId")]
         public Output<string> ExternalId { get; private set; } = null!;
 
         /// <summary>
-        /// Options for mounting 'block-device' volumes without a pre-formatted file system.
+        /// `(block: &lt;optional&gt;)` Options for mounting `block-device` volumes without a pre-formatted file system.
         /// </summary>
         [Output("mountOptions")]
         public Output<Outputs.VolumeMountOptions?> MountOptions { get; private set; } = null!;
 
         /// <summary>
-        /// The display name of the volume.
+        /// `(string: &lt;required&gt;)` - The display name for the volume.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The namespace in which to create the volume.
+        /// `(string: "default")` - The namespace in which to register the volume.
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Output("nodesExpected")]
         public Output<int> NodesExpected { get; private set; } = null!;
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Output("nodesHealthy")]
         public Output<int> NodesHealthy { get; private set; } = null!;
 
         /// <summary>
-        /// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        /// `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         /// </summary>
         [Output("parameters")]
         public Output<ImmutableDictionary<string, string>?> Parameters { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the CSI plugin that manages this volume.
+        /// `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
         /// </summary>
         [Output("pluginId")]
         public Output<string> PluginId { get; private set; } = null!;
 
+        /// <summary>
+        /// `(string)`
+        /// </summary>
         [Output("pluginProvider")]
         public Output<string> PluginProvider { get; private set; } = null!;
 
+        /// <summary>
+        /// `(string)`
+        /// </summary>
         [Output("pluginProviderVersion")]
         public Output<string> PluginProviderVersion { get; private set; } = null!;
 
+        /// <summary>
+        /// `(boolean)`
+        /// </summary>
         [Output("schedulable")]
         public Output<bool> Schedulable { get; private set; } = null!;
 
         /// <summary>
-        /// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        /// `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         /// </summary>
         [Output("secrets")]
         public Output<ImmutableDictionary<string, string>?> Secrets { get; private set; } = null!;
 
+        /// <summary>
+        /// `(List of topologies)`
+        /// </summary>
         [Output("topologies")]
         public Output<ImmutableArray<Outputs.VolumeTopology>> Topologies { get; private set; } = null!;
 
         /// <summary>
-        /// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        /// `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         /// </summary>
         [Output("topologyRequest")]
         public Output<Outputs.VolumeTopologyRequest?> TopologyRequest { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the volume. Currently, only 'csi' is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID of the volume, how jobs will refer to the volume.
+        /// `(string: &lt;required&gt;)` - The unique ID of the volume.
         /// </summary>
         [Output("volumeId")]
         public Output<string> VolumeId { get; private set; } = null!;
@@ -223,6 +255,10 @@ namespace Pulumi.Nomad
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "secrets",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -247,13 +283,18 @@ namespace Pulumi.Nomad
     public sealed class VolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defines whether a volume should be available concurrently.
+        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+        /// - `single-node-reader-only`
+        /// - `single-node-writer`
+        /// - `multi-node-reader-only`
+        /// - `multi-node-single-writer`
+        /// - `multi-node-multi-writer`
         /// </summary>
         [Input("accessMode")]
         public Input<string>? AccessMode { get; set; }
 
         /// <summary>
-        /// The storage API that will be used by the volume.
+        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
         /// </summary>
         [Input("attachmentMode")]
         public Input<string>? AttachmentMode { get; set; }
@@ -262,7 +303,7 @@ namespace Pulumi.Nomad
         private InputList<Inputs.VolumeCapabilityArgs>? _capabilities;
 
         /// <summary>
-        /// Capabilities intended to be used in a job. At least one capability must be provided.
+        /// `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
         /// </summary>
         public InputList<Inputs.VolumeCapabilityArgs> Capabilities
         {
@@ -274,7 +315,7 @@ namespace Pulumi.Nomad
         private InputMap<string>? _context;
 
         /// <summary>
-        /// An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+        /// `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         /// </summary>
         public InputMap<string> Context
         {
@@ -283,31 +324,31 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// If true, the volume will be deregistered on destroy.
+        /// `(boolean: false)` - If true, the volume will be deregistered on destroy.
         /// </summary>
         [Input("deregisterOnDestroy")]
         public Input<bool>? DeregisterOnDestroy { get; set; }
 
         /// <summary>
-        /// The ID of the physical volume from the storage provider.
+        /// `(string: &lt;required&gt;)` - The ID of the physical volume from the storage provider.
         /// </summary>
         [Input("externalId", required: true)]
         public Input<string> ExternalId { get; set; } = null!;
 
         /// <summary>
-        /// Options for mounting 'block-device' volumes without a pre-formatted file system.
+        /// `(block: &lt;optional&gt;)` Options for mounting `block-device` volumes without a pre-formatted file system.
         /// </summary>
         [Input("mountOptions")]
         public Input<Inputs.VolumeMountOptionsArgs>? MountOptions { get; set; }
 
         /// <summary>
-        /// The display name of the volume.
+        /// `(string: &lt;required&gt;)` - The display name for the volume.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace in which to create the volume.
+        /// `(string: "default")` - The namespace in which to register the volume.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
@@ -316,7 +357,7 @@ namespace Pulumi.Nomad
         private InputMap<string>? _parameters;
 
         /// <summary>
-        /// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        /// `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         /// </summary>
         public InputMap<string> Parameters
         {
@@ -325,7 +366,7 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// The ID of the CSI plugin that manages this volume.
+        /// `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
         /// </summary>
         [Input("pluginId", required: true)]
         public Input<string> PluginId { get; set; } = null!;
@@ -334,28 +375,32 @@ namespace Pulumi.Nomad
         private InputMap<string>? _secrets;
 
         /// <summary>
-        /// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        /// `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         /// </summary>
         public InputMap<string> Secrets
         {
             get => _secrets ?? (_secrets = new InputMap<string>());
-            set => _secrets = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _secrets = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>
-        /// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        /// `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         /// </summary>
         [Input("topologyRequest")]
         public Input<Inputs.VolumeTopologyRequestArgs>? TopologyRequest { get; set; }
 
         /// <summary>
-        /// The type of the volume. Currently, only 'csi' is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The unique ID of the volume, how jobs will refer to the volume.
+        /// `(string: &lt;required&gt;)` - The unique ID of the volume.
         /// </summary>
         [Input("volumeId", required: true)]
         public Input<string> VolumeId { get; set; } = null!;
@@ -369,13 +414,18 @@ namespace Pulumi.Nomad
     public sealed class VolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defines whether a volume should be available concurrently.
+        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+        /// - `single-node-reader-only`
+        /// - `single-node-writer`
+        /// - `multi-node-reader-only`
+        /// - `multi-node-single-writer`
+        /// - `multi-node-multi-writer`
         /// </summary>
         [Input("accessMode")]
         public Input<string>? AccessMode { get; set; }
 
         /// <summary>
-        /// The storage API that will be used by the volume.
+        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
         /// </summary>
         [Input("attachmentMode")]
         public Input<string>? AttachmentMode { get; set; }
@@ -384,7 +434,7 @@ namespace Pulumi.Nomad
         private InputList<Inputs.VolumeCapabilityGetArgs>? _capabilities;
 
         /// <summary>
-        /// Capabilities intended to be used in a job. At least one capability must be provided.
+        /// `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
         /// </summary>
         public InputList<Inputs.VolumeCapabilityGetArgs> Capabilities
         {
@@ -396,7 +446,7 @@ namespace Pulumi.Nomad
         private InputMap<string>? _context;
 
         /// <summary>
-        /// An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+        /// `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         /// </summary>
         public InputMap<string> Context
         {
@@ -404,48 +454,63 @@ namespace Pulumi.Nomad
             set => _context = value;
         }
 
+        /// <summary>
+        /// `(boolean)`
+        /// </summary>
         [Input("controllerRequired")]
         public Input<bool>? ControllerRequired { get; set; }
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Input("controllersExpected")]
         public Input<int>? ControllersExpected { get; set; }
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Input("controllersHealthy")]
         public Input<int>? ControllersHealthy { get; set; }
 
         /// <summary>
-        /// If true, the volume will be deregistered on destroy.
+        /// `(boolean: false)` - If true, the volume will be deregistered on destroy.
         /// </summary>
         [Input("deregisterOnDestroy")]
         public Input<bool>? DeregisterOnDestroy { get; set; }
 
         /// <summary>
-        /// The ID of the physical volume from the storage provider.
+        /// `(string: &lt;required&gt;)` - The ID of the physical volume from the storage provider.
         /// </summary>
         [Input("externalId")]
         public Input<string>? ExternalId { get; set; }
 
         /// <summary>
-        /// Options for mounting 'block-device' volumes without a pre-formatted file system.
+        /// `(block: &lt;optional&gt;)` Options for mounting `block-device` volumes without a pre-formatted file system.
         /// </summary>
         [Input("mountOptions")]
         public Input<Inputs.VolumeMountOptionsGetArgs>? MountOptions { get; set; }
 
         /// <summary>
-        /// The display name of the volume.
+        /// `(string: &lt;required&gt;)` - The display name for the volume.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace in which to create the volume.
+        /// `(string: "default")` - The namespace in which to register the volume.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Input("nodesExpected")]
         public Input<int>? NodesExpected { get; set; }
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Input("nodesHealthy")]
         public Input<int>? NodesHealthy { get; set; }
 
@@ -453,7 +518,7 @@ namespace Pulumi.Nomad
         private InputMap<string>? _parameters;
 
         /// <summary>
-        /// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        /// `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         /// </summary>
         public InputMap<string> Parameters
         {
@@ -462,17 +527,26 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// The ID of the CSI plugin that manages this volume.
+        /// `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
         /// </summary>
         [Input("pluginId")]
         public Input<string>? PluginId { get; set; }
 
+        /// <summary>
+        /// `(string)`
+        /// </summary>
         [Input("pluginProvider")]
         public Input<string>? PluginProvider { get; set; }
 
+        /// <summary>
+        /// `(string)`
+        /// </summary>
         [Input("pluginProviderVersion")]
         public Input<string>? PluginProviderVersion { get; set; }
 
+        /// <summary>
+        /// `(boolean)`
+        /// </summary>
         [Input("schedulable")]
         public Input<bool>? Schedulable { get; set; }
 
@@ -480,16 +554,24 @@ namespace Pulumi.Nomad
         private InputMap<string>? _secrets;
 
         /// <summary>
-        /// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        /// `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         /// </summary>
         public InputMap<string> Secrets
         {
             get => _secrets ?? (_secrets = new InputMap<string>());
-            set => _secrets = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _secrets = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         [Input("topologies")]
         private InputList<Inputs.VolumeTopologyGetArgs>? _topologies;
+
+        /// <summary>
+        /// `(List of topologies)`
+        /// </summary>
         public InputList<Inputs.VolumeTopologyGetArgs> Topologies
         {
             get => _topologies ?? (_topologies = new InputList<Inputs.VolumeTopologyGetArgs>());
@@ -497,19 +579,19 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        /// `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         /// </summary>
         [Input("topologyRequest")]
         public Input<Inputs.VolumeTopologyRequestGetArgs>? TopologyRequest { get; set; }
 
         /// <summary>
-        /// The type of the volume. Currently, only 'csi' is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The unique ID of the volume, how jobs will refer to the volume.
+        /// `(string: &lt;required&gt;)` - The unique ID of the volume.
         /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }

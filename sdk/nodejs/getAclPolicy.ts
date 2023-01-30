@@ -13,17 +13,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const myPolicy = pulumi.output(nomad.getAclPolicy({
+ * const myPolicy = nomad.getAclPolicy({
  *     name: "my-policy",
- * }));
+ * });
  * ```
  */
 export function getAclPolicy(args: GetAclPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetAclPolicyResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getAclPolicy:getAclPolicy", {
         "name": args.name,
     }, opts);
@@ -33,6 +30,9 @@ export function getAclPolicy(args: GetAclPolicyArgs, opts?: pulumi.InvokeOptions
  * A collection of arguments for invoking getAclPolicy.
  */
 export interface GetAclPolicyArgs {
+    /**
+     * `(string)` - the name of the ACL Policy.
+     */
     name: string;
 }
 
@@ -40,22 +40,47 @@ export interface GetAclPolicyArgs {
  * A collection of values returned by getAclPolicy.
  */
 export interface GetAclPolicyResult {
+    /**
+     * `(string)` - the description of the ACL Policy.
+     */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * `(string)` - the name of the ACL Policy.
+     */
     readonly name: string;
+    /**
+     * `(string)` - the ACL Policy rules in HCL format.
+     */
     readonly rules: string;
 }
-
+/**
+ * Retrieve information on an ACL Policy.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const myPolicy = nomad.getAclPolicy({
+ *     name: "my-policy",
+ * });
+ * ```
+ */
 export function getAclPolicyOutput(args: GetAclPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclPolicyResult> {
-    return pulumi.output(args).apply(a => getAclPolicy(a, opts))
+    return pulumi.output(args).apply((a: any) => getAclPolicy(a, opts))
 }
 
 /**
  * A collection of arguments for invoking getAclPolicy.
  */
 export interface GetAclPolicyOutputArgs {
+    /**
+     * `(string)` - the name of the ACL Policy.
+     */
     name: pulumi.Input<string>;
 }

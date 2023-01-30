@@ -10,25 +10,65 @@ import java.util.Objects;
 
 @CustomType
 public final class GetJobPeriodicConfig {
+    /**
+     * @return `(boolean)` If periodic scheduling is enabled for the specified job.
+     * 
+     */
     private Boolean enabled;
+    /**
+     * @return `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+     * 
+     */
     private Boolean prohibitOverlap;
+    /**
+     * @return `(string)`
+     * 
+     */
     private String spec;
+    /**
+     * @return `(string)`
+     * 
+     */
     private String specType;
+    /**
+     * @return `(string)` Time zone to evaluate the next launch interval against.
+     * 
+     */
     private String timezone;
 
     private GetJobPeriodicConfig() {}
+    /**
+     * @return `(boolean)` If periodic scheduling is enabled for the specified job.
+     * 
+     */
     public Boolean enabled() {
         return this.enabled;
     }
+    /**
+     * @return `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+     * 
+     */
     public Boolean prohibitOverlap() {
         return this.prohibitOverlap;
     }
+    /**
+     * @return `(string)`
+     * 
+     */
     public String spec() {
         return this.spec;
     }
+    /**
+     * @return `(string)`
+     * 
+     */
     public String specType() {
         return this.specType;
     }
+    /**
+     * @return `(string)` Time zone to evaluate the next launch interval against.
+     * 
+     */
     public String timezone() {
         return this.timezone;
     }

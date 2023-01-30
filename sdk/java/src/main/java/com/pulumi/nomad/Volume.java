@@ -97,7 +97,12 @@ import javax.annotation.Nullable;
 @ResourceType(type="nomad:index/volume:Volume")
 public class Volume extends com.pulumi.resources.CustomResource {
     /**
-     * Defines whether a volume should be available concurrently.
+     * `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
      * 
      * @deprecated
      * use capability instead
@@ -108,14 +113,19 @@ public class Volume extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> accessMode;
 
     /**
-     * @return Defines whether a volume should be available concurrently.
+     * @return `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
      * 
      */
     public Output<Optional<String>> accessMode() {
         return Codegen.optional(this.accessMode);
     }
     /**
-     * The storage API that will be used by the volume.
+     * `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
      * 
      * @deprecated
      * use capability instead
@@ -126,243 +136,315 @@ public class Volume extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> attachmentMode;
 
     /**
-     * @return The storage API that will be used by the volume.
+     * @return `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
      * 
      */
     public Output<Optional<String>> attachmentMode() {
         return Codegen.optional(this.attachmentMode);
     }
     /**
-     * Capabilities intended to be used in a job. At least one capability must be provided.
+     * `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
      * 
      */
     @Export(name="capabilities", type=List.class, parameters={VolumeCapability.class})
     private Output</* @Nullable */ List<VolumeCapability>> capabilities;
 
     /**
-     * @return Capabilities intended to be used in a job. At least one capability must be provided.
+     * @return `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
      * 
      */
     public Output<Optional<List<VolumeCapability>>> capabilities() {
         return Codegen.optional(this.capabilities);
     }
     /**
-     * An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+     * `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      * 
      */
     @Export(name="context", type=Map.class, parameters={String.class, String.class})
     private Output</* @Nullable */ Map<String,String>> context;
 
     /**
-     * @return An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+     * @return `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      * 
      */
     public Output<Optional<Map<String,String>>> context() {
         return Codegen.optional(this.context);
     }
+    /**
+     * `(boolean)`
+     * 
+     */
     @Export(name="controllerRequired", type=Boolean.class, parameters={})
     private Output<Boolean> controllerRequired;
 
+    /**
+     * @return `(boolean)`
+     * 
+     */
     public Output<Boolean> controllerRequired() {
         return this.controllerRequired;
     }
+    /**
+     * `(integer)`
+     * 
+     */
     @Export(name="controllersExpected", type=Integer.class, parameters={})
     private Output<Integer> controllersExpected;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Output<Integer> controllersExpected() {
         return this.controllersExpected;
     }
+    /**
+     * `(integer)`
+     * 
+     */
     @Export(name="controllersHealthy", type=Integer.class, parameters={})
     private Output<Integer> controllersHealthy;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Output<Integer> controllersHealthy() {
         return this.controllersHealthy;
     }
     /**
-     * If true, the volume will be deregistered on destroy.
+     * `(boolean: false)` - If true, the volume will be deregistered on destroy.
      * 
      */
     @Export(name="deregisterOnDestroy", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> deregisterOnDestroy;
 
     /**
-     * @return If true, the volume will be deregistered on destroy.
+     * @return `(boolean: false)` - If true, the volume will be deregistered on destroy.
      * 
      */
     public Output<Optional<Boolean>> deregisterOnDestroy() {
         return Codegen.optional(this.deregisterOnDestroy);
     }
     /**
-     * The ID of the physical volume from the storage provider.
+     * `(string: &lt;required&gt;)` - The ID of the physical volume from the storage provider.
      * 
      */
     @Export(name="externalId", type=String.class, parameters={})
     private Output<String> externalId;
 
     /**
-     * @return The ID of the physical volume from the storage provider.
+     * @return `(string: &lt;required&gt;)` - The ID of the physical volume from the storage provider.
      * 
      */
     public Output<String> externalId() {
         return this.externalId;
     }
     /**
-     * Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+     * `(block: &lt;optional&gt;)` Options for mounting `block-device` volumes without a pre-formatted file system.
      * 
      */
     @Export(name="mountOptions", type=VolumeMountOptions.class, parameters={})
     private Output</* @Nullable */ VolumeMountOptions> mountOptions;
 
     /**
-     * @return Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+     * @return `(block: &lt;optional&gt;)` Options for mounting `block-device` volumes without a pre-formatted file system.
      * 
      */
     public Output<Optional<VolumeMountOptions>> mountOptions() {
         return Codegen.optional(this.mountOptions);
     }
     /**
-     * The display name of the volume.
+     * `(string: &lt;required&gt;)` - The display name for the volume.
      * 
      */
     @Export(name="name", type=String.class, parameters={})
     private Output<String> name;
 
     /**
-     * @return The display name of the volume.
+     * @return `(string: &lt;required&gt;)` - The display name for the volume.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The namespace in which to create the volume.
+     * `(string: &#34;default&#34;)` - The namespace in which to register the volume.
      * 
      */
     @Export(name="namespace", type=String.class, parameters={})
     private Output</* @Nullable */ String> namespace;
 
     /**
-     * @return The namespace in which to create the volume.
+     * @return `(string: &#34;default&#34;)` - The namespace in which to register the volume.
      * 
      */
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
     }
+    /**
+     * `(integer)`
+     * 
+     */
     @Export(name="nodesExpected", type=Integer.class, parameters={})
     private Output<Integer> nodesExpected;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Output<Integer> nodesExpected() {
         return this.nodesExpected;
     }
+    /**
+     * `(integer)`
+     * 
+     */
     @Export(name="nodesHealthy", type=Integer.class, parameters={})
     private Output<Integer> nodesHealthy;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Output<Integer> nodesHealthy() {
         return this.nodesHealthy;
     }
     /**
-     * An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+     * `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      * 
      */
     @Export(name="parameters", type=Map.class, parameters={String.class, String.class})
     private Output</* @Nullable */ Map<String,String>> parameters;
 
     /**
-     * @return An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+     * @return `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      * 
      */
     public Output<Optional<Map<String,String>>> parameters() {
         return Codegen.optional(this.parameters);
     }
     /**
-     * The ID of the CSI plugin that manages this volume.
+     * `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
      * 
      */
     @Export(name="pluginId", type=String.class, parameters={})
     private Output<String> pluginId;
 
     /**
-     * @return The ID of the CSI plugin that manages this volume.
+     * @return `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
      * 
      */
     public Output<String> pluginId() {
         return this.pluginId;
     }
+    /**
+     * `(string)`
+     * 
+     */
     @Export(name="pluginProvider", type=String.class, parameters={})
     private Output<String> pluginProvider;
 
+    /**
+     * @return `(string)`
+     * 
+     */
     public Output<String> pluginProvider() {
         return this.pluginProvider;
     }
+    /**
+     * `(string)`
+     * 
+     */
     @Export(name="pluginProviderVersion", type=String.class, parameters={})
     private Output<String> pluginProviderVersion;
 
+    /**
+     * @return `(string)`
+     * 
+     */
     public Output<String> pluginProviderVersion() {
         return this.pluginProviderVersion;
     }
+    /**
+     * `(boolean)`
+     * 
+     */
     @Export(name="schedulable", type=Boolean.class, parameters={})
     private Output<Boolean> schedulable;
 
+    /**
+     * @return `(boolean)`
+     * 
+     */
     public Output<Boolean> schedulable() {
         return this.schedulable;
     }
     /**
-     * An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+     * `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      * 
      */
     @Export(name="secrets", type=Map.class, parameters={String.class, String.class})
     private Output</* @Nullable */ Map<String,String>> secrets;
 
     /**
-     * @return An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+     * @return `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      * 
      */
     public Output<Optional<Map<String,String>>> secrets() {
         return Codegen.optional(this.secrets);
     }
+    /**
+     * `(List of topologies)`
+     * 
+     */
     @Export(name="topologies", type=List.class, parameters={VolumeTopology.class})
     private Output<List<VolumeTopology>> topologies;
 
+    /**
+     * @return `(List of topologies)`
+     * 
+     */
     public Output<List<VolumeTopology>> topologies() {
         return this.topologies;
     }
     /**
-     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     * `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      * 
      */
     @Export(name="topologyRequest", type=VolumeTopologyRequest.class, parameters={})
     private Output</* @Nullable */ VolumeTopologyRequest> topologyRequest;
 
     /**
-     * @return Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     * @return `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      * 
      */
     public Output<Optional<VolumeTopologyRequest>> topologyRequest() {
         return Codegen.optional(this.topologyRequest);
     }
     /**
-     * The type of the volume. Currently, only &#39;csi&#39; is supported.
+     * `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
      * 
      */
     @Export(name="type", type=String.class, parameters={})
     private Output</* @Nullable */ String> type;
 
     /**
-     * @return The type of the volume. Currently, only &#39;csi&#39; is supported.
+     * @return `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
      * 
      */
     public Output<Optional<String>> type() {
         return Codegen.optional(this.type);
     }
     /**
-     * The unique ID of the volume, how jobs will refer to the volume.
+     * `(string: &lt;required&gt;)` - The unique ID of the volume.
      * 
      */
     @Export(name="volumeId", type=String.class, parameters={})
     private Output<String> volumeId;
 
     /**
-     * @return The unique ID of the volume, how jobs will refer to the volume.
+     * @return `(string: &lt;required&gt;)` - The unique ID of the volume.
      * 
      */
     public Output<String> volumeId() {
@@ -401,6 +483,9 @@ public class Volume extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "secrets"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

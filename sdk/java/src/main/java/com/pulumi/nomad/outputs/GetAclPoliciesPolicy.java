@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class GetAclPoliciesPolicy {
+    /**
+     * @return `(string)` - the description of the ACL Policy.
+     * 
+     */
     private String description;
+    /**
+     * @return `(string)` - the name of the ACL Policy.
+     * 
+     */
     private String name;
 
     private GetAclPoliciesPolicy() {}
+    /**
+     * @return `(string)` - the description of the ACL Policy.
+     * 
+     */
     public String description() {
         return this.description;
     }
+    /**
+     * @return `(string)` - the name of the ACL Policy.
+     * 
+     */
     public String name() {
         return this.name;
     }

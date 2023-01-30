@@ -69,6 +69,9 @@ namespace Pulumi.Nomad
 
     public sealed class GetAclPoliciesArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
+        /// </summary>
         [Input("prefix")]
         public string? Prefix { get; set; }
 
@@ -80,6 +83,9 @@ namespace Pulumi.Nomad
 
     public sealed class GetAclPoliciesInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
+        /// </summary>
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
 
@@ -97,6 +103,9 @@ namespace Pulumi.Nomad
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// `list of maps` a list of ACL policies.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAclPoliciesPolicyResult> Policies;
         public readonly string? Prefix;
 

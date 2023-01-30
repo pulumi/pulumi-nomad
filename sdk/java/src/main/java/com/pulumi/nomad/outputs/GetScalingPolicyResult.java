@@ -13,33 +13,81 @@ import java.util.Objects;
 
 @CustomType
 public final class GetScalingPolicyResult {
+    /**
+     * @return `(boolean)` - Whether or not the scaling policy is enabled.
+     * 
+     */
     private Boolean enabled;
     private String id;
+    /**
+     * @return `(integer)` - The maximum value set in the scaling policy.
+     * 
+     */
     private Integer max;
+    /**
+     * @return `(integer)` - The minimum value set in the scaling policy.
+     * 
+     */
     private Integer min;
+    /**
+     * @return `(string)` - The policy inside the scaling policy.
+     * 
+     */
     private String policy;
+    /**
+     * @return `(map[string]string)` - The scaling policy target.
+     * 
+     */
     private Map<String,Object> target;
+    /**
+     * @return `(string)` - The scaling policy type.
+     * 
+     */
     private String type;
 
     private GetScalingPolicyResult() {}
+    /**
+     * @return `(boolean)` - Whether or not the scaling policy is enabled.
+     * 
+     */
     public Boolean enabled() {
         return this.enabled;
     }
     public String id() {
         return this.id;
     }
+    /**
+     * @return `(integer)` - The maximum value set in the scaling policy.
+     * 
+     */
     public Integer max() {
         return this.max;
     }
+    /**
+     * @return `(integer)` - The minimum value set in the scaling policy.
+     * 
+     */
     public Integer min() {
         return this.min;
     }
+    /**
+     * @return `(string)` - The policy inside the scaling policy.
+     * 
+     */
     public String policy() {
         return this.policy;
     }
+    /**
+     * @return `(map[string]string)` - The scaling policy target.
+     * 
+     */
     public Map<String,Object> target() {
         return this.target;
     }
+    /**
+     * @return `(string)` - The scaling policy type.
+     * 
+     */
     public String type() {
         return this.type;
     }

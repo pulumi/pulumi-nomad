@@ -13,7 +13,13 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class GetAclPoliciesPolicyResult
     {
+        /// <summary>
+        /// `(string)` - the description of the ACL Policy.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// `(string)` - the name of the ACL Policy.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

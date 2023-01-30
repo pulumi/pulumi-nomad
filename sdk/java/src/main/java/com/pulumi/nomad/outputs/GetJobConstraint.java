@@ -9,17 +9,41 @@ import java.util.Objects;
 
 @CustomType
 public final class GetJobConstraint {
+    /**
+     * @return `(string)` Attribute being constrained.
+     * 
+     */
     private String ltarget;
+    /**
+     * @return `(string)` Operator used to compare the attribute to the constraint.
+     * 
+     */
     private String operand;
+    /**
+     * @return `(string)` Constraint value.
+     * 
+     */
     private String rtarget;
 
     private GetJobConstraint() {}
+    /**
+     * @return `(string)` Attribute being constrained.
+     * 
+     */
     public String ltarget() {
         return this.ltarget;
     }
+    /**
+     * @return `(string)` Operator used to compare the attribute to the constraint.
+     * 
+     */
     public String operand() {
         return this.operand;
     }
+    /**
+     * @return `(string)` Constraint value.
+     * 
+     */
     public String rtarget() {
         return this.rtarget;
     }

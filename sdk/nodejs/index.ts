@@ -8,134 +8,149 @@ import * as utilities from "./utilities";
 export { AclPolicyArgs, AclPolicyState } from "./aclPolicy";
 export type AclPolicy = import("./aclPolicy").AclPolicy;
 export const AclPolicy: typeof import("./aclPolicy").AclPolicy = null as any;
+utilities.lazyLoad(exports, ["AclPolicy"], () => require("./aclPolicy"));
+
+export { AclRoleArgs, AclRoleState } from "./aclRole";
+export type AclRole = import("./aclRole").AclRole;
+export const AclRole: typeof import("./aclRole").AclRole = null as any;
+utilities.lazyLoad(exports, ["AclRole"], () => require("./aclRole"));
 
 export { AclTokenArgs, AclTokenState } from "./aclToken";
 export type AclToken = import("./aclToken").AclToken;
 export const AclToken: typeof import("./aclToken").AclToken = null as any;
+utilities.lazyLoad(exports, ["AclToken"], () => require("./aclToken"));
 
 export { ExternalVolumeArgs, ExternalVolumeState } from "./externalVolume";
 export type ExternalVolume = import("./externalVolume").ExternalVolume;
 export const ExternalVolume: typeof import("./externalVolume").ExternalVolume = null as any;
+utilities.lazyLoad(exports, ["ExternalVolume"], () => require("./externalVolume"));
 
 export { GetAclPoliciesArgs, GetAclPoliciesResult, GetAclPoliciesOutputArgs } from "./getAclPolicies";
 export const getAclPolicies: typeof import("./getAclPolicies").getAclPolicies = null as any;
 export const getAclPoliciesOutput: typeof import("./getAclPolicies").getAclPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getAclPolicies","getAclPoliciesOutput"], () => require("./getAclPolicies"));
 
 export { GetAclPolicyArgs, GetAclPolicyResult, GetAclPolicyOutputArgs } from "./getAclPolicy";
 export const getAclPolicy: typeof import("./getAclPolicy").getAclPolicy = null as any;
 export const getAclPolicyOutput: typeof import("./getAclPolicy").getAclPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getAclPolicy","getAclPolicyOutput"], () => require("./getAclPolicy"));
+
+export { GetAclRoleArgs, GetAclRoleResult, GetAclRoleOutputArgs } from "./getAclRole";
+export const getAclRole: typeof import("./getAclRole").getAclRole = null as any;
+export const getAclRoleOutput: typeof import("./getAclRole").getAclRoleOutput = null as any;
+utilities.lazyLoad(exports, ["getAclRole","getAclRoleOutput"], () => require("./getAclRole"));
+
+export { GetAclRolesArgs, GetAclRolesResult, GetAclRolesOutputArgs } from "./getAclRoles";
+export const getAclRoles: typeof import("./getAclRoles").getAclRoles = null as any;
+export const getAclRolesOutput: typeof import("./getAclRoles").getAclRolesOutput = null as any;
+utilities.lazyLoad(exports, ["getAclRoles","getAclRolesOutput"], () => require("./getAclRoles"));
 
 export { GetAclTokenArgs, GetAclTokenResult, GetAclTokenOutputArgs } from "./getAclToken";
 export const getAclToken: typeof import("./getAclToken").getAclToken = null as any;
 export const getAclTokenOutput: typeof import("./getAclToken").getAclTokenOutput = null as any;
+utilities.lazyLoad(exports, ["getAclToken","getAclTokenOutput"], () => require("./getAclToken"));
 
 export { GetAclTokensArgs, GetAclTokensResult, GetAclTokensOutputArgs } from "./getAclTokens";
 export const getAclTokens: typeof import("./getAclTokens").getAclTokens = null as any;
 export const getAclTokensOutput: typeof import("./getAclTokens").getAclTokensOutput = null as any;
+utilities.lazyLoad(exports, ["getAclTokens","getAclTokensOutput"], () => require("./getAclTokens"));
 
 export { GetDatacentersArgs, GetDatacentersResult, GetDatacentersOutputArgs } from "./getDatacenters";
 export const getDatacenters: typeof import("./getDatacenters").getDatacenters = null as any;
 export const getDatacentersOutput: typeof import("./getDatacenters").getDatacentersOutput = null as any;
+utilities.lazyLoad(exports, ["getDatacenters","getDatacentersOutput"], () => require("./getDatacenters"));
 
 export { GetDeploymentsResult } from "./getDeployments";
 export const getDeployments: typeof import("./getDeployments").getDeployments = null as any;
+utilities.lazyLoad(exports, ["getDeployments"], () => require("./getDeployments"));
 
 export { GetJobArgs, GetJobResult, GetJobOutputArgs } from "./getJob";
 export const getJob: typeof import("./getJob").getJob = null as any;
 export const getJobOutput: typeof import("./getJob").getJobOutput = null as any;
+utilities.lazyLoad(exports, ["getJob","getJobOutput"], () => require("./getJob"));
 
 export { GetJobParserArgs, GetJobParserResult, GetJobParserOutputArgs } from "./getJobParser";
 export const getJobParser: typeof import("./getJobParser").getJobParser = null as any;
 export const getJobParserOutput: typeof import("./getJobParser").getJobParserOutput = null as any;
+utilities.lazyLoad(exports, ["getJobParser","getJobParserOutput"], () => require("./getJobParser"));
 
 export { GetNamespaceArgs, GetNamespaceResult, GetNamespaceOutputArgs } from "./getNamespace";
 export const getNamespace: typeof import("./getNamespace").getNamespace = null as any;
 export const getNamespaceOutput: typeof import("./getNamespace").getNamespaceOutput = null as any;
+utilities.lazyLoad(exports, ["getNamespace","getNamespaceOutput"], () => require("./getNamespace"));
 
 export { GetNamespacesResult } from "./getNamespaces";
 export const getNamespaces: typeof import("./getNamespaces").getNamespaces = null as any;
+utilities.lazyLoad(exports, ["getNamespaces"], () => require("./getNamespaces"));
 
 export { GetPluginArgs, GetPluginResult, GetPluginOutputArgs } from "./getPlugin";
 export const getPlugin: typeof import("./getPlugin").getPlugin = null as any;
 export const getPluginOutput: typeof import("./getPlugin").getPluginOutput = null as any;
+utilities.lazyLoad(exports, ["getPlugin","getPluginOutput"], () => require("./getPlugin"));
 
 export { GetPluginsArgs, GetPluginsResult, GetPluginsOutputArgs } from "./getPlugins";
 export const getPlugins: typeof import("./getPlugins").getPlugins = null as any;
 export const getPluginsOutput: typeof import("./getPlugins").getPluginsOutput = null as any;
+utilities.lazyLoad(exports, ["getPlugins","getPluginsOutput"], () => require("./getPlugins"));
 
 export { GetRegionsResult } from "./getRegions";
 export const getRegions: typeof import("./getRegions").getRegions = null as any;
+utilities.lazyLoad(exports, ["getRegions"], () => require("./getRegions"));
 
 export { GetScalingPoliciesArgs, GetScalingPoliciesResult, GetScalingPoliciesOutputArgs } from "./getScalingPolicies";
 export const getScalingPolicies: typeof import("./getScalingPolicies").getScalingPolicies = null as any;
 export const getScalingPoliciesOutput: typeof import("./getScalingPolicies").getScalingPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["getScalingPolicies","getScalingPoliciesOutput"], () => require("./getScalingPolicies"));
 
 export { GetScalingPolicyArgs, GetScalingPolicyResult, GetScalingPolicyOutputArgs } from "./getScalingPolicy";
 export const getScalingPolicy: typeof import("./getScalingPolicy").getScalingPolicy = null as any;
 export const getScalingPolicyOutput: typeof import("./getScalingPolicy").getScalingPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getScalingPolicy","getScalingPolicyOutput"], () => require("./getScalingPolicy"));
 
 export { GetSchedulerPolicyResult } from "./getSchedulerPolicy";
 export const getSchedulerPolicy: typeof import("./getSchedulerPolicy").getSchedulerPolicy = null as any;
+utilities.lazyLoad(exports, ["getSchedulerPolicy"], () => require("./getSchedulerPolicy"));
 
 export { GetVolumesArgs, GetVolumesResult, GetVolumesOutputArgs } from "./getVolumes";
 export const getVolumes: typeof import("./getVolumes").getVolumes = null as any;
 export const getVolumesOutput: typeof import("./getVolumes").getVolumesOutput = null as any;
+utilities.lazyLoad(exports, ["getVolumes","getVolumesOutput"], () => require("./getVolumes"));
 
 export { JobArgs, JobState } from "./job";
 export type Job = import("./job").Job;
 export const Job: typeof import("./job").Job = null as any;
+utilities.lazyLoad(exports, ["Job"], () => require("./job"));
 
 export { NamespaceArgs, NamespaceState } from "./namespace";
 export type Namespace = import("./namespace").Namespace;
 export const Namespace: typeof import("./namespace").Namespace = null as any;
+utilities.lazyLoad(exports, ["Namespace"], () => require("./namespace"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
 export { QuoteSpecificationArgs, QuoteSpecificationState } from "./quoteSpecification";
 export type QuoteSpecification = import("./quoteSpecification").QuoteSpecification;
 export const QuoteSpecification: typeof import("./quoteSpecification").QuoteSpecification = null as any;
+utilities.lazyLoad(exports, ["QuoteSpecification"], () => require("./quoteSpecification"));
 
 export { SchedulerConfigArgs, SchedulerConfigState } from "./schedulerConfig";
 export type SchedulerConfig = import("./schedulerConfig").SchedulerConfig;
 export const SchedulerConfig: typeof import("./schedulerConfig").SchedulerConfig = null as any;
+utilities.lazyLoad(exports, ["SchedulerConfig"], () => require("./schedulerConfig"));
 
 export { SentinelPolicyArgs, SentinelPolicyState } from "./sentinelPolicy";
 export type SentinelPolicy = import("./sentinelPolicy").SentinelPolicy;
 export const SentinelPolicy: typeof import("./sentinelPolicy").SentinelPolicy = null as any;
+utilities.lazyLoad(exports, ["SentinelPolicy"], () => require("./sentinelPolicy"));
 
 export { VolumeArgs, VolumeState } from "./volume";
 export type Volume = import("./volume").Volume;
 export const Volume: typeof import("./volume").Volume = null as any;
-
-utilities.lazyLoad(exports, ["AclPolicy"], () => require("./aclPolicy"));
-utilities.lazyLoad(exports, ["AclToken"], () => require("./aclToken"));
-utilities.lazyLoad(exports, ["ExternalVolume"], () => require("./externalVolume"));
-utilities.lazyLoad(exports, ["getAclPolicies","getAclPoliciesOutput"], () => require("./getAclPolicies"));
-utilities.lazyLoad(exports, ["getAclPolicy","getAclPolicyOutput"], () => require("./getAclPolicy"));
-utilities.lazyLoad(exports, ["getAclToken","getAclTokenOutput"], () => require("./getAclToken"));
-utilities.lazyLoad(exports, ["getAclTokens","getAclTokensOutput"], () => require("./getAclTokens"));
-utilities.lazyLoad(exports, ["getDatacenters","getDatacentersOutput"], () => require("./getDatacenters"));
-utilities.lazyLoad(exports, ["getDeployments"], () => require("./getDeployments"));
-utilities.lazyLoad(exports, ["getJob","getJobOutput"], () => require("./getJob"));
-utilities.lazyLoad(exports, ["getJobParser","getJobParserOutput"], () => require("./getJobParser"));
-utilities.lazyLoad(exports, ["getNamespace","getNamespaceOutput"], () => require("./getNamespace"));
-utilities.lazyLoad(exports, ["getNamespaces"], () => require("./getNamespaces"));
-utilities.lazyLoad(exports, ["getPlugin","getPluginOutput"], () => require("./getPlugin"));
-utilities.lazyLoad(exports, ["getPlugins","getPluginsOutput"], () => require("./getPlugins"));
-utilities.lazyLoad(exports, ["getRegions"], () => require("./getRegions"));
-utilities.lazyLoad(exports, ["getScalingPolicies","getScalingPoliciesOutput"], () => require("./getScalingPolicies"));
-utilities.lazyLoad(exports, ["getScalingPolicy","getScalingPolicyOutput"], () => require("./getScalingPolicy"));
-utilities.lazyLoad(exports, ["getSchedulerPolicy"], () => require("./getSchedulerPolicy"));
-utilities.lazyLoad(exports, ["getVolumes","getVolumesOutput"], () => require("./getVolumes"));
-utilities.lazyLoad(exports, ["Job"], () => require("./job"));
-utilities.lazyLoad(exports, ["Namespace"], () => require("./namespace"));
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
-utilities.lazyLoad(exports, ["QuoteSpecification"], () => require("./quoteSpecification"));
-utilities.lazyLoad(exports, ["SchedulerConfig"], () => require("./schedulerConfig"));
-utilities.lazyLoad(exports, ["SentinelPolicy"], () => require("./sentinelPolicy"));
 utilities.lazyLoad(exports, ["Volume"], () => require("./volume"));
+
 
 // Export sub-modules:
 import * as config from "./config";
@@ -152,6 +167,8 @@ const _module = {
         switch (type) {
             case "nomad:index/aclPolicy:AclPolicy":
                 return new AclPolicy(name, <any>undefined, { urn })
+            case "nomad:index/aclRole:AclRole":
+                return new AclRole(name, <any>undefined, { urn })
             case "nomad:index/aclToken:AclToken":
                 return new AclToken(name, <any>undefined, { urn })
             case "nomad:index/externalVolume:ExternalVolume":
@@ -174,6 +191,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("nomad", "index/aclPolicy", _module)
+pulumi.runtime.registerResourceModule("nomad", "index/aclRole", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/aclToken", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/externalVolume", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/job", _module)

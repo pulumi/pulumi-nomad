@@ -5,7 +5,9 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.nomad.inputs.NamespaceCapabilitiesArgs;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -14,6 +16,23 @@ import javax.annotation.Nullable;
 public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final NamespaceArgs Empty = new NamespaceArgs();
+
+    /**
+     * `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can&#39;t
+     * be repeated. See below for the structure of this block.
+     * 
+     */
+    @Import(name="capabilities")
+    private @Nullable Output<NamespaceCapabilitiesArgs> capabilities;
+
+    /**
+     * @return `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can&#39;t
+     * be repeated. See below for the structure of this block.
+     * 
+     */
+    public Optional<Output<NamespaceCapabilitiesArgs>> capabilities() {
+        return Optional.ofNullable(this.capabilities);
+    }
 
     /**
      * `(string: &#34;&#34;)` - A description of the namespace.
@@ -28,6 +47,21 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
+    }
+
+    /**
+     * `(map[string]string: &lt;optional&gt;)` -  Specifies arbitrary KV metadata to associate with the namespace.
+     * 
+     */
+    @Import(name="meta")
+    private @Nullable Output<Map<String,String>> meta;
+
+    /**
+     * @return `(map[string]string: &lt;optional&gt;)` -  Specifies arbitrary KV metadata to associate with the namespace.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> meta() {
+        return Optional.ofNullable(this.meta);
     }
 
     /**
@@ -63,7 +97,9 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
     private NamespaceArgs() {}
 
     private NamespaceArgs(NamespaceArgs $) {
+        this.capabilities = $.capabilities;
         this.description = $.description;
+        this.meta = $.meta;
         this.name = $.name;
         this.quota = $.quota;
     }
@@ -87,6 +123,29 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param capabilities `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can&#39;t
+         * be repeated. See below for the structure of this block.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder capabilities(@Nullable Output<NamespaceCapabilitiesArgs> capabilities) {
+            $.capabilities = capabilities;
+            return this;
+        }
+
+        /**
+         * @param capabilities `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can&#39;t
+         * be repeated. See below for the structure of this block.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder capabilities(NamespaceCapabilitiesArgs capabilities) {
+            return capabilities(Output.of(capabilities));
+        }
+
+        /**
          * @param description `(string: &#34;&#34;)` - A description of the namespace.
          * 
          * @return builder
@@ -105,6 +164,27 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        /**
+         * @param meta `(map[string]string: &lt;optional&gt;)` -  Specifies arbitrary KV metadata to associate with the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder meta(@Nullable Output<Map<String,String>> meta) {
+            $.meta = meta;
+            return this;
+        }
+
+        /**
+         * @param meta `(map[string]string: &lt;optional&gt;)` -  Specifies arbitrary KV metadata to associate with the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder meta(Map<String,String> meta) {
+            return meta(Output.of(meta));
         }
 
         /**

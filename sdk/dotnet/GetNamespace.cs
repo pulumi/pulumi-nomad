@@ -99,26 +99,46 @@ namespace Pulumi.Nomad
     [OutputType]
     public sealed class GetNamespaceResult
     {
+        /// <summary>
+        /// `(block)` - Capabilities of the namespace
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetNamespaceCapabilityResult> Capabilities;
+        /// <summary>
+        /// `(string)` - The description of the namespace.
+        /// </summary>
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// `(map[string]string)` -  Arbitrary KV metadata associated with the namespace.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> Meta;
         public readonly string Name;
+        /// <summary>
+        /// `(string)` - The quota associated with the namespace.
+        /// </summary>
         public readonly string Quota;
 
         [OutputConstructor]
         private GetNamespaceResult(
+            ImmutableArray<Outputs.GetNamespaceCapabilityResult> capabilities,
+
             string description,
 
             string id,
+
+            ImmutableDictionary<string, string> meta,
 
             string name,
 
             string quota)
         {
+            Capabilities = capabilities;
             Description = description;
             Id = id;
+            Meta = meta;
             Name = name;
             Quota = quota;
         }

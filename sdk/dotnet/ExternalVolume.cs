@@ -74,7 +74,7 @@ namespace Pulumi.Nomad
     ///     {
     ///         DependsOn = new[]
     ///         {
-    ///             ebs.Apply(getPluginResult =&gt; getPluginResult),
+    ///             ebs,
     ///         },
     ///     });
     /// 
@@ -85,113 +85,139 @@ namespace Pulumi.Nomad
     public partial class ExternalVolume : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Capabilities intended to be used in a job. At least one capability must be provided.
+        /// `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
         /// </summary>
         [Output("capabilities")]
         public Output<ImmutableArray<Outputs.ExternalVolumeCapability>> Capabilities { get; private set; } = null!;
 
         /// <summary>
-        /// Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+        /// `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         /// </summary>
         [Output("capacityMax")]
         public Output<string?> CapacityMax { get; private set; } = null!;
 
         /// <summary>
-        /// Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+        /// `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         /// </summary>
         [Output("capacityMin")]
         public Output<string?> CapacityMin { get; private set; } = null!;
 
         /// <summary>
-        /// The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
+        /// `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
         /// </summary>
         [Output("cloneId")]
         public Output<string?> CloneId { get; private set; } = null!;
 
+        /// <summary>
+        /// `(boolean)`
+        /// </summary>
         [Output("controllerRequired")]
         public Output<bool> ControllerRequired { get; private set; } = null!;
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Output("controllersExpected")]
         public Output<int> ControllersExpected { get; private set; } = null!;
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Output("controllersHealthy")]
         public Output<int> ControllersHealthy { get; private set; } = null!;
 
         /// <summary>
-        /// Options for mounting 'block-device' volumes without a pre-formatted file system.
+        /// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         /// </summary>
         [Output("mountOptions")]
         public Output<Outputs.ExternalVolumeMountOptions?> MountOptions { get; private set; } = null!;
 
         /// <summary>
-        /// The display name of the volume.
+        /// `(string: &lt;required&gt;)` - The display name for the volume.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The namespace in which to create the volume.
+        /// `(string: "default")` - The namespace in which to register the volume.
         /// </summary>
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Output("nodesExpected")]
         public Output<int> NodesExpected { get; private set; } = null!;
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Output("nodesHealthy")]
         public Output<int> NodesHealthy { get; private set; } = null!;
 
         /// <summary>
-        /// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        /// `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         /// </summary>
         [Output("parameters")]
         public Output<ImmutableDictionary<string, string>?> Parameters { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the CSI plugin that manages this volume.
+        /// `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
         /// </summary>
         [Output("pluginId")]
         public Output<string> PluginId { get; private set; } = null!;
 
+        /// <summary>
+        /// `(string)`
+        /// </summary>
         [Output("pluginProvider")]
         public Output<string> PluginProvider { get; private set; } = null!;
 
+        /// <summary>
+        /// `(string)`
+        /// </summary>
         [Output("pluginProviderVersion")]
         public Output<string> PluginProviderVersion { get; private set; } = null!;
 
+        /// <summary>
+        /// `(boolean)`
+        /// </summary>
         [Output("schedulable")]
         public Output<bool> Schedulable { get; private set; } = null!;
 
         /// <summary>
-        /// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        /// `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         /// </summary>
         [Output("secrets")]
         public Output<ImmutableDictionary<string, string>?> Secrets { get; private set; } = null!;
 
         /// <summary>
-        /// The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-        /// 'clone_id'.
+        /// `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
         /// </summary>
         [Output("snapshotId")]
         public Output<string?> SnapshotId { get; private set; } = null!;
 
+        /// <summary>
+        /// `(List of topologies)`
+        /// </summary>
         [Output("topologies")]
         public Output<ImmutableArray<Outputs.ExternalVolumeTopology>> Topologies { get; private set; } = null!;
 
         /// <summary>
-        /// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        /// `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         /// </summary>
         [Output("topologyRequest")]
         public Output<Outputs.ExternalVolumeTopologyRequest?> TopologyRequest { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the volume. Currently, only 'csi' is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID of the volume, how jobs will refer to the volume.
+        /// `(string: &lt;required&gt;)` - The unique ID of the volume.
         /// </summary>
         [Output("volumeId")]
         public Output<string> VolumeId { get; private set; } = null!;
@@ -219,6 +245,10 @@ namespace Pulumi.Nomad
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "secrets",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -246,7 +276,7 @@ namespace Pulumi.Nomad
         private InputList<Inputs.ExternalVolumeCapabilityArgs>? _capabilities;
 
         /// <summary>
-        /// Capabilities intended to be used in a job. At least one capability must be provided.
+        /// `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
         /// </summary>
         public InputList<Inputs.ExternalVolumeCapabilityArgs> Capabilities
         {
@@ -255,37 +285,37 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+        /// `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         /// </summary>
         [Input("capacityMax")]
         public Input<string>? CapacityMax { get; set; }
 
         /// <summary>
-        /// Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+        /// `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         /// </summary>
         [Input("capacityMin")]
         public Input<string>? CapacityMin { get; set; }
 
         /// <summary>
-        /// The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
+        /// `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
         /// </summary>
         [Input("cloneId")]
         public Input<string>? CloneId { get; set; }
 
         /// <summary>
-        /// Options for mounting 'block-device' volumes without a pre-formatted file system.
+        /// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         /// </summary>
         [Input("mountOptions")]
         public Input<Inputs.ExternalVolumeMountOptionsArgs>? MountOptions { get; set; }
 
         /// <summary>
-        /// The display name of the volume.
+        /// `(string: &lt;required&gt;)` - The display name for the volume.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace in which to create the volume.
+        /// `(string: "default")` - The namespace in which to register the volume.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
@@ -294,7 +324,7 @@ namespace Pulumi.Nomad
         private InputMap<string>? _parameters;
 
         /// <summary>
-        /// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        /// `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         /// </summary>
         public InputMap<string> Parameters
         {
@@ -303,7 +333,7 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// The ID of the CSI plugin that manages this volume.
+        /// `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
         /// </summary>
         [Input("pluginId", required: true)]
         public Input<string> PluginId { get; set; } = null!;
@@ -312,35 +342,38 @@ namespace Pulumi.Nomad
         private InputMap<string>? _secrets;
 
         /// <summary>
-        /// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        /// `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         /// </summary>
         public InputMap<string> Secrets
         {
             get => _secrets ?? (_secrets = new InputMap<string>());
-            set => _secrets = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _secrets = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>
-        /// The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-        /// 'clone_id'.
+        /// `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
 
         /// <summary>
-        /// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        /// `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         /// </summary>
         [Input("topologyRequest")]
         public Input<Inputs.ExternalVolumeTopologyRequestArgs>? TopologyRequest { get; set; }
 
         /// <summary>
-        /// The type of the volume. Currently, only 'csi' is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The unique ID of the volume, how jobs will refer to the volume.
+        /// `(string: &lt;required&gt;)` - The unique ID of the volume.
         /// </summary>
         [Input("volumeId", required: true)]
         public Input<string> VolumeId { get; set; } = null!;
@@ -357,7 +390,7 @@ namespace Pulumi.Nomad
         private InputList<Inputs.ExternalVolumeCapabilityGetArgs>? _capabilities;
 
         /// <summary>
-        /// Capabilities intended to be used in a job. At least one capability must be provided.
+        /// `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
         /// </summary>
         public InputList<Inputs.ExternalVolumeCapabilityGetArgs> Capabilities
         {
@@ -366,53 +399,68 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+        /// `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         /// </summary>
         [Input("capacityMax")]
         public Input<string>? CapacityMax { get; set; }
 
         /// <summary>
-        /// Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+        /// `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         /// </summary>
         [Input("capacityMin")]
         public Input<string>? CapacityMin { get; set; }
 
         /// <summary>
-        /// The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
+        /// `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
         /// </summary>
         [Input("cloneId")]
         public Input<string>? CloneId { get; set; }
 
+        /// <summary>
+        /// `(boolean)`
+        /// </summary>
         [Input("controllerRequired")]
         public Input<bool>? ControllerRequired { get; set; }
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Input("controllersExpected")]
         public Input<int>? ControllersExpected { get; set; }
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Input("controllersHealthy")]
         public Input<int>? ControllersHealthy { get; set; }
 
         /// <summary>
-        /// Options for mounting 'block-device' volumes without a pre-formatted file system.
+        /// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         /// </summary>
         [Input("mountOptions")]
         public Input<Inputs.ExternalVolumeMountOptionsGetArgs>? MountOptions { get; set; }
 
         /// <summary>
-        /// The display name of the volume.
+        /// `(string: &lt;required&gt;)` - The display name for the volume.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace in which to create the volume.
+        /// `(string: "default")` - The namespace in which to register the volume.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Input("nodesExpected")]
         public Input<int>? NodesExpected { get; set; }
 
+        /// <summary>
+        /// `(integer)`
+        /// </summary>
         [Input("nodesHealthy")]
         public Input<int>? NodesHealthy { get; set; }
 
@@ -420,7 +468,7 @@ namespace Pulumi.Nomad
         private InputMap<string>? _parameters;
 
         /// <summary>
-        /// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        /// `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         /// </summary>
         public InputMap<string> Parameters
         {
@@ -429,17 +477,26 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// The ID of the CSI plugin that manages this volume.
+        /// `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
         /// </summary>
         [Input("pluginId")]
         public Input<string>? PluginId { get; set; }
 
+        /// <summary>
+        /// `(string)`
+        /// </summary>
         [Input("pluginProvider")]
         public Input<string>? PluginProvider { get; set; }
 
+        /// <summary>
+        /// `(string)`
+        /// </summary>
         [Input("pluginProviderVersion")]
         public Input<string>? PluginProviderVersion { get; set; }
 
+        /// <summary>
+        /// `(boolean)`
+        /// </summary>
         [Input("schedulable")]
         public Input<bool>? Schedulable { get; set; }
 
@@ -447,23 +504,30 @@ namespace Pulumi.Nomad
         private InputMap<string>? _secrets;
 
         /// <summary>
-        /// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        /// `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         /// </summary>
         public InputMap<string> Secrets
         {
             get => _secrets ?? (_secrets = new InputMap<string>());
-            set => _secrets = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
+                _secrets = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>
-        /// The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-        /// 'clone_id'.
+        /// `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
 
         [Input("topologies")]
         private InputList<Inputs.ExternalVolumeTopologyGetArgs>? _topologies;
+
+        /// <summary>
+        /// `(List of topologies)`
+        /// </summary>
         public InputList<Inputs.ExternalVolumeTopologyGetArgs> Topologies
         {
             get => _topologies ?? (_topologies = new InputList<Inputs.ExternalVolumeTopologyGetArgs>());
@@ -471,19 +535,19 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        /// `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         /// </summary>
         [Input("topologyRequest")]
         public Input<Inputs.ExternalVolumeTopologyRequestGetArgs>? TopologyRequest { get; set; }
 
         /// <summary>
-        /// The type of the volume. Currently, only 'csi' is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The unique ID of the volume, how jobs will refer to the volume.
+        /// `(string: &lt;required&gt;)` - The unique ID of the volume.
         /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }

@@ -10,7 +10,9 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.nomad.NamespaceArgs;
 import com.pulumi.nomad.Utilities;
 import com.pulumi.nomad.inputs.NamespaceState;
+import com.pulumi.nomad.outputs.NamespaceCapabilities;
 import java.lang.String;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -48,6 +50,10 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var dev = new Namespace(&#34;dev&#34;, NamespaceArgs.builder()        
  *             .description(&#34;Shared development environment.&#34;)
+ *             .meta(Map.ofEntries(
+ *                 Map.entry(&#34;foo&#34;, &#34;bar&#34;),
+ *                 Map.entry(&#34;owner&#34;, &#34;John Doe&#34;)
+ *             ))
  *             .quota(&#34;dev&#34;)
  *             .build());
  * 
@@ -105,6 +111,22 @@ import javax.annotation.Nullable;
 @ResourceType(type="nomad:index/namespace:Namespace")
 public class Namespace extends com.pulumi.resources.CustomResource {
     /**
+     * `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can&#39;t
+     * be repeated. See below for the structure of this block.
+     * 
+     */
+    @Export(name="capabilities", type=NamespaceCapabilities.class, parameters={})
+    private Output</* @Nullable */ NamespaceCapabilities> capabilities;
+
+    /**
+     * @return `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can&#39;t
+     * be repeated. See below for the structure of this block.
+     * 
+     */
+    public Output<Optional<NamespaceCapabilities>> capabilities() {
+        return Codegen.optional(this.capabilities);
+    }
+    /**
      * `(string: &#34;&#34;)` - A description of the namespace.
      * 
      */
@@ -117,6 +139,20 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
+    }
+    /**
+     * `(map[string]string: &lt;optional&gt;)` -  Specifies arbitrary KV metadata to associate with the namespace.
+     * 
+     */
+    @Export(name="meta", type=Map.class, parameters={String.class, String.class})
+    private Output</* @Nullable */ Map<String,String>> meta;
+
+    /**
+     * @return `(map[string]string: &lt;optional&gt;)` -  Specifies arbitrary KV metadata to associate with the namespace.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> meta() {
+        return Codegen.optional(this.meta);
     }
     /**
      * `(string: &lt;required&gt;)` - A unique name for the namespace.

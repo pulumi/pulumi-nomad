@@ -20,7 +20,7 @@ import (
 // import (
 //
 //	"fmt"
-//	"io/ioutil"
+//	"os"
 //
 //	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -28,7 +28,7 @@ import (
 // )
 //
 //	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
+//		data, err := os.ReadFile(path)
 //		if err != nil {
 //			panic(err.Error())
 //		}
@@ -37,7 +37,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.GetJobParser(ctx, &GetJobParserArgs{
+//			_, err := nomad.GetJobParser(ctx, &nomad.GetJobParserArgs{
 //				Hcl:          readFileOrPanic(fmt.Sprintf("%v/jobspec.hcl", path.Module)),
 //				Canonicalize: pulumi.BoolRef(false),
 //			}, nil)
@@ -60,16 +60,21 @@ func GetJobParser(ctx *pulumi.Context, args *GetJobParserArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getJobParser.
 type GetJobParserArgs struct {
-	Canonicalize *bool  `pulumi:"canonicalize"`
-	Hcl          string `pulumi:"hcl"`
+	// `(boolean: true)` - flag to enable setting any unset fields to their default values.
+	Canonicalize *bool `pulumi:"canonicalize"`
+	// `(string)` - the HCL definition of the job.
+	Hcl string `pulumi:"hcl"`
 }
 
 // A collection of values returned by getJobParser.
 type GetJobParserResult struct {
-	Canonicalize *bool  `pulumi:"canonicalize"`
-	Hcl          string `pulumi:"hcl"`
+	// `(boolean: true)` - flag to enable setting any unset fields to their default values.
+	Canonicalize *bool `pulumi:"canonicalize"`
+	// `(string)` - the HCL definition of the job.
+	Hcl string `pulumi:"hcl"`
 	// The provider-assigned unique ID for this managed resource.
-	Id   string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// `(string)` - the parsed job as JSON string.
 	Json string `pulumi:"json"`
 }
 
@@ -88,8 +93,10 @@ func GetJobParserOutput(ctx *pulumi.Context, args GetJobParserOutputArgs, opts .
 
 // A collection of arguments for invoking getJobParser.
 type GetJobParserOutputArgs struct {
+	// `(boolean: true)` - flag to enable setting any unset fields to their default values.
 	Canonicalize pulumi.BoolPtrInput `pulumi:"canonicalize"`
-	Hcl          pulumi.StringInput  `pulumi:"hcl"`
+	// `(string)` - the HCL definition of the job.
+	Hcl pulumi.StringInput `pulumi:"hcl"`
 }
 
 func (GetJobParserOutputArgs) ElementType() reflect.Type {
@@ -111,10 +118,12 @@ func (o GetJobParserResultOutput) ToGetJobParserResultOutputWithContext(ctx cont
 	return o
 }
 
+// `(boolean: true)` - flag to enable setting any unset fields to their default values.
 func (o GetJobParserResultOutput) Canonicalize() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetJobParserResult) *bool { return v.Canonicalize }).(pulumi.BoolPtrOutput)
 }
 
+// `(string)` - the HCL definition of the job.
 func (o GetJobParserResultOutput) Hcl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobParserResult) string { return v.Hcl }).(pulumi.StringOutput)
 }
@@ -124,6 +133,7 @@ func (o GetJobParserResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobParserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// `(string)` - the parsed job as JSON string.
 func (o GetJobParserResultOutput) Json() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobParserResult) string { return v.Json }).(pulumi.StringOutput)
 }

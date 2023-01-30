@@ -16,23 +16,47 @@ public final class GetPluginArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetPluginArgs Empty = new GetPluginArgs();
 
+    /**
+     * `(string)` ID of the plugin.
+     * 
+     */
     @Import(name="pluginId", required=true)
     private Output<String> pluginId;
 
+    /**
+     * @return `(string)` ID of the plugin.
+     * 
+     */
     public Output<String> pluginId() {
         return this.pluginId;
     }
 
+    /**
+     * `(boolean)` retry until the plugin exists and all controllers are healthy
+     * 
+     */
     @Import(name="waitForHealthy")
     private @Nullable Output<Boolean> waitForHealthy;
 
+    /**
+     * @return `(boolean)` retry until the plugin exists and all controllers are healthy
+     * 
+     */
     public Optional<Output<Boolean>> waitForHealthy() {
         return Optional.ofNullable(this.waitForHealthy);
     }
 
+    /**
+     * `(boolean)` if the plugin doesn&#39;t exist, retry until it does
+     * 
+     */
     @Import(name="waitForRegistration")
     private @Nullable Output<Boolean> waitForRegistration;
 
+    /**
+     * @return `(boolean)` if the plugin doesn&#39;t exist, retry until it does
+     * 
+     */
     public Optional<Output<Boolean>> waitForRegistration() {
         return Optional.ofNullable(this.waitForRegistration);
     }
@@ -63,29 +87,65 @@ public final class GetPluginArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetPluginArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param pluginId `(string)` ID of the plugin.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pluginId(Output<String> pluginId) {
             $.pluginId = pluginId;
             return this;
         }
 
+        /**
+         * @param pluginId `(string)` ID of the plugin.
+         * 
+         * @return builder
+         * 
+         */
         public Builder pluginId(String pluginId) {
             return pluginId(Output.of(pluginId));
         }
 
+        /**
+         * @param waitForHealthy `(boolean)` retry until the plugin exists and all controllers are healthy
+         * 
+         * @return builder
+         * 
+         */
         public Builder waitForHealthy(@Nullable Output<Boolean> waitForHealthy) {
             $.waitForHealthy = waitForHealthy;
             return this;
         }
 
+        /**
+         * @param waitForHealthy `(boolean)` retry until the plugin exists and all controllers are healthy
+         * 
+         * @return builder
+         * 
+         */
         public Builder waitForHealthy(Boolean waitForHealthy) {
             return waitForHealthy(Output.of(waitForHealthy));
         }
 
+        /**
+         * @param waitForRegistration `(boolean)` if the plugin doesn&#39;t exist, retry until it does
+         * 
+         * @return builder
+         * 
+         */
         public Builder waitForRegistration(@Nullable Output<Boolean> waitForRegistration) {
             $.waitForRegistration = waitForRegistration;
             return this;
         }
 
+        /**
+         * @param waitForRegistration `(boolean)` if the plugin doesn&#39;t exist, retry until it does
+         * 
+         * @return builder
+         * 
+         */
         public Builder waitForRegistration(Boolean waitForRegistration) {
             return waitForRegistration(Output.of(waitForRegistration));
         }

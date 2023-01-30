@@ -14,9 +14,17 @@ public final class ExternalVolumeTopologyRequestPreferredTopologyArgs extends co
 
     public static final ExternalVolumeTopologyRequestPreferredTopologyArgs Empty = new ExternalVolumeTopologyRequestPreferredTopologyArgs();
 
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     */
     @Import(name="segments", required=true)
     private Output<Map<String,String>> segments;
 
+    /**
+     * @return `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     */
     public Output<Map<String,String>> segments() {
         return this.segments;
     }
@@ -45,11 +53,23 @@ public final class ExternalVolumeTopologyRequestPreferredTopologyArgs extends co
             $ = new ExternalVolumeTopologyRequestPreferredTopologyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param segments `(map[string]string)` - Define the attributes for the topology request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder segments(Output<Map<String,String>> segments) {
             $.segments = segments;
             return this;
         }
 
+        /**
+         * @param segments `(map[string]string)` - Define the attributes for the topology request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder segments(Map<String,String> segments) {
             return segments(Output.of(segments));
         }

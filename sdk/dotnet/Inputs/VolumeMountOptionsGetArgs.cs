@@ -12,11 +12,18 @@ namespace Pulumi.Nomad.Inputs
 
     public sealed class VolumeMountOptionsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - The file system type.
+        /// </summary>
         [Input("fsType")]
         public Input<string>? FsType { get; set; }
 
         [Input("mountFlags")]
         private InputList<string>? _mountFlags;
+
+        /// <summary>
+        /// `([]string: &lt;optional&gt;)` - The flags passed to `mount`.
+        /// </summary>
         public InputList<string> MountFlags
         {
             get => _mountFlags ?? (_mountFlags = new InputList<string>());

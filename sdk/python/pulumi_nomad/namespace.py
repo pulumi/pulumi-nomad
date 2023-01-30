@@ -8,27 +8,51 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['NamespaceArgs', 'Namespace']
 
 @pulumi.input_type
 class NamespaceArgs:
     def __init__(__self__, *,
+                 capabilities: Optional[pulumi.Input['NamespaceCapabilitiesArgs']] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  quota: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
+        :param pulumi.Input['NamespaceCapabilitiesArgs'] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+               be repeated. See below for the structure of this block.
         :param pulumi.Input[str] description: `(string: "")` - A description of the namespace.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the namespace.
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
+        if capabilities is not None:
+            pulumi.set(__self__, "capabilities", capabilities)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if meta is not None:
+            pulumi.set(__self__, "meta", meta)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if quota is not None:
             pulumi.set(__self__, "quota", quota)
+
+    @property
+    @pulumi.getter
+    def capabilities(self) -> Optional[pulumi.Input['NamespaceCapabilitiesArgs']]:
+        """
+        `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+        be repeated. See below for the structure of this block.
+        """
+        return pulumi.get(self, "capabilities")
+
+    @capabilities.setter
+    def capabilities(self, value: Optional[pulumi.Input['NamespaceCapabilitiesArgs']]):
+        pulumi.set(self, "capabilities", value)
 
     @property
     @pulumi.getter
@@ -41,6 +65,18 @@ class NamespaceArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def meta(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+        """
+        return pulumi.get(self, "meta")
+
+    @meta.setter
+    def meta(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "meta", value)
 
     @property
     @pulumi.getter
@@ -70,21 +106,43 @@ class NamespaceArgs:
 @pulumi.input_type
 class _NamespaceState:
     def __init__(__self__, *,
+                 capabilities: Optional[pulumi.Input['NamespaceCapabilitiesArgs']] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  quota: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
+        :param pulumi.Input['NamespaceCapabilitiesArgs'] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+               be repeated. See below for the structure of this block.
         :param pulumi.Input[str] description: `(string: "")` - A description of the namespace.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the namespace.
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
+        if capabilities is not None:
+            pulumi.set(__self__, "capabilities", capabilities)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if meta is not None:
+            pulumi.set(__self__, "meta", meta)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if quota is not None:
             pulumi.set(__self__, "quota", quota)
+
+    @property
+    @pulumi.getter
+    def capabilities(self) -> Optional[pulumi.Input['NamespaceCapabilitiesArgs']]:
+        """
+        `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+        be repeated. See below for the structure of this block.
+        """
+        return pulumi.get(self, "capabilities")
+
+    @capabilities.setter
+    def capabilities(self, value: Optional[pulumi.Input['NamespaceCapabilitiesArgs']]):
+        pulumi.set(self, "capabilities", value)
 
     @property
     @pulumi.getter
@@ -97,6 +155,18 @@ class _NamespaceState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def meta(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+        """
+        return pulumi.get(self, "meta")
+
+    @meta.setter
+    def meta(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "meta", value)
 
     @property
     @pulumi.getter
@@ -128,7 +198,9 @@ class Namespace(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 capabilities: Optional[pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  quota: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -150,6 +222,10 @@ class Namespace(pulumi.CustomResource):
 
         dev = nomad.Namespace("dev",
             description="Shared development environment.",
+            meta={
+                "foo": "bar",
+                "owner": "John Doe",
+            },
             quota="dev")
         ```
 
@@ -175,7 +251,10 @@ class Namespace(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+               be repeated. See below for the structure of this block.
         :param pulumi.Input[str] description: `(string: "")` - A description of the namespace.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the namespace.
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
@@ -203,6 +282,10 @@ class Namespace(pulumi.CustomResource):
 
         dev = nomad.Namespace("dev",
             description="Shared development environment.",
+            meta={
+                "foo": "bar",
+                "owner": "John Doe",
+            },
             quota="dev")
         ```
 
@@ -241,7 +324,9 @@ class Namespace(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 capabilities: Optional[pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  quota: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -253,7 +338,9 @@ class Namespace(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = NamespaceArgs.__new__(NamespaceArgs)
 
+            __props__.__dict__["capabilities"] = capabilities
             __props__.__dict__["description"] = description
+            __props__.__dict__["meta"] = meta
             __props__.__dict__["name"] = name
             __props__.__dict__["quota"] = quota
         super(Namespace, __self__).__init__(
@@ -266,7 +353,9 @@ class Namespace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            capabilities: Optional[pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             quota: Optional[pulumi.Input[str]] = None) -> 'Namespace':
         """
@@ -276,7 +365,10 @@ class Namespace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+               be repeated. See below for the structure of this block.
         :param pulumi.Input[str] description: `(string: "")` - A description of the namespace.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the namespace.
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
@@ -284,10 +376,21 @@ class Namespace(pulumi.CustomResource):
 
         __props__ = _NamespaceState.__new__(_NamespaceState)
 
+        __props__.__dict__["capabilities"] = capabilities
         __props__.__dict__["description"] = description
+        __props__.__dict__["meta"] = meta
         __props__.__dict__["name"] = name
         __props__.__dict__["quota"] = quota
         return Namespace(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def capabilities(self) -> pulumi.Output[Optional['outputs.NamespaceCapabilities']]:
+        """
+        `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+        be repeated. See below for the structure of this block.
+        """
+        return pulumi.get(self, "capabilities")
 
     @property
     @pulumi.getter
@@ -296,6 +399,14 @@ class Namespace(pulumi.CustomResource):
         `(string: "")` - A description of the namespace.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def meta(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+        """
+        return pulumi.get(self, "meta")
 
     @property
     @pulumi.getter

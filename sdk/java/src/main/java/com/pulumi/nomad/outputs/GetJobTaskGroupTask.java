@@ -15,6 +15,10 @@ import java.util.Objects;
 public final class GetJobTaskGroupTask {
     private String driver;
     private Map<String,Object> meta;
+    /**
+     * @return `(string)` Name of the job.
+     * 
+     */
     private String name;
     private List<GetJobTaskGroupTaskVolumeMount> volumeMounts;
 
@@ -25,6 +29,10 @@ public final class GetJobTaskGroupTask {
     public Map<String,Object> meta() {
         return this.meta;
     }
+    /**
+     * @return `(string)` Name of the job.
+     * 
+     */
     public String name() {
         return this.name;
     }

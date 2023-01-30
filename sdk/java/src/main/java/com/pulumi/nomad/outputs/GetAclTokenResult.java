@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.nomad.outputs.GetAclTokenRole;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -11,26 +12,100 @@ import java.util.Objects;
 
 @CustomType
 public final class GetAclTokenResult {
+    /**
+     * @return `(string)` Non-sensitive identifier for this token.
+     * 
+     */
     private String accessorId;
+    /**
+     * @return `(string)` Date and time the token was created.
+     * 
+     */
     private String createTime;
+    /**
+     * @return `(string)` - The timestamp after which the token is
+     * considered expired and eligible for destruction.
+     * 
+     */
+    private String expirationTime;
+    /**
+     * @return `(string)` The expiration TTL for the token.
+     * 
+     */
+    private String expirationTtl;
+    /**
+     * @return `(bool)` Whether the token is replicated to all regions, or if it
+     * will only be used in the region it was created.
+     * 
+     */
     private Boolean global;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return `(string)` Non-sensitive identifier for this token.
+     * 
+     */
     private String name;
+    /**
+     * @return `(list of strings)` List of policy names associated with this token.
+     * 
+     */
     private List<String> policies;
+    /**
+     * @return `(set: [])` - The list of roles attached to the token. Each entry has
+     * `name` and `id` attributes.
+     * 
+     */
+    private List<GetAclTokenRole> roles;
+    /**
+     * @return `(string)` The token value itself.
+     * 
+     */
     private String secretId;
+    /**
+     * @return `(string)` The type of the token.
+     * 
+     */
     private String type;
 
     private GetAclTokenResult() {}
+    /**
+     * @return `(string)` Non-sensitive identifier for this token.
+     * 
+     */
     public String accessorId() {
         return this.accessorId;
     }
+    /**
+     * @return `(string)` Date and time the token was created.
+     * 
+     */
     public String createTime() {
         return this.createTime;
     }
+    /**
+     * @return `(string)` - The timestamp after which the token is
+     * considered expired and eligible for destruction.
+     * 
+     */
+    public String expirationTime() {
+        return this.expirationTime;
+    }
+    /**
+     * @return `(string)` The expiration TTL for the token.
+     * 
+     */
+    public String expirationTtl() {
+        return this.expirationTtl;
+    }
+    /**
+     * @return `(bool)` Whether the token is replicated to all regions, or if it
+     * will only be used in the region it was created.
+     * 
+     */
     public Boolean global() {
         return this.global;
     }
@@ -41,15 +116,39 @@ public final class GetAclTokenResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return `(string)` Non-sensitive identifier for this token.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return `(list of strings)` List of policy names associated with this token.
+     * 
+     */
     public List<String> policies() {
         return this.policies;
     }
+    /**
+     * @return `(set: [])` - The list of roles attached to the token. Each entry has
+     * `name` and `id` attributes.
+     * 
+     */
+    public List<GetAclTokenRole> roles() {
+        return this.roles;
+    }
+    /**
+     * @return `(string)` The token value itself.
+     * 
+     */
     public String secretId() {
         return this.secretId;
     }
+    /**
+     * @return `(string)` The type of the token.
+     * 
+     */
     public String type() {
         return this.type;
     }
@@ -65,10 +164,13 @@ public final class GetAclTokenResult {
     public static final class Builder {
         private String accessorId;
         private String createTime;
+        private String expirationTime;
+        private String expirationTtl;
         private Boolean global;
         private String id;
         private String name;
         private List<String> policies;
+        private List<GetAclTokenRole> roles;
         private String secretId;
         private String type;
         public Builder() {}
@@ -76,10 +178,13 @@ public final class GetAclTokenResult {
     	      Objects.requireNonNull(defaults);
     	      this.accessorId = defaults.accessorId;
     	      this.createTime = defaults.createTime;
+    	      this.expirationTime = defaults.expirationTime;
+    	      this.expirationTtl = defaults.expirationTtl;
     	      this.global = defaults.global;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.policies = defaults.policies;
+    	      this.roles = defaults.roles;
     	      this.secretId = defaults.secretId;
     	      this.type = defaults.type;
         }
@@ -92,6 +197,16 @@ public final class GetAclTokenResult {
         @CustomType.Setter
         public Builder createTime(String createTime) {
             this.createTime = Objects.requireNonNull(createTime);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder expirationTime(String expirationTime) {
+            this.expirationTime = Objects.requireNonNull(expirationTime);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder expirationTtl(String expirationTtl) {
+            this.expirationTtl = Objects.requireNonNull(expirationTtl);
             return this;
         }
         @CustomType.Setter
@@ -118,6 +233,14 @@ public final class GetAclTokenResult {
             return policies(List.of(policies));
         }
         @CustomType.Setter
+        public Builder roles(List<GetAclTokenRole> roles) {
+            this.roles = Objects.requireNonNull(roles);
+            return this;
+        }
+        public Builder roles(GetAclTokenRole... roles) {
+            return roles(List.of(roles));
+        }
+        @CustomType.Setter
         public Builder secretId(String secretId) {
             this.secretId = Objects.requireNonNull(secretId);
             return this;
@@ -131,10 +254,13 @@ public final class GetAclTokenResult {
             final var o = new GetAclTokenResult();
             o.accessorId = accessorId;
             o.createTime = createTime;
+            o.expirationTime = expirationTime;
+            o.expirationTtl = expirationTtl;
             o.global = global;
             o.id = id;
             o.name = name;
             o.policies = policies;
+            o.roles = roles;
             o.secretId = secretId;
             o.type = type;
             return o;

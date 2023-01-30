@@ -10,9 +10,17 @@ import java.util.Objects;
 
 @CustomType
 public final class ExternalVolumeTopologyRequestPreferredTopology {
+    /**
+     * @return `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     */
     private Map<String,String> segments;
 
     private ExternalVolumeTopologyRequestPreferredTopology() {}
+    /**
+     * @return `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     */
     public Map<String,String> segments() {
         return this.segments;
     }
