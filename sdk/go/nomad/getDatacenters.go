@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.GetDatacenters(ctx, &GetDatacentersArgs{
+//			_, err := nomad.GetDatacenters(ctx, &nomad.GetDatacentersArgs{
 //				IgnoreDownNodes: pulumi.BoolRef(true),
 //				Prefix:          pulumi.StringRef("prod"),
 //			}, nil)
@@ -57,6 +57,7 @@ type GetDatacentersArgs struct {
 
 // A collection of values returned by getDatacenters.
 type GetDatacentersResult struct {
+	// `list(string)` a list of datacenters.
 	Datacenters []string `pulumi:"datacenters"`
 	// The provider-assigned unique ID for this managed resource.
 	Id              string  `pulumi:"id"`
@@ -104,6 +105,7 @@ func (o GetDatacentersResultOutput) ToGetDatacentersResultOutputWithContext(ctx 
 	return o
 }
 
+// `list(string)` a list of datacenters.
 func (o GetDatacentersResultOutput) Datacenters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDatacentersResult) []string { return v.Datacenters }).(pulumi.StringArrayOutput)
 }

@@ -73,9 +73,15 @@ namespace Pulumi.Nomad
 
     public sealed class GetJobParserArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(boolean: true)` - flag to enable setting any unset fields to their default values.
+        /// </summary>
         [Input("canonicalize")]
         public bool? Canonicalize { get; set; }
 
+        /// <summary>
+        /// `(string)` - the HCL definition of the job.
+        /// </summary>
         [Input("hcl", required: true)]
         public string Hcl { get; set; } = null!;
 
@@ -87,9 +93,15 @@ namespace Pulumi.Nomad
 
     public sealed class GetJobParserInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(boolean: true)` - flag to enable setting any unset fields to their default values.
+        /// </summary>
         [Input("canonicalize")]
         public Input<bool>? Canonicalize { get; set; }
 
+        /// <summary>
+        /// `(string)` - the HCL definition of the job.
+        /// </summary>
         [Input("hcl", required: true)]
         public Input<string> Hcl { get; set; } = null!;
 
@@ -103,12 +115,21 @@ namespace Pulumi.Nomad
     [OutputType]
     public sealed class GetJobParserResult
     {
+        /// <summary>
+        /// `(boolean: true)` - flag to enable setting any unset fields to their default values.
+        /// </summary>
         public readonly bool? Canonicalize;
+        /// <summary>
+        /// `(string)` - the HCL definition of the job.
+        /// </summary>
         public readonly string Hcl;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// `(string)` - the parsed job as JSON string.
+        /// </summary>
         public readonly string Json;
 
         [OutputConstructor]

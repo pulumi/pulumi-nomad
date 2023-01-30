@@ -20,6 +20,7 @@ func GetRegions(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetRegionsRe
 // A collection of values returned by getRegions.
 type GetRegionsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id      string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// `(list of strings)` - a list of regions available in the cluster.
 	Regions []string `pulumi:"regions"`
 }

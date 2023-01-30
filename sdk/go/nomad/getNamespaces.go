@@ -20,6 +20,7 @@ func GetNamespaces(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetNamesp
 // A collection of values returned by getNamespaces.
 type GetNamespacesResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id         string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// `(list of strings)` - a list of namespaces available in the cluster.
 	Namespaces []string `pulumi:"namespaces"`
 }

@@ -13,8 +13,17 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class GetJobConstraintResult
     {
+        /// <summary>
+        /// `(string)` Attribute being constrained.
+        /// </summary>
         public readonly string Ltarget;
+        /// <summary>
+        /// `(string)` Operator used to compare the attribute to the constraint.
+        /// </summary>
         public readonly string Operand;
+        /// <summary>
+        /// `(string)` Constraint value.
+        /// </summary>
         public readonly string Rtarget;
 
         [OutputConstructor]

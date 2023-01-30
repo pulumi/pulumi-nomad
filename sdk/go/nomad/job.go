@@ -72,6 +72,17 @@ func NewJob(ctx *pulumi.Context,
 	if args.Jobspec == nil {
 		return nil, errors.New("invalid value for required argument 'Jobspec'")
 	}
+	if args.ConsulToken != nil {
+		args.ConsulToken = pulumi.ToSecret(args.ConsulToken).(pulumi.StringPtrInput)
+	}
+	if args.VaultToken != nil {
+		args.VaultToken = pulumi.ToSecret(args.VaultToken).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"consulToken",
+		"vaultToken",
+	})
+	opts = append(opts, secrets)
 	var resource Job
 	err := ctx.RegisterResource("nomad:index/job:Job", name, args, &resource, opts...)
 	if err != nil {

@@ -36,6 +36,9 @@ class GetAclTokensResult:
     @property
     @pulumi.getter(name="aclTokens")
     def acl_tokens(self) -> Sequence['outputs.GetAclTokensAclTokenResult']:
+        """
+        `(list of objects)` The list of tokens found in the given prefix.
+        """
         return pulumi.get(self, "acl_tokens")
 
     @property
@@ -76,6 +79,9 @@ def get_acl_tokens(prefix: Optional[str] = None,
 
     tokens = nomad.get_acl_tokens(prefix="a242")
     ```
+
+
+    :param str prefix: `(string)` Optional prefix to filter the tokens.
     """
     __args__ = dict()
     __args__['prefix'] = prefix
@@ -102,5 +108,8 @@ def get_acl_tokens_output(prefix: Optional[pulumi.Input[Optional[str]]] = None,
 
     tokens = nomad.get_acl_tokens(prefix="a242")
     ```
+
+
+    :param str prefix: `(string)` Optional prefix to filter the tokens.
     """
     ...

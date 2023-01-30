@@ -15,6 +15,9 @@ namespace Pulumi.Nomad.Outputs
     {
         public readonly int Count;
         public readonly ImmutableDictionary<string, object> Meta;
+        /// <summary>
+        /// `(string)` Name of the job.
+        /// </summary>
         public readonly string Name;
         public readonly ImmutableArray<Outputs.GetJobTaskGroupTaskResult> Tasks;
         public readonly ImmutableArray<Outputs.GetJobTaskGroupVolumeResult> Volumes;

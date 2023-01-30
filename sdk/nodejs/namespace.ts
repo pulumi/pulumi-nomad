@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -22,6 +24,10 @@ import * as utilities from "./utilities";
  *
  * const dev = new nomad.Namespace("dev", {
  *     description: "Shared development environment.",
+ *     meta: {
+ *         foo: "bar",
+ *         owner: "John Doe",
+ *     },
  *     quota: "dev",
  * });
  * ```
@@ -77,9 +83,18 @@ export class Namespace extends pulumi.CustomResource {
     }
 
     /**
+     * `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+     * be repeated. See below for the structure of this block.
+     */
+    public readonly capabilities!: pulumi.Output<outputs.NamespaceCapabilities | undefined>;
+    /**
      * `(string: "")` - A description of the namespace.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+     */
+    public readonly meta!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * `(string: <required>)` - A unique name for the namespace.
      */
@@ -102,12 +117,16 @@ export class Namespace extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NamespaceState | undefined;
+            resourceInputs["capabilities"] = state ? state.capabilities : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["meta"] = state ? state.meta : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["quota"] = state ? state.quota : undefined;
         } else {
             const args = argsOrState as NamespaceArgs | undefined;
+            resourceInputs["capabilities"] = args ? args.capabilities : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["meta"] = args ? args.meta : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["quota"] = args ? args.quota : undefined;
         }
@@ -121,9 +140,18 @@ export class Namespace extends pulumi.CustomResource {
  */
 export interface NamespaceState {
     /**
+     * `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+     * be repeated. See below for the structure of this block.
+     */
+    capabilities?: pulumi.Input<inputs.NamespaceCapabilities>;
+    /**
      * `(string: "")` - A description of the namespace.
      */
     description?: pulumi.Input<string>;
+    /**
+     * `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+     */
+    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * `(string: <required>)` - A unique name for the namespace.
      */
@@ -139,9 +167,18 @@ export interface NamespaceState {
  */
 export interface NamespaceArgs {
     /**
+     * `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+     * be repeated. See below for the structure of this block.
+     */
+    capabilities?: pulumi.Input<inputs.NamespaceCapabilities>;
+    /**
      * `(string: "")` - A description of the namespace.
      */
     description?: pulumi.Input<string>;
+    /**
+     * `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+     */
+    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * `(string: <required>)` - A unique name for the namespace.
      */

@@ -6,10 +6,13 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .acl_policy import *
+from .acl_role import *
 from .acl_token import *
 from .external_volume import *
 from .get_acl_policies import *
 from .get_acl_policy import *
+from .get_acl_role import *
+from .get_acl_roles import *
 from .get_acl_token import *
 from .get_acl_tokens import *
 from .get_datacenters import *
@@ -51,6 +54,14 @@ _utilities.register(
   "fqn": "pulumi_nomad",
   "classes": {
    "nomad:index/aclPolicy:AclPolicy": "AclPolicy"
+  }
+ },
+ {
+  "pkg": "nomad",
+  "mod": "index/aclRole",
+  "fqn": "pulumi_nomad",
+  "classes": {
+   "nomad:index/aclRole:AclRole": "AclRole"
   }
  },
  {

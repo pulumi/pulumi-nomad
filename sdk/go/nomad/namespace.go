@@ -35,7 +35,11 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewNamespace(ctx, "dev", &nomad.NamespaceArgs{
 //				Description: pulumi.String("Shared development environment."),
-//				Quota:       pulumi.String("dev"),
+//				Meta: pulumi.StringMap{
+//					"foo":   pulumi.String("bar"),
+//					"owner": pulumi.String("John Doe"),
+//				},
+//				Quota: pulumi.String("dev"),
 //			})
 //			if err != nil {
 //				return err
@@ -62,10 +66,10 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			webTeam, err := nomad.NewQuoteSpecification(ctx, "webTeam", &nomad.QuoteSpecificationArgs{
 //				Description: pulumi.String("web team quota"),
-//				Limits: QuoteSpecificationLimitArray{
-//					&QuoteSpecificationLimitArgs{
+//				Limits: nomad.QuoteSpecificationLimitArray{
+//					&nomad.QuoteSpecificationLimitArgs{
 //						Region: pulumi.String("global"),
-//						RegionLimit: &QuoteSpecificationLimitRegionLimitArgs{
+//						RegionLimit: &nomad.QuoteSpecificationLimitRegionLimitArgs{
 //							Cpu:      pulumi.Int(1000),
 //							MemoryMb: pulumi.Int(256),
 //						},
@@ -90,8 +94,13 @@ import (
 type Namespace struct {
 	pulumi.CustomResourceState
 
+	// `(block: <optional>)` - A block of capabilities for the namespace. Can't
+	// be repeated. See below for the structure of this block.
+	Capabilities NamespaceCapabilitiesPtrOutput `pulumi:"capabilities"`
 	// `(string: "")` - A description of the namespace.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+	Meta pulumi.StringMapOutput `pulumi:"meta"`
 	// `(string: <required>)` - A unique name for the namespace.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `(string: "")` - A resource quota to attach to the namespace.
@@ -127,8 +136,13 @@ func GetNamespace(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Namespace resources.
 type namespaceState struct {
+	// `(block: <optional>)` - A block of capabilities for the namespace. Can't
+	// be repeated. See below for the structure of this block.
+	Capabilities *NamespaceCapabilities `pulumi:"capabilities"`
 	// `(string: "")` - A description of the namespace.
 	Description *string `pulumi:"description"`
+	// `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+	Meta map[string]string `pulumi:"meta"`
 	// `(string: <required>)` - A unique name for the namespace.
 	Name *string `pulumi:"name"`
 	// `(string: "")` - A resource quota to attach to the namespace.
@@ -136,8 +150,13 @@ type namespaceState struct {
 }
 
 type NamespaceState struct {
+	// `(block: <optional>)` - A block of capabilities for the namespace. Can't
+	// be repeated. See below for the structure of this block.
+	Capabilities NamespaceCapabilitiesPtrInput
 	// `(string: "")` - A description of the namespace.
 	Description pulumi.StringPtrInput
+	// `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+	Meta pulumi.StringMapInput
 	// `(string: <required>)` - A unique name for the namespace.
 	Name pulumi.StringPtrInput
 	// `(string: "")` - A resource quota to attach to the namespace.
@@ -149,8 +168,13 @@ func (NamespaceState) ElementType() reflect.Type {
 }
 
 type namespaceArgs struct {
+	// `(block: <optional>)` - A block of capabilities for the namespace. Can't
+	// be repeated. See below for the structure of this block.
+	Capabilities *NamespaceCapabilities `pulumi:"capabilities"`
 	// `(string: "")` - A description of the namespace.
 	Description *string `pulumi:"description"`
+	// `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+	Meta map[string]string `pulumi:"meta"`
 	// `(string: <required>)` - A unique name for the namespace.
 	Name *string `pulumi:"name"`
 	// `(string: "")` - A resource quota to attach to the namespace.
@@ -159,8 +183,13 @@ type namespaceArgs struct {
 
 // The set of arguments for constructing a Namespace resource.
 type NamespaceArgs struct {
+	// `(block: <optional>)` - A block of capabilities for the namespace. Can't
+	// be repeated. See below for the structure of this block.
+	Capabilities NamespaceCapabilitiesPtrInput
 	// `(string: "")` - A description of the namespace.
 	Description pulumi.StringPtrInput
+	// `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+	Meta pulumi.StringMapInput
 	// `(string: <required>)` - A unique name for the namespace.
 	Name pulumi.StringPtrInput
 	// `(string: "")` - A resource quota to attach to the namespace.
@@ -254,9 +283,20 @@ func (o NamespaceOutput) ToNamespaceOutputWithContext(ctx context.Context) Names
 	return o
 }
 
+// `(block: <optional>)` - A block of capabilities for the namespace. Can't
+// be repeated. See below for the structure of this block.
+func (o NamespaceOutput) Capabilities() NamespaceCapabilitiesPtrOutput {
+	return o.ApplyT(func(v *Namespace) NamespaceCapabilitiesPtrOutput { return v.Capabilities }).(NamespaceCapabilitiesPtrOutput)
+}
+
 // `(string: "")` - A description of the namespace.
 func (o NamespaceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Namespace) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
+func (o NamespaceOutput) Meta() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringMapOutput { return v.Meta }).(pulumi.StringMapOutput)
 }
 
 // `(string: <required>)` - A unique name for the namespace.

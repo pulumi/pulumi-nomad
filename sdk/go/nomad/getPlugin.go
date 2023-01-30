@@ -35,7 +35,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.GetPlugin(ctx, &GetPluginArgs{
+//			_, err := nomad.GetPlugin(ctx, &nomad.GetPluginArgs{
 //				PluginId:       "aws-ebs0",
 //				WaitForHealthy: pulumi.BoolRef(true),
 //			}, nil)
@@ -61,26 +61,37 @@ func GetPlugin(ctx *pulumi.Context, args *GetPluginArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getPlugin.
 type GetPluginArgs struct {
-	PluginId            string `pulumi:"pluginId"`
-	WaitForHealthy      *bool  `pulumi:"waitForHealthy"`
-	WaitForRegistration *bool  `pulumi:"waitForRegistration"`
+	// `(string)` ID of the plugin.
+	PluginId string `pulumi:"pluginId"`
+	// `(boolean)` retry until the plugin exists and all controllers are healthy
+	WaitForHealthy *bool `pulumi:"waitForHealthy"`
+	// `(boolean)` if the plugin doesn't exist, retry until it does
+	WaitForRegistration *bool `pulumi:"waitForRegistration"`
 }
 
 // A collection of values returned by getPlugin.
 type GetPluginResult struct {
-	ControllerRequired  bool `pulumi:"controllerRequired"`
-	ControllersExpected int  `pulumi:"controllersExpected"`
-	ControllersHealthy  int  `pulumi:"controllersHealthy"`
+	// `(boolean)` Whether a controller is required.
+	ControllerRequired bool `pulumi:"controllerRequired"`
+	// `(integer)` The number of registered controllers.
+	ControllersExpected int `pulumi:"controllersExpected"`
+	// `(integer)` The number of healthy controllers.
+	ControllersHealthy int `pulumi:"controllersHealthy"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                    string          `pulumi:"id"`
-	Nodes                 []GetPluginNode `pulumi:"nodes"`
-	NodesExpected         int             `pulumi:"nodesExpected"`
-	NodesHealthy          int             `pulumi:"nodesHealthy"`
-	PluginId              string          `pulumi:"pluginId"`
-	PluginProvider        string          `pulumi:"pluginProvider"`
-	PluginProviderVersion string          `pulumi:"pluginProviderVersion"`
-	WaitForHealthy        *bool           `pulumi:"waitForHealthy"`
-	WaitForRegistration   *bool           `pulumi:"waitForRegistration"`
+	Id    string          `pulumi:"id"`
+	Nodes []GetPluginNode `pulumi:"nodes"`
+	// `(integer)` The number of registered nodes.
+	NodesExpected int `pulumi:"nodesExpected"`
+	// `(integer)` The number of healthy nodes.
+	NodesHealthy int `pulumi:"nodesHealthy"`
+	// `(string)` ID of the plugin
+	PluginId string `pulumi:"pluginId"`
+	// `(string)` Plugin provider name
+	PluginProvider string `pulumi:"pluginProvider"`
+	// `(string)` Plugin provider version
+	PluginProviderVersion string `pulumi:"pluginProviderVersion"`
+	WaitForHealthy        *bool  `pulumi:"waitForHealthy"`
+	WaitForRegistration   *bool  `pulumi:"waitForRegistration"`
 }
 
 func GetPluginOutput(ctx *pulumi.Context, args GetPluginOutputArgs, opts ...pulumi.InvokeOption) GetPluginResultOutput {
@@ -98,8 +109,11 @@ func GetPluginOutput(ctx *pulumi.Context, args GetPluginOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking getPlugin.
 type GetPluginOutputArgs struct {
-	PluginId            pulumi.StringInput  `pulumi:"pluginId"`
-	WaitForHealthy      pulumi.BoolPtrInput `pulumi:"waitForHealthy"`
+	// `(string)` ID of the plugin.
+	PluginId pulumi.StringInput `pulumi:"pluginId"`
+	// `(boolean)` retry until the plugin exists and all controllers are healthy
+	WaitForHealthy pulumi.BoolPtrInput `pulumi:"waitForHealthy"`
+	// `(boolean)` if the plugin doesn't exist, retry until it does
 	WaitForRegistration pulumi.BoolPtrInput `pulumi:"waitForRegistration"`
 }
 
@@ -122,14 +136,17 @@ func (o GetPluginResultOutput) ToGetPluginResultOutputWithContext(ctx context.Co
 	return o
 }
 
+// `(boolean)` Whether a controller is required.
 func (o GetPluginResultOutput) ControllerRequired() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetPluginResult) bool { return v.ControllerRequired }).(pulumi.BoolOutput)
 }
 
+// `(integer)` The number of registered controllers.
 func (o GetPluginResultOutput) ControllersExpected() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPluginResult) int { return v.ControllersExpected }).(pulumi.IntOutput)
 }
 
+// `(integer)` The number of healthy controllers.
 func (o GetPluginResultOutput) ControllersHealthy() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPluginResult) int { return v.ControllersHealthy }).(pulumi.IntOutput)
 }
@@ -143,22 +160,27 @@ func (o GetPluginResultOutput) Nodes() GetPluginNodeArrayOutput {
 	return o.ApplyT(func(v GetPluginResult) []GetPluginNode { return v.Nodes }).(GetPluginNodeArrayOutput)
 }
 
+// `(integer)` The number of registered nodes.
 func (o GetPluginResultOutput) NodesExpected() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPluginResult) int { return v.NodesExpected }).(pulumi.IntOutput)
 }
 
+// `(integer)` The number of healthy nodes.
 func (o GetPluginResultOutput) NodesHealthy() pulumi.IntOutput {
 	return o.ApplyT(func(v GetPluginResult) int { return v.NodesHealthy }).(pulumi.IntOutput)
 }
 
+// `(string)` ID of the plugin
 func (o GetPluginResultOutput) PluginId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginResult) string { return v.PluginId }).(pulumi.StringOutput)
 }
 
+// `(string)` Plugin provider name
 func (o GetPluginResultOutput) PluginProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginResult) string { return v.PluginProvider }).(pulumi.StringOutput)
 }
 
+// `(string)` Plugin provider version
 func (o GetPluginResultOutput) PluginProviderVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPluginResult) string { return v.PluginProviderVersion }).(pulumi.StringOutput)
 }

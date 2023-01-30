@@ -13,7 +13,13 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class ExternalVolumeMountOptions
     {
+        /// <summary>
+        /// `(string: optional)` - The file system type.
+        /// </summary>
         public readonly string? FsType;
+        /// <summary>
+        /// `[]string: optional` - The flags passed to `mount`.
+        /// </summary>
         public readonly ImmutableArray<string> MountFlags;
 
         [OutputConstructor]

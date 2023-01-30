@@ -69,6 +69,9 @@ namespace Pulumi.Nomad
 
     public sealed class GetAclPolicyArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` - the name of the ACL Policy.
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
@@ -80,6 +83,9 @@ namespace Pulumi.Nomad
 
     public sealed class GetAclPolicyInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` - the name of the ACL Policy.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -93,12 +99,21 @@ namespace Pulumi.Nomad
     [OutputType]
     public sealed class GetAclPolicyResult
     {
+        /// <summary>
+        /// `(string)` - the description of the ACL Policy.
+        /// </summary>
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// `(string)` - the name of the ACL Policy.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// `(string)` - the ACL Policy rules in HCL format.
+        /// </summary>
         public readonly string Rules;
 
         [OutputConstructor]

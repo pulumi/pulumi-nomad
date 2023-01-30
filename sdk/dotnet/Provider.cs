@@ -108,6 +108,11 @@ namespace Pulumi.Nomad
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "consulToken",
+                    "vaultToken",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -148,11 +153,21 @@ namespace Pulumi.Nomad
         [Input("certPem")]
         public Input<string>? CertPem { get; set; }
 
+        [Input("consulToken")]
+        private Input<string>? _consulToken;
+
         /// <summary>
         /// Consul token to validate Consul Connect Service Identity policies specified in the job file.
         /// </summary>
-        [Input("consulToken")]
-        public Input<string>? ConsulToken { get; set; }
+        public Input<string>? ConsulToken
+        {
+            get => _consulToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _consulToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("headers", json: true)]
         private InputList<Inputs.ProviderHeaderArgs>? _headers;
@@ -163,7 +178,11 @@ namespace Pulumi.Nomad
         public InputList<Inputs.ProviderHeaderArgs> Headers
         {
             get => _headers ?? (_headers = new InputList<Inputs.ProviderHeaderArgs>());
-            set => _headers = value;
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableArray.Create<Inputs.ProviderHeaderArgs>());
+                _headers = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
         }
 
         /// <summary>
@@ -208,11 +227,21 @@ namespace Pulumi.Nomad
         [Input("secretId")]
         public Input<string>? SecretId { get; set; }
 
+        [Input("vaultToken")]
+        private Input<string>? _vaultToken;
+
         /// <summary>
         /// Vault token if policies are specified in the job file.
         /// </summary>
-        [Input("vaultToken")]
-        public Input<string>? VaultToken { get; set; }
+        public Input<string>? VaultToken
+        {
+            get => _vaultToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _vaultToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public ProviderArgs()
         {

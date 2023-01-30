@@ -16,16 +16,32 @@ public final class GetJobParserArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetJobParserArgs Empty = new GetJobParserArgs();
 
+    /**
+     * `(boolean: true)` - flag to enable setting any unset fields to their default values.
+     * 
+     */
     @Import(name="canonicalize")
     private @Nullable Output<Boolean> canonicalize;
 
+    /**
+     * @return `(boolean: true)` - flag to enable setting any unset fields to their default values.
+     * 
+     */
     public Optional<Output<Boolean>> canonicalize() {
         return Optional.ofNullable(this.canonicalize);
     }
 
+    /**
+     * `(string)` - the HCL definition of the job.
+     * 
+     */
     @Import(name="hcl", required=true)
     private Output<String> hcl;
 
+    /**
+     * @return `(string)` - the HCL definition of the job.
+     * 
+     */
     public Output<String> hcl() {
         return this.hcl;
     }
@@ -55,20 +71,44 @@ public final class GetJobParserArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetJobParserArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param canonicalize `(boolean: true)` - flag to enable setting any unset fields to their default values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder canonicalize(@Nullable Output<Boolean> canonicalize) {
             $.canonicalize = canonicalize;
             return this;
         }
 
+        /**
+         * @param canonicalize `(boolean: true)` - flag to enable setting any unset fields to their default values.
+         * 
+         * @return builder
+         * 
+         */
         public Builder canonicalize(Boolean canonicalize) {
             return canonicalize(Output.of(canonicalize));
         }
 
+        /**
+         * @param hcl `(string)` - the HCL definition of the job.
+         * 
+         * @return builder
+         * 
+         */
         public Builder hcl(Output<String> hcl) {
             $.hcl = hcl;
             return this;
         }
 
+        /**
+         * @param hcl `(string)` - the HCL definition of the job.
+         * 
+         * @return builder
+         * 
+         */
         public Builder hcl(String hcl) {
             return hcl(Output.of(hcl));
         }

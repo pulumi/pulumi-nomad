@@ -44,8 +44,11 @@ func GetSchedulerPolicy(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetS
 // A collection of values returned by getSchedulerPolicy.
 type GetSchedulerPolicyResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id                            string          `pulumi:"id"`
-	MemoryOversubscriptionEnabled bool            `pulumi:"memoryOversubscriptionEnabled"`
-	PreemptionConfig              map[string]bool `pulumi:"preemptionConfig"`
-	SchedulerAlgorithm            string          `pulumi:"schedulerAlgorithm"`
+	Id string `pulumi:"id"`
+	// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+	MemoryOversubscriptionEnabled bool `pulumi:"memoryOversubscriptionEnabled"`
+	// `(map[string]bool)` - Options to enable preemption for various schedulers.
+	PreemptionConfig map[string]bool `pulumi:"preemptionConfig"`
+	// `(string)` - Specifies whether scheduler binpacks or spreads allocations on available nodes.
+	SchedulerAlgorithm string `pulumi:"schedulerAlgorithm"`
 }

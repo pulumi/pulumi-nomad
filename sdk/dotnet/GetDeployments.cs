@@ -40,6 +40,9 @@ namespace Pulumi.Nomad
     [OutputType]
     public sealed class GetDeploymentsResult
     {
+        /// <summary>
+        /// `list of maps` a list of deployments in the cluster.
+        /// </summary>
         public readonly ImmutableArray<ImmutableDictionary<string, object>> Deployments;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.

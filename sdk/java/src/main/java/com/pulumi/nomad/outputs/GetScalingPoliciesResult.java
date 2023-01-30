@@ -19,7 +19,15 @@ public final class GetScalingPoliciesResult {
      */
     private String id;
     private @Nullable String jobId;
+    /**
+     * @return `list of maps` - A list of scaling policies.
+     * 
+     */
     private List<GetScalingPoliciesPolicy> policies;
+    /**
+     * @return `(string)` - The scaling policy type.
+     * 
+     */
     private @Nullable String type;
 
     private GetScalingPoliciesResult() {}
@@ -33,9 +41,17 @@ public final class GetScalingPoliciesResult {
     public Optional<String> jobId() {
         return Optional.ofNullable(this.jobId);
     }
+    /**
+     * @return `list of maps` - A list of scaling policies.
+     * 
+     */
     public List<GetScalingPoliciesPolicy> policies() {
         return this.policies;
     }
+    /**
+     * @return `(string)` - The scaling policy type.
+     * 
+     */
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
     }

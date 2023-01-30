@@ -43,6 +43,7 @@ func GetDeployments(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetDeplo
 
 // A collection of values returned by getDeployments.
 type GetDeploymentsResult struct {
+	// `list of maps` a list of deployments in the cluster.
 	Deployments []map[string]interface{} `pulumi:"deployments"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`

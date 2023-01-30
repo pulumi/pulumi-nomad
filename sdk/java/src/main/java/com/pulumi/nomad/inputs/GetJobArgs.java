@@ -15,16 +15,32 @@ public final class GetJobArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetJobArgs Empty = new GetJobArgs();
 
+    /**
+     * `(string)` ID of the job.
+     * 
+     */
     @Import(name="jobId", required=true)
     private Output<String> jobId;
 
+    /**
+     * @return `(string)` ID of the job.
+     * 
+     */
     public Output<String> jobId() {
         return this.jobId;
     }
 
+    /**
+     * `(string)` Namespace of the specified job.
+     * 
+     */
     @Import(name="namespace")
     private @Nullable Output<String> namespace;
 
+    /**
+     * @return `(string)` Namespace of the specified job.
+     * 
+     */
     public Optional<Output<String>> namespace() {
         return Optional.ofNullable(this.namespace);
     }
@@ -54,20 +70,44 @@ public final class GetJobArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetJobArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param jobId `(string)` ID of the job.
+         * 
+         * @return builder
+         * 
+         */
         public Builder jobId(Output<String> jobId) {
             $.jobId = jobId;
             return this;
         }
 
+        /**
+         * @param jobId `(string)` ID of the job.
+         * 
+         * @return builder
+         * 
+         */
         public Builder jobId(String jobId) {
             return jobId(Output.of(jobId));
         }
 
+        /**
+         * @param namespace `(string)` Namespace of the specified job.
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(@Nullable Output<String> namespace) {
             $.namespace = namespace;
             return this;
         }
 
+        /**
+         * @param namespace `(string)` Namespace of the specified job.
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
         }

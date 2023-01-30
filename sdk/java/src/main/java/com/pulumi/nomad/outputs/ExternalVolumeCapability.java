@@ -9,13 +9,43 @@ import java.util.Objects;
 
 @CustomType
 public final class ExternalVolumeCapability {
+    /**
+     * @return `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
+     * 
+     */
     private String accessMode;
+    /**
+     * @return `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
+     * - `block-device`
+     * - `file-system`
+     * 
+     */
     private String attachmentMode;
 
     private ExternalVolumeCapability() {}
+    /**
+     * @return `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
+     * 
+     */
     public String accessMode() {
         return this.accessMode;
     }
+    /**
+     * @return `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
+     * - `block-device`
+     * - `file-system`
+     * 
+     */
     public String attachmentMode() {
         return this.attachmentMode;
     }

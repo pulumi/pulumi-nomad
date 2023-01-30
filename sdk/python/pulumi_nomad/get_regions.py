@@ -39,6 +39,9 @@ class GetRegionsResult:
     @property
     @pulumi.getter
     def regions(self) -> Sequence[str]:
+        """
+        `(list of strings)` - a list of regions available in the cluster.
+        """
         return pulumi.get(self, "regions")
 
 

@@ -21,14 +21,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     public static final ExternalVolumeArgs Empty = new ExternalVolumeArgs();
 
     /**
-     * Capabilities intended to be used in a job. At least one capability must be provided.
+     * `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
      * 
      */
     @Import(name="capabilities", required=true)
     private Output<List<ExternalVolumeCapabilityArgs>> capabilities;
 
     /**
-     * @return Capabilities intended to be used in a job. At least one capability must be provided.
+     * @return `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
      * 
      */
     public Output<List<ExternalVolumeCapabilityArgs>> capabilities() {
@@ -36,14 +36,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+     * `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      * 
      */
     @Import(name="capacityMax")
     private @Nullable Output<String> capacityMax;
 
     /**
-     * @return Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+     * @return `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      * 
      */
     public Optional<Output<String>> capacityMax() {
@@ -51,14 +51,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+     * `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      * 
      */
     @Import(name="capacityMin")
     private @Nullable Output<String> capacityMin;
 
     /**
-     * @return Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+     * @return `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      * 
      */
     public Optional<Output<String>> capacityMin() {
@@ -66,14 +66,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with &#39;snapshot_id&#39;.
+     * `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
      * 
      */
     @Import(name="cloneId")
     private @Nullable Output<String> cloneId;
 
     /**
-     * @return The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with &#39;snapshot_id&#39;.
+     * @return `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
      * 
      */
     public Optional<Output<String>> cloneId() {
@@ -81,14 +81,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+     * `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
      * 
      */
     @Import(name="mountOptions")
     private @Nullable Output<ExternalVolumeMountOptionsArgs> mountOptions;
 
     /**
-     * @return Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+     * @return `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
      * 
      */
     public Optional<Output<ExternalVolumeMountOptionsArgs>> mountOptions() {
@@ -96,14 +96,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The display name of the volume.
+     * `(string: &lt;required&gt;)` - The display name for the volume.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The display name of the volume.
+     * @return `(string: &lt;required&gt;)` - The display name for the volume.
      * 
      */
     public Optional<Output<String>> name() {
@@ -111,14 +111,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The namespace in which to create the volume.
+     * `(string: &#34;default&#34;)` - The namespace in which to register the volume.
      * 
      */
     @Import(name="namespace")
     private @Nullable Output<String> namespace;
 
     /**
-     * @return The namespace in which to create the volume.
+     * @return `(string: &#34;default&#34;)` - The namespace in which to register the volume.
      * 
      */
     public Optional<Output<String>> namespace() {
@@ -126,14 +126,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+     * `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      * 
      */
     @Import(name="parameters")
     private @Nullable Output<Map<String,String>> parameters;
 
     /**
-     * @return An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+     * @return `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      * 
      */
     public Optional<Output<Map<String,String>>> parameters() {
@@ -141,14 +141,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The ID of the CSI plugin that manages this volume.
+     * `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
      * 
      */
     @Import(name="pluginId", required=true)
     private Output<String> pluginId;
 
     /**
-     * @return The ID of the CSI plugin that manages this volume.
+     * @return `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
      * 
      */
     public Output<String> pluginId() {
@@ -156,14 +156,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+     * `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      * 
      */
     @Import(name="secrets")
     private @Nullable Output<Map<String,String>> secrets;
 
     /**
-     * @return An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+     * @return `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      * 
      */
     public Optional<Output<Map<String,String>>> secrets() {
@@ -171,16 +171,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-     * &#39;clone_id&#39;.
+     * `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
      * 
      */
     @Import(name="snapshotId")
     private @Nullable Output<String> snapshotId;
 
     /**
-     * @return The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-     * &#39;clone_id&#39;.
+     * @return `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
      * 
      */
     public Optional<Output<String>> snapshotId() {
@@ -188,14 +186,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     * `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      * 
      */
     @Import(name="topologyRequest")
     private @Nullable Output<ExternalVolumeTopologyRequestArgs> topologyRequest;
 
     /**
-     * @return Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     * @return `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      * 
      */
     public Optional<Output<ExternalVolumeTopologyRequestArgs>> topologyRequest() {
@@ -203,14 +201,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The type of the volume. Currently, only &#39;csi&#39; is supported.
+     * `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return The type of the volume. Currently, only &#39;csi&#39; is supported.
+     * @return `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
      * 
      */
     public Optional<Output<String>> type() {
@@ -218,14 +216,14 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The unique ID of the volume, how jobs will refer to the volume.
+     * `(string: &lt;required&gt;)` - The unique ID of the volume.
      * 
      */
     @Import(name="volumeId", required=true)
     private Output<String> volumeId;
 
     /**
-     * @return The unique ID of the volume, how jobs will refer to the volume.
+     * @return `(string: &lt;required&gt;)` - The unique ID of the volume.
      * 
      */
     public Output<String> volumeId() {
@@ -270,7 +268,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param capabilities Capabilities intended to be used in a job. At least one capability must be provided.
+         * @param capabilities `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
          * 
          * @return builder
          * 
@@ -281,7 +279,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param capabilities Capabilities intended to be used in a job. At least one capability must be provided.
+         * @param capabilities `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
          * 
          * @return builder
          * 
@@ -291,7 +289,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param capabilities Capabilities intended to be used in a job. At least one capability must be provided.
+         * @param capabilities `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
          * 
          * @return builder
          * 
@@ -301,7 +299,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param capacityMax Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+         * @param capacityMax `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
          * 
          * @return builder
          * 
@@ -312,7 +310,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param capacityMax Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+         * @param capacityMax `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
          * 
          * @return builder
          * 
@@ -322,7 +320,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param capacityMin Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+         * @param capacityMin `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
          * 
          * @return builder
          * 
@@ -333,7 +331,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param capacityMin Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+         * @param capacityMin `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
          * 
          * @return builder
          * 
@@ -343,7 +341,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param cloneId The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with &#39;snapshot_id&#39;.
+         * @param cloneId `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
          * 
          * @return builder
          * 
@@ -354,7 +352,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param cloneId The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with &#39;snapshot_id&#39;.
+         * @param cloneId `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
          * 
          * @return builder
          * 
@@ -364,7 +362,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param mountOptions Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+         * @param mountOptions `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
          * 
          * @return builder
          * 
@@ -375,7 +373,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param mountOptions Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+         * @param mountOptions `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
          * 
          * @return builder
          * 
@@ -385,7 +383,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param name The display name of the volume.
+         * @param name `(string: &lt;required&gt;)` - The display name for the volume.
          * 
          * @return builder
          * 
@@ -396,7 +394,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param name The display name of the volume.
+         * @param name `(string: &lt;required&gt;)` - The display name for the volume.
          * 
          * @return builder
          * 
@@ -406,7 +404,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param namespace The namespace in which to create the volume.
+         * @param namespace `(string: &#34;default&#34;)` - The namespace in which to register the volume.
          * 
          * @return builder
          * 
@@ -417,7 +415,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param namespace The namespace in which to create the volume.
+         * @param namespace `(string: &#34;default&#34;)` - The namespace in which to register the volume.
          * 
          * @return builder
          * 
@@ -427,7 +425,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param parameters An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+         * @param parameters `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
          * 
          * @return builder
          * 
@@ -438,7 +436,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param parameters An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+         * @param parameters `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
          * 
          * @return builder
          * 
@@ -448,7 +446,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param pluginId The ID of the CSI plugin that manages this volume.
+         * @param pluginId `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
          * 
          * @return builder
          * 
@@ -459,7 +457,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param pluginId The ID of the CSI plugin that manages this volume.
+         * @param pluginId `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
          * 
          * @return builder
          * 
@@ -469,7 +467,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param secrets An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+         * @param secrets `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
          * 
          * @return builder
          * 
@@ -480,7 +478,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param secrets An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+         * @param secrets `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
          * 
          * @return builder
          * 
@@ -490,8 +488,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param snapshotId The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-         * &#39;clone_id&#39;.
+         * @param snapshotId `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
          * 
          * @return builder
          * 
@@ -502,8 +499,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param snapshotId The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-         * &#39;clone_id&#39;.
+         * @param snapshotId `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
          * 
          * @return builder
          * 
@@ -513,7 +509,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param topologyRequest Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+         * @param topologyRequest `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
          * 
          * @return builder
          * 
@@ -524,7 +520,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param topologyRequest Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+         * @param topologyRequest `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
          * 
          * @return builder
          * 
@@ -534,7 +530,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type The type of the volume. Currently, only &#39;csi&#39; is supported.
+         * @param type `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
          * 
          * @return builder
          * 
@@ -545,7 +541,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type The type of the volume. Currently, only &#39;csi&#39; is supported.
+         * @param type `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
          * 
          * @return builder
          * 
@@ -555,7 +551,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param volumeId The unique ID of the volume, how jobs will refer to the volume.
+         * @param volumeId `(string: &lt;required&gt;)` - The unique ID of the volume.
          * 
          * @return builder
          * 
@@ -566,7 +562,7 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param volumeId The unique ID of the volume, how jobs will refer to the volume.
+         * @param volumeId `(string: &lt;required&gt;)` - The unique ID of the volume.
          * 
          * @return builder
          * 

@@ -33,21 +33,26 @@ class VolumeArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Volume resource.
-        :param pulumi.Input[str] external_id: The ID of the physical volume from the storage provider.
-        :param pulumi.Input[str] plugin_id: The ID of the CSI plugin that manages this volume.
-        :param pulumi.Input[str] volume_id: The unique ID of the volume, how jobs will refer to the volume.
-        :param pulumi.Input[str] access_mode: Defines whether a volume should be available concurrently.
-        :param pulumi.Input[str] attachment_mode: The storage API that will be used by the volume.
-        :param pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]] capabilities: Capabilities intended to be used in a job. At least one capability must be provided.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
-        :param pulumi.Input[bool] deregister_on_destroy: If true, the volume will be deregistered on destroy.
-        :param pulumi.Input['VolumeMountOptionsArgs'] mount_options: Options for mounting 'block-device' volumes without a pre-formatted file system.
-        :param pulumi.Input[str] name: The display name of the volume.
-        :param pulumi.Input[str] namespace: The namespace in which to create the volume.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-        :param pulumi.Input['VolumeTopologyRequestArgs'] topology_request: Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
-        :param pulumi.Input[str] type: The type of the volume. Currently, only 'csi' is supported.
+        :param pulumi.Input[str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
+        :param pulumi.Input[str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
+        :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
+        :param pulumi.Input[str] access_mode: `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+               - `single-node-reader-only`
+               - `single-node-writer`
+               - `multi-node-reader-only`
+               - `multi-node-single-writer`
+               - `multi-node-multi-writer`
+        :param pulumi.Input[str] attachment_mode: `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        :param pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        :param pulumi.Input['VolumeMountOptionsArgs'] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
+        :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        :param pulumi.Input['VolumeTopologyRequestArgs'] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         """
         pulumi.set(__self__, "external_id", external_id)
         pulumi.set(__self__, "plugin_id", plugin_id)
@@ -87,7 +92,7 @@ class VolumeArgs:
     @pulumi.getter(name="externalId")
     def external_id(self) -> pulumi.Input[str]:
         """
-        The ID of the physical volume from the storage provider.
+        `(string: <required>)` - The ID of the physical volume from the storage provider.
         """
         return pulumi.get(self, "external_id")
 
@@ -99,7 +104,7 @@ class VolumeArgs:
     @pulumi.getter(name="pluginId")
     def plugin_id(self) -> pulumi.Input[str]:
         """
-        The ID of the CSI plugin that manages this volume.
+        `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         """
         return pulumi.get(self, "plugin_id")
 
@@ -111,7 +116,7 @@ class VolumeArgs:
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> pulumi.Input[str]:
         """
-        The unique ID of the volume, how jobs will refer to the volume.
+        `(string: <required>)` - The unique ID of the volume.
         """
         return pulumi.get(self, "volume_id")
 
@@ -123,7 +128,12 @@ class VolumeArgs:
     @pulumi.getter(name="accessMode")
     def access_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Defines whether a volume should be available concurrently.
+        `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
         """
         return pulumi.get(self, "access_mode")
 
@@ -135,7 +145,7 @@ class VolumeArgs:
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        The storage API that will be used by the volume.
+        `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
         """
         return pulumi.get(self, "attachment_mode")
 
@@ -147,7 +157,7 @@ class VolumeArgs:
     @pulumi.getter
     def capabilities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]]]:
         """
-        Capabilities intended to be used in a job. At least one capability must be provided.
+        `(``Capability``: <required>)` - Options for validating the capability of a volume.
         """
         return pulumi.get(self, "capabilities")
 
@@ -159,7 +169,7 @@ class VolumeArgs:
     @pulumi.getter
     def context(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+        `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         """
         return pulumi.get(self, "context")
 
@@ -171,7 +181,7 @@ class VolumeArgs:
     @pulumi.getter(name="deregisterOnDestroy")
     def deregister_on_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        If true, the volume will be deregistered on destroy.
+        `(boolean: false)` - If true, the volume will be deregistered on destroy.
         """
         return pulumi.get(self, "deregister_on_destroy")
 
@@ -183,7 +193,7 @@ class VolumeArgs:
     @pulumi.getter(name="mountOptions")
     def mount_options(self) -> Optional[pulumi.Input['VolumeMountOptionsArgs']]:
         """
-        Options for mounting 'block-device' volumes without a pre-formatted file system.
+        `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         """
         return pulumi.get(self, "mount_options")
 
@@ -195,7 +205,7 @@ class VolumeArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The display name of the volume.
+        `(string: <required>)` - The display name for the volume.
         """
         return pulumi.get(self, "name")
 
@@ -207,7 +217,7 @@ class VolumeArgs:
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
-        The namespace in which to create the volume.
+        `(string: "default")` - The namespace in which to register the volume.
         """
         return pulumi.get(self, "namespace")
 
@@ -219,7 +229,7 @@ class VolumeArgs:
     @pulumi.getter
     def parameters(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         """
         return pulumi.get(self, "parameters")
 
@@ -231,7 +241,7 @@ class VolumeArgs:
     @pulumi.getter
     def secrets(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         """
         return pulumi.get(self, "secrets")
 
@@ -243,7 +253,7 @@ class VolumeArgs:
     @pulumi.getter(name="topologyRequest")
     def topology_request(self) -> Optional[pulumi.Input['VolumeTopologyRequestArgs']]:
         """
-        Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         """
         return pulumi.get(self, "topology_request")
 
@@ -255,7 +265,7 @@ class VolumeArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the volume. Currently, only 'csi' is supported.
+        `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         """
         return pulumi.get(self, "type")
 
@@ -293,21 +303,35 @@ class _VolumeState:
                  volume_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
-        :param pulumi.Input[str] access_mode: Defines whether a volume should be available concurrently.
-        :param pulumi.Input[str] attachment_mode: The storage API that will be used by the volume.
-        :param pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]] capabilities: Capabilities intended to be used in a job. At least one capability must be provided.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
-        :param pulumi.Input[bool] deregister_on_destroy: If true, the volume will be deregistered on destroy.
-        :param pulumi.Input[str] external_id: The ID of the physical volume from the storage provider.
-        :param pulumi.Input['VolumeMountOptionsArgs'] mount_options: Options for mounting 'block-device' volumes without a pre-formatted file system.
-        :param pulumi.Input[str] name: The display name of the volume.
-        :param pulumi.Input[str] namespace: The namespace in which to create the volume.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
-        :param pulumi.Input[str] plugin_id: The ID of the CSI plugin that manages this volume.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-        :param pulumi.Input['VolumeTopologyRequestArgs'] topology_request: Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
-        :param pulumi.Input[str] type: The type of the volume. Currently, only 'csi' is supported.
-        :param pulumi.Input[str] volume_id: The unique ID of the volume, how jobs will refer to the volume.
+        :param pulumi.Input[str] access_mode: `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+               - `single-node-reader-only`
+               - `single-node-writer`
+               - `multi-node-reader-only`
+               - `multi-node-single-writer`
+               - `multi-node-multi-writer`
+        :param pulumi.Input[str] attachment_mode: `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        :param pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+        :param pulumi.Input[bool] controller_required: `(boolean)`
+        :param pulumi.Input[int] controllers_expected: `(integer)`
+        :param pulumi.Input[int] controllers_healthy: `(integer)`
+        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        :param pulumi.Input[str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
+        :param pulumi.Input['VolumeMountOptionsArgs'] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
+        :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
+        :param pulumi.Input[int] nodes_expected: `(integer)`
+        :param pulumi.Input[int] nodes_healthy: `(integer)`
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        :param pulumi.Input[str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
+        :param pulumi.Input[str] plugin_provider: `(string)`
+        :param pulumi.Input[str] plugin_provider_version: `(string)`
+        :param pulumi.Input[bool] schedulable: `(boolean)`
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        :param pulumi.Input[Sequence[pulumi.Input['VolumeTopologyArgs']]] topologies: `(List of topologies)`
+        :param pulumi.Input['VolumeTopologyRequestArgs'] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
+        :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """
         if access_mode is not None:
             warnings.warn("""use capability instead""", DeprecationWarning)
@@ -368,7 +392,12 @@ class _VolumeState:
     @pulumi.getter(name="accessMode")
     def access_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Defines whether a volume should be available concurrently.
+        `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
         """
         return pulumi.get(self, "access_mode")
 
@@ -380,7 +409,7 @@ class _VolumeState:
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        The storage API that will be used by the volume.
+        `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
         """
         return pulumi.get(self, "attachment_mode")
 
@@ -392,7 +421,7 @@ class _VolumeState:
     @pulumi.getter
     def capabilities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]]]:
         """
-        Capabilities intended to be used in a job. At least one capability must be provided.
+        `(``Capability``: <required>)` - Options for validating the capability of a volume.
         """
         return pulumi.get(self, "capabilities")
 
@@ -404,7 +433,7 @@ class _VolumeState:
     @pulumi.getter
     def context(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+        `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         """
         return pulumi.get(self, "context")
 
@@ -415,6 +444,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="controllerRequired")
     def controller_required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        `(boolean)`
+        """
         return pulumi.get(self, "controller_required")
 
     @controller_required.setter
@@ -424,6 +456,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="controllersExpected")
     def controllers_expected(self) -> Optional[pulumi.Input[int]]:
+        """
+        `(integer)`
+        """
         return pulumi.get(self, "controllers_expected")
 
     @controllers_expected.setter
@@ -433,6 +468,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="controllersHealthy")
     def controllers_healthy(self) -> Optional[pulumi.Input[int]]:
+        """
+        `(integer)`
+        """
         return pulumi.get(self, "controllers_healthy")
 
     @controllers_healthy.setter
@@ -443,7 +481,7 @@ class _VolumeState:
     @pulumi.getter(name="deregisterOnDestroy")
     def deregister_on_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        If true, the volume will be deregistered on destroy.
+        `(boolean: false)` - If true, the volume will be deregistered on destroy.
         """
         return pulumi.get(self, "deregister_on_destroy")
 
@@ -455,7 +493,7 @@ class _VolumeState:
     @pulumi.getter(name="externalId")
     def external_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the physical volume from the storage provider.
+        `(string: <required>)` - The ID of the physical volume from the storage provider.
         """
         return pulumi.get(self, "external_id")
 
@@ -467,7 +505,7 @@ class _VolumeState:
     @pulumi.getter(name="mountOptions")
     def mount_options(self) -> Optional[pulumi.Input['VolumeMountOptionsArgs']]:
         """
-        Options for mounting 'block-device' volumes without a pre-formatted file system.
+        `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         """
         return pulumi.get(self, "mount_options")
 
@@ -479,7 +517,7 @@ class _VolumeState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The display name of the volume.
+        `(string: <required>)` - The display name for the volume.
         """
         return pulumi.get(self, "name")
 
@@ -491,7 +529,7 @@ class _VolumeState:
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[str]]:
         """
-        The namespace in which to create the volume.
+        `(string: "default")` - The namespace in which to register the volume.
         """
         return pulumi.get(self, "namespace")
 
@@ -502,6 +540,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="nodesExpected")
     def nodes_expected(self) -> Optional[pulumi.Input[int]]:
+        """
+        `(integer)`
+        """
         return pulumi.get(self, "nodes_expected")
 
     @nodes_expected.setter
@@ -511,6 +552,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="nodesHealthy")
     def nodes_healthy(self) -> Optional[pulumi.Input[int]]:
+        """
+        `(integer)`
+        """
         return pulumi.get(self, "nodes_healthy")
 
     @nodes_healthy.setter
@@ -521,7 +565,7 @@ class _VolumeState:
     @pulumi.getter
     def parameters(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         """
         return pulumi.get(self, "parameters")
 
@@ -533,7 +577,7 @@ class _VolumeState:
     @pulumi.getter(name="pluginId")
     def plugin_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the CSI plugin that manages this volume.
+        `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         """
         return pulumi.get(self, "plugin_id")
 
@@ -544,6 +588,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="pluginProvider")
     def plugin_provider(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string)`
+        """
         return pulumi.get(self, "plugin_provider")
 
     @plugin_provider.setter
@@ -553,6 +600,9 @@ class _VolumeState:
     @property
     @pulumi.getter(name="pluginProviderVersion")
     def plugin_provider_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string)`
+        """
         return pulumi.get(self, "plugin_provider_version")
 
     @plugin_provider_version.setter
@@ -562,6 +612,9 @@ class _VolumeState:
     @property
     @pulumi.getter
     def schedulable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        `(boolean)`
+        """
         return pulumi.get(self, "schedulable")
 
     @schedulable.setter
@@ -572,7 +625,7 @@ class _VolumeState:
     @pulumi.getter
     def secrets(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         """
         return pulumi.get(self, "secrets")
 
@@ -583,6 +636,9 @@ class _VolumeState:
     @property
     @pulumi.getter
     def topologies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTopologyArgs']]]]:
+        """
+        `(List of topologies)`
+        """
         return pulumi.get(self, "topologies")
 
     @topologies.setter
@@ -593,7 +649,7 @@ class _VolumeState:
     @pulumi.getter(name="topologyRequest")
     def topology_request(self) -> Optional[pulumi.Input['VolumeTopologyRequestArgs']]:
         """
-        Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         """
         return pulumi.get(self, "topology_request")
 
@@ -605,7 +661,7 @@ class _VolumeState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the volume. Currently, only 'csi' is supported.
+        `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         """
         return pulumi.get(self, "type")
 
@@ -617,7 +673,7 @@ class _VolumeState:
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The unique ID of the volume, how jobs will refer to the volume.
+        `(string: <required>)` - The unique ID of the volume.
         """
         return pulumi.get(self, "volume_id")
 
@@ -692,21 +748,26 @@ class Volume(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access_mode: Defines whether a volume should be available concurrently.
-        :param pulumi.Input[str] attachment_mode: The storage API that will be used by the volume.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeCapabilityArgs']]]] capabilities: Capabilities intended to be used in a job. At least one capability must be provided.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
-        :param pulumi.Input[bool] deregister_on_destroy: If true, the volume will be deregistered on destroy.
-        :param pulumi.Input[str] external_id: The ID of the physical volume from the storage provider.
-        :param pulumi.Input[pulumi.InputType['VolumeMountOptionsArgs']] mount_options: Options for mounting 'block-device' volumes without a pre-formatted file system.
-        :param pulumi.Input[str] name: The display name of the volume.
-        :param pulumi.Input[str] namespace: The namespace in which to create the volume.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
-        :param pulumi.Input[str] plugin_id: The ID of the CSI plugin that manages this volume.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-        :param pulumi.Input[pulumi.InputType['VolumeTopologyRequestArgs']] topology_request: Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
-        :param pulumi.Input[str] type: The type of the volume. Currently, only 'csi' is supported.
-        :param pulumi.Input[str] volume_id: The unique ID of the volume, how jobs will refer to the volume.
+        :param pulumi.Input[str] access_mode: `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+               - `single-node-reader-only`
+               - `single-node-writer`
+               - `multi-node-reader-only`
+               - `multi-node-single-writer`
+               - `multi-node-multi-writer`
+        :param pulumi.Input[str] attachment_mode: `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeCapabilityArgs']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        :param pulumi.Input[str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
+        :param pulumi.Input[pulumi.InputType['VolumeMountOptionsArgs']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
+        :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        :param pulumi.Input[str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        :param pulumi.Input[pulumi.InputType['VolumeTopologyRequestArgs']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
+        :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """
         ...
     @overload
@@ -817,7 +878,7 @@ class Volume(pulumi.CustomResource):
             if plugin_id is None and not opts.urn:
                 raise TypeError("Missing required property 'plugin_id'")
             __props__.__dict__["plugin_id"] = plugin_id
-            __props__.__dict__["secrets"] = secrets
+            __props__.__dict__["secrets"] = None if secrets is None else pulumi.Output.secret(secrets)
             __props__.__dict__["topology_request"] = topology_request
             __props__.__dict__["type"] = type
             if volume_id is None and not opts.urn:
@@ -832,6 +893,8 @@ class Volume(pulumi.CustomResource):
             __props__.__dict__["plugin_provider_version"] = None
             __props__.__dict__["schedulable"] = None
             __props__.__dict__["topologies"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secrets"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Volume, __self__).__init__(
             'nomad:index/volume:Volume',
             resource_name,
@@ -873,21 +936,35 @@ class Volume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access_mode: Defines whether a volume should be available concurrently.
-        :param pulumi.Input[str] attachment_mode: The storage API that will be used by the volume.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeCapabilityArgs']]]] capabilities: Capabilities intended to be used in a job. At least one capability must be provided.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
-        :param pulumi.Input[bool] deregister_on_destroy: If true, the volume will be deregistered on destroy.
-        :param pulumi.Input[str] external_id: The ID of the physical volume from the storage provider.
-        :param pulumi.Input[pulumi.InputType['VolumeMountOptionsArgs']] mount_options: Options for mounting 'block-device' volumes without a pre-formatted file system.
-        :param pulumi.Input[str] name: The display name of the volume.
-        :param pulumi.Input[str] namespace: The namespace in which to create the volume.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
-        :param pulumi.Input[str] plugin_id: The ID of the CSI plugin that manages this volume.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-        :param pulumi.Input[pulumi.InputType['VolumeTopologyRequestArgs']] topology_request: Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
-        :param pulumi.Input[str] type: The type of the volume. Currently, only 'csi' is supported.
-        :param pulumi.Input[str] volume_id: The unique ID of the volume, how jobs will refer to the volume.
+        :param pulumi.Input[str] access_mode: `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+               - `single-node-reader-only`
+               - `single-node-writer`
+               - `multi-node-reader-only`
+               - `multi-node-single-writer`
+               - `multi-node-multi-writer`
+        :param pulumi.Input[str] attachment_mode: `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeCapabilityArgs']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+        :param pulumi.Input[bool] controller_required: `(boolean)`
+        :param pulumi.Input[int] controllers_expected: `(integer)`
+        :param pulumi.Input[int] controllers_healthy: `(integer)`
+        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        :param pulumi.Input[str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
+        :param pulumi.Input[pulumi.InputType['VolumeMountOptionsArgs']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
+        :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
+        :param pulumi.Input[int] nodes_expected: `(integer)`
+        :param pulumi.Input[int] nodes_healthy: `(integer)`
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        :param pulumi.Input[str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
+        :param pulumi.Input[str] plugin_provider: `(string)`
+        :param pulumi.Input[str] plugin_provider_version: `(string)`
+        :param pulumi.Input[bool] schedulable: `(boolean)`
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTopologyArgs']]]] topologies: `(List of topologies)`
+        :param pulumi.Input[pulumi.InputType['VolumeTopologyRequestArgs']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
+        :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -923,7 +1000,12 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="accessMode")
     def access_mode(self) -> pulumi.Output[Optional[str]]:
         """
-        Defines whether a volume should be available concurrently.
+        `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
         """
         return pulumi.get(self, "access_mode")
 
@@ -931,7 +1013,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> pulumi.Output[Optional[str]]:
         """
-        The storage API that will be used by the volume.
+        `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
         """
         return pulumi.get(self, "attachment_mode")
 
@@ -939,7 +1021,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter
     def capabilities(self) -> pulumi.Output[Optional[Sequence['outputs.VolumeCapability']]]:
         """
-        Capabilities intended to be used in a job. At least one capability must be provided.
+        `(``Capability``: <required>)` - Options for validating the capability of a volume.
         """
         return pulumi.get(self, "capabilities")
 
@@ -947,30 +1029,39 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter
     def context(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+        `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         """
         return pulumi.get(self, "context")
 
     @property
     @pulumi.getter(name="controllerRequired")
     def controller_required(self) -> pulumi.Output[bool]:
+        """
+        `(boolean)`
+        """
         return pulumi.get(self, "controller_required")
 
     @property
     @pulumi.getter(name="controllersExpected")
     def controllers_expected(self) -> pulumi.Output[int]:
+        """
+        `(integer)`
+        """
         return pulumi.get(self, "controllers_expected")
 
     @property
     @pulumi.getter(name="controllersHealthy")
     def controllers_healthy(self) -> pulumi.Output[int]:
+        """
+        `(integer)`
+        """
         return pulumi.get(self, "controllers_healthy")
 
     @property
     @pulumi.getter(name="deregisterOnDestroy")
     def deregister_on_destroy(self) -> pulumi.Output[Optional[bool]]:
         """
-        If true, the volume will be deregistered on destroy.
+        `(boolean: false)` - If true, the volume will be deregistered on destroy.
         """
         return pulumi.get(self, "deregister_on_destroy")
 
@@ -978,7 +1069,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="externalId")
     def external_id(self) -> pulumi.Output[str]:
         """
-        The ID of the physical volume from the storage provider.
+        `(string: <required>)` - The ID of the physical volume from the storage provider.
         """
         return pulumi.get(self, "external_id")
 
@@ -986,7 +1077,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="mountOptions")
     def mount_options(self) -> pulumi.Output[Optional['outputs.VolumeMountOptions']]:
         """
-        Options for mounting 'block-device' volumes without a pre-formatted file system.
+        `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         """
         return pulumi.get(self, "mount_options")
 
@@ -994,7 +1085,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The display name of the volume.
+        `(string: <required>)` - The display name for the volume.
         """
         return pulumi.get(self, "name")
 
@@ -1002,25 +1093,31 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter
     def namespace(self) -> pulumi.Output[Optional[str]]:
         """
-        The namespace in which to create the volume.
+        `(string: "default")` - The namespace in which to register the volume.
         """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="nodesExpected")
     def nodes_expected(self) -> pulumi.Output[int]:
+        """
+        `(integer)`
+        """
         return pulumi.get(self, "nodes_expected")
 
     @property
     @pulumi.getter(name="nodesHealthy")
     def nodes_healthy(self) -> pulumi.Output[int]:
+        """
+        `(integer)`
+        """
         return pulumi.get(self, "nodes_healthy")
 
     @property
     @pulumi.getter
     def parameters(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+        `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         """
         return pulumi.get(self, "parameters")
 
@@ -1028,43 +1125,55 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="pluginId")
     def plugin_id(self) -> pulumi.Output[str]:
         """
-        The ID of the CSI plugin that manages this volume.
+        `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         """
         return pulumi.get(self, "plugin_id")
 
     @property
     @pulumi.getter(name="pluginProvider")
     def plugin_provider(self) -> pulumi.Output[str]:
+        """
+        `(string)`
+        """
         return pulumi.get(self, "plugin_provider")
 
     @property
     @pulumi.getter(name="pluginProviderVersion")
     def plugin_provider_version(self) -> pulumi.Output[str]:
+        """
+        `(string)`
+        """
         return pulumi.get(self, "plugin_provider_version")
 
     @property
     @pulumi.getter
     def schedulable(self) -> pulumi.Output[bool]:
+        """
+        `(boolean)`
+        """
         return pulumi.get(self, "schedulable")
 
     @property
     @pulumi.getter
     def secrets(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+        `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         """
         return pulumi.get(self, "secrets")
 
     @property
     @pulumi.getter
     def topologies(self) -> pulumi.Output[Sequence['outputs.VolumeTopology']]:
+        """
+        `(List of topologies)`
+        """
         return pulumi.get(self, "topologies")
 
     @property
     @pulumi.getter(name="topologyRequest")
     def topology_request(self) -> pulumi.Output[Optional['outputs.VolumeTopologyRequest']]:
         """
-        Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         """
         return pulumi.get(self, "topology_request")
 
@@ -1072,7 +1181,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[Optional[str]]:
         """
-        The type of the volume. Currently, only 'csi' is supported.
+        `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         """
         return pulumi.get(self, "type")
 
@@ -1080,7 +1189,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> pulumi.Output[str]:
         """
-        The unique ID of the volume, how jobs will refer to the volume.
+        `(string: <required>)` - The unique ID of the volume.
         """
         return pulumi.get(self, "volume_id")
 

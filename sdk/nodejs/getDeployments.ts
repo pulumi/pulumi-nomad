@@ -13,15 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const example = pulumi.output(nomad.getDeployments());
+ * const example = nomad.getDeployments({});
  * ```
  */
 export function getDeployments(opts?: pulumi.InvokeOptions): Promise<GetDeploymentsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getDeployments:getDeployments", {
     }, opts);
 }
@@ -30,6 +27,9 @@ export function getDeployments(opts?: pulumi.InvokeOptions): Promise<GetDeployme
  * A collection of values returned by getDeployments.
  */
 export interface GetDeploymentsResult {
+    /**
+     * `list of maps` a list of deployments in the cluster.
+     */
     readonly deployments: {[key: string]: any}[];
     /**
      * The provider-assigned unique ID for this managed resource.

@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.nomad.outputs.GetAclTokensAclTokenRole;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -11,29 +12,105 @@ import java.util.Objects;
 
 @CustomType
 public final class GetAclTokensAclToken {
+    /**
+     * @return `(TypeString)` Non-sensitive identifier for the token.
+     * 
+     */
     private String accessorId;
+    /**
+     * @return `(string)` Date and time the token was created at.
+     * 
+     */
     private String createTime;
+    /**
+     * @return `(string)` - The timestamp after which the token is
+     * considered expired and eligible for destruction.
+     * 
+     */
+    private String expirationTime;
+    /**
+     * @return `(bool)` Whether the token is replicated to all regions.
+     * 
+     */
     private Boolean global;
+    /**
+     * @return `(TypeString)` The name of the token.
+     * 
+     */
     private String name;
+    /**
+     * @return `(list of strings)` The list of policies attached to the token.
+     * 
+     */
     private List<String> policies;
+    /**
+     * @return `(set: [])` - The list of roles attached to the token. Each entry has
+     * `name` and `id` attributes.
+     * 
+     */
+    private List<GetAclTokensAclTokenRole> roles;
+    /**
+     * @return `(TypeString)` The type of the token.
+     * 
+     */
     private String type;
 
     private GetAclTokensAclToken() {}
+    /**
+     * @return `(TypeString)` Non-sensitive identifier for the token.
+     * 
+     */
     public String accessorId() {
         return this.accessorId;
     }
+    /**
+     * @return `(string)` Date and time the token was created at.
+     * 
+     */
     public String createTime() {
         return this.createTime;
     }
+    /**
+     * @return `(string)` - The timestamp after which the token is
+     * considered expired and eligible for destruction.
+     * 
+     */
+    public String expirationTime() {
+        return this.expirationTime;
+    }
+    /**
+     * @return `(bool)` Whether the token is replicated to all regions.
+     * 
+     */
     public Boolean global() {
         return this.global;
     }
+    /**
+     * @return `(TypeString)` The name of the token.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return `(list of strings)` The list of policies attached to the token.
+     * 
+     */
     public List<String> policies() {
         return this.policies;
     }
+    /**
+     * @return `(set: [])` - The list of roles attached to the token. Each entry has
+     * `name` and `id` attributes.
+     * 
+     */
+    public List<GetAclTokensAclTokenRole> roles() {
+        return this.roles;
+    }
+    /**
+     * @return `(TypeString)` The type of the token.
+     * 
+     */
     public String type() {
         return this.type;
     }
@@ -49,18 +126,22 @@ public final class GetAclTokensAclToken {
     public static final class Builder {
         private String accessorId;
         private String createTime;
+        private String expirationTime;
         private Boolean global;
         private String name;
         private List<String> policies;
+        private List<GetAclTokensAclTokenRole> roles;
         private String type;
         public Builder() {}
         public Builder(GetAclTokensAclToken defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.accessorId = defaults.accessorId;
     	      this.createTime = defaults.createTime;
+    	      this.expirationTime = defaults.expirationTime;
     	      this.global = defaults.global;
     	      this.name = defaults.name;
     	      this.policies = defaults.policies;
+    	      this.roles = defaults.roles;
     	      this.type = defaults.type;
         }
 
@@ -72,6 +153,11 @@ public final class GetAclTokensAclToken {
         @CustomType.Setter
         public Builder createTime(String createTime) {
             this.createTime = Objects.requireNonNull(createTime);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder expirationTime(String expirationTime) {
+            this.expirationTime = Objects.requireNonNull(expirationTime);
             return this;
         }
         @CustomType.Setter
@@ -93,6 +179,14 @@ public final class GetAclTokensAclToken {
             return policies(List.of(policies));
         }
         @CustomType.Setter
+        public Builder roles(List<GetAclTokensAclTokenRole> roles) {
+            this.roles = Objects.requireNonNull(roles);
+            return this;
+        }
+        public Builder roles(GetAclTokensAclTokenRole... roles) {
+            return roles(List.of(roles));
+        }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
@@ -101,9 +195,11 @@ public final class GetAclTokensAclToken {
             final var o = new GetAclTokensAclToken();
             o.accessorId = accessorId;
             o.createTime = createTime;
+            o.expirationTime = expirationTime;
             o.global = global;
             o.name = name;
             o.policies = policies;
+            o.roles = roles;
             o.type = type;
             return o;
         }

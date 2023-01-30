@@ -69,6 +69,9 @@ namespace Pulumi.Nomad
 
     public sealed class GetAclTokensArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` Optional prefix to filter the tokens.
+        /// </summary>
         [Input("prefix")]
         public string? Prefix { get; set; }
 
@@ -80,6 +83,9 @@ namespace Pulumi.Nomad
 
     public sealed class GetAclTokensInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` Optional prefix to filter the tokens.
+        /// </summary>
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
 
@@ -93,6 +99,9 @@ namespace Pulumi.Nomad
     [OutputType]
     public sealed class GetAclTokensResult
     {
+        /// <summary>
+        /// `(list of objects)` The list of tokens found in the given prefix.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAclTokensAclTokenResult> AclTokens;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.

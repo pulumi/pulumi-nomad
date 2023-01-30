@@ -45,16 +45,25 @@ class GetSchedulerPolicyResult:
     @property
     @pulumi.getter(name="memoryOversubscriptionEnabled")
     def memory_oversubscription_enabled(self) -> bool:
+        """
+        `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+        """
         return pulumi.get(self, "memory_oversubscription_enabled")
 
     @property
     @pulumi.getter(name="preemptionConfig")
     def preemption_config(self) -> Mapping[str, bool]:
+        """
+        `(map[string]bool)` - Options to enable preemption for various schedulers.
+        """
         return pulumi.get(self, "preemption_config")
 
     @property
     @pulumi.getter(name="schedulerAlgorithm")
     def scheduler_algorithm(self) -> str:
+        """
+        `(string)` - Specifies whether scheduler binpacks or spreads allocations on available nodes.
+        """
         return pulumi.get(self, "scheduler_algorithm")
 
 

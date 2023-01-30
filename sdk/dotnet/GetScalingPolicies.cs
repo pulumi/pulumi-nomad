@@ -118,7 +118,13 @@ namespace Pulumi.Nomad
         /// </summary>
         public readonly string Id;
         public readonly string? JobId;
+        /// <summary>
+        /// `list of maps` - A list of scaling policies.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetScalingPoliciesPolicyResult> Policies;
+        /// <summary>
+        /// `(string)` - The scaling policy type.
+        /// </summary>
         public readonly string? Type;
 
         [OutputConstructor]

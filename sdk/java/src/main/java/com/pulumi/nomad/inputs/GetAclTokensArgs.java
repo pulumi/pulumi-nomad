@@ -15,9 +15,17 @@ public final class GetAclTokensArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetAclTokensArgs Empty = new GetAclTokensArgs();
 
+    /**
+     * `(string)` Optional prefix to filter the tokens.
+     * 
+     */
     @Import(name="prefix")
     private @Nullable Output<String> prefix;
 
+    /**
+     * @return `(string)` Optional prefix to filter the tokens.
+     * 
+     */
     public Optional<Output<String>> prefix() {
         return Optional.ofNullable(this.prefix);
     }
@@ -46,11 +54,23 @@ public final class GetAclTokensArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetAclTokensArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param prefix `(string)` Optional prefix to filter the tokens.
+         * 
+         * @return builder
+         * 
+         */
         public Builder prefix(@Nullable Output<String> prefix) {
             $.prefix = prefix;
             return this;
         }
 
+        /**
+         * @param prefix `(string)` Optional prefix to filter the tokens.
+         * 
+         * @return builder
+         * 
+         */
         public Builder prefix(String prefix) {
             return prefix(Output.of(prefix));
         }

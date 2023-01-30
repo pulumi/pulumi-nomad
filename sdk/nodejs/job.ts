@@ -157,7 +157,7 @@ export class Job extends pulumi.CustomResource {
             if ((!args || args.jobspec === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'jobspec'");
             }
-            resourceInputs["consulToken"] = args ? args.consulToken : undefined;
+            resourceInputs["consulToken"] = args?.consulToken ? pulumi.secret(args.consulToken) : undefined;
             resourceInputs["deregisterOnDestroy"] = args ? args.deregisterOnDestroy : undefined;
             resourceInputs["deregisterOnIdChange"] = args ? args.deregisterOnIdChange : undefined;
             resourceInputs["detach"] = args ? args.detach : undefined;
@@ -166,7 +166,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["json"] = args ? args.json : undefined;
             resourceInputs["policyOverride"] = args ? args.policyOverride : undefined;
             resourceInputs["purgeOnDestroy"] = args ? args.purgeOnDestroy : undefined;
-            resourceInputs["vaultToken"] = args ? args.vaultToken : undefined;
+            resourceInputs["vaultToken"] = args?.vaultToken ? pulumi.secret(args.vaultToken) : undefined;
             resourceInputs["allocationIds"] = undefined /*out*/;
             resourceInputs["datacenters"] = undefined /*out*/;
             resourceInputs["deploymentId"] = undefined /*out*/;
@@ -179,6 +179,8 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["consulToken", "vaultToken"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Job.__pulumiType, name, resourceInputs, opts);
     }
 }

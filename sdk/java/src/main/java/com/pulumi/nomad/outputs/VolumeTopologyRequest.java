@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class VolumeTopologyRequest {
+    /**
+     * @return `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     * 
+     */
     private @Nullable VolumeTopologyRequestRequired required;
 
     private VolumeTopologyRequest() {}
+    /**
+     * @return `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     * 
+     */
     public Optional<VolumeTopologyRequestRequired> required() {
         return Optional.ofNullable(this.required);
     }

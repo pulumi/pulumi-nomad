@@ -12,6 +12,10 @@ import com.pulumi.nomad.inputs.GetAclPoliciesArgs;
 import com.pulumi.nomad.inputs.GetAclPoliciesPlainArgs;
 import com.pulumi.nomad.inputs.GetAclPolicyArgs;
 import com.pulumi.nomad.inputs.GetAclPolicyPlainArgs;
+import com.pulumi.nomad.inputs.GetAclRoleArgs;
+import com.pulumi.nomad.inputs.GetAclRolePlainArgs;
+import com.pulumi.nomad.inputs.GetAclRolesArgs;
+import com.pulumi.nomad.inputs.GetAclRolesPlainArgs;
 import com.pulumi.nomad.inputs.GetAclTokenArgs;
 import com.pulumi.nomad.inputs.GetAclTokenPlainArgs;
 import com.pulumi.nomad.inputs.GetAclTokensArgs;
@@ -36,6 +40,8 @@ import com.pulumi.nomad.inputs.GetVolumesArgs;
 import com.pulumi.nomad.inputs.GetVolumesPlainArgs;
 import com.pulumi.nomad.outputs.GetAclPoliciesResult;
 import com.pulumi.nomad.outputs.GetAclPolicyResult;
+import com.pulumi.nomad.outputs.GetAclRoleResult;
+import com.pulumi.nomad.outputs.GetAclRolesResult;
 import com.pulumi.nomad.outputs.GetAclTokenResult;
 import com.pulumi.nomad.outputs.GetAclTokensResult;
 import com.pulumi.nomad.outputs.GetDatacentersResult;
@@ -424,6 +430,376 @@ public final class NomadFunctions {
      */
     public static CompletableFuture<GetAclPolicyResult> getAclPolicyPlain(GetAclPolicyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getAclPolicy:getAclPolicy", TypeShape.of(GetAclPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on an ACL Role.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRole(GetAclRoleArgs.builder()
+     *             .id(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAclRoleResult> getAclRole(GetAclRoleArgs args) {
+        return getAclRole(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information on an ACL Role.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRole(GetAclRoleArgs.builder()
+     *             .id(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAclRoleResult> getAclRolePlain(GetAclRolePlainArgs args) {
+        return getAclRolePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information on an ACL Role.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRole(GetAclRoleArgs.builder()
+     *             .id(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAclRoleResult> getAclRole(GetAclRoleArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getAclRole:getAclRole", TypeShape.of(GetAclRoleResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on an ACL Role.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRole(GetAclRoleArgs.builder()
+     *             .id(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAclRoleResult> getAclRolePlain(GetAclRolePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("nomad:index/getAclRole:getAclRole", TypeShape.of(GetAclRoleResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of ACL Roles.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
+     *             .prefix(&#34;a242&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAclRolesResult> getAclRoles() {
+        return getAclRoles(GetAclRolesArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve a list of ACL Roles.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
+     *             .prefix(&#34;a242&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAclRolesResult> getAclRolesPlain() {
+        return getAclRolesPlain(GetAclRolesPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve a list of ACL Roles.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
+     *             .prefix(&#34;a242&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAclRolesResult> getAclRoles(GetAclRolesArgs args) {
+        return getAclRoles(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve a list of ACL Roles.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
+     *             .prefix(&#34;a242&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAclRolesResult> getAclRolesPlain(GetAclRolesPlainArgs args) {
+        return getAclRolesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve a list of ACL Roles.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
+     *             .prefix(&#34;a242&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetAclRolesResult> getAclRoles(GetAclRolesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getAclRoles:getAclRoles", TypeShape.of(GetAclRolesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of ACL Roles.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
+     *             .prefix(&#34;a242&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetAclRolesResult> getAclRolesPlain(GetAclRolesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("nomad:index/getAclRoles:getAclRoles", TypeShape.of(GetAclRolesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * ## Example Usage

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ebs, err := nomad.GetPlugin(ctx, &GetPluginArgs{
+//			ebs, err := nomad.GetPlugin(ctx, &nomad.GetPluginArgs{
 //				PluginId:       "aws-ebs0",
 //				WaitForHealthy: pulumi.BoolRef(true),
 //			}, nil)
@@ -39,25 +39,25 @@ import (
 //				PluginId:   pulumi.String("aws-ebs0"),
 //				VolumeId:   pulumi.String("mysql_volume"),
 //				ExternalId: pulumi.Any(module.Hashistack.Ebs_test_volume_id),
-//				Capabilities: VolumeCapabilityArray{
-//					&VolumeCapabilityArgs{
+//				Capabilities: nomad.VolumeCapabilityArray{
+//					&nomad.VolumeCapabilityArgs{
 //						AccessMode:     pulumi.String("single-node-writer"),
 //						AttachmentMode: pulumi.String("file-system"),
 //					},
 //				},
-//				MountOptions: &VolumeMountOptionsArgs{
+//				MountOptions: &nomad.VolumeMountOptionsArgs{
 //					FsType: pulumi.String("ext4"),
 //				},
-//				TopologyRequest: &VolumeTopologyRequestArgs{
-//					Required: &VolumeTopologyRequestRequiredArgs{
-//						Topologies: VolumeTopologyRequestRequiredTopologyArray{
-//							&VolumeTopologyRequestRequiredTopologyArgs{
+//				TopologyRequest: &nomad.VolumeTopologyRequestArgs{
+//					Required: &nomad.VolumeTopologyRequestRequiredArgs{
+//						Topologies: nomad.VolumeTopologyRequestRequiredTopologyArray{
+//							&nomad.VolumeTopologyRequestRequiredTopologyArgs{
 //								Segments: pulumi.StringMap{
 //									"rack": pulumi.String("R1"),
 //									"zone": pulumi.String("us-east-1a"),
 //								},
 //							},
-//							&VolumeTopologyRequestRequiredTopologyArgs{
+//							&nomad.VolumeTopologyRequestRequiredTopologyArgs{
 //								Segments: pulumi.StringMap{
 //									"rack": pulumi.String("R2"),
 //								},
@@ -79,48 +79,62 @@ import (
 type Volume struct {
 	pulumi.CustomResourceState
 
-	// Defines whether a volume should be available concurrently.
+	// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
 	//
 	// Deprecated: use capability instead
 	AccessMode pulumi.StringPtrOutput `pulumi:"accessMode"`
-	// The storage API that will be used by the volume.
+	// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
 	//
 	// Deprecated: use capability instead
 	AttachmentMode pulumi.StringPtrOutput `pulumi:"attachmentMode"`
-	// Capabilities intended to be used in a job. At least one capability must be provided.
+	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities VolumeCapabilityArrayOutput `pulumi:"capabilities"`
-	// An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
-	Context             pulumi.StringMapOutput `pulumi:"context"`
-	ControllerRequired  pulumi.BoolOutput      `pulumi:"controllerRequired"`
-	ControllersExpected pulumi.IntOutput       `pulumi:"controllersExpected"`
-	ControllersHealthy  pulumi.IntOutput       `pulumi:"controllersHealthy"`
-	// If true, the volume will be deregistered on destroy.
+	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+	Context pulumi.StringMapOutput `pulumi:"context"`
+	// `(boolean)`
+	ControllerRequired pulumi.BoolOutput `pulumi:"controllerRequired"`
+	// `(integer)`
+	ControllersExpected pulumi.IntOutput `pulumi:"controllersExpected"`
+	// `(integer)`
+	ControllersHealthy pulumi.IntOutput `pulumi:"controllersHealthy"`
+	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
 	DeregisterOnDestroy pulumi.BoolPtrOutput `pulumi:"deregisterOnDestroy"`
-	// The ID of the physical volume from the storage provider.
+	// `(string: <required>)` - The ID of the physical volume from the storage provider.
 	ExternalId pulumi.StringOutput `pulumi:"externalId"`
-	// Options for mounting 'block-device' volumes without a pre-formatted file system.
+	// `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions VolumeMountOptionsPtrOutput `pulumi:"mountOptions"`
-	// The display name of the volume.
+	// `(string: <required>)` - The display name for the volume.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The namespace in which to create the volume.
-	Namespace     pulumi.StringPtrOutput `pulumi:"namespace"`
-	NodesExpected pulumi.IntOutput       `pulumi:"nodesExpected"`
-	NodesHealthy  pulumi.IntOutput       `pulumi:"nodesHealthy"`
-	// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+	// `(string: "default")` - The namespace in which to register the volume.
+	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// `(integer)`
+	NodesExpected pulumi.IntOutput `pulumi:"nodesExpected"`
+	// `(integer)`
+	NodesHealthy pulumi.IntOutput `pulumi:"nodesHealthy"`
+	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 	Parameters pulumi.StringMapOutput `pulumi:"parameters"`
-	// The ID of the CSI plugin that manages this volume.
-	PluginId              pulumi.StringOutput `pulumi:"pluginId"`
-	PluginProvider        pulumi.StringOutput `pulumi:"pluginProvider"`
+	// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
+	PluginId pulumi.StringOutput `pulumi:"pluginId"`
+	// `(string)`
+	PluginProvider pulumi.StringOutput `pulumi:"pluginProvider"`
+	// `(string)`
 	PluginProviderVersion pulumi.StringOutput `pulumi:"pluginProviderVersion"`
-	Schedulable           pulumi.BoolOutput   `pulumi:"schedulable"`
-	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-	Secrets    pulumi.StringMapOutput    `pulumi:"secrets"`
+	// `(boolean)`
+	Schedulable pulumi.BoolOutput `pulumi:"schedulable"`
+	// `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+	Secrets pulumi.StringMapOutput `pulumi:"secrets"`
+	// `(List of topologies)`
 	Topologies VolumeTopologyArrayOutput `pulumi:"topologies"`
-	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	// `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 	TopologyRequest VolumeTopologyRequestPtrOutput `pulumi:"topologyRequest"`
-	// The type of the volume. Currently, only 'csi' is supported.
+	// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 	Type pulumi.StringPtrOutput `pulumi:"type"`
-	// The unique ID of the volume, how jobs will refer to the volume.
+	// `(string: <required>)` - The unique ID of the volume.
 	VolumeId pulumi.StringOutput `pulumi:"volumeId"`
 }
 
@@ -140,6 +154,13 @@ func NewVolume(ctx *pulumi.Context,
 	if args.VolumeId == nil {
 		return nil, errors.New("invalid value for required argument 'VolumeId'")
 	}
+	if args.Secrets != nil {
+		args.Secrets = pulumi.ToSecret(args.Secrets).(pulumi.StringMapInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secrets",
+	})
+	opts = append(opts, secrets)
 	var resource Volume
 	err := ctx.RegisterResource("nomad:index/volume:Volume", name, args, &resource, opts...)
 	if err != nil {
@@ -162,94 +183,122 @@ func GetVolume(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Volume resources.
 type volumeState struct {
-	// Defines whether a volume should be available concurrently.
+	// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
 	//
 	// Deprecated: use capability instead
 	AccessMode *string `pulumi:"accessMode"`
-	// The storage API that will be used by the volume.
+	// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
 	//
 	// Deprecated: use capability instead
 	AttachmentMode *string `pulumi:"attachmentMode"`
-	// Capabilities intended to be used in a job. At least one capability must be provided.
+	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities []VolumeCapability `pulumi:"capabilities"`
-	// An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
-	Context             map[string]string `pulumi:"context"`
-	ControllerRequired  *bool             `pulumi:"controllerRequired"`
-	ControllersExpected *int              `pulumi:"controllersExpected"`
-	ControllersHealthy  *int              `pulumi:"controllersHealthy"`
-	// If true, the volume will be deregistered on destroy.
+	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+	Context map[string]string `pulumi:"context"`
+	// `(boolean)`
+	ControllerRequired *bool `pulumi:"controllerRequired"`
+	// `(integer)`
+	ControllersExpected *int `pulumi:"controllersExpected"`
+	// `(integer)`
+	ControllersHealthy *int `pulumi:"controllersHealthy"`
+	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
 	DeregisterOnDestroy *bool `pulumi:"deregisterOnDestroy"`
-	// The ID of the physical volume from the storage provider.
+	// `(string: <required>)` - The ID of the physical volume from the storage provider.
 	ExternalId *string `pulumi:"externalId"`
-	// Options for mounting 'block-device' volumes without a pre-formatted file system.
+	// `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions *VolumeMountOptions `pulumi:"mountOptions"`
-	// The display name of the volume.
+	// `(string: <required>)` - The display name for the volume.
 	Name *string `pulumi:"name"`
-	// The namespace in which to create the volume.
-	Namespace     *string `pulumi:"namespace"`
-	NodesExpected *int    `pulumi:"nodesExpected"`
-	NodesHealthy  *int    `pulumi:"nodesHealthy"`
-	// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+	// `(string: "default")` - The namespace in which to register the volume.
+	Namespace *string `pulumi:"namespace"`
+	// `(integer)`
+	NodesExpected *int `pulumi:"nodesExpected"`
+	// `(integer)`
+	NodesHealthy *int `pulumi:"nodesHealthy"`
+	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 	Parameters map[string]string `pulumi:"parameters"`
-	// The ID of the CSI plugin that manages this volume.
-	PluginId              *string `pulumi:"pluginId"`
-	PluginProvider        *string `pulumi:"pluginProvider"`
+	// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
+	PluginId *string `pulumi:"pluginId"`
+	// `(string)`
+	PluginProvider *string `pulumi:"pluginProvider"`
+	// `(string)`
 	PluginProviderVersion *string `pulumi:"pluginProviderVersion"`
-	Schedulable           *bool   `pulumi:"schedulable"`
-	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-	Secrets    map[string]string `pulumi:"secrets"`
-	Topologies []VolumeTopology  `pulumi:"topologies"`
-	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	// `(boolean)`
+	Schedulable *bool `pulumi:"schedulable"`
+	// `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+	Secrets map[string]string `pulumi:"secrets"`
+	// `(List of topologies)`
+	Topologies []VolumeTopology `pulumi:"topologies"`
+	// `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 	TopologyRequest *VolumeTopologyRequest `pulumi:"topologyRequest"`
-	// The type of the volume. Currently, only 'csi' is supported.
+	// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 	Type *string `pulumi:"type"`
-	// The unique ID of the volume, how jobs will refer to the volume.
+	// `(string: <required>)` - The unique ID of the volume.
 	VolumeId *string `pulumi:"volumeId"`
 }
 
 type VolumeState struct {
-	// Defines whether a volume should be available concurrently.
+	// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
 	//
 	// Deprecated: use capability instead
 	AccessMode pulumi.StringPtrInput
-	// The storage API that will be used by the volume.
+	// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
 	//
 	// Deprecated: use capability instead
 	AttachmentMode pulumi.StringPtrInput
-	// Capabilities intended to be used in a job. At least one capability must be provided.
+	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities VolumeCapabilityArrayInput
-	// An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
-	Context             pulumi.StringMapInput
-	ControllerRequired  pulumi.BoolPtrInput
+	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+	Context pulumi.StringMapInput
+	// `(boolean)`
+	ControllerRequired pulumi.BoolPtrInput
+	// `(integer)`
 	ControllersExpected pulumi.IntPtrInput
-	ControllersHealthy  pulumi.IntPtrInput
-	// If true, the volume will be deregistered on destroy.
+	// `(integer)`
+	ControllersHealthy pulumi.IntPtrInput
+	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
 	DeregisterOnDestroy pulumi.BoolPtrInput
-	// The ID of the physical volume from the storage provider.
+	// `(string: <required>)` - The ID of the physical volume from the storage provider.
 	ExternalId pulumi.StringPtrInput
-	// Options for mounting 'block-device' volumes without a pre-formatted file system.
+	// `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions VolumeMountOptionsPtrInput
-	// The display name of the volume.
+	// `(string: <required>)` - The display name for the volume.
 	Name pulumi.StringPtrInput
-	// The namespace in which to create the volume.
-	Namespace     pulumi.StringPtrInput
+	// `(string: "default")` - The namespace in which to register the volume.
+	Namespace pulumi.StringPtrInput
+	// `(integer)`
 	NodesExpected pulumi.IntPtrInput
-	NodesHealthy  pulumi.IntPtrInput
-	// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+	// `(integer)`
+	NodesHealthy pulumi.IntPtrInput
+	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 	Parameters pulumi.StringMapInput
-	// The ID of the CSI plugin that manages this volume.
-	PluginId              pulumi.StringPtrInput
-	PluginProvider        pulumi.StringPtrInput
+	// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
+	PluginId pulumi.StringPtrInput
+	// `(string)`
+	PluginProvider pulumi.StringPtrInput
+	// `(string)`
 	PluginProviderVersion pulumi.StringPtrInput
-	Schedulable           pulumi.BoolPtrInput
-	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-	Secrets    pulumi.StringMapInput
+	// `(boolean)`
+	Schedulable pulumi.BoolPtrInput
+	// `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+	Secrets pulumi.StringMapInput
+	// `(List of topologies)`
 	Topologies VolumeTopologyArrayInput
-	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	// `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 	TopologyRequest VolumeTopologyRequestPtrInput
-	// The type of the volume. Currently, only 'csi' is supported.
+	// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 	Type pulumi.StringPtrInput
-	// The unique ID of the volume, how jobs will refer to the volume.
+	// `(string: <required>)` - The unique ID of the volume.
 	VolumeId pulumi.StringPtrInput
 }
 
@@ -258,77 +307,87 @@ func (VolumeState) ElementType() reflect.Type {
 }
 
 type volumeArgs struct {
-	// Defines whether a volume should be available concurrently.
+	// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
 	//
 	// Deprecated: use capability instead
 	AccessMode *string `pulumi:"accessMode"`
-	// The storage API that will be used by the volume.
+	// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
 	//
 	// Deprecated: use capability instead
 	AttachmentMode *string `pulumi:"attachmentMode"`
-	// Capabilities intended to be used in a job. At least one capability must be provided.
+	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities []VolumeCapability `pulumi:"capabilities"`
-	// An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
 	Context map[string]string `pulumi:"context"`
-	// If true, the volume will be deregistered on destroy.
+	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
 	DeregisterOnDestroy *bool `pulumi:"deregisterOnDestroy"`
-	// The ID of the physical volume from the storage provider.
+	// `(string: <required>)` - The ID of the physical volume from the storage provider.
 	ExternalId string `pulumi:"externalId"`
-	// Options for mounting 'block-device' volumes without a pre-formatted file system.
+	// `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions *VolumeMountOptions `pulumi:"mountOptions"`
-	// The display name of the volume.
+	// `(string: <required>)` - The display name for the volume.
 	Name *string `pulumi:"name"`
-	// The namespace in which to create the volume.
+	// `(string: "default")` - The namespace in which to register the volume.
 	Namespace *string `pulumi:"namespace"`
-	// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 	Parameters map[string]string `pulumi:"parameters"`
-	// The ID of the CSI plugin that manages this volume.
+	// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
 	PluginId string `pulumi:"pluginId"`
-	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+	// `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
 	Secrets map[string]string `pulumi:"secrets"`
-	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	// `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 	TopologyRequest *VolumeTopologyRequest `pulumi:"topologyRequest"`
-	// The type of the volume. Currently, only 'csi' is supported.
+	// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 	Type *string `pulumi:"type"`
-	// The unique ID of the volume, how jobs will refer to the volume.
+	// `(string: <required>)` - The unique ID of the volume.
 	VolumeId string `pulumi:"volumeId"`
 }
 
 // The set of arguments for constructing a Volume resource.
 type VolumeArgs struct {
-	// Defines whether a volume should be available concurrently.
+	// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
 	//
 	// Deprecated: use capability instead
 	AccessMode pulumi.StringPtrInput
-	// The storage API that will be used by the volume.
+	// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
 	//
 	// Deprecated: use capability instead
 	AttachmentMode pulumi.StringPtrInput
-	// Capabilities intended to be used in a job. At least one capability must be provided.
+	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities VolumeCapabilityArrayInput
-	// An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
 	Context pulumi.StringMapInput
-	// If true, the volume will be deregistered on destroy.
+	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
 	DeregisterOnDestroy pulumi.BoolPtrInput
-	// The ID of the physical volume from the storage provider.
+	// `(string: <required>)` - The ID of the physical volume from the storage provider.
 	ExternalId pulumi.StringInput
-	// Options for mounting 'block-device' volumes without a pre-formatted file system.
+	// `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions VolumeMountOptionsPtrInput
-	// The display name of the volume.
+	// `(string: <required>)` - The display name for the volume.
 	Name pulumi.StringPtrInput
-	// The namespace in which to create the volume.
+	// `(string: "default")` - The namespace in which to register the volume.
 	Namespace pulumi.StringPtrInput
-	// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 	Parameters pulumi.StringMapInput
-	// The ID of the CSI plugin that manages this volume.
+	// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
 	PluginId pulumi.StringInput
-	// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+	// `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
 	Secrets pulumi.StringMapInput
-	// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+	// `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 	TopologyRequest VolumeTopologyRequestPtrInput
-	// The type of the volume. Currently, only 'csi' is supported.
+	// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 	Type pulumi.StringPtrInput
-	// The unique ID of the volume, how jobs will refer to the volume.
+	// `(string: <required>)` - The unique ID of the volume.
 	VolumeId pulumi.StringInput
 }
 
@@ -419,117 +478,131 @@ func (o VolumeOutput) ToVolumeOutputWithContext(ctx context.Context) VolumeOutpu
 	return o
 }
 
-// Defines whether a volume should be available concurrently.
+// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+// - `single-node-reader-only`
+// - `single-node-writer`
+// - `multi-node-reader-only`
+// - `multi-node-single-writer`
+// - `multi-node-multi-writer`
 //
 // Deprecated: use capability instead
 func (o VolumeOutput) AccessMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.AccessMode }).(pulumi.StringPtrOutput)
 }
 
-// The storage API that will be used by the volume.
+// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
 //
 // Deprecated: use capability instead
 func (o VolumeOutput) AttachmentMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.AttachmentMode }).(pulumi.StringPtrOutput)
 }
 
-// Capabilities intended to be used in a job. At least one capability must be provided.
+// `(“Capability“: <required>)` - Options for validating the capability of a volume.
 func (o VolumeOutput) Capabilities() VolumeCapabilityArrayOutput {
 	return o.ApplyT(func(v *Volume) VolumeCapabilityArrayOutput { return v.Capabilities }).(VolumeCapabilityArrayOutput)
 }
 
-// An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
 func (o VolumeOutput) Context() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringMapOutput { return v.Context }).(pulumi.StringMapOutput)
 }
 
+// `(boolean)`
 func (o VolumeOutput) ControllerRequired() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.ControllerRequired }).(pulumi.BoolOutput)
 }
 
+// `(integer)`
 func (o VolumeOutput) ControllersExpected() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.ControllersExpected }).(pulumi.IntOutput)
 }
 
+// `(integer)`
 func (o VolumeOutput) ControllersHealthy() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.ControllersHealthy }).(pulumi.IntOutput)
 }
 
-// If true, the volume will be deregistered on destroy.
+// `(boolean: false)` - If true, the volume will be deregistered on destroy.
 func (o VolumeOutput) DeregisterOnDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolPtrOutput { return v.DeregisterOnDestroy }).(pulumi.BoolPtrOutput)
 }
 
-// The ID of the physical volume from the storage provider.
+// `(string: <required>)` - The ID of the physical volume from the storage provider.
 func (o VolumeOutput) ExternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.ExternalId }).(pulumi.StringOutput)
 }
 
-// Options for mounting 'block-device' volumes without a pre-formatted file system.
+// `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
 func (o VolumeOutput) MountOptions() VolumeMountOptionsPtrOutput {
 	return o.ApplyT(func(v *Volume) VolumeMountOptionsPtrOutput { return v.MountOptions }).(VolumeMountOptionsPtrOutput)
 }
 
-// The display name of the volume.
+// `(string: <required>)` - The display name for the volume.
 func (o VolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The namespace in which to create the volume.
+// `(string: "default")` - The namespace in which to register the volume.
 func (o VolumeOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
+// `(integer)`
 func (o VolumeOutput) NodesExpected() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.NodesExpected }).(pulumi.IntOutput)
 }
 
+// `(integer)`
 func (o VolumeOutput) NodesHealthy() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.NodesHealthy }).(pulumi.IntOutput)
 }
 
-// An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
 func (o VolumeOutput) Parameters() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringMapOutput { return v.Parameters }).(pulumi.StringMapOutput)
 }
 
-// The ID of the CSI plugin that manages this volume.
+// `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
 func (o VolumeOutput) PluginId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.PluginId }).(pulumi.StringOutput)
 }
 
+// `(string)`
 func (o VolumeOutput) PluginProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.PluginProvider }).(pulumi.StringOutput)
 }
 
+// `(string)`
 func (o VolumeOutput) PluginProviderVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.PluginProviderVersion }).(pulumi.StringOutput)
 }
 
+// `(boolean)`
 func (o VolumeOutput) Schedulable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolOutput { return v.Schedulable }).(pulumi.BoolOutput)
 }
 
-// An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+// `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
 func (o VolumeOutput) Secrets() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringMapOutput { return v.Secrets }).(pulumi.StringMapOutput)
 }
 
+// `(List of topologies)`
 func (o VolumeOutput) Topologies() VolumeTopologyArrayOutput {
 	return o.ApplyT(func(v *Volume) VolumeTopologyArrayOutput { return v.Topologies }).(VolumeTopologyArrayOutput)
 }
 
-// Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+// `(“TopologyRequest“: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
 func (o VolumeOutput) TopologyRequest() VolumeTopologyRequestPtrOutput {
 	return o.ApplyT(func(v *Volume) VolumeTopologyRequestPtrOutput { return v.TopologyRequest }).(VolumeTopologyRequestPtrOutput)
 }
 
-// The type of the volume. Currently, only 'csi' is supported.
+// `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
 func (o VolumeOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-// The unique ID of the volume, how jobs will refer to the volume.
+// `(string: <required>)` - The unique ID of the volume.
 func (o VolumeOutput) VolumeId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.VolumeId }).(pulumi.StringOutput)
 }

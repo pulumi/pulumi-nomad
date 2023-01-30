@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.nomad.AclTokenArgs;
 import com.pulumi.nomad.Utilities;
 import com.pulumi.nomad.inputs.AclTokenState;
+import com.pulumi.nomad.outputs.AclTokenRole;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -182,6 +183,38 @@ public class AclToken extends com.pulumi.resources.CustomResource {
         return this.createTime;
     }
     /**
+     * `(string)` - The timestamp after which the token is
+     * considered expired and eligible for destruction.
+     * 
+     */
+    @Export(name="expirationTime", type=String.class, parameters={})
+    private Output<String> expirationTime;
+
+    /**
+     * @return `(string)` - The timestamp after which the token is
+     * considered expired and eligible for destruction.
+     * 
+     */
+    public Output<String> expirationTime() {
+        return this.expirationTime;
+    }
+    /**
+     * `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
+     * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
+     * 
+     */
+    @Export(name="expirationTtl", type=String.class, parameters={})
+    private Output</* @Nullable */ String> expirationTtl;
+
+    /**
+     * @return `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
+     * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
+     * 
+     */
+    public Output<Optional<String>> expirationTtl() {
+        return Codegen.optional(this.expirationTtl);
+    }
+    /**
      * `(bool: false)` - Whether the token should be replicated to all
      * regions, or if it will only be used in the region it was created in.
      * 
@@ -230,6 +263,22 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> policies() {
         return Codegen.optional(this.policies);
+    }
+    /**
+     * `(set: [])` - The list of roles attached to the token. Each entry has
+     * `name` and `id` attributes. It may be used multiple times.
+     * 
+     */
+    @Export(name="roles", type=List.class, parameters={AclTokenRole.class})
+    private Output</* @Nullable */ List<AclTokenRole>> roles;
+
+    /**
+     * @return `(set: [])` - The list of roles attached to the token. Each entry has
+     * `name` and `id` attributes. It may be used multiple times.
+     * 
+     */
+    public Output<Optional<List<AclTokenRole>>> roles() {
+        return Codegen.optional(this.roles);
     }
     /**
      * `(string)` - The token value itself, which is presented for
@@ -298,6 +347,9 @@ public class AclToken extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "secretId"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

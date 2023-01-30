@@ -44,6 +44,9 @@ class GetAclPoliciesResult:
     @property
     @pulumi.getter
     def policies(self) -> Sequence['outputs.GetAclPoliciesPolicyResult']:
+        """
+        `list of maps` a list of ACL policies.
+        """
         return pulumi.get(self, "policies")
 
     @property
@@ -76,6 +79,9 @@ def get_acl_policies(prefix: Optional[str] = None,
 
     example = nomad.get_acl_policies(prefix="prod")
     ```
+
+
+    :param str prefix: `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
     """
     __args__ = dict()
     __args__['prefix'] = prefix
@@ -102,5 +108,8 @@ def get_acl_policies_output(prefix: Optional[pulumi.Input[Optional[str]]] = None
 
     example = nomad.get_acl_policies(prefix="prod")
     ```
+
+
+    :param str prefix: `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
     """
     ...

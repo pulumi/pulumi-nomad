@@ -39,6 +39,9 @@ class GetNamespacesResult:
     @property
     @pulumi.getter
     def namespaces(self) -> Sequence[str]:
+        """
+        `(list of strings)` - a list of namespaces available in the cluster.
+        """
         return pulumi.get(self, "namespaces")
 
 

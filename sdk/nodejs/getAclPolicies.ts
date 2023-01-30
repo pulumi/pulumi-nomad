@@ -15,18 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const example = pulumi.output(nomad.getAclPolicies({
+ * const example = nomad.getAclPolicies({
  *     prefix: "prod",
- * }));
+ * });
  * ```
  */
 export function getAclPolicies(args?: GetAclPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<GetAclPoliciesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getAclPolicies:getAclPolicies", {
         "prefix": args.prefix,
     }, opts);
@@ -36,6 +33,9 @@ export function getAclPolicies(args?: GetAclPoliciesArgs, opts?: pulumi.InvokeOp
  * A collection of arguments for invoking getAclPolicies.
  */
 export interface GetAclPoliciesArgs {
+    /**
+     * `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
+     */
     prefix?: string;
 }
 
@@ -47,17 +47,36 @@ export interface GetAclPoliciesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * `list of maps` a list of ACL policies.
+     */
     readonly policies: outputs.GetAclPoliciesPolicy[];
     readonly prefix?: string;
 }
-
+/**
+ * Retrieve a list of ACL Policies.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const example = nomad.getAclPolicies({
+ *     prefix: "prod",
+ * });
+ * ```
+ */
 export function getAclPoliciesOutput(args?: GetAclPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclPoliciesResult> {
-    return pulumi.output(args).apply(a => getAclPolicies(a, opts))
+    return pulumi.output(args).apply((a: any) => getAclPolicies(a, opts))
 }
 
 /**
  * A collection of arguments for invoking getAclPolicies.
  */
 export interface GetAclPoliciesOutputArgs {
+    /**
+     * `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
+     */
     prefix?: pulumi.Input<string>;
 }

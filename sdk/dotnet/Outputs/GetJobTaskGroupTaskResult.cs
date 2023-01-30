@@ -15,6 +15,9 @@ namespace Pulumi.Nomad.Outputs
     {
         public readonly string Driver;
         public readonly ImmutableDictionary<string, object> Meta;
+        /// <summary>
+        /// `(string)` Name of the job.
+        /// </summary>
         public readonly string Name;
         public readonly ImmutableArray<Outputs.GetJobTaskGroupTaskVolumeMountResult> VolumeMounts;
 

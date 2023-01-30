@@ -99,12 +99,30 @@ namespace Pulumi.Nomad
     [OutputType]
     public sealed class GetScalingPolicyResult
     {
+        /// <summary>
+        /// `(boolean)` - Whether or not the scaling policy is enabled.
+        /// </summary>
         public readonly bool Enabled;
         public readonly string Id;
+        /// <summary>
+        /// `(integer)` - The maximum value set in the scaling policy.
+        /// </summary>
         public readonly int Max;
+        /// <summary>
+        /// `(integer)` - The minimum value set in the scaling policy.
+        /// </summary>
         public readonly int Min;
+        /// <summary>
+        /// `(string)` - The policy inside the scaling policy.
+        /// </summary>
         public readonly string Policy;
+        /// <summary>
+        /// `(map[string]string)` - The scaling policy target.
+        /// </summary>
         public readonly ImmutableDictionary<string, object> Target;
+        /// <summary>
+        /// `(string)` - The scaling policy type.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

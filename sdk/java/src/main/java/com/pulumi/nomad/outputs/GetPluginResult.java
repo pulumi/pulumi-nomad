@@ -15,8 +15,20 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetPluginResult {
+    /**
+     * @return `(boolean)` Whether a controller is required.
+     * 
+     */
     private Boolean controllerRequired;
+    /**
+     * @return `(integer)` The number of registered controllers.
+     * 
+     */
     private Integer controllersExpected;
+    /**
+     * @return `(integer)` The number of healthy controllers.
+     * 
+     */
     private Integer controllersHealthy;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -24,21 +36,53 @@ public final class GetPluginResult {
      */
     private String id;
     private List<GetPluginNode> nodes;
+    /**
+     * @return `(integer)` The number of registered nodes.
+     * 
+     */
     private Integer nodesExpected;
+    /**
+     * @return `(integer)` The number of healthy nodes.
+     * 
+     */
     private Integer nodesHealthy;
+    /**
+     * @return `(string)` ID of the plugin
+     * 
+     */
     private String pluginId;
+    /**
+     * @return `(string)` Plugin provider name
+     * 
+     */
     private String pluginProvider;
+    /**
+     * @return `(string)` Plugin provider version
+     * 
+     */
     private String pluginProviderVersion;
     private @Nullable Boolean waitForHealthy;
     private @Nullable Boolean waitForRegistration;
 
     private GetPluginResult() {}
+    /**
+     * @return `(boolean)` Whether a controller is required.
+     * 
+     */
     public Boolean controllerRequired() {
         return this.controllerRequired;
     }
+    /**
+     * @return `(integer)` The number of registered controllers.
+     * 
+     */
     public Integer controllersExpected() {
         return this.controllersExpected;
     }
+    /**
+     * @return `(integer)` The number of healthy controllers.
+     * 
+     */
     public Integer controllersHealthy() {
         return this.controllersHealthy;
     }
@@ -52,18 +96,38 @@ public final class GetPluginResult {
     public List<GetPluginNode> nodes() {
         return this.nodes;
     }
+    /**
+     * @return `(integer)` The number of registered nodes.
+     * 
+     */
     public Integer nodesExpected() {
         return this.nodesExpected;
     }
+    /**
+     * @return `(integer)` The number of healthy nodes.
+     * 
+     */
     public Integer nodesHealthy() {
         return this.nodesHealthy;
     }
+    /**
+     * @return `(string)` ID of the plugin
+     * 
+     */
     public String pluginId() {
         return this.pluginId;
     }
+    /**
+     * @return `(string)` Plugin provider name
+     * 
+     */
     public String pluginProvider() {
         return this.pluginProvider;
     }
+    /**
+     * @return `(string)` Plugin provider version
+     * 
+     */
     public String pluginProviderVersion() {
         return this.pluginProviderVersion;
     }

@@ -16,16 +16,32 @@ public final class ExternalVolumeTopologyRequestArgs extends com.pulumi.resource
 
     public static final ExternalVolumeTopologyRequestArgs Empty = new ExternalVolumeTopologyRequestArgs();
 
+    /**
+     * `(``Topology``: &lt;optional&gt;)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+     * 
+     */
     @Import(name="preferred")
     private @Nullable Output<ExternalVolumeTopologyRequestPreferredArgs> preferred;
 
+    /**
+     * @return `(``Topology``: &lt;optional&gt;)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+     * 
+     */
     public Optional<Output<ExternalVolumeTopologyRequestPreferredArgs>> preferred() {
         return Optional.ofNullable(this.preferred);
     }
 
+    /**
+     * `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     * 
+     */
     @Import(name="required")
     private @Nullable Output<ExternalVolumeTopologyRequestRequiredArgs> required;
 
+    /**
+     * @return `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     * 
+     */
     public Optional<Output<ExternalVolumeTopologyRequestRequiredArgs>> required() {
         return Optional.ofNullable(this.required);
     }
@@ -55,20 +71,44 @@ public final class ExternalVolumeTopologyRequestArgs extends com.pulumi.resource
             $ = new ExternalVolumeTopologyRequestArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param preferred `(``Topology``: &lt;optional&gt;)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+         * 
+         * @return builder
+         * 
+         */
         public Builder preferred(@Nullable Output<ExternalVolumeTopologyRequestPreferredArgs> preferred) {
             $.preferred = preferred;
             return this;
         }
 
+        /**
+         * @param preferred `(``Topology``: &lt;optional&gt;)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+         * 
+         * @return builder
+         * 
+         */
         public Builder preferred(ExternalVolumeTopologyRequestPreferredArgs preferred) {
             return preferred(Output.of(preferred));
         }
 
+        /**
+         * @param required `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+         * 
+         * @return builder
+         * 
+         */
         public Builder required(@Nullable Output<ExternalVolumeTopologyRequestRequiredArgs> required) {
             $.required = required;
             return this;
         }
 
+        /**
+         * @param required `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+         * 
+         * @return builder
+         * 
+         */
         public Builder required(ExternalVolumeTopologyRequestRequiredArgs required) {
             return required(Output.of(required));
         }

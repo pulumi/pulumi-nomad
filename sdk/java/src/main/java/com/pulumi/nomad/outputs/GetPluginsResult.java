@@ -19,6 +19,10 @@ public final class GetPluginsResult {
      * 
      */
     private String id;
+    /**
+     * @return `(list of maps)` a list of dynamic plugins registered in the cluster.
+     * 
+     */
     private List<Map<String,Object>> plugins;
     private @Nullable String type;
 
@@ -30,6 +34,10 @@ public final class GetPluginsResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return `(list of maps)` a list of dynamic plugins registered in the cluster.
+     * 
+     */
     public List<Map<String,Object>> plugins() {
         return this.plugins;
     }

@@ -79,9 +79,15 @@ namespace Pulumi.Nomad
 
     public sealed class GetJobArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` ID of the job.
+        /// </summary>
         [Input("jobId", required: true)]
         public string JobId { get; set; } = null!;
 
+        /// <summary>
+        /// `(string)` Namespace of the specified job.
+        /// </summary>
         [Input("namespace")]
         public string? Namespace { get; set; }
 
@@ -93,9 +99,15 @@ namespace Pulumi.Nomad
 
     public sealed class GetJobInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// `(string)` ID of the job.
+        /// </summary>
         [Input("jobId", required: true)]
         public Input<string> JobId { get; set; } = null!;
 
+        /// <summary>
+        /// `(string)` Namespace of the specified job.
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
@@ -109,30 +121,87 @@ namespace Pulumi.Nomad
     [OutputType]
     public sealed class GetJobResult
     {
+        /// <summary>
+        /// `(boolean)`  If the scheduler can make partial placements on oversubscribed nodes.
+        /// </summary>
         public readonly bool AllAtOnce;
         public readonly ImmutableArray<Outputs.GetJobConstraintResult> Constraints;
+        /// <summary>
+        /// `(integer)` Creation Index.
+        /// </summary>
         public readonly int CreateIndex;
+        /// <summary>
+        /// `(list of strings)` Datacenters allowed to run the specified job.
+        /// </summary>
         public readonly ImmutableArray<string> Datacenters;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string JobId;
+        /// <summary>
+        /// `(integer)` Job modify index (used for version verification).
+        /// </summary>
         public readonly int JobModifyIndex;
+        /// <summary>
+        /// `(integer)` Modification Index.
+        /// </summary>
         public readonly int ModifyIndex;
+        /// <summary>
+        /// `(string)` Name of the job.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// `(string)` Namespace of the specified job.
+        /// </summary>
         public readonly string? Namespace;
+        /// <summary>
+        /// `(string)` Job's parent ID.
+        /// </summary>
         public readonly string ParentId;
+        /// <summary>
+        /// `(list of maps)` Job's periodic configuration (time based scheduling).
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetJobPeriodicConfigResult> PeriodicConfigs;
+        /// <summary>
+        /// `(integer)` Used for the prioritization of scheduling and resource access.
+        /// </summary>
         public readonly int Priority;
+        /// <summary>
+        /// `(string)` Region where the Nomad cluster resides.
+        /// </summary>
         public readonly string Region;
+        /// <summary>
+        /// `(boolean)` Job stability status.
+        /// </summary>
         public readonly bool Stable;
+        /// <summary>
+        /// `(string)` Execution status of the specified job.
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// `(string)` Status description of the specified job.
+        /// </summary>
         public readonly string StatusDescription;
+        /// <summary>
+        /// `(boolean)` Job enabled status.
+        /// </summary>
         public readonly bool Stop;
+        /// <summary>
+        /// `(integer)` Job submission date.
+        /// </summary>
         public readonly int SubmitTime;
+        /// <summary>
+        /// `(list of maps)` A list of of the job's task groups.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetJobTaskGroupResult> TaskGroups;
+        /// <summary>
+        /// `(string)` Scheduler type used during job creation.
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// `(integer)` Version of the specified job.
+        /// </summary>
         public readonly int Version;
 
         [OutputConstructor]

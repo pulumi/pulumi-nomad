@@ -16,16 +16,32 @@ public final class VolumeMountOptionsArgs extends com.pulumi.resources.ResourceA
 
     public static final VolumeMountOptionsArgs Empty = new VolumeMountOptionsArgs();
 
+    /**
+     * `(string: &lt;optional&gt;)` - The file system type.
+     * 
+     */
     @Import(name="fsType")
     private @Nullable Output<String> fsType;
 
+    /**
+     * @return `(string: &lt;optional&gt;)` - The file system type.
+     * 
+     */
     public Optional<Output<String>> fsType() {
         return Optional.ofNullable(this.fsType);
     }
 
+    /**
+     * `([]string: &lt;optional&gt;)` - The flags passed to `mount`.
+     * 
+     */
     @Import(name="mountFlags")
     private @Nullable Output<List<String>> mountFlags;
 
+    /**
+     * @return `([]string: &lt;optional&gt;)` - The flags passed to `mount`.
+     * 
+     */
     public Optional<Output<List<String>>> mountFlags() {
         return Optional.ofNullable(this.mountFlags);
     }
@@ -55,24 +71,54 @@ public final class VolumeMountOptionsArgs extends com.pulumi.resources.ResourceA
             $ = new VolumeMountOptionsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param fsType `(string: &lt;optional&gt;)` - The file system type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fsType(@Nullable Output<String> fsType) {
             $.fsType = fsType;
             return this;
         }
 
+        /**
+         * @param fsType `(string: &lt;optional&gt;)` - The file system type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fsType(String fsType) {
             return fsType(Output.of(fsType));
         }
 
+        /**
+         * @param mountFlags `([]string: &lt;optional&gt;)` - The flags passed to `mount`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mountFlags(@Nullable Output<List<String>> mountFlags) {
             $.mountFlags = mountFlags;
             return this;
         }
 
+        /**
+         * @param mountFlags `([]string: &lt;optional&gt;)` - The flags passed to `mount`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mountFlags(List<String> mountFlags) {
             return mountFlags(Output.of(mountFlags));
         }
 
+        /**
+         * @param mountFlags `([]string: &lt;optional&gt;)` - The flags passed to `mount`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder mountFlags(String... mountFlags) {
             return mountFlags(List.of(mountFlags));
         }

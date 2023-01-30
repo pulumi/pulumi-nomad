@@ -14,16 +14,32 @@ public final class GetJobPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetJobPlainArgs Empty = new GetJobPlainArgs();
 
+    /**
+     * `(string)` ID of the job.
+     * 
+     */
     @Import(name="jobId", required=true)
     private String jobId;
 
+    /**
+     * @return `(string)` ID of the job.
+     * 
+     */
     public String jobId() {
         return this.jobId;
     }
 
+    /**
+     * `(string)` Namespace of the specified job.
+     * 
+     */
     @Import(name="namespace")
     private @Nullable String namespace;
 
+    /**
+     * @return `(string)` Namespace of the specified job.
+     * 
+     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
@@ -53,11 +69,23 @@ public final class GetJobPlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetJobPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param jobId `(string)` ID of the job.
+         * 
+         * @return builder
+         * 
+         */
         public Builder jobId(String jobId) {
             $.jobId = jobId;
             return this;
         }
 
+        /**
+         * @param namespace `(string)` Namespace of the specified job.
+         * 
+         * @return builder
+         * 
+         */
         public Builder namespace(@Nullable String namespace) {
             $.namespace = namespace;
             return this;

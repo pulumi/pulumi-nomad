@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ExternalVolumeTopologyRequest {
+    /**
+     * @return `(``Topology``: &lt;optional&gt;)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+     * 
+     */
     private @Nullable ExternalVolumeTopologyRequestPreferred preferred;
+    /**
+     * @return `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     * 
+     */
     private @Nullable ExternalVolumeTopologyRequestRequired required;
 
     private ExternalVolumeTopologyRequest() {}
+    /**
+     * @return `(``Topology``: &lt;optional&gt;)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+     * 
+     */
     public Optional<ExternalVolumeTopologyRequestPreferred> preferred() {
         return Optional.ofNullable(this.preferred);
     }
+    /**
+     * @return `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     * 
+     */
     public Optional<ExternalVolumeTopologyRequestRequired> required() {
         return Optional.ofNullable(this.required);
     }

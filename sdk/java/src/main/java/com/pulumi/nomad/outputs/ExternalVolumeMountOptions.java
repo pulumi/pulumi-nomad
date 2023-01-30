@@ -12,13 +12,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ExternalVolumeMountOptions {
+    /**
+     * @return `(string: optional)` - The file system type.
+     * 
+     */
     private @Nullable String fsType;
+    /**
+     * @return `[]string: optional` - The flags passed to `mount`.
+     * 
+     */
     private @Nullable List<String> mountFlags;
 
     private ExternalVolumeMountOptions() {}
+    /**
+     * @return `(string: optional)` - The file system type.
+     * 
+     */
     public Optional<String> fsType() {
         return Optional.ofNullable(this.fsType);
     }
+    /**
+     * @return `[]string: optional` - The flags passed to `mount`.
+     * 
+     */
     public List<String> mountFlags() {
         return this.mountFlags == null ? List.of() : this.mountFlags;
     }

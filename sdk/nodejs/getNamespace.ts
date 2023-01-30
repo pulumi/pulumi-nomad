@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -13,17 +15,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const namespaces = pulumi.output(nomad.getNamespace({
+ * const namespaces = nomad.getNamespace({
  *     name: "default",
- * }));
+ * });
  * ```
  */
 export function getNamespace(args: GetNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetNamespaceResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getNamespace:getNamespace", {
         "name": args.name,
     }, opts);
@@ -43,17 +42,44 @@ export interface GetNamespaceArgs {
  * A collection of values returned by getNamespace.
  */
 export interface GetNamespaceResult {
+    /**
+     * `(block)` - Capabilities of the namespace
+     */
+    readonly capabilities: outputs.GetNamespaceCapability[];
+    /**
+     * `(string)` - The description of the namespace.
+     */
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * `(map[string]string)` -  Arbitrary KV metadata associated with the namespace.
+     */
+    readonly meta: {[key: string]: string};
     readonly name: string;
+    /**
+     * `(string)` - The quota associated with the namespace.
+     */
     readonly quota: string;
 }
-
+/**
+ * Get information about a namespace in Nomad.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const namespaces = nomad.getNamespace({
+ *     name: "default",
+ * });
+ * ```
+ */
 export function getNamespaceOutput(args: GetNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNamespaceResult> {
-    return pulumi.output(args).apply(a => getNamespace(a, opts))
+    return pulumi.output(args).apply((a: any) => getNamespace(a, opts))
 }
 
 /**

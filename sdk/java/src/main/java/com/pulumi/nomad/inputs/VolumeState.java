@@ -24,7 +24,12 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     public static final VolumeState Empty = new VolumeState();
 
     /**
-     * Defines whether a volume should be available concurrently.
+     * `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
      * 
      * @deprecated
      * use capability instead
@@ -35,7 +40,12 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> accessMode;
 
     /**
-     * @return Defines whether a volume should be available concurrently.
+     * @return `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
      * 
      * @deprecated
      * use capability instead
@@ -47,7 +57,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The storage API that will be used by the volume.
+     * `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
      * 
      * @deprecated
      * use capability instead
@@ -58,7 +68,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> attachmentMode;
 
     /**
-     * @return The storage API that will be used by the volume.
+     * @return `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
      * 
      * @deprecated
      * use capability instead
@@ -70,14 +80,14 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Capabilities intended to be used in a job. At least one capability must be provided.
+     * `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
      * 
      */
     @Import(name="capabilities")
     private @Nullable Output<List<VolumeCapabilityArgs>> capabilities;
 
     /**
-     * @return Capabilities intended to be used in a job. At least one capability must be provided.
+     * @return `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
      * 
      */
     public Optional<Output<List<VolumeCapabilityArgs>>> capabilities() {
@@ -85,50 +95,74 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+     * `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      * 
      */
     @Import(name="context")
     private @Nullable Output<Map<String,String>> context;
 
     /**
-     * @return An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+     * @return `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      * 
      */
     public Optional<Output<Map<String,String>>> context() {
         return Optional.ofNullable(this.context);
     }
 
+    /**
+     * `(boolean)`
+     * 
+     */
     @Import(name="controllerRequired")
     private @Nullable Output<Boolean> controllerRequired;
 
+    /**
+     * @return `(boolean)`
+     * 
+     */
     public Optional<Output<Boolean>> controllerRequired() {
         return Optional.ofNullable(this.controllerRequired);
     }
 
+    /**
+     * `(integer)`
+     * 
+     */
     @Import(name="controllersExpected")
     private @Nullable Output<Integer> controllersExpected;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Optional<Output<Integer>> controllersExpected() {
         return Optional.ofNullable(this.controllersExpected);
     }
 
+    /**
+     * `(integer)`
+     * 
+     */
     @Import(name="controllersHealthy")
     private @Nullable Output<Integer> controllersHealthy;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Optional<Output<Integer>> controllersHealthy() {
         return Optional.ofNullable(this.controllersHealthy);
     }
 
     /**
-     * If true, the volume will be deregistered on destroy.
+     * `(boolean: false)` - If true, the volume will be deregistered on destroy.
      * 
      */
     @Import(name="deregisterOnDestroy")
     private @Nullable Output<Boolean> deregisterOnDestroy;
 
     /**
-     * @return If true, the volume will be deregistered on destroy.
+     * @return `(boolean: false)` - If true, the volume will be deregistered on destroy.
      * 
      */
     public Optional<Output<Boolean>> deregisterOnDestroy() {
@@ -136,14 +170,14 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of the physical volume from the storage provider.
+     * `(string: &lt;required&gt;)` - The ID of the physical volume from the storage provider.
      * 
      */
     @Import(name="externalId")
     private @Nullable Output<String> externalId;
 
     /**
-     * @return The ID of the physical volume from the storage provider.
+     * @return `(string: &lt;required&gt;)` - The ID of the physical volume from the storage provider.
      * 
      */
     public Optional<Output<String>> externalId() {
@@ -151,14 +185,14 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+     * `(block: &lt;optional&gt;)` Options for mounting `block-device` volumes without a pre-formatted file system.
      * 
      */
     @Import(name="mountOptions")
     private @Nullable Output<VolumeMountOptionsArgs> mountOptions;
 
     /**
-     * @return Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+     * @return `(block: &lt;optional&gt;)` Options for mounting `block-device` volumes without a pre-formatted file system.
      * 
      */
     public Optional<Output<VolumeMountOptionsArgs>> mountOptions() {
@@ -166,14 +200,14 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The display name of the volume.
+     * `(string: &lt;required&gt;)` - The display name for the volume.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The display name of the volume.
+     * @return `(string: &lt;required&gt;)` - The display name for the volume.
      * 
      */
     public Optional<Output<String>> name() {
@@ -181,43 +215,59 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The namespace in which to create the volume.
+     * `(string: &#34;default&#34;)` - The namespace in which to register the volume.
      * 
      */
     @Import(name="namespace")
     private @Nullable Output<String> namespace;
 
     /**
-     * @return The namespace in which to create the volume.
+     * @return `(string: &#34;default&#34;)` - The namespace in which to register the volume.
      * 
      */
     public Optional<Output<String>> namespace() {
         return Optional.ofNullable(this.namespace);
     }
 
+    /**
+     * `(integer)`
+     * 
+     */
     @Import(name="nodesExpected")
     private @Nullable Output<Integer> nodesExpected;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Optional<Output<Integer>> nodesExpected() {
         return Optional.ofNullable(this.nodesExpected);
     }
 
+    /**
+     * `(integer)`
+     * 
+     */
     @Import(name="nodesHealthy")
     private @Nullable Output<Integer> nodesHealthy;
 
+    /**
+     * @return `(integer)`
+     * 
+     */
     public Optional<Output<Integer>> nodesHealthy() {
         return Optional.ofNullable(this.nodesHealthy);
     }
 
     /**
-     * An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+     * `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      * 
      */
     @Import(name="parameters")
     private @Nullable Output<Map<String,String>> parameters;
 
     /**
-     * @return An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+     * @return `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      * 
      */
     public Optional<Output<Map<String,String>>> parameters() {
@@ -225,72 +275,104 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of the CSI plugin that manages this volume.
+     * `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
      * 
      */
     @Import(name="pluginId")
     private @Nullable Output<String> pluginId;
 
     /**
-     * @return The ID of the CSI plugin that manages this volume.
+     * @return `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
      * 
      */
     public Optional<Output<String>> pluginId() {
         return Optional.ofNullable(this.pluginId);
     }
 
+    /**
+     * `(string)`
+     * 
+     */
     @Import(name="pluginProvider")
     private @Nullable Output<String> pluginProvider;
 
+    /**
+     * @return `(string)`
+     * 
+     */
     public Optional<Output<String>> pluginProvider() {
         return Optional.ofNullable(this.pluginProvider);
     }
 
+    /**
+     * `(string)`
+     * 
+     */
     @Import(name="pluginProviderVersion")
     private @Nullable Output<String> pluginProviderVersion;
 
+    /**
+     * @return `(string)`
+     * 
+     */
     public Optional<Output<String>> pluginProviderVersion() {
         return Optional.ofNullable(this.pluginProviderVersion);
     }
 
+    /**
+     * `(boolean)`
+     * 
+     */
     @Import(name="schedulable")
     private @Nullable Output<Boolean> schedulable;
 
+    /**
+     * @return `(boolean)`
+     * 
+     */
     public Optional<Output<Boolean>> schedulable() {
         return Optional.ofNullable(this.schedulable);
     }
 
     /**
-     * An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+     * `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      * 
      */
     @Import(name="secrets")
     private @Nullable Output<Map<String,String>> secrets;
 
     /**
-     * @return An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+     * @return `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      * 
      */
     public Optional<Output<Map<String,String>>> secrets() {
         return Optional.ofNullable(this.secrets);
     }
 
+    /**
+     * `(List of topologies)`
+     * 
+     */
     @Import(name="topologies")
     private @Nullable Output<List<VolumeTopologyArgs>> topologies;
 
+    /**
+     * @return `(List of topologies)`
+     * 
+     */
     public Optional<Output<List<VolumeTopologyArgs>>> topologies() {
         return Optional.ofNullable(this.topologies);
     }
 
     /**
-     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     * `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      * 
      */
     @Import(name="topologyRequest")
     private @Nullable Output<VolumeTopologyRequestArgs> topologyRequest;
 
     /**
-     * @return Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     * @return `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      * 
      */
     public Optional<Output<VolumeTopologyRequestArgs>> topologyRequest() {
@@ -298,14 +380,14 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The type of the volume. Currently, only &#39;csi&#39; is supported.
+     * `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return The type of the volume. Currently, only &#39;csi&#39; is supported.
+     * @return `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
      * 
      */
     public Optional<Output<String>> type() {
@@ -313,14 +395,14 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The unique ID of the volume, how jobs will refer to the volume.
+     * `(string: &lt;required&gt;)` - The unique ID of the volume.
      * 
      */
     @Import(name="volumeId")
     private @Nullable Output<String> volumeId;
 
     /**
-     * @return The unique ID of the volume, how jobs will refer to the volume.
+     * @return `(string: &lt;required&gt;)` - The unique ID of the volume.
      * 
      */
     public Optional<Output<String>> volumeId() {
@@ -375,7 +457,12 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param accessMode Defines whether a volume should be available concurrently.
+         * @param accessMode `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+         * - `single-node-reader-only`
+         * - `single-node-writer`
+         * - `multi-node-reader-only`
+         * - `multi-node-single-writer`
+         * - `multi-node-multi-writer`
          * 
          * @return builder
          * 
@@ -390,7 +477,12 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param accessMode Defines whether a volume should be available concurrently.
+         * @param accessMode `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+         * - `single-node-reader-only`
+         * - `single-node-writer`
+         * - `multi-node-reader-only`
+         * - `multi-node-single-writer`
+         * - `multi-node-multi-writer`
          * 
          * @return builder
          * 
@@ -404,7 +496,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param attachmentMode The storage API that will be used by the volume.
+         * @param attachmentMode `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
          * 
          * @return builder
          * 
@@ -419,7 +511,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param attachmentMode The storage API that will be used by the volume.
+         * @param attachmentMode `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
          * 
          * @return builder
          * 
@@ -433,7 +525,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param capabilities Capabilities intended to be used in a job. At least one capability must be provided.
+         * @param capabilities `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
          * 
          * @return builder
          * 
@@ -444,7 +536,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param capabilities Capabilities intended to be used in a job. At least one capability must be provided.
+         * @param capabilities `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
          * 
          * @return builder
          * 
@@ -454,7 +546,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param capabilities Capabilities intended to be used in a job. At least one capability must be provided.
+         * @param capabilities `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
          * 
          * @return builder
          * 
@@ -464,7 +556,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param context An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+         * @param context `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
          * 
          * @return builder
          * 
@@ -475,7 +567,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param context An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
+         * @param context `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
          * 
          * @return builder
          * 
@@ -484,35 +576,71 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
             return context(Output.of(context));
         }
 
+        /**
+         * @param controllerRequired `(boolean)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder controllerRequired(@Nullable Output<Boolean> controllerRequired) {
             $.controllerRequired = controllerRequired;
             return this;
         }
 
+        /**
+         * @param controllerRequired `(boolean)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder controllerRequired(Boolean controllerRequired) {
             return controllerRequired(Output.of(controllerRequired));
         }
 
+        /**
+         * @param controllersExpected `(integer)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder controllersExpected(@Nullable Output<Integer> controllersExpected) {
             $.controllersExpected = controllersExpected;
             return this;
         }
 
+        /**
+         * @param controllersExpected `(integer)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder controllersExpected(Integer controllersExpected) {
             return controllersExpected(Output.of(controllersExpected));
         }
 
+        /**
+         * @param controllersHealthy `(integer)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder controllersHealthy(@Nullable Output<Integer> controllersHealthy) {
             $.controllersHealthy = controllersHealthy;
             return this;
         }
 
+        /**
+         * @param controllersHealthy `(integer)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder controllersHealthy(Integer controllersHealthy) {
             return controllersHealthy(Output.of(controllersHealthy));
         }
 
         /**
-         * @param deregisterOnDestroy If true, the volume will be deregistered on destroy.
+         * @param deregisterOnDestroy `(boolean: false)` - If true, the volume will be deregistered on destroy.
          * 
          * @return builder
          * 
@@ -523,7 +651,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deregisterOnDestroy If true, the volume will be deregistered on destroy.
+         * @param deregisterOnDestroy `(boolean: false)` - If true, the volume will be deregistered on destroy.
          * 
          * @return builder
          * 
@@ -533,7 +661,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param externalId The ID of the physical volume from the storage provider.
+         * @param externalId `(string: &lt;required&gt;)` - The ID of the physical volume from the storage provider.
          * 
          * @return builder
          * 
@@ -544,7 +672,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param externalId The ID of the physical volume from the storage provider.
+         * @param externalId `(string: &lt;required&gt;)` - The ID of the physical volume from the storage provider.
          * 
          * @return builder
          * 
@@ -554,7 +682,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mountOptions Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+         * @param mountOptions `(block: &lt;optional&gt;)` Options for mounting `block-device` volumes without a pre-formatted file system.
          * 
          * @return builder
          * 
@@ -565,7 +693,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mountOptions Options for mounting &#39;block-device&#39; volumes without a pre-formatted file system.
+         * @param mountOptions `(block: &lt;optional&gt;)` Options for mounting `block-device` volumes without a pre-formatted file system.
          * 
          * @return builder
          * 
@@ -575,7 +703,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The display name of the volume.
+         * @param name `(string: &lt;required&gt;)` - The display name for the volume.
          * 
          * @return builder
          * 
@@ -586,7 +714,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The display name of the volume.
+         * @param name `(string: &lt;required&gt;)` - The display name for the volume.
          * 
          * @return builder
          * 
@@ -596,7 +724,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param namespace The namespace in which to create the volume.
+         * @param namespace `(string: &#34;default&#34;)` - The namespace in which to register the volume.
          * 
          * @return builder
          * 
@@ -607,7 +735,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param namespace The namespace in which to create the volume.
+         * @param namespace `(string: &#34;default&#34;)` - The namespace in which to register the volume.
          * 
          * @return builder
          * 
@@ -616,26 +744,50 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
             return namespace(Output.of(namespace));
         }
 
+        /**
+         * @param nodesExpected `(integer)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder nodesExpected(@Nullable Output<Integer> nodesExpected) {
             $.nodesExpected = nodesExpected;
             return this;
         }
 
+        /**
+         * @param nodesExpected `(integer)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder nodesExpected(Integer nodesExpected) {
             return nodesExpected(Output.of(nodesExpected));
         }
 
+        /**
+         * @param nodesHealthy `(integer)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder nodesHealthy(@Nullable Output<Integer> nodesHealthy) {
             $.nodesHealthy = nodesHealthy;
             return this;
         }
 
+        /**
+         * @param nodesHealthy `(integer)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder nodesHealthy(Integer nodesHealthy) {
             return nodesHealthy(Output.of(nodesHealthy));
         }
 
         /**
-         * @param parameters An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+         * @param parameters `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
          * 
          * @return builder
          * 
@@ -646,7 +798,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param parameters An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+         * @param parameters `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
          * 
          * @return builder
          * 
@@ -656,7 +808,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param pluginId The ID of the CSI plugin that manages this volume.
+         * @param pluginId `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
          * 
          * @return builder
          * 
@@ -667,7 +819,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param pluginId The ID of the CSI plugin that manages this volume.
+         * @param pluginId `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
          * 
          * @return builder
          * 
@@ -676,35 +828,71 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
             return pluginId(Output.of(pluginId));
         }
 
+        /**
+         * @param pluginProvider `(string)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder pluginProvider(@Nullable Output<String> pluginProvider) {
             $.pluginProvider = pluginProvider;
             return this;
         }
 
+        /**
+         * @param pluginProvider `(string)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder pluginProvider(String pluginProvider) {
             return pluginProvider(Output.of(pluginProvider));
         }
 
+        /**
+         * @param pluginProviderVersion `(string)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder pluginProviderVersion(@Nullable Output<String> pluginProviderVersion) {
             $.pluginProviderVersion = pluginProviderVersion;
             return this;
         }
 
+        /**
+         * @param pluginProviderVersion `(string)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder pluginProviderVersion(String pluginProviderVersion) {
             return pluginProviderVersion(Output.of(pluginProviderVersion));
         }
 
+        /**
+         * @param schedulable `(boolean)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder schedulable(@Nullable Output<Boolean> schedulable) {
             $.schedulable = schedulable;
             return this;
         }
 
+        /**
+         * @param schedulable `(boolean)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder schedulable(Boolean schedulable) {
             return schedulable(Output.of(schedulable));
         }
 
         /**
-         * @param secrets An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+         * @param secrets `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
          * 
          * @return builder
          * 
@@ -715,7 +903,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param secrets An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+         * @param secrets `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
          * 
          * @return builder
          * 
@@ -724,21 +912,39 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
             return secrets(Output.of(secrets));
         }
 
+        /**
+         * @param topologies `(List of topologies)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(@Nullable Output<List<VolumeTopologyArgs>> topologies) {
             $.topologies = topologies;
             return this;
         }
 
+        /**
+         * @param topologies `(List of topologies)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(List<VolumeTopologyArgs> topologies) {
             return topologies(Output.of(topologies));
         }
 
+        /**
+         * @param topologies `(List of topologies)`
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(VolumeTopologyArgs... topologies) {
             return topologies(List.of(topologies));
         }
 
         /**
-         * @param topologyRequest Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+         * @param topologyRequest `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
          * 
          * @return builder
          * 
@@ -749,7 +955,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param topologyRequest Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+         * @param topologyRequest `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
          * 
          * @return builder
          * 
@@ -759,7 +965,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type The type of the volume. Currently, only &#39;csi&#39; is supported.
+         * @param type `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
          * 
          * @return builder
          * 
@@ -770,7 +976,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type The type of the volume. Currently, only &#39;csi&#39; is supported.
+         * @param type `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
          * 
          * @return builder
          * 
@@ -780,7 +986,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param volumeId The unique ID of the volume, how jobs will refer to the volume.
+         * @param volumeId `(string: &lt;required&gt;)` - The unique ID of the volume.
          * 
          * @return builder
          * 
@@ -791,7 +997,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param volumeId The unique ID of the volume, how jobs will refer to the volume.
+         * @param volumeId `(string: &lt;required&gt;)` - The unique ID of the volume.
          * 
          * @return builder
          * 

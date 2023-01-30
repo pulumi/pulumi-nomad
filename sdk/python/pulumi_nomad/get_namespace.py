@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetNamespaceResult',
@@ -21,13 +22,19 @@ class GetNamespaceResult:
     """
     A collection of values returned by getNamespace.
     """
-    def __init__(__self__, description=None, id=None, name=None, quota=None):
+    def __init__(__self__, capabilities=None, description=None, id=None, meta=None, name=None, quota=None):
+        if capabilities and not isinstance(capabilities, list):
+            raise TypeError("Expected argument 'capabilities' to be a list")
+        pulumi.set(__self__, "capabilities", capabilities)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if meta and not isinstance(meta, dict):
+            raise TypeError("Expected argument 'meta' to be a dict")
+        pulumi.set(__self__, "meta", meta)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -37,7 +44,18 @@ class GetNamespaceResult:
 
     @property
     @pulumi.getter
+    def capabilities(self) -> Sequence['outputs.GetNamespaceCapabilityResult']:
+        """
+        `(block)` - Capabilities of the namespace
+        """
+        return pulumi.get(self, "capabilities")
+
+    @property
+    @pulumi.getter
     def description(self) -> str:
+        """
+        `(string)` - The description of the namespace.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -50,12 +68,23 @@ class GetNamespaceResult:
 
     @property
     @pulumi.getter
+    def meta(self) -> Mapping[str, str]:
+        """
+        `(map[string]string)` -  Arbitrary KV metadata associated with the namespace.
+        """
+        return pulumi.get(self, "meta")
+
+    @property
+    @pulumi.getter
     def name(self) -> str:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def quota(self) -> str:
+        """
+        `(string)` - The quota associated with the namespace.
+        """
         return pulumi.get(self, "quota")
 
 
@@ -65,8 +94,10 @@ class AwaitableGetNamespaceResult(GetNamespaceResult):
         if False:
             yield self
         return GetNamespaceResult(
+            capabilities=self.capabilities,
             description=self.description,
             id=self.id,
+            meta=self.meta,
             name=self.name,
             quota=self.quota)
 
@@ -94,8 +125,10 @@ def get_namespace(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getNamespace:getNamespace', __args__, opts=opts, typ=GetNamespaceResult).value
 
     return AwaitableGetNamespaceResult(
+        capabilities=__ret__.capabilities,
         description=__ret__.description,
         id=__ret__.id,
+        meta=__ret__.meta,
         name=__ret__.name,
         quota=__ret__.quota)
 

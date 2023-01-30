@@ -15,18 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const tokens = pulumi.output(nomad.getAclTokens({
+ * const tokens = nomad.getAclTokens({
  *     prefix: "a242",
- * }));
+ * });
  * ```
  */
 export function getAclTokens(args?: GetAclTokensArgs, opts?: pulumi.InvokeOptions): Promise<GetAclTokensResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getAclTokens:getAclTokens", {
         "prefix": args.prefix,
     }, opts);
@@ -36,6 +33,9 @@ export function getAclTokens(args?: GetAclTokensArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking getAclTokens.
  */
 export interface GetAclTokensArgs {
+    /**
+     * `(string)` Optional prefix to filter the tokens.
+     */
     prefix?: string;
 }
 
@@ -43,6 +43,9 @@ export interface GetAclTokensArgs {
  * A collection of values returned by getAclTokens.
  */
 export interface GetAclTokensResult {
+    /**
+     * `(list of objects)` The list of tokens found in the given prefix.
+     */
     readonly aclTokens: outputs.GetAclTokensAclToken[];
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -50,14 +53,30 @@ export interface GetAclTokensResult {
     readonly id: string;
     readonly prefix?: string;
 }
-
+/**
+ * Get a list of ACL tokens.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const tokens = nomad.getAclTokens({
+ *     prefix: "a242",
+ * });
+ * ```
+ */
 export function getAclTokensOutput(args?: GetAclTokensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclTokensResult> {
-    return pulumi.output(args).apply(a => getAclTokens(a, opts))
+    return pulumi.output(args).apply((a: any) => getAclTokens(a, opts))
 }
 
 /**
  * A collection of arguments for invoking getAclTokens.
  */
 export interface GetAclTokensOutputArgs {
+    /**
+     * `(string)` Optional prefix to filter the tokens.
+     */
     prefix?: pulumi.Input<string>;
 }

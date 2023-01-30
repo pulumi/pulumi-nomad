@@ -83,69 +83,95 @@ export class ExternalVolume extends pulumi.CustomResource {
     }
 
     /**
-     * Capabilities intended to be used in a job. At least one capability must be provided.
+     * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
     public readonly capabilities!: pulumi.Output<outputs.ExternalVolumeCapability[]>;
     /**
-     * Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+     * `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      */
     public readonly capacityMax!: pulumi.Output<string | undefined>;
     /**
-     * Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+     * `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      */
     public readonly capacityMin!: pulumi.Output<string | undefined>;
     /**
-     * The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
+     * `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      */
     public readonly cloneId!: pulumi.Output<string | undefined>;
+    /**
+     * `(boolean)`
+     */
     public /*out*/ readonly controllerRequired!: pulumi.Output<boolean>;
+    /**
+     * `(integer)`
+     */
     public /*out*/ readonly controllersExpected!: pulumi.Output<number>;
+    /**
+     * `(integer)`
+     */
     public /*out*/ readonly controllersHealthy!: pulumi.Output<number>;
     /**
-     * Options for mounting 'block-device' volumes without a pre-formatted file system.
+     * `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
      */
     public readonly mountOptions!: pulumi.Output<outputs.ExternalVolumeMountOptions | undefined>;
     /**
-     * The display name of the volume.
+     * `(string: <required>)` - The display name for the volume.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The namespace in which to create the volume.
+     * `(string: "default")` - The namespace in which to register the volume.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
+    /**
+     * `(integer)`
+     */
     public /*out*/ readonly nodesExpected!: pulumi.Output<number>;
+    /**
+     * `(integer)`
+     */
     public /*out*/ readonly nodesHealthy!: pulumi.Output<number>;
     /**
-     * An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+     * `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      */
     public readonly parameters!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The ID of the CSI plugin that manages this volume.
+     * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
     public readonly pluginId!: pulumi.Output<string>;
+    /**
+     * `(string)`
+     */
     public /*out*/ readonly pluginProvider!: pulumi.Output<string>;
+    /**
+     * `(string)`
+     */
     public /*out*/ readonly pluginProviderVersion!: pulumi.Output<string>;
+    /**
+     * `(boolean)`
+     */
     public /*out*/ readonly schedulable!: pulumi.Output<boolean>;
     /**
-     * An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+     * `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
     public readonly secrets!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-     * 'clone_id'.
+     * `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
      */
     public readonly snapshotId!: pulumi.Output<string | undefined>;
+    /**
+     * `(List of topologies)`
+     */
     public /*out*/ readonly topologies!: pulumi.Output<outputs.ExternalVolumeTopology[]>;
     /**
-     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      */
     public readonly topologyRequest!: pulumi.Output<outputs.ExternalVolumeTopologyRequest | undefined>;
     /**
-     * The type of the volume. Currently, only 'csi' is supported.
+     * `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
      */
     public readonly type!: pulumi.Output<string | undefined>;
     /**
-     * The unique ID of the volume, how jobs will refer to the volume.
+     * `(string: <required>)` - The unique ID of the volume.
      */
     public readonly volumeId!: pulumi.Output<string>;
 
@@ -205,7 +231,7 @@ export class ExternalVolume extends pulumi.CustomResource {
             resourceInputs["namespace"] = args ? args.namespace : undefined;
             resourceInputs["parameters"] = args ? args.parameters : undefined;
             resourceInputs["pluginId"] = args ? args.pluginId : undefined;
-            resourceInputs["secrets"] = args ? args.secrets : undefined;
+            resourceInputs["secrets"] = args?.secrets ? pulumi.secret(args.secrets) : undefined;
             resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
             resourceInputs["topologyRequest"] = args ? args.topologyRequest : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -221,6 +247,8 @@ export class ExternalVolume extends pulumi.CustomResource {
             resourceInputs["topologies"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secrets"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(ExternalVolume.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -230,69 +258,95 @@ export class ExternalVolume extends pulumi.CustomResource {
  */
 export interface ExternalVolumeState {
     /**
-     * Capabilities intended to be used in a job. At least one capability must be provided.
+     * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
     capabilities?: pulumi.Input<pulumi.Input<inputs.ExternalVolumeCapability>[]>;
     /**
-     * Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+     * `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      */
     capacityMax?: pulumi.Input<string>;
     /**
-     * Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+     * `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      */
     capacityMin?: pulumi.Input<string>;
     /**
-     * The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
+     * `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      */
     cloneId?: pulumi.Input<string>;
+    /**
+     * `(boolean)`
+     */
     controllerRequired?: pulumi.Input<boolean>;
+    /**
+     * `(integer)`
+     */
     controllersExpected?: pulumi.Input<number>;
+    /**
+     * `(integer)`
+     */
     controllersHealthy?: pulumi.Input<number>;
     /**
-     * Options for mounting 'block-device' volumes without a pre-formatted file system.
+     * `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
      */
     mountOptions?: pulumi.Input<inputs.ExternalVolumeMountOptions>;
     /**
-     * The display name of the volume.
+     * `(string: <required>)` - The display name for the volume.
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace in which to create the volume.
+     * `(string: "default")` - The namespace in which to register the volume.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * `(integer)`
+     */
     nodesExpected?: pulumi.Input<number>;
+    /**
+     * `(integer)`
+     */
     nodesHealthy?: pulumi.Input<number>;
     /**
-     * An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+     * `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      */
     parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The ID of the CSI plugin that manages this volume.
+     * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
     pluginId?: pulumi.Input<string>;
+    /**
+     * `(string)`
+     */
     pluginProvider?: pulumi.Input<string>;
+    /**
+     * `(string)`
+     */
     pluginProviderVersion?: pulumi.Input<string>;
+    /**
+     * `(boolean)`
+     */
     schedulable?: pulumi.Input<boolean>;
     /**
-     * An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+     * `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
     secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-     * 'clone_id'.
+     * `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
      */
     snapshotId?: pulumi.Input<string>;
+    /**
+     * `(List of topologies)`
+     */
     topologies?: pulumi.Input<pulumi.Input<inputs.ExternalVolumeTopology>[]>;
     /**
-     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      */
     topologyRequest?: pulumi.Input<inputs.ExternalVolumeTopologyRequest>;
     /**
-     * The type of the volume. Currently, only 'csi' is supported.
+     * `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
      */
     type?: pulumi.Input<string>;
     /**
-     * The unique ID of the volume, how jobs will refer to the volume.
+     * `(string: <required>)` - The unique ID of the volume.
      */
     volumeId?: pulumi.Input<string>;
 }
@@ -302,60 +356,59 @@ export interface ExternalVolumeState {
  */
 export interface ExternalVolumeArgs {
     /**
-     * Capabilities intended to be used in a job. At least one capability must be provided.
+     * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
     capabilities: pulumi.Input<pulumi.Input<inputs.ExternalVolumeCapability>[]>;
     /**
-     * Defines how large the volume can be. The storage provider may return a volume that is smaller than this value.
+     * `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      */
     capacityMax?: pulumi.Input<string>;
     /**
-     * Defines how small the volume can be. The storage provider may return a volume that is larger than this value.
+     * `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      */
     capacityMin?: pulumi.Input<string>;
     /**
-     * The volume ID to clone when creating this volume. Storage provider must support cloning. Conflicts with 'snapshot_id'.
+     * `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      */
     cloneId?: pulumi.Input<string>;
     /**
-     * Options for mounting 'block-device' volumes without a pre-formatted file system.
+     * `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
      */
     mountOptions?: pulumi.Input<inputs.ExternalVolumeMountOptions>;
     /**
-     * The display name of the volume.
+     * `(string: <required>)` - The display name for the volume.
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace in which to create the volume.
+     * `(string: "default")` - The namespace in which to register the volume.
      */
     namespace?: pulumi.Input<string>;
     /**
-     * An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
+     * `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      */
     parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The ID of the CSI plugin that manages this volume.
+     * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
     pluginId: pulumi.Input<string>;
     /**
-     * An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
+     * `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
     secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The snapshot ID to restore when creating this volume. Storage provider must support snapshots. Conflicts with
-     * 'clone_id'.
+     * `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
      */
     snapshotId?: pulumi.Input<string>;
     /**
-     * Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+     * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      */
     topologyRequest?: pulumi.Input<inputs.ExternalVolumeTopologyRequest>;
     /**
-     * The type of the volume. Currently, only 'csi' is supported.
+     * `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
      */
     type?: pulumi.Input<string>;
     /**
-     * The unique ID of the volume, how jobs will refer to the volume.
+     * `(string: <required>)` - The unique ID of the volume.
      */
     volumeId: pulumi.Input<string>;
 }

@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.nomad.inputs.AclTokenRoleArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -16,6 +17,23 @@ import javax.annotation.Nullable;
 public final class AclTokenArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final AclTokenArgs Empty = new AclTokenArgs();
+
+    /**
+     * `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
+     * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
+     * 
+     */
+    @Import(name="expirationTtl")
+    private @Nullable Output<String> expirationTtl;
+
+    /**
+     * @return `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
+     * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
+     * 
+     */
+    public Optional<Output<String>> expirationTtl() {
+        return Optional.ofNullable(this.expirationTtl);
+    }
 
     /**
      * `(bool: false)` - Whether the token should be replicated to all
@@ -71,6 +89,23 @@ public final class AclTokenArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * `(set: [])` - The list of roles attached to the token. Each entry has
+     * `name` and `id` attributes. It may be used multiple times.
+     * 
+     */
+    @Import(name="roles")
+    private @Nullable Output<List<AclTokenRoleArgs>> roles;
+
+    /**
+     * @return `(set: [])` - The list of roles attached to the token. Each entry has
+     * `name` and `id` attributes. It may be used multiple times.
+     * 
+     */
+    public Optional<Output<List<AclTokenRoleArgs>>> roles() {
+        return Optional.ofNullable(this.roles);
+    }
+
+    /**
      * `(string: &lt;required&gt;)` - The type of token this is. Use `client`
      * for tokens that will have policies associated with them. Use `management`
      * for tokens that can perform any action.
@@ -92,9 +127,11 @@ public final class AclTokenArgs extends com.pulumi.resources.ResourceArgs {
     private AclTokenArgs() {}
 
     private AclTokenArgs(AclTokenArgs $) {
+        this.expirationTtl = $.expirationTtl;
         this.global = $.global;
         this.name = $.name;
         this.policies = $.policies;
+        this.roles = $.roles;
         this.type = $.type;
     }
 
@@ -114,6 +151,29 @@ public final class AclTokenArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(AclTokenArgs defaults) {
             $ = new AclTokenArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param expirationTtl `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
+         * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expirationTtl(@Nullable Output<String> expirationTtl) {
+            $.expirationTtl = expirationTtl;
+            return this;
+        }
+
+        /**
+         * @param expirationTtl `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
+         * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expirationTtl(String expirationTtl) {
+            return expirationTtl(Output.of(expirationTtl));
         }
 
         /**
@@ -198,6 +258,40 @@ public final class AclTokenArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder policies(String... policies) {
             return policies(List.of(policies));
+        }
+
+        /**
+         * @param roles `(set: [])` - The list of roles attached to the token. Each entry has
+         * `name` and `id` attributes. It may be used multiple times.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roles(@Nullable Output<List<AclTokenRoleArgs>> roles) {
+            $.roles = roles;
+            return this;
+        }
+
+        /**
+         * @param roles `(set: [])` - The list of roles attached to the token. Each entry has
+         * `name` and `id` attributes. It may be used multiple times.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roles(List<AclTokenRoleArgs> roles) {
+            return roles(Output.of(roles));
+        }
+
+        /**
+         * @param roles `(set: [])` - The list of roles attached to the token. Each entry has
+         * `name` and `id` attributes. It may be used multiple times.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roles(AclTokenRoleArgs... roles) {
+            return roles(List.of(roles));
         }
 
         /**

@@ -31,6 +31,9 @@ class GetDeploymentsResult:
     @property
     @pulumi.getter
     def deployments(self) -> Sequence[Mapping[str, Any]]:
+        """
+        `list of maps` a list of deployments in the cluster.
+        """
         return pulumi.get(self, "deployments")
 
     @property

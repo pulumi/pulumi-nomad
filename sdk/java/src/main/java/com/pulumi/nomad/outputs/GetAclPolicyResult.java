@@ -9,16 +9,32 @@ import java.util.Objects;
 
 @CustomType
 public final class GetAclPolicyResult {
+    /**
+     * @return `(string)` - the description of the ACL Policy.
+     * 
+     */
     private String description;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return `(string)` - the name of the ACL Policy.
+     * 
+     */
     private String name;
+    /**
+     * @return `(string)` - the ACL Policy rules in HCL format.
+     * 
+     */
     private String rules;
 
     private GetAclPolicyResult() {}
+    /**
+     * @return `(string)` - the description of the ACL Policy.
+     * 
+     */
     public String description() {
         return this.description;
     }
@@ -29,9 +45,17 @@ public final class GetAclPolicyResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return `(string)` - the name of the ACL Policy.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return `(string)` - the ACL Policy rules in HCL format.
+     * 
+     */
     public String rules() {
         return this.rules;
     }

@@ -12,19 +12,39 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetJobParserResult {
+    /**
+     * @return `(boolean: true)` - flag to enable setting any unset fields to their default values.
+     * 
+     */
     private @Nullable Boolean canonicalize;
+    /**
+     * @return `(string)` - the HCL definition of the job.
+     * 
+     */
     private String hcl;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return `(string)` - the parsed job as JSON string.
+     * 
+     */
     private String json;
 
     private GetJobParserResult() {}
+    /**
+     * @return `(boolean: true)` - flag to enable setting any unset fields to their default values.
+     * 
+     */
     public Optional<Boolean> canonicalize() {
         return Optional.ofNullable(this.canonicalize);
     }
+    /**
+     * @return `(string)` - the HCL definition of the job.
+     * 
+     */
     public String hcl() {
         return this.hcl;
     }
@@ -35,6 +55,10 @@ public final class GetJobParserResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return `(string)` - the parsed job as JSON string.
+     * 
+     */
     public String json() {
         return this.json;
     }

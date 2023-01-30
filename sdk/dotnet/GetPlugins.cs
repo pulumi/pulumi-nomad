@@ -91,6 +91,9 @@ namespace Pulumi.Nomad
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// `(list of maps)` a list of dynamic plugins registered in the cluster.
+        /// </summary>
         public readonly ImmutableArray<ImmutableDictionary<string, object>> Plugins;
         public readonly string? Type;
 

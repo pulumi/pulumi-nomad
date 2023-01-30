@@ -46,21 +46,27 @@ func GetVolumes(ctx *pulumi.Context, args *GetVolumesArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getVolumes.
 type GetVolumesArgs struct {
+	// `(string: "default")` Nomad namespace.
 	Namespace *string `pulumi:"namespace"`
-	NodeId    *string `pulumi:"nodeId"`
-	PluginId  *string `pulumi:"pluginId"`
-	Type      *string `pulumi:"type"`
+	// `(string: optional)` Volume node filter.
+	NodeId *string `pulumi:"nodeId"`
+	// `(string: optional)` Plugin ID filter.
+	PluginId *string `pulumi:"pluginId"`
+	// `(string: "csi")` Volume type (currently only supports `csi`)
+	Type *string `pulumi:"type"`
 }
 
 // A collection of values returned by getVolumes.
 type GetVolumesResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id        string                   `pulumi:"id"`
-	Namespace *string                  `pulumi:"namespace"`
-	NodeId    *string                  `pulumi:"nodeId"`
-	PluginId  *string                  `pulumi:"pluginId"`
-	Type      *string                  `pulumi:"type"`
-	Volumes   []map[string]interface{} `pulumi:"volumes"`
+	Id string `pulumi:"id"`
+	// `string` Volume namespace.
+	Namespace *string `pulumi:"namespace"`
+	NodeId    *string `pulumi:"nodeId"`
+	PluginId  *string `pulumi:"pluginId"`
+	Type      *string `pulumi:"type"`
+	// `list of maps` a list of volumes in the cluster.
+	Volumes []map[string]interface{} `pulumi:"volumes"`
 }
 
 func GetVolumesOutput(ctx *pulumi.Context, args GetVolumesOutputArgs, opts ...pulumi.InvokeOption) GetVolumesResultOutput {
@@ -78,10 +84,14 @@ func GetVolumesOutput(ctx *pulumi.Context, args GetVolumesOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getVolumes.
 type GetVolumesOutputArgs struct {
+	// `(string: "default")` Nomad namespace.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	NodeId    pulumi.StringPtrInput `pulumi:"nodeId"`
-	PluginId  pulumi.StringPtrInput `pulumi:"pluginId"`
-	Type      pulumi.StringPtrInput `pulumi:"type"`
+	// `(string: optional)` Volume node filter.
+	NodeId pulumi.StringPtrInput `pulumi:"nodeId"`
+	// `(string: optional)` Plugin ID filter.
+	PluginId pulumi.StringPtrInput `pulumi:"pluginId"`
+	// `(string: "csi")` Volume type (currently only supports `csi`)
+	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
 func (GetVolumesOutputArgs) ElementType() reflect.Type {
@@ -108,6 +118,7 @@ func (o GetVolumesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVolumesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// `string` Volume namespace.
 func (o GetVolumesResultOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVolumesResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
@@ -124,6 +135,7 @@ func (o GetVolumesResultOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetVolumesResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
+// `list of maps` a list of volumes in the cluster.
 func (o GetVolumesResultOutput) Volumes() pulumi.MapArrayOutput {
 	return o.ApplyT(func(v GetVolumesResult) []map[string]interface{} { return v.Volumes }).(pulumi.MapArrayOutput)
 }

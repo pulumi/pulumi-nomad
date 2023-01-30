@@ -4,21 +4,53 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.nomad.outputs.GetNamespaceCapability;
 import java.lang.String;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @CustomType
 public final class GetNamespaceResult {
+    /**
+     * @return `(block)` - Capabilities of the namespace
+     * 
+     */
+    private List<GetNamespaceCapability> capabilities;
+    /**
+     * @return `(string)` - The description of the namespace.
+     * 
+     */
     private String description;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return `(map[string]string)` -  Arbitrary KV metadata associated with the namespace.
+     * 
+     */
+    private Map<String,String> meta;
     private String name;
+    /**
+     * @return `(string)` - The quota associated with the namespace.
+     * 
+     */
     private String quota;
 
     private GetNamespaceResult() {}
+    /**
+     * @return `(block)` - Capabilities of the namespace
+     * 
+     */
+    public List<GetNamespaceCapability> capabilities() {
+        return this.capabilities;
+    }
+    /**
+     * @return `(string)` - The description of the namespace.
+     * 
+     */
     public String description() {
         return this.description;
     }
@@ -29,9 +61,20 @@ public final class GetNamespaceResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return `(map[string]string)` -  Arbitrary KV metadata associated with the namespace.
+     * 
+     */
+    public Map<String,String> meta() {
+        return this.meta;
+    }
     public String name() {
         return this.name;
     }
+    /**
+     * @return `(string)` - The quota associated with the namespace.
+     * 
+     */
     public String quota() {
         return this.quota;
     }
@@ -45,19 +88,31 @@ public final class GetNamespaceResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private List<GetNamespaceCapability> capabilities;
         private String description;
         private String id;
+        private Map<String,String> meta;
         private String name;
         private String quota;
         public Builder() {}
         public Builder(GetNamespaceResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.capabilities = defaults.capabilities;
     	      this.description = defaults.description;
     	      this.id = defaults.id;
+    	      this.meta = defaults.meta;
     	      this.name = defaults.name;
     	      this.quota = defaults.quota;
         }
 
+        @CustomType.Setter
+        public Builder capabilities(List<GetNamespaceCapability> capabilities) {
+            this.capabilities = Objects.requireNonNull(capabilities);
+            return this;
+        }
+        public Builder capabilities(GetNamespaceCapability... capabilities) {
+            return capabilities(List.of(capabilities));
+        }
         @CustomType.Setter
         public Builder description(String description) {
             this.description = Objects.requireNonNull(description);
@@ -66,6 +121,11 @@ public final class GetNamespaceResult {
         @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder meta(Map<String,String> meta) {
+            this.meta = Objects.requireNonNull(meta);
             return this;
         }
         @CustomType.Setter
@@ -80,8 +140,10 @@ public final class GetNamespaceResult {
         }
         public GetNamespaceResult build() {
             final var o = new GetNamespaceResult();
+            o.capabilities = capabilities;
             o.description = description;
             o.id = id;
+            o.meta = meta;
             o.name = name;
             o.quota = quota;
             return o;

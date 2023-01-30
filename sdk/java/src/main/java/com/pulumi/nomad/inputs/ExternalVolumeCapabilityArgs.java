@@ -13,16 +13,46 @@ public final class ExternalVolumeCapabilityArgs extends com.pulumi.resources.Res
 
     public static final ExternalVolumeCapabilityArgs Empty = new ExternalVolumeCapabilityArgs();
 
+    /**
+     * `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
+     * 
+     */
     @Import(name="accessMode", required=true)
     private Output<String> accessMode;
 
+    /**
+     * @return `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
+     * 
+     */
     public Output<String> accessMode() {
         return this.accessMode;
     }
 
+    /**
+     * `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
+     * - `block-device`
+     * - `file-system`
+     * 
+     */
     @Import(name="attachmentMode", required=true)
     private Output<String> attachmentMode;
 
+    /**
+     * @return `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
+     * - `block-device`
+     * - `file-system`
+     * 
+     */
     public Output<String> attachmentMode() {
         return this.attachmentMode;
     }
@@ -52,20 +82,58 @@ public final class ExternalVolumeCapabilityArgs extends com.pulumi.resources.Res
             $ = new ExternalVolumeCapabilityArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param accessMode `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
+         * - `single-node-reader-only`
+         * - `single-node-writer`
+         * - `multi-node-reader-only`
+         * - `multi-node-single-writer`
+         * - `multi-node-multi-writer`
+         * 
+         * @return builder
+         * 
+         */
         public Builder accessMode(Output<String> accessMode) {
             $.accessMode = accessMode;
             return this;
         }
 
+        /**
+         * @param accessMode `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
+         * - `single-node-reader-only`
+         * - `single-node-writer`
+         * - `multi-node-reader-only`
+         * - `multi-node-single-writer`
+         * - `multi-node-multi-writer`
+         * 
+         * @return builder
+         * 
+         */
         public Builder accessMode(String accessMode) {
             return accessMode(Output.of(accessMode));
         }
 
+        /**
+         * @param attachmentMode `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
+         * - `block-device`
+         * - `file-system`
+         * 
+         * @return builder
+         * 
+         */
         public Builder attachmentMode(Output<String> attachmentMode) {
             $.attachmentMode = attachmentMode;
             return this;
         }
 
+        /**
+         * @param attachmentMode `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
+         * - `block-device`
+         * - `file-system`
+         * 
+         * @return builder
+         * 
+         */
         public Builder attachmentMode(String attachmentMode) {
             return attachmentMode(Output.of(attachmentMode));
         }

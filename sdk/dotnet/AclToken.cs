@@ -116,6 +116,20 @@ namespace Pulumi.Nomad
         public Output<string> CreateTime { get; private set; } = null!;
 
         /// <summary>
+        /// `(string)` - The timestamp after which the token is
+        /// considered expired and eligible for destruction.
+        /// </summary>
+        [Output("expirationTime")]
+        public Output<string> ExpirationTime { get; private set; } = null!;
+
+        /// <summary>
+        /// `(string: "")` - Provides a TTL for the token in the form of
+        /// a time duration such as `"5m"` or `"1h"`.
+        /// </summary>
+        [Output("expirationTtl")]
+        public Output<string?> ExpirationTtl { get; private set; } = null!;
+
+        /// <summary>
         /// `(bool: false)` - Whether the token should be replicated to all
         /// regions, or if it will only be used in the region it was created in.
         /// </summary>
@@ -136,6 +150,13 @@ namespace Pulumi.Nomad
         /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<string>> Policies { get; private set; } = null!;
+
+        /// <summary>
+        /// `(set: [])` - The list of roles attached to the token. Each entry has
+        /// `name` and `id` attributes. It may be used multiple times.
+        /// </summary>
+        [Output("roles")]
+        public Output<ImmutableArray<Outputs.AclTokenRole>> Roles { get; private set; } = null!;
 
         /// <summary>
         /// `(string)` - The token value itself, which is presented for
@@ -175,6 +196,10 @@ namespace Pulumi.Nomad
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "secretId",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -198,6 +223,13 @@ namespace Pulumi.Nomad
 
     public sealed class AclTokenArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// `(string: "")` - Provides a TTL for the token in the form of
+        /// a time duration such as `"5m"` or `"1h"`.
+        /// </summary>
+        [Input("expirationTtl")]
+        public Input<string>? ExpirationTtl { get; set; }
+
         /// <summary>
         /// `(bool: false)` - Whether the token should be replicated to all
         /// regions, or if it will only be used in the region it was created in.
@@ -224,6 +256,19 @@ namespace Pulumi.Nomad
         {
             get => _policies ?? (_policies = new InputList<string>());
             set => _policies = value;
+        }
+
+        [Input("roles")]
+        private InputList<Inputs.AclTokenRoleArgs>? _roles;
+
+        /// <summary>
+        /// `(set: [])` - The list of roles attached to the token. Each entry has
+        /// `name` and `id` attributes. It may be used multiple times.
+        /// </summary>
+        public InputList<Inputs.AclTokenRoleArgs> Roles
+        {
+            get => _roles ?? (_roles = new InputList<Inputs.AclTokenRoleArgs>());
+            set => _roles = value;
         }
 
         /// <summary>
@@ -256,6 +301,20 @@ namespace Pulumi.Nomad
         public Input<string>? CreateTime { get; set; }
 
         /// <summary>
+        /// `(string)` - The timestamp after which the token is
+        /// considered expired and eligible for destruction.
+        /// </summary>
+        [Input("expirationTime")]
+        public Input<string>? ExpirationTime { get; set; }
+
+        /// <summary>
+        /// `(string: "")` - Provides a TTL for the token in the form of
+        /// a time duration such as `"5m"` or `"1h"`.
+        /// </summary>
+        [Input("expirationTtl")]
+        public Input<string>? ExpirationTtl { get; set; }
+
+        /// <summary>
         /// `(bool: false)` - Whether the token should be replicated to all
         /// regions, or if it will only be used in the region it was created in.
         /// </summary>
@@ -283,12 +342,35 @@ namespace Pulumi.Nomad
             set => _policies = value;
         }
 
+        [Input("roles")]
+        private InputList<Inputs.AclTokenRoleGetArgs>? _roles;
+
+        /// <summary>
+        /// `(set: [])` - The list of roles attached to the token. Each entry has
+        /// `name` and `id` attributes. It may be used multiple times.
+        /// </summary>
+        public InputList<Inputs.AclTokenRoleGetArgs> Roles
+        {
+            get => _roles ?? (_roles = new InputList<Inputs.AclTokenRoleGetArgs>());
+            set => _roles = value;
+        }
+
+        [Input("secretId")]
+        private Input<string>? _secretId;
+
         /// <summary>
         /// `(string)` - The token value itself, which is presented for
         /// access to the cluster.
         /// </summary>
-        [Input("secretId")]
-        public Input<string>? SecretId { get; set; }
+        public Input<string>? SecretId
+        {
+            get => _secretId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The type of token this is. Use `client`

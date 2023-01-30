@@ -12,6 +12,9 @@ namespace Pulumi.Nomad.Inputs
 
     public sealed class VolumeTopologyRequestArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        /// </summary>
         [Input("required")]
         public Input<Inputs.VolumeTopologyRequestRequiredArgs>? Required { get; set; }
 

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.GetAclTokens(ctx, &GetAclTokensArgs{
+//			_, err := nomad.GetAclTokens(ctx, &nomad.GetAclTokensArgs{
 //				Prefix: pulumi.StringRef("a242"),
 //			}, nil)
 //			if err != nil {
@@ -48,11 +48,13 @@ func GetAclTokens(ctx *pulumi.Context, args *GetAclTokensArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getAclTokens.
 type GetAclTokensArgs struct {
+	// `(string)` Optional prefix to filter the tokens.
 	Prefix *string `pulumi:"prefix"`
 }
 
 // A collection of values returned by getAclTokens.
 type GetAclTokensResult struct {
+	// `(list of objects)` The list of tokens found in the given prefix.
 	AclTokens []GetAclTokensAclToken `pulumi:"aclTokens"`
 	// The provider-assigned unique ID for this managed resource.
 	Id     string  `pulumi:"id"`
@@ -74,6 +76,7 @@ func GetAclTokensOutput(ctx *pulumi.Context, args GetAclTokensOutputArgs, opts .
 
 // A collection of arguments for invoking getAclTokens.
 type GetAclTokensOutputArgs struct {
+	// `(string)` Optional prefix to filter the tokens.
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 }
 
@@ -96,6 +99,7 @@ func (o GetAclTokensResultOutput) ToGetAclTokensResultOutputWithContext(ctx cont
 	return o
 }
 
+// `(list of objects)` The list of tokens found in the given prefix.
 func (o GetAclTokensResultOutput) AclTokens() GetAclTokensAclTokenArrayOutput {
 	return o.ApplyT(func(v GetAclTokensResult) []GetAclTokensAclToken { return v.AclTokens }).(GetAclTokensAclTokenArrayOutput)
 }

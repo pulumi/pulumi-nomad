@@ -93,6 +93,9 @@ class GetJobResult:
     @property
     @pulumi.getter(name="allAtOnce")
     def all_at_once(self) -> bool:
+        """
+        `(boolean)`  If the scheduler can make partial placements on oversubscribed nodes.
+        """
         return pulumi.get(self, "all_at_once")
 
     @property
@@ -103,11 +106,17 @@ class GetJobResult:
     @property
     @pulumi.getter(name="createIndex")
     def create_index(self) -> int:
+        """
+        `(integer)` Creation Index.
+        """
         return pulumi.get(self, "create_index")
 
     @property
     @pulumi.getter
     def datacenters(self) -> Sequence[str]:
+        """
+        `(list of strings)` Datacenters allowed to run the specified job.
+        """
         return pulumi.get(self, "datacenters")
 
     @property
@@ -126,81 +135,129 @@ class GetJobResult:
     @property
     @pulumi.getter(name="jobModifyIndex")
     def job_modify_index(self) -> int:
+        """
+        `(integer)` Job modify index (used for version verification).
+        """
         return pulumi.get(self, "job_modify_index")
 
     @property
     @pulumi.getter(name="modifyIndex")
     def modify_index(self) -> int:
+        """
+        `(integer)` Modification Index.
+        """
         return pulumi.get(self, "modify_index")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        `(string)` Name of the job.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
+        """
+        `(string)` Namespace of the specified job.
+        """
         return pulumi.get(self, "namespace")
 
     @property
     @pulumi.getter(name="parentId")
     def parent_id(self) -> str:
+        """
+        `(string)` Job's parent ID.
+        """
         return pulumi.get(self, "parent_id")
 
     @property
     @pulumi.getter(name="periodicConfigs")
     def periodic_configs(self) -> Sequence['outputs.GetJobPeriodicConfigResult']:
+        """
+        `(list of maps)` Job's periodic configuration (time based scheduling).
+        """
         return pulumi.get(self, "periodic_configs")
 
     @property
     @pulumi.getter
     def priority(self) -> int:
+        """
+        `(integer)` Used for the prioritization of scheduling and resource access.
+        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        `(string)` Region where the Nomad cluster resides.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
     def stable(self) -> bool:
+        """
+        `(boolean)` Job stability status.
+        """
         return pulumi.get(self, "stable")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        `(string)` Execution status of the specified job.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="statusDescription")
     def status_description(self) -> str:
+        """
+        `(string)` Status description of the specified job.
+        """
         return pulumi.get(self, "status_description")
 
     @property
     @pulumi.getter
     def stop(self) -> bool:
+        """
+        `(boolean)` Job enabled status.
+        """
         return pulumi.get(self, "stop")
 
     @property
     @pulumi.getter(name="submitTime")
     def submit_time(self) -> int:
+        """
+        `(integer)` Job submission date.
+        """
         return pulumi.get(self, "submit_time")
 
     @property
     @pulumi.getter(name="taskGroups")
     def task_groups(self) -> Sequence['outputs.GetJobTaskGroupResult']:
+        """
+        `(list of maps)` A list of of the job's task groups.
+        """
         return pulumi.get(self, "task_groups")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        `(string)` Scheduler type used during job creation.
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def version(self) -> int:
+        """
+        `(integer)` Version of the specified job.
+        """
         return pulumi.get(self, "version")
 
 
@@ -253,6 +310,10 @@ def get_job(job_id: Optional[str] = None,
 
     example = nomad.get_job(job_id="example")
     ```
+
+
+    :param str job_id: `(string)` ID of the job.
+    :param str namespace: `(string)` Namespace of the specified job.
     """
     __args__ = dict()
     __args__['jobId'] = job_id
@@ -305,5 +366,9 @@ def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
 
     example = nomad.get_job(job_id="example")
     ```
+
+
+    :param str job_id: `(string)` ID of the job.
+    :param str namespace: `(string)` Namespace of the specified job.
     """
     ...

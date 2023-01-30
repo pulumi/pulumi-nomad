@@ -22,6 +22,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "nomad:index/aclPolicy:AclPolicy":
 		r = &AclPolicy{}
+	case "nomad:index/aclRole:AclRole":
+		r = &AclRole{}
 	case "nomad:index/aclToken:AclToken":
 		r = &AclToken{}
 	case "nomad:index/externalVolume:ExternalVolume":
@@ -69,6 +71,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"nomad",
 		"index/aclPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"nomad",
+		"index/aclRole",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

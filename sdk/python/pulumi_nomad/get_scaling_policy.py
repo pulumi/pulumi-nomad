@@ -47,6 +47,9 @@ class GetScalingPolicyResult:
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        `(boolean)` - Whether or not the scaling policy is enabled.
+        """
         return pulumi.get(self, "enabled")
 
     @property
@@ -57,26 +60,41 @@ class GetScalingPolicyResult:
     @property
     @pulumi.getter
     def max(self) -> int:
+        """
+        `(integer)` - The maximum value set in the scaling policy.
+        """
         return pulumi.get(self, "max")
 
     @property
     @pulumi.getter
     def min(self) -> int:
+        """
+        `(integer)` - The minimum value set in the scaling policy.
+        """
         return pulumi.get(self, "min")
 
     @property
     @pulumi.getter
     def policy(self) -> str:
+        """
+        `(string)` - The policy inside the scaling policy.
+        """
         return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter
     def target(self) -> Mapping[str, Any]:
+        """
+        `(map[string]string)` - The scaling policy target.
+        """
         return pulumi.get(self, "target")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        `(string)` - The scaling policy type.
+        """
         return pulumi.get(self, "type")
 
 

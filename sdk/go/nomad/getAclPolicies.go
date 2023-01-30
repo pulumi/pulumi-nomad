@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.GetAclPolicies(ctx, &GetAclPoliciesArgs{
+//			_, err := nomad.GetAclPolicies(ctx, &nomad.GetAclPoliciesArgs{
 //				Prefix: pulumi.StringRef("prod"),
 //			}, nil)
 //			if err != nil {
@@ -48,13 +48,15 @@ func GetAclPolicies(ctx *pulumi.Context, args *GetAclPoliciesArgs, opts ...pulum
 
 // A collection of arguments for invoking getAclPolicies.
 type GetAclPoliciesArgs struct {
+	// `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
 	Prefix *string `pulumi:"prefix"`
 }
 
 // A collection of values returned by getAclPolicies.
 type GetAclPoliciesResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id       string                 `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// `list of maps` a list of ACL policies.
 	Policies []GetAclPoliciesPolicy `pulumi:"policies"`
 	Prefix   *string                `pulumi:"prefix"`
 }
@@ -74,6 +76,7 @@ func GetAclPoliciesOutput(ctx *pulumi.Context, args GetAclPoliciesOutputArgs, op
 
 // A collection of arguments for invoking getAclPolicies.
 type GetAclPoliciesOutputArgs struct {
+	// `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
 }
 
@@ -101,6 +104,7 @@ func (o GetAclPoliciesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclPoliciesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// `list of maps` a list of ACL policies.
 func (o GetAclPoliciesResultOutput) Policies() GetAclPoliciesPolicyArrayOutput {
 	return o.ApplyT(func(v GetAclPoliciesResult) []GetAclPoliciesPolicy { return v.Policies }).(GetAclPoliciesPolicyArrayOutput)
 }

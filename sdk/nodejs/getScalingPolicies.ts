@@ -15,19 +15,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const example = pulumi.output(nomad.getScalingPolicies({
+ * const example = nomad.getScalingPolicies({
  *     jobId: "webapp",
  *     type: "horizontal",
- * }));
+ * });
  * ```
  */
 export function getScalingPolicies(args?: GetScalingPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<GetScalingPoliciesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getScalingPolicies:getScalingPolicies", {
         "jobId": args.jobId,
         "type": args.type,
@@ -57,12 +54,32 @@ export interface GetScalingPoliciesResult {
      */
     readonly id: string;
     readonly jobId?: string;
+    /**
+     * `list of maps` - A list of scaling policies.
+     */
     readonly policies: outputs.GetScalingPoliciesPolicy[];
+    /**
+     * `(string)` - The scaling policy type.
+     */
     readonly type?: string;
 }
-
+/**
+ * Retrieve a list of Scaling Policies.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const example = nomad.getScalingPolicies({
+ *     jobId: "webapp",
+ *     type: "horizontal",
+ * });
+ * ```
+ */
 export function getScalingPoliciesOutput(args?: GetScalingPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetScalingPoliciesResult> {
-    return pulumi.output(args).apply(a => getScalingPolicies(a, opts))
+    return pulumi.output(args).apply((a: any) => getScalingPolicies(a, opts))
 }
 
 /**

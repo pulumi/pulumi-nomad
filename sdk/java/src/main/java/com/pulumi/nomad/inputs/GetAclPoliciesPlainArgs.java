@@ -14,9 +14,17 @@ public final class GetAclPoliciesPlainArgs extends com.pulumi.resources.InvokeAr
 
     public static final GetAclPoliciesPlainArgs Empty = new GetAclPoliciesPlainArgs();
 
+    /**
+     * `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
+     * 
+     */
     @Import(name="prefix")
     private @Nullable String prefix;
 
+    /**
+     * @return `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
+     * 
+     */
     public Optional<String> prefix() {
         return Optional.ofNullable(this.prefix);
     }
@@ -45,6 +53,12 @@ public final class GetAclPoliciesPlainArgs extends com.pulumi.resources.InvokeAr
             $ = new GetAclPoliciesPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param prefix `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
+         * 
+         * @return builder
+         * 
+         */
         public Builder prefix(@Nullable String prefix) {
             $.prefix = prefix;
             return this;

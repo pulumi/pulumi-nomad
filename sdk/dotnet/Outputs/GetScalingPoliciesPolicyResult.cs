@@ -13,8 +13,17 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class GetScalingPoliciesPolicyResult
     {
+        /// <summary>
+        /// `(boolean)` - Whether or not the scaling policy is enabled.
+        /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// `(string)` - The scaling policy ID.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// `(map[string]string)` - The scaling policy target.
+        /// </summary>
         public readonly ImmutableDictionary<string, object> Target;
         /// <summary>
         /// `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.

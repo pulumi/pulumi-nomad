@@ -38,6 +38,9 @@ class GetAclPolicyResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        `(string)` - the description of the ACL Policy.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -51,11 +54,17 @@ class GetAclPolicyResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        `(string)` - the name of the ACL Policy.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def rules(self) -> str:
+        """
+        `(string)` - the ACL Policy rules in HCL format.
+        """
         return pulumi.get(self, "rules")
 
 
@@ -84,6 +93,9 @@ def get_acl_policy(name: Optional[str] = None,
 
     my_policy = nomad.get_acl_policy(name="my-policy")
     ```
+
+
+    :param str name: `(string)` - the name of the ACL Policy.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -111,5 +123,8 @@ def get_acl_policy_output(name: Optional[pulumi.Input[str]] = None,
 
     my_policy = nomad.get_acl_policy(name="my-policy")
     ```
+
+
+    :param str name: `(string)` - the name of the ACL Policy.
     """
     ...

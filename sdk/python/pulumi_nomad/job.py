@@ -612,7 +612,7 @@ class Job(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = JobArgs.__new__(JobArgs)
 
-            __props__.__dict__["consul_token"] = consul_token
+            __props__.__dict__["consul_token"] = None if consul_token is None else pulumi.Output.secret(consul_token)
             __props__.__dict__["deregister_on_destroy"] = deregister_on_destroy
             __props__.__dict__["deregister_on_id_change"] = deregister_on_id_change
             __props__.__dict__["detach"] = detach
@@ -623,7 +623,7 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["json"] = json
             __props__.__dict__["policy_override"] = policy_override
             __props__.__dict__["purge_on_destroy"] = purge_on_destroy
-            __props__.__dict__["vault_token"] = vault_token
+            __props__.__dict__["vault_token"] = None if vault_token is None else pulumi.Output.secret(vault_token)
             __props__.__dict__["allocation_ids"] = None
             __props__.__dict__["datacenters"] = None
             __props__.__dict__["deployment_id"] = None
@@ -634,6 +634,8 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["region"] = None
             __props__.__dict__["task_groups"] = None
             __props__.__dict__["type"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["consulToken", "vaultToken"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Job, __self__).__init__(
             'nomad:index/job:Job',
             resource_name,

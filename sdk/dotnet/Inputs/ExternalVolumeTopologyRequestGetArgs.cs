@@ -12,9 +12,15 @@ namespace Pulumi.Nomad.Inputs
 
     public sealed class ExternalVolumeTopologyRequestGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// `(``Topology``: &lt;optional&gt;)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+        /// </summary>
         [Input("preferred")]
         public Input<Inputs.ExternalVolumeTopologyRequestPreferredGetArgs>? Preferred { get; set; }
 
+        /// <summary>
+        /// `(``Topology``: &lt;optional&gt;)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        /// </summary>
         [Input("required")]
         public Input<Inputs.ExternalVolumeTopologyRequestRequiredGetArgs>? Required { get; set; }
 

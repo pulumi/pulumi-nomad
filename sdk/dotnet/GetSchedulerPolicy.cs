@@ -44,8 +44,17 @@ namespace Pulumi.Nomad
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+        /// </summary>
         public readonly bool MemoryOversubscriptionEnabled;
+        /// <summary>
+        /// `(map[string]bool)` - Options to enable preemption for various schedulers.
+        /// </summary>
         public readonly ImmutableDictionary<string, bool> PreemptionConfig;
+        /// <summary>
+        /// `(string)` - Specifies whether scheduler binpacks or spreads allocations on available nodes.
+        /// </summary>
         public readonly string SchedulerAlgorithm;
 
         [OutputConstructor]
