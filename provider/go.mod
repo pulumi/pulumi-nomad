@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-nomad/provider
 
-go 1.18
+go 1.19
 
 replace (
 	// https://github.com/hashicorp/nomad/blob/v1.3.4/go.mod#L9
