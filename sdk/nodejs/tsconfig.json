@@ -13,6 +13,8 @@
         "strict": true
     },
     "files": [
+        "aclAuthMethod.ts",
+        "aclBindingRule.ts",
         "aclPolicy.ts",
         "aclRole.ts",
         "aclToken.ts",

@@ -20,6 +20,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "nomad:index/aclAuthMethod:AclAuthMethod":
+		r = &AclAuthMethod{}
+	case "nomad:index/aclBindingRule:AclBindingRule":
+		r = &AclBindingRule{}
 	case "nomad:index/aclPolicy:AclPolicy":
 		r = &AclPolicy{}
 	case "nomad:index/aclRole:AclRole":
@@ -68,6 +72,16 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 
 func init() {
 	version, _ := PkgVersion()
+	pulumi.RegisterResourceModule(
+		"nomad",
+		"index/aclAuthMethod",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"nomad",
+		"index/aclBindingRule",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"nomad",
 		"index/aclPolicy",

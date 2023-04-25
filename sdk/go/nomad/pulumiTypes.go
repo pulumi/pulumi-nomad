@@ -10,6 +10,274 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type AclAuthMethodConfig struct {
+	AllowedRedirectUris []string          `pulumi:"allowedRedirectUris"`
+	BoundAudiences      []string          `pulumi:"boundAudiences"`
+	ClaimMappings       map[string]string `pulumi:"claimMappings"`
+	DiscoveryCaPems     []string          `pulumi:"discoveryCaPems"`
+	ListClaimMappings   map[string]string `pulumi:"listClaimMappings"`
+	OidcClientId        string            `pulumi:"oidcClientId"`
+	OidcClientSecret    string            `pulumi:"oidcClientSecret"`
+	OidcDiscoveryUrl    string            `pulumi:"oidcDiscoveryUrl"`
+	OidcScopes          []string          `pulumi:"oidcScopes"`
+	SigningAlgs         []string          `pulumi:"signingAlgs"`
+}
+
+// AclAuthMethodConfigInput is an input type that accepts AclAuthMethodConfigArgs and AclAuthMethodConfigOutput values.
+// You can construct a concrete instance of `AclAuthMethodConfigInput` via:
+//
+//	AclAuthMethodConfigArgs{...}
+type AclAuthMethodConfigInput interface {
+	pulumi.Input
+
+	ToAclAuthMethodConfigOutput() AclAuthMethodConfigOutput
+	ToAclAuthMethodConfigOutputWithContext(context.Context) AclAuthMethodConfigOutput
+}
+
+type AclAuthMethodConfigArgs struct {
+	AllowedRedirectUris pulumi.StringArrayInput `pulumi:"allowedRedirectUris"`
+	BoundAudiences      pulumi.StringArrayInput `pulumi:"boundAudiences"`
+	ClaimMappings       pulumi.StringMapInput   `pulumi:"claimMappings"`
+	DiscoveryCaPems     pulumi.StringArrayInput `pulumi:"discoveryCaPems"`
+	ListClaimMappings   pulumi.StringMapInput   `pulumi:"listClaimMappings"`
+	OidcClientId        pulumi.StringInput      `pulumi:"oidcClientId"`
+	OidcClientSecret    pulumi.StringInput      `pulumi:"oidcClientSecret"`
+	OidcDiscoveryUrl    pulumi.StringInput      `pulumi:"oidcDiscoveryUrl"`
+	OidcScopes          pulumi.StringArrayInput `pulumi:"oidcScopes"`
+	SigningAlgs         pulumi.StringArrayInput `pulumi:"signingAlgs"`
+}
+
+func (AclAuthMethodConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclAuthMethodConfig)(nil)).Elem()
+}
+
+func (i AclAuthMethodConfigArgs) ToAclAuthMethodConfigOutput() AclAuthMethodConfigOutput {
+	return i.ToAclAuthMethodConfigOutputWithContext(context.Background())
+}
+
+func (i AclAuthMethodConfigArgs) ToAclAuthMethodConfigOutputWithContext(ctx context.Context) AclAuthMethodConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigOutput)
+}
+
+func (i AclAuthMethodConfigArgs) ToAclAuthMethodConfigPtrOutput() AclAuthMethodConfigPtrOutput {
+	return i.ToAclAuthMethodConfigPtrOutputWithContext(context.Background())
+}
+
+func (i AclAuthMethodConfigArgs) ToAclAuthMethodConfigPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigOutput).ToAclAuthMethodConfigPtrOutputWithContext(ctx)
+}
+
+// AclAuthMethodConfigPtrInput is an input type that accepts AclAuthMethodConfigArgs, AclAuthMethodConfigPtr and AclAuthMethodConfigPtrOutput values.
+// You can construct a concrete instance of `AclAuthMethodConfigPtrInput` via:
+//
+//	        AclAuthMethodConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type AclAuthMethodConfigPtrInput interface {
+	pulumi.Input
+
+	ToAclAuthMethodConfigPtrOutput() AclAuthMethodConfigPtrOutput
+	ToAclAuthMethodConfigPtrOutputWithContext(context.Context) AclAuthMethodConfigPtrOutput
+}
+
+type aclAuthMethodConfigPtrType AclAuthMethodConfigArgs
+
+func AclAuthMethodConfigPtr(v *AclAuthMethodConfigArgs) AclAuthMethodConfigPtrInput {
+	return (*aclAuthMethodConfigPtrType)(v)
+}
+
+func (*aclAuthMethodConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AclAuthMethodConfig)(nil)).Elem()
+}
+
+func (i *aclAuthMethodConfigPtrType) ToAclAuthMethodConfigPtrOutput() AclAuthMethodConfigPtrOutput {
+	return i.ToAclAuthMethodConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *aclAuthMethodConfigPtrType) ToAclAuthMethodConfigPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigPtrOutput)
+}
+
+type AclAuthMethodConfigOutput struct{ *pulumi.OutputState }
+
+func (AclAuthMethodConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclAuthMethodConfig)(nil)).Elem()
+}
+
+func (o AclAuthMethodConfigOutput) ToAclAuthMethodConfigOutput() AclAuthMethodConfigOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigOutput) ToAclAuthMethodConfigOutputWithContext(ctx context.Context) AclAuthMethodConfigOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigOutput) ToAclAuthMethodConfigPtrOutput() AclAuthMethodConfigPtrOutput {
+	return o.ToAclAuthMethodConfigPtrOutputWithContext(context.Background())
+}
+
+func (o AclAuthMethodConfigOutput) ToAclAuthMethodConfigPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AclAuthMethodConfig) *AclAuthMethodConfig {
+		return &v
+	}).(AclAuthMethodConfigPtrOutput)
+}
+
+func (o AclAuthMethodConfigOutput) AllowedRedirectUris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.AllowedRedirectUris }).(pulumi.StringArrayOutput)
+}
+
+func (o AclAuthMethodConfigOutput) BoundAudiences() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.BoundAudiences }).(pulumi.StringArrayOutput)
+}
+
+func (o AclAuthMethodConfigOutput) ClaimMappings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) map[string]string { return v.ClaimMappings }).(pulumi.StringMapOutput)
+}
+
+func (o AclAuthMethodConfigOutput) DiscoveryCaPems() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.DiscoveryCaPems }).(pulumi.StringArrayOutput)
+}
+
+func (o AclAuthMethodConfigOutput) ListClaimMappings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) map[string]string { return v.ListClaimMappings }).(pulumi.StringMapOutput)
+}
+
+func (o AclAuthMethodConfigOutput) OidcClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) string { return v.OidcClientId }).(pulumi.StringOutput)
+}
+
+func (o AclAuthMethodConfigOutput) OidcClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) string { return v.OidcClientSecret }).(pulumi.StringOutput)
+}
+
+func (o AclAuthMethodConfigOutput) OidcDiscoveryUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) string { return v.OidcDiscoveryUrl }).(pulumi.StringOutput)
+}
+
+func (o AclAuthMethodConfigOutput) OidcScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.OidcScopes }).(pulumi.StringArrayOutput)
+}
+
+func (o AclAuthMethodConfigOutput) SigningAlgs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.SigningAlgs }).(pulumi.StringArrayOutput)
+}
+
+type AclAuthMethodConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (AclAuthMethodConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AclAuthMethodConfig)(nil)).Elem()
+}
+
+func (o AclAuthMethodConfigPtrOutput) ToAclAuthMethodConfigPtrOutput() AclAuthMethodConfigPtrOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigPtrOutput) ToAclAuthMethodConfigPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigPtrOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigPtrOutput) Elem() AclAuthMethodConfigOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) AclAuthMethodConfig {
+		if v != nil {
+			return *v
+		}
+		var ret AclAuthMethodConfig
+		return ret
+	}).(AclAuthMethodConfigOutput)
+}
+
+func (o AclAuthMethodConfigPtrOutput) AllowedRedirectUris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedRedirectUris
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o AclAuthMethodConfigPtrOutput) BoundAudiences() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.BoundAudiences
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o AclAuthMethodConfigPtrOutput) ClaimMappings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.ClaimMappings
+	}).(pulumi.StringMapOutput)
+}
+
+func (o AclAuthMethodConfigPtrOutput) DiscoveryCaPems() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.DiscoveryCaPems
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o AclAuthMethodConfigPtrOutput) ListClaimMappings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.ListClaimMappings
+	}).(pulumi.StringMapOutput)
+}
+
+func (o AclAuthMethodConfigPtrOutput) OidcClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.OidcClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AclAuthMethodConfigPtrOutput) OidcClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.OidcClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AclAuthMethodConfigPtrOutput) OidcDiscoveryUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.OidcDiscoveryUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o AclAuthMethodConfigPtrOutput) OidcScopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.OidcScopes
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o AclAuthMethodConfigPtrOutput) SigningAlgs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SigningAlgs
+	}).(pulumi.StringArrayOutput)
+}
+
 type AclRolePolicy struct {
 	// `(string: <required>)` - A human-friendly name for this ACL Role.
 	Name string `pulumi:"name"`
@@ -4863,6 +5131,8 @@ func (o GetScalingPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetScaling
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AclAuthMethodConfigInput)(nil)).Elem(), AclAuthMethodConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclAuthMethodConfigPtrInput)(nil)).Elem(), AclAuthMethodConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclRolePolicyInput)(nil)).Elem(), AclRolePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclRolePolicyArrayInput)(nil)).Elem(), AclRolePolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclTokenRoleInput)(nil)).Elem(), AclTokenRoleArgs{})
@@ -4944,6 +5214,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginNodeArrayInput)(nil)).Elem(), GetPluginNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesPolicyInput)(nil)).Elem(), GetScalingPoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesPolicyArrayInput)(nil)).Elem(), GetScalingPoliciesPolicyArray{})
+	pulumi.RegisterOutputType(AclAuthMethodConfigOutput{})
+	pulumi.RegisterOutputType(AclAuthMethodConfigPtrOutput{})
 	pulumi.RegisterOutputType(AclRolePolicyOutput{})
 	pulumi.RegisterOutputType(AclRolePolicyArrayOutput{})
 	pulumi.RegisterOutputType(AclTokenRoleOutput{})

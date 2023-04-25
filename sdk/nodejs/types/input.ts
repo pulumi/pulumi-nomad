@@ -5,6 +5,19 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface AclAuthMethodConfig {
+    allowedRedirectUris: pulumi.Input<pulumi.Input<string>[]>;
+    boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
+    claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    discoveryCaPems?: pulumi.Input<pulumi.Input<string>[]>;
+    listClaimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    oidcClientId: pulumi.Input<string>;
+    oidcClientSecret: pulumi.Input<string>;
+    oidcDiscoveryUrl: pulumi.Input<string>;
+    oidcScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    signingAlgs?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface AclRolePolicy {
     /**
      * `(string: <required>)` - A human-friendly name for this ACL Role.

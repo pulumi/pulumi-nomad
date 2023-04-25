@@ -10,6 +10,7 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
+    'AclAuthMethodConfigArgs',
     'AclRolePolicyArgs',
     'AclTokenRoleArgs',
     'ExternalVolumeCapabilityArgs',
@@ -36,6 +37,127 @@ __all__ = [
     'VolumeTopologyRequestRequiredArgs',
     'VolumeTopologyRequestRequiredTopologyArgs',
 ]
+
+@pulumi.input_type
+class AclAuthMethodConfigArgs:
+    def __init__(__self__, *,
+                 allowed_redirect_uris: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 oidc_client_id: pulumi.Input[str],
+                 oidc_client_secret: pulumi.Input[str],
+                 oidc_discovery_url: pulumi.Input[str],
+                 bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 discovery_ca_pems: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 list_claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 signing_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        pulumi.set(__self__, "allowed_redirect_uris", allowed_redirect_uris)
+        pulumi.set(__self__, "oidc_client_id", oidc_client_id)
+        pulumi.set(__self__, "oidc_client_secret", oidc_client_secret)
+        pulumi.set(__self__, "oidc_discovery_url", oidc_discovery_url)
+        if bound_audiences is not None:
+            pulumi.set(__self__, "bound_audiences", bound_audiences)
+        if claim_mappings is not None:
+            pulumi.set(__self__, "claim_mappings", claim_mappings)
+        if discovery_ca_pems is not None:
+            pulumi.set(__self__, "discovery_ca_pems", discovery_ca_pems)
+        if list_claim_mappings is not None:
+            pulumi.set(__self__, "list_claim_mappings", list_claim_mappings)
+        if oidc_scopes is not None:
+            pulumi.set(__self__, "oidc_scopes", oidc_scopes)
+        if signing_algs is not None:
+            pulumi.set(__self__, "signing_algs", signing_algs)
+
+    @property
+    @pulumi.getter(name="allowedRedirectUris")
+    def allowed_redirect_uris(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "allowed_redirect_uris")
+
+    @allowed_redirect_uris.setter
+    def allowed_redirect_uris(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "allowed_redirect_uris", value)
+
+    @property
+    @pulumi.getter(name="oidcClientId")
+    def oidc_client_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "oidc_client_id")
+
+    @oidc_client_id.setter
+    def oidc_client_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "oidc_client_id", value)
+
+    @property
+    @pulumi.getter(name="oidcClientSecret")
+    def oidc_client_secret(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "oidc_client_secret")
+
+    @oidc_client_secret.setter
+    def oidc_client_secret(self, value: pulumi.Input[str]):
+        pulumi.set(self, "oidc_client_secret", value)
+
+    @property
+    @pulumi.getter(name="oidcDiscoveryUrl")
+    def oidc_discovery_url(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "oidc_discovery_url")
+
+    @oidc_discovery_url.setter
+    def oidc_discovery_url(self, value: pulumi.Input[str]):
+        pulumi.set(self, "oidc_discovery_url", value)
+
+    @property
+    @pulumi.getter(name="boundAudiences")
+    def bound_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "bound_audiences")
+
+    @bound_audiences.setter
+    def bound_audiences(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_audiences", value)
+
+    @property
+    @pulumi.getter(name="claimMappings")
+    def claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "claim_mappings")
+
+    @claim_mappings.setter
+    def claim_mappings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "claim_mappings", value)
+
+    @property
+    @pulumi.getter(name="discoveryCaPems")
+    def discovery_ca_pems(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "discovery_ca_pems")
+
+    @discovery_ca_pems.setter
+    def discovery_ca_pems(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "discovery_ca_pems", value)
+
+    @property
+    @pulumi.getter(name="listClaimMappings")
+    def list_claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "list_claim_mappings")
+
+    @list_claim_mappings.setter
+    def list_claim_mappings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "list_claim_mappings", value)
+
+    @property
+    @pulumi.getter(name="oidcScopes")
+    def oidc_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "oidc_scopes")
+
+    @oidc_scopes.setter
+    def oidc_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "oidc_scopes", value)
+
+    @property
+    @pulumi.getter(name="signingAlgs")
+    def signing_algs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "signing_algs")
+
+    @signing_algs.setter
+    def signing_algs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "signing_algs", value)
+
 
 @pulumi.input_type
 class AclRolePolicyArgs:
