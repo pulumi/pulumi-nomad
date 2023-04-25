@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { AclAuthMethodArgs, AclAuthMethodState } from "./aclAuthMethod";
+export type AclAuthMethod = import("./aclAuthMethod").AclAuthMethod;
+export const AclAuthMethod: typeof import("./aclAuthMethod").AclAuthMethod = null as any;
+utilities.lazyLoad(exports, ["AclAuthMethod"], () => require("./aclAuthMethod"));
+
+export { AclBindingRuleArgs, AclBindingRuleState } from "./aclBindingRule";
+export type AclBindingRule = import("./aclBindingRule").AclBindingRule;
+export const AclBindingRule: typeof import("./aclBindingRule").AclBindingRule = null as any;
+utilities.lazyLoad(exports, ["AclBindingRule"], () => require("./aclBindingRule"));
+
 export { AclPolicyArgs, AclPolicyState } from "./aclPolicy";
 export type AclPolicy = import("./aclPolicy").AclPolicy;
 export const AclPolicy: typeof import("./aclPolicy").AclPolicy = null as any;
@@ -165,6 +175,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "nomad:index/aclAuthMethod:AclAuthMethod":
+                return new AclAuthMethod(name, <any>undefined, { urn })
+            case "nomad:index/aclBindingRule:AclBindingRule":
+                return new AclBindingRule(name, <any>undefined, { urn })
             case "nomad:index/aclPolicy:AclPolicy":
                 return new AclPolicy(name, <any>undefined, { urn })
             case "nomad:index/aclRole:AclRole":
@@ -190,6 +204,8 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("nomad", "index/aclAuthMethod", _module)
+pulumi.runtime.registerResourceModule("nomad", "index/aclBindingRule", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/aclPolicy", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/aclRole", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/aclToken", _module)

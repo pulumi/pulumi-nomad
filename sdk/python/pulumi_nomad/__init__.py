@@ -5,6 +5,8 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .acl_auth_method import *
+from .acl_binding_rule import *
 from .acl_policy import *
 from .acl_role import *
 from .acl_token import *
@@ -48,6 +50,22 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "nomad",
+  "mod": "index/aclAuthMethod",
+  "fqn": "pulumi_nomad",
+  "classes": {
+   "nomad:index/aclAuthMethod:AclAuthMethod": "AclAuthMethod"
+  }
+ },
+ {
+  "pkg": "nomad",
+  "mod": "index/aclBindingRule",
+  "fqn": "pulumi_nomad",
+  "classes": {
+   "nomad:index/aclBindingRule:AclBindingRule": "AclBindingRule"
+  }
+ },
  {
   "pkg": "nomad",
   "mod": "index/aclPolicy",
