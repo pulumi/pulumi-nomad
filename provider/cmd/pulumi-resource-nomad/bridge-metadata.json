@@ -2,7 +2,31 @@
     "auto-aliasing": {
         "resources": {
             "nomad_acl_auth_method": {
-                "current": "nomad:index/aclAuthMethod:AclAuthMethod"
+                "current": "nomad:index/aclAuthMethod:AclAuthMethod",
+                "fields": {
+                    "config": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "allowed_redirect_uris": {
+                                    "maxItemsOne": false
+                                },
+                                "bound_audiences": {
+                                    "maxItemsOne": false
+                                },
+                                "discovery_ca_pem": {
+                                    "maxItemsOne": false
+                                },
+                                "oidc_scopes": {
+                                    "maxItemsOne": false
+                                },
+                                "signing_algs": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "nomad_acl_binding_rule": {
                 "current": "nomad:index/aclBindingRule:AclBindingRule"
@@ -11,22 +35,138 @@
                 "current": "nomad:index/aclPolicy:AclPolicy"
             },
             "nomad_acl_role": {
-                "current": "nomad:index/aclRole:AclRole"
+                "current": "nomad:index/aclRole:AclRole",
+                "fields": {
+                    "policy": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_acl_token": {
-                "current": "nomad:index/aclToken:AclToken"
+                "current": "nomad:index/aclToken:AclToken",
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    },
+                    "role": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_external_volume": {
-                "current": "nomad:index/externalVolume:ExternalVolume"
+                "current": "nomad:index/externalVolume:ExternalVolume",
+                "fields": {
+                    "capability": {
+                        "maxItemsOne": false
+                    },
+                    "mount_options": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "mount_flags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "topologies": {
+                        "maxItemsOne": false
+                    },
+                    "topology_request": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "preferred": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "topology": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "required": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "topology": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "nomad_job": {
-                "current": "nomad:index/job:Job"
+                "current": "nomad:index/job:Job",
+                "fields": {
+                    "allocation_ids": {
+                        "maxItemsOne": false
+                    },
+                    "datacenters": {
+                        "maxItemsOne": false
+                    },
+                    "hcl2": {
+                        "maxItemsOne": true
+                    },
+                    "task_groups": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "task": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "volume_mounts": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "volumes": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "nomad_namespace": {
-                "current": "nomad:index/namespace:Namespace"
+                "current": "nomad:index/namespace:Namespace",
+                "fields": {
+                    "capabilities": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "disabled_task_drivers": {
+                                    "maxItemsOne": false
+                                },
+                                "enabled_task_drivers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "nomad_quota_specification": {
-                "current": "nomad:index/quoteSpecification:QuoteSpecification"
+                "current": "nomad:index/quoteSpecification:QuoteSpecification",
+                "fields": {
+                    "limits": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "region_limit": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "nomad_scheduler_config": {
                 "current": "nomad:index/schedulerConfig:SchedulerConfig"
@@ -35,7 +175,42 @@
                 "current": "nomad:index/sentinelPolicy:SentinelPolicy"
             },
             "nomad_volume": {
-                "current": "nomad:index/volume:Volume"
+                "current": "nomad:index/volume:Volume",
+                "fields": {
+                    "capability": {
+                        "maxItemsOne": false
+                    },
+                    "mount_options": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "mount_flags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "topologies": {
+                        "maxItemsOne": false
+                    },
+                    "topology_request": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "required": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "topology": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "datasources": {
