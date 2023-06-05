@@ -332,6 +332,9 @@ class ExternalVolumeTopology(dict):
                  segments: Optional[Mapping[str, str]] = None):
         """
         :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
         """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
@@ -341,6 +344,9 @@ class ExternalVolumeTopology(dict):
     def segments(self) -> Optional[Mapping[str, str]]:
         """
         `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
         """
         return pulumi.get(self, "segments")
 
@@ -394,6 +400,9 @@ class ExternalVolumeTopologyRequestPreferredTopology(dict):
                  segments: Mapping[str, str]):
         """
         :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
         """
         pulumi.set(__self__, "segments", segments)
 
@@ -402,6 +411,9 @@ class ExternalVolumeTopologyRequestPreferredTopology(dict):
     def segments(self) -> Mapping[str, str]:
         """
         `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
         """
         return pulumi.get(self, "segments")
 
@@ -424,6 +436,9 @@ class ExternalVolumeTopologyRequestRequiredTopology(dict):
                  segments: Mapping[str, str]):
         """
         :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
         """
         pulumi.set(__self__, "segments", segments)
 
@@ -432,6 +447,9 @@ class ExternalVolumeTopologyRequestRequiredTopology(dict):
     def segments(self) -> Mapping[str, str]:
         """
         `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
         """
         return pulumi.get(self, "segments")
 
@@ -967,6 +985,9 @@ class VolumeTopology(dict):
                  segments: Optional[Mapping[str, str]] = None):
         """
         :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
         """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
@@ -976,6 +997,9 @@ class VolumeTopology(dict):
     def segments(self) -> Optional[Mapping[str, str]]:
         """
         `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
         """
         return pulumi.get(self, "segments")
 
@@ -1017,6 +1041,9 @@ class VolumeTopologyRequestRequiredTopology(dict):
                  segments: Mapping[str, str]):
         """
         :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
         """
         pulumi.set(__self__, "segments", segments)
 
@@ -1025,6 +1052,9 @@ class VolumeTopologyRequestRequiredTopology(dict):
     def segments(self) -> Mapping[str, str]:
         """
         `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
         """
         return pulumi.get(self, "segments")
 

@@ -202,6 +202,9 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
      * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
      * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     * 
      */
     @Export(name="expirationTtl", type=String.class, parameters={})
     private Output</* @Nullable */ String> expirationTtl;
@@ -209,6 +212,9 @@ public class AclToken extends com.pulumi.resources.CustomResource {
     /**
      * @return `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
      * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
+     * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      * 
      */
     public Output<Optional<String>> expirationTtl() {

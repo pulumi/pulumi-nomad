@@ -65,6 +65,9 @@ export interface ExternalVolumeMountOptions {
 export interface ExternalVolumeTopology {
     /**
      * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      */
     segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
@@ -87,6 +90,9 @@ export interface ExternalVolumeTopologyRequestPreferred {
 export interface ExternalVolumeTopologyRequestPreferredTopology {
     /**
      * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
@@ -98,6 +104,9 @@ export interface ExternalVolumeTopologyRequestRequired {
 export interface ExternalVolumeTopologyRequestRequiredTopology {
     /**
      * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
@@ -219,6 +228,9 @@ export interface VolumeMountOptions {
 export interface VolumeTopology {
     /**
      * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      */
     segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
@@ -237,6 +249,9 @@ export interface VolumeTopologyRequestRequired {
 export interface VolumeTopologyRequestRequiredTopology {
     /**
      * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

@@ -71,6 +71,9 @@ public final class AclTokenState extends com.pulumi.resources.ResourceArgs {
      * `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
      * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
      * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     * 
      */
     @Import(name="expirationTtl")
     private @Nullable Output<String> expirationTtl;
@@ -78,6 +81,9 @@ public final class AclTokenState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
      * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
+     * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      * 
      */
     public Optional<Output<String>> expirationTtl() {
@@ -294,6 +300,9 @@ public final class AclTokenState extends com.pulumi.resources.ResourceArgs {
          * @param expirationTtl `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
          * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
          * 
+         * In addition to the above arguments, the following attributes are exported and
+         * can be referenced:
+         * 
          * @return builder
          * 
          */
@@ -305,6 +314,9 @@ public final class AclTokenState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param expirationTtl `(string: &#34;&#34;)` - Provides a TTL for the token in the form of
          * a time duration such as `&#34;5m&#34;` or `&#34;1h&#34;`.
+         * 
+         * In addition to the above arguments, the following attributes are exported and
+         * can be referenced:
          * 
          * @return builder
          * 

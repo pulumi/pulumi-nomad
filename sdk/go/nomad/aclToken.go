@@ -142,6 +142,9 @@ type AclToken struct {
 	ExpirationTime pulumi.StringOutput `pulumi:"expirationTime"`
 	// `(string: "")` - Provides a TTL for the token in the form of
 	// a time duration such as `"5m"` or `"1h"`.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
 	ExpirationTtl pulumi.StringPtrOutput `pulumi:"expirationTtl"`
 	// `(bool: false)` - Whether the token should be replicated to all
 	// regions, or if it will only be used in the region it was created in.
@@ -211,6 +214,9 @@ type aclTokenState struct {
 	ExpirationTime *string `pulumi:"expirationTime"`
 	// `(string: "")` - Provides a TTL for the token in the form of
 	// a time duration such as `"5m"` or `"1h"`.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
 	ExpirationTtl *string `pulumi:"expirationTtl"`
 	// `(bool: false)` - Whether the token should be replicated to all
 	// regions, or if it will only be used in the region it was created in.
@@ -245,6 +251,9 @@ type AclTokenState struct {
 	ExpirationTime pulumi.StringPtrInput
 	// `(string: "")` - Provides a TTL for the token in the form of
 	// a time duration such as `"5m"` or `"1h"`.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
 	ExpirationTtl pulumi.StringPtrInput
 	// `(bool: false)` - Whether the token should be replicated to all
 	// regions, or if it will only be used in the region it was created in.
@@ -275,6 +284,9 @@ func (AclTokenState) ElementType() reflect.Type {
 type aclTokenArgs struct {
 	// `(string: "")` - Provides a TTL for the token in the form of
 	// a time duration such as `"5m"` or `"1h"`.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
 	ExpirationTtl *string `pulumi:"expirationTtl"`
 	// `(bool: false)` - Whether the token should be replicated to all
 	// regions, or if it will only be used in the region it was created in.
@@ -299,6 +311,9 @@ type aclTokenArgs struct {
 type AclTokenArgs struct {
 	// `(string: "")` - Provides a TTL for the token in the form of
 	// a time duration such as `"5m"` or `"1h"`.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
 	ExpirationTtl pulumi.StringPtrInput
 	// `(bool: false)` - Whether the token should be replicated to all
 	// regions, or if it will only be used in the region it was created in.
@@ -425,6 +440,9 @@ func (o AclTokenOutput) ExpirationTime() pulumi.StringOutput {
 
 // `(string: "")` - Provides a TTL for the token in the form of
 // a time duration such as `"5m"` or `"1h"`.
+//
+// In addition to the above arguments, the following attributes are exported and
+// can be referenced:
 func (o AclTokenOutput) ExpirationTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclToken) pulumi.StringPtrOutput { return v.ExpirationTtl }).(pulumi.StringPtrOutput)
 }
