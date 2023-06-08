@@ -279,7 +279,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n"
+                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n"
                 }
             },
             "type": "object",
@@ -325,7 +325,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n"
+                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n"
                 }
             },
             "type": "object",
@@ -354,7 +354,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n"
+                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n"
                 }
             },
             "type": "object",
@@ -613,7 +613,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n"
+                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n"
                 }
             },
             "type": "object",
@@ -655,7 +655,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n"
+                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n"
                 }
             },
             "type": "object",
@@ -1591,7 +1591,7 @@
                 },
                 "expirationTtl": {
                     "type": "string",
-                    "description": "`(string: \"\")` - Provides a TTL for the token in the form of\na time duration such as `\"5m\"` or `\"1h\"`.\n"
+                    "description": "`(string: \"\")` - Provides a TTL for the token in the form of\na time duration such as `\"5m\"` or `\"1h\"`.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n"
                 },
                 "global": {
                     "type": "boolean",
@@ -1636,7 +1636,7 @@
             "inputProperties": {
                 "expirationTtl": {
                     "type": "string",
-                    "description": "`(string: \"\")` - Provides a TTL for the token in the form of\na time duration such as `\"5m\"` or `\"1h\"`.\n",
+                    "description": "`(string: \"\")` - Provides a TTL for the token in the form of\na time duration such as `\"5m\"` or `\"1h\"`.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n",
                     "willReplaceOnChanges": true
                 },
                 "global": {
@@ -1687,7 +1687,7 @@
                     },
                     "expirationTtl": {
                         "type": "string",
-                        "description": "`(string: \"\")` - Provides a TTL for the token in the form of\na time duration such as `\"5m\"` or `\"1h\"`.\n",
+                        "description": "`(string: \"\")` - Provides a TTL for the token in the form of\na time duration such as `\"5m\"` or `\"1h\"`.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n",
                         "willReplaceOnChanges": true
                     },
                     "global": {
@@ -2520,7 +2520,7 @@
             "properties": {
                 "description": {
                     "type": "string",
-                    "description": "`(string: \"\")` - A description of the policy.\n"
+                    "description": "`(string: \"\")` - A description of the policy.\n\n[scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope\n[enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level\n"
                 },
                 "enforcementLevel": {
                     "type": "string",
@@ -2548,7 +2548,7 @@
             "inputProperties": {
                 "description": {
                     "type": "string",
-                    "description": "`(string: \"\")` - A description of the policy.\n"
+                    "description": "`(string: \"\")` - A description of the policy.\n\n[scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope\n[enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level\n"
                 },
                 "enforcementLevel": {
                     "type": "string",
@@ -2578,7 +2578,7 @@
                 "properties": {
                     "description": {
                         "type": "string",
-                        "description": "`(string: \"\")` - A description of the policy.\n"
+                        "description": "`(string: \"\")` - A description of the policy.\n\n[scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope\n[enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level\n"
                     },
                     "enforcementLevel": {
                         "type": "string",

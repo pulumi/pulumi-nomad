@@ -52,6 +52,9 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
+        /// 
+        /// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
+        /// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -129,6 +132,9 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
+        /// 
+        /// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
+        /// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -168,6 +174,9 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
+        /// 
+        /// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
+        /// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }

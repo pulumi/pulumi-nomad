@@ -13,12 +13,18 @@ public final class VolumeTopologyRequestRequiredTopology {
     /**
      * @return `(map[string]string)` - Define the attributes for the topology request.
      * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     * 
      */
     private Map<String,String> segments;
 
     private VolumeTopologyRequestRequiredTopology() {}
     /**
      * @return `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      * 
      */
     public Map<String,String> segments() {

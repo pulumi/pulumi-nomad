@@ -29,6 +29,9 @@ class AclTokenArgs:
                for tokens that can perform any action.
         :param pulumi.Input[str] expiration_ttl: `(string: "")` - Provides a TTL for the token in the form of
                a time duration such as `"5m"` or `"1h"`.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
         :param pulumi.Input[bool] global_: `(bool: false)` - Whether the token should be replicated to all
                regions, or if it will only be used in the region it was created in.
         :param pulumi.Input[str] name: `(string: "")` - A human-friendly name for this token.
@@ -71,6 +74,9 @@ class AclTokenArgs:
         """
         `(string: "")` - Provides a TTL for the token in the form of
         a time duration such as `"5m"` or `"1h"`.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
         """
         return pulumi.get(self, "expiration_ttl")
 
@@ -154,6 +160,9 @@ class _AclTokenState:
                considered expired and eligible for destruction.
         :param pulumi.Input[str] expiration_ttl: `(string: "")` - Provides a TTL for the token in the form of
                a time duration such as `"5m"` or `"1h"`.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
         :param pulumi.Input[bool] global_: `(bool: false)` - Whether the token should be replicated to all
                regions, or if it will only be used in the region it was created in.
         :param pulumi.Input[str] name: `(string: "")` - A human-friendly name for this token.
@@ -234,6 +243,9 @@ class _AclTokenState:
         """
         `(string: "")` - Provides a TTL for the token in the form of
         a time duration such as `"5m"` or `"1h"`.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
         """
         return pulumi.get(self, "expiration_ttl")
 
@@ -391,6 +403,9 @@ class AclToken(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] expiration_ttl: `(string: "")` - Provides a TTL for the token in the form of
                a time duration such as `"5m"` or `"1h"`.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
         :param pulumi.Input[bool] global_: `(bool: false)` - Whether the token should be replicated to all
                regions, or if it will only be used in the region it was created in.
         :param pulumi.Input[str] name: `(string: "")` - A human-friendly name for this token.
@@ -541,6 +556,9 @@ class AclToken(pulumi.CustomResource):
                considered expired and eligible for destruction.
         :param pulumi.Input[str] expiration_ttl: `(string: "")` - Provides a TTL for the token in the form of
                a time duration such as `"5m"` or `"1h"`.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
         :param pulumi.Input[bool] global_: `(bool: false)` - Whether the token should be replicated to all
                regions, or if it will only be used in the region it was created in.
         :param pulumi.Input[str] name: `(string: "")` - A human-friendly name for this token.
@@ -604,6 +622,9 @@ class AclToken(pulumi.CustomResource):
         """
         `(string: "")` - Provides a TTL for the token in the form of
         a time duration such as `"5m"` or `"1h"`.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
         """
         return pulumi.get(self, "expiration_ttl")
 

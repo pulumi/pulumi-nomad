@@ -17,12 +17,18 @@ public final class ExternalVolumeTopologyRequestRequiredTopologyArgs extends com
     /**
      * `(map[string]string)` - Define the attributes for the topology request.
      * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     * 
      */
     @Import(name="segments", required=true)
     private Output<Map<String,String>> segments;
 
     /**
      * @return `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      * 
      */
     public Output<Map<String,String>> segments() {
@@ -56,6 +62,9 @@ public final class ExternalVolumeTopologyRequestRequiredTopologyArgs extends com
         /**
          * @param segments `(map[string]string)` - Define the attributes for the topology request.
          * 
+         * In addition to the above arguments, the following attributes are exported and
+         * can be referenced:
+         * 
          * @return builder
          * 
          */
@@ -66,6 +75,9 @@ public final class ExternalVolumeTopologyRequestRequiredTopologyArgs extends com
 
         /**
          * @param segments `(map[string]string)` - Define the attributes for the topology request.
+         * 
+         * In addition to the above arguments, the following attributes are exported and
+         * can be referenced:
          * 
          * @return builder
          * 

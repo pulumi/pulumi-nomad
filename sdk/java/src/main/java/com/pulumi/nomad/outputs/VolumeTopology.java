@@ -14,12 +14,18 @@ public final class VolumeTopology {
     /**
      * @return `(map[string]string)` - Define the attributes for the topology request.
      * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     * 
      */
     private @Nullable Map<String,String> segments;
 
     private VolumeTopology() {}
     /**
      * @return `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      * 
      */
     public Map<String,String> segments() {

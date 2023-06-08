@@ -129,6 +129,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: "")` - Provides a TTL for the token in the form of
         /// a time duration such as `"5m"` or `"1h"`.
+        /// 
+        /// In addition to the above arguments, the following attributes are exported and
+        /// can be referenced:
         /// </summary>
         [Output("expirationTtl")]
         public Output<string?> ExpirationTtl { get; private set; } = null!;
@@ -230,6 +233,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: "")` - Provides a TTL for the token in the form of
         /// a time duration such as `"5m"` or `"1h"`.
+        /// 
+        /// In addition to the above arguments, the following attributes are exported and
+        /// can be referenced:
         /// </summary>
         [Input("expirationTtl")]
         public Input<string>? ExpirationTtl { get; set; }
@@ -314,6 +320,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: "")` - Provides a TTL for the token in the form of
         /// a time duration such as `"5m"` or `"1h"`.
+        /// 
+        /// In addition to the above arguments, the following attributes are exported and
+        /// can be referenced:
         /// </summary>
         [Input("expirationTtl")]
         public Input<string>? ExpirationTtl { get; set; }

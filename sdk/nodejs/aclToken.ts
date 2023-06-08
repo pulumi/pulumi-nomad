@@ -107,6 +107,9 @@ export class AclToken extends pulumi.CustomResource {
     /**
      * `(string: "")` - Provides a TTL for the token in the form of
      * a time duration such as `"5m"` or `"1h"`.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      */
     public readonly expirationTtl!: pulumi.Output<string | undefined>;
     /**
@@ -209,6 +212,9 @@ export interface AclTokenState {
     /**
      * `(string: "")` - Provides a TTL for the token in the form of
      * a time duration such as `"5m"` or `"1h"`.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      */
     expirationTtl?: pulumi.Input<string>;
     /**
@@ -252,6 +258,9 @@ export interface AclTokenArgs {
     /**
      * `(string: "")` - Provides a TTL for the token in the form of
      * a time duration such as `"5m"` or `"1h"`.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      */
     expirationTtl?: pulumi.Input<string>;
     /**

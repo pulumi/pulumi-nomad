@@ -19,12 +19,18 @@ public final class VolumeTopologyArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * `(map[string]string)` - Define the attributes for the topology request.
      * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     * 
      */
     @Import(name="segments")
     private @Nullable Output<Map<String,String>> segments;
 
     /**
      * @return `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
      * 
      */
     public Optional<Output<Map<String,String>>> segments() {
@@ -58,6 +64,9 @@ public final class VolumeTopologyArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param segments `(map[string]string)` - Define the attributes for the topology request.
          * 
+         * In addition to the above arguments, the following attributes are exported and
+         * can be referenced:
+         * 
          * @return builder
          * 
          */
@@ -68,6 +77,9 @@ public final class VolumeTopologyArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param segments `(map[string]string)` - Define the attributes for the topology request.
+         * 
+         * In addition to the above arguments, the following attributes are exported and
+         * can be referenced:
          * 
          * @return builder
          * 
