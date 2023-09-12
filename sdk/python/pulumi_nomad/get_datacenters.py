@@ -101,10 +101,10 @@ def get_datacenters(ignore_down_nodes: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getDatacenters:getDatacenters', __args__, opts=opts, typ=GetDatacentersResult).value
 
     return AwaitableGetDatacentersResult(
-        datacenters=__ret__.datacenters,
-        id=__ret__.id,
-        ignore_down_nodes=__ret__.ignore_down_nodes,
-        prefix=__ret__.prefix)
+        datacenters=pulumi.get(__ret__, 'datacenters'),
+        id=pulumi.get(__ret__, 'id'),
+        ignore_down_nodes=pulumi.get(__ret__, 'ignore_down_nodes'),
+        prefix=pulumi.get(__ret__, 'prefix'))
 
 
 @_utilities.lift_output_func(get_datacenters)

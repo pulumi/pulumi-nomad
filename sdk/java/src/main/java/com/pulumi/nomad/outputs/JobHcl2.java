@@ -21,10 +21,14 @@ public final class JobHcl2 {
      */
     private @Nullable Boolean allowFs;
     /**
-     * @return `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-     * format instead of the default HCL.
+     * @return `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+     * HCL2 by default.
+     * 
+     * @deprecated
+     * Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set &#39;hcl1 = true&#39; if you must use HCL1 job parsing.
      * 
      */
+    @Deprecated /* Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing. */
     private @Nullable Boolean enabled;
     private @Nullable Map<String,Object> vars;
 
@@ -38,10 +42,14 @@ public final class JobHcl2 {
         return Optional.ofNullable(this.allowFs);
     }
     /**
-     * @return `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-     * format instead of the default HCL.
+     * @return `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+     * HCL2 by default.
+     * 
+     * @deprecated
+     * Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set &#39;hcl1 = true&#39; if you must use HCL1 job parsing.
      * 
      */
+    @Deprecated /* Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing. */
     public Optional<Boolean> enabled() {
         return Optional.ofNullable(this.enabled);
     }

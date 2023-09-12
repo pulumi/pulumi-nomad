@@ -227,6 +227,12 @@ namespace Pulumi.Nomad
         [Input("secretId")]
         public Input<string>? SecretId { get; set; }
 
+        /// <summary>
+        /// Skip TLS verification on client side.
+        /// </summary>
+        [Input("skipVerify", json: true)]
+        public Input<bool>? SkipVerify { get; set; }
+
         [Input("vaultToken")]
         private Input<string>? _vaultToken;
 

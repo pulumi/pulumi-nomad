@@ -118,6 +118,7 @@ namespace Pulumi.Nomad
         /// </summary>
         public readonly ImmutableDictionary<string, string> Meta;
         public readonly string Name;
+        public readonly ImmutableArray<Outputs.GetNamespaceNodePoolConfigResult> NodePoolConfigs;
         /// <summary>
         /// `(string)` - The quota associated with the namespace.
         /// </summary>
@@ -135,6 +136,8 @@ namespace Pulumi.Nomad
 
             string name,
 
+            ImmutableArray<Outputs.GetNamespaceNodePoolConfigResult> nodePoolConfigs,
+
             string quota)
         {
             Capabilities = capabilities;
@@ -142,6 +145,7 @@ namespace Pulumi.Nomad
             Id = id;
             Meta = meta;
             Name = name;
+            NodePoolConfigs = nodePoolConfigs;
             Quota = quota;
         }
     }

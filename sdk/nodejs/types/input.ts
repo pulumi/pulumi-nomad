@@ -18,6 +18,30 @@ export interface AclAuthMethodConfig {
     signingAlgs?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface AclPolicyJobAcl {
+    /**
+     * `(string: <optional>` - The group to attach the policy. Required if
+     * `task` is set.
+     */
+    group?: pulumi.Input<string>;
+    /**
+     * `(string: <optional>` - The job to attach the policy. Required if
+     * `group` is set.
+     */
+    jobId: pulumi.Input<string>;
+    /**
+     * `(string: "default")` - The namespace to attach the policy.
+     * Required if `jobId` is set.
+     */
+    namespace?: pulumi.Input<string>;
+    /**
+     * `(string: <optional>` - The task to attach the policy.
+     *
+     * [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+     */
+    task?: pulumi.Input<string>;
+}
+
 export interface AclRolePolicy {
     /**
      * `(string: <required>)` - A human-friendly name for this ACL Role.
@@ -31,6 +55,144 @@ export interface AclTokenRole {
      * `(string: "")` - A human-friendly name for this token.
      */
     name?: pulumi.Input<string>;
+}
+
+export interface CsiVolumeCapability {
+    /**
+     * `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
+     */
+    accessMode: pulumi.Input<string>;
+    /**
+     * `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+     * - `block-device`
+     * - `file-system`
+     */
+    attachmentMode: pulumi.Input<string>;
+}
+
+export interface CsiVolumeMountOptions {
+    /**
+     * `(string: optional)` - The file system type.
+     */
+    fsType?: pulumi.Input<string>;
+    /**
+     * `[]string: optional` - The flags passed to `mount`.
+     */
+    mountFlags?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface CsiVolumeRegistrationCapability {
+    /**
+     * `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
+     */
+    accessMode: pulumi.Input<string>;
+    /**
+     * `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+     * - `block-device`
+     * - `file-system`
+     */
+    attachmentMode: pulumi.Input<string>;
+}
+
+export interface CsiVolumeRegistrationMountOptions {
+    /**
+     * `(string: <optional>)` - The file system type.
+     */
+    fsType?: pulumi.Input<string>;
+    /**
+     * `([]string: <optional>)` - The flags passed to `mount`.
+     */
+    mountFlags?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface CsiVolumeRegistrationTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
+    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface CsiVolumeRegistrationTopologyRequest {
+    /**
+     * `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     */
+    required?: pulumi.Input<inputs.CsiVolumeRegistrationTopologyRequestRequired>;
+}
+
+export interface CsiVolumeRegistrationTopologyRequestRequired {
+    topologies: pulumi.Input<pulumi.Input<inputs.CsiVolumeRegistrationTopologyRequestRequiredTopology>[]>;
+}
+
+export interface CsiVolumeRegistrationTopologyRequestRequiredTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
+    segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface CsiVolumeTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
+    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface CsiVolumeTopologyRequest {
+    /**
+     * `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+     */
+    preferred?: pulumi.Input<inputs.CsiVolumeTopologyRequestPreferred>;
+    /**
+     * `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     */
+    required?: pulumi.Input<inputs.CsiVolumeTopologyRequestRequired>;
+}
+
+export interface CsiVolumeTopologyRequestPreferred {
+    topologies: pulumi.Input<pulumi.Input<inputs.CsiVolumeTopologyRequestPreferredTopology>[]>;
+}
+
+export interface CsiVolumeTopologyRequestPreferredTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
+    segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface CsiVolumeTopologyRequestRequired {
+    topologies: pulumi.Input<pulumi.Input<inputs.CsiVolumeTopologyRequestRequiredTopology>[]>;
+}
+
+export interface CsiVolumeTopologyRequestRequiredTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
+    segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface ExternalVolumeCapability {
@@ -118,8 +280,10 @@ export interface JobHcl2 {
      */
     allowFs?: pulumi.Input<boolean>;
     /**
-     * `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-     * format instead of the default HCL.
+     * `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+     * HCL2 by default.
+     *
+     * @deprecated Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
      */
     enabled?: pulumi.Input<boolean>;
     vars?: pulumi.Input<{[key: string]: any}>;
@@ -162,6 +326,41 @@ export interface NamespaceCapabilities {
      * `([]string: <optional>)` - Task drivers enabled for the namespace.
      */
     enabledTaskDrivers?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface NamespaceNodePoolConfig {
+    /**
+     * `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
+     */
+    alloweds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * `(string: <optional>)` - The default node pool for jobs that don't define one.
+     */
+    default?: pulumi.Input<string>;
+    /**
+     * `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+     */
+    denieds?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface NodePoolSchedulerConfig {
+    /**
+     * `(string)` - Whether or not memory
+     * oversubscription is enabled in the node pool. Possible values are
+     * `"enabled"` or `"disabled"`. If not defined the global cluster
+     * configuration is used.
+     *
+     * > This option differs from Nomad, where it's represented as a boolean, to
+     * allow distinguishing between memory oversubscription being disabled in the
+     * node pool and this property not being set.
+     */
+    memoryOversubscription?: pulumi.Input<string>;
+    /**
+     * `(string)` - The scheduler algorithm used in the node
+     * pool. Possible values are `binpack` or `spread`. If not defined the global
+     * cluster configuration is used.
+     */
+    schedulerAlgorithm?: pulumi.Input<string>;
 }
 
 export interface ProviderHeader {

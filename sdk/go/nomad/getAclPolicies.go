@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of ACL Policies.
@@ -19,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -38,6 +40,7 @@ import (
 //
 // ```
 func GetAclPolicies(ctx *pulumi.Context, args *GetAclPoliciesArgs, opts ...pulumi.InvokeOption) (*GetAclPoliciesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAclPoliciesResult
 	err := ctx.Invoke("nomad:index/getAclPolicies:getAclPolicies", args, &rv, opts...)
 	if err != nil {
@@ -97,6 +100,12 @@ func (o GetAclPoliciesResultOutput) ToGetAclPoliciesResultOutput() GetAclPolicie
 
 func (o GetAclPoliciesResultOutput) ToGetAclPoliciesResultOutputWithContext(ctx context.Context) GetAclPoliciesResultOutput {
 	return o
+}
+
+func (o GetAclPoliciesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclPoliciesResult] {
+	return pulumix.Output[GetAclPoliciesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -15,24 +15,27 @@ __all__ = ['AclBindingRuleArgs', 'AclBindingRule']
 class AclBindingRuleArgs:
     def __init__(__self__, *,
                  auth_method: pulumi.Input[str],
-                 bind_name: pulumi.Input[str],
                  bind_type: pulumi.Input[str],
+                 bind_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  selector: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AclBindingRule resource.
         :param pulumi.Input[str] auth_method: `(string: <required>)` - Name of the auth method for which this
                rule applies to.
-        :param pulumi.Input[str] bind_name: `(string: "")` - Target of the binding.
         :param pulumi.Input[str] bind_type: `(string: <required>)` - Adjusts how this binding rule is applied
                at login time. Valid values are `role`, `policy`, and `management`.
+        :param pulumi.Input[str] bind_name: `(string: <optional>)` - Target of the binding. If `bind_type` is
+               `role` or `policy` then `bind_name` is required. If `bind_type` is
+               `management` than `bind_name` must not be defined.
         :param pulumi.Input[str] description: `(string: "")` - Description for this ACL binding rule.
         :param pulumi.Input[str] selector: `(string: "")` - A boolean expression that matches against verified
                identity attributes returned from the auth method during login.
         """
         pulumi.set(__self__, "auth_method", auth_method)
-        pulumi.set(__self__, "bind_name", bind_name)
         pulumi.set(__self__, "bind_type", bind_type)
+        if bind_name is not None:
+            pulumi.set(__self__, "bind_name", bind_name)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if selector is not None:
@@ -52,18 +55,6 @@ class AclBindingRuleArgs:
         pulumi.set(self, "auth_method", value)
 
     @property
-    @pulumi.getter(name="bindName")
-    def bind_name(self) -> pulumi.Input[str]:
-        """
-        `(string: "")` - Target of the binding.
-        """
-        return pulumi.get(self, "bind_name")
-
-    @bind_name.setter
-    def bind_name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "bind_name", value)
-
-    @property
     @pulumi.getter(name="bindType")
     def bind_type(self) -> pulumi.Input[str]:
         """
@@ -75,6 +66,20 @@ class AclBindingRuleArgs:
     @bind_type.setter
     def bind_type(self, value: pulumi.Input[str]):
         pulumi.set(self, "bind_type", value)
+
+    @property
+    @pulumi.getter(name="bindName")
+    def bind_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - Target of the binding. If `bind_type` is
+        `role` or `policy` then `bind_name` is required. If `bind_type` is
+        `management` than `bind_name` must not be defined.
+        """
+        return pulumi.get(self, "bind_name")
+
+    @bind_name.setter
+    def bind_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bind_name", value)
 
     @property
     @pulumi.getter
@@ -114,7 +119,9 @@ class _AclBindingRuleState:
         Input properties used for looking up and filtering AclBindingRule resources.
         :param pulumi.Input[str] auth_method: `(string: <required>)` - Name of the auth method for which this
                rule applies to.
-        :param pulumi.Input[str] bind_name: `(string: "")` - Target of the binding.
+        :param pulumi.Input[str] bind_name: `(string: <optional>)` - Target of the binding. If `bind_type` is
+               `role` or `policy` then `bind_name` is required. If `bind_type` is
+               `management` than `bind_name` must not be defined.
         :param pulumi.Input[str] bind_type: `(string: <required>)` - Adjusts how this binding rule is applied
                at login time. Valid values are `role`, `policy`, and `management`.
         :param pulumi.Input[str] description: `(string: "")` - Description for this ACL binding rule.
@@ -149,7 +156,9 @@ class _AclBindingRuleState:
     @pulumi.getter(name="bindName")
     def bind_name(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: "")` - Target of the binding.
+        `(string: <optional>)` - Target of the binding. If `bind_type` is
+        `role` or `policy` then `bind_name` is required. If `bind_type` is
+        `management` than `bind_name` must not be defined.
         """
         return pulumi.get(self, "bind_name")
 
@@ -213,7 +222,9 @@ class AclBindingRule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auth_method: `(string: <required>)` - Name of the auth method for which this
                rule applies to.
-        :param pulumi.Input[str] bind_name: `(string: "")` - Target of the binding.
+        :param pulumi.Input[str] bind_name: `(string: <optional>)` - Target of the binding. If `bind_type` is
+               `role` or `policy` then `bind_name` is required. If `bind_type` is
+               `management` than `bind_name` must not be defined.
         :param pulumi.Input[str] bind_type: `(string: <required>)` - Adjusts how this binding rule is applied
                at login time. Valid values are `role`, `policy`, and `management`.
         :param pulumi.Input[str] description: `(string: "")` - Description for this ACL binding rule.
@@ -260,8 +271,6 @@ class AclBindingRule(pulumi.CustomResource):
             if auth_method is None and not opts.urn:
                 raise TypeError("Missing required property 'auth_method'")
             __props__.__dict__["auth_method"] = auth_method
-            if bind_name is None and not opts.urn:
-                raise TypeError("Missing required property 'bind_name'")
             __props__.__dict__["bind_name"] = bind_name
             if bind_type is None and not opts.urn:
                 raise TypeError("Missing required property 'bind_type'")
@@ -292,7 +301,9 @@ class AclBindingRule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auth_method: `(string: <required>)` - Name of the auth method for which this
                rule applies to.
-        :param pulumi.Input[str] bind_name: `(string: "")` - Target of the binding.
+        :param pulumi.Input[str] bind_name: `(string: <optional>)` - Target of the binding. If `bind_type` is
+               `role` or `policy` then `bind_name` is required. If `bind_type` is
+               `management` than `bind_name` must not be defined.
         :param pulumi.Input[str] bind_type: `(string: <required>)` - Adjusts how this binding rule is applied
                at login time. Valid values are `role`, `policy`, and `management`.
         :param pulumi.Input[str] description: `(string: "")` - Description for this ACL binding rule.
@@ -321,9 +332,11 @@ class AclBindingRule(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="bindName")
-    def bind_name(self) -> pulumi.Output[str]:
+    def bind_name(self) -> pulumi.Output[Optional[str]]:
         """
-        `(string: "")` - Target of the binding.
+        `(string: <optional>)` - Target of the binding. If `bind_type` is
+        `role` or `policy` then `bind_name` is required. If `bind_type` is
+        `management` than `bind_name` must not be defined.
         """
         return pulumi.get(self, "bind_name")
 

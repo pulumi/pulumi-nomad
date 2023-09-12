@@ -215,6 +215,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Skip TLS verification on client side.
+     * 
+     */
+    @Import(name="skipVerify", json=true)
+    private @Nullable Output<Boolean> skipVerify;
+
+    /**
+     * @return Skip TLS verification on client side.
+     * 
+     */
+    public Optional<Output<Boolean>> skipVerify() {
+        return Optional.ofNullable(this.skipVerify);
+    }
+
+    /**
      * Vault token if policies are specified in the job file.
      * 
      */
@@ -245,6 +260,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.keyPem = $.keyPem;
         this.region = $.region;
         this.secretId = $.secretId;
+        this.skipVerify = $.skipVerify;
         this.vaultToken = $.vaultToken;
     }
 
@@ -547,6 +563,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder secretId(String secretId) {
             return secretId(Output.of(secretId));
+        }
+
+        /**
+         * @param skipVerify Skip TLS verification on client side.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipVerify(@Nullable Output<Boolean> skipVerify) {
+            $.skipVerify = skipVerify;
+            return this;
+        }
+
+        /**
+         * @param skipVerify Skip TLS verification on client side.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder skipVerify(Boolean skipVerify) {
+            return skipVerify(Output.of(skipVerify));
         }
 
         /**

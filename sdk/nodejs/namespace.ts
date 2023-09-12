@@ -83,7 +83,7 @@ export class Namespace extends pulumi.CustomResource {
     }
 
     /**
-     * `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+     * `(block: <optional>)` - A block of capabilities for the namespace. Can't
      * be repeated. See below for the structure of this block.
      */
     public readonly capabilities!: pulumi.Output<outputs.NamespaceCapabilities | undefined>;
@@ -99,6 +99,10 @@ export class Namespace extends pulumi.CustomResource {
      * `(string: <required>)` - A unique name for the namespace.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+     */
+    public readonly nodePoolConfig!: pulumi.Output<outputs.NamespaceNodePoolConfig>;
     /**
      * `(string: "")` - A resource quota to attach to the namespace.
      */
@@ -121,6 +125,7 @@ export class Namespace extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["meta"] = state ? state.meta : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nodePoolConfig"] = state ? state.nodePoolConfig : undefined;
             resourceInputs["quota"] = state ? state.quota : undefined;
         } else {
             const args = argsOrState as NamespaceArgs | undefined;
@@ -128,6 +133,7 @@ export class Namespace extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["meta"] = args ? args.meta : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nodePoolConfig"] = args ? args.nodePoolConfig : undefined;
             resourceInputs["quota"] = args ? args.quota : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -140,7 +146,7 @@ export class Namespace extends pulumi.CustomResource {
  */
 export interface NamespaceState {
     /**
-     * `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+     * `(block: <optional>)` - A block of capabilities for the namespace. Can't
      * be repeated. See below for the structure of this block.
      */
     capabilities?: pulumi.Input<inputs.NamespaceCapabilities>;
@@ -156,6 +162,10 @@ export interface NamespaceState {
      * `(string: <required>)` - A unique name for the namespace.
      */
     name?: pulumi.Input<string>;
+    /**
+     * `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+     */
+    nodePoolConfig?: pulumi.Input<inputs.NamespaceNodePoolConfig>;
     /**
      * `(string: "")` - A resource quota to attach to the namespace.
      */
@@ -167,7 +177,7 @@ export interface NamespaceState {
  */
 export interface NamespaceArgs {
     /**
-     * `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+     * `(block: <optional>)` - A block of capabilities for the namespace. Can't
      * be repeated. See below for the structure of this block.
      */
     capabilities?: pulumi.Input<inputs.NamespaceCapabilities>;
@@ -183,6 +193,10 @@ export interface NamespaceArgs {
      * `(string: <required>)` - A unique name for the namespace.
      */
     name?: pulumi.Input<string>;
+    /**
+     * `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+     */
+    nodePoolConfig?: pulumi.Input<inputs.NamespaceNodePoolConfig>;
     /**
      * `(string: "")` - A resource quota to attach to the namespace.
      */

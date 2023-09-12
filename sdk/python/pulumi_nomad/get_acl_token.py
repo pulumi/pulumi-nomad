@@ -189,17 +189,17 @@ def get_acl_token(accessor_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getAclToken:getAclToken', __args__, opts=opts, typ=GetAclTokenResult).value
 
     return AwaitableGetAclTokenResult(
-        accessor_id=__ret__.accessor_id,
-        create_time=__ret__.create_time,
-        expiration_time=__ret__.expiration_time,
-        expiration_ttl=__ret__.expiration_ttl,
-        global_=__ret__.global_,
-        id=__ret__.id,
-        name=__ret__.name,
-        policies=__ret__.policies,
-        roles=__ret__.roles,
-        secret_id=__ret__.secret_id,
-        type=__ret__.type)
+        accessor_id=pulumi.get(__ret__, 'accessor_id'),
+        create_time=pulumi.get(__ret__, 'create_time'),
+        expiration_time=pulumi.get(__ret__, 'expiration_time'),
+        expiration_ttl=pulumi.get(__ret__, 'expiration_ttl'),
+        global_=pulumi.get(__ret__, 'global_'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        policies=pulumi.get(__ret__, 'policies'),
+        roles=pulumi.get(__ret__, 'roles'),
+        secret_id=pulumi.get(__ret__, 'secret_id'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_acl_token)

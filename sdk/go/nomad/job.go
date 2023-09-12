@@ -8,13 +8,17 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type Job struct {
 	pulumi.CustomResourceState
 
 	// The IDs for allocations associated with this job.
+	//
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
 	AllocationIds pulumi.StringArrayOutput `pulumi:"allocationIds"`
 	// `(string: <optional>)` - Consul token used when registering this job.
 	// Will fallback to the value declared in Nomad provider configuration, if any.
@@ -33,6 +37,10 @@ type Job struct {
 	// `(boolean: true)` - If true, the provider will return immediately
 	// after creating or updating, instead of monitoring.
 	Detach pulumi.BoolPtrOutput `pulumi:"detach"`
+	// `(boolean: false)` - Set this to `true` to use the previous HCL1
+	// parser. This option is provided for backwards compatibility only and should
+	// not be used unless absolutely necessary.
+	Hcl1 pulumi.BoolPtrOutput `pulumi:"hcl1"`
 	// `(block: optional)` - Options for the HCL2 jobspec parser.
 	Hcl2 JobHcl2PtrOutput `pulumi:"hcl2"`
 	// `(string: <required>)` - The contents of the jobspec to register.
@@ -52,6 +60,8 @@ type Job struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy pulumi.BoolPtrOutput `pulumi:"purgeOnDestroy"`
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	ReadAllocationIds pulumi.BoolPtrOutput `pulumi:"readAllocationIds"`
 	// The target region for the job, as derived from the jobspec.
 	Region     pulumi.StringOutput     `pulumi:"region"`
 	TaskGroups JobTaskGroupArrayOutput `pulumi:"taskGroups"`
@@ -83,6 +93,7 @@ func NewJob(ctx *pulumi.Context,
 		"vaultToken",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Job
 	err := ctx.RegisterResource("nomad:index/job:Job", name, args, &resource, opts...)
 	if err != nil {
@@ -106,6 +117,8 @@ func GetJob(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Job resources.
 type jobState struct {
 	// The IDs for allocations associated with this job.
+	//
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
 	AllocationIds []string `pulumi:"allocationIds"`
 	// `(string: <optional>)` - Consul token used when registering this job.
 	// Will fallback to the value declared in Nomad provider configuration, if any.
@@ -124,6 +137,10 @@ type jobState struct {
 	// `(boolean: true)` - If true, the provider will return immediately
 	// after creating or updating, instead of monitoring.
 	Detach *bool `pulumi:"detach"`
+	// `(boolean: false)` - Set this to `true` to use the previous HCL1
+	// parser. This option is provided for backwards compatibility only and should
+	// not be used unless absolutely necessary.
+	Hcl1 *bool `pulumi:"hcl1"`
 	// `(block: optional)` - Options for the HCL2 jobspec parser.
 	Hcl2 *JobHcl2 `pulumi:"hcl2"`
 	// `(string: <required>)` - The contents of the jobspec to register.
@@ -143,6 +160,8 @@ type jobState struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy *bool `pulumi:"purgeOnDestroy"`
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	ReadAllocationIds *bool `pulumi:"readAllocationIds"`
 	// The target region for the job, as derived from the jobspec.
 	Region     *string        `pulumi:"region"`
 	TaskGroups []JobTaskGroup `pulumi:"taskGroups"`
@@ -155,6 +174,8 @@ type jobState struct {
 
 type JobState struct {
 	// The IDs for allocations associated with this job.
+	//
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
 	AllocationIds pulumi.StringArrayInput
 	// `(string: <optional>)` - Consul token used when registering this job.
 	// Will fallback to the value declared in Nomad provider configuration, if any.
@@ -173,6 +194,10 @@ type JobState struct {
 	// `(boolean: true)` - If true, the provider will return immediately
 	// after creating or updating, instead of monitoring.
 	Detach pulumi.BoolPtrInput
+	// `(boolean: false)` - Set this to `true` to use the previous HCL1
+	// parser. This option is provided for backwards compatibility only and should
+	// not be used unless absolutely necessary.
+	Hcl1 pulumi.BoolPtrInput
 	// `(block: optional)` - Options for the HCL2 jobspec parser.
 	Hcl2 JobHcl2PtrInput
 	// `(string: <required>)` - The contents of the jobspec to register.
@@ -192,6 +217,8 @@ type JobState struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy pulumi.BoolPtrInput
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	ReadAllocationIds pulumi.BoolPtrInput
 	// The target region for the job, as derived from the jobspec.
 	Region     pulumi.StringPtrInput
 	TaskGroups JobTaskGroupArrayInput
@@ -218,6 +245,10 @@ type jobArgs struct {
 	// `(boolean: true)` - If true, the provider will return immediately
 	// after creating or updating, instead of monitoring.
 	Detach *bool `pulumi:"detach"`
+	// `(boolean: false)` - Set this to `true` to use the previous HCL1
+	// parser. This option is provided for backwards compatibility only and should
+	// not be used unless absolutely necessary.
+	Hcl1 *bool `pulumi:"hcl1"`
 	// `(block: optional)` - Options for the HCL2 jobspec parser.
 	Hcl2 *JobHcl2 `pulumi:"hcl2"`
 	// `(string: <required>)` - The contents of the jobspec to register.
@@ -231,6 +262,8 @@ type jobArgs struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy *bool `pulumi:"purgeOnDestroy"`
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	ReadAllocationIds *bool `pulumi:"readAllocationIds"`
 	// `(string: <optional>)` - Vault token used when registering this job.
 	// Will fallback to the value declared in Nomad provider configuration, if any.
 	VaultToken *string `pulumi:"vaultToken"`
@@ -249,6 +282,10 @@ type JobArgs struct {
 	// `(boolean: true)` - If true, the provider will return immediately
 	// after creating or updating, instead of monitoring.
 	Detach pulumi.BoolPtrInput
+	// `(boolean: false)` - Set this to `true` to use the previous HCL1
+	// parser. This option is provided for backwards compatibility only and should
+	// not be used unless absolutely necessary.
+	Hcl1 pulumi.BoolPtrInput
 	// `(block: optional)` - Options for the HCL2 jobspec parser.
 	Hcl2 JobHcl2PtrInput
 	// `(string: <required>)` - The contents of the jobspec to register.
@@ -262,6 +299,8 @@ type JobArgs struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy pulumi.BoolPtrInput
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	ReadAllocationIds pulumi.BoolPtrInput
 	// `(string: <optional>)` - Vault token used when registering this job.
 	// Will fallback to the value declared in Nomad provider configuration, if any.
 	VaultToken pulumi.StringPtrInput
@@ -290,6 +329,12 @@ func (i *Job) ToJobOutputWithContext(ctx context.Context) JobOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(JobOutput)
 }
 
+func (i *Job) ToOutput(ctx context.Context) pulumix.Output[*Job] {
+	return pulumix.Output[*Job]{
+		OutputState: i.ToJobOutputWithContext(ctx).OutputState,
+	}
+}
+
 // JobArrayInput is an input type that accepts JobArray and JobArrayOutput values.
 // You can construct a concrete instance of `JobArrayInput` via:
 //
@@ -313,6 +358,12 @@ func (i JobArray) ToJobArrayOutput() JobArrayOutput {
 
 func (i JobArray) ToJobArrayOutputWithContext(ctx context.Context) JobArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(JobArrayOutput)
+}
+
+func (i JobArray) ToOutput(ctx context.Context) pulumix.Output[[]*Job] {
+	return pulumix.Output[[]*Job]{
+		OutputState: i.ToJobArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // JobMapInput is an input type that accepts JobMap and JobMapOutput values.
@@ -340,6 +391,12 @@ func (i JobMap) ToJobMapOutputWithContext(ctx context.Context) JobMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(JobMapOutput)
 }
 
+func (i JobMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Job] {
+	return pulumix.Output[map[string]*Job]{
+		OutputState: i.ToJobMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JobOutput struct{ *pulumi.OutputState }
 
 func (JobOutput) ElementType() reflect.Type {
@@ -354,7 +411,15 @@ func (o JobOutput) ToJobOutputWithContext(ctx context.Context) JobOutput {
 	return o
 }
 
+func (o JobOutput) ToOutput(ctx context.Context) pulumix.Output[*Job] {
+	return pulumix.Output[*Job]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The IDs for allocations associated with this job.
+//
+// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
 func (o JobOutput) AllocationIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.AllocationIds }).(pulumi.StringArrayOutput)
 }
@@ -395,6 +460,13 @@ func (o JobOutput) DeregisterOnIdChange() pulumi.BoolPtrOutput {
 // after creating or updating, instead of monitoring.
 func (o JobOutput) Detach() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.Detach }).(pulumi.BoolPtrOutput)
+}
+
+// `(boolean: false)` - Set this to `true` to use the previous HCL1
+// parser. This option is provided for backwards compatibility only and should
+// not be used unless absolutely necessary.
+func (o JobOutput) Hcl1() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.Hcl1 }).(pulumi.BoolPtrOutput)
 }
 
 // `(block: optional)` - Options for the HCL2 jobspec parser.
@@ -440,6 +512,11 @@ func (o JobOutput) PurgeOnDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.PurgeOnDestroy }).(pulumi.BoolPtrOutput)
 }
 
+// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+func (o JobOutput) ReadAllocationIds() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.ReadAllocationIds }).(pulumi.BoolPtrOutput)
+}
+
 // The target region for the job, as derived from the jobspec.
 func (o JobOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
@@ -474,6 +551,12 @@ func (o JobArrayOutput) ToJobArrayOutputWithContext(ctx context.Context) JobArra
 	return o
 }
 
+func (o JobArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Job] {
+	return pulumix.Output[[]*Job]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o JobArrayOutput) Index(i pulumi.IntInput) JobOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Job {
 		return vs[0].([]*Job)[vs[1].(int)]
@@ -492,6 +575,12 @@ func (o JobMapOutput) ToJobMapOutput() JobMapOutput {
 
 func (o JobMapOutput) ToJobMapOutputWithContext(ctx context.Context) JobMapOutput {
 	return o
+}
+
+func (o JobMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Job] {
+	return pulumix.Output[map[string]*Job]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobMapOutput) MapIndex(k pulumi.StringInput) JobOutput {

@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Lookup a plugin by ID. The aim of this datasource is to determine whether
@@ -28,7 +30,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -51,6 +53,7 @@ import (
 // This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
 // is healthy before returning.
 func GetPlugin(ctx *pulumi.Context, args *GetPluginArgs, opts ...pulumi.InvokeOption) (*GetPluginResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPluginResult
 	err := ctx.Invoke("nomad:index/getPlugin:getPlugin", args, &rv, opts...)
 	if err != nil {
@@ -134,6 +137,12 @@ func (o GetPluginResultOutput) ToGetPluginResultOutput() GetPluginResultOutput {
 
 func (o GetPluginResultOutput) ToGetPluginResultOutputWithContext(ctx context.Context) GetPluginResultOutput {
 	return o
+}
+
+func (o GetPluginResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetPluginResult] {
+	return pulumix.Output[GetPluginResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(boolean)` Whether a controller is required.

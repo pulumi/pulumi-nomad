@@ -64,5 +64,5 @@ def get_regions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegi
     __ret__ = pulumi.runtime.invoke('nomad:index/getRegions:getRegions', __args__, opts=opts, typ=GetRegionsResult).value
 
     return AwaitableGetRegionsResult(
-        id=__ret__.id,
-        regions=__ret__.regions)
+        id=pulumi.get(__ret__, 'id'),
+        regions=pulumi.get(__ret__, 'regions'))

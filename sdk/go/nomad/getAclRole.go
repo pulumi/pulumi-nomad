@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information on an ACL Role.
@@ -19,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -38,6 +40,7 @@ import (
 //
 // ```
 func LookupAclRole(ctx *pulumi.Context, args *LookupAclRoleArgs, opts ...pulumi.InvokeOption) (*LookupAclRoleResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAclRoleResult
 	err := ctx.Invoke("nomad:index/getAclRole:getAclRole", args, &rv, opts...)
 	if err != nil {
@@ -100,6 +103,12 @@ func (o LookupAclRoleResultOutput) ToLookupAclRoleResultOutput() LookupAclRoleRe
 
 func (o LookupAclRoleResultOutput) ToLookupAclRoleResultOutputWithContext(ctx context.Context) LookupAclRoleResultOutput {
 	return o
+}
+
+func (o LookupAclRoleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAclRoleResult] {
+	return pulumix.Output[LookupAclRoleResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` - The description of the ACL Role.

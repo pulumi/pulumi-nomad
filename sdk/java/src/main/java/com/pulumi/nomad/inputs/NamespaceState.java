@@ -6,6 +6,7 @@ package com.pulumi.nomad.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.nomad.inputs.NamespaceCapabilitiesArgs;
+import com.pulumi.nomad.inputs.NamespaceNodePoolConfigArgs;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -80,6 +81,21 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * `(block: &lt;optional&gt;)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    @Import(name="nodePoolConfig")
+    private @Nullable Output<NamespaceNodePoolConfigArgs> nodePoolConfig;
+
+    /**
+     * @return `(block: &lt;optional&gt;)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    public Optional<Output<NamespaceNodePoolConfigArgs>> nodePoolConfig() {
+        return Optional.ofNullable(this.nodePoolConfig);
+    }
+
+    /**
      * `(string: &#34;&#34;)` - A resource quota to attach to the namespace.
      * 
      */
@@ -101,6 +117,7 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.meta = $.meta;
         this.name = $.name;
+        this.nodePoolConfig = $.nodePoolConfig;
         this.quota = $.quota;
     }
 
@@ -206,6 +223,27 @@ public final class NamespaceState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param nodePoolConfig `(block: &lt;optional&gt;)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodePoolConfig(@Nullable Output<NamespaceNodePoolConfigArgs> nodePoolConfig) {
+            $.nodePoolConfig = nodePoolConfig;
+            return this;
+        }
+
+        /**
+         * @param nodePoolConfig `(block: &lt;optional&gt;)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodePoolConfig(NamespaceNodePoolConfigArgs nodePoolConfig) {
+            return nodePoolConfig(Output.of(nodePoolConfig));
         }
 
         /**

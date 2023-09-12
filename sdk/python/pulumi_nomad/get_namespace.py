@@ -22,7 +22,7 @@ class GetNamespaceResult:
     """
     A collection of values returned by getNamespace.
     """
-    def __init__(__self__, capabilities=None, description=None, id=None, meta=None, name=None, quota=None):
+    def __init__(__self__, capabilities=None, description=None, id=None, meta=None, name=None, node_pool_configs=None, quota=None):
         if capabilities and not isinstance(capabilities, list):
             raise TypeError("Expected argument 'capabilities' to be a list")
         pulumi.set(__self__, "capabilities", capabilities)
@@ -38,6 +38,9 @@ class GetNamespaceResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if node_pool_configs and not isinstance(node_pool_configs, list):
+            raise TypeError("Expected argument 'node_pool_configs' to be a list")
+        pulumi.set(__self__, "node_pool_configs", node_pool_configs)
         if quota and not isinstance(quota, str):
             raise TypeError("Expected argument 'quota' to be a str")
         pulumi.set(__self__, "quota", quota)
@@ -80,6 +83,11 @@ class GetNamespaceResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="nodePoolConfigs")
+    def node_pool_configs(self) -> Sequence['outputs.GetNamespaceNodePoolConfigResult']:
+        return pulumi.get(self, "node_pool_configs")
+
+    @property
     @pulumi.getter
     def quota(self) -> str:
         """
@@ -99,6 +107,7 @@ class AwaitableGetNamespaceResult(GetNamespaceResult):
             id=self.id,
             meta=self.meta,
             name=self.name,
+            node_pool_configs=self.node_pool_configs,
             quota=self.quota)
 
 
@@ -125,12 +134,13 @@ def get_namespace(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getNamespace:getNamespace', __args__, opts=opts, typ=GetNamespaceResult).value
 
     return AwaitableGetNamespaceResult(
-        capabilities=__ret__.capabilities,
-        description=__ret__.description,
-        id=__ret__.id,
-        meta=__ret__.meta,
-        name=__ret__.name,
-        quota=__ret__.quota)
+        capabilities=pulumi.get(__ret__, 'capabilities'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        meta=pulumi.get(__ret__, 'meta'),
+        name=pulumi.get(__ret__, 'name'),
+        node_pool_configs=pulumi.get(__ret__, 'node_pool_configs'),
+        quota=pulumi.get(__ret__, 'quota'))
 
 
 @_utilities.lift_output_func(get_namespace)

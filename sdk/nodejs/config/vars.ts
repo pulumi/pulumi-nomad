@@ -153,6 +153,17 @@ Object.defineProperty(exports, "secretId", {
 });
 
 /**
+ * Skip TLS verification on client side.
+ */
+export declare const skipVerify: boolean | undefined;
+Object.defineProperty(exports, "skipVerify", {
+    get() {
+        return __config.getObject<boolean>("skipVerify");
+    },
+    enumerable: true,
+});
+
+/**
  * Vault token if policies are specified in the job file.
  */
 export declare const vaultToken: string | undefined;

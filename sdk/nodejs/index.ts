@@ -30,6 +30,16 @@ export type AclToken = import("./aclToken").AclToken;
 export const AclToken: typeof import("./aclToken").AclToken = null as any;
 utilities.lazyLoad(exports, ["AclToken"], () => require("./aclToken"));
 
+export { CsiVolumeArgs, CsiVolumeState } from "./csiVolume";
+export type CsiVolume = import("./csiVolume").CsiVolume;
+export const CsiVolume: typeof import("./csiVolume").CsiVolume = null as any;
+utilities.lazyLoad(exports, ["CsiVolume"], () => require("./csiVolume"));
+
+export { CsiVolumeRegistrationArgs, CsiVolumeRegistrationState } from "./csiVolumeRegistration";
+export type CsiVolumeRegistration = import("./csiVolumeRegistration").CsiVolumeRegistration;
+export const CsiVolumeRegistration: typeof import("./csiVolumeRegistration").CsiVolumeRegistration = null as any;
+utilities.lazyLoad(exports, ["CsiVolumeRegistration"], () => require("./csiVolumeRegistration"));
+
 export { ExternalVolumeArgs, ExternalVolumeState } from "./externalVolume";
 export type ExternalVolume = import("./externalVolume").ExternalVolume;
 export const ExternalVolume: typeof import("./externalVolume").ExternalVolume = null as any;
@@ -65,6 +75,11 @@ export const getAclTokens: typeof import("./getAclTokens").getAclTokens = null a
 export const getAclTokensOutput: typeof import("./getAclTokens").getAclTokensOutput = null as any;
 utilities.lazyLoad(exports, ["getAclTokens","getAclTokensOutput"], () => require("./getAclTokens"));
 
+export { GetAllocationsArgs, GetAllocationsResult, GetAllocationsOutputArgs } from "./getAllocations";
+export const getAllocations: typeof import("./getAllocations").getAllocations = null as any;
+export const getAllocationsOutput: typeof import("./getAllocations").getAllocationsOutput = null as any;
+utilities.lazyLoad(exports, ["getAllocations","getAllocationsOutput"], () => require("./getAllocations"));
+
 export { GetDatacentersArgs, GetDatacentersResult, GetDatacentersOutputArgs } from "./getDatacenters";
 export const getDatacenters: typeof import("./getDatacenters").getDatacenters = null as any;
 export const getDatacentersOutput: typeof import("./getDatacenters").getDatacentersOutput = null as any;
@@ -72,7 +87,8 @@ utilities.lazyLoad(exports, ["getDatacenters","getDatacentersOutput"], () => req
 
 export { GetDeploymentsResult } from "./getDeployments";
 export const getDeployments: typeof import("./getDeployments").getDeployments = null as any;
-utilities.lazyLoad(exports, ["getDeployments"], () => require("./getDeployments"));
+export const getDeploymentsOutput: typeof import("./getDeployments").getDeploymentsOutput = null as any;
+utilities.lazyLoad(exports, ["getDeployments","getDeploymentsOutput"], () => require("./getDeployments"));
 
 export { GetJobArgs, GetJobResult, GetJobOutputArgs } from "./getJob";
 export const getJob: typeof import("./getJob").getJob = null as any;
@@ -91,7 +107,18 @@ utilities.lazyLoad(exports, ["getNamespace","getNamespaceOutput"], () => require
 
 export { GetNamespacesResult } from "./getNamespaces";
 export const getNamespaces: typeof import("./getNamespaces").getNamespaces = null as any;
-utilities.lazyLoad(exports, ["getNamespaces"], () => require("./getNamespaces"));
+export const getNamespacesOutput: typeof import("./getNamespaces").getNamespacesOutput = null as any;
+utilities.lazyLoad(exports, ["getNamespaces","getNamespacesOutput"], () => require("./getNamespaces"));
+
+export { GetNodePoolArgs, GetNodePoolResult, GetNodePoolOutputArgs } from "./getNodePool";
+export const getNodePool: typeof import("./getNodePool").getNodePool = null as any;
+export const getNodePoolOutput: typeof import("./getNodePool").getNodePoolOutput = null as any;
+utilities.lazyLoad(exports, ["getNodePool","getNodePoolOutput"], () => require("./getNodePool"));
+
+export { GetNodePoolsArgs, GetNodePoolsResult, GetNodePoolsOutputArgs } from "./getNodePools";
+export const getNodePools: typeof import("./getNodePools").getNodePools = null as any;
+export const getNodePoolsOutput: typeof import("./getNodePools").getNodePoolsOutput = null as any;
+utilities.lazyLoad(exports, ["getNodePools","getNodePoolsOutput"], () => require("./getNodePools"));
 
 export { GetPluginArgs, GetPluginResult, GetPluginOutputArgs } from "./getPlugin";
 export const getPlugin: typeof import("./getPlugin").getPlugin = null as any;
@@ -105,7 +132,8 @@ utilities.lazyLoad(exports, ["getPlugins","getPluginsOutput"], () => require("./
 
 export { GetRegionsResult } from "./getRegions";
 export const getRegions: typeof import("./getRegions").getRegions = null as any;
-utilities.lazyLoad(exports, ["getRegions"], () => require("./getRegions"));
+export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
 
 export { GetScalingPoliciesArgs, GetScalingPoliciesResult, GetScalingPoliciesOutputArgs } from "./getScalingPolicies";
 export const getScalingPolicies: typeof import("./getScalingPolicies").getScalingPolicies = null as any;
@@ -119,7 +147,13 @@ utilities.lazyLoad(exports, ["getScalingPolicy","getScalingPolicyOutput"], () =>
 
 export { GetSchedulerPolicyResult } from "./getSchedulerPolicy";
 export const getSchedulerPolicy: typeof import("./getSchedulerPolicy").getSchedulerPolicy = null as any;
-utilities.lazyLoad(exports, ["getSchedulerPolicy"], () => require("./getSchedulerPolicy"));
+export const getSchedulerPolicyOutput: typeof import("./getSchedulerPolicy").getSchedulerPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getSchedulerPolicy","getSchedulerPolicyOutput"], () => require("./getSchedulerPolicy"));
+
+export { GetVariableArgs, GetVariableResult, GetVariableOutputArgs } from "./getVariable";
+export const getVariable: typeof import("./getVariable").getVariable = null as any;
+export const getVariableOutput: typeof import("./getVariable").getVariableOutput = null as any;
+utilities.lazyLoad(exports, ["getVariable","getVariableOutput"], () => require("./getVariable"));
 
 export { GetVolumesArgs, GetVolumesResult, GetVolumesOutputArgs } from "./getVolumes";
 export const getVolumes: typeof import("./getVolumes").getVolumes = null as any;
@@ -135,6 +169,11 @@ export { NamespaceArgs, NamespaceState } from "./namespace";
 export type Namespace = import("./namespace").Namespace;
 export const Namespace: typeof import("./namespace").Namespace = null as any;
 utilities.lazyLoad(exports, ["Namespace"], () => require("./namespace"));
+
+export { NodePoolArgs, NodePoolState } from "./nodePool";
+export type NodePool = import("./nodePool").NodePool;
+export const NodePool: typeof import("./nodePool").NodePool = null as any;
+utilities.lazyLoad(exports, ["NodePool"], () => require("./nodePool"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
@@ -155,6 +194,11 @@ export { SentinelPolicyArgs, SentinelPolicyState } from "./sentinelPolicy";
 export type SentinelPolicy = import("./sentinelPolicy").SentinelPolicy;
 export const SentinelPolicy: typeof import("./sentinelPolicy").SentinelPolicy = null as any;
 utilities.lazyLoad(exports, ["SentinelPolicy"], () => require("./sentinelPolicy"));
+
+export { VariableArgs, VariableState } from "./variable";
+export type Variable = import("./variable").Variable;
+export const Variable: typeof import("./variable").Variable = null as any;
+utilities.lazyLoad(exports, ["Variable"], () => require("./variable"));
 
 export { VolumeArgs, VolumeState } from "./volume";
 export type Volume = import("./volume").Volume;
@@ -185,18 +229,26 @@ const _module = {
                 return new AclRole(name, <any>undefined, { urn })
             case "nomad:index/aclToken:AclToken":
                 return new AclToken(name, <any>undefined, { urn })
+            case "nomad:index/csiVolume:CsiVolume":
+                return new CsiVolume(name, <any>undefined, { urn })
+            case "nomad:index/csiVolumeRegistration:CsiVolumeRegistration":
+                return new CsiVolumeRegistration(name, <any>undefined, { urn })
             case "nomad:index/externalVolume:ExternalVolume":
                 return new ExternalVolume(name, <any>undefined, { urn })
             case "nomad:index/job:Job":
                 return new Job(name, <any>undefined, { urn })
             case "nomad:index/namespace:Namespace":
                 return new Namespace(name, <any>undefined, { urn })
+            case "nomad:index/nodePool:NodePool":
+                return new NodePool(name, <any>undefined, { urn })
             case "nomad:index/quoteSpecification:QuoteSpecification":
                 return new QuoteSpecification(name, <any>undefined, { urn })
             case "nomad:index/schedulerConfig:SchedulerConfig":
                 return new SchedulerConfig(name, <any>undefined, { urn })
             case "nomad:index/sentinelPolicy:SentinelPolicy":
                 return new SentinelPolicy(name, <any>undefined, { urn })
+            case "nomad:index/variable:Variable":
+                return new Variable(name, <any>undefined, { urn })
             case "nomad:index/volume:Volume":
                 return new Volume(name, <any>undefined, { urn })
             default:
@@ -209,12 +261,16 @@ pulumi.runtime.registerResourceModule("nomad", "index/aclBindingRule", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/aclPolicy", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/aclRole", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/aclToken", _module)
+pulumi.runtime.registerResourceModule("nomad", "index/csiVolume", _module)
+pulumi.runtime.registerResourceModule("nomad", "index/csiVolumeRegistration", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/externalVolume", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/job", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/namespace", _module)
+pulumi.runtime.registerResourceModule("nomad", "index/nodePool", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/quoteSpecification", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/schedulerConfig", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/sentinelPolicy", _module)
+pulumi.runtime.registerResourceModule("nomad", "index/variable", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/volume", _module)
 pulumi.runtime.registerResourcePackage("nomad", {
     version: utilities.getVersion(),

@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,18 +31,26 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AclRole{}
 	case "nomad:index/aclToken:AclToken":
 		r = &AclToken{}
+	case "nomad:index/csiVolume:CsiVolume":
+		r = &CsiVolume{}
+	case "nomad:index/csiVolumeRegistration:CsiVolumeRegistration":
+		r = &CsiVolumeRegistration{}
 	case "nomad:index/externalVolume:ExternalVolume":
 		r = &ExternalVolume{}
 	case "nomad:index/job:Job":
 		r = &Job{}
 	case "nomad:index/namespace:Namespace":
 		r = &Namespace{}
+	case "nomad:index/nodePool:NodePool":
+		r = &NodePool{}
 	case "nomad:index/quoteSpecification:QuoteSpecification":
 		r = &QuoteSpecification{}
 	case "nomad:index/schedulerConfig:SchedulerConfig":
 		r = &SchedulerConfig{}
 	case "nomad:index/sentinelPolicy:SentinelPolicy":
 		r = &SentinelPolicy{}
+	case "nomad:index/variable:Variable":
+		r = &Variable{}
 	case "nomad:index/volume:Volume":
 		r = &Volume{}
 	default:
@@ -71,7 +80,10 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 }
 
 func init() {
-	version, _ := PkgVersion()
+	version, err := internal.PkgVersion()
+	if err != nil {
+		version = semver.Version{Major: 1}
+	}
 	pulumi.RegisterResourceModule(
 		"nomad",
 		"index/aclAuthMethod",
@@ -99,6 +111,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"nomad",
+		"index/csiVolume",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"nomad",
+		"index/csiVolumeRegistration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"nomad",
 		"index/externalVolume",
 		&module{version},
 	)
@@ -114,6 +136,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"nomad",
+		"index/nodePool",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"nomad",
 		"index/quoteSpecification",
 		&module{version},
 	)
@@ -125,6 +152,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"nomad",
 		"index/sentinelPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"nomad",
+		"index/variable",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

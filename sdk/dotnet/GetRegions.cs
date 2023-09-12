@@ -16,6 +16,12 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Task<GetRegionsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRegionsResult>("nomad:index/getRegions:getRegions", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve a list of regions available in Nomad.
+        /// </summary>
+        public static Output<GetRegionsResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegionsResult>("nomad:index/getRegions:getRegions", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

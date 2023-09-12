@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-nomad/sdk
+module github.com/pulumi/pulumi-nomad/sdk/v2
 
 go 1.21
 
