@@ -32,7 +32,12 @@
                 "current": "nomad:index/aclBindingRule:AclBindingRule"
             },
             "nomad_acl_policy": {
-                "current": "nomad:index/aclPolicy:AclPolicy"
+                "current": "nomad:index/aclPolicy:AclPolicy",
+                "fields": {
+                    "job_acl": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "nomad_acl_role": {
                 "current": "nomad:index/aclRole:AclRole",
@@ -50,6 +55,92 @@
                     },
                     "role": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "nomad_csi_volume": {
+                "current": "nomad:index/csiVolume:CsiVolume",
+                "fields": {
+                    "capability": {
+                        "maxItemsOne": false
+                    },
+                    "mount_options": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "mount_flags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "topologies": {
+                        "maxItemsOne": false
+                    },
+                    "topology_request": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "preferred": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "topology": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "required": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "topology": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "nomad_csi_volume_registration": {
+                "current": "nomad:index/csiVolumeRegistration:CsiVolumeRegistration",
+                "fields": {
+                    "capability": {
+                        "maxItemsOne": false
+                    },
+                    "mount_options": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "mount_flags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "topologies": {
+                        "maxItemsOne": false
+                    },
+                    "topology_request": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "required": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "topology": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -150,6 +241,27 @@
                                 }
                             }
                         }
+                    },
+                    "node_pool_config": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "allowed": {
+                                    "maxItemsOne": false
+                                },
+                                "denied": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "nomad_node_pool": {
+                "current": "nomad:index/nodePool:NodePool",
+                "fields": {
+                    "scheduler_config": {
+                        "maxItemsOne": true
                     }
                 }
             },
@@ -173,6 +285,9 @@
             },
             "nomad_sentinel_policy": {
                 "current": "nomad:index/sentinelPolicy:SentinelPolicy"
+            },
+            "nomad_variable": {
+                "current": "nomad:index/variable:Variable"
             },
             "nomad_volume": {
                 "current": "nomad:index/volume:Volume",
@@ -215,52 +330,222 @@
         },
         "datasources": {
             "nomad_acl_policies": {
-                "current": "nomad:index/getAclPolicies:getAclPolicies"
+                "current": "nomad:index/getAclPolicies:getAclPolicies",
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_acl_policy": {
                 "current": "nomad:index/getAclPolicy:getAclPolicy"
             },
             "nomad_acl_role": {
-                "current": "nomad:index/getAclRole:getAclRole"
+                "current": "nomad:index/getAclRole:getAclRole",
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_acl_roles": {
-                "current": "nomad:index/getAclRoles:getAclRoles"
+                "current": "nomad:index/getAclRoles:getAclRoles",
+                "fields": {
+                    "acl_roles": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "policies": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "nomad_acl_token": {
-                "current": "nomad:index/getAclToken:getAclToken"
+                "current": "nomad:index/getAclToken:getAclToken",
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    },
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_acl_tokens": {
-                "current": "nomad:index/getAclTokens:getAclTokens"
+                "current": "nomad:index/getAclTokens:getAclTokens",
+                "fields": {
+                    "acl_tokens": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "policies": {
+                                    "maxItemsOne": false
+                                },
+                                "roles": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "nomad_allocations": {
+                "current": "nomad:index/getAllocations:getAllocations",
+                "fields": {
+                    "allocations": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_datacenters": {
-                "current": "nomad:index/getDatacenters:getDatacenters"
+                "current": "nomad:index/getDatacenters:getDatacenters",
+                "fields": {
+                    "datacenters": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_deployments": {
-                "current": "nomad:index/getDeployments:getDeployments"
+                "current": "nomad:index/getDeployments:getDeployments",
+                "fields": {
+                    "deployments": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_job": {
-                "current": "nomad:index/getJob:getJob"
+                "current": "nomad:index/getJob:getJob",
+                "fields": {
+                    "constraints": {
+                        "maxItemsOne": false
+                    },
+                    "datacenters": {
+                        "maxItemsOne": false
+                    },
+                    "periodic_config": {
+                        "maxItemsOne": false
+                    },
+                    "task_groups": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "task": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "volume_mounts": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "volumes": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "nomad_job_parser": {
                 "current": "nomad:index/getJobParser:getJobParser"
             },
             "nomad_namespace": {
-                "current": "nomad:index/getNamespace:getNamespace"
+                "current": "nomad:index/getNamespace:getNamespace",
+                "fields": {
+                    "capabilities": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "disabled_task_drivers": {
+                                    "maxItemsOne": false
+                                },
+                                "enabled_task_drivers": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "node_pool_config": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "allowed": {
+                                    "maxItemsOne": false
+                                },
+                                "denied": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "nomad_namespaces": {
-                "current": "nomad:index/getNamespaces:getNamespaces"
+                "current": "nomad:index/getNamespaces:getNamespaces",
+                "fields": {
+                    "namespaces": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "nomad_node_pool": {
+                "current": "nomad:index/getNodePool:getNodePool",
+                "fields": {
+                    "scheduler_config": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "nomad_node_pools": {
+                "current": "nomad:index/getNodePools:getNodePools",
+                "fields": {
+                    "node_pools": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "scheduler_config": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "nomad_plugin": {
-                "current": "nomad:index/getPlugin:getPlugin"
+                "current": "nomad:index/getPlugin:getPlugin",
+                "fields": {
+                    "nodes": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_plugins": {
-                "current": "nomad:index/getPlugins:getPlugins"
+                "current": "nomad:index/getPlugins:getPlugins",
+                "fields": {
+                    "plugins": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_regions": {
-                "current": "nomad:index/getRegions:getRegions"
+                "current": "nomad:index/getRegions:getRegions",
+                "fields": {
+                    "regions": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_scaling_policies": {
-                "current": "nomad:index/getScalingPolicies:getScalingPolicies"
+                "current": "nomad:index/getScalingPolicies:getScalingPolicies",
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_scaling_policy": {
                 "current": "nomad:index/getScalingPolicy:getScalingPolicy"
@@ -268,8 +553,16 @@
             "nomad_scheduler_config": {
                 "current": "nomad:index/getSchedulerPolicy:getSchedulerPolicy"
             },
+            "nomad_variable": {
+                "current": "nomad:index/getVariable:getVariable"
+            },
             "nomad_volumes": {
-                "current": "nomad:index/getVolumes:getVolumes"
+                "current": "nomad:index/getVolumes:getVolumes",
+                "fields": {
+                    "volumes": {
+                        "maxItemsOne": false
+                    }
+                }
             }
         }
     },
@@ -280,12 +573,16 @@
             "nomad:index/aclPolicy:AclPolicy": "nomad_acl_policy",
             "nomad:index/aclRole:AclRole": "nomad_acl_role",
             "nomad:index/aclToken:AclToken": "nomad_acl_token",
+            "nomad:index/csiVolume:CsiVolume": "nomad_csi_volume",
+            "nomad:index/csiVolumeRegistration:CsiVolumeRegistration": "nomad_csi_volume_registration",
             "nomad:index/externalVolume:ExternalVolume": "nomad_external_volume",
             "nomad:index/job:Job": "nomad_job",
             "nomad:index/namespace:Namespace": "nomad_namespace",
+            "nomad:index/nodePool:NodePool": "nomad_node_pool",
             "nomad:index/quoteSpecification:QuoteSpecification": "nomad_quota_specification",
             "nomad:index/schedulerConfig:SchedulerConfig": "nomad_scheduler_config",
             "nomad:index/sentinelPolicy:SentinelPolicy": "nomad_sentinel_policy",
+            "nomad:index/variable:Variable": "nomad_variable",
             "nomad:index/volume:Volume": "nomad_volume"
         },
         "functions": {
@@ -295,18 +592,22 @@
             "nomad:index/getAclRoles:getAclRoles": "nomad_acl_roles",
             "nomad:index/getAclToken:getAclToken": "nomad_acl_token",
             "nomad:index/getAclTokens:getAclTokens": "nomad_acl_tokens",
+            "nomad:index/getAllocations:getAllocations": "nomad_allocations",
             "nomad:index/getDatacenters:getDatacenters": "nomad_datacenters",
             "nomad:index/getDeployments:getDeployments": "nomad_deployments",
             "nomad:index/getJob:getJob": "nomad_job",
             "nomad:index/getJobParser:getJobParser": "nomad_job_parser",
             "nomad:index/getNamespace:getNamespace": "nomad_namespace",
             "nomad:index/getNamespaces:getNamespaces": "nomad_namespaces",
+            "nomad:index/getNodePool:getNodePool": "nomad_node_pool",
+            "nomad:index/getNodePools:getNodePools": "nomad_node_pools",
             "nomad:index/getPlugin:getPlugin": "nomad_plugin",
             "nomad:index/getPlugins:getPlugins": "nomad_plugins",
             "nomad:index/getRegions:getRegions": "nomad_regions",
             "nomad:index/getScalingPolicies:getScalingPolicies": "nomad_scaling_policies",
             "nomad:index/getScalingPolicy:getScalingPolicy": "nomad_scaling_policy",
             "nomad:index/getSchedulerPolicy:getSchedulerPolicy": "nomad_scheduler_config",
+            "nomad:index/getVariable:getVariable": "nomad_variable",
             "nomad:index/getVolumes:getVolumes": "nomad_volumes"
         },
         "renamedProperties": {
@@ -321,6 +622,34 @@
                 "oidcDiscoveryUrl": "oidc_discovery_url",
                 "oidcScopes": "oidc_scopes",
                 "signingAlgs": "signing_algs"
+            },
+            "nomad:index/AclPolicyJobAcl:AclPolicyJobAcl": {
+                "jobId": "job_id"
+            },
+            "nomad:index/CsiVolumeCapability:CsiVolumeCapability": {
+                "accessMode": "access_mode",
+                "attachmentMode": "attachment_mode"
+            },
+            "nomad:index/CsiVolumeMountOptions:CsiVolumeMountOptions": {
+                "fsType": "fs_type",
+                "mountFlags": "mount_flags"
+            },
+            "nomad:index/CsiVolumeRegistrationCapability:CsiVolumeRegistrationCapability": {
+                "accessMode": "access_mode",
+                "attachmentMode": "attachment_mode"
+            },
+            "nomad:index/CsiVolumeRegistrationMountOptions:CsiVolumeRegistrationMountOptions": {
+                "fsType": "fs_type",
+                "mountFlags": "mount_flags"
+            },
+            "nomad:index/CsiVolumeRegistrationTopologyRequestRequired:CsiVolumeRegistrationTopologyRequestRequired": {
+                "topologies": "topology"
+            },
+            "nomad:index/CsiVolumeTopologyRequestPreferred:CsiVolumeTopologyRequestPreferred": {
+                "topologies": "topology"
+            },
+            "nomad:index/CsiVolumeTopologyRequestRequired:CsiVolumeTopologyRequestRequired": {
+                "topologies": "topology"
             },
             "nomad:index/ExternalVolumeCapability:ExternalVolumeCapability": {
                 "accessMode": "access_mode",
@@ -355,6 +684,14 @@
                 "disabledTaskDrivers": "disabled_task_drivers",
                 "enabledTaskDrivers": "enabled_task_drivers"
             },
+            "nomad:index/NamespaceNodePoolConfig:NamespaceNodePoolConfig": {
+                "alloweds": "allowed",
+                "denieds": "denied"
+            },
+            "nomad:index/NodePoolSchedulerConfig:NodePoolSchedulerConfig": {
+                "memoryOversubscription": "memory_oversubscription",
+                "schedulerAlgorithm": "scheduler_algorithm"
+            },
             "nomad:index/QuoteSpecificationLimit:QuoteSpecificationLimit": {
                 "regionLimit": "region_limit"
             },
@@ -382,6 +719,7 @@
                 "bindType": "bind_type"
             },
             "nomad:index/aclPolicy:AclPolicy": {
+                "jobAcl": "job_acl",
                 "rulesHcl": "rules_hcl"
             },
             "nomad:index/aclRole:AclRole": {
@@ -394,6 +732,40 @@
                 "expirationTtl": "expiration_ttl",
                 "roles": "role",
                 "secretId": "secret_id"
+            },
+            "nomad:index/csiVolume:CsiVolume": {
+                "capabilities": "capability",
+                "capacityMax": "capacity_max",
+                "capacityMin": "capacity_min",
+                "cloneId": "clone_id",
+                "controllerRequired": "controller_required",
+                "controllersExpected": "controllers_expected",
+                "controllersHealthy": "controllers_healthy",
+                "mountOptions": "mount_options",
+                "nodesExpected": "nodes_expected",
+                "nodesHealthy": "nodes_healthy",
+                "pluginId": "plugin_id",
+                "pluginProvider": "plugin_provider",
+                "pluginProviderVersion": "plugin_provider_version",
+                "snapshotId": "snapshot_id",
+                "topologyRequest": "topology_request",
+                "volumeId": "volume_id"
+            },
+            "nomad:index/csiVolumeRegistration:CsiVolumeRegistration": {
+                "capabilities": "capability",
+                "controllerRequired": "controller_required",
+                "controllersExpected": "controllers_expected",
+                "controllersHealthy": "controllers_healthy",
+                "deregisterOnDestroy": "deregister_on_destroy",
+                "externalId": "external_id",
+                "mountOptions": "mount_options",
+                "nodesExpected": "nodes_expected",
+                "nodesHealthy": "nodes_healthy",
+                "pluginId": "plugin_id",
+                "pluginProvider": "plugin_provider",
+                "pluginProviderVersion": "plugin_provider_version",
+                "topologyRequest": "topology_request",
+                "volumeId": "volume_id"
             },
             "nomad:index/externalVolume:ExternalVolume": {
                 "capabilities": "capability",
@@ -431,6 +803,24 @@
                 "createTime": "create_time",
                 "expirationTime": "expiration_time"
             },
+            "nomad:index/getAllocationsAllocation:getAllocationsAllocation": {
+                "clientStatus": "client_status",
+                "createIndex": "create_index",
+                "createTime": "create_time",
+                "desiredStatus": "desired_status",
+                "evalId": "eval_id",
+                "followupEvalId": "followup_eval_id",
+                "jobId": "job_id",
+                "jobType": "job_type",
+                "jobVersion": "job_version",
+                "modifyIndex": "modify_index",
+                "modifyTime": "modify_time",
+                "nextAllocation": "next_allocation",
+                "nodeId": "node_id",
+                "nodeName": "node_name",
+                "preemptedByAllocation": "preempted_by_allocation",
+                "taskGroup": "task_group"
+            },
             "nomad:index/getDatacenters:getDatacenters": {
                 "ignoreDownNodes": "ignore_down_nodes"
             },
@@ -462,9 +852,33 @@
             "nomad:index/getJobTaskGroupVolume:getJobTaskGroupVolume": {
                 "readOnly": "read_only"
             },
+            "nomad:index/getNamespace:getNamespace": {
+                "nodePoolConfigs": "node_pool_config"
+            },
             "nomad:index/getNamespaceCapability:getNamespaceCapability": {
                 "disabledTaskDrivers": "disabled_task_drivers",
                 "enabledTaskDrivers": "enabled_task_drivers"
+            },
+            "nomad:index/getNamespaceNodePoolConfig:getNamespaceNodePoolConfig": {
+                "alloweds": "allowed",
+                "denieds": "denied"
+            },
+            "nomad:index/getNodePool:getNodePool": {
+                "schedulerConfigs": "scheduler_config"
+            },
+            "nomad:index/getNodePoolSchedulerConfig:getNodePoolSchedulerConfig": {
+                "memoryOversubscription": "memory_oversubscription",
+                "schedulerAlgorithm": "scheduler_algorithm"
+            },
+            "nomad:index/getNodePools:getNodePools": {
+                "nodePools": "node_pools"
+            },
+            "nomad:index/getNodePoolsNodePool:getNodePoolsNodePool": {
+                "schedulerConfigs": "scheduler_config"
+            },
+            "nomad:index/getNodePoolsNodePoolSchedulerConfig:getNodePoolsNodePoolSchedulerConfig": {
+                "memoryOversubscription": "memory_oversubscription",
+                "schedulerAlgorithm": "scheduler_algorithm"
             },
             "nomad:index/getPlugin:getPlugin": {
                 "controllerRequired": "controller_required",
@@ -503,8 +917,15 @@
                 "modifyIndex": "modify_index",
                 "policyOverride": "policy_override",
                 "purgeOnDestroy": "purge_on_destroy",
+                "readAllocationIds": "read_allocation_ids",
                 "taskGroups": "task_groups",
                 "vaultToken": "vault_token"
+            },
+            "nomad:index/namespace:Namespace": {
+                "nodePoolConfig": "node_pool_config"
+            },
+            "nomad:index/nodePool:NodePool": {
+                "schedulerConfig": "scheduler_config"
             },
             "nomad:index/schedulerConfig:SchedulerConfig": {
                 "memoryOversubscriptionEnabled": "memory_oversubscription_enabled",
@@ -543,6 +964,7 @@
                 "keyFile": "key_file",
                 "keyPem": "key_pem",
                 "secretId": "secret_id",
+                "skipVerify": "skip_verify",
                 "vaultToken": "vault_token"
             }
         },
@@ -557,6 +979,7 @@
             "keyFile": "key_file",
             "keyPem": "key_pem",
             "secretId": "secret_id",
+            "skipVerify": "skip_verify",
             "vaultToken": "vault_token"
         }
     }
