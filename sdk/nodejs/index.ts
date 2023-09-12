@@ -72,7 +72,8 @@ utilities.lazyLoad(exports, ["getDatacenters","getDatacentersOutput"], () => req
 
 export { GetDeploymentsResult } from "./getDeployments";
 export const getDeployments: typeof import("./getDeployments").getDeployments = null as any;
-utilities.lazyLoad(exports, ["getDeployments"], () => require("./getDeployments"));
+export const getDeploymentsOutput: typeof import("./getDeployments").getDeploymentsOutput = null as any;
+utilities.lazyLoad(exports, ["getDeployments","getDeploymentsOutput"], () => require("./getDeployments"));
 
 export { GetJobArgs, GetJobResult, GetJobOutputArgs } from "./getJob";
 export const getJob: typeof import("./getJob").getJob = null as any;
@@ -91,7 +92,8 @@ utilities.lazyLoad(exports, ["getNamespace","getNamespaceOutput"], () => require
 
 export { GetNamespacesResult } from "./getNamespaces";
 export const getNamespaces: typeof import("./getNamespaces").getNamespaces = null as any;
-utilities.lazyLoad(exports, ["getNamespaces"], () => require("./getNamespaces"));
+export const getNamespacesOutput: typeof import("./getNamespaces").getNamespacesOutput = null as any;
+utilities.lazyLoad(exports, ["getNamespaces","getNamespacesOutput"], () => require("./getNamespaces"));
 
 export { GetPluginArgs, GetPluginResult, GetPluginOutputArgs } from "./getPlugin";
 export const getPlugin: typeof import("./getPlugin").getPlugin = null as any;
@@ -105,7 +107,8 @@ utilities.lazyLoad(exports, ["getPlugins","getPluginsOutput"], () => require("./
 
 export { GetRegionsResult } from "./getRegions";
 export const getRegions: typeof import("./getRegions").getRegions = null as any;
-utilities.lazyLoad(exports, ["getRegions"], () => require("./getRegions"));
+export const getRegionsOutput: typeof import("./getRegions").getRegionsOutput = null as any;
+utilities.lazyLoad(exports, ["getRegions","getRegionsOutput"], () => require("./getRegions"));
 
 export { GetScalingPoliciesArgs, GetScalingPoliciesResult, GetScalingPoliciesOutputArgs } from "./getScalingPolicies";
 export const getScalingPolicies: typeof import("./getScalingPolicies").getScalingPolicies = null as any;
@@ -119,7 +122,8 @@ utilities.lazyLoad(exports, ["getScalingPolicy","getScalingPolicyOutput"], () =>
 
 export { GetSchedulerPolicyResult } from "./getSchedulerPolicy";
 export const getSchedulerPolicy: typeof import("./getSchedulerPolicy").getSchedulerPolicy = null as any;
-utilities.lazyLoad(exports, ["getSchedulerPolicy"], () => require("./getSchedulerPolicy"));
+export const getSchedulerPolicyOutput: typeof import("./getSchedulerPolicy").getSchedulerPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getSchedulerPolicy","getSchedulerPolicyOutput"], () => require("./getSchedulerPolicy"));
 
 export { GetVolumesArgs, GetVolumesResult, GetVolumesOutputArgs } from "./getVolumes";
 export const getVolumes: typeof import("./getVolumes").getVolumes = null as any;

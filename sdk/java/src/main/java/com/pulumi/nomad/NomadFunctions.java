@@ -2066,12 +2066,96 @@ public final class NomadFunctions {
     /**
      * Retrieve a list of namespaces available in Nomad.
      * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.AclPolicy;
+     * import com.pulumi.nomad.AclPolicyArgs;
+     * import com.pulumi.codegen.internal.KeyedValue;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var namespaces = NomadFunctions.getNamespaces();
+     * 
+     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .rulesHcl(&#34;&#34;&#34;
+     * namespace &#34;%s&#34; {
+     *   policy = &#34;write&#34;
+     * }
+     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .build());
+     * 
+     *         
+     * }
+     *     }
+     * }
+     * ```
+     * 
      */
     public static Output<GetNamespacesResult> getNamespaces() {
         return getNamespaces(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * Retrieve a list of namespaces available in Nomad.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.AclPolicy;
+     * import com.pulumi.nomad.AclPolicyArgs;
+     * import com.pulumi.codegen.internal.KeyedValue;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var namespaces = NomadFunctions.getNamespaces();
+     * 
+     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .rulesHcl(&#34;&#34;&#34;
+     * namespace &#34;%s&#34; {
+     *   policy = &#34;write&#34;
+     * }
+     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .build());
+     * 
+     *         
+     * }
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetNamespacesResult> getNamespacesPlain() {
@@ -2080,12 +2164,96 @@ public final class NomadFunctions {
     /**
      * Retrieve a list of namespaces available in Nomad.
      * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.AclPolicy;
+     * import com.pulumi.nomad.AclPolicyArgs;
+     * import com.pulumi.codegen.internal.KeyedValue;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var namespaces = NomadFunctions.getNamespaces();
+     * 
+     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .rulesHcl(&#34;&#34;&#34;
+     * namespace &#34;%s&#34; {
+     *   policy = &#34;write&#34;
+     * }
+     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .build());
+     * 
+     *         
+     * }
+     *     }
+     * }
+     * ```
+     * 
      */
     public static Output<GetNamespacesResult> getNamespaces(InvokeArgs args) {
         return getNamespaces(args, InvokeOptions.Empty);
     }
     /**
      * Retrieve a list of namespaces available in Nomad.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.AclPolicy;
+     * import com.pulumi.nomad.AclPolicyArgs;
+     * import com.pulumi.codegen.internal.KeyedValue;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var namespaces = NomadFunctions.getNamespaces();
+     * 
+     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .rulesHcl(&#34;&#34;&#34;
+     * namespace &#34;%s&#34; {
+     *   policy = &#34;write&#34;
+     * }
+     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .build());
+     * 
+     *         
+     * }
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetNamespacesResult> getNamespacesPlain(InvokeArgs args) {
@@ -2094,12 +2262,96 @@ public final class NomadFunctions {
     /**
      * Retrieve a list of namespaces available in Nomad.
      * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.AclPolicy;
+     * import com.pulumi.nomad.AclPolicyArgs;
+     * import com.pulumi.codegen.internal.KeyedValue;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var namespaces = NomadFunctions.getNamespaces();
+     * 
+     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .rulesHcl(&#34;&#34;&#34;
+     * namespace &#34;%s&#34; {
+     *   policy = &#34;write&#34;
+     * }
+     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .build());
+     * 
+     *         
+     * }
+     *     }
+     * }
+     * ```
+     * 
      */
     public static Output<GetNamespacesResult> getNamespaces(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getNamespaces:getNamespaces", TypeShape.of(GetNamespacesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Retrieve a list of namespaces available in Nomad.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.AclPolicy;
+     * import com.pulumi.nomad.AclPolicyArgs;
+     * import com.pulumi.codegen.internal.KeyedValue;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var namespaces = NomadFunctions.getNamespaces();
+     * 
+     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .rulesHcl(&#34;&#34;&#34;
+     * namespace &#34;%s&#34; {
+     *   policy = &#34;write&#34;
+     * }
+     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     *                 .build());
+     * 
+     *         
+     * }
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetNamespacesResult> getNamespacesPlain(InvokeArgs args, InvokeOptions options) {

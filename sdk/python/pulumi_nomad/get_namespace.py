@@ -125,12 +125,12 @@ def get_namespace(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getNamespace:getNamespace', __args__, opts=opts, typ=GetNamespaceResult).value
 
     return AwaitableGetNamespaceResult(
-        capabilities=__ret__.capabilities,
-        description=__ret__.description,
-        id=__ret__.id,
-        meta=__ret__.meta,
-        name=__ret__.name,
-        quota=__ret__.quota)
+        capabilities=pulumi.get(__ret__, 'capabilities'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        meta=pulumi.get(__ret__, 'meta'),
+        name=pulumi.get(__ret__, 'name'),
+        quota=pulumi.get(__ret__, 'quota'))
 
 
 @_utilities.lift_output_func(get_namespace)

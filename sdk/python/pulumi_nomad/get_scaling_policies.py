@@ -105,10 +105,10 @@ def get_scaling_policies(job_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getScalingPolicies:getScalingPolicies', __args__, opts=opts, typ=GetScalingPoliciesResult).value
 
     return AwaitableGetScalingPoliciesResult(
-        id=__ret__.id,
-        job_id=__ret__.job_id,
-        policies=__ret__.policies,
-        type=__ret__.type)
+        id=pulumi.get(__ret__, 'id'),
+        job_id=pulumi.get(__ret__, 'job_id'),
+        policies=pulumi.get(__ret__, 'policies'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_scaling_policies)

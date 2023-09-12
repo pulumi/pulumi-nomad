@@ -4,6 +4,7 @@
 package nomad
 
 import (
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,6 +34,7 @@ import (
 //
 // ```
 func GetDeployments(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetDeploymentsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDeploymentsResult
 	err := ctx.Invoke("nomad:index/getDeployments:getDeployments", nil, &rv, opts...)
 	if err != nil {

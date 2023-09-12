@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages a quota specification in a Nomad cluster.
@@ -71,6 +73,7 @@ func NewQuoteSpecification(ctx *pulumi.Context,
 	if args.Limits == nil {
 		return nil, errors.New("invalid value for required argument 'Limits'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource QuoteSpecification
 	err := ctx.RegisterResource("nomad:index/quoteSpecification:QuoteSpecification", name, args, &resource, opts...)
 	if err != nil {
@@ -160,6 +163,12 @@ func (i *QuoteSpecification) ToQuoteSpecificationOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationOutput)
 }
 
+func (i *QuoteSpecification) ToOutput(ctx context.Context) pulumix.Output[*QuoteSpecification] {
+	return pulumix.Output[*QuoteSpecification]{
+		OutputState: i.ToQuoteSpecificationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // QuoteSpecificationArrayInput is an input type that accepts QuoteSpecificationArray and QuoteSpecificationArrayOutput values.
 // You can construct a concrete instance of `QuoteSpecificationArrayInput` via:
 //
@@ -183,6 +192,12 @@ func (i QuoteSpecificationArray) ToQuoteSpecificationArrayOutput() QuoteSpecific
 
 func (i QuoteSpecificationArray) ToQuoteSpecificationArrayOutputWithContext(ctx context.Context) QuoteSpecificationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationArrayOutput)
+}
+
+func (i QuoteSpecificationArray) ToOutput(ctx context.Context) pulumix.Output[[]*QuoteSpecification] {
+	return pulumix.Output[[]*QuoteSpecification]{
+		OutputState: i.ToQuoteSpecificationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // QuoteSpecificationMapInput is an input type that accepts QuoteSpecificationMap and QuoteSpecificationMapOutput values.
@@ -210,6 +225,12 @@ func (i QuoteSpecificationMap) ToQuoteSpecificationMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationMapOutput)
 }
 
+func (i QuoteSpecificationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*QuoteSpecification] {
+	return pulumix.Output[map[string]*QuoteSpecification]{
+		OutputState: i.ToQuoteSpecificationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type QuoteSpecificationOutput struct{ *pulumi.OutputState }
 
 func (QuoteSpecificationOutput) ElementType() reflect.Type {
@@ -222,6 +243,12 @@ func (o QuoteSpecificationOutput) ToQuoteSpecificationOutput() QuoteSpecificatio
 
 func (o QuoteSpecificationOutput) ToQuoteSpecificationOutputWithContext(ctx context.Context) QuoteSpecificationOutput {
 	return o
+}
+
+func (o QuoteSpecificationOutput) ToOutput(ctx context.Context) pulumix.Output[*QuoteSpecification] {
+	return pulumix.Output[*QuoteSpecification]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: "")` - A description of the quota specification.
@@ -254,6 +281,12 @@ func (o QuoteSpecificationArrayOutput) ToQuoteSpecificationArrayOutputWithContex
 	return o
 }
 
+func (o QuoteSpecificationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*QuoteSpecification] {
+	return pulumix.Output[[]*QuoteSpecification]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o QuoteSpecificationArrayOutput) Index(i pulumi.IntInput) QuoteSpecificationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *QuoteSpecification {
 		return vs[0].([]*QuoteSpecification)[vs[1].(int)]
@@ -272,6 +305,12 @@ func (o QuoteSpecificationMapOutput) ToQuoteSpecificationMapOutput() QuoteSpecif
 
 func (o QuoteSpecificationMapOutput) ToQuoteSpecificationMapOutputWithContext(ctx context.Context) QuoteSpecificationMapOutput {
 	return o
+}
+
+func (o QuoteSpecificationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*QuoteSpecification] {
+	return pulumix.Output[map[string]*QuoteSpecification]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o QuoteSpecificationMapOutput) MapIndex(k pulumi.StringInput) QuoteSpecificationOutput {

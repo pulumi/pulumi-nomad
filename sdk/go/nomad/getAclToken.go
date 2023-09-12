@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -36,6 +38,7 @@ import (
 //
 // ```
 func LookupAclToken(ctx *pulumi.Context, args *LookupAclTokenArgs, opts ...pulumi.InvokeOption) (*LookupAclTokenResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAclTokenResult
 	err := ctx.Invoke("nomad:index/getAclToken:getAclToken", args, &rv, opts...)
 	if err != nil {
@@ -115,6 +118,12 @@ func (o LookupAclTokenResultOutput) ToLookupAclTokenResultOutput() LookupAclToke
 
 func (o LookupAclTokenResultOutput) ToLookupAclTokenResultOutputWithContext(ctx context.Context) LookupAclTokenResultOutput {
 	return o
+}
+
+func (o LookupAclTokenResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAclTokenResult] {
+	return pulumix.Output[LookupAclTokenResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` Non-sensitive identifier for this token.

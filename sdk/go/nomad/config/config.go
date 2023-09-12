@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // URL of the root of the target Nomad agent.
 func GetAddress(ctx *pulumi.Context) string {

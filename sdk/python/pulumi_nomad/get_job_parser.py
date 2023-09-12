@@ -107,10 +107,10 @@ def get_job_parser(canonicalize: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getJobParser:getJobParser', __args__, opts=opts, typ=GetJobParserResult).value
 
     return AwaitableGetJobParserResult(
-        canonicalize=__ret__.canonicalize,
-        hcl=__ret__.hcl,
-        id=__ret__.id,
-        json=__ret__.json)
+        canonicalize=pulumi.get(__ret__, 'canonicalize'),
+        hcl=pulumi.get(__ret__, 'hcl'),
+        id=pulumi.get(__ret__, 'id'),
+        json=pulumi.get(__ret__, 'json'))
 
 
 @_utilities.lift_output_func(get_job_parser)

@@ -89,9 +89,9 @@ def get_acl_tokens(prefix: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getAclTokens:getAclTokens', __args__, opts=opts, typ=GetAclTokensResult).value
 
     return AwaitableGetAclTokensResult(
-        acl_tokens=__ret__.acl_tokens,
-        id=__ret__.id,
-        prefix=__ret__.prefix)
+        acl_tokens=pulumi.get(__ret__, 'acl_tokens'),
+        id=pulumi.get(__ret__, 'id'),
+        prefix=pulumi.get(__ret__, 'prefix'))
 
 
 @_utilities.lift_output_func(get_acl_tokens)

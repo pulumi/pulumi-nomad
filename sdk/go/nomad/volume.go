@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -161,6 +163,7 @@ func NewVolume(ctx *pulumi.Context,
 		"secrets",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Volume
 	err := ctx.RegisterResource("nomad:index/volume:Volume", name, args, &resource, opts...)
 	if err != nil {
@@ -414,6 +417,12 @@ func (i *Volume) ToVolumeOutputWithContext(ctx context.Context) VolumeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeOutput)
 }
 
+func (i *Volume) ToOutput(ctx context.Context) pulumix.Output[*Volume] {
+	return pulumix.Output[*Volume]{
+		OutputState: i.ToVolumeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VolumeArrayInput is an input type that accepts VolumeArray and VolumeArrayOutput values.
 // You can construct a concrete instance of `VolumeArrayInput` via:
 //
@@ -437,6 +446,12 @@ func (i VolumeArray) ToVolumeArrayOutput() VolumeArrayOutput {
 
 func (i VolumeArray) ToVolumeArrayOutputWithContext(ctx context.Context) VolumeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeArrayOutput)
+}
+
+func (i VolumeArray) ToOutput(ctx context.Context) pulumix.Output[[]*Volume] {
+	return pulumix.Output[[]*Volume]{
+		OutputState: i.ToVolumeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VolumeMapInput is an input type that accepts VolumeMap and VolumeMapOutput values.
@@ -464,6 +479,12 @@ func (i VolumeMap) ToVolumeMapOutputWithContext(ctx context.Context) VolumeMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeMapOutput)
 }
 
+func (i VolumeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Volume] {
+	return pulumix.Output[map[string]*Volume]{
+		OutputState: i.ToVolumeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeOutput struct{ *pulumi.OutputState }
 
 func (VolumeOutput) ElementType() reflect.Type {
@@ -476,6 +497,12 @@ func (o VolumeOutput) ToVolumeOutput() VolumeOutput {
 
 func (o VolumeOutput) ToVolumeOutputWithContext(ctx context.Context) VolumeOutput {
 	return o
+}
+
+func (o VolumeOutput) ToOutput(ctx context.Context) pulumix.Output[*Volume] {
+	return pulumix.Output[*Volume]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
@@ -621,6 +648,12 @@ func (o VolumeArrayOutput) ToVolumeArrayOutputWithContext(ctx context.Context) V
 	return o
 }
 
+func (o VolumeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Volume] {
+	return pulumix.Output[[]*Volume]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VolumeArrayOutput) Index(i pulumi.IntInput) VolumeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Volume {
 		return vs[0].([]*Volume)[vs[1].(int)]
@@ -639,6 +672,12 @@ func (o VolumeMapOutput) ToVolumeMapOutput() VolumeMapOutput {
 
 func (o VolumeMapOutput) ToVolumeMapOutputWithContext(ctx context.Context) VolumeMapOutput {
 	return o
+}
+
+func (o VolumeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Volume] {
+	return pulumix.Output[map[string]*Volume]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeMapOutput) MapIndex(k pulumi.StringInput) VolumeOutput {

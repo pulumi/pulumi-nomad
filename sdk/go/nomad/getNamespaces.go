@@ -4,11 +4,52 @@
 package nomad
 
 import (
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Retrieve a list of namespaces available in Nomad.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			namespaces, err := nomad.GetNamespaces(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			var namespace []*nomad.AclPolicy
+//			for index := 0; index < len(namespaces.Namespaces); index++ {
+//				key0 := index
+//				val0 := index
+//				__res, err := nomad.NewAclPolicy(ctx, fmt.Sprintf("namespace-%v", key0), &nomad.AclPolicyArgs{
+//					Description: pulumi.String(fmt.Sprintf("Write to the namespace %v", namespaces[val0])),
+//					RulesHcl:    pulumi.String(fmt.Sprintf("namespace \"%v\" {\n  policy = \"write\"\n}\n", namespaces[val0])),
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				namespace = append(namespace, __res)
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetNamespaces(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetNamespacesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNamespacesResult
 	err := ctx.Invoke("nomad:index/getNamespaces:getNamespaces", nil, &rv, opts...)
 	if err != nil {

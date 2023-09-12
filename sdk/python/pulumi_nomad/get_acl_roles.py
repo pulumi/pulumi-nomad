@@ -87,9 +87,9 @@ def get_acl_roles(prefix: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getAclRoles:getAclRoles', __args__, opts=opts, typ=GetAclRolesResult).value
 
     return AwaitableGetAclRolesResult(
-        acl_roles=__ret__.acl_roles,
-        id=__ret__.id,
-        prefix=__ret__.prefix)
+        acl_roles=pulumi.get(__ret__, 'acl_roles'),
+        id=pulumi.get(__ret__, 'id'),
+        prefix=pulumi.get(__ret__, 'prefix'))
 
 
 @_utilities.lift_output_func(get_acl_roles)

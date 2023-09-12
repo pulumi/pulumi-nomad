@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AclRole struct {
@@ -33,6 +35,7 @@ func NewAclRole(ctx *pulumi.Context,
 	if args.Policies == nil {
 		return nil, errors.New("invalid value for required argument 'Policies'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AclRole
 	err := ctx.RegisterResource("nomad:index/aclRole:AclRole", name, args, &resource, opts...)
 	if err != nil {
@@ -122,6 +125,12 @@ func (i *AclRole) ToAclRoleOutputWithContext(ctx context.Context) AclRoleOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(AclRoleOutput)
 }
 
+func (i *AclRole) ToOutput(ctx context.Context) pulumix.Output[*AclRole] {
+	return pulumix.Output[*AclRole]{
+		OutputState: i.ToAclRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AclRoleArrayInput is an input type that accepts AclRoleArray and AclRoleArrayOutput values.
 // You can construct a concrete instance of `AclRoleArrayInput` via:
 //
@@ -145,6 +154,12 @@ func (i AclRoleArray) ToAclRoleArrayOutput() AclRoleArrayOutput {
 
 func (i AclRoleArray) ToAclRoleArrayOutputWithContext(ctx context.Context) AclRoleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AclRoleArrayOutput)
+}
+
+func (i AclRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]*AclRole] {
+	return pulumix.Output[[]*AclRole]{
+		OutputState: i.ToAclRoleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AclRoleMapInput is an input type that accepts AclRoleMap and AclRoleMapOutput values.
@@ -172,6 +187,12 @@ func (i AclRoleMap) ToAclRoleMapOutputWithContext(ctx context.Context) AclRoleMa
 	return pulumi.ToOutputWithContext(ctx, i).(AclRoleMapOutput)
 }
 
+func (i AclRoleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AclRole] {
+	return pulumix.Output[map[string]*AclRole]{
+		OutputState: i.ToAclRoleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AclRoleOutput struct{ *pulumi.OutputState }
 
 func (AclRoleOutput) ElementType() reflect.Type {
@@ -184,6 +205,12 @@ func (o AclRoleOutput) ToAclRoleOutput() AclRoleOutput {
 
 func (o AclRoleOutput) ToAclRoleOutputWithContext(ctx context.Context) AclRoleOutput {
 	return o
+}
+
+func (o AclRoleOutput) ToOutput(ctx context.Context) pulumix.Output[*AclRole] {
+	return pulumix.Output[*AclRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: "")` - A description of the ACL Role.
@@ -216,6 +243,12 @@ func (o AclRoleArrayOutput) ToAclRoleArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o AclRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AclRole] {
+	return pulumix.Output[[]*AclRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AclRoleArrayOutput) Index(i pulumi.IntInput) AclRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AclRole {
 		return vs[0].([]*AclRole)[vs[1].(int)]
@@ -234,6 +267,12 @@ func (o AclRoleMapOutput) ToAclRoleMapOutput() AclRoleMapOutput {
 
 func (o AclRoleMapOutput) ToAclRoleMapOutputWithContext(ctx context.Context) AclRoleMapOutput {
 	return o
+}
+
+func (o AclRoleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AclRole] {
+	return pulumix.Output[map[string]*AclRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclRoleMapOutput) MapIndex(k pulumi.StringInput) AclRoleOutput {

@@ -4,6 +4,7 @@
 package nomad
 
 import (
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,6 +34,7 @@ import (
 //
 // ```
 func GetSchedulerPolicy(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetSchedulerPolicyResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSchedulerPolicyResult
 	err := ctx.Invoke("nomad:index/getSchedulerPolicy:getSchedulerPolicy", nil, &rv, opts...)
 	if err != nil {

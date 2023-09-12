@@ -85,9 +85,9 @@ def get_plugins(type: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getPlugins:getPlugins', __args__, opts=opts, typ=GetPluginsResult).value
 
     return AwaitableGetPluginsResult(
-        id=__ret__.id,
-        plugins=__ret__.plugins,
-        type=__ret__.type)
+        id=pulumi.get(__ret__, 'id'),
+        plugins=pulumi.get(__ret__, 'plugins'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_plugins)

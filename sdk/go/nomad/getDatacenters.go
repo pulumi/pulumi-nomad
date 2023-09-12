@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of datacenters.
@@ -39,6 +41,7 @@ import (
 //
 // ```
 func GetDatacenters(ctx *pulumi.Context, args *GetDatacentersArgs, opts ...pulumi.InvokeOption) (*GetDatacentersResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDatacentersResult
 	err := ctx.Invoke("nomad:index/getDatacenters:getDatacenters", args, &rv, opts...)
 	if err != nil {
@@ -103,6 +106,12 @@ func (o GetDatacentersResultOutput) ToGetDatacentersResultOutput() GetDatacenter
 
 func (o GetDatacentersResultOutput) ToGetDatacentersResultOutputWithContext(ctx context.Context) GetDatacentersResultOutput {
 	return o
+}
+
+func (o GetDatacentersResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDatacentersResult] {
+	return pulumix.Output[GetDatacentersResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `list(string)` a list of datacenters.

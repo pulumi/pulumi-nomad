@@ -4,11 +4,13 @@
 package nomad
 
 import (
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Retrieve a list of regions available in Nomad.
 func GetRegions(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetRegionsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRegionsResult
 	err := ctx.Invoke("nomad:index/getRegions:getRegions", nil, &rv, opts...)
 	if err != nil {

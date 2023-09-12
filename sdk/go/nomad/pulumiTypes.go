@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type AclAuthMethodConfig struct {
 	AllowedRedirectUris []string          `pulumi:"allowedRedirectUris"`
@@ -59,6 +63,12 @@ func (i AclAuthMethodConfigArgs) ToAclAuthMethodConfigOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigOutput)
 }
 
+func (i AclAuthMethodConfigArgs) ToOutput(ctx context.Context) pulumix.Output[AclAuthMethodConfig] {
+	return pulumix.Output[AclAuthMethodConfig]{
+		OutputState: i.ToAclAuthMethodConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i AclAuthMethodConfigArgs) ToAclAuthMethodConfigPtrOutput() AclAuthMethodConfigPtrOutput {
 	return i.ToAclAuthMethodConfigPtrOutputWithContext(context.Background())
 }
@@ -100,6 +110,12 @@ func (i *aclAuthMethodConfigPtrType) ToAclAuthMethodConfigPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigPtrOutput)
 }
 
+func (i *aclAuthMethodConfigPtrType) ToOutput(ctx context.Context) pulumix.Output[*AclAuthMethodConfig] {
+	return pulumix.Output[*AclAuthMethodConfig]{
+		OutputState: i.ToAclAuthMethodConfigPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AclAuthMethodConfigOutput struct{ *pulumi.OutputState }
 
 func (AclAuthMethodConfigOutput) ElementType() reflect.Type {
@@ -122,6 +138,12 @@ func (o AclAuthMethodConfigOutput) ToAclAuthMethodConfigPtrOutputWithContext(ctx
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v AclAuthMethodConfig) *AclAuthMethodConfig {
 		return &v
 	}).(AclAuthMethodConfigPtrOutput)
+}
+
+func (o AclAuthMethodConfigOutput) ToOutput(ctx context.Context) pulumix.Output[AclAuthMethodConfig] {
+	return pulumix.Output[AclAuthMethodConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclAuthMethodConfigOutput) AllowedRedirectUris() pulumi.StringArrayOutput {
@@ -176,6 +198,12 @@ func (o AclAuthMethodConfigPtrOutput) ToAclAuthMethodConfigPtrOutput() AclAuthMe
 
 func (o AclAuthMethodConfigPtrOutput) ToAclAuthMethodConfigPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigPtrOutput {
 	return o
+}
+
+func (o AclAuthMethodConfigPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*AclAuthMethodConfig] {
+	return pulumix.Output[*AclAuthMethodConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclAuthMethodConfigPtrOutput) Elem() AclAuthMethodConfigOutput {
@@ -311,6 +339,12 @@ func (i AclRolePolicyArgs) ToAclRolePolicyOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(AclRolePolicyOutput)
 }
 
+func (i AclRolePolicyArgs) ToOutput(ctx context.Context) pulumix.Output[AclRolePolicy] {
+	return pulumix.Output[AclRolePolicy]{
+		OutputState: i.ToAclRolePolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AclRolePolicyArrayInput is an input type that accepts AclRolePolicyArray and AclRolePolicyArrayOutput values.
 // You can construct a concrete instance of `AclRolePolicyArrayInput` via:
 //
@@ -336,6 +370,12 @@ func (i AclRolePolicyArray) ToAclRolePolicyArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(AclRolePolicyArrayOutput)
 }
 
+func (i AclRolePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]AclRolePolicy] {
+	return pulumix.Output[[]AclRolePolicy]{
+		OutputState: i.ToAclRolePolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AclRolePolicyOutput struct{ *pulumi.OutputState }
 
 func (AclRolePolicyOutput) ElementType() reflect.Type {
@@ -348,6 +388,12 @@ func (o AclRolePolicyOutput) ToAclRolePolicyOutput() AclRolePolicyOutput {
 
 func (o AclRolePolicyOutput) ToAclRolePolicyOutputWithContext(ctx context.Context) AclRolePolicyOutput {
 	return o
+}
+
+func (o AclRolePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[AclRolePolicy] {
+	return pulumix.Output[AclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: <required>)` - A human-friendly name for this ACL Role.
@@ -367,6 +413,12 @@ func (o AclRolePolicyArrayOutput) ToAclRolePolicyArrayOutput() AclRolePolicyArra
 
 func (o AclRolePolicyArrayOutput) ToAclRolePolicyArrayOutputWithContext(ctx context.Context) AclRolePolicyArrayOutput {
 	return o
+}
+
+func (o AclRolePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]AclRolePolicy] {
+	return pulumix.Output[[]AclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclRolePolicyArrayOutput) Index(i pulumi.IntInput) AclRolePolicyOutput {
@@ -410,6 +462,12 @@ func (i AclTokenRoleArgs) ToAclTokenRoleOutputWithContext(ctx context.Context) A
 	return pulumi.ToOutputWithContext(ctx, i).(AclTokenRoleOutput)
 }
 
+func (i AclTokenRoleArgs) ToOutput(ctx context.Context) pulumix.Output[AclTokenRole] {
+	return pulumix.Output[AclTokenRole]{
+		OutputState: i.ToAclTokenRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AclTokenRoleArrayInput is an input type that accepts AclTokenRoleArray and AclTokenRoleArrayOutput values.
 // You can construct a concrete instance of `AclTokenRoleArrayInput` via:
 //
@@ -435,6 +493,12 @@ func (i AclTokenRoleArray) ToAclTokenRoleArrayOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(AclTokenRoleArrayOutput)
 }
 
+func (i AclTokenRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]AclTokenRole] {
+	return pulumix.Output[[]AclTokenRole]{
+		OutputState: i.ToAclTokenRoleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AclTokenRoleOutput struct{ *pulumi.OutputState }
 
 func (AclTokenRoleOutput) ElementType() reflect.Type {
@@ -447,6 +511,12 @@ func (o AclTokenRoleOutput) ToAclTokenRoleOutput() AclTokenRoleOutput {
 
 func (o AclTokenRoleOutput) ToAclTokenRoleOutputWithContext(ctx context.Context) AclTokenRoleOutput {
 	return o
+}
+
+func (o AclTokenRoleOutput) ToOutput(ctx context.Context) pulumix.Output[AclTokenRole] {
+	return pulumix.Output[AclTokenRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclTokenRoleOutput) Id() pulumi.StringOutput {
@@ -470,6 +540,12 @@ func (o AclTokenRoleArrayOutput) ToAclTokenRoleArrayOutput() AclTokenRoleArrayOu
 
 func (o AclTokenRoleArrayOutput) ToAclTokenRoleArrayOutputWithContext(ctx context.Context) AclTokenRoleArrayOutput {
 	return o
+}
+
+func (o AclTokenRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]AclTokenRole] {
+	return pulumix.Output[[]AclTokenRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclTokenRoleArrayOutput) Index(i pulumi.IntInput) AclTokenRoleOutput {
@@ -529,6 +605,12 @@ func (i ExternalVolumeCapabilityArgs) ToExternalVolumeCapabilityOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeCapabilityOutput)
 }
 
+func (i ExternalVolumeCapabilityArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeCapability] {
+	return pulumix.Output[ExternalVolumeCapability]{
+		OutputState: i.ToExternalVolumeCapabilityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExternalVolumeCapabilityArrayInput is an input type that accepts ExternalVolumeCapabilityArray and ExternalVolumeCapabilityArrayOutput values.
 // You can construct a concrete instance of `ExternalVolumeCapabilityArrayInput` via:
 //
@@ -554,6 +636,12 @@ func (i ExternalVolumeCapabilityArray) ToExternalVolumeCapabilityArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeCapabilityArrayOutput)
 }
 
+func (i ExternalVolumeCapabilityArray) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeCapability] {
+	return pulumix.Output[[]ExternalVolumeCapability]{
+		OutputState: i.ToExternalVolumeCapabilityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeCapabilityOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeCapabilityOutput) ElementType() reflect.Type {
@@ -566,6 +654,12 @@ func (o ExternalVolumeCapabilityOutput) ToExternalVolumeCapabilityOutput() Exter
 
 func (o ExternalVolumeCapabilityOutput) ToExternalVolumeCapabilityOutputWithContext(ctx context.Context) ExternalVolumeCapabilityOutput {
 	return o
+}
+
+func (o ExternalVolumeCapabilityOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeCapability] {
+	return pulumix.Output[ExternalVolumeCapability]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
@@ -597,6 +691,12 @@ func (o ExternalVolumeCapabilityArrayOutput) ToExternalVolumeCapabilityArrayOutp
 
 func (o ExternalVolumeCapabilityArrayOutput) ToExternalVolumeCapabilityArrayOutputWithContext(ctx context.Context) ExternalVolumeCapabilityArrayOutput {
 	return o
+}
+
+func (o ExternalVolumeCapabilityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeCapability] {
+	return pulumix.Output[[]ExternalVolumeCapability]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeCapabilityArrayOutput) Index(i pulumi.IntInput) ExternalVolumeCapabilityOutput {
@@ -642,6 +742,12 @@ func (i ExternalVolumeMountOptionsArgs) ToExternalVolumeMountOptionsOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeMountOptionsOutput)
 }
 
+func (i ExternalVolumeMountOptionsArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeMountOptions] {
+	return pulumix.Output[ExternalVolumeMountOptions]{
+		OutputState: i.ToExternalVolumeMountOptionsOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ExternalVolumeMountOptionsArgs) ToExternalVolumeMountOptionsPtrOutput() ExternalVolumeMountOptionsPtrOutput {
 	return i.ToExternalVolumeMountOptionsPtrOutputWithContext(context.Background())
 }
@@ -683,6 +789,12 @@ func (i *externalVolumeMountOptionsPtrType) ToExternalVolumeMountOptionsPtrOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeMountOptionsPtrOutput)
 }
 
+func (i *externalVolumeMountOptionsPtrType) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeMountOptions] {
+	return pulumix.Output[*ExternalVolumeMountOptions]{
+		OutputState: i.ToExternalVolumeMountOptionsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeMountOptionsOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeMountOptionsOutput) ElementType() reflect.Type {
@@ -707,6 +819,12 @@ func (o ExternalVolumeMountOptionsOutput) ToExternalVolumeMountOptionsPtrOutputW
 	}).(ExternalVolumeMountOptionsPtrOutput)
 }
 
+func (o ExternalVolumeMountOptionsOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeMountOptions] {
+	return pulumix.Output[ExternalVolumeMountOptions]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `(string: optional)` - The file system type.
 func (o ExternalVolumeMountOptionsOutput) FsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExternalVolumeMountOptions) *string { return v.FsType }).(pulumi.StringPtrOutput)
@@ -729,6 +847,12 @@ func (o ExternalVolumeMountOptionsPtrOutput) ToExternalVolumeMountOptionsPtrOutp
 
 func (o ExternalVolumeMountOptionsPtrOutput) ToExternalVolumeMountOptionsPtrOutputWithContext(ctx context.Context) ExternalVolumeMountOptionsPtrOutput {
 	return o
+}
+
+func (o ExternalVolumeMountOptionsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeMountOptions] {
+	return pulumix.Output[*ExternalVolumeMountOptions]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeMountOptionsPtrOutput) Elem() ExternalVolumeMountOptionsOutput {
@@ -800,6 +924,12 @@ func (i ExternalVolumeTopologyArgs) ToExternalVolumeTopologyOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyOutput)
 }
 
+func (i ExternalVolumeTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopology] {
+	return pulumix.Output[ExternalVolumeTopology]{
+		OutputState: i.ToExternalVolumeTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExternalVolumeTopologyArrayInput is an input type that accepts ExternalVolumeTopologyArray and ExternalVolumeTopologyArrayOutput values.
 // You can construct a concrete instance of `ExternalVolumeTopologyArrayInput` via:
 //
@@ -825,6 +955,12 @@ func (i ExternalVolumeTopologyArray) ToExternalVolumeTopologyArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyArrayOutput)
 }
 
+func (i ExternalVolumeTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopology] {
+	return pulumix.Output[[]ExternalVolumeTopology]{
+		OutputState: i.ToExternalVolumeTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyOutput) ElementType() reflect.Type {
@@ -837,6 +973,12 @@ func (o ExternalVolumeTopologyOutput) ToExternalVolumeTopologyOutput() ExternalV
 
 func (o ExternalVolumeTopologyOutput) ToExternalVolumeTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopology] {
+	return pulumix.Output[ExternalVolumeTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(map[string]string)` - Define the attributes for the topology request.
@@ -859,6 +1001,12 @@ func (o ExternalVolumeTopologyArrayOutput) ToExternalVolumeTopologyArrayOutput()
 
 func (o ExternalVolumeTopologyArrayOutput) ToExternalVolumeTopologyArrayOutputWithContext(ctx context.Context) ExternalVolumeTopologyArrayOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopology] {
+	return pulumix.Output[[]ExternalVolumeTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeTopologyArrayOutput) Index(i pulumi.IntInput) ExternalVolumeTopologyOutput {
@@ -904,6 +1052,12 @@ func (i ExternalVolumeTopologyRequestArgs) ToExternalVolumeTopologyRequestOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestOutput)
 }
 
+func (i ExternalVolumeTopologyRequestArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequest] {
+	return pulumix.Output[ExternalVolumeTopologyRequest]{
+		OutputState: i.ToExternalVolumeTopologyRequestOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ExternalVolumeTopologyRequestArgs) ToExternalVolumeTopologyRequestPtrOutput() ExternalVolumeTopologyRequestPtrOutput {
 	return i.ToExternalVolumeTopologyRequestPtrOutputWithContext(context.Background())
 }
@@ -945,6 +1099,12 @@ func (i *externalVolumeTopologyRequestPtrType) ToExternalVolumeTopologyRequestPt
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPtrOutput)
 }
 
+func (i *externalVolumeTopologyRequestPtrType) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequest] {
+	return pulumix.Output[*ExternalVolumeTopologyRequest]{
+		OutputState: i.ToExternalVolumeTopologyRequestPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyRequestOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyRequestOutput) ElementType() reflect.Type {
@@ -969,6 +1129,12 @@ func (o ExternalVolumeTopologyRequestOutput) ToExternalVolumeTopologyRequestPtrO
 	}).(ExternalVolumeTopologyRequestPtrOutput)
 }
 
+func (o ExternalVolumeTopologyRequestOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequest] {
+	return pulumix.Output[ExternalVolumeTopologyRequest]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `(“Topology“: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
 func (o ExternalVolumeTopologyRequestOutput) Preferred() ExternalVolumeTopologyRequestPreferredPtrOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequest) *ExternalVolumeTopologyRequestPreferred { return v.Preferred }).(ExternalVolumeTopologyRequestPreferredPtrOutput)
@@ -991,6 +1157,12 @@ func (o ExternalVolumeTopologyRequestPtrOutput) ToExternalVolumeTopologyRequestP
 
 func (o ExternalVolumeTopologyRequestPtrOutput) ToExternalVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPtrOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequest] {
+	return pulumix.Output[*ExternalVolumeTopologyRequest]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeTopologyRequestPtrOutput) Elem() ExternalVolumeTopologyRequestOutput {
@@ -1054,6 +1226,12 @@ func (i ExternalVolumeTopologyRequestPreferredArgs) ToExternalVolumeTopologyRequ
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredOutput)
 }
 
+func (i ExternalVolumeTopologyRequestPreferredArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestPreferred] {
+	return pulumix.Output[ExternalVolumeTopologyRequestPreferred]{
+		OutputState: i.ToExternalVolumeTopologyRequestPreferredOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ExternalVolumeTopologyRequestPreferredArgs) ToExternalVolumeTopologyRequestPreferredPtrOutput() ExternalVolumeTopologyRequestPreferredPtrOutput {
 	return i.ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(context.Background())
 }
@@ -1095,6 +1273,12 @@ func (i *externalVolumeTopologyRequestPreferredPtrType) ToExternalVolumeTopology
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredPtrOutput)
 }
 
+func (i *externalVolumeTopologyRequestPreferredPtrType) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequestPreferred] {
+	return pulumix.Output[*ExternalVolumeTopologyRequestPreferred]{
+		OutputState: i.ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyRequestPreferredOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyRequestPreferredOutput) ElementType() reflect.Type {
@@ -1119,6 +1303,12 @@ func (o ExternalVolumeTopologyRequestPreferredOutput) ToExternalVolumeTopologyRe
 	}).(ExternalVolumeTopologyRequestPreferredPtrOutput)
 }
 
+func (o ExternalVolumeTopologyRequestPreferredOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestPreferred] {
+	return pulumix.Output[ExternalVolumeTopologyRequestPreferred]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ExternalVolumeTopologyRequestPreferredOutput) Topologies() ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestPreferred) []ExternalVolumeTopologyRequestPreferredTopology {
 		return v.Topologies
@@ -1137,6 +1327,12 @@ func (o ExternalVolumeTopologyRequestPreferredPtrOutput) ToExternalVolumeTopolog
 
 func (o ExternalVolumeTopologyRequestPreferredPtrOutput) ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredPtrOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequestPreferred] {
+	return pulumix.Output[*ExternalVolumeTopologyRequestPreferred]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeTopologyRequestPreferredPtrOutput) Elem() ExternalVolumeTopologyRequestPreferredOutput {
@@ -1197,6 +1393,12 @@ func (i ExternalVolumeTopologyRequestPreferredTopologyArgs) ToExternalVolumeTopo
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredTopologyOutput)
 }
 
+func (i ExternalVolumeTopologyRequestPreferredTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[ExternalVolumeTopologyRequestPreferredTopology]{
+		OutputState: i.ToExternalVolumeTopologyRequestPreferredTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExternalVolumeTopologyRequestPreferredTopologyArrayInput is an input type that accepts ExternalVolumeTopologyRequestPreferredTopologyArray and ExternalVolumeTopologyRequestPreferredTopologyArrayOutput values.
 // You can construct a concrete instance of `ExternalVolumeTopologyRequestPreferredTopologyArrayInput` via:
 //
@@ -1222,6 +1424,12 @@ func (i ExternalVolumeTopologyRequestPreferredTopologyArray) ToExternalVolumeTop
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredTopologyArrayOutput)
 }
 
+func (i ExternalVolumeTopologyRequestPreferredTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[[]ExternalVolumeTopologyRequestPreferredTopology]{
+		OutputState: i.ToExternalVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyRequestPreferredTopologyOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyRequestPreferredTopologyOutput) ElementType() reflect.Type {
@@ -1234,6 +1442,12 @@ func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) ToExternalVolumeTo
 
 func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) ToExternalVolumeTopologyRequestPreferredTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredTopologyOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[ExternalVolumeTopologyRequestPreferredTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(map[string]string)` - Define the attributes for the topology request.
@@ -1256,6 +1470,12 @@ func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) ToExternalVol
 
 func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) ToExternalVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[[]ExternalVolumeTopologyRequestPreferredTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) Index(i pulumi.IntInput) ExternalVolumeTopologyRequestPreferredTopologyOutput {
@@ -1293,6 +1513,12 @@ func (i ExternalVolumeTopologyRequestRequiredArgs) ToExternalVolumeTopologyReque
 
 func (i ExternalVolumeTopologyRequestRequiredArgs) ToExternalVolumeTopologyRequestRequiredOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredOutput)
+}
+
+func (i ExternalVolumeTopologyRequestRequiredArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestRequired] {
+	return pulumix.Output[ExternalVolumeTopologyRequestRequired]{
+		OutputState: i.ToExternalVolumeTopologyRequestRequiredOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ExternalVolumeTopologyRequestRequiredArgs) ToExternalVolumeTopologyRequestRequiredPtrOutput() ExternalVolumeTopologyRequestRequiredPtrOutput {
@@ -1336,6 +1562,12 @@ func (i *externalVolumeTopologyRequestRequiredPtrType) ToExternalVolumeTopologyR
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredPtrOutput)
 }
 
+func (i *externalVolumeTopologyRequestRequiredPtrType) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequestRequired] {
+	return pulumix.Output[*ExternalVolumeTopologyRequestRequired]{
+		OutputState: i.ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyRequestRequiredOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyRequestRequiredOutput) ElementType() reflect.Type {
@@ -1360,6 +1592,12 @@ func (o ExternalVolumeTopologyRequestRequiredOutput) ToExternalVolumeTopologyReq
 	}).(ExternalVolumeTopologyRequestRequiredPtrOutput)
 }
 
+func (o ExternalVolumeTopologyRequestRequiredOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestRequired] {
+	return pulumix.Output[ExternalVolumeTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ExternalVolumeTopologyRequestRequiredOutput) Topologies() ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestRequired) []ExternalVolumeTopologyRequestRequiredTopology {
 		return v.Topologies
@@ -1378,6 +1616,12 @@ func (o ExternalVolumeTopologyRequestRequiredPtrOutput) ToExternalVolumeTopology
 
 func (o ExternalVolumeTopologyRequestRequiredPtrOutput) ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredPtrOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequestRequired] {
+	return pulumix.Output[*ExternalVolumeTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeTopologyRequestRequiredPtrOutput) Elem() ExternalVolumeTopologyRequestRequiredOutput {
@@ -1438,6 +1682,12 @@ func (i ExternalVolumeTopologyRequestRequiredTopologyArgs) ToExternalVolumeTopol
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredTopologyOutput)
 }
 
+func (i ExternalVolumeTopologyRequestRequiredTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[ExternalVolumeTopologyRequestRequiredTopology]{
+		OutputState: i.ToExternalVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExternalVolumeTopologyRequestRequiredTopologyArrayInput is an input type that accepts ExternalVolumeTopologyRequestRequiredTopologyArray and ExternalVolumeTopologyRequestRequiredTopologyArrayOutput values.
 // You can construct a concrete instance of `ExternalVolumeTopologyRequestRequiredTopologyArrayInput` via:
 //
@@ -1463,6 +1713,12 @@ func (i ExternalVolumeTopologyRequestRequiredTopologyArray) ToExternalVolumeTopo
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredTopologyArrayOutput)
 }
 
+func (i ExternalVolumeTopologyRequestRequiredTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]ExternalVolumeTopologyRequestRequiredTopology]{
+		OutputState: i.ToExternalVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyRequestRequiredTopologyOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyRequestRequiredTopologyOutput) ElementType() reflect.Type {
@@ -1475,6 +1731,12 @@ func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) ToExternalVolumeTop
 
 func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) ToExternalVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredTopologyOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[ExternalVolumeTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(map[string]string)` - Define the attributes for the topology request.
@@ -1497,6 +1759,12 @@ func (o ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) ToExternalVolu
 
 func (o ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) ToExternalVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]ExternalVolumeTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi.IntInput) ExternalVolumeTopologyRequestRequiredTopologyOutput {
@@ -1548,6 +1816,12 @@ func (i JobHcl2Args) ToJobHcl2OutputWithContext(ctx context.Context) JobHcl2Outp
 	return pulumi.ToOutputWithContext(ctx, i).(JobHcl2Output)
 }
 
+func (i JobHcl2Args) ToOutput(ctx context.Context) pulumix.Output[JobHcl2] {
+	return pulumix.Output[JobHcl2]{
+		OutputState: i.ToJobHcl2OutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i JobHcl2Args) ToJobHcl2PtrOutput() JobHcl2PtrOutput {
 	return i.ToJobHcl2PtrOutputWithContext(context.Background())
 }
@@ -1589,6 +1863,12 @@ func (i *jobHcl2PtrType) ToJobHcl2PtrOutputWithContext(ctx context.Context) JobH
 	return pulumi.ToOutputWithContext(ctx, i).(JobHcl2PtrOutput)
 }
 
+func (i *jobHcl2PtrType) ToOutput(ctx context.Context) pulumix.Output[*JobHcl2] {
+	return pulumix.Output[*JobHcl2]{
+		OutputState: i.ToJobHcl2PtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JobHcl2Output struct{ *pulumi.OutputState }
 
 func (JobHcl2Output) ElementType() reflect.Type {
@@ -1611,6 +1891,12 @@ func (o JobHcl2Output) ToJobHcl2PtrOutputWithContext(ctx context.Context) JobHcl
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobHcl2) *JobHcl2 {
 		return &v
 	}).(JobHcl2PtrOutput)
+}
+
+func (o JobHcl2Output) ToOutput(ctx context.Context) pulumix.Output[JobHcl2] {
+	return pulumix.Output[JobHcl2]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(boolean: false)` - Set this to `true` to be able to use
@@ -1641,6 +1927,12 @@ func (o JobHcl2PtrOutput) ToJobHcl2PtrOutput() JobHcl2PtrOutput {
 
 func (o JobHcl2PtrOutput) ToJobHcl2PtrOutputWithContext(ctx context.Context) JobHcl2PtrOutput {
 	return o
+}
+
+func (o JobHcl2PtrOutput) ToOutput(ctx context.Context) pulumix.Output[*JobHcl2] {
+	return pulumix.Output[*JobHcl2]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobHcl2PtrOutput) Elem() JobHcl2Output {
@@ -1723,6 +2015,12 @@ func (i JobTaskGroupArgs) ToJobTaskGroupOutputWithContext(ctx context.Context) J
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupOutput)
 }
 
+func (i JobTaskGroupArgs) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroup] {
+	return pulumix.Output[JobTaskGroup]{
+		OutputState: i.ToJobTaskGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // JobTaskGroupArrayInput is an input type that accepts JobTaskGroupArray and JobTaskGroupArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupArrayInput` via:
 //
@@ -1748,6 +2046,12 @@ func (i JobTaskGroupArray) ToJobTaskGroupArrayOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupArrayOutput)
 }
 
+func (i JobTaskGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroup] {
+	return pulumix.Output[[]JobTaskGroup]{
+		OutputState: i.ToJobTaskGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JobTaskGroupOutput struct{ *pulumi.OutputState }
 
 func (JobTaskGroupOutput) ElementType() reflect.Type {
@@ -1760,6 +2064,12 @@ func (o JobTaskGroupOutput) ToJobTaskGroupOutput() JobTaskGroupOutput {
 
 func (o JobTaskGroupOutput) ToJobTaskGroupOutputWithContext(ctx context.Context) JobTaskGroupOutput {
 	return o
+}
+
+func (o JobTaskGroupOutput) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroup] {
+	return pulumix.Output[JobTaskGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupOutput) Count() pulumi.IntPtrOutput {
@@ -1794,6 +2104,12 @@ func (o JobTaskGroupArrayOutput) ToJobTaskGroupArrayOutput() JobTaskGroupArrayOu
 
 func (o JobTaskGroupArrayOutput) ToJobTaskGroupArrayOutputWithContext(ctx context.Context) JobTaskGroupArrayOutput {
 	return o
+}
+
+func (o JobTaskGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroup] {
+	return pulumix.Output[[]JobTaskGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupArrayOutput) Index(i pulumi.IntInput) JobTaskGroupOutput {
@@ -1839,6 +2155,12 @@ func (i JobTaskGroupTaskArgs) ToJobTaskGroupTaskOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupTaskOutput)
 }
 
+func (i JobTaskGroupTaskArgs) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupTask] {
+	return pulumix.Output[JobTaskGroupTask]{
+		OutputState: i.ToJobTaskGroupTaskOutputWithContext(ctx).OutputState,
+	}
+}
+
 // JobTaskGroupTaskArrayInput is an input type that accepts JobTaskGroupTaskArray and JobTaskGroupTaskArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupTaskArrayInput` via:
 //
@@ -1864,6 +2186,12 @@ func (i JobTaskGroupTaskArray) ToJobTaskGroupTaskArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupTaskArrayOutput)
 }
 
+func (i JobTaskGroupTaskArray) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupTask] {
+	return pulumix.Output[[]JobTaskGroupTask]{
+		OutputState: i.ToJobTaskGroupTaskArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JobTaskGroupTaskOutput struct{ *pulumi.OutputState }
 
 func (JobTaskGroupTaskOutput) ElementType() reflect.Type {
@@ -1876,6 +2204,12 @@ func (o JobTaskGroupTaskOutput) ToJobTaskGroupTaskOutput() JobTaskGroupTaskOutpu
 
 func (o JobTaskGroupTaskOutput) ToJobTaskGroupTaskOutputWithContext(ctx context.Context) JobTaskGroupTaskOutput {
 	return o
+}
+
+func (o JobTaskGroupTaskOutput) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupTask] {
+	return pulumix.Output[JobTaskGroupTask]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupTaskOutput) Driver() pulumi.StringPtrOutput {
@@ -1906,6 +2240,12 @@ func (o JobTaskGroupTaskArrayOutput) ToJobTaskGroupTaskArrayOutput() JobTaskGrou
 
 func (o JobTaskGroupTaskArrayOutput) ToJobTaskGroupTaskArrayOutputWithContext(ctx context.Context) JobTaskGroupTaskArrayOutput {
 	return o
+}
+
+func (o JobTaskGroupTaskArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupTask] {
+	return pulumix.Output[[]JobTaskGroupTask]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupTaskArrayOutput) Index(i pulumi.IntInput) JobTaskGroupTaskOutput {
@@ -1949,6 +2289,12 @@ func (i JobTaskGroupTaskVolumeMountArgs) ToJobTaskGroupTaskVolumeMountOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupTaskVolumeMountOutput)
 }
 
+func (i JobTaskGroupTaskVolumeMountArgs) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[JobTaskGroupTaskVolumeMount]{
+		OutputState: i.ToJobTaskGroupTaskVolumeMountOutputWithContext(ctx).OutputState,
+	}
+}
+
 // JobTaskGroupTaskVolumeMountArrayInput is an input type that accepts JobTaskGroupTaskVolumeMountArray and JobTaskGroupTaskVolumeMountArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupTaskVolumeMountArrayInput` via:
 //
@@ -1974,6 +2320,12 @@ func (i JobTaskGroupTaskVolumeMountArray) ToJobTaskGroupTaskVolumeMountArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupTaskVolumeMountArrayOutput)
 }
 
+func (i JobTaskGroupTaskVolumeMountArray) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[[]JobTaskGroupTaskVolumeMount]{
+		OutputState: i.ToJobTaskGroupTaskVolumeMountArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JobTaskGroupTaskVolumeMountOutput struct{ *pulumi.OutputState }
 
 func (JobTaskGroupTaskVolumeMountOutput) ElementType() reflect.Type {
@@ -1986,6 +2338,12 @@ func (o JobTaskGroupTaskVolumeMountOutput) ToJobTaskGroupTaskVolumeMountOutput()
 
 func (o JobTaskGroupTaskVolumeMountOutput) ToJobTaskGroupTaskVolumeMountOutputWithContext(ctx context.Context) JobTaskGroupTaskVolumeMountOutput {
 	return o
+}
+
+func (o JobTaskGroupTaskVolumeMountOutput) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[JobTaskGroupTaskVolumeMount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupTaskVolumeMountOutput) Destination() pulumi.StringPtrOutput {
@@ -2012,6 +2370,12 @@ func (o JobTaskGroupTaskVolumeMountArrayOutput) ToJobTaskGroupTaskVolumeMountArr
 
 func (o JobTaskGroupTaskVolumeMountArrayOutput) ToJobTaskGroupTaskVolumeMountArrayOutputWithContext(ctx context.Context) JobTaskGroupTaskVolumeMountArrayOutput {
 	return o
+}
+
+func (o JobTaskGroupTaskVolumeMountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[[]JobTaskGroupTaskVolumeMount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupTaskVolumeMountArrayOutput) Index(i pulumi.IntInput) JobTaskGroupTaskVolumeMountOutput {
@@ -2057,6 +2421,12 @@ func (i JobTaskGroupVolumeArgs) ToJobTaskGroupVolumeOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupVolumeOutput)
 }
 
+func (i JobTaskGroupVolumeArgs) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupVolume] {
+	return pulumix.Output[JobTaskGroupVolume]{
+		OutputState: i.ToJobTaskGroupVolumeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // JobTaskGroupVolumeArrayInput is an input type that accepts JobTaskGroupVolumeArray and JobTaskGroupVolumeArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupVolumeArrayInput` via:
 //
@@ -2082,6 +2452,12 @@ func (i JobTaskGroupVolumeArray) ToJobTaskGroupVolumeArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupVolumeArrayOutput)
 }
 
+func (i JobTaskGroupVolumeArray) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupVolume] {
+	return pulumix.Output[[]JobTaskGroupVolume]{
+		OutputState: i.ToJobTaskGroupVolumeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JobTaskGroupVolumeOutput struct{ *pulumi.OutputState }
 
 func (JobTaskGroupVolumeOutput) ElementType() reflect.Type {
@@ -2094,6 +2470,12 @@ func (o JobTaskGroupVolumeOutput) ToJobTaskGroupVolumeOutput() JobTaskGroupVolum
 
 func (o JobTaskGroupVolumeOutput) ToJobTaskGroupVolumeOutputWithContext(ctx context.Context) JobTaskGroupVolumeOutput {
 	return o
+}
+
+func (o JobTaskGroupVolumeOutput) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupVolume] {
+	return pulumix.Output[JobTaskGroupVolume]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupVolumeOutput) Name() pulumi.StringPtrOutput {
@@ -2124,6 +2506,12 @@ func (o JobTaskGroupVolumeArrayOutput) ToJobTaskGroupVolumeArrayOutput() JobTask
 
 func (o JobTaskGroupVolumeArrayOutput) ToJobTaskGroupVolumeArrayOutputWithContext(ctx context.Context) JobTaskGroupVolumeArrayOutput {
 	return o
+}
+
+func (o JobTaskGroupVolumeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupVolume] {
+	return pulumix.Output[[]JobTaskGroupVolume]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupVolumeArrayOutput) Index(i pulumi.IntInput) JobTaskGroupVolumeOutput {
@@ -2169,6 +2557,12 @@ func (i NamespaceCapabilitiesArgs) ToNamespaceCapabilitiesOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceCapabilitiesOutput)
 }
 
+func (i NamespaceCapabilitiesArgs) ToOutput(ctx context.Context) pulumix.Output[NamespaceCapabilities] {
+	return pulumix.Output[NamespaceCapabilities]{
+		OutputState: i.ToNamespaceCapabilitiesOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i NamespaceCapabilitiesArgs) ToNamespaceCapabilitiesPtrOutput() NamespaceCapabilitiesPtrOutput {
 	return i.ToNamespaceCapabilitiesPtrOutputWithContext(context.Background())
 }
@@ -2210,6 +2604,12 @@ func (i *namespaceCapabilitiesPtrType) ToNamespaceCapabilitiesPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceCapabilitiesPtrOutput)
 }
 
+func (i *namespaceCapabilitiesPtrType) ToOutput(ctx context.Context) pulumix.Output[*NamespaceCapabilities] {
+	return pulumix.Output[*NamespaceCapabilities]{
+		OutputState: i.ToNamespaceCapabilitiesPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NamespaceCapabilitiesOutput struct{ *pulumi.OutputState }
 
 func (NamespaceCapabilitiesOutput) ElementType() reflect.Type {
@@ -2234,6 +2634,12 @@ func (o NamespaceCapabilitiesOutput) ToNamespaceCapabilitiesPtrOutputWithContext
 	}).(NamespaceCapabilitiesPtrOutput)
 }
 
+func (o NamespaceCapabilitiesOutput) ToOutput(ctx context.Context) pulumix.Output[NamespaceCapabilities] {
+	return pulumix.Output[NamespaceCapabilities]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `([]string: <optional>)` - Task drivers disabled for the namespace.
 func (o NamespaceCapabilitiesOutput) DisabledTaskDrivers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NamespaceCapabilities) []string { return v.DisabledTaskDrivers }).(pulumi.StringArrayOutput)
@@ -2256,6 +2662,12 @@ func (o NamespaceCapabilitiesPtrOutput) ToNamespaceCapabilitiesPtrOutput() Names
 
 func (o NamespaceCapabilitiesPtrOutput) ToNamespaceCapabilitiesPtrOutputWithContext(ctx context.Context) NamespaceCapabilitiesPtrOutput {
 	return o
+}
+
+func (o NamespaceCapabilitiesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NamespaceCapabilities] {
+	return pulumix.Output[*NamespaceCapabilities]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NamespaceCapabilitiesPtrOutput) Elem() NamespaceCapabilitiesOutput {
@@ -2321,6 +2733,12 @@ func (i ProviderHeaderArgs) ToProviderHeaderOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderOutput)
 }
 
+func (i ProviderHeaderArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderHeader] {
+	return pulumix.Output[ProviderHeader]{
+		OutputState: i.ToProviderHeaderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ProviderHeaderArrayInput is an input type that accepts ProviderHeaderArray and ProviderHeaderArrayOutput values.
 // You can construct a concrete instance of `ProviderHeaderArrayInput` via:
 //
@@ -2346,6 +2764,12 @@ func (i ProviderHeaderArray) ToProviderHeaderArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderArrayOutput)
 }
 
+func (i ProviderHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]ProviderHeader] {
+	return pulumix.Output[[]ProviderHeader]{
+		OutputState: i.ToProviderHeaderArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderHeaderOutput struct{ *pulumi.OutputState }
 
 func (ProviderHeaderOutput) ElementType() reflect.Type {
@@ -2358,6 +2782,12 @@ func (o ProviderHeaderOutput) ToProviderHeaderOutput() ProviderHeaderOutput {
 
 func (o ProviderHeaderOutput) ToProviderHeaderOutputWithContext(ctx context.Context) ProviderHeaderOutput {
 	return o
+}
+
+func (o ProviderHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderHeader] {
+	return pulumix.Output[ProviderHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderHeaderOutput) Name() pulumi.StringOutput {
@@ -2380,6 +2810,12 @@ func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutput() ProviderHeaderA
 
 func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutputWithContext(ctx context.Context) ProviderHeaderArrayOutput {
 	return o
+}
+
+func (o ProviderHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ProviderHeader] {
+	return pulumix.Output[[]ProviderHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderHeaderArrayOutput) Index(i pulumi.IntInput) ProviderHeaderOutput {
@@ -2429,6 +2865,12 @@ func (i QuoteSpecificationLimitArgs) ToQuoteSpecificationLimitOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitOutput)
 }
 
+func (i QuoteSpecificationLimitArgs) ToOutput(ctx context.Context) pulumix.Output[QuoteSpecificationLimit] {
+	return pulumix.Output[QuoteSpecificationLimit]{
+		OutputState: i.ToQuoteSpecificationLimitOutputWithContext(ctx).OutputState,
+	}
+}
+
 // QuoteSpecificationLimitArrayInput is an input type that accepts QuoteSpecificationLimitArray and QuoteSpecificationLimitArrayOutput values.
 // You can construct a concrete instance of `QuoteSpecificationLimitArrayInput` via:
 //
@@ -2454,6 +2896,12 @@ func (i QuoteSpecificationLimitArray) ToQuoteSpecificationLimitArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitArrayOutput)
 }
 
+func (i QuoteSpecificationLimitArray) ToOutput(ctx context.Context) pulumix.Output[[]QuoteSpecificationLimit] {
+	return pulumix.Output[[]QuoteSpecificationLimit]{
+		OutputState: i.ToQuoteSpecificationLimitArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type QuoteSpecificationLimitOutput struct{ *pulumi.OutputState }
 
 func (QuoteSpecificationLimitOutput) ElementType() reflect.Type {
@@ -2466,6 +2914,12 @@ func (o QuoteSpecificationLimitOutput) ToQuoteSpecificationLimitOutput() QuoteSp
 
 func (o QuoteSpecificationLimitOutput) ToQuoteSpecificationLimitOutputWithContext(ctx context.Context) QuoteSpecificationLimitOutput {
 	return o
+}
+
+func (o QuoteSpecificationLimitOutput) ToOutput(ctx context.Context) pulumix.Output[QuoteSpecificationLimit] {
+	return pulumix.Output[QuoteSpecificationLimit]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: <required>)` - The region these limits should apply to.
@@ -2492,6 +2946,12 @@ func (o QuoteSpecificationLimitArrayOutput) ToQuoteSpecificationLimitArrayOutput
 
 func (o QuoteSpecificationLimitArrayOutput) ToQuoteSpecificationLimitArrayOutputWithContext(ctx context.Context) QuoteSpecificationLimitArrayOutput {
 	return o
+}
+
+func (o QuoteSpecificationLimitArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]QuoteSpecificationLimit] {
+	return pulumix.Output[[]QuoteSpecificationLimit]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o QuoteSpecificationLimitArrayOutput) Index(i pulumi.IntInput) QuoteSpecificationLimitOutput {
@@ -2543,6 +3003,12 @@ func (i QuoteSpecificationLimitRegionLimitArgs) ToQuoteSpecificationLimitRegionL
 	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitOutput)
 }
 
+func (i QuoteSpecificationLimitRegionLimitArgs) ToOutput(ctx context.Context) pulumix.Output[QuoteSpecificationLimitRegionLimit] {
+	return pulumix.Output[QuoteSpecificationLimitRegionLimit]{
+		OutputState: i.ToQuoteSpecificationLimitRegionLimitOutputWithContext(ctx).OutputState,
+	}
+}
+
 type QuoteSpecificationLimitRegionLimitOutput struct{ *pulumi.OutputState }
 
 func (QuoteSpecificationLimitRegionLimitOutput) ElementType() reflect.Type {
@@ -2555,6 +3021,12 @@ func (o QuoteSpecificationLimitRegionLimitOutput) ToQuoteSpecificationLimitRegio
 
 func (o QuoteSpecificationLimitRegionLimitOutput) ToQuoteSpecificationLimitRegionLimitOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitOutput {
 	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitOutput) ToOutput(ctx context.Context) pulumix.Output[QuoteSpecificationLimitRegionLimit] {
+	return pulumix.Output[QuoteSpecificationLimitRegionLimit]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
@@ -2621,6 +3093,12 @@ func (i VolumeCapabilityArgs) ToVolumeCapabilityOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeCapabilityOutput)
 }
 
+func (i VolumeCapabilityArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeCapability] {
+	return pulumix.Output[VolumeCapability]{
+		OutputState: i.ToVolumeCapabilityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VolumeCapabilityArrayInput is an input type that accepts VolumeCapabilityArray and VolumeCapabilityArrayOutput values.
 // You can construct a concrete instance of `VolumeCapabilityArrayInput` via:
 //
@@ -2646,6 +3124,12 @@ func (i VolumeCapabilityArray) ToVolumeCapabilityArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeCapabilityArrayOutput)
 }
 
+func (i VolumeCapabilityArray) ToOutput(ctx context.Context) pulumix.Output[[]VolumeCapability] {
+	return pulumix.Output[[]VolumeCapability]{
+		OutputState: i.ToVolumeCapabilityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeCapabilityOutput struct{ *pulumi.OutputState }
 
 func (VolumeCapabilityOutput) ElementType() reflect.Type {
@@ -2658,6 +3142,12 @@ func (o VolumeCapabilityOutput) ToVolumeCapabilityOutput() VolumeCapabilityOutpu
 
 func (o VolumeCapabilityOutput) ToVolumeCapabilityOutputWithContext(ctx context.Context) VolumeCapabilityOutput {
 	return o
+}
+
+func (o VolumeCapabilityOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeCapability] {
+	return pulumix.Output[VolumeCapability]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
@@ -2689,6 +3179,12 @@ func (o VolumeCapabilityArrayOutput) ToVolumeCapabilityArrayOutput() VolumeCapab
 
 func (o VolumeCapabilityArrayOutput) ToVolumeCapabilityArrayOutputWithContext(ctx context.Context) VolumeCapabilityArrayOutput {
 	return o
+}
+
+func (o VolumeCapabilityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VolumeCapability] {
+	return pulumix.Output[[]VolumeCapability]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeCapabilityArrayOutput) Index(i pulumi.IntInput) VolumeCapabilityOutput {
@@ -2734,6 +3230,12 @@ func (i VolumeMountOptionsArgs) ToVolumeMountOptionsOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeMountOptionsOutput)
 }
 
+func (i VolumeMountOptionsArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeMountOptions] {
+	return pulumix.Output[VolumeMountOptions]{
+		OutputState: i.ToVolumeMountOptionsOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i VolumeMountOptionsArgs) ToVolumeMountOptionsPtrOutput() VolumeMountOptionsPtrOutput {
 	return i.ToVolumeMountOptionsPtrOutputWithContext(context.Background())
 }
@@ -2775,6 +3277,12 @@ func (i *volumeMountOptionsPtrType) ToVolumeMountOptionsPtrOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeMountOptionsPtrOutput)
 }
 
+func (i *volumeMountOptionsPtrType) ToOutput(ctx context.Context) pulumix.Output[*VolumeMountOptions] {
+	return pulumix.Output[*VolumeMountOptions]{
+		OutputState: i.ToVolumeMountOptionsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeMountOptionsOutput struct{ *pulumi.OutputState }
 
 func (VolumeMountOptionsOutput) ElementType() reflect.Type {
@@ -2799,6 +3307,12 @@ func (o VolumeMountOptionsOutput) ToVolumeMountOptionsPtrOutputWithContext(ctx c
 	}).(VolumeMountOptionsPtrOutput)
 }
 
+func (o VolumeMountOptionsOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeMountOptions] {
+	return pulumix.Output[VolumeMountOptions]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `(string: <optional>)` - The file system type.
 func (o VolumeMountOptionsOutput) FsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VolumeMountOptions) *string { return v.FsType }).(pulumi.StringPtrOutput)
@@ -2821,6 +3335,12 @@ func (o VolumeMountOptionsPtrOutput) ToVolumeMountOptionsPtrOutput() VolumeMount
 
 func (o VolumeMountOptionsPtrOutput) ToVolumeMountOptionsPtrOutputWithContext(ctx context.Context) VolumeMountOptionsPtrOutput {
 	return o
+}
+
+func (o VolumeMountOptionsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VolumeMountOptions] {
+	return pulumix.Output[*VolumeMountOptions]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeMountOptionsPtrOutput) Elem() VolumeMountOptionsOutput {
@@ -2892,6 +3412,12 @@ func (i VolumeTopologyArgs) ToVolumeTopologyOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyOutput)
 }
 
+func (i VolumeTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeTopology] {
+	return pulumix.Output[VolumeTopology]{
+		OutputState: i.ToVolumeTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VolumeTopologyArrayInput is an input type that accepts VolumeTopologyArray and VolumeTopologyArrayOutput values.
 // You can construct a concrete instance of `VolumeTopologyArrayInput` via:
 //
@@ -2917,6 +3443,12 @@ func (i VolumeTopologyArray) ToVolumeTopologyArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyArrayOutput)
 }
 
+func (i VolumeTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]VolumeTopology] {
+	return pulumix.Output[[]VolumeTopology]{
+		OutputState: i.ToVolumeTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeTopologyOutput struct{ *pulumi.OutputState }
 
 func (VolumeTopologyOutput) ElementType() reflect.Type {
@@ -2929,6 +3461,12 @@ func (o VolumeTopologyOutput) ToVolumeTopologyOutput() VolumeTopologyOutput {
 
 func (o VolumeTopologyOutput) ToVolumeTopologyOutputWithContext(ctx context.Context) VolumeTopologyOutput {
 	return o
+}
+
+func (o VolumeTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeTopology] {
+	return pulumix.Output[VolumeTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(map[string]string)` - Define the attributes for the topology request.
@@ -2951,6 +3489,12 @@ func (o VolumeTopologyArrayOutput) ToVolumeTopologyArrayOutput() VolumeTopologyA
 
 func (o VolumeTopologyArrayOutput) ToVolumeTopologyArrayOutputWithContext(ctx context.Context) VolumeTopologyArrayOutput {
 	return o
+}
+
+func (o VolumeTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VolumeTopology] {
+	return pulumix.Output[[]VolumeTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeTopologyArrayOutput) Index(i pulumi.IntInput) VolumeTopologyOutput {
@@ -2990,6 +3534,12 @@ func (i VolumeTopologyRequestArgs) ToVolumeTopologyRequestOutput() VolumeTopolog
 
 func (i VolumeTopologyRequestArgs) ToVolumeTopologyRequestOutputWithContext(ctx context.Context) VolumeTopologyRequestOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestOutput)
+}
+
+func (i VolumeTopologyRequestArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequest] {
+	return pulumix.Output[VolumeTopologyRequest]{
+		OutputState: i.ToVolumeTopologyRequestOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i VolumeTopologyRequestArgs) ToVolumeTopologyRequestPtrOutput() VolumeTopologyRequestPtrOutput {
@@ -3033,6 +3583,12 @@ func (i *volumeTopologyRequestPtrType) ToVolumeTopologyRequestPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestPtrOutput)
 }
 
+func (i *volumeTopologyRequestPtrType) ToOutput(ctx context.Context) pulumix.Output[*VolumeTopologyRequest] {
+	return pulumix.Output[*VolumeTopologyRequest]{
+		OutputState: i.ToVolumeTopologyRequestPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeTopologyRequestOutput struct{ *pulumi.OutputState }
 
 func (VolumeTopologyRequestOutput) ElementType() reflect.Type {
@@ -3057,6 +3613,12 @@ func (o VolumeTopologyRequestOutput) ToVolumeTopologyRequestPtrOutputWithContext
 	}).(VolumeTopologyRequestPtrOutput)
 }
 
+func (o VolumeTopologyRequestOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequest] {
+	return pulumix.Output[VolumeTopologyRequest]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `(“Topology“: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
 func (o VolumeTopologyRequestOutput) Required() VolumeTopologyRequestRequiredPtrOutput {
 	return o.ApplyT(func(v VolumeTopologyRequest) *VolumeTopologyRequestRequired { return v.Required }).(VolumeTopologyRequestRequiredPtrOutput)
@@ -3074,6 +3636,12 @@ func (o VolumeTopologyRequestPtrOutput) ToVolumeTopologyRequestPtrOutput() Volum
 
 func (o VolumeTopologyRequestPtrOutput) ToVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestPtrOutput {
 	return o
+}
+
+func (o VolumeTopologyRequestPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VolumeTopologyRequest] {
+	return pulumix.Output[*VolumeTopologyRequest]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeTopologyRequestPtrOutput) Elem() VolumeTopologyRequestOutput {
@@ -3127,6 +3695,12 @@ func (i VolumeTopologyRequestRequiredArgs) ToVolumeTopologyRequestRequiredOutput
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredOutput)
 }
 
+func (i VolumeTopologyRequestRequiredArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequestRequired] {
+	return pulumix.Output[VolumeTopologyRequestRequired]{
+		OutputState: i.ToVolumeTopologyRequestRequiredOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i VolumeTopologyRequestRequiredArgs) ToVolumeTopologyRequestRequiredPtrOutput() VolumeTopologyRequestRequiredPtrOutput {
 	return i.ToVolumeTopologyRequestRequiredPtrOutputWithContext(context.Background())
 }
@@ -3168,6 +3742,12 @@ func (i *volumeTopologyRequestRequiredPtrType) ToVolumeTopologyRequestRequiredPt
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredPtrOutput)
 }
 
+func (i *volumeTopologyRequestRequiredPtrType) ToOutput(ctx context.Context) pulumix.Output[*VolumeTopologyRequestRequired] {
+	return pulumix.Output[*VolumeTopologyRequestRequired]{
+		OutputState: i.ToVolumeTopologyRequestRequiredPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeTopologyRequestRequiredOutput struct{ *pulumi.OutputState }
 
 func (VolumeTopologyRequestRequiredOutput) ElementType() reflect.Type {
@@ -3192,6 +3772,12 @@ func (o VolumeTopologyRequestRequiredOutput) ToVolumeTopologyRequestRequiredPtrO
 	}).(VolumeTopologyRequestRequiredPtrOutput)
 }
 
+func (o VolumeTopologyRequestRequiredOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequestRequired] {
+	return pulumix.Output[VolumeTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VolumeTopologyRequestRequiredOutput) Topologies() VolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v VolumeTopologyRequestRequired) []VolumeTopologyRequestRequiredTopology { return v.Topologies }).(VolumeTopologyRequestRequiredTopologyArrayOutput)
 }
@@ -3208,6 +3794,12 @@ func (o VolumeTopologyRequestRequiredPtrOutput) ToVolumeTopologyRequestRequiredP
 
 func (o VolumeTopologyRequestRequiredPtrOutput) ToVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredPtrOutput {
 	return o
+}
+
+func (o VolumeTopologyRequestRequiredPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VolumeTopologyRequestRequired] {
+	return pulumix.Output[*VolumeTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeTopologyRequestRequiredPtrOutput) Elem() VolumeTopologyRequestRequiredOutput {
@@ -3268,6 +3860,12 @@ func (i VolumeTopologyRequestRequiredTopologyArgs) ToVolumeTopologyRequestRequir
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredTopologyOutput)
 }
 
+func (i VolumeTopologyRequestRequiredTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[VolumeTopologyRequestRequiredTopology]{
+		OutputState: i.ToVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VolumeTopologyRequestRequiredTopologyArrayInput is an input type that accepts VolumeTopologyRequestRequiredTopologyArray and VolumeTopologyRequestRequiredTopologyArrayOutput values.
 // You can construct a concrete instance of `VolumeTopologyRequestRequiredTopologyArrayInput` via:
 //
@@ -3293,6 +3891,12 @@ func (i VolumeTopologyRequestRequiredTopologyArray) ToVolumeTopologyRequestRequi
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredTopologyArrayOutput)
 }
 
+func (i VolumeTopologyRequestRequiredTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]VolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]VolumeTopologyRequestRequiredTopology]{
+		OutputState: i.ToVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeTopologyRequestRequiredTopologyOutput struct{ *pulumi.OutputState }
 
 func (VolumeTopologyRequestRequiredTopologyOutput) ElementType() reflect.Type {
@@ -3305,6 +3909,12 @@ func (o VolumeTopologyRequestRequiredTopologyOutput) ToVolumeTopologyRequestRequ
 
 func (o VolumeTopologyRequestRequiredTopologyOutput) ToVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredTopologyOutput {
 	return o
+}
+
+func (o VolumeTopologyRequestRequiredTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[VolumeTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(map[string]string)` - Define the attributes for the topology request.
@@ -3327,6 +3937,12 @@ func (o VolumeTopologyRequestRequiredTopologyArrayOutput) ToVolumeTopologyReques
 
 func (o VolumeTopologyRequestRequiredTopologyArrayOutput) ToVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o
+}
+
+func (o VolumeTopologyRequestRequiredTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]VolumeTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi.IntInput) VolumeTopologyRequestRequiredTopologyOutput {
@@ -3372,6 +3988,12 @@ func (i GetAclPoliciesPolicyArgs) ToGetAclPoliciesPolicyOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclPoliciesPolicyOutput)
 }
 
+func (i GetAclPoliciesPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclPoliciesPolicy] {
+	return pulumix.Output[GetAclPoliciesPolicy]{
+		OutputState: i.ToGetAclPoliciesPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclPoliciesPolicyArrayInput is an input type that accepts GetAclPoliciesPolicyArray and GetAclPoliciesPolicyArrayOutput values.
 // You can construct a concrete instance of `GetAclPoliciesPolicyArrayInput` via:
 //
@@ -3397,6 +4019,12 @@ func (i GetAclPoliciesPolicyArray) ToGetAclPoliciesPolicyArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclPoliciesPolicyArrayOutput)
 }
 
+func (i GetAclPoliciesPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclPoliciesPolicy] {
+	return pulumix.Output[[]GetAclPoliciesPolicy]{
+		OutputState: i.ToGetAclPoliciesPolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclPoliciesPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetAclPoliciesPolicyOutput) ElementType() reflect.Type {
@@ -3409,6 +4037,12 @@ func (o GetAclPoliciesPolicyOutput) ToGetAclPoliciesPolicyOutput() GetAclPolicie
 
 func (o GetAclPoliciesPolicyOutput) ToGetAclPoliciesPolicyOutputWithContext(ctx context.Context) GetAclPoliciesPolicyOutput {
 	return o
+}
+
+func (o GetAclPoliciesPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclPoliciesPolicy] {
+	return pulumix.Output[GetAclPoliciesPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` - the description of the ACL Policy.
@@ -3433,6 +4067,12 @@ func (o GetAclPoliciesPolicyArrayOutput) ToGetAclPoliciesPolicyArrayOutput() Get
 
 func (o GetAclPoliciesPolicyArrayOutput) ToGetAclPoliciesPolicyArrayOutputWithContext(ctx context.Context) GetAclPoliciesPolicyArrayOutput {
 	return o
+}
+
+func (o GetAclPoliciesPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclPoliciesPolicy] {
+	return pulumix.Output[[]GetAclPoliciesPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetAclPoliciesPolicyOutput {
@@ -3474,6 +4114,12 @@ func (i GetAclRolePolicyArgs) ToGetAclRolePolicyOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolePolicyOutput)
 }
 
+func (i GetAclRolePolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclRolePolicy] {
+	return pulumix.Output[GetAclRolePolicy]{
+		OutputState: i.ToGetAclRolePolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclRolePolicyArrayInput is an input type that accepts GetAclRolePolicyArray and GetAclRolePolicyArrayOutput values.
 // You can construct a concrete instance of `GetAclRolePolicyArrayInput` via:
 //
@@ -3499,6 +4145,12 @@ func (i GetAclRolePolicyArray) ToGetAclRolePolicyArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolePolicyArrayOutput)
 }
 
+func (i GetAclRolePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolePolicy] {
+	return pulumix.Output[[]GetAclRolePolicy]{
+		OutputState: i.ToGetAclRolePolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclRolePolicyOutput struct{ *pulumi.OutputState }
 
 func (GetAclRolePolicyOutput) ElementType() reflect.Type {
@@ -3511,6 +4163,12 @@ func (o GetAclRolePolicyOutput) ToGetAclRolePolicyOutput() GetAclRolePolicyOutpu
 
 func (o GetAclRolePolicyOutput) ToGetAclRolePolicyOutputWithContext(ctx context.Context) GetAclRolePolicyOutput {
 	return o
+}
+
+func (o GetAclRolePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclRolePolicy] {
+	return pulumix.Output[GetAclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` - Unique name of the ACL role.
@@ -3530,6 +4188,12 @@ func (o GetAclRolePolicyArrayOutput) ToGetAclRolePolicyArrayOutput() GetAclRoleP
 
 func (o GetAclRolePolicyArrayOutput) ToGetAclRolePolicyArrayOutputWithContext(ctx context.Context) GetAclRolePolicyArrayOutput {
 	return o
+}
+
+func (o GetAclRolePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolePolicy] {
+	return pulumix.Output[[]GetAclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclRolePolicyArrayOutput) Index(i pulumi.IntInput) GetAclRolePolicyOutput {
@@ -3583,6 +4247,12 @@ func (i GetAclRolesAclRoleArgs) ToGetAclRolesAclRoleOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRoleOutput)
 }
 
+func (i GetAclRolesAclRoleArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclRolesAclRole] {
+	return pulumix.Output[GetAclRolesAclRole]{
+		OutputState: i.ToGetAclRolesAclRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclRolesAclRoleArrayInput is an input type that accepts GetAclRolesAclRoleArray and GetAclRolesAclRoleArrayOutput values.
 // You can construct a concrete instance of `GetAclRolesAclRoleArrayInput` via:
 //
@@ -3608,6 +4278,12 @@ func (i GetAclRolesAclRoleArray) ToGetAclRolesAclRoleArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRoleArrayOutput)
 }
 
+func (i GetAclRolesAclRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolesAclRole] {
+	return pulumix.Output[[]GetAclRolesAclRole]{
+		OutputState: i.ToGetAclRolesAclRoleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclRolesAclRoleOutput struct{ *pulumi.OutputState }
 
 func (GetAclRolesAclRoleOutput) ElementType() reflect.Type {
@@ -3620,6 +4296,12 @@ func (o GetAclRolesAclRoleOutput) ToGetAclRolesAclRoleOutput() GetAclRolesAclRol
 
 func (o GetAclRolesAclRoleOutput) ToGetAclRolesAclRoleOutputWithContext(ctx context.Context) GetAclRolesAclRoleOutput {
 	return o
+}
+
+func (o GetAclRolesAclRoleOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclRolesAclRole] {
+	return pulumix.Output[GetAclRolesAclRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` - The description of the ACL Role.
@@ -3654,6 +4336,12 @@ func (o GetAclRolesAclRoleArrayOutput) ToGetAclRolesAclRoleArrayOutput() GetAclR
 
 func (o GetAclRolesAclRoleArrayOutput) ToGetAclRolesAclRoleArrayOutputWithContext(ctx context.Context) GetAclRolesAclRoleArrayOutput {
 	return o
+}
+
+func (o GetAclRolesAclRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolesAclRole] {
+	return pulumix.Output[[]GetAclRolesAclRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclRolesAclRoleArrayOutput) Index(i pulumi.IntInput) GetAclRolesAclRoleOutput {
@@ -3695,6 +4383,12 @@ func (i GetAclRolesAclRolePolicyArgs) ToGetAclRolesAclRolePolicyOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRolePolicyOutput)
 }
 
+func (i GetAclRolesAclRolePolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclRolesAclRolePolicy] {
+	return pulumix.Output[GetAclRolesAclRolePolicy]{
+		OutputState: i.ToGetAclRolesAclRolePolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclRolesAclRolePolicyArrayInput is an input type that accepts GetAclRolesAclRolePolicyArray and GetAclRolesAclRolePolicyArrayOutput values.
 // You can construct a concrete instance of `GetAclRolesAclRolePolicyArrayInput` via:
 //
@@ -3720,6 +4414,12 @@ func (i GetAclRolesAclRolePolicyArray) ToGetAclRolesAclRolePolicyArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRolePolicyArrayOutput)
 }
 
+func (i GetAclRolesAclRolePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolesAclRolePolicy] {
+	return pulumix.Output[[]GetAclRolesAclRolePolicy]{
+		OutputState: i.ToGetAclRolesAclRolePolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclRolesAclRolePolicyOutput struct{ *pulumi.OutputState }
 
 func (GetAclRolesAclRolePolicyOutput) ElementType() reflect.Type {
@@ -3732,6 +4432,12 @@ func (o GetAclRolesAclRolePolicyOutput) ToGetAclRolesAclRolePolicyOutput() GetAc
 
 func (o GetAclRolesAclRolePolicyOutput) ToGetAclRolesAclRolePolicyOutputWithContext(ctx context.Context) GetAclRolesAclRolePolicyOutput {
 	return o
+}
+
+func (o GetAclRolesAclRolePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclRolesAclRolePolicy] {
+	return pulumix.Output[GetAclRolesAclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` - Unique name of the ACL role.
@@ -3751,6 +4457,12 @@ func (o GetAclRolesAclRolePolicyArrayOutput) ToGetAclRolesAclRolePolicyArrayOutp
 
 func (o GetAclRolesAclRolePolicyArrayOutput) ToGetAclRolesAclRolePolicyArrayOutputWithContext(ctx context.Context) GetAclRolesAclRolePolicyArrayOutput {
 	return o
+}
+
+func (o GetAclRolesAclRolePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolesAclRolePolicy] {
+	return pulumix.Output[[]GetAclRolesAclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclRolesAclRolePolicyArrayOutput) Index(i pulumi.IntInput) GetAclRolesAclRolePolicyOutput {
@@ -3794,6 +4506,12 @@ func (i GetAclTokenRoleArgs) ToGetAclTokenRoleOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokenRoleOutput)
 }
 
+func (i GetAclTokenRoleArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclTokenRole] {
+	return pulumix.Output[GetAclTokenRole]{
+		OutputState: i.ToGetAclTokenRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclTokenRoleArrayInput is an input type that accepts GetAclTokenRoleArray and GetAclTokenRoleArrayOutput values.
 // You can construct a concrete instance of `GetAclTokenRoleArrayInput` via:
 //
@@ -3819,6 +4537,12 @@ func (i GetAclTokenRoleArray) ToGetAclTokenRoleArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokenRoleArrayOutput)
 }
 
+func (i GetAclTokenRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokenRole] {
+	return pulumix.Output[[]GetAclTokenRole]{
+		OutputState: i.ToGetAclTokenRoleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclTokenRoleOutput struct{ *pulumi.OutputState }
 
 func (GetAclTokenRoleOutput) ElementType() reflect.Type {
@@ -3831,6 +4555,12 @@ func (o GetAclTokenRoleOutput) ToGetAclTokenRoleOutput() GetAclTokenRoleOutput {
 
 func (o GetAclTokenRoleOutput) ToGetAclTokenRoleOutputWithContext(ctx context.Context) GetAclTokenRoleOutput {
 	return o
+}
+
+func (o GetAclTokenRoleOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclTokenRole] {
+	return pulumix.Output[GetAclTokenRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclTokenRoleOutput) Id() pulumi.StringOutput {
@@ -3854,6 +4584,12 @@ func (o GetAclTokenRoleArrayOutput) ToGetAclTokenRoleArrayOutput() GetAclTokenRo
 
 func (o GetAclTokenRoleArrayOutput) ToGetAclTokenRoleArrayOutputWithContext(ctx context.Context) GetAclTokenRoleArrayOutput {
 	return o
+}
+
+func (o GetAclTokenRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokenRole] {
+	return pulumix.Output[[]GetAclTokenRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclTokenRoleArrayOutput) Index(i pulumi.IntInput) GetAclTokenRoleOutput {
@@ -3927,6 +4663,12 @@ func (i GetAclTokensAclTokenArgs) ToGetAclTokensAclTokenOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokensAclTokenOutput)
 }
 
+func (i GetAclTokensAclTokenArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclTokensAclToken] {
+	return pulumix.Output[GetAclTokensAclToken]{
+		OutputState: i.ToGetAclTokensAclTokenOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclTokensAclTokenArrayInput is an input type that accepts GetAclTokensAclTokenArray and GetAclTokensAclTokenArrayOutput values.
 // You can construct a concrete instance of `GetAclTokensAclTokenArrayInput` via:
 //
@@ -3952,6 +4694,12 @@ func (i GetAclTokensAclTokenArray) ToGetAclTokensAclTokenArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokensAclTokenArrayOutput)
 }
 
+func (i GetAclTokensAclTokenArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokensAclToken] {
+	return pulumix.Output[[]GetAclTokensAclToken]{
+		OutputState: i.ToGetAclTokensAclTokenArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclTokensAclTokenOutput struct{ *pulumi.OutputState }
 
 func (GetAclTokensAclTokenOutput) ElementType() reflect.Type {
@@ -3964,6 +4712,12 @@ func (o GetAclTokensAclTokenOutput) ToGetAclTokensAclTokenOutput() GetAclTokensA
 
 func (o GetAclTokensAclTokenOutput) ToGetAclTokensAclTokenOutputWithContext(ctx context.Context) GetAclTokensAclTokenOutput {
 	return o
+}
+
+func (o GetAclTokensAclTokenOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclTokensAclToken] {
+	return pulumix.Output[GetAclTokensAclToken]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(TypeString)` Non-sensitive identifier for the token.
@@ -4022,6 +4776,12 @@ func (o GetAclTokensAclTokenArrayOutput) ToGetAclTokensAclTokenArrayOutputWithCo
 	return o
 }
 
+func (o GetAclTokensAclTokenArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokensAclToken] {
+	return pulumix.Output[[]GetAclTokensAclToken]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetAclTokensAclTokenArrayOutput) Index(i pulumi.IntInput) GetAclTokensAclTokenOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAclTokensAclToken {
 		return vs[0].([]GetAclTokensAclToken)[vs[1].(int)]
@@ -4063,6 +4823,12 @@ func (i GetAclTokensAclTokenRoleArgs) ToGetAclTokensAclTokenRoleOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokensAclTokenRoleOutput)
 }
 
+func (i GetAclTokensAclTokenRoleArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclTokensAclTokenRole] {
+	return pulumix.Output[GetAclTokensAclTokenRole]{
+		OutputState: i.ToGetAclTokensAclTokenRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclTokensAclTokenRoleArrayInput is an input type that accepts GetAclTokensAclTokenRoleArray and GetAclTokensAclTokenRoleArrayOutput values.
 // You can construct a concrete instance of `GetAclTokensAclTokenRoleArrayInput` via:
 //
@@ -4088,6 +4854,12 @@ func (i GetAclTokensAclTokenRoleArray) ToGetAclTokensAclTokenRoleArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokensAclTokenRoleArrayOutput)
 }
 
+func (i GetAclTokensAclTokenRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokensAclTokenRole] {
+	return pulumix.Output[[]GetAclTokensAclTokenRole]{
+		OutputState: i.ToGetAclTokensAclTokenRoleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclTokensAclTokenRoleOutput struct{ *pulumi.OutputState }
 
 func (GetAclTokensAclTokenRoleOutput) ElementType() reflect.Type {
@@ -4100,6 +4872,12 @@ func (o GetAclTokensAclTokenRoleOutput) ToGetAclTokensAclTokenRoleOutput() GetAc
 
 func (o GetAclTokensAclTokenRoleOutput) ToGetAclTokensAclTokenRoleOutputWithContext(ctx context.Context) GetAclTokensAclTokenRoleOutput {
 	return o
+}
+
+func (o GetAclTokensAclTokenRoleOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclTokensAclTokenRole] {
+	return pulumix.Output[GetAclTokensAclTokenRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclTokensAclTokenRoleOutput) Id() pulumi.StringOutput {
@@ -4123,6 +4901,12 @@ func (o GetAclTokensAclTokenRoleArrayOutput) ToGetAclTokensAclTokenRoleArrayOutp
 
 func (o GetAclTokensAclTokenRoleArrayOutput) ToGetAclTokensAclTokenRoleArrayOutputWithContext(ctx context.Context) GetAclTokensAclTokenRoleArrayOutput {
 	return o
+}
+
+func (o GetAclTokensAclTokenRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokensAclTokenRole] {
+	return pulumix.Output[[]GetAclTokensAclTokenRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclTokensAclTokenRoleArrayOutput) Index(i pulumi.IntInput) GetAclTokensAclTokenRoleOutput {
@@ -4172,6 +4956,12 @@ func (i GetJobConstraintArgs) ToGetJobConstraintOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobConstraintOutput)
 }
 
+func (i GetJobConstraintArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobConstraint] {
+	return pulumix.Output[GetJobConstraint]{
+		OutputState: i.ToGetJobConstraintOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobConstraintArrayInput is an input type that accepts GetJobConstraintArray and GetJobConstraintArrayOutput values.
 // You can construct a concrete instance of `GetJobConstraintArrayInput` via:
 //
@@ -4197,6 +4987,12 @@ func (i GetJobConstraintArray) ToGetJobConstraintArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobConstraintArrayOutput)
 }
 
+func (i GetJobConstraintArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobConstraint] {
+	return pulumix.Output[[]GetJobConstraint]{
+		OutputState: i.ToGetJobConstraintArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobConstraintOutput struct{ *pulumi.OutputState }
 
 func (GetJobConstraintOutput) ElementType() reflect.Type {
@@ -4209,6 +5005,12 @@ func (o GetJobConstraintOutput) ToGetJobConstraintOutput() GetJobConstraintOutpu
 
 func (o GetJobConstraintOutput) ToGetJobConstraintOutputWithContext(ctx context.Context) GetJobConstraintOutput {
 	return o
+}
+
+func (o GetJobConstraintOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobConstraint] {
+	return pulumix.Output[GetJobConstraint]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` Attribute being constrained.
@@ -4238,6 +5040,12 @@ func (o GetJobConstraintArrayOutput) ToGetJobConstraintArrayOutput() GetJobConst
 
 func (o GetJobConstraintArrayOutput) ToGetJobConstraintArrayOutputWithContext(ctx context.Context) GetJobConstraintArrayOutput {
 	return o
+}
+
+func (o GetJobConstraintArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobConstraint] {
+	return pulumix.Output[[]GetJobConstraint]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobConstraintArrayOutput) Index(i pulumi.IntInput) GetJobConstraintOutput {
@@ -4295,6 +5103,12 @@ func (i GetJobPeriodicConfigArgs) ToGetJobPeriodicConfigOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobPeriodicConfigOutput)
 }
 
+func (i GetJobPeriodicConfigArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobPeriodicConfig] {
+	return pulumix.Output[GetJobPeriodicConfig]{
+		OutputState: i.ToGetJobPeriodicConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobPeriodicConfigArrayInput is an input type that accepts GetJobPeriodicConfigArray and GetJobPeriodicConfigArrayOutput values.
 // You can construct a concrete instance of `GetJobPeriodicConfigArrayInput` via:
 //
@@ -4320,6 +5134,12 @@ func (i GetJobPeriodicConfigArray) ToGetJobPeriodicConfigArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobPeriodicConfigArrayOutput)
 }
 
+func (i GetJobPeriodicConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobPeriodicConfig] {
+	return pulumix.Output[[]GetJobPeriodicConfig]{
+		OutputState: i.ToGetJobPeriodicConfigArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobPeriodicConfigOutput struct{ *pulumi.OutputState }
 
 func (GetJobPeriodicConfigOutput) ElementType() reflect.Type {
@@ -4332,6 +5152,12 @@ func (o GetJobPeriodicConfigOutput) ToGetJobPeriodicConfigOutput() GetJobPeriodi
 
 func (o GetJobPeriodicConfigOutput) ToGetJobPeriodicConfigOutputWithContext(ctx context.Context) GetJobPeriodicConfigOutput {
 	return o
+}
+
+func (o GetJobPeriodicConfigOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobPeriodicConfig] {
+	return pulumix.Output[GetJobPeriodicConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(boolean)` If periodic scheduling is enabled for the specified job.
@@ -4371,6 +5197,12 @@ func (o GetJobPeriodicConfigArrayOutput) ToGetJobPeriodicConfigArrayOutput() Get
 
 func (o GetJobPeriodicConfigArrayOutput) ToGetJobPeriodicConfigArrayOutputWithContext(ctx context.Context) GetJobPeriodicConfigArrayOutput {
 	return o
+}
+
+func (o GetJobPeriodicConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobPeriodicConfig] {
+	return pulumix.Output[[]GetJobPeriodicConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobPeriodicConfigArrayOutput) Index(i pulumi.IntInput) GetJobPeriodicConfigOutput {
@@ -4420,6 +5252,12 @@ func (i GetJobTaskGroupArgs) ToGetJobTaskGroupOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupOutput)
 }
 
+func (i GetJobTaskGroupArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroup] {
+	return pulumix.Output[GetJobTaskGroup]{
+		OutputState: i.ToGetJobTaskGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobTaskGroupArrayInput is an input type that accepts GetJobTaskGroupArray and GetJobTaskGroupArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupArrayInput` via:
 //
@@ -4445,6 +5283,12 @@ func (i GetJobTaskGroupArray) ToGetJobTaskGroupArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupArrayOutput)
 }
 
+func (i GetJobTaskGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroup] {
+	return pulumix.Output[[]GetJobTaskGroup]{
+		OutputState: i.ToGetJobTaskGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobTaskGroupOutput struct{ *pulumi.OutputState }
 
 func (GetJobTaskGroupOutput) ElementType() reflect.Type {
@@ -4457,6 +5301,12 @@ func (o GetJobTaskGroupOutput) ToGetJobTaskGroupOutput() GetJobTaskGroupOutput {
 
 func (o GetJobTaskGroupOutput) ToGetJobTaskGroupOutputWithContext(ctx context.Context) GetJobTaskGroupOutput {
 	return o
+}
+
+func (o GetJobTaskGroupOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroup] {
+	return pulumix.Output[GetJobTaskGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupOutput) Count() pulumi.IntOutput {
@@ -4492,6 +5342,12 @@ func (o GetJobTaskGroupArrayOutput) ToGetJobTaskGroupArrayOutput() GetJobTaskGro
 
 func (o GetJobTaskGroupArrayOutput) ToGetJobTaskGroupArrayOutputWithContext(ctx context.Context) GetJobTaskGroupArrayOutput {
 	return o
+}
+
+func (o GetJobTaskGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroup] {
+	return pulumix.Output[[]GetJobTaskGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupOutput {
@@ -4539,6 +5395,12 @@ func (i GetJobTaskGroupTaskArgs) ToGetJobTaskGroupTaskOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupTaskOutput)
 }
 
+func (i GetJobTaskGroupTaskArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupTask] {
+	return pulumix.Output[GetJobTaskGroupTask]{
+		OutputState: i.ToGetJobTaskGroupTaskOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobTaskGroupTaskArrayInput is an input type that accepts GetJobTaskGroupTaskArray and GetJobTaskGroupTaskArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupTaskArrayInput` via:
 //
@@ -4564,6 +5426,12 @@ func (i GetJobTaskGroupTaskArray) ToGetJobTaskGroupTaskArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupTaskArrayOutput)
 }
 
+func (i GetJobTaskGroupTaskArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupTask] {
+	return pulumix.Output[[]GetJobTaskGroupTask]{
+		OutputState: i.ToGetJobTaskGroupTaskArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobTaskGroupTaskOutput struct{ *pulumi.OutputState }
 
 func (GetJobTaskGroupTaskOutput) ElementType() reflect.Type {
@@ -4576,6 +5444,12 @@ func (o GetJobTaskGroupTaskOutput) ToGetJobTaskGroupTaskOutput() GetJobTaskGroup
 
 func (o GetJobTaskGroupTaskOutput) ToGetJobTaskGroupTaskOutputWithContext(ctx context.Context) GetJobTaskGroupTaskOutput {
 	return o
+}
+
+func (o GetJobTaskGroupTaskOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupTask] {
+	return pulumix.Output[GetJobTaskGroupTask]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupTaskOutput) Driver() pulumi.StringOutput {
@@ -4607,6 +5481,12 @@ func (o GetJobTaskGroupTaskArrayOutput) ToGetJobTaskGroupTaskArrayOutput() GetJo
 
 func (o GetJobTaskGroupTaskArrayOutput) ToGetJobTaskGroupTaskArrayOutputWithContext(ctx context.Context) GetJobTaskGroupTaskArrayOutput {
 	return o
+}
+
+func (o GetJobTaskGroupTaskArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupTask] {
+	return pulumix.Output[[]GetJobTaskGroupTask]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupTaskArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupTaskOutput {
@@ -4650,6 +5530,12 @@ func (i GetJobTaskGroupTaskVolumeMountArgs) ToGetJobTaskGroupTaskVolumeMountOutp
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupTaskVolumeMountOutput)
 }
 
+func (i GetJobTaskGroupTaskVolumeMountArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[GetJobTaskGroupTaskVolumeMount]{
+		OutputState: i.ToGetJobTaskGroupTaskVolumeMountOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobTaskGroupTaskVolumeMountArrayInput is an input type that accepts GetJobTaskGroupTaskVolumeMountArray and GetJobTaskGroupTaskVolumeMountArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupTaskVolumeMountArrayInput` via:
 //
@@ -4675,6 +5561,12 @@ func (i GetJobTaskGroupTaskVolumeMountArray) ToGetJobTaskGroupTaskVolumeMountArr
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupTaskVolumeMountArrayOutput)
 }
 
+func (i GetJobTaskGroupTaskVolumeMountArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[[]GetJobTaskGroupTaskVolumeMount]{
+		OutputState: i.ToGetJobTaskGroupTaskVolumeMountArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobTaskGroupTaskVolumeMountOutput struct{ *pulumi.OutputState }
 
 func (GetJobTaskGroupTaskVolumeMountOutput) ElementType() reflect.Type {
@@ -4687,6 +5579,12 @@ func (o GetJobTaskGroupTaskVolumeMountOutput) ToGetJobTaskGroupTaskVolumeMountOu
 
 func (o GetJobTaskGroupTaskVolumeMountOutput) ToGetJobTaskGroupTaskVolumeMountOutputWithContext(ctx context.Context) GetJobTaskGroupTaskVolumeMountOutput {
 	return o
+}
+
+func (o GetJobTaskGroupTaskVolumeMountOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[GetJobTaskGroupTaskVolumeMount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupTaskVolumeMountOutput) Destination() pulumi.StringOutput {
@@ -4713,6 +5611,12 @@ func (o GetJobTaskGroupTaskVolumeMountArrayOutput) ToGetJobTaskGroupTaskVolumeMo
 
 func (o GetJobTaskGroupTaskVolumeMountArrayOutput) ToGetJobTaskGroupTaskVolumeMountArrayOutputWithContext(ctx context.Context) GetJobTaskGroupTaskVolumeMountArrayOutput {
 	return o
+}
+
+func (o GetJobTaskGroupTaskVolumeMountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[[]GetJobTaskGroupTaskVolumeMount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupTaskVolumeMountArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupTaskVolumeMountOutput {
@@ -4762,6 +5666,12 @@ func (i GetJobTaskGroupVolumeArgs) ToGetJobTaskGroupVolumeOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupVolumeOutput)
 }
 
+func (i GetJobTaskGroupVolumeArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupVolume] {
+	return pulumix.Output[GetJobTaskGroupVolume]{
+		OutputState: i.ToGetJobTaskGroupVolumeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobTaskGroupVolumeArrayInput is an input type that accepts GetJobTaskGroupVolumeArray and GetJobTaskGroupVolumeArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupVolumeArrayInput` via:
 //
@@ -4787,6 +5697,12 @@ func (i GetJobTaskGroupVolumeArray) ToGetJobTaskGroupVolumeArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupVolumeArrayOutput)
 }
 
+func (i GetJobTaskGroupVolumeArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupVolume] {
+	return pulumix.Output[[]GetJobTaskGroupVolume]{
+		OutputState: i.ToGetJobTaskGroupVolumeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobTaskGroupVolumeOutput struct{ *pulumi.OutputState }
 
 func (GetJobTaskGroupVolumeOutput) ElementType() reflect.Type {
@@ -4799,6 +5715,12 @@ func (o GetJobTaskGroupVolumeOutput) ToGetJobTaskGroupVolumeOutput() GetJobTaskG
 
 func (o GetJobTaskGroupVolumeOutput) ToGetJobTaskGroupVolumeOutputWithContext(ctx context.Context) GetJobTaskGroupVolumeOutput {
 	return o
+}
+
+func (o GetJobTaskGroupVolumeOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupVolume] {
+	return pulumix.Output[GetJobTaskGroupVolume]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` Name of the job.
@@ -4831,6 +5753,12 @@ func (o GetJobTaskGroupVolumeArrayOutput) ToGetJobTaskGroupVolumeArrayOutput() G
 
 func (o GetJobTaskGroupVolumeArrayOutput) ToGetJobTaskGroupVolumeArrayOutputWithContext(ctx context.Context) GetJobTaskGroupVolumeArrayOutput {
 	return o
+}
+
+func (o GetJobTaskGroupVolumeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupVolume] {
+	return pulumix.Output[[]GetJobTaskGroupVolume]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupVolumeArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupVolumeOutput {
@@ -4876,6 +5804,12 @@ func (i GetNamespaceCapabilityArgs) ToGetNamespaceCapabilityOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceCapabilityOutput)
 }
 
+func (i GetNamespaceCapabilityArgs) ToOutput(ctx context.Context) pulumix.Output[GetNamespaceCapability] {
+	return pulumix.Output[GetNamespaceCapability]{
+		OutputState: i.ToGetNamespaceCapabilityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetNamespaceCapabilityArrayInput is an input type that accepts GetNamespaceCapabilityArray and GetNamespaceCapabilityArrayOutput values.
 // You can construct a concrete instance of `GetNamespaceCapabilityArrayInput` via:
 //
@@ -4901,6 +5835,12 @@ func (i GetNamespaceCapabilityArray) ToGetNamespaceCapabilityArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceCapabilityArrayOutput)
 }
 
+func (i GetNamespaceCapabilityArray) ToOutput(ctx context.Context) pulumix.Output[[]GetNamespaceCapability] {
+	return pulumix.Output[[]GetNamespaceCapability]{
+		OutputState: i.ToGetNamespaceCapabilityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetNamespaceCapabilityOutput struct{ *pulumi.OutputState }
 
 func (GetNamespaceCapabilityOutput) ElementType() reflect.Type {
@@ -4913,6 +5853,12 @@ func (o GetNamespaceCapabilityOutput) ToGetNamespaceCapabilityOutput() GetNamesp
 
 func (o GetNamespaceCapabilityOutput) ToGetNamespaceCapabilityOutputWithContext(ctx context.Context) GetNamespaceCapabilityOutput {
 	return o
+}
+
+func (o GetNamespaceCapabilityOutput) ToOutput(ctx context.Context) pulumix.Output[GetNamespaceCapability] {
+	return pulumix.Output[GetNamespaceCapability]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `([]string)` - Task drivers disabled for the namespace.
@@ -4937,6 +5883,12 @@ func (o GetNamespaceCapabilityArrayOutput) ToGetNamespaceCapabilityArrayOutput()
 
 func (o GetNamespaceCapabilityArrayOutput) ToGetNamespaceCapabilityArrayOutputWithContext(ctx context.Context) GetNamespaceCapabilityArrayOutput {
 	return o
+}
+
+func (o GetNamespaceCapabilityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetNamespaceCapability] {
+	return pulumix.Output[[]GetNamespaceCapability]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetNamespaceCapabilityArrayOutput) Index(i pulumi.IntInput) GetNamespaceCapabilityOutput {
@@ -4980,6 +5932,12 @@ func (i GetPluginNodeArgs) ToGetPluginNodeOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(GetPluginNodeOutput)
 }
 
+func (i GetPluginNodeArgs) ToOutput(ctx context.Context) pulumix.Output[GetPluginNode] {
+	return pulumix.Output[GetPluginNode]{
+		OutputState: i.ToGetPluginNodeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetPluginNodeArrayInput is an input type that accepts GetPluginNodeArray and GetPluginNodeArrayOutput values.
 // You can construct a concrete instance of `GetPluginNodeArrayInput` via:
 //
@@ -5005,6 +5963,12 @@ func (i GetPluginNodeArray) ToGetPluginNodeArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetPluginNodeArrayOutput)
 }
 
+func (i GetPluginNodeArray) ToOutput(ctx context.Context) pulumix.Output[[]GetPluginNode] {
+	return pulumix.Output[[]GetPluginNode]{
+		OutputState: i.ToGetPluginNodeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetPluginNodeOutput struct{ *pulumi.OutputState }
 
 func (GetPluginNodeOutput) ElementType() reflect.Type {
@@ -5017,6 +5981,12 @@ func (o GetPluginNodeOutput) ToGetPluginNodeOutput() GetPluginNodeOutput {
 
 func (o GetPluginNodeOutput) ToGetPluginNodeOutputWithContext(ctx context.Context) GetPluginNodeOutput {
 	return o
+}
+
+func (o GetPluginNodeOutput) ToOutput(ctx context.Context) pulumix.Output[GetPluginNode] {
+	return pulumix.Output[GetPluginNode]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetPluginNodeOutput) Healthy() pulumi.BoolOutput {
@@ -5043,6 +6013,12 @@ func (o GetPluginNodeArrayOutput) ToGetPluginNodeArrayOutput() GetPluginNodeArra
 
 func (o GetPluginNodeArrayOutput) ToGetPluginNodeArrayOutputWithContext(ctx context.Context) GetPluginNodeArrayOutput {
 	return o
+}
+
+func (o GetPluginNodeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetPluginNode] {
+	return pulumix.Output[[]GetPluginNode]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetPluginNodeArrayOutput) Index(i pulumi.IntInput) GetPluginNodeOutput {
@@ -5096,6 +6072,12 @@ func (i GetScalingPoliciesPolicyArgs) ToGetScalingPoliciesPolicyOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetScalingPoliciesPolicyOutput)
 }
 
+func (i GetScalingPoliciesPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetScalingPoliciesPolicy] {
+	return pulumix.Output[GetScalingPoliciesPolicy]{
+		OutputState: i.ToGetScalingPoliciesPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetScalingPoliciesPolicyArrayInput is an input type that accepts GetScalingPoliciesPolicyArray and GetScalingPoliciesPolicyArrayOutput values.
 // You can construct a concrete instance of `GetScalingPoliciesPolicyArrayInput` via:
 //
@@ -5121,6 +6103,12 @@ func (i GetScalingPoliciesPolicyArray) ToGetScalingPoliciesPolicyArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetScalingPoliciesPolicyArrayOutput)
 }
 
+func (i GetScalingPoliciesPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetScalingPoliciesPolicy] {
+	return pulumix.Output[[]GetScalingPoliciesPolicy]{
+		OutputState: i.ToGetScalingPoliciesPolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetScalingPoliciesPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetScalingPoliciesPolicyOutput) ElementType() reflect.Type {
@@ -5133,6 +6121,12 @@ func (o GetScalingPoliciesPolicyOutput) ToGetScalingPoliciesPolicyOutput() GetSc
 
 func (o GetScalingPoliciesPolicyOutput) ToGetScalingPoliciesPolicyOutputWithContext(ctx context.Context) GetScalingPoliciesPolicyOutput {
 	return o
+}
+
+func (o GetScalingPoliciesPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetScalingPoliciesPolicy] {
+	return pulumix.Output[GetScalingPoliciesPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(boolean)` - Whether or not the scaling policy is enabled.
@@ -5167,6 +6161,12 @@ func (o GetScalingPoliciesPolicyArrayOutput) ToGetScalingPoliciesPolicyArrayOutp
 
 func (o GetScalingPoliciesPolicyArrayOutput) ToGetScalingPoliciesPolicyArrayOutputWithContext(ctx context.Context) GetScalingPoliciesPolicyArrayOutput {
 	return o
+}
+
+func (o GetScalingPoliciesPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetScalingPoliciesPolicy] {
+	return pulumix.Output[[]GetScalingPoliciesPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetScalingPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetScalingPoliciesPolicyOutput {

@@ -27,3 +27,9 @@ export interface GetRegionsResult {
      */
     readonly regions: string[];
 }
+/**
+ * Retrieve a list of regions available in Nomad.
+ */
+export function getRegionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetRegionsResult> {
+    return pulumi.output(getRegions(opts))
+}

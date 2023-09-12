@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve information on an ACL Policy.
@@ -38,6 +40,7 @@ import (
 //
 // ```
 func LookupAclPolicy(ctx *pulumi.Context, args *LookupAclPolicyArgs, opts ...pulumi.InvokeOption) (*LookupAclPolicyResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAclPolicyResult
 	err := ctx.Invoke("nomad:index/getAclPolicy:getAclPolicy", args, &rv, opts...)
 	if err != nil {
@@ -100,6 +103,12 @@ func (o LookupAclPolicyResultOutput) ToLookupAclPolicyResultOutput() LookupAclPo
 
 func (o LookupAclPolicyResultOutput) ToLookupAclPolicyResultOutputWithContext(ctx context.Context) LookupAclPolicyResultOutput {
 	return o
+}
+
+func (o LookupAclPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAclPolicyResult] {
+	return pulumix.Output[LookupAclPolicyResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` - the description of the ACL Policy.
