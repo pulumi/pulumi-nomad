@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of dynamic plugins in Nomad.
@@ -19,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -36,6 +38,7 @@ import (
 //
 // ```
 func GetPlugins(ctx *pulumi.Context, args *GetPluginsArgs, opts ...pulumi.InvokeOption) (*GetPluginsResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPluginsResult
 	err := ctx.Invoke("nomad:index/getPlugins:getPlugins", args, &rv, opts...)
 	if err != nil {
@@ -93,6 +96,12 @@ func (o GetPluginsResultOutput) ToGetPluginsResultOutput() GetPluginsResultOutpu
 
 func (o GetPluginsResultOutput) ToGetPluginsResultOutputWithContext(ctx context.Context) GetPluginsResultOutput {
 	return o
+}
+
+func (o GetPluginsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetPluginsResult] {
+	return pulumix.Output[GetPluginsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

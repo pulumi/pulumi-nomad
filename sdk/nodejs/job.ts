@@ -36,6 +36,8 @@ export class Job extends pulumi.CustomResource {
 
     /**
      * The IDs for allocations associated with this job.
+     *
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
      */
     public /*out*/ readonly allocationIds!: pulumi.Output<string[]>;
     /**
@@ -69,6 +71,12 @@ export class Job extends pulumi.CustomResource {
      * after creating or updating, instead of monitoring.
      */
     public readonly detach!: pulumi.Output<boolean | undefined>;
+    /**
+     * `(boolean: false)` - Set this to `true` to use the previous HCL1
+     * parser. This option is provided for backwards compatibility only and should
+     * not be used unless absolutely necessary.
+     */
+    public readonly hcl1!: pulumi.Output<boolean | undefined>;
     /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      */
@@ -105,6 +113,10 @@ export class Job extends pulumi.CustomResource {
      */
     public readonly purgeOnDestroy!: pulumi.Output<boolean | undefined>;
     /**
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     */
+    public readonly readAllocationIds!: pulumi.Output<boolean | undefined>;
+    /**
      * The target region for the job, as derived from the jobspec.
      */
     public /*out*/ readonly region!: pulumi.Output<string>;
@@ -140,6 +152,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["deregisterOnDestroy"] = state ? state.deregisterOnDestroy : undefined;
             resourceInputs["deregisterOnIdChange"] = state ? state.deregisterOnIdChange : undefined;
             resourceInputs["detach"] = state ? state.detach : undefined;
+            resourceInputs["hcl1"] = state ? state.hcl1 : undefined;
             resourceInputs["hcl2"] = state ? state.hcl2 : undefined;
             resourceInputs["jobspec"] = state ? state.jobspec : undefined;
             resourceInputs["json"] = state ? state.json : undefined;
@@ -148,6 +161,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["namespace"] = state ? state.namespace : undefined;
             resourceInputs["policyOverride"] = state ? state.policyOverride : undefined;
             resourceInputs["purgeOnDestroy"] = state ? state.purgeOnDestroy : undefined;
+            resourceInputs["readAllocationIds"] = state ? state.readAllocationIds : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["taskGroups"] = state ? state.taskGroups : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -161,11 +175,13 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["deregisterOnDestroy"] = args ? args.deregisterOnDestroy : undefined;
             resourceInputs["deregisterOnIdChange"] = args ? args.deregisterOnIdChange : undefined;
             resourceInputs["detach"] = args ? args.detach : undefined;
+            resourceInputs["hcl1"] = args ? args.hcl1 : undefined;
             resourceInputs["hcl2"] = args ? args.hcl2 : undefined;
             resourceInputs["jobspec"] = args ? args.jobspec : undefined;
             resourceInputs["json"] = args ? args.json : undefined;
             resourceInputs["policyOverride"] = args ? args.policyOverride : undefined;
             resourceInputs["purgeOnDestroy"] = args ? args.purgeOnDestroy : undefined;
+            resourceInputs["readAllocationIds"] = args ? args.readAllocationIds : undefined;
             resourceInputs["vaultToken"] = args?.vaultToken ? pulumi.secret(args.vaultToken) : undefined;
             resourceInputs["allocationIds"] = undefined /*out*/;
             resourceInputs["datacenters"] = undefined /*out*/;
@@ -191,6 +207,8 @@ export class Job extends pulumi.CustomResource {
 export interface JobState {
     /**
      * The IDs for allocations associated with this job.
+     *
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
      */
     allocationIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -224,6 +242,12 @@ export interface JobState {
      * after creating or updating, instead of monitoring.
      */
     detach?: pulumi.Input<boolean>;
+    /**
+     * `(boolean: false)` - Set this to `true` to use the previous HCL1
+     * parser. This option is provided for backwards compatibility only and should
+     * not be used unless absolutely necessary.
+     */
+    hcl1?: pulumi.Input<boolean>;
     /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      */
@@ -259,6 +283,10 @@ export interface JobState {
      * be purged when the resource is destroyed.
      */
     purgeOnDestroy?: pulumi.Input<boolean>;
+    /**
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     */
+    readAllocationIds?: pulumi.Input<boolean>;
     /**
      * The target region for the job, as derived from the jobspec.
      */
@@ -299,6 +327,12 @@ export interface JobArgs {
      */
     detach?: pulumi.Input<boolean>;
     /**
+     * `(boolean: false)` - Set this to `true` to use the previous HCL1
+     * parser. This option is provided for backwards compatibility only and should
+     * not be used unless absolutely necessary.
+     */
+    hcl1?: pulumi.Input<boolean>;
+    /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      */
     hcl2?: pulumi.Input<inputs.JobHcl2>;
@@ -321,6 +355,10 @@ export interface JobArgs {
      * be purged when the resource is destroyed.
      */
     purgeOnDestroy?: pulumi.Input<boolean>;
+    /**
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     */
+    readAllocationIds?: pulumi.Input<boolean>;
     /**
      * `(string: <optional>)` - Vault token used when registering this job.
      * Will fallback to the value declared in Nomad provider configuration, if any.

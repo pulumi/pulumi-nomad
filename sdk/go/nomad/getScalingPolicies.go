@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of Scaling Policies.
@@ -19,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -39,6 +41,7 @@ import (
 //
 // ```
 func GetScalingPolicies(ctx *pulumi.Context, args *GetScalingPoliciesArgs, opts ...pulumi.InvokeOption) (*GetScalingPoliciesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetScalingPoliciesResult
 	err := ctx.Invoke("nomad:index/getScalingPolicies:getScalingPolicies", args, &rv, opts...)
 	if err != nil {
@@ -104,6 +107,12 @@ func (o GetScalingPoliciesResultOutput) ToGetScalingPoliciesResultOutput() GetSc
 
 func (o GetScalingPoliciesResultOutput) ToGetScalingPoliciesResultOutputWithContext(ctx context.Context) GetScalingPoliciesResultOutput {
 	return o
+}
+
+func (o GetScalingPoliciesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetScalingPoliciesResult] {
+	return pulumix.Output[GetScalingPoliciesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -12,8 +12,23 @@ from . import outputs
 
 __all__ = [
     'AclAuthMethodConfig',
+    'AclPolicyJobAcl',
     'AclRolePolicy',
     'AclTokenRole',
+    'CsiVolumeCapability',
+    'CsiVolumeMountOptions',
+    'CsiVolumeRegistrationCapability',
+    'CsiVolumeRegistrationMountOptions',
+    'CsiVolumeRegistrationTopology',
+    'CsiVolumeRegistrationTopologyRequest',
+    'CsiVolumeRegistrationTopologyRequestRequired',
+    'CsiVolumeRegistrationTopologyRequestRequiredTopology',
+    'CsiVolumeTopology',
+    'CsiVolumeTopologyRequest',
+    'CsiVolumeTopologyRequestPreferred',
+    'CsiVolumeTopologyRequestPreferredTopology',
+    'CsiVolumeTopologyRequestRequired',
+    'CsiVolumeTopologyRequestRequiredTopology',
     'ExternalVolumeCapability',
     'ExternalVolumeMountOptions',
     'ExternalVolumeTopology',
@@ -28,6 +43,8 @@ __all__ = [
     'JobTaskGroupTaskVolumeMount',
     'JobTaskGroupVolume',
     'NamespaceCapabilities',
+    'NamespaceNodePoolConfig',
+    'NodePoolSchedulerConfig',
     'QuoteSpecificationLimit',
     'QuoteSpecificationLimitRegionLimit',
     'VolumeCapability',
@@ -43,6 +60,7 @@ __all__ = [
     'GetAclTokenRoleResult',
     'GetAclTokensAclTokenResult',
     'GetAclTokensAclTokenRoleResult',
+    'GetAllocationsAllocationResult',
     'GetJobConstraintResult',
     'GetJobPeriodicConfigResult',
     'GetJobTaskGroupResult',
@@ -50,6 +68,10 @@ __all__ = [
     'GetJobTaskGroupTaskVolumeMountResult',
     'GetJobTaskGroupVolumeResult',
     'GetNamespaceCapabilityResult',
+    'GetNamespaceNodePoolConfigResult',
+    'GetNodePoolSchedulerConfigResult',
+    'GetNodePoolsNodePoolResult',
+    'GetNodePoolsNodePoolSchedulerConfigResult',
     'GetPluginNodeResult',
     'GetScalingPoliciesPolicyResult',
 ]
@@ -171,6 +193,87 @@ class AclAuthMethodConfig(dict):
 
 
 @pulumi.output_type
+class AclPolicyJobAcl(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "jobId":
+            suggest = "job_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AclPolicyJobAcl. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AclPolicyJobAcl.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AclPolicyJobAcl.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 job_id: str,
+                 group: Optional[str] = None,
+                 namespace: Optional[str] = None,
+                 task: Optional[str] = None):
+        """
+        :param str job_id: `(string: <optional>` - The job to attach the policy. Required if
+               `group` is set.
+        :param str group: `(string: <optional>` - The group to attach the policy. Required if
+               `task` is set.
+        :param str namespace: `(string: "default")` - The namespace to attach the policy.
+               Required if `job_id` is set.
+        :param str task: `(string: <optional>` - The task to attach the policy.
+               
+               [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+        """
+        pulumi.set(__self__, "job_id", job_id)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if task is not None:
+            pulumi.set(__self__, "task", task)
+
+    @property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> str:
+        """
+        `(string: <optional>` - The job to attach the policy. Required if
+        `group` is set.
+        """
+        return pulumi.get(self, "job_id")
+
+    @property
+    @pulumi.getter
+    def group(self) -> Optional[str]:
+        """
+        `(string: <optional>` - The group to attach the policy. Required if
+        `task` is set.
+        """
+        return pulumi.get(self, "group")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        """
+        `(string: "default")` - The namespace to attach the policy.
+        Required if `job_id` is set.
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
+    def task(self) -> Optional[str]:
+        """
+        `(string: <optional>` - The task to attach the policy.
+
+        [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+        """
+        return pulumi.get(self, "task")
+
+
+@pulumi.output_type
 class AclRolePolicy(dict):
     def __init__(__self__, *,
                  name: str):
@@ -212,6 +315,438 @@ class AclTokenRole(dict):
         `(string: "")` - A human-friendly name for this token.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class CsiVolumeCapability(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessMode":
+            suggest = "access_mode"
+        elif key == "attachmentMode":
+            suggest = "attachment_mode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CsiVolumeCapability. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CsiVolumeCapability.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CsiVolumeCapability.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 access_mode: str,
+                 attachment_mode: str):
+        """
+        :param str access_mode: `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+               - `single-node-reader-only`
+               - `single-node-writer`
+               - `multi-node-reader-only`
+               - `multi-node-single-writer`
+               - `multi-node-multi-writer`
+        :param str attachment_mode: `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+               - `block-device`
+               - `file-system`
+        """
+        pulumi.set(__self__, "access_mode", access_mode)
+        pulumi.set(__self__, "attachment_mode", attachment_mode)
+
+    @property
+    @pulumi.getter(name="accessMode")
+    def access_mode(self) -> str:
+        """
+        `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
+        """
+        return pulumi.get(self, "access_mode")
+
+    @property
+    @pulumi.getter(name="attachmentMode")
+    def attachment_mode(self) -> str:
+        """
+        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+        - `block-device`
+        - `file-system`
+        """
+        return pulumi.get(self, "attachment_mode")
+
+
+@pulumi.output_type
+class CsiVolumeMountOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fsType":
+            suggest = "fs_type"
+        elif key == "mountFlags":
+            suggest = "mount_flags"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CsiVolumeMountOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CsiVolumeMountOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CsiVolumeMountOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fs_type: Optional[str] = None,
+                 mount_flags: Optional[Sequence[str]] = None):
+        """
+        :param str fs_type: `(string: optional)` - The file system type.
+        :param Sequence[str] mount_flags: `[]string: optional` - The flags passed to `mount`.
+        """
+        if fs_type is not None:
+            pulumi.set(__self__, "fs_type", fs_type)
+        if mount_flags is not None:
+            pulumi.set(__self__, "mount_flags", mount_flags)
+
+    @property
+    @pulumi.getter(name="fsType")
+    def fs_type(self) -> Optional[str]:
+        """
+        `(string: optional)` - The file system type.
+        """
+        return pulumi.get(self, "fs_type")
+
+    @property
+    @pulumi.getter(name="mountFlags")
+    def mount_flags(self) -> Optional[Sequence[str]]:
+        """
+        `[]string: optional` - The flags passed to `mount`.
+        """
+        return pulumi.get(self, "mount_flags")
+
+
+@pulumi.output_type
+class CsiVolumeRegistrationCapability(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessMode":
+            suggest = "access_mode"
+        elif key == "attachmentMode":
+            suggest = "attachment_mode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CsiVolumeRegistrationCapability. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CsiVolumeRegistrationCapability.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CsiVolumeRegistrationCapability.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 access_mode: str,
+                 attachment_mode: str):
+        """
+        :param str access_mode: `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+               - `single-node-reader-only`
+               - `single-node-writer`
+               - `multi-node-reader-only`
+               - `multi-node-single-writer`
+               - `multi-node-multi-writer`
+        :param str attachment_mode: `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+               - `block-device`
+               - `file-system`
+        """
+        pulumi.set(__self__, "access_mode", access_mode)
+        pulumi.set(__self__, "attachment_mode", attachment_mode)
+
+    @property
+    @pulumi.getter(name="accessMode")
+    def access_mode(self) -> str:
+        """
+        `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
+        """
+        return pulumi.get(self, "access_mode")
+
+    @property
+    @pulumi.getter(name="attachmentMode")
+    def attachment_mode(self) -> str:
+        """
+        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+        - `block-device`
+        - `file-system`
+        """
+        return pulumi.get(self, "attachment_mode")
+
+
+@pulumi.output_type
+class CsiVolumeRegistrationMountOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fsType":
+            suggest = "fs_type"
+        elif key == "mountFlags":
+            suggest = "mount_flags"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CsiVolumeRegistrationMountOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CsiVolumeRegistrationMountOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CsiVolumeRegistrationMountOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fs_type: Optional[str] = None,
+                 mount_flags: Optional[Sequence[str]] = None):
+        """
+        :param str fs_type: `(string: <optional>)` - The file system type.
+        :param Sequence[str] mount_flags: `([]string: <optional>)` - The flags passed to `mount`.
+        """
+        if fs_type is not None:
+            pulumi.set(__self__, "fs_type", fs_type)
+        if mount_flags is not None:
+            pulumi.set(__self__, "mount_flags", mount_flags)
+
+    @property
+    @pulumi.getter(name="fsType")
+    def fs_type(self) -> Optional[str]:
+        """
+        `(string: <optional>)` - The file system type.
+        """
+        return pulumi.get(self, "fs_type")
+
+    @property
+    @pulumi.getter(name="mountFlags")
+    def mount_flags(self) -> Optional[Sequence[str]]:
+        """
+        `([]string: <optional>)` - The flags passed to `mount`.
+        """
+        return pulumi.get(self, "mount_flags")
+
+
+@pulumi.output_type
+class CsiVolumeRegistrationTopology(dict):
+    def __init__(__self__, *,
+                 segments: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
+        if segments is not None:
+            pulumi.set(__self__, "segments", segments)
+
+    @property
+    @pulumi.getter
+    def segments(self) -> Optional[Mapping[str, str]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+        return pulumi.get(self, "segments")
+
+
+@pulumi.output_type
+class CsiVolumeRegistrationTopologyRequest(dict):
+    def __init__(__self__, *,
+                 required: Optional['outputs.CsiVolumeRegistrationTopologyRequestRequired'] = None):
+        """
+        :param 'CsiVolumeRegistrationTopologyRequestRequiredArgs' required: `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional['outputs.CsiVolumeRegistrationTopologyRequestRequired']:
+        """
+        `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+        return pulumi.get(self, "required")
+
+
+@pulumi.output_type
+class CsiVolumeRegistrationTopologyRequestRequired(dict):
+    def __init__(__self__, *,
+                 topologies: Sequence['outputs.CsiVolumeRegistrationTopologyRequestRequiredTopology']):
+        pulumi.set(__self__, "topologies", topologies)
+
+    @property
+    @pulumi.getter
+    def topologies(self) -> Sequence['outputs.CsiVolumeRegistrationTopologyRequestRequiredTopology']:
+        return pulumi.get(self, "topologies")
+
+
+@pulumi.output_type
+class CsiVolumeRegistrationTopologyRequestRequiredTopology(dict):
+    def __init__(__self__, *,
+                 segments: Mapping[str, str]):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
+        pulumi.set(__self__, "segments", segments)
+
+    @property
+    @pulumi.getter
+    def segments(self) -> Mapping[str, str]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+        return pulumi.get(self, "segments")
+
+
+@pulumi.output_type
+class CsiVolumeTopology(dict):
+    def __init__(__self__, *,
+                 segments: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
+        if segments is not None:
+            pulumi.set(__self__, "segments", segments)
+
+    @property
+    @pulumi.getter
+    def segments(self) -> Optional[Mapping[str, str]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+        return pulumi.get(self, "segments")
+
+
+@pulumi.output_type
+class CsiVolumeTopologyRequest(dict):
+    def __init__(__self__, *,
+                 preferred: Optional['outputs.CsiVolumeTopologyRequestPreferred'] = None,
+                 required: Optional['outputs.CsiVolumeTopologyRequestRequired'] = None):
+        """
+        :param 'CsiVolumeTopologyRequestPreferredArgs' preferred: `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+        :param 'CsiVolumeTopologyRequestRequiredArgs' required: `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+        if preferred is not None:
+            pulumi.set(__self__, "preferred", preferred)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+
+    @property
+    @pulumi.getter
+    def preferred(self) -> Optional['outputs.CsiVolumeTopologyRequestPreferred']:
+        """
+        `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+        """
+        return pulumi.get(self, "preferred")
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional['outputs.CsiVolumeTopologyRequestRequired']:
+        """
+        `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+        return pulumi.get(self, "required")
+
+
+@pulumi.output_type
+class CsiVolumeTopologyRequestPreferred(dict):
+    def __init__(__self__, *,
+                 topologies: Sequence['outputs.CsiVolumeTopologyRequestPreferredTopology']):
+        pulumi.set(__self__, "topologies", topologies)
+
+    @property
+    @pulumi.getter
+    def topologies(self) -> Sequence['outputs.CsiVolumeTopologyRequestPreferredTopology']:
+        return pulumi.get(self, "topologies")
+
+
+@pulumi.output_type
+class CsiVolumeTopologyRequestPreferredTopology(dict):
+    def __init__(__self__, *,
+                 segments: Mapping[str, str]):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
+        pulumi.set(__self__, "segments", segments)
+
+    @property
+    @pulumi.getter
+    def segments(self) -> Mapping[str, str]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+        return pulumi.get(self, "segments")
+
+
+@pulumi.output_type
+class CsiVolumeTopologyRequestRequired(dict):
+    def __init__(__self__, *,
+                 topologies: Sequence['outputs.CsiVolumeTopologyRequestRequiredTopology']):
+        pulumi.set(__self__, "topologies", topologies)
+
+    @property
+    @pulumi.getter
+    def topologies(self) -> Sequence['outputs.CsiVolumeTopologyRequestRequiredTopology']:
+        return pulumi.get(self, "topologies")
+
+
+@pulumi.output_type
+class CsiVolumeTopologyRequestRequiredTopology(dict):
+    def __init__(__self__, *,
+                 segments: Mapping[str, str]):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
+        pulumi.set(__self__, "segments", segments)
+
+    @property
+    @pulumi.getter
+    def segments(self) -> Mapping[str, str]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+        return pulumi.get(self, "segments")
 
 
 @pulumi.output_type
@@ -480,8 +1015,8 @@ class JobHcl2(dict):
         """
         :param bool allow_fs: `(boolean: false)` - Set this to `true` to be able to use
                HCL2 filesystem functions
-        :param bool enabled: `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-               format instead of the default HCL.
+        :param bool enabled: `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+               HCL2 by default.
         """
         if allow_fs is not None:
             pulumi.set(__self__, "allow_fs", allow_fs)
@@ -503,9 +1038,12 @@ class JobHcl2(dict):
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
         """
-        `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-        format instead of the default HCL.
+        `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+        HCL2 by default.
         """
+        warnings.warn("""Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""", DeprecationWarning)
+        pulumi.log.warn("""enabled is deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""")
+
         return pulumi.get(self, "enabled")
 
     @property
@@ -761,6 +1299,117 @@ class NamespaceCapabilities(dict):
         `([]string: <optional>)` - Task drivers enabled for the namespace.
         """
         return pulumi.get(self, "enabled_task_drivers")
+
+
+@pulumi.output_type
+class NamespaceNodePoolConfig(dict):
+    def __init__(__self__, *,
+                 alloweds: Optional[Sequence[str]] = None,
+                 default: Optional[str] = None,
+                 denieds: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] alloweds: `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
+        :param str default: `(string: <optional>)` - The default node pool for jobs that don't define one.
+        :param Sequence[str] denieds: `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+        """
+        if alloweds is not None:
+            pulumi.set(__self__, "alloweds", alloweds)
+        if default is not None:
+            pulumi.set(__self__, "default", default)
+        if denieds is not None:
+            pulumi.set(__self__, "denieds", denieds)
+
+    @property
+    @pulumi.getter
+    def alloweds(self) -> Optional[Sequence[str]]:
+        """
+        `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
+        """
+        return pulumi.get(self, "alloweds")
+
+    @property
+    @pulumi.getter
+    def default(self) -> Optional[str]:
+        """
+        `(string: <optional>)` - The default node pool for jobs that don't define one.
+        """
+        return pulumi.get(self, "default")
+
+    @property
+    @pulumi.getter
+    def denieds(self) -> Optional[Sequence[str]]:
+        """
+        `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+        """
+        return pulumi.get(self, "denieds")
+
+
+@pulumi.output_type
+class NodePoolSchedulerConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "memoryOversubscription":
+            suggest = "memory_oversubscription"
+        elif key == "schedulerAlgorithm":
+            suggest = "scheduler_algorithm"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NodePoolSchedulerConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NodePoolSchedulerConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NodePoolSchedulerConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 memory_oversubscription: Optional[str] = None,
+                 scheduler_algorithm: Optional[str] = None):
+        """
+        :param str memory_oversubscription: `(string)` - Whether or not memory
+               oversubscription is enabled in the node pool. Possible values are
+               `"enabled"` or `"disabled"`. If not defined the global cluster
+               configuration is used.
+               
+               > This option differs from Nomad, where it's represented as a boolean, to
+               allow distinguishing between memory oversubscription being disabled in the
+               node pool and this property not being set.
+        :param str scheduler_algorithm: `(string)` - The scheduler algorithm used in the node
+               pool. Possible values are `binpack` or `spread`. If not defined the global
+               cluster configuration is used.
+        """
+        if memory_oversubscription is not None:
+            pulumi.set(__self__, "memory_oversubscription", memory_oversubscription)
+        if scheduler_algorithm is not None:
+            pulumi.set(__self__, "scheduler_algorithm", scheduler_algorithm)
+
+    @property
+    @pulumi.getter(name="memoryOversubscription")
+    def memory_oversubscription(self) -> Optional[str]:
+        """
+        `(string)` - Whether or not memory
+        oversubscription is enabled in the node pool. Possible values are
+        `"enabled"` or `"disabled"`. If not defined the global cluster
+        configuration is used.
+
+        > This option differs from Nomad, where it's represented as a boolean, to
+        allow distinguishing between memory oversubscription being disabled in the
+        node pool and this property not being set.
+        """
+        return pulumi.get(self, "memory_oversubscription")
+
+    @property
+    @pulumi.getter(name="schedulerAlgorithm")
+    def scheduler_algorithm(self) -> Optional[str]:
+        """
+        `(string)` - The scheduler algorithm used in the node
+        pool. Possible values are `binpack` or `spread`. If not defined the global
+        cluster configuration is used.
+        """
+        return pulumi.get(self, "scheduler_algorithm")
 
 
 @pulumi.output_type
@@ -1325,6 +1974,222 @@ class GetAclTokensAclTokenRoleResult(dict):
 
 
 @pulumi.output_type
+class GetAllocationsAllocationResult(dict):
+    def __init__(__self__, *,
+                 client_status: str,
+                 create_index: int,
+                 create_time: int,
+                 desired_status: str,
+                 eval_id: str,
+                 followup_eval_id: str,
+                 id: str,
+                 job_id: str,
+                 job_type: str,
+                 job_version: int,
+                 modify_index: int,
+                 modify_time: int,
+                 name: str,
+                 namespace: str,
+                 next_allocation: str,
+                 node_id: str,
+                 node_name: str,
+                 preempted_by_allocation: str,
+                 task_group: str):
+        """
+        :param str client_status: `(string)` - The current client status of the allocation.
+        :param int create_index: `(int)` - The Raft index in which the allocation was created.
+        :param int create_time: `(int)` - The timestamp of when the allocation was created.
+        :param str desired_status: `(string)` - The current desired status of the allocation.
+        :param str eval_id: `(string)` - The ID of the evaluation that generated the allocation.
+        :param str followup_eval_id: `(string)` - The ID of the evaluation that succeeds the allocation evaluation.
+        :param str id: `(string)` - The ID of the allocation.
+        :param str job_id: `(string)` - The ID of the job related to the allocation.
+        :param str job_type: `(string)` - The type of the job related to the allocation.
+        :param int job_version: `(int)` - The version of the job that generated the allocation.
+        :param int modify_index: `(int)` - The Raft index in which the allocation was last modified.
+        :param int modify_time: `(int)` - The timestamp of when the allocation was last modified.
+        :param str name: `(string)` - The name of the allocation.
+        :param str namespace: `(string)` - The namespace the allocation belongs to.
+        :param str next_allocation: `(string)` - The ID of the allocation that succeeds the allocation.
+        :param str node_id: `(string)` - The ID of the node to which the allocation was scheduled.
+        :param str node_name: `(string)` - The ID of the node to which the allocation was scheduled.
+        :param str preempted_by_allocation: `(string)` - The ID of the allocation that preempted the allocation.
+        :param str task_group: `(string)` - The job task group related to the allocation.
+        """
+        pulumi.set(__self__, "client_status", client_status)
+        pulumi.set(__self__, "create_index", create_index)
+        pulumi.set(__self__, "create_time", create_time)
+        pulumi.set(__self__, "desired_status", desired_status)
+        pulumi.set(__self__, "eval_id", eval_id)
+        pulumi.set(__self__, "followup_eval_id", followup_eval_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "job_id", job_id)
+        pulumi.set(__self__, "job_type", job_type)
+        pulumi.set(__self__, "job_version", job_version)
+        pulumi.set(__self__, "modify_index", modify_index)
+        pulumi.set(__self__, "modify_time", modify_time)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "namespace", namespace)
+        pulumi.set(__self__, "next_allocation", next_allocation)
+        pulumi.set(__self__, "node_id", node_id)
+        pulumi.set(__self__, "node_name", node_name)
+        pulumi.set(__self__, "preempted_by_allocation", preempted_by_allocation)
+        pulumi.set(__self__, "task_group", task_group)
+
+    @property
+    @pulumi.getter(name="clientStatus")
+    def client_status(self) -> str:
+        """
+        `(string)` - The current client status of the allocation.
+        """
+        return pulumi.get(self, "client_status")
+
+    @property
+    @pulumi.getter(name="createIndex")
+    def create_index(self) -> int:
+        """
+        `(int)` - The Raft index in which the allocation was created.
+        """
+        return pulumi.get(self, "create_index")
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> int:
+        """
+        `(int)` - The timestamp of when the allocation was created.
+        """
+        return pulumi.get(self, "create_time")
+
+    @property
+    @pulumi.getter(name="desiredStatus")
+    def desired_status(self) -> str:
+        """
+        `(string)` - The current desired status of the allocation.
+        """
+        return pulumi.get(self, "desired_status")
+
+    @property
+    @pulumi.getter(name="evalId")
+    def eval_id(self) -> str:
+        """
+        `(string)` - The ID of the evaluation that generated the allocation.
+        """
+        return pulumi.get(self, "eval_id")
+
+    @property
+    @pulumi.getter(name="followupEvalId")
+    def followup_eval_id(self) -> str:
+        """
+        `(string)` - The ID of the evaluation that succeeds the allocation evaluation.
+        """
+        return pulumi.get(self, "followup_eval_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        `(string)` - The ID of the allocation.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> str:
+        """
+        `(string)` - The ID of the job related to the allocation.
+        """
+        return pulumi.get(self, "job_id")
+
+    @property
+    @pulumi.getter(name="jobType")
+    def job_type(self) -> str:
+        """
+        `(string)` - The type of the job related to the allocation.
+        """
+        return pulumi.get(self, "job_type")
+
+    @property
+    @pulumi.getter(name="jobVersion")
+    def job_version(self) -> int:
+        """
+        `(int)` - The version of the job that generated the allocation.
+        """
+        return pulumi.get(self, "job_version")
+
+    @property
+    @pulumi.getter(name="modifyIndex")
+    def modify_index(self) -> int:
+        """
+        `(int)` - The Raft index in which the allocation was last modified.
+        """
+        return pulumi.get(self, "modify_index")
+
+    @property
+    @pulumi.getter(name="modifyTime")
+    def modify_time(self) -> int:
+        """
+        `(int)` - The timestamp of when the allocation was last modified.
+        """
+        return pulumi.get(self, "modify_time")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        `(string)` - The name of the allocation.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        """
+        `(string)` - The namespace the allocation belongs to.
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter(name="nextAllocation")
+    def next_allocation(self) -> str:
+        """
+        `(string)` - The ID of the allocation that succeeds the allocation.
+        """
+        return pulumi.get(self, "next_allocation")
+
+    @property
+    @pulumi.getter(name="nodeId")
+    def node_id(self) -> str:
+        """
+        `(string)` - The ID of the node to which the allocation was scheduled.
+        """
+        return pulumi.get(self, "node_id")
+
+    @property
+    @pulumi.getter(name="nodeName")
+    def node_name(self) -> str:
+        """
+        `(string)` - The ID of the node to which the allocation was scheduled.
+        """
+        return pulumi.get(self, "node_name")
+
+    @property
+    @pulumi.getter(name="preemptedByAllocation")
+    def preempted_by_allocation(self) -> str:
+        """
+        `(string)` - The ID of the allocation that preempted the allocation.
+        """
+        return pulumi.get(self, "preempted_by_allocation")
+
+    @property
+    @pulumi.getter(name="taskGroup")
+    def task_group(self) -> str:
+        """
+        `(string)` - The job task group related to the allocation.
+        """
+        return pulumi.get(self, "task_group")
+
+
+@pulumi.output_type
 class GetJobConstraintResult(dict):
     def __init__(__self__, *,
                  ltarget: str,
@@ -1609,6 +2474,155 @@ class GetNamespaceCapabilityResult(dict):
         `([]string)` - Task drivers enabled for the namespace.
         """
         return pulumi.get(self, "enabled_task_drivers")
+
+
+@pulumi.output_type
+class GetNamespaceNodePoolConfigResult(dict):
+    def __init__(__self__, *,
+                 alloweds: Sequence[str],
+                 default: str,
+                 denieds: Sequence[str]):
+        pulumi.set(__self__, "alloweds", alloweds)
+        pulumi.set(__self__, "default", default)
+        pulumi.set(__self__, "denieds", denieds)
+
+    @property
+    @pulumi.getter
+    def alloweds(self) -> Sequence[str]:
+        return pulumi.get(self, "alloweds")
+
+    @property
+    @pulumi.getter
+    def default(self) -> str:
+        return pulumi.get(self, "default")
+
+    @property
+    @pulumi.getter
+    def denieds(self) -> Sequence[str]:
+        return pulumi.get(self, "denieds")
+
+
+@pulumi.output_type
+class GetNodePoolSchedulerConfigResult(dict):
+    def __init__(__self__, *,
+                 memory_oversubscription: str,
+                 scheduler_algorithm: str):
+        """
+        :param str memory_oversubscription: `(string)` - Whether or not memory
+               oversubscription is enabled in the node pool. If empty or not defined the
+               global cluster configuration is used.
+        :param str scheduler_algorithm: `(string)` - The scheduler algorithm used in the node
+               pool. If empty or not defined the global cluster configuration is used.
+        """
+        pulumi.set(__self__, "memory_oversubscription", memory_oversubscription)
+        pulumi.set(__self__, "scheduler_algorithm", scheduler_algorithm)
+
+    @property
+    @pulumi.getter(name="memoryOversubscription")
+    def memory_oversubscription(self) -> str:
+        """
+        `(string)` - Whether or not memory
+        oversubscription is enabled in the node pool. If empty or not defined the
+        global cluster configuration is used.
+        """
+        return pulumi.get(self, "memory_oversubscription")
+
+    @property
+    @pulumi.getter(name="schedulerAlgorithm")
+    def scheduler_algorithm(self) -> str:
+        """
+        `(string)` - The scheduler algorithm used in the node
+        pool. If empty or not defined the global cluster configuration is used.
+        """
+        return pulumi.get(self, "scheduler_algorithm")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 meta: Mapping[str, str],
+                 name: str,
+                 scheduler_configs: Sequence['outputs.GetNodePoolsNodePoolSchedulerConfigResult']):
+        """
+        :param str description: `(string)` - The description of the node pool.
+        :param Mapping[str, str] meta: `(map[string]string)` - Arbitrary KV metadata associated with the
+               node pool.
+        :param str name: `(string)` - The name of the node pool.
+        :param Sequence['GetNodePoolsNodePoolSchedulerConfigArgs'] scheduler_configs: `(block)` - Scheduler configuration for the node pool.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "meta", meta)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "scheduler_configs", scheduler_configs)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        `(string)` - The description of the node pool.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def meta(self) -> Mapping[str, str]:
+        """
+        `(map[string]string)` - Arbitrary KV metadata associated with the
+        node pool.
+        """
+        return pulumi.get(self, "meta")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        `(string)` - The name of the node pool.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="schedulerConfigs")
+    def scheduler_configs(self) -> Sequence['outputs.GetNodePoolsNodePoolSchedulerConfigResult']:
+        """
+        `(block)` - Scheduler configuration for the node pool.
+        """
+        return pulumi.get(self, "scheduler_configs")
+
+
+@pulumi.output_type
+class GetNodePoolsNodePoolSchedulerConfigResult(dict):
+    def __init__(__self__, *,
+                 memory_oversubscription: str,
+                 scheduler_algorithm: str):
+        """
+        :param str memory_oversubscription: `(string)` - Whether or not memory
+               oversubscription is enabled in the node pool. If empty or not defined the
+               global cluster configuration is used.
+        :param str scheduler_algorithm: `(string)` - The scheduler algorithm used in the node
+               pool. If empty or not defined the global cluster configuration is used.
+        """
+        pulumi.set(__self__, "memory_oversubscription", memory_oversubscription)
+        pulumi.set(__self__, "scheduler_algorithm", scheduler_algorithm)
+
+    @property
+    @pulumi.getter(name="memoryOversubscription")
+    def memory_oversubscription(self) -> str:
+        """
+        `(string)` - Whether or not memory
+        oversubscription is enabled in the node pool. If empty or not defined the
+        global cluster configuration is used.
+        """
+        return pulumi.get(self, "memory_oversubscription")
+
+    @property
+    @pulumi.getter(name="schedulerAlgorithm")
+    def scheduler_algorithm(self) -> str:
+        """
+        `(string)` - The scheduler algorithm used in the node
+        pool. If empty or not defined the global cluster configuration is used.
+        """
+        return pulumi.get(self, "scheduler_algorithm")
 
 
 @pulumi.output_type

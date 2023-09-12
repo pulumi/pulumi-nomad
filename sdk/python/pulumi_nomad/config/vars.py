@@ -108,6 +108,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('secretId')
 
     @property
+    def skip_verify(self) -> Optional[bool]:
+        """
+        Skip TLS verification on client side.
+        """
+        return __config__.get_bool('skipVerify')
+
+    @property
     def vault_token(self) -> Optional[str]:
         """
         Vault token if policies are specified in the job file.

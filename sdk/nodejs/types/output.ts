@@ -18,6 +18,30 @@ export interface AclAuthMethodConfig {
     signingAlgs?: string[];
 }
 
+export interface AclPolicyJobAcl {
+    /**
+     * `(string: <optional>` - The group to attach the policy. Required if
+     * `task` is set.
+     */
+    group?: string;
+    /**
+     * `(string: <optional>` - The job to attach the policy. Required if
+     * `group` is set.
+     */
+    jobId: string;
+    /**
+     * `(string: "default")` - The namespace to attach the policy.
+     * Required if `jobId` is set.
+     */
+    namespace?: string;
+    /**
+     * `(string: <optional>` - The task to attach the policy.
+     *
+     * [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+     */
+    task?: string;
+}
+
 export interface AclRolePolicy {
     /**
      * `(string: <required>)` - A human-friendly name for this ACL Role.
@@ -31,6 +55,144 @@ export interface AclTokenRole {
      * `(string: "")` - A human-friendly name for this token.
      */
     name: string;
+}
+
+export interface CsiVolumeCapability {
+    /**
+     * `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
+     */
+    accessMode: string;
+    /**
+     * `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+     * - `block-device`
+     * - `file-system`
+     */
+    attachmentMode: string;
+}
+
+export interface CsiVolumeMountOptions {
+    /**
+     * `(string: optional)` - The file system type.
+     */
+    fsType?: string;
+    /**
+     * `[]string: optional` - The flags passed to `mount`.
+     */
+    mountFlags?: string[];
+}
+
+export interface CsiVolumeRegistrationCapability {
+    /**
+     * `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+     * - `single-node-reader-only`
+     * - `single-node-writer`
+     * - `multi-node-reader-only`
+     * - `multi-node-single-writer`
+     * - `multi-node-multi-writer`
+     */
+    accessMode: string;
+    /**
+     * `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+     * - `block-device`
+     * - `file-system`
+     */
+    attachmentMode: string;
+}
+
+export interface CsiVolumeRegistrationMountOptions {
+    /**
+     * `(string: <optional>)` - The file system type.
+     */
+    fsType?: string;
+    /**
+     * `([]string: <optional>)` - The flags passed to `mount`.
+     */
+    mountFlags?: string[];
+}
+
+export interface CsiVolumeRegistrationTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
+    segments: {[key: string]: string};
+}
+
+export interface CsiVolumeRegistrationTopologyRequest {
+    /**
+     * `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     */
+    required?: outputs.CsiVolumeRegistrationTopologyRequestRequired;
+}
+
+export interface CsiVolumeRegistrationTopologyRequestRequired {
+    topologies: outputs.CsiVolumeRegistrationTopologyRequestRequiredTopology[];
+}
+
+export interface CsiVolumeRegistrationTopologyRequestRequiredTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
+    segments: {[key: string]: string};
+}
+
+export interface CsiVolumeTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
+    segments: {[key: string]: string};
+}
+
+export interface CsiVolumeTopologyRequest {
+    /**
+     * `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+     */
+    preferred?: outputs.CsiVolumeTopologyRequestPreferred;
+    /**
+     * `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+     */
+    required?: outputs.CsiVolumeTopologyRequestRequired;
+}
+
+export interface CsiVolumeTopologyRequestPreferred {
+    topologies: outputs.CsiVolumeTopologyRequestPreferredTopology[];
+}
+
+export interface CsiVolumeTopologyRequestPreferredTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
+    segments: {[key: string]: string};
+}
+
+export interface CsiVolumeTopologyRequestRequired {
+    topologies: outputs.CsiVolumeTopologyRequestRequiredTopology[];
+}
+
+export interface CsiVolumeTopologyRequestRequiredTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
+    segments: {[key: string]: string};
 }
 
 export interface ExternalVolumeCapability {
@@ -208,6 +370,85 @@ export interface GetAclTokensAclTokenRole {
     name: string;
 }
 
+export interface GetAllocationsAllocation {
+    /**
+     * `(string)` - The current client status of the allocation.
+     */
+    clientStatus: string;
+    /**
+     * `(int)` - The Raft index in which the allocation was created.
+     */
+    createIndex: number;
+    /**
+     * `(int)` - The timestamp of when the allocation was created.
+     */
+    createTime: number;
+    /**
+     * `(string)` - The current desired status of the allocation.
+     */
+    desiredStatus: string;
+    /**
+     * `(string)` - The ID of the evaluation that generated the allocation.
+     */
+    evalId: string;
+    /**
+     * `(string)` - The ID of the evaluation that succeeds the allocation evaluation.
+     */
+    followupEvalId: string;
+    /**
+     * `(string)` - The ID of the allocation.
+     */
+    id: string;
+    /**
+     * `(string)` - The ID of the job related to the allocation.
+     */
+    jobId: string;
+    /**
+     * `(string)` - The type of the job related to the allocation.
+     */
+    jobType: string;
+    /**
+     * `(int)` - The version of the job that generated the allocation.
+     */
+    jobVersion: number;
+    /**
+     * `(int)` - The Raft index in which the allocation was last modified.
+     */
+    modifyIndex: number;
+    /**
+     * `(int)` - The timestamp of when the allocation was last modified.
+     */
+    modifyTime: number;
+    /**
+     * `(string)` - The name of the allocation.
+     */
+    name: string;
+    /**
+     * `(string)` - The namespace the allocation belongs to.
+     */
+    namespace: string;
+    /**
+     * `(string)` - The ID of the allocation that succeeds the allocation.
+     */
+    nextAllocation: string;
+    /**
+     * `(string)` - The ID of the node to which the allocation was scheduled.
+     */
+    nodeId: string;
+    /**
+     * `(string)` - The ID of the node to which the allocation was scheduled.
+     */
+    nodeName: string;
+    /**
+     * `(string)` - The ID of the allocation that preempted the allocation.
+     */
+    preemptedByAllocation: string;
+    /**
+     * `(string)` - The job task group related to the allocation.
+     */
+    taskGroup: string;
+}
+
 export interface GetJobConstraint {
     /**
      * `(string)` Attribute being constrained.
@@ -297,6 +538,60 @@ export interface GetNamespaceCapability {
     enabledTaskDrivers?: string[];
 }
 
+export interface GetNamespaceNodePoolConfig {
+    alloweds: string[];
+    default: string;
+    denieds: string[];
+}
+
+export interface GetNodePoolSchedulerConfig {
+    /**
+     * `(string)` - Whether or not memory
+     * oversubscription is enabled in the node pool. If empty or not defined the
+     * global cluster configuration is used.
+     */
+    memoryOversubscription: string;
+    /**
+     * `(string)` - The scheduler algorithm used in the node
+     * pool. If empty or not defined the global cluster configuration is used.
+     */
+    schedulerAlgorithm: string;
+}
+
+export interface GetNodePoolsNodePool {
+    /**
+     * `(string)` - The description of the node pool.
+     */
+    description: string;
+    /**
+     * `(map[string]string)` - Arbitrary KV metadata associated with the
+     * node pool.
+     */
+    meta: {[key: string]: string};
+    /**
+     * `(string)` - The name of the node pool.
+     */
+    name: string;
+    /**
+     * `(block)` - Scheduler configuration for the node pool.
+     */
+    schedulerConfigs: outputs.GetNodePoolsNodePoolSchedulerConfig[];
+}
+
+export interface GetNodePoolsNodePoolSchedulerConfig {
+    /**
+     * `(string)` - Whether or not memory
+     * oversubscription is enabled in the node pool. If empty or not defined the
+     * global cluster configuration is used.
+     */
+    memoryOversubscription: string;
+    /**
+     * `(string)` - The scheduler algorithm used in the node
+     * pool. If empty or not defined the global cluster configuration is used.
+     */
+    schedulerAlgorithm: string;
+}
+
 export interface GetPluginNode {
     healthy: boolean;
     healthyDescription: string;
@@ -329,8 +624,10 @@ export interface JobHcl2 {
      */
     allowFs?: boolean;
     /**
-     * `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-     * format instead of the default HCL.
+     * `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+     * HCL2 by default.
+     *
+     * @deprecated Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
      */
     enabled?: boolean;
     vars?: {[key: string]: any};
@@ -373,6 +670,41 @@ export interface NamespaceCapabilities {
      * `([]string: <optional>)` - Task drivers enabled for the namespace.
      */
     enabledTaskDrivers?: string[];
+}
+
+export interface NamespaceNodePoolConfig {
+    /**
+     * `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
+     */
+    alloweds?: string[];
+    /**
+     * `(string: <optional>)` - The default node pool for jobs that don't define one.
+     */
+    default: string;
+    /**
+     * `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+     */
+    denieds?: string[];
+}
+
+export interface NodePoolSchedulerConfig {
+    /**
+     * `(string)` - Whether or not memory
+     * oversubscription is enabled in the node pool. Possible values are
+     * `"enabled"` or `"disabled"`. If not defined the global cluster
+     * configuration is used.
+     *
+     * > This option differs from Nomad, where it's represented as a boolean, to
+     * allow distinguishing between memory oversubscription being disabled in the
+     * node pool and this property not being set.
+     */
+    memoryOversubscription?: string;
+    /**
+     * `(string)` - The scheduler algorithm used in the node
+     * pool. Possible values are `binpack` or `spread`. If not defined the global
+     * cluster configuration is used.
+     */
+    schedulerAlgorithm?: string;
 }
 
 export interface QuoteSpecificationLimit {

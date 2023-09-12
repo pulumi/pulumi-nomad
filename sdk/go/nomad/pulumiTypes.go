@@ -7,8 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type AclAuthMethodConfig struct {
 	AllowedRedirectUris []string          `pulumi:"allowedRedirectUris"`
@@ -59,6 +63,12 @@ func (i AclAuthMethodConfigArgs) ToAclAuthMethodConfigOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigOutput)
 }
 
+func (i AclAuthMethodConfigArgs) ToOutput(ctx context.Context) pulumix.Output[AclAuthMethodConfig] {
+	return pulumix.Output[AclAuthMethodConfig]{
+		OutputState: i.ToAclAuthMethodConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i AclAuthMethodConfigArgs) ToAclAuthMethodConfigPtrOutput() AclAuthMethodConfigPtrOutput {
 	return i.ToAclAuthMethodConfigPtrOutputWithContext(context.Background())
 }
@@ -100,6 +110,12 @@ func (i *aclAuthMethodConfigPtrType) ToAclAuthMethodConfigPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigPtrOutput)
 }
 
+func (i *aclAuthMethodConfigPtrType) ToOutput(ctx context.Context) pulumix.Output[*AclAuthMethodConfig] {
+	return pulumix.Output[*AclAuthMethodConfig]{
+		OutputState: i.ToAclAuthMethodConfigPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AclAuthMethodConfigOutput struct{ *pulumi.OutputState }
 
 func (AclAuthMethodConfigOutput) ElementType() reflect.Type {
@@ -122,6 +138,12 @@ func (o AclAuthMethodConfigOutput) ToAclAuthMethodConfigPtrOutputWithContext(ctx
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v AclAuthMethodConfig) *AclAuthMethodConfig {
 		return &v
 	}).(AclAuthMethodConfigPtrOutput)
+}
+
+func (o AclAuthMethodConfigOutput) ToOutput(ctx context.Context) pulumix.Output[AclAuthMethodConfig] {
+	return pulumix.Output[AclAuthMethodConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclAuthMethodConfigOutput) AllowedRedirectUris() pulumi.StringArrayOutput {
@@ -176,6 +198,12 @@ func (o AclAuthMethodConfigPtrOutput) ToAclAuthMethodConfigPtrOutput() AclAuthMe
 
 func (o AclAuthMethodConfigPtrOutput) ToAclAuthMethodConfigPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigPtrOutput {
 	return o
+}
+
+func (o AclAuthMethodConfigPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*AclAuthMethodConfig] {
+	return pulumix.Output[*AclAuthMethodConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclAuthMethodConfigPtrOutput) Elem() AclAuthMethodConfigOutput {
@@ -278,6 +306,244 @@ func (o AclAuthMethodConfigPtrOutput) SigningAlgs() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
+type AclPolicyJobAcl struct {
+	// `(string: <optional>` - The group to attach the policy. Required if
+	// `task` is set.
+	Group *string `pulumi:"group"`
+	// `(string: <optional>` - The job to attach the policy. Required if
+	// `group` is set.
+	JobId string `pulumi:"jobId"`
+	// `(string: "default")` - The namespace to attach the policy.
+	// Required if `jobId` is set.
+	Namespace *string `pulumi:"namespace"`
+	// `(string: <optional>` - The task to attach the policy.
+	//
+	// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+	Task *string `pulumi:"task"`
+}
+
+// AclPolicyJobAclInput is an input type that accepts AclPolicyJobAclArgs and AclPolicyJobAclOutput values.
+// You can construct a concrete instance of `AclPolicyJobAclInput` via:
+//
+//	AclPolicyJobAclArgs{...}
+type AclPolicyJobAclInput interface {
+	pulumi.Input
+
+	ToAclPolicyJobAclOutput() AclPolicyJobAclOutput
+	ToAclPolicyJobAclOutputWithContext(context.Context) AclPolicyJobAclOutput
+}
+
+type AclPolicyJobAclArgs struct {
+	// `(string: <optional>` - The group to attach the policy. Required if
+	// `task` is set.
+	Group pulumi.StringPtrInput `pulumi:"group"`
+	// `(string: <optional>` - The job to attach the policy. Required if
+	// `group` is set.
+	JobId pulumi.StringInput `pulumi:"jobId"`
+	// `(string: "default")` - The namespace to attach the policy.
+	// Required if `jobId` is set.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
+	// `(string: <optional>` - The task to attach the policy.
+	//
+	// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+	Task pulumi.StringPtrInput `pulumi:"task"`
+}
+
+func (AclPolicyJobAclArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclPolicyJobAcl)(nil)).Elem()
+}
+
+func (i AclPolicyJobAclArgs) ToAclPolicyJobAclOutput() AclPolicyJobAclOutput {
+	return i.ToAclPolicyJobAclOutputWithContext(context.Background())
+}
+
+func (i AclPolicyJobAclArgs) ToAclPolicyJobAclOutputWithContext(ctx context.Context) AclPolicyJobAclOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclPolicyJobAclOutput)
+}
+
+func (i AclPolicyJobAclArgs) ToOutput(ctx context.Context) pulumix.Output[AclPolicyJobAcl] {
+	return pulumix.Output[AclPolicyJobAcl]{
+		OutputState: i.ToAclPolicyJobAclOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i AclPolicyJobAclArgs) ToAclPolicyJobAclPtrOutput() AclPolicyJobAclPtrOutput {
+	return i.ToAclPolicyJobAclPtrOutputWithContext(context.Background())
+}
+
+func (i AclPolicyJobAclArgs) ToAclPolicyJobAclPtrOutputWithContext(ctx context.Context) AclPolicyJobAclPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclPolicyJobAclOutput).ToAclPolicyJobAclPtrOutputWithContext(ctx)
+}
+
+// AclPolicyJobAclPtrInput is an input type that accepts AclPolicyJobAclArgs, AclPolicyJobAclPtr and AclPolicyJobAclPtrOutput values.
+// You can construct a concrete instance of `AclPolicyJobAclPtrInput` via:
+//
+//	        AclPolicyJobAclArgs{...}
+//
+//	or:
+//
+//	        nil
+type AclPolicyJobAclPtrInput interface {
+	pulumi.Input
+
+	ToAclPolicyJobAclPtrOutput() AclPolicyJobAclPtrOutput
+	ToAclPolicyJobAclPtrOutputWithContext(context.Context) AclPolicyJobAclPtrOutput
+}
+
+type aclPolicyJobAclPtrType AclPolicyJobAclArgs
+
+func AclPolicyJobAclPtr(v *AclPolicyJobAclArgs) AclPolicyJobAclPtrInput {
+	return (*aclPolicyJobAclPtrType)(v)
+}
+
+func (*aclPolicyJobAclPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AclPolicyJobAcl)(nil)).Elem()
+}
+
+func (i *aclPolicyJobAclPtrType) ToAclPolicyJobAclPtrOutput() AclPolicyJobAclPtrOutput {
+	return i.ToAclPolicyJobAclPtrOutputWithContext(context.Background())
+}
+
+func (i *aclPolicyJobAclPtrType) ToAclPolicyJobAclPtrOutputWithContext(ctx context.Context) AclPolicyJobAclPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclPolicyJobAclPtrOutput)
+}
+
+func (i *aclPolicyJobAclPtrType) ToOutput(ctx context.Context) pulumix.Output[*AclPolicyJobAcl] {
+	return pulumix.Output[*AclPolicyJobAcl]{
+		OutputState: i.ToAclPolicyJobAclPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type AclPolicyJobAclOutput struct{ *pulumi.OutputState }
+
+func (AclPolicyJobAclOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclPolicyJobAcl)(nil)).Elem()
+}
+
+func (o AclPolicyJobAclOutput) ToAclPolicyJobAclOutput() AclPolicyJobAclOutput {
+	return o
+}
+
+func (o AclPolicyJobAclOutput) ToAclPolicyJobAclOutputWithContext(ctx context.Context) AclPolicyJobAclOutput {
+	return o
+}
+
+func (o AclPolicyJobAclOutput) ToAclPolicyJobAclPtrOutput() AclPolicyJobAclPtrOutput {
+	return o.ToAclPolicyJobAclPtrOutputWithContext(context.Background())
+}
+
+func (o AclPolicyJobAclOutput) ToAclPolicyJobAclPtrOutputWithContext(ctx context.Context) AclPolicyJobAclPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AclPolicyJobAcl) *AclPolicyJobAcl {
+		return &v
+	}).(AclPolicyJobAclPtrOutput)
+}
+
+func (o AclPolicyJobAclOutput) ToOutput(ctx context.Context) pulumix.Output[AclPolicyJobAcl] {
+	return pulumix.Output[AclPolicyJobAcl]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(string: <optional>` - The group to attach the policy. Required if
+// `task` is set.
+func (o AclPolicyJobAclOutput) Group() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclPolicyJobAcl) *string { return v.Group }).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>` - The job to attach the policy. Required if
+// `group` is set.
+func (o AclPolicyJobAclOutput) JobId() pulumi.StringOutput {
+	return o.ApplyT(func(v AclPolicyJobAcl) string { return v.JobId }).(pulumi.StringOutput)
+}
+
+// `(string: "default")` - The namespace to attach the policy.
+// Required if `jobId` is set.
+func (o AclPolicyJobAclOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclPolicyJobAcl) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>` - The task to attach the policy.
+//
+// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+func (o AclPolicyJobAclOutput) Task() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclPolicyJobAcl) *string { return v.Task }).(pulumi.StringPtrOutput)
+}
+
+type AclPolicyJobAclPtrOutput struct{ *pulumi.OutputState }
+
+func (AclPolicyJobAclPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AclPolicyJobAcl)(nil)).Elem()
+}
+
+func (o AclPolicyJobAclPtrOutput) ToAclPolicyJobAclPtrOutput() AclPolicyJobAclPtrOutput {
+	return o
+}
+
+func (o AclPolicyJobAclPtrOutput) ToAclPolicyJobAclPtrOutputWithContext(ctx context.Context) AclPolicyJobAclPtrOutput {
+	return o
+}
+
+func (o AclPolicyJobAclPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*AclPolicyJobAcl] {
+	return pulumix.Output[*AclPolicyJobAcl]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o AclPolicyJobAclPtrOutput) Elem() AclPolicyJobAclOutput {
+	return o.ApplyT(func(v *AclPolicyJobAcl) AclPolicyJobAcl {
+		if v != nil {
+			return *v
+		}
+		var ret AclPolicyJobAcl
+		return ret
+	}).(AclPolicyJobAclOutput)
+}
+
+// `(string: <optional>` - The group to attach the policy. Required if
+// `task` is set.
+func (o AclPolicyJobAclPtrOutput) Group() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclPolicyJobAcl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Group
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>` - The job to attach the policy. Required if
+// `group` is set.
+func (o AclPolicyJobAclPtrOutput) JobId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclPolicyJobAcl) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.JobId
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: "default")` - The namespace to attach the policy.
+// Required if `jobId` is set.
+func (o AclPolicyJobAclPtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclPolicyJobAcl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Namespace
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>` - The task to attach the policy.
+//
+// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+func (o AclPolicyJobAclPtrOutput) Task() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclPolicyJobAcl) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Task
+	}).(pulumi.StringPtrOutput)
+}
+
 type AclRolePolicy struct {
 	// `(string: <required>)` - A human-friendly name for this ACL Role.
 	Name string `pulumi:"name"`
@@ -311,6 +577,12 @@ func (i AclRolePolicyArgs) ToAclRolePolicyOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(AclRolePolicyOutput)
 }
 
+func (i AclRolePolicyArgs) ToOutput(ctx context.Context) pulumix.Output[AclRolePolicy] {
+	return pulumix.Output[AclRolePolicy]{
+		OutputState: i.ToAclRolePolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AclRolePolicyArrayInput is an input type that accepts AclRolePolicyArray and AclRolePolicyArrayOutput values.
 // You can construct a concrete instance of `AclRolePolicyArrayInput` via:
 //
@@ -336,6 +608,12 @@ func (i AclRolePolicyArray) ToAclRolePolicyArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(AclRolePolicyArrayOutput)
 }
 
+func (i AclRolePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]AclRolePolicy] {
+	return pulumix.Output[[]AclRolePolicy]{
+		OutputState: i.ToAclRolePolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AclRolePolicyOutput struct{ *pulumi.OutputState }
 
 func (AclRolePolicyOutput) ElementType() reflect.Type {
@@ -348,6 +626,12 @@ func (o AclRolePolicyOutput) ToAclRolePolicyOutput() AclRolePolicyOutput {
 
 func (o AclRolePolicyOutput) ToAclRolePolicyOutputWithContext(ctx context.Context) AclRolePolicyOutput {
 	return o
+}
+
+func (o AclRolePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[AclRolePolicy] {
+	return pulumix.Output[AclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: <required>)` - A human-friendly name for this ACL Role.
@@ -367,6 +651,12 @@ func (o AclRolePolicyArrayOutput) ToAclRolePolicyArrayOutput() AclRolePolicyArra
 
 func (o AclRolePolicyArrayOutput) ToAclRolePolicyArrayOutputWithContext(ctx context.Context) AclRolePolicyArrayOutput {
 	return o
+}
+
+func (o AclRolePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]AclRolePolicy] {
+	return pulumix.Output[[]AclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclRolePolicyArrayOutput) Index(i pulumi.IntInput) AclRolePolicyOutput {
@@ -410,6 +700,12 @@ func (i AclTokenRoleArgs) ToAclTokenRoleOutputWithContext(ctx context.Context) A
 	return pulumi.ToOutputWithContext(ctx, i).(AclTokenRoleOutput)
 }
 
+func (i AclTokenRoleArgs) ToOutput(ctx context.Context) pulumix.Output[AclTokenRole] {
+	return pulumix.Output[AclTokenRole]{
+		OutputState: i.ToAclTokenRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AclTokenRoleArrayInput is an input type that accepts AclTokenRoleArray and AclTokenRoleArrayOutput values.
 // You can construct a concrete instance of `AclTokenRoleArrayInput` via:
 //
@@ -435,6 +731,12 @@ func (i AclTokenRoleArray) ToAclTokenRoleArrayOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(AclTokenRoleArrayOutput)
 }
 
+func (i AclTokenRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]AclTokenRole] {
+	return pulumix.Output[[]AclTokenRole]{
+		OutputState: i.ToAclTokenRoleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AclTokenRoleOutput struct{ *pulumi.OutputState }
 
 func (AclTokenRoleOutput) ElementType() reflect.Type {
@@ -447,6 +749,12 @@ func (o AclTokenRoleOutput) ToAclTokenRoleOutput() AclTokenRoleOutput {
 
 func (o AclTokenRoleOutput) ToAclTokenRoleOutputWithContext(ctx context.Context) AclTokenRoleOutput {
 	return o
+}
+
+func (o AclTokenRoleOutput) ToOutput(ctx context.Context) pulumix.Output[AclTokenRole] {
+	return pulumix.Output[AclTokenRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclTokenRoleOutput) Id() pulumi.StringOutput {
@@ -472,10 +780,2148 @@ func (o AclTokenRoleArrayOutput) ToAclTokenRoleArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o AclTokenRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]AclTokenRole] {
+	return pulumix.Output[[]AclTokenRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AclTokenRoleArrayOutput) Index(i pulumi.IntInput) AclTokenRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclTokenRole {
 		return vs[0].([]AclTokenRole)[vs[1].(int)]
 	}).(AclTokenRoleOutput)
+}
+
+type CsiVolumeCapability struct {
+	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
+	AccessMode string `pulumi:"accessMode"`
+	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+	// - `block-device`
+	// - `file-system`
+	AttachmentMode string `pulumi:"attachmentMode"`
+}
+
+// CsiVolumeCapabilityInput is an input type that accepts CsiVolumeCapabilityArgs and CsiVolumeCapabilityOutput values.
+// You can construct a concrete instance of `CsiVolumeCapabilityInput` via:
+//
+//	CsiVolumeCapabilityArgs{...}
+type CsiVolumeCapabilityInput interface {
+	pulumi.Input
+
+	ToCsiVolumeCapabilityOutput() CsiVolumeCapabilityOutput
+	ToCsiVolumeCapabilityOutputWithContext(context.Context) CsiVolumeCapabilityOutput
+}
+
+type CsiVolumeCapabilityArgs struct {
+	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
+	AccessMode pulumi.StringInput `pulumi:"accessMode"`
+	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+	// - `block-device`
+	// - `file-system`
+	AttachmentMode pulumi.StringInput `pulumi:"attachmentMode"`
+}
+
+func (CsiVolumeCapabilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeCapability)(nil)).Elem()
+}
+
+func (i CsiVolumeCapabilityArgs) ToCsiVolumeCapabilityOutput() CsiVolumeCapabilityOutput {
+	return i.ToCsiVolumeCapabilityOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeCapabilityArgs) ToCsiVolumeCapabilityOutputWithContext(ctx context.Context) CsiVolumeCapabilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeCapabilityOutput)
+}
+
+func (i CsiVolumeCapabilityArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeCapability] {
+	return pulumix.Output[CsiVolumeCapability]{
+		OutputState: i.ToCsiVolumeCapabilityOutputWithContext(ctx).OutputState,
+	}
+}
+
+// CsiVolumeCapabilityArrayInput is an input type that accepts CsiVolumeCapabilityArray and CsiVolumeCapabilityArrayOutput values.
+// You can construct a concrete instance of `CsiVolumeCapabilityArrayInput` via:
+//
+//	CsiVolumeCapabilityArray{ CsiVolumeCapabilityArgs{...} }
+type CsiVolumeCapabilityArrayInput interface {
+	pulumi.Input
+
+	ToCsiVolumeCapabilityArrayOutput() CsiVolumeCapabilityArrayOutput
+	ToCsiVolumeCapabilityArrayOutputWithContext(context.Context) CsiVolumeCapabilityArrayOutput
+}
+
+type CsiVolumeCapabilityArray []CsiVolumeCapabilityInput
+
+func (CsiVolumeCapabilityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeCapability)(nil)).Elem()
+}
+
+func (i CsiVolumeCapabilityArray) ToCsiVolumeCapabilityArrayOutput() CsiVolumeCapabilityArrayOutput {
+	return i.ToCsiVolumeCapabilityArrayOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeCapabilityArray) ToCsiVolumeCapabilityArrayOutputWithContext(ctx context.Context) CsiVolumeCapabilityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeCapabilityArrayOutput)
+}
+
+func (i CsiVolumeCapabilityArray) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeCapability] {
+	return pulumix.Output[[]CsiVolumeCapability]{
+		OutputState: i.ToCsiVolumeCapabilityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeCapabilityOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeCapabilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeCapability)(nil)).Elem()
+}
+
+func (o CsiVolumeCapabilityOutput) ToCsiVolumeCapabilityOutput() CsiVolumeCapabilityOutput {
+	return o
+}
+
+func (o CsiVolumeCapabilityOutput) ToCsiVolumeCapabilityOutputWithContext(ctx context.Context) CsiVolumeCapabilityOutput {
+	return o
+}
+
+func (o CsiVolumeCapabilityOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeCapability] {
+	return pulumix.Output[CsiVolumeCapability]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+// - `single-node-reader-only`
+// - `single-node-writer`
+// - `multi-node-reader-only`
+// - `multi-node-single-writer`
+// - `multi-node-multi-writer`
+func (o CsiVolumeCapabilityOutput) AccessMode() pulumi.StringOutput {
+	return o.ApplyT(func(v CsiVolumeCapability) string { return v.AccessMode }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+// - `block-device`
+// - `file-system`
+func (o CsiVolumeCapabilityOutput) AttachmentMode() pulumi.StringOutput {
+	return o.ApplyT(func(v CsiVolumeCapability) string { return v.AttachmentMode }).(pulumi.StringOutput)
+}
+
+type CsiVolumeCapabilityArrayOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeCapabilityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeCapability)(nil)).Elem()
+}
+
+func (o CsiVolumeCapabilityArrayOutput) ToCsiVolumeCapabilityArrayOutput() CsiVolumeCapabilityArrayOutput {
+	return o
+}
+
+func (o CsiVolumeCapabilityArrayOutput) ToCsiVolumeCapabilityArrayOutputWithContext(ctx context.Context) CsiVolumeCapabilityArrayOutput {
+	return o
+}
+
+func (o CsiVolumeCapabilityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeCapability] {
+	return pulumix.Output[[]CsiVolumeCapability]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeCapabilityArrayOutput) Index(i pulumi.IntInput) CsiVolumeCapabilityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CsiVolumeCapability {
+		return vs[0].([]CsiVolumeCapability)[vs[1].(int)]
+	}).(CsiVolumeCapabilityOutput)
+}
+
+type CsiVolumeMountOptions struct {
+	// `(string: optional)` - The file system type.
+	FsType *string `pulumi:"fsType"`
+	// `[]string: optional` - The flags passed to `mount`.
+	MountFlags []string `pulumi:"mountFlags"`
+}
+
+// CsiVolumeMountOptionsInput is an input type that accepts CsiVolumeMountOptionsArgs and CsiVolumeMountOptionsOutput values.
+// You can construct a concrete instance of `CsiVolumeMountOptionsInput` via:
+//
+//	CsiVolumeMountOptionsArgs{...}
+type CsiVolumeMountOptionsInput interface {
+	pulumi.Input
+
+	ToCsiVolumeMountOptionsOutput() CsiVolumeMountOptionsOutput
+	ToCsiVolumeMountOptionsOutputWithContext(context.Context) CsiVolumeMountOptionsOutput
+}
+
+type CsiVolumeMountOptionsArgs struct {
+	// `(string: optional)` - The file system type.
+	FsType pulumi.StringPtrInput `pulumi:"fsType"`
+	// `[]string: optional` - The flags passed to `mount`.
+	MountFlags pulumi.StringArrayInput `pulumi:"mountFlags"`
+}
+
+func (CsiVolumeMountOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeMountOptions)(nil)).Elem()
+}
+
+func (i CsiVolumeMountOptionsArgs) ToCsiVolumeMountOptionsOutput() CsiVolumeMountOptionsOutput {
+	return i.ToCsiVolumeMountOptionsOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeMountOptionsArgs) ToCsiVolumeMountOptionsOutputWithContext(ctx context.Context) CsiVolumeMountOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeMountOptionsOutput)
+}
+
+func (i CsiVolumeMountOptionsArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeMountOptions] {
+	return pulumix.Output[CsiVolumeMountOptions]{
+		OutputState: i.ToCsiVolumeMountOptionsOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i CsiVolumeMountOptionsArgs) ToCsiVolumeMountOptionsPtrOutput() CsiVolumeMountOptionsPtrOutput {
+	return i.ToCsiVolumeMountOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeMountOptionsArgs) ToCsiVolumeMountOptionsPtrOutputWithContext(ctx context.Context) CsiVolumeMountOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeMountOptionsOutput).ToCsiVolumeMountOptionsPtrOutputWithContext(ctx)
+}
+
+// CsiVolumeMountOptionsPtrInput is an input type that accepts CsiVolumeMountOptionsArgs, CsiVolumeMountOptionsPtr and CsiVolumeMountOptionsPtrOutput values.
+// You can construct a concrete instance of `CsiVolumeMountOptionsPtrInput` via:
+//
+//	        CsiVolumeMountOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CsiVolumeMountOptionsPtrInput interface {
+	pulumi.Input
+
+	ToCsiVolumeMountOptionsPtrOutput() CsiVolumeMountOptionsPtrOutput
+	ToCsiVolumeMountOptionsPtrOutputWithContext(context.Context) CsiVolumeMountOptionsPtrOutput
+}
+
+type csiVolumeMountOptionsPtrType CsiVolumeMountOptionsArgs
+
+func CsiVolumeMountOptionsPtr(v *CsiVolumeMountOptionsArgs) CsiVolumeMountOptionsPtrInput {
+	return (*csiVolumeMountOptionsPtrType)(v)
+}
+
+func (*csiVolumeMountOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeMountOptions)(nil)).Elem()
+}
+
+func (i *csiVolumeMountOptionsPtrType) ToCsiVolumeMountOptionsPtrOutput() CsiVolumeMountOptionsPtrOutput {
+	return i.ToCsiVolumeMountOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *csiVolumeMountOptionsPtrType) ToCsiVolumeMountOptionsPtrOutputWithContext(ctx context.Context) CsiVolumeMountOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeMountOptionsPtrOutput)
+}
+
+func (i *csiVolumeMountOptionsPtrType) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeMountOptions] {
+	return pulumix.Output[*CsiVolumeMountOptions]{
+		OutputState: i.ToCsiVolumeMountOptionsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeMountOptionsOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeMountOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeMountOptions)(nil)).Elem()
+}
+
+func (o CsiVolumeMountOptionsOutput) ToCsiVolumeMountOptionsOutput() CsiVolumeMountOptionsOutput {
+	return o
+}
+
+func (o CsiVolumeMountOptionsOutput) ToCsiVolumeMountOptionsOutputWithContext(ctx context.Context) CsiVolumeMountOptionsOutput {
+	return o
+}
+
+func (o CsiVolumeMountOptionsOutput) ToCsiVolumeMountOptionsPtrOutput() CsiVolumeMountOptionsPtrOutput {
+	return o.ToCsiVolumeMountOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o CsiVolumeMountOptionsOutput) ToCsiVolumeMountOptionsPtrOutputWithContext(ctx context.Context) CsiVolumeMountOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CsiVolumeMountOptions) *CsiVolumeMountOptions {
+		return &v
+	}).(CsiVolumeMountOptionsPtrOutput)
+}
+
+func (o CsiVolumeMountOptionsOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeMountOptions] {
+	return pulumix.Output[CsiVolumeMountOptions]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(string: optional)` - The file system type.
+func (o CsiVolumeMountOptionsOutput) FsType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CsiVolumeMountOptions) *string { return v.FsType }).(pulumi.StringPtrOutput)
+}
+
+// `[]string: optional` - The flags passed to `mount`.
+func (o CsiVolumeMountOptionsOutput) MountFlags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v CsiVolumeMountOptions) []string { return v.MountFlags }).(pulumi.StringArrayOutput)
+}
+
+type CsiVolumeMountOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeMountOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeMountOptions)(nil)).Elem()
+}
+
+func (o CsiVolumeMountOptionsPtrOutput) ToCsiVolumeMountOptionsPtrOutput() CsiVolumeMountOptionsPtrOutput {
+	return o
+}
+
+func (o CsiVolumeMountOptionsPtrOutput) ToCsiVolumeMountOptionsPtrOutputWithContext(ctx context.Context) CsiVolumeMountOptionsPtrOutput {
+	return o
+}
+
+func (o CsiVolumeMountOptionsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeMountOptions] {
+	return pulumix.Output[*CsiVolumeMountOptions]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeMountOptionsPtrOutput) Elem() CsiVolumeMountOptionsOutput {
+	return o.ApplyT(func(v *CsiVolumeMountOptions) CsiVolumeMountOptions {
+		if v != nil {
+			return *v
+		}
+		var ret CsiVolumeMountOptions
+		return ret
+	}).(CsiVolumeMountOptionsOutput)
+}
+
+// `(string: optional)` - The file system type.
+func (o CsiVolumeMountOptionsPtrOutput) FsType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CsiVolumeMountOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FsType
+	}).(pulumi.StringPtrOutput)
+}
+
+// `[]string: optional` - The flags passed to `mount`.
+func (o CsiVolumeMountOptionsPtrOutput) MountFlags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CsiVolumeMountOptions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.MountFlags
+	}).(pulumi.StringArrayOutput)
+}
+
+type CsiVolumeRegistrationCapability struct {
+	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
+	AccessMode string `pulumi:"accessMode"`
+	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+	// - `block-device`
+	// - `file-system`
+	AttachmentMode string `pulumi:"attachmentMode"`
+}
+
+// CsiVolumeRegistrationCapabilityInput is an input type that accepts CsiVolumeRegistrationCapabilityArgs and CsiVolumeRegistrationCapabilityOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationCapabilityInput` via:
+//
+//	CsiVolumeRegistrationCapabilityArgs{...}
+type CsiVolumeRegistrationCapabilityInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationCapabilityOutput() CsiVolumeRegistrationCapabilityOutput
+	ToCsiVolumeRegistrationCapabilityOutputWithContext(context.Context) CsiVolumeRegistrationCapabilityOutput
+}
+
+type CsiVolumeRegistrationCapabilityArgs struct {
+	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+	// - `single-node-reader-only`
+	// - `single-node-writer`
+	// - `multi-node-reader-only`
+	// - `multi-node-single-writer`
+	// - `multi-node-multi-writer`
+	AccessMode pulumi.StringInput `pulumi:"accessMode"`
+	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+	// - `block-device`
+	// - `file-system`
+	AttachmentMode pulumi.StringInput `pulumi:"attachmentMode"`
+}
+
+func (CsiVolumeRegistrationCapabilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationCapability)(nil)).Elem()
+}
+
+func (i CsiVolumeRegistrationCapabilityArgs) ToCsiVolumeRegistrationCapabilityOutput() CsiVolumeRegistrationCapabilityOutput {
+	return i.ToCsiVolumeRegistrationCapabilityOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationCapabilityArgs) ToCsiVolumeRegistrationCapabilityOutputWithContext(ctx context.Context) CsiVolumeRegistrationCapabilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationCapabilityOutput)
+}
+
+func (i CsiVolumeRegistrationCapabilityArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationCapability] {
+	return pulumix.Output[CsiVolumeRegistrationCapability]{
+		OutputState: i.ToCsiVolumeRegistrationCapabilityOutputWithContext(ctx).OutputState,
+	}
+}
+
+// CsiVolumeRegistrationCapabilityArrayInput is an input type that accepts CsiVolumeRegistrationCapabilityArray and CsiVolumeRegistrationCapabilityArrayOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationCapabilityArrayInput` via:
+//
+//	CsiVolumeRegistrationCapabilityArray{ CsiVolumeRegistrationCapabilityArgs{...} }
+type CsiVolumeRegistrationCapabilityArrayInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationCapabilityArrayOutput() CsiVolumeRegistrationCapabilityArrayOutput
+	ToCsiVolumeRegistrationCapabilityArrayOutputWithContext(context.Context) CsiVolumeRegistrationCapabilityArrayOutput
+}
+
+type CsiVolumeRegistrationCapabilityArray []CsiVolumeRegistrationCapabilityInput
+
+func (CsiVolumeRegistrationCapabilityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeRegistrationCapability)(nil)).Elem()
+}
+
+func (i CsiVolumeRegistrationCapabilityArray) ToCsiVolumeRegistrationCapabilityArrayOutput() CsiVolumeRegistrationCapabilityArrayOutput {
+	return i.ToCsiVolumeRegistrationCapabilityArrayOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationCapabilityArray) ToCsiVolumeRegistrationCapabilityArrayOutputWithContext(ctx context.Context) CsiVolumeRegistrationCapabilityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationCapabilityArrayOutput)
+}
+
+func (i CsiVolumeRegistrationCapabilityArray) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeRegistrationCapability] {
+	return pulumix.Output[[]CsiVolumeRegistrationCapability]{
+		OutputState: i.ToCsiVolumeRegistrationCapabilityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeRegistrationCapabilityOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationCapabilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationCapability)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationCapabilityOutput) ToCsiVolumeRegistrationCapabilityOutput() CsiVolumeRegistrationCapabilityOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationCapabilityOutput) ToCsiVolumeRegistrationCapabilityOutputWithContext(ctx context.Context) CsiVolumeRegistrationCapabilityOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationCapabilityOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationCapability] {
+	return pulumix.Output[CsiVolumeRegistrationCapability]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+// - `single-node-reader-only`
+// - `single-node-writer`
+// - `multi-node-reader-only`
+// - `multi-node-single-writer`
+// - `multi-node-multi-writer`
+func (o CsiVolumeRegistrationCapabilityOutput) AccessMode() pulumi.StringOutput {
+	return o.ApplyT(func(v CsiVolumeRegistrationCapability) string { return v.AccessMode }).(pulumi.StringOutput)
+}
+
+// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+// - `block-device`
+// - `file-system`
+func (o CsiVolumeRegistrationCapabilityOutput) AttachmentMode() pulumi.StringOutput {
+	return o.ApplyT(func(v CsiVolumeRegistrationCapability) string { return v.AttachmentMode }).(pulumi.StringOutput)
+}
+
+type CsiVolumeRegistrationCapabilityArrayOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationCapabilityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeRegistrationCapability)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationCapabilityArrayOutput) ToCsiVolumeRegistrationCapabilityArrayOutput() CsiVolumeRegistrationCapabilityArrayOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationCapabilityArrayOutput) ToCsiVolumeRegistrationCapabilityArrayOutputWithContext(ctx context.Context) CsiVolumeRegistrationCapabilityArrayOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationCapabilityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeRegistrationCapability] {
+	return pulumix.Output[[]CsiVolumeRegistrationCapability]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeRegistrationCapabilityArrayOutput) Index(i pulumi.IntInput) CsiVolumeRegistrationCapabilityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CsiVolumeRegistrationCapability {
+		return vs[0].([]CsiVolumeRegistrationCapability)[vs[1].(int)]
+	}).(CsiVolumeRegistrationCapabilityOutput)
+}
+
+type CsiVolumeRegistrationMountOptions struct {
+	// `(string: <optional>)` - The file system type.
+	FsType *string `pulumi:"fsType"`
+	// `([]string: <optional>)` - The flags passed to `mount`.
+	MountFlags []string `pulumi:"mountFlags"`
+}
+
+// CsiVolumeRegistrationMountOptionsInput is an input type that accepts CsiVolumeRegistrationMountOptionsArgs and CsiVolumeRegistrationMountOptionsOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationMountOptionsInput` via:
+//
+//	CsiVolumeRegistrationMountOptionsArgs{...}
+type CsiVolumeRegistrationMountOptionsInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationMountOptionsOutput() CsiVolumeRegistrationMountOptionsOutput
+	ToCsiVolumeRegistrationMountOptionsOutputWithContext(context.Context) CsiVolumeRegistrationMountOptionsOutput
+}
+
+type CsiVolumeRegistrationMountOptionsArgs struct {
+	// `(string: <optional>)` - The file system type.
+	FsType pulumi.StringPtrInput `pulumi:"fsType"`
+	// `([]string: <optional>)` - The flags passed to `mount`.
+	MountFlags pulumi.StringArrayInput `pulumi:"mountFlags"`
+}
+
+func (CsiVolumeRegistrationMountOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationMountOptions)(nil)).Elem()
+}
+
+func (i CsiVolumeRegistrationMountOptionsArgs) ToCsiVolumeRegistrationMountOptionsOutput() CsiVolumeRegistrationMountOptionsOutput {
+	return i.ToCsiVolumeRegistrationMountOptionsOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationMountOptionsArgs) ToCsiVolumeRegistrationMountOptionsOutputWithContext(ctx context.Context) CsiVolumeRegistrationMountOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationMountOptionsOutput)
+}
+
+func (i CsiVolumeRegistrationMountOptionsArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationMountOptions] {
+	return pulumix.Output[CsiVolumeRegistrationMountOptions]{
+		OutputState: i.ToCsiVolumeRegistrationMountOptionsOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i CsiVolumeRegistrationMountOptionsArgs) ToCsiVolumeRegistrationMountOptionsPtrOutput() CsiVolumeRegistrationMountOptionsPtrOutput {
+	return i.ToCsiVolumeRegistrationMountOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationMountOptionsArgs) ToCsiVolumeRegistrationMountOptionsPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationMountOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationMountOptionsOutput).ToCsiVolumeRegistrationMountOptionsPtrOutputWithContext(ctx)
+}
+
+// CsiVolumeRegistrationMountOptionsPtrInput is an input type that accepts CsiVolumeRegistrationMountOptionsArgs, CsiVolumeRegistrationMountOptionsPtr and CsiVolumeRegistrationMountOptionsPtrOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationMountOptionsPtrInput` via:
+//
+//	        CsiVolumeRegistrationMountOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CsiVolumeRegistrationMountOptionsPtrInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationMountOptionsPtrOutput() CsiVolumeRegistrationMountOptionsPtrOutput
+	ToCsiVolumeRegistrationMountOptionsPtrOutputWithContext(context.Context) CsiVolumeRegistrationMountOptionsPtrOutput
+}
+
+type csiVolumeRegistrationMountOptionsPtrType CsiVolumeRegistrationMountOptionsArgs
+
+func CsiVolumeRegistrationMountOptionsPtr(v *CsiVolumeRegistrationMountOptionsArgs) CsiVolumeRegistrationMountOptionsPtrInput {
+	return (*csiVolumeRegistrationMountOptionsPtrType)(v)
+}
+
+func (*csiVolumeRegistrationMountOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeRegistrationMountOptions)(nil)).Elem()
+}
+
+func (i *csiVolumeRegistrationMountOptionsPtrType) ToCsiVolumeRegistrationMountOptionsPtrOutput() CsiVolumeRegistrationMountOptionsPtrOutput {
+	return i.ToCsiVolumeRegistrationMountOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *csiVolumeRegistrationMountOptionsPtrType) ToCsiVolumeRegistrationMountOptionsPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationMountOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationMountOptionsPtrOutput)
+}
+
+func (i *csiVolumeRegistrationMountOptionsPtrType) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeRegistrationMountOptions] {
+	return pulumix.Output[*CsiVolumeRegistrationMountOptions]{
+		OutputState: i.ToCsiVolumeRegistrationMountOptionsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeRegistrationMountOptionsOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationMountOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationMountOptions)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationMountOptionsOutput) ToCsiVolumeRegistrationMountOptionsOutput() CsiVolumeRegistrationMountOptionsOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationMountOptionsOutput) ToCsiVolumeRegistrationMountOptionsOutputWithContext(ctx context.Context) CsiVolumeRegistrationMountOptionsOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationMountOptionsOutput) ToCsiVolumeRegistrationMountOptionsPtrOutput() CsiVolumeRegistrationMountOptionsPtrOutput {
+	return o.ToCsiVolumeRegistrationMountOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o CsiVolumeRegistrationMountOptionsOutput) ToCsiVolumeRegistrationMountOptionsPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationMountOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CsiVolumeRegistrationMountOptions) *CsiVolumeRegistrationMountOptions {
+		return &v
+	}).(CsiVolumeRegistrationMountOptionsPtrOutput)
+}
+
+func (o CsiVolumeRegistrationMountOptionsOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationMountOptions] {
+	return pulumix.Output[CsiVolumeRegistrationMountOptions]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(string: <optional>)` - The file system type.
+func (o CsiVolumeRegistrationMountOptionsOutput) FsType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CsiVolumeRegistrationMountOptions) *string { return v.FsType }).(pulumi.StringPtrOutput)
+}
+
+// `([]string: <optional>)` - The flags passed to `mount`.
+func (o CsiVolumeRegistrationMountOptionsOutput) MountFlags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v CsiVolumeRegistrationMountOptions) []string { return v.MountFlags }).(pulumi.StringArrayOutput)
+}
+
+type CsiVolumeRegistrationMountOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationMountOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeRegistrationMountOptions)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationMountOptionsPtrOutput) ToCsiVolumeRegistrationMountOptionsPtrOutput() CsiVolumeRegistrationMountOptionsPtrOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationMountOptionsPtrOutput) ToCsiVolumeRegistrationMountOptionsPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationMountOptionsPtrOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationMountOptionsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeRegistrationMountOptions] {
+	return pulumix.Output[*CsiVolumeRegistrationMountOptions]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeRegistrationMountOptionsPtrOutput) Elem() CsiVolumeRegistrationMountOptionsOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistrationMountOptions) CsiVolumeRegistrationMountOptions {
+		if v != nil {
+			return *v
+		}
+		var ret CsiVolumeRegistrationMountOptions
+		return ret
+	}).(CsiVolumeRegistrationMountOptionsOutput)
+}
+
+// `(string: <optional>)` - The file system type.
+func (o CsiVolumeRegistrationMountOptionsPtrOutput) FsType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistrationMountOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FsType
+	}).(pulumi.StringPtrOutput)
+}
+
+// `([]string: <optional>)` - The flags passed to `mount`.
+func (o CsiVolumeRegistrationMountOptionsPtrOutput) MountFlags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistrationMountOptions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.MountFlags
+	}).(pulumi.StringArrayOutput)
+}
+
+type CsiVolumeRegistrationTopology struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
+	Segments map[string]string `pulumi:"segments"`
+}
+
+// CsiVolumeRegistrationTopologyInput is an input type that accepts CsiVolumeRegistrationTopologyArgs and CsiVolumeRegistrationTopologyOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationTopologyInput` via:
+//
+//	CsiVolumeRegistrationTopologyArgs{...}
+type CsiVolumeRegistrationTopologyInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationTopologyOutput() CsiVolumeRegistrationTopologyOutput
+	ToCsiVolumeRegistrationTopologyOutputWithContext(context.Context) CsiVolumeRegistrationTopologyOutput
+}
+
+type CsiVolumeRegistrationTopologyArgs struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
+	Segments pulumi.StringMapInput `pulumi:"segments"`
+}
+
+func (CsiVolumeRegistrationTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationTopology)(nil)).Elem()
+}
+
+func (i CsiVolumeRegistrationTopologyArgs) ToCsiVolumeRegistrationTopologyOutput() CsiVolumeRegistrationTopologyOutput {
+	return i.ToCsiVolumeRegistrationTopologyOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationTopologyArgs) ToCsiVolumeRegistrationTopologyOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationTopologyOutput)
+}
+
+func (i CsiVolumeRegistrationTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationTopology] {
+	return pulumix.Output[CsiVolumeRegistrationTopology]{
+		OutputState: i.ToCsiVolumeRegistrationTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
+// CsiVolumeRegistrationTopologyArrayInput is an input type that accepts CsiVolumeRegistrationTopologyArray and CsiVolumeRegistrationTopologyArrayOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationTopologyArrayInput` via:
+//
+//	CsiVolumeRegistrationTopologyArray{ CsiVolumeRegistrationTopologyArgs{...} }
+type CsiVolumeRegistrationTopologyArrayInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationTopologyArrayOutput() CsiVolumeRegistrationTopologyArrayOutput
+	ToCsiVolumeRegistrationTopologyArrayOutputWithContext(context.Context) CsiVolumeRegistrationTopologyArrayOutput
+}
+
+type CsiVolumeRegistrationTopologyArray []CsiVolumeRegistrationTopologyInput
+
+func (CsiVolumeRegistrationTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeRegistrationTopology)(nil)).Elem()
+}
+
+func (i CsiVolumeRegistrationTopologyArray) ToCsiVolumeRegistrationTopologyArrayOutput() CsiVolumeRegistrationTopologyArrayOutput {
+	return i.ToCsiVolumeRegistrationTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationTopologyArray) ToCsiVolumeRegistrationTopologyArrayOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationTopologyArrayOutput)
+}
+
+func (i CsiVolumeRegistrationTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeRegistrationTopology] {
+	return pulumix.Output[[]CsiVolumeRegistrationTopology]{
+		OutputState: i.ToCsiVolumeRegistrationTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeRegistrationTopologyOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationTopology)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationTopologyOutput) ToCsiVolumeRegistrationTopologyOutput() CsiVolumeRegistrationTopologyOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyOutput) ToCsiVolumeRegistrationTopologyOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationTopology] {
+	return pulumix.Output[CsiVolumeRegistrationTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(map[string]string)` - Define the attributes for the topology request.
+//
+// In addition to the above arguments, the following attributes are exported and
+// can be referenced:
+func (o CsiVolumeRegistrationTopologyOutput) Segments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CsiVolumeRegistrationTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
+}
+
+type CsiVolumeRegistrationTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeRegistrationTopology)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationTopologyArrayOutput) ToCsiVolumeRegistrationTopologyArrayOutput() CsiVolumeRegistrationTopologyArrayOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyArrayOutput) ToCsiVolumeRegistrationTopologyArrayOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyArrayOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeRegistrationTopology] {
+	return pulumix.Output[[]CsiVolumeRegistrationTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeRegistrationTopologyArrayOutput) Index(i pulumi.IntInput) CsiVolumeRegistrationTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CsiVolumeRegistrationTopology {
+		return vs[0].([]CsiVolumeRegistrationTopology)[vs[1].(int)]
+	}).(CsiVolumeRegistrationTopologyOutput)
+}
+
+type CsiVolumeRegistrationTopologyRequest struct {
+	// `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+	Required *CsiVolumeRegistrationTopologyRequestRequired `pulumi:"required"`
+}
+
+// CsiVolumeRegistrationTopologyRequestInput is an input type that accepts CsiVolumeRegistrationTopologyRequestArgs and CsiVolumeRegistrationTopologyRequestOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationTopologyRequestInput` via:
+//
+//	CsiVolumeRegistrationTopologyRequestArgs{...}
+type CsiVolumeRegistrationTopologyRequestInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationTopologyRequestOutput() CsiVolumeRegistrationTopologyRequestOutput
+	ToCsiVolumeRegistrationTopologyRequestOutputWithContext(context.Context) CsiVolumeRegistrationTopologyRequestOutput
+}
+
+type CsiVolumeRegistrationTopologyRequestArgs struct {
+	// `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+	Required CsiVolumeRegistrationTopologyRequestRequiredPtrInput `pulumi:"required"`
+}
+
+func (CsiVolumeRegistrationTopologyRequestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationTopologyRequest)(nil)).Elem()
+}
+
+func (i CsiVolumeRegistrationTopologyRequestArgs) ToCsiVolumeRegistrationTopologyRequestOutput() CsiVolumeRegistrationTopologyRequestOutput {
+	return i.ToCsiVolumeRegistrationTopologyRequestOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationTopologyRequestArgs) ToCsiVolumeRegistrationTopologyRequestOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationTopologyRequestOutput)
+}
+
+func (i CsiVolumeRegistrationTopologyRequestArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationTopologyRequest] {
+	return pulumix.Output[CsiVolumeRegistrationTopologyRequest]{
+		OutputState: i.ToCsiVolumeRegistrationTopologyRequestOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i CsiVolumeRegistrationTopologyRequestArgs) ToCsiVolumeRegistrationTopologyRequestPtrOutput() CsiVolumeRegistrationTopologyRequestPtrOutput {
+	return i.ToCsiVolumeRegistrationTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationTopologyRequestArgs) ToCsiVolumeRegistrationTopologyRequestPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationTopologyRequestOutput).ToCsiVolumeRegistrationTopologyRequestPtrOutputWithContext(ctx)
+}
+
+// CsiVolumeRegistrationTopologyRequestPtrInput is an input type that accepts CsiVolumeRegistrationTopologyRequestArgs, CsiVolumeRegistrationTopologyRequestPtr and CsiVolumeRegistrationTopologyRequestPtrOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationTopologyRequestPtrInput` via:
+//
+//	        CsiVolumeRegistrationTopologyRequestArgs{...}
+//
+//	or:
+//
+//	        nil
+type CsiVolumeRegistrationTopologyRequestPtrInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationTopologyRequestPtrOutput() CsiVolumeRegistrationTopologyRequestPtrOutput
+	ToCsiVolumeRegistrationTopologyRequestPtrOutputWithContext(context.Context) CsiVolumeRegistrationTopologyRequestPtrOutput
+}
+
+type csiVolumeRegistrationTopologyRequestPtrType CsiVolumeRegistrationTopologyRequestArgs
+
+func CsiVolumeRegistrationTopologyRequestPtr(v *CsiVolumeRegistrationTopologyRequestArgs) CsiVolumeRegistrationTopologyRequestPtrInput {
+	return (*csiVolumeRegistrationTopologyRequestPtrType)(v)
+}
+
+func (*csiVolumeRegistrationTopologyRequestPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeRegistrationTopologyRequest)(nil)).Elem()
+}
+
+func (i *csiVolumeRegistrationTopologyRequestPtrType) ToCsiVolumeRegistrationTopologyRequestPtrOutput() CsiVolumeRegistrationTopologyRequestPtrOutput {
+	return i.ToCsiVolumeRegistrationTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (i *csiVolumeRegistrationTopologyRequestPtrType) ToCsiVolumeRegistrationTopologyRequestPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationTopologyRequestPtrOutput)
+}
+
+func (i *csiVolumeRegistrationTopologyRequestPtrType) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeRegistrationTopologyRequest] {
+	return pulumix.Output[*CsiVolumeRegistrationTopologyRequest]{
+		OutputState: i.ToCsiVolumeRegistrationTopologyRequestPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeRegistrationTopologyRequestOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationTopologyRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationTopologyRequest)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationTopologyRequestOutput) ToCsiVolumeRegistrationTopologyRequestOutput() CsiVolumeRegistrationTopologyRequestOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestOutput) ToCsiVolumeRegistrationTopologyRequestOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestOutput) ToCsiVolumeRegistrationTopologyRequestPtrOutput() CsiVolumeRegistrationTopologyRequestPtrOutput {
+	return o.ToCsiVolumeRegistrationTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (o CsiVolumeRegistrationTopologyRequestOutput) ToCsiVolumeRegistrationTopologyRequestPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CsiVolumeRegistrationTopologyRequest) *CsiVolumeRegistrationTopologyRequest {
+		return &v
+	}).(CsiVolumeRegistrationTopologyRequestPtrOutput)
+}
+
+func (o CsiVolumeRegistrationTopologyRequestOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationTopologyRequest] {
+	return pulumix.Output[CsiVolumeRegistrationTopologyRequest]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(“Topology“: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+func (o CsiVolumeRegistrationTopologyRequestOutput) Required() CsiVolumeRegistrationTopologyRequestRequiredPtrOutput {
+	return o.ApplyT(func(v CsiVolumeRegistrationTopologyRequest) *CsiVolumeRegistrationTopologyRequestRequired {
+		return v.Required
+	}).(CsiVolumeRegistrationTopologyRequestRequiredPtrOutput)
+}
+
+type CsiVolumeRegistrationTopologyRequestPtrOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationTopologyRequestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeRegistrationTopologyRequest)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationTopologyRequestPtrOutput) ToCsiVolumeRegistrationTopologyRequestPtrOutput() CsiVolumeRegistrationTopologyRequestPtrOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestPtrOutput) ToCsiVolumeRegistrationTopologyRequestPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestPtrOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeRegistrationTopologyRequest] {
+	return pulumix.Output[*CsiVolumeRegistrationTopologyRequest]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeRegistrationTopologyRequestPtrOutput) Elem() CsiVolumeRegistrationTopologyRequestOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistrationTopologyRequest) CsiVolumeRegistrationTopologyRequest {
+		if v != nil {
+			return *v
+		}
+		var ret CsiVolumeRegistrationTopologyRequest
+		return ret
+	}).(CsiVolumeRegistrationTopologyRequestOutput)
+}
+
+// `(“Topology“: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+func (o CsiVolumeRegistrationTopologyRequestPtrOutput) Required() CsiVolumeRegistrationTopologyRequestRequiredPtrOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistrationTopologyRequest) *CsiVolumeRegistrationTopologyRequestRequired {
+		if v == nil {
+			return nil
+		}
+		return v.Required
+	}).(CsiVolumeRegistrationTopologyRequestRequiredPtrOutput)
+}
+
+type CsiVolumeRegistrationTopologyRequestRequired struct {
+	Topologies []CsiVolumeRegistrationTopologyRequestRequiredTopology `pulumi:"topologies"`
+}
+
+// CsiVolumeRegistrationTopologyRequestRequiredInput is an input type that accepts CsiVolumeRegistrationTopologyRequestRequiredArgs and CsiVolumeRegistrationTopologyRequestRequiredOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationTopologyRequestRequiredInput` via:
+//
+//	CsiVolumeRegistrationTopologyRequestRequiredArgs{...}
+type CsiVolumeRegistrationTopologyRequestRequiredInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationTopologyRequestRequiredOutput() CsiVolumeRegistrationTopologyRequestRequiredOutput
+	ToCsiVolumeRegistrationTopologyRequestRequiredOutputWithContext(context.Context) CsiVolumeRegistrationTopologyRequestRequiredOutput
+}
+
+type CsiVolumeRegistrationTopologyRequestRequiredArgs struct {
+	Topologies CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
+}
+
+func (CsiVolumeRegistrationTopologyRequestRequiredArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationTopologyRequestRequired)(nil)).Elem()
+}
+
+func (i CsiVolumeRegistrationTopologyRequestRequiredArgs) ToCsiVolumeRegistrationTopologyRequestRequiredOutput() CsiVolumeRegistrationTopologyRequestRequiredOutput {
+	return i.ToCsiVolumeRegistrationTopologyRequestRequiredOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationTopologyRequestRequiredArgs) ToCsiVolumeRegistrationTopologyRequestRequiredOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestRequiredOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationTopologyRequestRequiredOutput)
+}
+
+func (i CsiVolumeRegistrationTopologyRequestRequiredArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationTopologyRequestRequired] {
+	return pulumix.Output[CsiVolumeRegistrationTopologyRequestRequired]{
+		OutputState: i.ToCsiVolumeRegistrationTopologyRequestRequiredOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i CsiVolumeRegistrationTopologyRequestRequiredArgs) ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutput() CsiVolumeRegistrationTopologyRequestRequiredPtrOutput {
+	return i.ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationTopologyRequestRequiredArgs) ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestRequiredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationTopologyRequestRequiredOutput).ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutputWithContext(ctx)
+}
+
+// CsiVolumeRegistrationTopologyRequestRequiredPtrInput is an input type that accepts CsiVolumeRegistrationTopologyRequestRequiredArgs, CsiVolumeRegistrationTopologyRequestRequiredPtr and CsiVolumeRegistrationTopologyRequestRequiredPtrOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationTopologyRequestRequiredPtrInput` via:
+//
+//	        CsiVolumeRegistrationTopologyRequestRequiredArgs{...}
+//
+//	or:
+//
+//	        nil
+type CsiVolumeRegistrationTopologyRequestRequiredPtrInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutput() CsiVolumeRegistrationTopologyRequestRequiredPtrOutput
+	ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutputWithContext(context.Context) CsiVolumeRegistrationTopologyRequestRequiredPtrOutput
+}
+
+type csiVolumeRegistrationTopologyRequestRequiredPtrType CsiVolumeRegistrationTopologyRequestRequiredArgs
+
+func CsiVolumeRegistrationTopologyRequestRequiredPtr(v *CsiVolumeRegistrationTopologyRequestRequiredArgs) CsiVolumeRegistrationTopologyRequestRequiredPtrInput {
+	return (*csiVolumeRegistrationTopologyRequestRequiredPtrType)(v)
+}
+
+func (*csiVolumeRegistrationTopologyRequestRequiredPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeRegistrationTopologyRequestRequired)(nil)).Elem()
+}
+
+func (i *csiVolumeRegistrationTopologyRequestRequiredPtrType) ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutput() CsiVolumeRegistrationTopologyRequestRequiredPtrOutput {
+	return i.ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (i *csiVolumeRegistrationTopologyRequestRequiredPtrType) ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestRequiredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationTopologyRequestRequiredPtrOutput)
+}
+
+func (i *csiVolumeRegistrationTopologyRequestRequiredPtrType) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeRegistrationTopologyRequestRequired] {
+	return pulumix.Output[*CsiVolumeRegistrationTopologyRequestRequired]{
+		OutputState: i.ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeRegistrationTopologyRequestRequiredOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationTopologyRequestRequiredOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationTopologyRequestRequired)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredOutput) ToCsiVolumeRegistrationTopologyRequestRequiredOutput() CsiVolumeRegistrationTopologyRequestRequiredOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredOutput) ToCsiVolumeRegistrationTopologyRequestRequiredOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestRequiredOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredOutput) ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutput() CsiVolumeRegistrationTopologyRequestRequiredPtrOutput {
+	return o.ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredOutput) ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestRequiredPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CsiVolumeRegistrationTopologyRequestRequired) *CsiVolumeRegistrationTopologyRequestRequired {
+		return &v
+	}).(CsiVolumeRegistrationTopologyRequestRequiredPtrOutput)
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationTopologyRequestRequired] {
+	return pulumix.Output[CsiVolumeRegistrationTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredOutput) Topologies() CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput {
+	return o.ApplyT(func(v CsiVolumeRegistrationTopologyRequestRequired) []CsiVolumeRegistrationTopologyRequestRequiredTopology {
+		return v.Topologies
+	}).(CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput)
+}
+
+type CsiVolumeRegistrationTopologyRequestRequiredPtrOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationTopologyRequestRequiredPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeRegistrationTopologyRequestRequired)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredPtrOutput) ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutput() CsiVolumeRegistrationTopologyRequestRequiredPtrOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredPtrOutput) ToCsiVolumeRegistrationTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestRequiredPtrOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeRegistrationTopologyRequestRequired] {
+	return pulumix.Output[*CsiVolumeRegistrationTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredPtrOutput) Elem() CsiVolumeRegistrationTopologyRequestRequiredOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistrationTopologyRequestRequired) CsiVolumeRegistrationTopologyRequestRequired {
+		if v != nil {
+			return *v
+		}
+		var ret CsiVolumeRegistrationTopologyRequestRequired
+		return ret
+	}).(CsiVolumeRegistrationTopologyRequestRequiredOutput)
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredPtrOutput) Topologies() CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistrationTopologyRequestRequired) []CsiVolumeRegistrationTopologyRequestRequiredTopology {
+		if v == nil {
+			return nil
+		}
+		return v.Topologies
+	}).(CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput)
+}
+
+type CsiVolumeRegistrationTopologyRequestRequiredTopology struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
+	Segments map[string]string `pulumi:"segments"`
+}
+
+// CsiVolumeRegistrationTopologyRequestRequiredTopologyInput is an input type that accepts CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs and CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationTopologyRequestRequiredTopologyInput` via:
+//
+//	CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs{...}
+type CsiVolumeRegistrationTopologyRequestRequiredTopologyInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationTopologyRequestRequiredTopologyOutput() CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput
+	ToCsiVolumeRegistrationTopologyRequestRequiredTopologyOutputWithContext(context.Context) CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput
+}
+
+type CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
+	Segments pulumi.StringMapInput `pulumi:"segments"`
+}
+
+func (CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (i CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs) ToCsiVolumeRegistrationTopologyRequestRequiredTopologyOutput() CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput {
+	return i.ToCsiVolumeRegistrationTopologyRequestRequiredTopologyOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs) ToCsiVolumeRegistrationTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput)
+}
+
+func (i CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationTopologyRequestRequiredTopology] {
+	return pulumix.Output[CsiVolumeRegistrationTopologyRequestRequiredTopology]{
+		OutputState: i.ToCsiVolumeRegistrationTopologyRequestRequiredTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
+// CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayInput is an input type that accepts CsiVolumeRegistrationTopologyRequestRequiredTopologyArray and CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput values.
+// You can construct a concrete instance of `CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayInput` via:
+//
+//	CsiVolumeRegistrationTopologyRequestRequiredTopologyArray{ CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs{...} }
+type CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayInput interface {
+	pulumi.Input
+
+	ToCsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput() CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput
+	ToCsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutputWithContext(context.Context) CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput
+}
+
+type CsiVolumeRegistrationTopologyRequestRequiredTopologyArray []CsiVolumeRegistrationTopologyRequestRequiredTopologyInput
+
+func (CsiVolumeRegistrationTopologyRequestRequiredTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeRegistrationTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (i CsiVolumeRegistrationTopologyRequestRequiredTopologyArray) ToCsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput() CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput {
+	return i.ToCsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeRegistrationTopologyRequestRequiredTopologyArray) ToCsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput)
+}
+
+func (i CsiVolumeRegistrationTopologyRequestRequiredTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeRegistrationTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]CsiVolumeRegistrationTopologyRequestRequiredTopology]{
+		OutputState: i.ToCsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeRegistrationTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput) ToCsiVolumeRegistrationTopologyRequestRequiredTopologyOutput() CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput) ToCsiVolumeRegistrationTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeRegistrationTopologyRequestRequiredTopology] {
+	return pulumix.Output[CsiVolumeRegistrationTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(map[string]string)` - Define the attributes for the topology request.
+//
+// In addition to the above arguments, the following attributes are exported and
+// can be referenced:
+func (o CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput) Segments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CsiVolumeRegistrationTopologyRequestRequiredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
+}
+
+type CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeRegistrationTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput) ToCsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput() CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput) ToCsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutputWithContext(ctx context.Context) CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput {
+	return o
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeRegistrationTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]CsiVolumeRegistrationTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi.IntInput) CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CsiVolumeRegistrationTopologyRequestRequiredTopology {
+		return vs[0].([]CsiVolumeRegistrationTopologyRequestRequiredTopology)[vs[1].(int)]
+	}).(CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput)
+}
+
+type CsiVolumeTopology struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
+	Segments map[string]string `pulumi:"segments"`
+}
+
+// CsiVolumeTopologyInput is an input type that accepts CsiVolumeTopologyArgs and CsiVolumeTopologyOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyInput` via:
+//
+//	CsiVolumeTopologyArgs{...}
+type CsiVolumeTopologyInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyOutput() CsiVolumeTopologyOutput
+	ToCsiVolumeTopologyOutputWithContext(context.Context) CsiVolumeTopologyOutput
+}
+
+type CsiVolumeTopologyArgs struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
+	Segments pulumi.StringMapInput `pulumi:"segments"`
+}
+
+func (CsiVolumeTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopology)(nil)).Elem()
+}
+
+func (i CsiVolumeTopologyArgs) ToCsiVolumeTopologyOutput() CsiVolumeTopologyOutput {
+	return i.ToCsiVolumeTopologyOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyArgs) ToCsiVolumeTopologyOutputWithContext(ctx context.Context) CsiVolumeTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyOutput)
+}
+
+func (i CsiVolumeTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopology] {
+	return pulumix.Output[CsiVolumeTopology]{
+		OutputState: i.ToCsiVolumeTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
+// CsiVolumeTopologyArrayInput is an input type that accepts CsiVolumeTopologyArray and CsiVolumeTopologyArrayOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyArrayInput` via:
+//
+//	CsiVolumeTopologyArray{ CsiVolumeTopologyArgs{...} }
+type CsiVolumeTopologyArrayInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyArrayOutput() CsiVolumeTopologyArrayOutput
+	ToCsiVolumeTopologyArrayOutputWithContext(context.Context) CsiVolumeTopologyArrayOutput
+}
+
+type CsiVolumeTopologyArray []CsiVolumeTopologyInput
+
+func (CsiVolumeTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeTopology)(nil)).Elem()
+}
+
+func (i CsiVolumeTopologyArray) ToCsiVolumeTopologyArrayOutput() CsiVolumeTopologyArrayOutput {
+	return i.ToCsiVolumeTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyArray) ToCsiVolumeTopologyArrayOutputWithContext(ctx context.Context) CsiVolumeTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyArrayOutput)
+}
+
+func (i CsiVolumeTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeTopology] {
+	return pulumix.Output[[]CsiVolumeTopology]{
+		OutputState: i.ToCsiVolumeTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeTopologyOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopology)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyOutput) ToCsiVolumeTopologyOutput() CsiVolumeTopologyOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyOutput) ToCsiVolumeTopologyOutputWithContext(ctx context.Context) CsiVolumeTopologyOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopology] {
+	return pulumix.Output[CsiVolumeTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(map[string]string)` - Define the attributes for the topology request.
+//
+// In addition to the above arguments, the following attributes are exported and
+// can be referenced:
+func (o CsiVolumeTopologyOutput) Segments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CsiVolumeTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
+}
+
+type CsiVolumeTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeTopology)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyArrayOutput) ToCsiVolumeTopologyArrayOutput() CsiVolumeTopologyArrayOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyArrayOutput) ToCsiVolumeTopologyArrayOutputWithContext(ctx context.Context) CsiVolumeTopologyArrayOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeTopology] {
+	return pulumix.Output[[]CsiVolumeTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeTopologyArrayOutput) Index(i pulumi.IntInput) CsiVolumeTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CsiVolumeTopology {
+		return vs[0].([]CsiVolumeTopology)[vs[1].(int)]
+	}).(CsiVolumeTopologyOutput)
+}
+
+type CsiVolumeTopologyRequest struct {
+	// `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+	Preferred *CsiVolumeTopologyRequestPreferred `pulumi:"preferred"`
+	// `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+	Required *CsiVolumeTopologyRequestRequired `pulumi:"required"`
+}
+
+// CsiVolumeTopologyRequestInput is an input type that accepts CsiVolumeTopologyRequestArgs and CsiVolumeTopologyRequestOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyRequestInput` via:
+//
+//	CsiVolumeTopologyRequestArgs{...}
+type CsiVolumeTopologyRequestInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyRequestOutput() CsiVolumeTopologyRequestOutput
+	ToCsiVolumeTopologyRequestOutputWithContext(context.Context) CsiVolumeTopologyRequestOutput
+}
+
+type CsiVolumeTopologyRequestArgs struct {
+	// `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+	Preferred CsiVolumeTopologyRequestPreferredPtrInput `pulumi:"preferred"`
+	// `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+	Required CsiVolumeTopologyRequestRequiredPtrInput `pulumi:"required"`
+}
+
+func (CsiVolumeTopologyRequestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopologyRequest)(nil)).Elem()
+}
+
+func (i CsiVolumeTopologyRequestArgs) ToCsiVolumeTopologyRequestOutput() CsiVolumeTopologyRequestOutput {
+	return i.ToCsiVolumeTopologyRequestOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyRequestArgs) ToCsiVolumeTopologyRequestOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestOutput)
+}
+
+func (i CsiVolumeTopologyRequestArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopologyRequest] {
+	return pulumix.Output[CsiVolumeTopologyRequest]{
+		OutputState: i.ToCsiVolumeTopologyRequestOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i CsiVolumeTopologyRequestArgs) ToCsiVolumeTopologyRequestPtrOutput() CsiVolumeTopologyRequestPtrOutput {
+	return i.ToCsiVolumeTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyRequestArgs) ToCsiVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestOutput).ToCsiVolumeTopologyRequestPtrOutputWithContext(ctx)
+}
+
+// CsiVolumeTopologyRequestPtrInput is an input type that accepts CsiVolumeTopologyRequestArgs, CsiVolumeTopologyRequestPtr and CsiVolumeTopologyRequestPtrOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyRequestPtrInput` via:
+//
+//	        CsiVolumeTopologyRequestArgs{...}
+//
+//	or:
+//
+//	        nil
+type CsiVolumeTopologyRequestPtrInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyRequestPtrOutput() CsiVolumeTopologyRequestPtrOutput
+	ToCsiVolumeTopologyRequestPtrOutputWithContext(context.Context) CsiVolumeTopologyRequestPtrOutput
+}
+
+type csiVolumeTopologyRequestPtrType CsiVolumeTopologyRequestArgs
+
+func CsiVolumeTopologyRequestPtr(v *CsiVolumeTopologyRequestArgs) CsiVolumeTopologyRequestPtrInput {
+	return (*csiVolumeTopologyRequestPtrType)(v)
+}
+
+func (*csiVolumeTopologyRequestPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeTopologyRequest)(nil)).Elem()
+}
+
+func (i *csiVolumeTopologyRequestPtrType) ToCsiVolumeTopologyRequestPtrOutput() CsiVolumeTopologyRequestPtrOutput {
+	return i.ToCsiVolumeTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (i *csiVolumeTopologyRequestPtrType) ToCsiVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestPtrOutput)
+}
+
+func (i *csiVolumeTopologyRequestPtrType) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeTopologyRequest] {
+	return pulumix.Output[*CsiVolumeTopologyRequest]{
+		OutputState: i.ToCsiVolumeTopologyRequestPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeTopologyRequestOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopologyRequest)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyRequestOutput) ToCsiVolumeTopologyRequestOutput() CsiVolumeTopologyRequestOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestOutput) ToCsiVolumeTopologyRequestOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestOutput) ToCsiVolumeTopologyRequestPtrOutput() CsiVolumeTopologyRequestPtrOutput {
+	return o.ToCsiVolumeTopologyRequestPtrOutputWithContext(context.Background())
+}
+
+func (o CsiVolumeTopologyRequestOutput) ToCsiVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CsiVolumeTopologyRequest) *CsiVolumeTopologyRequest {
+		return &v
+	}).(CsiVolumeTopologyRequestPtrOutput)
+}
+
+func (o CsiVolumeTopologyRequestOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopologyRequest] {
+	return pulumix.Output[CsiVolumeTopologyRequest]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(“Topology“: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+func (o CsiVolumeTopologyRequestOutput) Preferred() CsiVolumeTopologyRequestPreferredPtrOutput {
+	return o.ApplyT(func(v CsiVolumeTopologyRequest) *CsiVolumeTopologyRequestPreferred { return v.Preferred }).(CsiVolumeTopologyRequestPreferredPtrOutput)
+}
+
+// `(“Topology“: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+func (o CsiVolumeTopologyRequestOutput) Required() CsiVolumeTopologyRequestRequiredPtrOutput {
+	return o.ApplyT(func(v CsiVolumeTopologyRequest) *CsiVolumeTopologyRequestRequired { return v.Required }).(CsiVolumeTopologyRequestRequiredPtrOutput)
+}
+
+type CsiVolumeTopologyRequestPtrOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyRequestPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeTopologyRequest)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyRequestPtrOutput) ToCsiVolumeTopologyRequestPtrOutput() CsiVolumeTopologyRequestPtrOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestPtrOutput) ToCsiVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPtrOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeTopologyRequest] {
+	return pulumix.Output[*CsiVolumeTopologyRequest]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeTopologyRequestPtrOutput) Elem() CsiVolumeTopologyRequestOutput {
+	return o.ApplyT(func(v *CsiVolumeTopologyRequest) CsiVolumeTopologyRequest {
+		if v != nil {
+			return *v
+		}
+		var ret CsiVolumeTopologyRequest
+		return ret
+	}).(CsiVolumeTopologyRequestOutput)
+}
+
+// `(“Topology“: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+func (o CsiVolumeTopologyRequestPtrOutput) Preferred() CsiVolumeTopologyRequestPreferredPtrOutput {
+	return o.ApplyT(func(v *CsiVolumeTopologyRequest) *CsiVolumeTopologyRequestPreferred {
+		if v == nil {
+			return nil
+		}
+		return v.Preferred
+	}).(CsiVolumeTopologyRequestPreferredPtrOutput)
+}
+
+// `(“Topology“: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+func (o CsiVolumeTopologyRequestPtrOutput) Required() CsiVolumeTopologyRequestRequiredPtrOutput {
+	return o.ApplyT(func(v *CsiVolumeTopologyRequest) *CsiVolumeTopologyRequestRequired {
+		if v == nil {
+			return nil
+		}
+		return v.Required
+	}).(CsiVolumeTopologyRequestRequiredPtrOutput)
+}
+
+type CsiVolumeTopologyRequestPreferred struct {
+	Topologies []CsiVolumeTopologyRequestPreferredTopology `pulumi:"topologies"`
+}
+
+// CsiVolumeTopologyRequestPreferredInput is an input type that accepts CsiVolumeTopologyRequestPreferredArgs and CsiVolumeTopologyRequestPreferredOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyRequestPreferredInput` via:
+//
+//	CsiVolumeTopologyRequestPreferredArgs{...}
+type CsiVolumeTopologyRequestPreferredInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyRequestPreferredOutput() CsiVolumeTopologyRequestPreferredOutput
+	ToCsiVolumeTopologyRequestPreferredOutputWithContext(context.Context) CsiVolumeTopologyRequestPreferredOutput
+}
+
+type CsiVolumeTopologyRequestPreferredArgs struct {
+	Topologies CsiVolumeTopologyRequestPreferredTopologyArrayInput `pulumi:"topologies"`
+}
+
+func (CsiVolumeTopologyRequestPreferredArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopologyRequestPreferred)(nil)).Elem()
+}
+
+func (i CsiVolumeTopologyRequestPreferredArgs) ToCsiVolumeTopologyRequestPreferredOutput() CsiVolumeTopologyRequestPreferredOutput {
+	return i.ToCsiVolumeTopologyRequestPreferredOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyRequestPreferredArgs) ToCsiVolumeTopologyRequestPreferredOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPreferredOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestPreferredOutput)
+}
+
+func (i CsiVolumeTopologyRequestPreferredArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopologyRequestPreferred] {
+	return pulumix.Output[CsiVolumeTopologyRequestPreferred]{
+		OutputState: i.ToCsiVolumeTopologyRequestPreferredOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i CsiVolumeTopologyRequestPreferredArgs) ToCsiVolumeTopologyRequestPreferredPtrOutput() CsiVolumeTopologyRequestPreferredPtrOutput {
+	return i.ToCsiVolumeTopologyRequestPreferredPtrOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyRequestPreferredArgs) ToCsiVolumeTopologyRequestPreferredPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPreferredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestPreferredOutput).ToCsiVolumeTopologyRequestPreferredPtrOutputWithContext(ctx)
+}
+
+// CsiVolumeTopologyRequestPreferredPtrInput is an input type that accepts CsiVolumeTopologyRequestPreferredArgs, CsiVolumeTopologyRequestPreferredPtr and CsiVolumeTopologyRequestPreferredPtrOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyRequestPreferredPtrInput` via:
+//
+//	        CsiVolumeTopologyRequestPreferredArgs{...}
+//
+//	or:
+//
+//	        nil
+type CsiVolumeTopologyRequestPreferredPtrInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyRequestPreferredPtrOutput() CsiVolumeTopologyRequestPreferredPtrOutput
+	ToCsiVolumeTopologyRequestPreferredPtrOutputWithContext(context.Context) CsiVolumeTopologyRequestPreferredPtrOutput
+}
+
+type csiVolumeTopologyRequestPreferredPtrType CsiVolumeTopologyRequestPreferredArgs
+
+func CsiVolumeTopologyRequestPreferredPtr(v *CsiVolumeTopologyRequestPreferredArgs) CsiVolumeTopologyRequestPreferredPtrInput {
+	return (*csiVolumeTopologyRequestPreferredPtrType)(v)
+}
+
+func (*csiVolumeTopologyRequestPreferredPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeTopologyRequestPreferred)(nil)).Elem()
+}
+
+func (i *csiVolumeTopologyRequestPreferredPtrType) ToCsiVolumeTopologyRequestPreferredPtrOutput() CsiVolumeTopologyRequestPreferredPtrOutput {
+	return i.ToCsiVolumeTopologyRequestPreferredPtrOutputWithContext(context.Background())
+}
+
+func (i *csiVolumeTopologyRequestPreferredPtrType) ToCsiVolumeTopologyRequestPreferredPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPreferredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestPreferredPtrOutput)
+}
+
+func (i *csiVolumeTopologyRequestPreferredPtrType) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeTopologyRequestPreferred] {
+	return pulumix.Output[*CsiVolumeTopologyRequestPreferred]{
+		OutputState: i.ToCsiVolumeTopologyRequestPreferredPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeTopologyRequestPreferredOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyRequestPreferredOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopologyRequestPreferred)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyRequestPreferredOutput) ToCsiVolumeTopologyRequestPreferredOutput() CsiVolumeTopologyRequestPreferredOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestPreferredOutput) ToCsiVolumeTopologyRequestPreferredOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPreferredOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestPreferredOutput) ToCsiVolumeTopologyRequestPreferredPtrOutput() CsiVolumeTopologyRequestPreferredPtrOutput {
+	return o.ToCsiVolumeTopologyRequestPreferredPtrOutputWithContext(context.Background())
+}
+
+func (o CsiVolumeTopologyRequestPreferredOutput) ToCsiVolumeTopologyRequestPreferredPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPreferredPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CsiVolumeTopologyRequestPreferred) *CsiVolumeTopologyRequestPreferred {
+		return &v
+	}).(CsiVolumeTopologyRequestPreferredPtrOutput)
+}
+
+func (o CsiVolumeTopologyRequestPreferredOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopologyRequestPreferred] {
+	return pulumix.Output[CsiVolumeTopologyRequestPreferred]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeTopologyRequestPreferredOutput) Topologies() CsiVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return o.ApplyT(func(v CsiVolumeTopologyRequestPreferred) []CsiVolumeTopologyRequestPreferredTopology {
+		return v.Topologies
+	}).(CsiVolumeTopologyRequestPreferredTopologyArrayOutput)
+}
+
+type CsiVolumeTopologyRequestPreferredPtrOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyRequestPreferredPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeTopologyRequestPreferred)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyRequestPreferredPtrOutput) ToCsiVolumeTopologyRequestPreferredPtrOutput() CsiVolumeTopologyRequestPreferredPtrOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestPreferredPtrOutput) ToCsiVolumeTopologyRequestPreferredPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPreferredPtrOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestPreferredPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeTopologyRequestPreferred] {
+	return pulumix.Output[*CsiVolumeTopologyRequestPreferred]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeTopologyRequestPreferredPtrOutput) Elem() CsiVolumeTopologyRequestPreferredOutput {
+	return o.ApplyT(func(v *CsiVolumeTopologyRequestPreferred) CsiVolumeTopologyRequestPreferred {
+		if v != nil {
+			return *v
+		}
+		var ret CsiVolumeTopologyRequestPreferred
+		return ret
+	}).(CsiVolumeTopologyRequestPreferredOutput)
+}
+
+func (o CsiVolumeTopologyRequestPreferredPtrOutput) Topologies() CsiVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return o.ApplyT(func(v *CsiVolumeTopologyRequestPreferred) []CsiVolumeTopologyRequestPreferredTopology {
+		if v == nil {
+			return nil
+		}
+		return v.Topologies
+	}).(CsiVolumeTopologyRequestPreferredTopologyArrayOutput)
+}
+
+type CsiVolumeTopologyRequestPreferredTopology struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
+	Segments map[string]string `pulumi:"segments"`
+}
+
+// CsiVolumeTopologyRequestPreferredTopologyInput is an input type that accepts CsiVolumeTopologyRequestPreferredTopologyArgs and CsiVolumeTopologyRequestPreferredTopologyOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyRequestPreferredTopologyInput` via:
+//
+//	CsiVolumeTopologyRequestPreferredTopologyArgs{...}
+type CsiVolumeTopologyRequestPreferredTopologyInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyRequestPreferredTopologyOutput() CsiVolumeTopologyRequestPreferredTopologyOutput
+	ToCsiVolumeTopologyRequestPreferredTopologyOutputWithContext(context.Context) CsiVolumeTopologyRequestPreferredTopologyOutput
+}
+
+type CsiVolumeTopologyRequestPreferredTopologyArgs struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
+	Segments pulumi.StringMapInput `pulumi:"segments"`
+}
+
+func (CsiVolumeTopologyRequestPreferredTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopologyRequestPreferredTopology)(nil)).Elem()
+}
+
+func (i CsiVolumeTopologyRequestPreferredTopologyArgs) ToCsiVolumeTopologyRequestPreferredTopologyOutput() CsiVolumeTopologyRequestPreferredTopologyOutput {
+	return i.ToCsiVolumeTopologyRequestPreferredTopologyOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyRequestPreferredTopologyArgs) ToCsiVolumeTopologyRequestPreferredTopologyOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPreferredTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestPreferredTopologyOutput)
+}
+
+func (i CsiVolumeTopologyRequestPreferredTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[CsiVolumeTopologyRequestPreferredTopology]{
+		OutputState: i.ToCsiVolumeTopologyRequestPreferredTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
+// CsiVolumeTopologyRequestPreferredTopologyArrayInput is an input type that accepts CsiVolumeTopologyRequestPreferredTopologyArray and CsiVolumeTopologyRequestPreferredTopologyArrayOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyRequestPreferredTopologyArrayInput` via:
+//
+//	CsiVolumeTopologyRequestPreferredTopologyArray{ CsiVolumeTopologyRequestPreferredTopologyArgs{...} }
+type CsiVolumeTopologyRequestPreferredTopologyArrayInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyRequestPreferredTopologyArrayOutput() CsiVolumeTopologyRequestPreferredTopologyArrayOutput
+	ToCsiVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(context.Context) CsiVolumeTopologyRequestPreferredTopologyArrayOutput
+}
+
+type CsiVolumeTopologyRequestPreferredTopologyArray []CsiVolumeTopologyRequestPreferredTopologyInput
+
+func (CsiVolumeTopologyRequestPreferredTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeTopologyRequestPreferredTopology)(nil)).Elem()
+}
+
+func (i CsiVolumeTopologyRequestPreferredTopologyArray) ToCsiVolumeTopologyRequestPreferredTopologyArrayOutput() CsiVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return i.ToCsiVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyRequestPreferredTopologyArray) ToCsiVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestPreferredTopologyArrayOutput)
+}
+
+func (i CsiVolumeTopologyRequestPreferredTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[[]CsiVolumeTopologyRequestPreferredTopology]{
+		OutputState: i.ToCsiVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeTopologyRequestPreferredTopologyOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyRequestPreferredTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopologyRequestPreferredTopology)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyRequestPreferredTopologyOutput) ToCsiVolumeTopologyRequestPreferredTopologyOutput() CsiVolumeTopologyRequestPreferredTopologyOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestPreferredTopologyOutput) ToCsiVolumeTopologyRequestPreferredTopologyOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPreferredTopologyOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestPreferredTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[CsiVolumeTopologyRequestPreferredTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(map[string]string)` - Define the attributes for the topology request.
+//
+// In addition to the above arguments, the following attributes are exported and
+// can be referenced:
+func (o CsiVolumeTopologyRequestPreferredTopologyOutput) Segments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CsiVolumeTopologyRequestPreferredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
+}
+
+type CsiVolumeTopologyRequestPreferredTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyRequestPreferredTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeTopologyRequestPreferredTopology)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyRequestPreferredTopologyArrayOutput) ToCsiVolumeTopologyRequestPreferredTopologyArrayOutput() CsiVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestPreferredTopologyArrayOutput) ToCsiVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestPreferredTopologyArrayOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestPreferredTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[[]CsiVolumeTopologyRequestPreferredTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeTopologyRequestPreferredTopologyArrayOutput) Index(i pulumi.IntInput) CsiVolumeTopologyRequestPreferredTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CsiVolumeTopologyRequestPreferredTopology {
+		return vs[0].([]CsiVolumeTopologyRequestPreferredTopology)[vs[1].(int)]
+	}).(CsiVolumeTopologyRequestPreferredTopologyOutput)
+}
+
+type CsiVolumeTopologyRequestRequired struct {
+	Topologies []CsiVolumeTopologyRequestRequiredTopology `pulumi:"topologies"`
+}
+
+// CsiVolumeTopologyRequestRequiredInput is an input type that accepts CsiVolumeTopologyRequestRequiredArgs and CsiVolumeTopologyRequestRequiredOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyRequestRequiredInput` via:
+//
+//	CsiVolumeTopologyRequestRequiredArgs{...}
+type CsiVolumeTopologyRequestRequiredInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyRequestRequiredOutput() CsiVolumeTopologyRequestRequiredOutput
+	ToCsiVolumeTopologyRequestRequiredOutputWithContext(context.Context) CsiVolumeTopologyRequestRequiredOutput
+}
+
+type CsiVolumeTopologyRequestRequiredArgs struct {
+	Topologies CsiVolumeTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
+}
+
+func (CsiVolumeTopologyRequestRequiredArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (i CsiVolumeTopologyRequestRequiredArgs) ToCsiVolumeTopologyRequestRequiredOutput() CsiVolumeTopologyRequestRequiredOutput {
+	return i.ToCsiVolumeTopologyRequestRequiredOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyRequestRequiredArgs) ToCsiVolumeTopologyRequestRequiredOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestRequiredOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestRequiredOutput)
+}
+
+func (i CsiVolumeTopologyRequestRequiredArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopologyRequestRequired] {
+	return pulumix.Output[CsiVolumeTopologyRequestRequired]{
+		OutputState: i.ToCsiVolumeTopologyRequestRequiredOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i CsiVolumeTopologyRequestRequiredArgs) ToCsiVolumeTopologyRequestRequiredPtrOutput() CsiVolumeTopologyRequestRequiredPtrOutput {
+	return i.ToCsiVolumeTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyRequestRequiredArgs) ToCsiVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestRequiredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestRequiredOutput).ToCsiVolumeTopologyRequestRequiredPtrOutputWithContext(ctx)
+}
+
+// CsiVolumeTopologyRequestRequiredPtrInput is an input type that accepts CsiVolumeTopologyRequestRequiredArgs, CsiVolumeTopologyRequestRequiredPtr and CsiVolumeTopologyRequestRequiredPtrOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyRequestRequiredPtrInput` via:
+//
+//	        CsiVolumeTopologyRequestRequiredArgs{...}
+//
+//	or:
+//
+//	        nil
+type CsiVolumeTopologyRequestRequiredPtrInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyRequestRequiredPtrOutput() CsiVolumeTopologyRequestRequiredPtrOutput
+	ToCsiVolumeTopologyRequestRequiredPtrOutputWithContext(context.Context) CsiVolumeTopologyRequestRequiredPtrOutput
+}
+
+type csiVolumeTopologyRequestRequiredPtrType CsiVolumeTopologyRequestRequiredArgs
+
+func CsiVolumeTopologyRequestRequiredPtr(v *CsiVolumeTopologyRequestRequiredArgs) CsiVolumeTopologyRequestRequiredPtrInput {
+	return (*csiVolumeTopologyRequestRequiredPtrType)(v)
+}
+
+func (*csiVolumeTopologyRequestRequiredPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (i *csiVolumeTopologyRequestRequiredPtrType) ToCsiVolumeTopologyRequestRequiredPtrOutput() CsiVolumeTopologyRequestRequiredPtrOutput {
+	return i.ToCsiVolumeTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (i *csiVolumeTopologyRequestRequiredPtrType) ToCsiVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestRequiredPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestRequiredPtrOutput)
+}
+
+func (i *csiVolumeTopologyRequestRequiredPtrType) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeTopologyRequestRequired] {
+	return pulumix.Output[*CsiVolumeTopologyRequestRequired]{
+		OutputState: i.ToCsiVolumeTopologyRequestRequiredPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeTopologyRequestRequiredOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyRequestRequiredOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyRequestRequiredOutput) ToCsiVolumeTopologyRequestRequiredOutput() CsiVolumeTopologyRequestRequiredOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestRequiredOutput) ToCsiVolumeTopologyRequestRequiredOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestRequiredOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestRequiredOutput) ToCsiVolumeTopologyRequestRequiredPtrOutput() CsiVolumeTopologyRequestRequiredPtrOutput {
+	return o.ToCsiVolumeTopologyRequestRequiredPtrOutputWithContext(context.Background())
+}
+
+func (o CsiVolumeTopologyRequestRequiredOutput) ToCsiVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestRequiredPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CsiVolumeTopologyRequestRequired) *CsiVolumeTopologyRequestRequired {
+		return &v
+	}).(CsiVolumeTopologyRequestRequiredPtrOutput)
+}
+
+func (o CsiVolumeTopologyRequestRequiredOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopologyRequestRequired] {
+	return pulumix.Output[CsiVolumeTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeTopologyRequestRequiredOutput) Topologies() CsiVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o.ApplyT(func(v CsiVolumeTopologyRequestRequired) []CsiVolumeTopologyRequestRequiredTopology {
+		return v.Topologies
+	}).(CsiVolumeTopologyRequestRequiredTopologyArrayOutput)
+}
+
+type CsiVolumeTopologyRequestRequiredPtrOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyRequestRequiredPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CsiVolumeTopologyRequestRequired)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyRequestRequiredPtrOutput) ToCsiVolumeTopologyRequestRequiredPtrOutput() CsiVolumeTopologyRequestRequiredPtrOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestRequiredPtrOutput) ToCsiVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestRequiredPtrOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestRequiredPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeTopologyRequestRequired] {
+	return pulumix.Output[*CsiVolumeTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeTopologyRequestRequiredPtrOutput) Elem() CsiVolumeTopologyRequestRequiredOutput {
+	return o.ApplyT(func(v *CsiVolumeTopologyRequestRequired) CsiVolumeTopologyRequestRequired {
+		if v != nil {
+			return *v
+		}
+		var ret CsiVolumeTopologyRequestRequired
+		return ret
+	}).(CsiVolumeTopologyRequestRequiredOutput)
+}
+
+func (o CsiVolumeTopologyRequestRequiredPtrOutput) Topologies() CsiVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o.ApplyT(func(v *CsiVolumeTopologyRequestRequired) []CsiVolumeTopologyRequestRequiredTopology {
+		if v == nil {
+			return nil
+		}
+		return v.Topologies
+	}).(CsiVolumeTopologyRequestRequiredTopologyArrayOutput)
+}
+
+type CsiVolumeTopologyRequestRequiredTopology struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
+	Segments map[string]string `pulumi:"segments"`
+}
+
+// CsiVolumeTopologyRequestRequiredTopologyInput is an input type that accepts CsiVolumeTopologyRequestRequiredTopologyArgs and CsiVolumeTopologyRequestRequiredTopologyOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyRequestRequiredTopologyInput` via:
+//
+//	CsiVolumeTopologyRequestRequiredTopologyArgs{...}
+type CsiVolumeTopologyRequestRequiredTopologyInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyRequestRequiredTopologyOutput() CsiVolumeTopologyRequestRequiredTopologyOutput
+	ToCsiVolumeTopologyRequestRequiredTopologyOutputWithContext(context.Context) CsiVolumeTopologyRequestRequiredTopologyOutput
+}
+
+type CsiVolumeTopologyRequestRequiredTopologyArgs struct {
+	// `(map[string]string)` - Define the attributes for the topology request.
+	//
+	// In addition to the above arguments, the following attributes are exported and
+	// can be referenced:
+	Segments pulumi.StringMapInput `pulumi:"segments"`
+}
+
+func (CsiVolumeTopologyRequestRequiredTopologyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (i CsiVolumeTopologyRequestRequiredTopologyArgs) ToCsiVolumeTopologyRequestRequiredTopologyOutput() CsiVolumeTopologyRequestRequiredTopologyOutput {
+	return i.ToCsiVolumeTopologyRequestRequiredTopologyOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyRequestRequiredTopologyArgs) ToCsiVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestRequiredTopologyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestRequiredTopologyOutput)
+}
+
+func (i CsiVolumeTopologyRequestRequiredTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[CsiVolumeTopologyRequestRequiredTopology]{
+		OutputState: i.ToCsiVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
+// CsiVolumeTopologyRequestRequiredTopologyArrayInput is an input type that accepts CsiVolumeTopologyRequestRequiredTopologyArray and CsiVolumeTopologyRequestRequiredTopologyArrayOutput values.
+// You can construct a concrete instance of `CsiVolumeTopologyRequestRequiredTopologyArrayInput` via:
+//
+//	CsiVolumeTopologyRequestRequiredTopologyArray{ CsiVolumeTopologyRequestRequiredTopologyArgs{...} }
+type CsiVolumeTopologyRequestRequiredTopologyArrayInput interface {
+	pulumi.Input
+
+	ToCsiVolumeTopologyRequestRequiredTopologyArrayOutput() CsiVolumeTopologyRequestRequiredTopologyArrayOutput
+	ToCsiVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(context.Context) CsiVolumeTopologyRequestRequiredTopologyArrayOutput
+}
+
+type CsiVolumeTopologyRequestRequiredTopologyArray []CsiVolumeTopologyRequestRequiredTopologyInput
+
+func (CsiVolumeTopologyRequestRequiredTopologyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (i CsiVolumeTopologyRequestRequiredTopologyArray) ToCsiVolumeTopologyRequestRequiredTopologyArrayOutput() CsiVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return i.ToCsiVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(context.Background())
+}
+
+func (i CsiVolumeTopologyRequestRequiredTopologyArray) ToCsiVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeTopologyRequestRequiredTopologyArrayOutput)
+}
+
+func (i CsiVolumeTopologyRequestRequiredTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]CsiVolumeTopologyRequestRequiredTopology]{
+		OutputState: i.ToCsiVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type CsiVolumeTopologyRequestRequiredTopologyOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyRequestRequiredTopologyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CsiVolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyRequestRequiredTopologyOutput) ToCsiVolumeTopologyRequestRequiredTopologyOutput() CsiVolumeTopologyRequestRequiredTopologyOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestRequiredTopologyOutput) ToCsiVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestRequiredTopologyOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestRequiredTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[CsiVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[CsiVolumeTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(map[string]string)` - Define the attributes for the topology request.
+//
+// In addition to the above arguments, the following attributes are exported and
+// can be referenced:
+func (o CsiVolumeTopologyRequestRequiredTopologyOutput) Segments() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CsiVolumeTopologyRequestRequiredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
+}
+
+type CsiVolumeTopologyRequestRequiredTopologyArrayOutput struct{ *pulumi.OutputState }
+
+func (CsiVolumeTopologyRequestRequiredTopologyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CsiVolumeTopologyRequestRequiredTopology)(nil)).Elem()
+}
+
+func (o CsiVolumeTopologyRequestRequiredTopologyArrayOutput) ToCsiVolumeTopologyRequestRequiredTopologyArrayOutput() CsiVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestRequiredTopologyArrayOutput) ToCsiVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx context.Context) CsiVolumeTopologyRequestRequiredTopologyArrayOutput {
+	return o
+}
+
+func (o CsiVolumeTopologyRequestRequiredTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]CsiVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]CsiVolumeTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o CsiVolumeTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi.IntInput) CsiVolumeTopologyRequestRequiredTopologyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CsiVolumeTopologyRequestRequiredTopology {
+		return vs[0].([]CsiVolumeTopologyRequestRequiredTopology)[vs[1].(int)]
+	}).(CsiVolumeTopologyRequestRequiredTopologyOutput)
 }
 
 type ExternalVolumeCapability struct {
@@ -529,6 +2975,12 @@ func (i ExternalVolumeCapabilityArgs) ToExternalVolumeCapabilityOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeCapabilityOutput)
 }
 
+func (i ExternalVolumeCapabilityArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeCapability] {
+	return pulumix.Output[ExternalVolumeCapability]{
+		OutputState: i.ToExternalVolumeCapabilityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExternalVolumeCapabilityArrayInput is an input type that accepts ExternalVolumeCapabilityArray and ExternalVolumeCapabilityArrayOutput values.
 // You can construct a concrete instance of `ExternalVolumeCapabilityArrayInput` via:
 //
@@ -554,6 +3006,12 @@ func (i ExternalVolumeCapabilityArray) ToExternalVolumeCapabilityArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeCapabilityArrayOutput)
 }
 
+func (i ExternalVolumeCapabilityArray) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeCapability] {
+	return pulumix.Output[[]ExternalVolumeCapability]{
+		OutputState: i.ToExternalVolumeCapabilityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeCapabilityOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeCapabilityOutput) ElementType() reflect.Type {
@@ -566,6 +3024,12 @@ func (o ExternalVolumeCapabilityOutput) ToExternalVolumeCapabilityOutput() Exter
 
 func (o ExternalVolumeCapabilityOutput) ToExternalVolumeCapabilityOutputWithContext(ctx context.Context) ExternalVolumeCapabilityOutput {
 	return o
+}
+
+func (o ExternalVolumeCapabilityOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeCapability] {
+	return pulumix.Output[ExternalVolumeCapability]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
@@ -597,6 +3061,12 @@ func (o ExternalVolumeCapabilityArrayOutput) ToExternalVolumeCapabilityArrayOutp
 
 func (o ExternalVolumeCapabilityArrayOutput) ToExternalVolumeCapabilityArrayOutputWithContext(ctx context.Context) ExternalVolumeCapabilityArrayOutput {
 	return o
+}
+
+func (o ExternalVolumeCapabilityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeCapability] {
+	return pulumix.Output[[]ExternalVolumeCapability]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeCapabilityArrayOutput) Index(i pulumi.IntInput) ExternalVolumeCapabilityOutput {
@@ -642,6 +3112,12 @@ func (i ExternalVolumeMountOptionsArgs) ToExternalVolumeMountOptionsOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeMountOptionsOutput)
 }
 
+func (i ExternalVolumeMountOptionsArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeMountOptions] {
+	return pulumix.Output[ExternalVolumeMountOptions]{
+		OutputState: i.ToExternalVolumeMountOptionsOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ExternalVolumeMountOptionsArgs) ToExternalVolumeMountOptionsPtrOutput() ExternalVolumeMountOptionsPtrOutput {
 	return i.ToExternalVolumeMountOptionsPtrOutputWithContext(context.Background())
 }
@@ -683,6 +3159,12 @@ func (i *externalVolumeMountOptionsPtrType) ToExternalVolumeMountOptionsPtrOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeMountOptionsPtrOutput)
 }
 
+func (i *externalVolumeMountOptionsPtrType) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeMountOptions] {
+	return pulumix.Output[*ExternalVolumeMountOptions]{
+		OutputState: i.ToExternalVolumeMountOptionsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeMountOptionsOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeMountOptionsOutput) ElementType() reflect.Type {
@@ -707,6 +3189,12 @@ func (o ExternalVolumeMountOptionsOutput) ToExternalVolumeMountOptionsPtrOutputW
 	}).(ExternalVolumeMountOptionsPtrOutput)
 }
 
+func (o ExternalVolumeMountOptionsOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeMountOptions] {
+	return pulumix.Output[ExternalVolumeMountOptions]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `(string: optional)` - The file system type.
 func (o ExternalVolumeMountOptionsOutput) FsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ExternalVolumeMountOptions) *string { return v.FsType }).(pulumi.StringPtrOutput)
@@ -729,6 +3217,12 @@ func (o ExternalVolumeMountOptionsPtrOutput) ToExternalVolumeMountOptionsPtrOutp
 
 func (o ExternalVolumeMountOptionsPtrOutput) ToExternalVolumeMountOptionsPtrOutputWithContext(ctx context.Context) ExternalVolumeMountOptionsPtrOutput {
 	return o
+}
+
+func (o ExternalVolumeMountOptionsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeMountOptions] {
+	return pulumix.Output[*ExternalVolumeMountOptions]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeMountOptionsPtrOutput) Elem() ExternalVolumeMountOptionsOutput {
@@ -800,6 +3294,12 @@ func (i ExternalVolumeTopologyArgs) ToExternalVolumeTopologyOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyOutput)
 }
 
+func (i ExternalVolumeTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopology] {
+	return pulumix.Output[ExternalVolumeTopology]{
+		OutputState: i.ToExternalVolumeTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExternalVolumeTopologyArrayInput is an input type that accepts ExternalVolumeTopologyArray and ExternalVolumeTopologyArrayOutput values.
 // You can construct a concrete instance of `ExternalVolumeTopologyArrayInput` via:
 //
@@ -825,6 +3325,12 @@ func (i ExternalVolumeTopologyArray) ToExternalVolumeTopologyArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyArrayOutput)
 }
 
+func (i ExternalVolumeTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopology] {
+	return pulumix.Output[[]ExternalVolumeTopology]{
+		OutputState: i.ToExternalVolumeTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyOutput) ElementType() reflect.Type {
@@ -837,6 +3343,12 @@ func (o ExternalVolumeTopologyOutput) ToExternalVolumeTopologyOutput() ExternalV
 
 func (o ExternalVolumeTopologyOutput) ToExternalVolumeTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopology] {
+	return pulumix.Output[ExternalVolumeTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(map[string]string)` - Define the attributes for the topology request.
@@ -859,6 +3371,12 @@ func (o ExternalVolumeTopologyArrayOutput) ToExternalVolumeTopologyArrayOutput()
 
 func (o ExternalVolumeTopologyArrayOutput) ToExternalVolumeTopologyArrayOutputWithContext(ctx context.Context) ExternalVolumeTopologyArrayOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopology] {
+	return pulumix.Output[[]ExternalVolumeTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeTopologyArrayOutput) Index(i pulumi.IntInput) ExternalVolumeTopologyOutput {
@@ -904,6 +3422,12 @@ func (i ExternalVolumeTopologyRequestArgs) ToExternalVolumeTopologyRequestOutput
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestOutput)
 }
 
+func (i ExternalVolumeTopologyRequestArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequest] {
+	return pulumix.Output[ExternalVolumeTopologyRequest]{
+		OutputState: i.ToExternalVolumeTopologyRequestOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ExternalVolumeTopologyRequestArgs) ToExternalVolumeTopologyRequestPtrOutput() ExternalVolumeTopologyRequestPtrOutput {
 	return i.ToExternalVolumeTopologyRequestPtrOutputWithContext(context.Background())
 }
@@ -945,6 +3469,12 @@ func (i *externalVolumeTopologyRequestPtrType) ToExternalVolumeTopologyRequestPt
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPtrOutput)
 }
 
+func (i *externalVolumeTopologyRequestPtrType) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequest] {
+	return pulumix.Output[*ExternalVolumeTopologyRequest]{
+		OutputState: i.ToExternalVolumeTopologyRequestPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyRequestOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyRequestOutput) ElementType() reflect.Type {
@@ -969,6 +3499,12 @@ func (o ExternalVolumeTopologyRequestOutput) ToExternalVolumeTopologyRequestPtrO
 	}).(ExternalVolumeTopologyRequestPtrOutput)
 }
 
+func (o ExternalVolumeTopologyRequestOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequest] {
+	return pulumix.Output[ExternalVolumeTopologyRequest]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `(“Topology“: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
 func (o ExternalVolumeTopologyRequestOutput) Preferred() ExternalVolumeTopologyRequestPreferredPtrOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequest) *ExternalVolumeTopologyRequestPreferred { return v.Preferred }).(ExternalVolumeTopologyRequestPreferredPtrOutput)
@@ -991,6 +3527,12 @@ func (o ExternalVolumeTopologyRequestPtrOutput) ToExternalVolumeTopologyRequestP
 
 func (o ExternalVolumeTopologyRequestPtrOutput) ToExternalVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPtrOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequest] {
+	return pulumix.Output[*ExternalVolumeTopologyRequest]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeTopologyRequestPtrOutput) Elem() ExternalVolumeTopologyRequestOutput {
@@ -1054,6 +3596,12 @@ func (i ExternalVolumeTopologyRequestPreferredArgs) ToExternalVolumeTopologyRequ
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredOutput)
 }
 
+func (i ExternalVolumeTopologyRequestPreferredArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestPreferred] {
+	return pulumix.Output[ExternalVolumeTopologyRequestPreferred]{
+		OutputState: i.ToExternalVolumeTopologyRequestPreferredOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i ExternalVolumeTopologyRequestPreferredArgs) ToExternalVolumeTopologyRequestPreferredPtrOutput() ExternalVolumeTopologyRequestPreferredPtrOutput {
 	return i.ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(context.Background())
 }
@@ -1095,6 +3643,12 @@ func (i *externalVolumeTopologyRequestPreferredPtrType) ToExternalVolumeTopology
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredPtrOutput)
 }
 
+func (i *externalVolumeTopologyRequestPreferredPtrType) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequestPreferred] {
+	return pulumix.Output[*ExternalVolumeTopologyRequestPreferred]{
+		OutputState: i.ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyRequestPreferredOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyRequestPreferredOutput) ElementType() reflect.Type {
@@ -1119,6 +3673,12 @@ func (o ExternalVolumeTopologyRequestPreferredOutput) ToExternalVolumeTopologyRe
 	}).(ExternalVolumeTopologyRequestPreferredPtrOutput)
 }
 
+func (o ExternalVolumeTopologyRequestPreferredOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestPreferred] {
+	return pulumix.Output[ExternalVolumeTopologyRequestPreferred]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ExternalVolumeTopologyRequestPreferredOutput) Topologies() ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestPreferred) []ExternalVolumeTopologyRequestPreferredTopology {
 		return v.Topologies
@@ -1137,6 +3697,12 @@ func (o ExternalVolumeTopologyRequestPreferredPtrOutput) ToExternalVolumeTopolog
 
 func (o ExternalVolumeTopologyRequestPreferredPtrOutput) ToExternalVolumeTopologyRequestPreferredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredPtrOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequestPreferred] {
+	return pulumix.Output[*ExternalVolumeTopologyRequestPreferred]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeTopologyRequestPreferredPtrOutput) Elem() ExternalVolumeTopologyRequestPreferredOutput {
@@ -1197,6 +3763,12 @@ func (i ExternalVolumeTopologyRequestPreferredTopologyArgs) ToExternalVolumeTopo
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredTopologyOutput)
 }
 
+func (i ExternalVolumeTopologyRequestPreferredTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[ExternalVolumeTopologyRequestPreferredTopology]{
+		OutputState: i.ToExternalVolumeTopologyRequestPreferredTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExternalVolumeTopologyRequestPreferredTopologyArrayInput is an input type that accepts ExternalVolumeTopologyRequestPreferredTopologyArray and ExternalVolumeTopologyRequestPreferredTopologyArrayOutput values.
 // You can construct a concrete instance of `ExternalVolumeTopologyRequestPreferredTopologyArrayInput` via:
 //
@@ -1222,6 +3794,12 @@ func (i ExternalVolumeTopologyRequestPreferredTopologyArray) ToExternalVolumeTop
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestPreferredTopologyArrayOutput)
 }
 
+func (i ExternalVolumeTopologyRequestPreferredTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[[]ExternalVolumeTopologyRequestPreferredTopology]{
+		OutputState: i.ToExternalVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyRequestPreferredTopologyOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyRequestPreferredTopologyOutput) ElementType() reflect.Type {
@@ -1234,6 +3812,12 @@ func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) ToExternalVolumeTo
 
 func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) ToExternalVolumeTopologyRequestPreferredTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredTopologyOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[ExternalVolumeTopologyRequestPreferredTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(map[string]string)` - Define the attributes for the topology request.
@@ -1256,6 +3840,12 @@ func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) ToExternalVol
 
 func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) ToExternalVolumeTopologyRequestPreferredTopologyArrayOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopologyRequestPreferredTopology] {
+	return pulumix.Output[[]ExternalVolumeTopologyRequestPreferredTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) Index(i pulumi.IntInput) ExternalVolumeTopologyRequestPreferredTopologyOutput {
@@ -1293,6 +3883,12 @@ func (i ExternalVolumeTopologyRequestRequiredArgs) ToExternalVolumeTopologyReque
 
 func (i ExternalVolumeTopologyRequestRequiredArgs) ToExternalVolumeTopologyRequestRequiredOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredOutput)
+}
+
+func (i ExternalVolumeTopologyRequestRequiredArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestRequired] {
+	return pulumix.Output[ExternalVolumeTopologyRequestRequired]{
+		OutputState: i.ToExternalVolumeTopologyRequestRequiredOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i ExternalVolumeTopologyRequestRequiredArgs) ToExternalVolumeTopologyRequestRequiredPtrOutput() ExternalVolumeTopologyRequestRequiredPtrOutput {
@@ -1336,6 +3932,12 @@ func (i *externalVolumeTopologyRequestRequiredPtrType) ToExternalVolumeTopologyR
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredPtrOutput)
 }
 
+func (i *externalVolumeTopologyRequestRequiredPtrType) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequestRequired] {
+	return pulumix.Output[*ExternalVolumeTopologyRequestRequired]{
+		OutputState: i.ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyRequestRequiredOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyRequestRequiredOutput) ElementType() reflect.Type {
@@ -1360,6 +3962,12 @@ func (o ExternalVolumeTopologyRequestRequiredOutput) ToExternalVolumeTopologyReq
 	}).(ExternalVolumeTopologyRequestRequiredPtrOutput)
 }
 
+func (o ExternalVolumeTopologyRequestRequiredOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestRequired] {
+	return pulumix.Output[ExternalVolumeTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ExternalVolumeTopologyRequestRequiredOutput) Topologies() ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestRequired) []ExternalVolumeTopologyRequestRequiredTopology {
 		return v.Topologies
@@ -1378,6 +3986,12 @@ func (o ExternalVolumeTopologyRequestRequiredPtrOutput) ToExternalVolumeTopology
 
 func (o ExternalVolumeTopologyRequestRequiredPtrOutput) ToExternalVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredPtrOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolumeTopologyRequestRequired] {
+	return pulumix.Output[*ExternalVolumeTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExternalVolumeTopologyRequestRequiredPtrOutput) Elem() ExternalVolumeTopologyRequestRequiredOutput {
@@ -1438,6 +4052,12 @@ func (i ExternalVolumeTopologyRequestRequiredTopologyArgs) ToExternalVolumeTopol
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredTopologyOutput)
 }
 
+func (i ExternalVolumeTopologyRequestRequiredTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[ExternalVolumeTopologyRequestRequiredTopology]{
+		OutputState: i.ToExternalVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExternalVolumeTopologyRequestRequiredTopologyArrayInput is an input type that accepts ExternalVolumeTopologyRequestRequiredTopologyArray and ExternalVolumeTopologyRequestRequiredTopologyArrayOutput values.
 // You can construct a concrete instance of `ExternalVolumeTopologyRequestRequiredTopologyArrayInput` via:
 //
@@ -1463,6 +4083,12 @@ func (i ExternalVolumeTopologyRequestRequiredTopologyArray) ToExternalVolumeTopo
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeTopologyRequestRequiredTopologyArrayOutput)
 }
 
+func (i ExternalVolumeTopologyRequestRequiredTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]ExternalVolumeTopologyRequestRequiredTopology]{
+		OutputState: i.ToExternalVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExternalVolumeTopologyRequestRequiredTopologyOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeTopologyRequestRequiredTopologyOutput) ElementType() reflect.Type {
@@ -1475,6 +4101,12 @@ func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) ToExternalVolumeTop
 
 func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) ToExternalVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) ExternalVolumeTopologyRequestRequiredTopologyOutput {
 	return o
+}
+
+func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[ExternalVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[ExternalVolumeTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(map[string]string)` - Define the attributes for the topology request.
@@ -1499,6 +4131,12 @@ func (o ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) ToExternalVolu
 	return o
 }
 
+func (o ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ExternalVolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]ExternalVolumeTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi.IntInput) ExternalVolumeTopologyRequestRequiredTopologyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExternalVolumeTopologyRequestRequiredTopology {
 		return vs[0].([]ExternalVolumeTopologyRequestRequiredTopology)[vs[1].(int)]
@@ -1509,8 +4147,10 @@ type JobHcl2 struct {
 	// `(boolean: false)` - Set this to `true` to be able to use
 	// HCL2 filesystem functions
 	AllowFs *bool `pulumi:"allowFs"`
-	// `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-	// format instead of the default HCL.
+	// `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+	// HCL2 by default.
+	//
+	// Deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
 	Enabled *bool                  `pulumi:"enabled"`
 	Vars    map[string]interface{} `pulumi:"vars"`
 }
@@ -1530,8 +4170,10 @@ type JobHcl2Args struct {
 	// `(boolean: false)` - Set this to `true` to be able to use
 	// HCL2 filesystem functions
 	AllowFs pulumi.BoolPtrInput `pulumi:"allowFs"`
-	// `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-	// format instead of the default HCL.
+	// `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+	// HCL2 by default.
+	//
+	// Deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	Vars    pulumi.MapInput     `pulumi:"vars"`
 }
@@ -1546,6 +4188,12 @@ func (i JobHcl2Args) ToJobHcl2Output() JobHcl2Output {
 
 func (i JobHcl2Args) ToJobHcl2OutputWithContext(ctx context.Context) JobHcl2Output {
 	return pulumi.ToOutputWithContext(ctx, i).(JobHcl2Output)
+}
+
+func (i JobHcl2Args) ToOutput(ctx context.Context) pulumix.Output[JobHcl2] {
+	return pulumix.Output[JobHcl2]{
+		OutputState: i.ToJobHcl2OutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i JobHcl2Args) ToJobHcl2PtrOutput() JobHcl2PtrOutput {
@@ -1589,6 +4237,12 @@ func (i *jobHcl2PtrType) ToJobHcl2PtrOutputWithContext(ctx context.Context) JobH
 	return pulumi.ToOutputWithContext(ctx, i).(JobHcl2PtrOutput)
 }
 
+func (i *jobHcl2PtrType) ToOutput(ctx context.Context) pulumix.Output[*JobHcl2] {
+	return pulumix.Output[*JobHcl2]{
+		OutputState: i.ToJobHcl2PtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JobHcl2Output struct{ *pulumi.OutputState }
 
 func (JobHcl2Output) ElementType() reflect.Type {
@@ -1613,14 +4267,22 @@ func (o JobHcl2Output) ToJobHcl2PtrOutputWithContext(ctx context.Context) JobHcl
 	}).(JobHcl2PtrOutput)
 }
 
+func (o JobHcl2Output) ToOutput(ctx context.Context) pulumix.Output[JobHcl2] {
+	return pulumix.Output[JobHcl2]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `(boolean: false)` - Set this to `true` to be able to use
 // HCL2 filesystem functions
 func (o JobHcl2Output) AllowFs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v JobHcl2) *bool { return v.AllowFs }).(pulumi.BoolPtrOutput)
 }
 
-// `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-// format instead of the default HCL.
+// `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+// HCL2 by default.
+//
+// Deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
 func (o JobHcl2Output) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v JobHcl2) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -1641,6 +4303,12 @@ func (o JobHcl2PtrOutput) ToJobHcl2PtrOutput() JobHcl2PtrOutput {
 
 func (o JobHcl2PtrOutput) ToJobHcl2PtrOutputWithContext(ctx context.Context) JobHcl2PtrOutput {
 	return o
+}
+
+func (o JobHcl2PtrOutput) ToOutput(ctx context.Context) pulumix.Output[*JobHcl2] {
+	return pulumix.Output[*JobHcl2]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobHcl2PtrOutput) Elem() JobHcl2Output {
@@ -1664,8 +4332,10 @@ func (o JobHcl2PtrOutput) AllowFs() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-// format instead of the default HCL.
+// `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+// HCL2 by default.
+//
+// Deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
 func (o JobHcl2PtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *JobHcl2) *bool {
 		if v == nil {
@@ -1723,6 +4393,12 @@ func (i JobTaskGroupArgs) ToJobTaskGroupOutputWithContext(ctx context.Context) J
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupOutput)
 }
 
+func (i JobTaskGroupArgs) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroup] {
+	return pulumix.Output[JobTaskGroup]{
+		OutputState: i.ToJobTaskGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // JobTaskGroupArrayInput is an input type that accepts JobTaskGroupArray and JobTaskGroupArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupArrayInput` via:
 //
@@ -1748,6 +4424,12 @@ func (i JobTaskGroupArray) ToJobTaskGroupArrayOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupArrayOutput)
 }
 
+func (i JobTaskGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroup] {
+	return pulumix.Output[[]JobTaskGroup]{
+		OutputState: i.ToJobTaskGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JobTaskGroupOutput struct{ *pulumi.OutputState }
 
 func (JobTaskGroupOutput) ElementType() reflect.Type {
@@ -1760,6 +4442,12 @@ func (o JobTaskGroupOutput) ToJobTaskGroupOutput() JobTaskGroupOutput {
 
 func (o JobTaskGroupOutput) ToJobTaskGroupOutputWithContext(ctx context.Context) JobTaskGroupOutput {
 	return o
+}
+
+func (o JobTaskGroupOutput) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroup] {
+	return pulumix.Output[JobTaskGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupOutput) Count() pulumi.IntPtrOutput {
@@ -1794,6 +4482,12 @@ func (o JobTaskGroupArrayOutput) ToJobTaskGroupArrayOutput() JobTaskGroupArrayOu
 
 func (o JobTaskGroupArrayOutput) ToJobTaskGroupArrayOutputWithContext(ctx context.Context) JobTaskGroupArrayOutput {
 	return o
+}
+
+func (o JobTaskGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroup] {
+	return pulumix.Output[[]JobTaskGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupArrayOutput) Index(i pulumi.IntInput) JobTaskGroupOutput {
@@ -1839,6 +4533,12 @@ func (i JobTaskGroupTaskArgs) ToJobTaskGroupTaskOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupTaskOutput)
 }
 
+func (i JobTaskGroupTaskArgs) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupTask] {
+	return pulumix.Output[JobTaskGroupTask]{
+		OutputState: i.ToJobTaskGroupTaskOutputWithContext(ctx).OutputState,
+	}
+}
+
 // JobTaskGroupTaskArrayInput is an input type that accepts JobTaskGroupTaskArray and JobTaskGroupTaskArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupTaskArrayInput` via:
 //
@@ -1864,6 +4564,12 @@ func (i JobTaskGroupTaskArray) ToJobTaskGroupTaskArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupTaskArrayOutput)
 }
 
+func (i JobTaskGroupTaskArray) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupTask] {
+	return pulumix.Output[[]JobTaskGroupTask]{
+		OutputState: i.ToJobTaskGroupTaskArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JobTaskGroupTaskOutput struct{ *pulumi.OutputState }
 
 func (JobTaskGroupTaskOutput) ElementType() reflect.Type {
@@ -1876,6 +4582,12 @@ func (o JobTaskGroupTaskOutput) ToJobTaskGroupTaskOutput() JobTaskGroupTaskOutpu
 
 func (o JobTaskGroupTaskOutput) ToJobTaskGroupTaskOutputWithContext(ctx context.Context) JobTaskGroupTaskOutput {
 	return o
+}
+
+func (o JobTaskGroupTaskOutput) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupTask] {
+	return pulumix.Output[JobTaskGroupTask]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupTaskOutput) Driver() pulumi.StringPtrOutput {
@@ -1906,6 +4618,12 @@ func (o JobTaskGroupTaskArrayOutput) ToJobTaskGroupTaskArrayOutput() JobTaskGrou
 
 func (o JobTaskGroupTaskArrayOutput) ToJobTaskGroupTaskArrayOutputWithContext(ctx context.Context) JobTaskGroupTaskArrayOutput {
 	return o
+}
+
+func (o JobTaskGroupTaskArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupTask] {
+	return pulumix.Output[[]JobTaskGroupTask]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupTaskArrayOutput) Index(i pulumi.IntInput) JobTaskGroupTaskOutput {
@@ -1949,6 +4667,12 @@ func (i JobTaskGroupTaskVolumeMountArgs) ToJobTaskGroupTaskVolumeMountOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupTaskVolumeMountOutput)
 }
 
+func (i JobTaskGroupTaskVolumeMountArgs) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[JobTaskGroupTaskVolumeMount]{
+		OutputState: i.ToJobTaskGroupTaskVolumeMountOutputWithContext(ctx).OutputState,
+	}
+}
+
 // JobTaskGroupTaskVolumeMountArrayInput is an input type that accepts JobTaskGroupTaskVolumeMountArray and JobTaskGroupTaskVolumeMountArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupTaskVolumeMountArrayInput` via:
 //
@@ -1974,6 +4698,12 @@ func (i JobTaskGroupTaskVolumeMountArray) ToJobTaskGroupTaskVolumeMountArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupTaskVolumeMountArrayOutput)
 }
 
+func (i JobTaskGroupTaskVolumeMountArray) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[[]JobTaskGroupTaskVolumeMount]{
+		OutputState: i.ToJobTaskGroupTaskVolumeMountArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JobTaskGroupTaskVolumeMountOutput struct{ *pulumi.OutputState }
 
 func (JobTaskGroupTaskVolumeMountOutput) ElementType() reflect.Type {
@@ -1986,6 +4716,12 @@ func (o JobTaskGroupTaskVolumeMountOutput) ToJobTaskGroupTaskVolumeMountOutput()
 
 func (o JobTaskGroupTaskVolumeMountOutput) ToJobTaskGroupTaskVolumeMountOutputWithContext(ctx context.Context) JobTaskGroupTaskVolumeMountOutput {
 	return o
+}
+
+func (o JobTaskGroupTaskVolumeMountOutput) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[JobTaskGroupTaskVolumeMount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupTaskVolumeMountOutput) Destination() pulumi.StringPtrOutput {
@@ -2012,6 +4748,12 @@ func (o JobTaskGroupTaskVolumeMountArrayOutput) ToJobTaskGroupTaskVolumeMountArr
 
 func (o JobTaskGroupTaskVolumeMountArrayOutput) ToJobTaskGroupTaskVolumeMountArrayOutputWithContext(ctx context.Context) JobTaskGroupTaskVolumeMountArrayOutput {
 	return o
+}
+
+func (o JobTaskGroupTaskVolumeMountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[[]JobTaskGroupTaskVolumeMount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupTaskVolumeMountArrayOutput) Index(i pulumi.IntInput) JobTaskGroupTaskVolumeMountOutput {
@@ -2057,6 +4799,12 @@ func (i JobTaskGroupVolumeArgs) ToJobTaskGroupVolumeOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupVolumeOutput)
 }
 
+func (i JobTaskGroupVolumeArgs) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupVolume] {
+	return pulumix.Output[JobTaskGroupVolume]{
+		OutputState: i.ToJobTaskGroupVolumeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // JobTaskGroupVolumeArrayInput is an input type that accepts JobTaskGroupVolumeArray and JobTaskGroupVolumeArrayOutput values.
 // You can construct a concrete instance of `JobTaskGroupVolumeArrayInput` via:
 //
@@ -2082,6 +4830,12 @@ func (i JobTaskGroupVolumeArray) ToJobTaskGroupVolumeArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupVolumeArrayOutput)
 }
 
+func (i JobTaskGroupVolumeArray) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupVolume] {
+	return pulumix.Output[[]JobTaskGroupVolume]{
+		OutputState: i.ToJobTaskGroupVolumeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JobTaskGroupVolumeOutput struct{ *pulumi.OutputState }
 
 func (JobTaskGroupVolumeOutput) ElementType() reflect.Type {
@@ -2094,6 +4848,12 @@ func (o JobTaskGroupVolumeOutput) ToJobTaskGroupVolumeOutput() JobTaskGroupVolum
 
 func (o JobTaskGroupVolumeOutput) ToJobTaskGroupVolumeOutputWithContext(ctx context.Context) JobTaskGroupVolumeOutput {
 	return o
+}
+
+func (o JobTaskGroupVolumeOutput) ToOutput(ctx context.Context) pulumix.Output[JobTaskGroupVolume] {
+	return pulumix.Output[JobTaskGroupVolume]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupVolumeOutput) Name() pulumi.StringPtrOutput {
@@ -2124,6 +4884,12 @@ func (o JobTaskGroupVolumeArrayOutput) ToJobTaskGroupVolumeArrayOutput() JobTask
 
 func (o JobTaskGroupVolumeArrayOutput) ToJobTaskGroupVolumeArrayOutputWithContext(ctx context.Context) JobTaskGroupVolumeArrayOutput {
 	return o
+}
+
+func (o JobTaskGroupVolumeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]JobTaskGroupVolume] {
+	return pulumix.Output[[]JobTaskGroupVolume]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JobTaskGroupVolumeArrayOutput) Index(i pulumi.IntInput) JobTaskGroupVolumeOutput {
@@ -2169,6 +4935,12 @@ func (i NamespaceCapabilitiesArgs) ToNamespaceCapabilitiesOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceCapabilitiesOutput)
 }
 
+func (i NamespaceCapabilitiesArgs) ToOutput(ctx context.Context) pulumix.Output[NamespaceCapabilities] {
+	return pulumix.Output[NamespaceCapabilities]{
+		OutputState: i.ToNamespaceCapabilitiesOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i NamespaceCapabilitiesArgs) ToNamespaceCapabilitiesPtrOutput() NamespaceCapabilitiesPtrOutput {
 	return i.ToNamespaceCapabilitiesPtrOutputWithContext(context.Background())
 }
@@ -2210,6 +4982,12 @@ func (i *namespaceCapabilitiesPtrType) ToNamespaceCapabilitiesPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceCapabilitiesPtrOutput)
 }
 
+func (i *namespaceCapabilitiesPtrType) ToOutput(ctx context.Context) pulumix.Output[*NamespaceCapabilities] {
+	return pulumix.Output[*NamespaceCapabilities]{
+		OutputState: i.ToNamespaceCapabilitiesPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NamespaceCapabilitiesOutput struct{ *pulumi.OutputState }
 
 func (NamespaceCapabilitiesOutput) ElementType() reflect.Type {
@@ -2234,6 +5012,12 @@ func (o NamespaceCapabilitiesOutput) ToNamespaceCapabilitiesPtrOutputWithContext
 	}).(NamespaceCapabilitiesPtrOutput)
 }
 
+func (o NamespaceCapabilitiesOutput) ToOutput(ctx context.Context) pulumix.Output[NamespaceCapabilities] {
+	return pulumix.Output[NamespaceCapabilities]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `([]string: <optional>)` - Task drivers disabled for the namespace.
 func (o NamespaceCapabilitiesOutput) DisabledTaskDrivers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NamespaceCapabilities) []string { return v.DisabledTaskDrivers }).(pulumi.StringArrayOutput)
@@ -2256,6 +5040,12 @@ func (o NamespaceCapabilitiesPtrOutput) ToNamespaceCapabilitiesPtrOutput() Names
 
 func (o NamespaceCapabilitiesPtrOutput) ToNamespaceCapabilitiesPtrOutputWithContext(ctx context.Context) NamespaceCapabilitiesPtrOutput {
 	return o
+}
+
+func (o NamespaceCapabilitiesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NamespaceCapabilities] {
+	return pulumix.Output[*NamespaceCapabilities]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NamespaceCapabilitiesPtrOutput) Elem() NamespaceCapabilitiesOutput {
@@ -2286,6 +5076,421 @@ func (o NamespaceCapabilitiesPtrOutput) EnabledTaskDrivers() pulumi.StringArrayO
 		}
 		return v.EnabledTaskDrivers
 	}).(pulumi.StringArrayOutput)
+}
+
+type NamespaceNodePoolConfig struct {
+	// `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
+	Alloweds []string `pulumi:"alloweds"`
+	// `(string: <optional>)` - The default node pool for jobs that don't define one.
+	Default *string `pulumi:"default"`
+	// `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+	Denieds []string `pulumi:"denieds"`
+}
+
+// NamespaceNodePoolConfigInput is an input type that accepts NamespaceNodePoolConfigArgs and NamespaceNodePoolConfigOutput values.
+// You can construct a concrete instance of `NamespaceNodePoolConfigInput` via:
+//
+//	NamespaceNodePoolConfigArgs{...}
+type NamespaceNodePoolConfigInput interface {
+	pulumi.Input
+
+	ToNamespaceNodePoolConfigOutput() NamespaceNodePoolConfigOutput
+	ToNamespaceNodePoolConfigOutputWithContext(context.Context) NamespaceNodePoolConfigOutput
+}
+
+type NamespaceNodePoolConfigArgs struct {
+	// `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
+	Alloweds pulumi.StringArrayInput `pulumi:"alloweds"`
+	// `(string: <optional>)` - The default node pool for jobs that don't define one.
+	Default pulumi.StringPtrInput `pulumi:"default"`
+	// `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+	Denieds pulumi.StringArrayInput `pulumi:"denieds"`
+}
+
+func (NamespaceNodePoolConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceNodePoolConfig)(nil)).Elem()
+}
+
+func (i NamespaceNodePoolConfigArgs) ToNamespaceNodePoolConfigOutput() NamespaceNodePoolConfigOutput {
+	return i.ToNamespaceNodePoolConfigOutputWithContext(context.Background())
+}
+
+func (i NamespaceNodePoolConfigArgs) ToNamespaceNodePoolConfigOutputWithContext(ctx context.Context) NamespaceNodePoolConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceNodePoolConfigOutput)
+}
+
+func (i NamespaceNodePoolConfigArgs) ToOutput(ctx context.Context) pulumix.Output[NamespaceNodePoolConfig] {
+	return pulumix.Output[NamespaceNodePoolConfig]{
+		OutputState: i.ToNamespaceNodePoolConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i NamespaceNodePoolConfigArgs) ToNamespaceNodePoolConfigPtrOutput() NamespaceNodePoolConfigPtrOutput {
+	return i.ToNamespaceNodePoolConfigPtrOutputWithContext(context.Background())
+}
+
+func (i NamespaceNodePoolConfigArgs) ToNamespaceNodePoolConfigPtrOutputWithContext(ctx context.Context) NamespaceNodePoolConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceNodePoolConfigOutput).ToNamespaceNodePoolConfigPtrOutputWithContext(ctx)
+}
+
+// NamespaceNodePoolConfigPtrInput is an input type that accepts NamespaceNodePoolConfigArgs, NamespaceNodePoolConfigPtr and NamespaceNodePoolConfigPtrOutput values.
+// You can construct a concrete instance of `NamespaceNodePoolConfigPtrInput` via:
+//
+//	        NamespaceNodePoolConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type NamespaceNodePoolConfigPtrInput interface {
+	pulumi.Input
+
+	ToNamespaceNodePoolConfigPtrOutput() NamespaceNodePoolConfigPtrOutput
+	ToNamespaceNodePoolConfigPtrOutputWithContext(context.Context) NamespaceNodePoolConfigPtrOutput
+}
+
+type namespaceNodePoolConfigPtrType NamespaceNodePoolConfigArgs
+
+func NamespaceNodePoolConfigPtr(v *NamespaceNodePoolConfigArgs) NamespaceNodePoolConfigPtrInput {
+	return (*namespaceNodePoolConfigPtrType)(v)
+}
+
+func (*namespaceNodePoolConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceNodePoolConfig)(nil)).Elem()
+}
+
+func (i *namespaceNodePoolConfigPtrType) ToNamespaceNodePoolConfigPtrOutput() NamespaceNodePoolConfigPtrOutput {
+	return i.ToNamespaceNodePoolConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *namespaceNodePoolConfigPtrType) ToNamespaceNodePoolConfigPtrOutputWithContext(ctx context.Context) NamespaceNodePoolConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceNodePoolConfigPtrOutput)
+}
+
+func (i *namespaceNodePoolConfigPtrType) ToOutput(ctx context.Context) pulumix.Output[*NamespaceNodePoolConfig] {
+	return pulumix.Output[*NamespaceNodePoolConfig]{
+		OutputState: i.ToNamespaceNodePoolConfigPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type NamespaceNodePoolConfigOutput struct{ *pulumi.OutputState }
+
+func (NamespaceNodePoolConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceNodePoolConfig)(nil)).Elem()
+}
+
+func (o NamespaceNodePoolConfigOutput) ToNamespaceNodePoolConfigOutput() NamespaceNodePoolConfigOutput {
+	return o
+}
+
+func (o NamespaceNodePoolConfigOutput) ToNamespaceNodePoolConfigOutputWithContext(ctx context.Context) NamespaceNodePoolConfigOutput {
+	return o
+}
+
+func (o NamespaceNodePoolConfigOutput) ToNamespaceNodePoolConfigPtrOutput() NamespaceNodePoolConfigPtrOutput {
+	return o.ToNamespaceNodePoolConfigPtrOutputWithContext(context.Background())
+}
+
+func (o NamespaceNodePoolConfigOutput) ToNamespaceNodePoolConfigPtrOutputWithContext(ctx context.Context) NamespaceNodePoolConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NamespaceNodePoolConfig) *NamespaceNodePoolConfig {
+		return &v
+	}).(NamespaceNodePoolConfigPtrOutput)
+}
+
+func (o NamespaceNodePoolConfigOutput) ToOutput(ctx context.Context) pulumix.Output[NamespaceNodePoolConfig] {
+	return pulumix.Output[NamespaceNodePoolConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
+func (o NamespaceNodePoolConfigOutput) Alloweds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NamespaceNodePoolConfig) []string { return v.Alloweds }).(pulumi.StringArrayOutput)
+}
+
+// `(string: <optional>)` - The default node pool for jobs that don't define one.
+func (o NamespaceNodePoolConfigOutput) Default() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NamespaceNodePoolConfig) *string { return v.Default }).(pulumi.StringPtrOutput)
+}
+
+// `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+func (o NamespaceNodePoolConfigOutput) Denieds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NamespaceNodePoolConfig) []string { return v.Denieds }).(pulumi.StringArrayOutput)
+}
+
+type NamespaceNodePoolConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (NamespaceNodePoolConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceNodePoolConfig)(nil)).Elem()
+}
+
+func (o NamespaceNodePoolConfigPtrOutput) ToNamespaceNodePoolConfigPtrOutput() NamespaceNodePoolConfigPtrOutput {
+	return o
+}
+
+func (o NamespaceNodePoolConfigPtrOutput) ToNamespaceNodePoolConfigPtrOutputWithContext(ctx context.Context) NamespaceNodePoolConfigPtrOutput {
+	return o
+}
+
+func (o NamespaceNodePoolConfigPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NamespaceNodePoolConfig] {
+	return pulumix.Output[*NamespaceNodePoolConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o NamespaceNodePoolConfigPtrOutput) Elem() NamespaceNodePoolConfigOutput {
+	return o.ApplyT(func(v *NamespaceNodePoolConfig) NamespaceNodePoolConfig {
+		if v != nil {
+			return *v
+		}
+		var ret NamespaceNodePoolConfig
+		return ret
+	}).(NamespaceNodePoolConfigOutput)
+}
+
+// `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
+func (o NamespaceNodePoolConfigPtrOutput) Alloweds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NamespaceNodePoolConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Alloweds
+	}).(pulumi.StringArrayOutput)
+}
+
+// `(string: <optional>)` - The default node pool for jobs that don't define one.
+func (o NamespaceNodePoolConfigPtrOutput) Default() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NamespaceNodePoolConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Default
+	}).(pulumi.StringPtrOutput)
+}
+
+// `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+func (o NamespaceNodePoolConfigPtrOutput) Denieds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NamespaceNodePoolConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Denieds
+	}).(pulumi.StringArrayOutput)
+}
+
+type NodePoolSchedulerConfig struct {
+	// `(string)` - Whether or not memory
+	// oversubscription is enabled in the node pool. Possible values are
+	// `"enabled"` or `"disabled"`. If not defined the global cluster
+	// configuration is used.
+	//
+	// > This option differs from Nomad, where it's represented as a boolean, to
+	// allow distinguishing between memory oversubscription being disabled in the
+	// node pool and this property not being set.
+	MemoryOversubscription *string `pulumi:"memoryOversubscription"`
+	// `(string)` - The scheduler algorithm used in the node
+	// pool. Possible values are `binpack` or `spread`. If not defined the global
+	// cluster configuration is used.
+	SchedulerAlgorithm *string `pulumi:"schedulerAlgorithm"`
+}
+
+// NodePoolSchedulerConfigInput is an input type that accepts NodePoolSchedulerConfigArgs and NodePoolSchedulerConfigOutput values.
+// You can construct a concrete instance of `NodePoolSchedulerConfigInput` via:
+//
+//	NodePoolSchedulerConfigArgs{...}
+type NodePoolSchedulerConfigInput interface {
+	pulumi.Input
+
+	ToNodePoolSchedulerConfigOutput() NodePoolSchedulerConfigOutput
+	ToNodePoolSchedulerConfigOutputWithContext(context.Context) NodePoolSchedulerConfigOutput
+}
+
+type NodePoolSchedulerConfigArgs struct {
+	// `(string)` - Whether or not memory
+	// oversubscription is enabled in the node pool. Possible values are
+	// `"enabled"` or `"disabled"`. If not defined the global cluster
+	// configuration is used.
+	//
+	// > This option differs from Nomad, where it's represented as a boolean, to
+	// allow distinguishing between memory oversubscription being disabled in the
+	// node pool and this property not being set.
+	MemoryOversubscription pulumi.StringPtrInput `pulumi:"memoryOversubscription"`
+	// `(string)` - The scheduler algorithm used in the node
+	// pool. Possible values are `binpack` or `spread`. If not defined the global
+	// cluster configuration is used.
+	SchedulerAlgorithm pulumi.StringPtrInput `pulumi:"schedulerAlgorithm"`
+}
+
+func (NodePoolSchedulerConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (i NodePoolSchedulerConfigArgs) ToNodePoolSchedulerConfigOutput() NodePoolSchedulerConfigOutput {
+	return i.ToNodePoolSchedulerConfigOutputWithContext(context.Background())
+}
+
+func (i NodePoolSchedulerConfigArgs) ToNodePoolSchedulerConfigOutputWithContext(ctx context.Context) NodePoolSchedulerConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolSchedulerConfigOutput)
+}
+
+func (i NodePoolSchedulerConfigArgs) ToOutput(ctx context.Context) pulumix.Output[NodePoolSchedulerConfig] {
+	return pulumix.Output[NodePoolSchedulerConfig]{
+		OutputState: i.ToNodePoolSchedulerConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
+func (i NodePoolSchedulerConfigArgs) ToNodePoolSchedulerConfigPtrOutput() NodePoolSchedulerConfigPtrOutput {
+	return i.ToNodePoolSchedulerConfigPtrOutputWithContext(context.Background())
+}
+
+func (i NodePoolSchedulerConfigArgs) ToNodePoolSchedulerConfigPtrOutputWithContext(ctx context.Context) NodePoolSchedulerConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolSchedulerConfigOutput).ToNodePoolSchedulerConfigPtrOutputWithContext(ctx)
+}
+
+// NodePoolSchedulerConfigPtrInput is an input type that accepts NodePoolSchedulerConfigArgs, NodePoolSchedulerConfigPtr and NodePoolSchedulerConfigPtrOutput values.
+// You can construct a concrete instance of `NodePoolSchedulerConfigPtrInput` via:
+//
+//	        NodePoolSchedulerConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type NodePoolSchedulerConfigPtrInput interface {
+	pulumi.Input
+
+	ToNodePoolSchedulerConfigPtrOutput() NodePoolSchedulerConfigPtrOutput
+	ToNodePoolSchedulerConfigPtrOutputWithContext(context.Context) NodePoolSchedulerConfigPtrOutput
+}
+
+type nodePoolSchedulerConfigPtrType NodePoolSchedulerConfigArgs
+
+func NodePoolSchedulerConfigPtr(v *NodePoolSchedulerConfigArgs) NodePoolSchedulerConfigPtrInput {
+	return (*nodePoolSchedulerConfigPtrType)(v)
+}
+
+func (*nodePoolSchedulerConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (i *nodePoolSchedulerConfigPtrType) ToNodePoolSchedulerConfigPtrOutput() NodePoolSchedulerConfigPtrOutput {
+	return i.ToNodePoolSchedulerConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *nodePoolSchedulerConfigPtrType) ToNodePoolSchedulerConfigPtrOutputWithContext(ctx context.Context) NodePoolSchedulerConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolSchedulerConfigPtrOutput)
+}
+
+func (i *nodePoolSchedulerConfigPtrType) ToOutput(ctx context.Context) pulumix.Output[*NodePoolSchedulerConfig] {
+	return pulumix.Output[*NodePoolSchedulerConfig]{
+		OutputState: i.ToNodePoolSchedulerConfigPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
+type NodePoolSchedulerConfigOutput struct{ *pulumi.OutputState }
+
+func (NodePoolSchedulerConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (o NodePoolSchedulerConfigOutput) ToNodePoolSchedulerConfigOutput() NodePoolSchedulerConfigOutput {
+	return o
+}
+
+func (o NodePoolSchedulerConfigOutput) ToNodePoolSchedulerConfigOutputWithContext(ctx context.Context) NodePoolSchedulerConfigOutput {
+	return o
+}
+
+func (o NodePoolSchedulerConfigOutput) ToNodePoolSchedulerConfigPtrOutput() NodePoolSchedulerConfigPtrOutput {
+	return o.ToNodePoolSchedulerConfigPtrOutputWithContext(context.Background())
+}
+
+func (o NodePoolSchedulerConfigOutput) ToNodePoolSchedulerConfigPtrOutputWithContext(ctx context.Context) NodePoolSchedulerConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NodePoolSchedulerConfig) *NodePoolSchedulerConfig {
+		return &v
+	}).(NodePoolSchedulerConfigPtrOutput)
+}
+
+func (o NodePoolSchedulerConfigOutput) ToOutput(ctx context.Context) pulumix.Output[NodePoolSchedulerConfig] {
+	return pulumix.Output[NodePoolSchedulerConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(string)` - Whether or not memory
+// oversubscription is enabled in the node pool. Possible values are
+// `"enabled"` or `"disabled"`. If not defined the global cluster
+// configuration is used.
+//
+// > This option differs from Nomad, where it's represented as a boolean, to
+// allow distinguishing between memory oversubscription being disabled in the
+// node pool and this property not being set.
+func (o NodePoolSchedulerConfigOutput) MemoryOversubscription() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolSchedulerConfig) *string { return v.MemoryOversubscription }).(pulumi.StringPtrOutput)
+}
+
+// `(string)` - The scheduler algorithm used in the node
+// pool. Possible values are `binpack` or `spread`. If not defined the global
+// cluster configuration is used.
+func (o NodePoolSchedulerConfigOutput) SchedulerAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolSchedulerConfig) *string { return v.SchedulerAlgorithm }).(pulumi.StringPtrOutput)
+}
+
+type NodePoolSchedulerConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (NodePoolSchedulerConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (o NodePoolSchedulerConfigPtrOutput) ToNodePoolSchedulerConfigPtrOutput() NodePoolSchedulerConfigPtrOutput {
+	return o
+}
+
+func (o NodePoolSchedulerConfigPtrOutput) ToNodePoolSchedulerConfigPtrOutputWithContext(ctx context.Context) NodePoolSchedulerConfigPtrOutput {
+	return o
+}
+
+func (o NodePoolSchedulerConfigPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*NodePoolSchedulerConfig] {
+	return pulumix.Output[*NodePoolSchedulerConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o NodePoolSchedulerConfigPtrOutput) Elem() NodePoolSchedulerConfigOutput {
+	return o.ApplyT(func(v *NodePoolSchedulerConfig) NodePoolSchedulerConfig {
+		if v != nil {
+			return *v
+		}
+		var ret NodePoolSchedulerConfig
+		return ret
+	}).(NodePoolSchedulerConfigOutput)
+}
+
+// `(string)` - Whether or not memory
+// oversubscription is enabled in the node pool. Possible values are
+// `"enabled"` or `"disabled"`. If not defined the global cluster
+// configuration is used.
+//
+// > This option differs from Nomad, where it's represented as a boolean, to
+// allow distinguishing between memory oversubscription being disabled in the
+// node pool and this property not being set.
+func (o NodePoolSchedulerConfigPtrOutput) MemoryOversubscription() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolSchedulerConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MemoryOversubscription
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string)` - The scheduler algorithm used in the node
+// pool. Possible values are `binpack` or `spread`. If not defined the global
+// cluster configuration is used.
+func (o NodePoolSchedulerConfigPtrOutput) SchedulerAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolSchedulerConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SchedulerAlgorithm
+	}).(pulumi.StringPtrOutput)
 }
 
 type ProviderHeader struct {
@@ -2321,6 +5526,12 @@ func (i ProviderHeaderArgs) ToProviderHeaderOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderOutput)
 }
 
+func (i ProviderHeaderArgs) ToOutput(ctx context.Context) pulumix.Output[ProviderHeader] {
+	return pulumix.Output[ProviderHeader]{
+		OutputState: i.ToProviderHeaderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ProviderHeaderArrayInput is an input type that accepts ProviderHeaderArray and ProviderHeaderArrayOutput values.
 // You can construct a concrete instance of `ProviderHeaderArrayInput` via:
 //
@@ -2346,6 +5557,12 @@ func (i ProviderHeaderArray) ToProviderHeaderArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderHeaderArrayOutput)
 }
 
+func (i ProviderHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]ProviderHeader] {
+	return pulumix.Output[[]ProviderHeader]{
+		OutputState: i.ToProviderHeaderArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ProviderHeaderOutput struct{ *pulumi.OutputState }
 
 func (ProviderHeaderOutput) ElementType() reflect.Type {
@@ -2358,6 +5575,12 @@ func (o ProviderHeaderOutput) ToProviderHeaderOutput() ProviderHeaderOutput {
 
 func (o ProviderHeaderOutput) ToProviderHeaderOutputWithContext(ctx context.Context) ProviderHeaderOutput {
 	return o
+}
+
+func (o ProviderHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[ProviderHeader] {
+	return pulumix.Output[ProviderHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderHeaderOutput) Name() pulumi.StringOutput {
@@ -2380,6 +5603,12 @@ func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutput() ProviderHeaderA
 
 func (o ProviderHeaderArrayOutput) ToProviderHeaderArrayOutputWithContext(ctx context.Context) ProviderHeaderArrayOutput {
 	return o
+}
+
+func (o ProviderHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]ProviderHeader] {
+	return pulumix.Output[[]ProviderHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ProviderHeaderArrayOutput) Index(i pulumi.IntInput) ProviderHeaderOutput {
@@ -2429,6 +5658,12 @@ func (i QuoteSpecificationLimitArgs) ToQuoteSpecificationLimitOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitOutput)
 }
 
+func (i QuoteSpecificationLimitArgs) ToOutput(ctx context.Context) pulumix.Output[QuoteSpecificationLimit] {
+	return pulumix.Output[QuoteSpecificationLimit]{
+		OutputState: i.ToQuoteSpecificationLimitOutputWithContext(ctx).OutputState,
+	}
+}
+
 // QuoteSpecificationLimitArrayInput is an input type that accepts QuoteSpecificationLimitArray and QuoteSpecificationLimitArrayOutput values.
 // You can construct a concrete instance of `QuoteSpecificationLimitArrayInput` via:
 //
@@ -2454,6 +5689,12 @@ func (i QuoteSpecificationLimitArray) ToQuoteSpecificationLimitArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitArrayOutput)
 }
 
+func (i QuoteSpecificationLimitArray) ToOutput(ctx context.Context) pulumix.Output[[]QuoteSpecificationLimit] {
+	return pulumix.Output[[]QuoteSpecificationLimit]{
+		OutputState: i.ToQuoteSpecificationLimitArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type QuoteSpecificationLimitOutput struct{ *pulumi.OutputState }
 
 func (QuoteSpecificationLimitOutput) ElementType() reflect.Type {
@@ -2466,6 +5707,12 @@ func (o QuoteSpecificationLimitOutput) ToQuoteSpecificationLimitOutput() QuoteSp
 
 func (o QuoteSpecificationLimitOutput) ToQuoteSpecificationLimitOutputWithContext(ctx context.Context) QuoteSpecificationLimitOutput {
 	return o
+}
+
+func (o QuoteSpecificationLimitOutput) ToOutput(ctx context.Context) pulumix.Output[QuoteSpecificationLimit] {
+	return pulumix.Output[QuoteSpecificationLimit]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: <required>)` - The region these limits should apply to.
@@ -2492,6 +5739,12 @@ func (o QuoteSpecificationLimitArrayOutput) ToQuoteSpecificationLimitArrayOutput
 
 func (o QuoteSpecificationLimitArrayOutput) ToQuoteSpecificationLimitArrayOutputWithContext(ctx context.Context) QuoteSpecificationLimitArrayOutput {
 	return o
+}
+
+func (o QuoteSpecificationLimitArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]QuoteSpecificationLimit] {
+	return pulumix.Output[[]QuoteSpecificationLimit]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o QuoteSpecificationLimitArrayOutput) Index(i pulumi.IntInput) QuoteSpecificationLimitOutput {
@@ -2543,6 +5796,12 @@ func (i QuoteSpecificationLimitRegionLimitArgs) ToQuoteSpecificationLimitRegionL
 	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitOutput)
 }
 
+func (i QuoteSpecificationLimitRegionLimitArgs) ToOutput(ctx context.Context) pulumix.Output[QuoteSpecificationLimitRegionLimit] {
+	return pulumix.Output[QuoteSpecificationLimitRegionLimit]{
+		OutputState: i.ToQuoteSpecificationLimitRegionLimitOutputWithContext(ctx).OutputState,
+	}
+}
+
 type QuoteSpecificationLimitRegionLimitOutput struct{ *pulumi.OutputState }
 
 func (QuoteSpecificationLimitRegionLimitOutput) ElementType() reflect.Type {
@@ -2555,6 +5814,12 @@ func (o QuoteSpecificationLimitRegionLimitOutput) ToQuoteSpecificationLimitRegio
 
 func (o QuoteSpecificationLimitRegionLimitOutput) ToQuoteSpecificationLimitRegionLimitOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitOutput {
 	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitOutput) ToOutput(ctx context.Context) pulumix.Output[QuoteSpecificationLimitRegionLimit] {
+	return pulumix.Output[QuoteSpecificationLimitRegionLimit]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
@@ -2621,6 +5886,12 @@ func (i VolumeCapabilityArgs) ToVolumeCapabilityOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeCapabilityOutput)
 }
 
+func (i VolumeCapabilityArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeCapability] {
+	return pulumix.Output[VolumeCapability]{
+		OutputState: i.ToVolumeCapabilityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VolumeCapabilityArrayInput is an input type that accepts VolumeCapabilityArray and VolumeCapabilityArrayOutput values.
 // You can construct a concrete instance of `VolumeCapabilityArrayInput` via:
 //
@@ -2646,6 +5917,12 @@ func (i VolumeCapabilityArray) ToVolumeCapabilityArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeCapabilityArrayOutput)
 }
 
+func (i VolumeCapabilityArray) ToOutput(ctx context.Context) pulumix.Output[[]VolumeCapability] {
+	return pulumix.Output[[]VolumeCapability]{
+		OutputState: i.ToVolumeCapabilityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeCapabilityOutput struct{ *pulumi.OutputState }
 
 func (VolumeCapabilityOutput) ElementType() reflect.Type {
@@ -2658,6 +5935,12 @@ func (o VolumeCapabilityOutput) ToVolumeCapabilityOutput() VolumeCapabilityOutpu
 
 func (o VolumeCapabilityOutput) ToVolumeCapabilityOutputWithContext(ctx context.Context) VolumeCapabilityOutput {
 	return o
+}
+
+func (o VolumeCapabilityOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeCapability] {
+	return pulumix.Output[VolumeCapability]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
@@ -2689,6 +5972,12 @@ func (o VolumeCapabilityArrayOutput) ToVolumeCapabilityArrayOutput() VolumeCapab
 
 func (o VolumeCapabilityArrayOutput) ToVolumeCapabilityArrayOutputWithContext(ctx context.Context) VolumeCapabilityArrayOutput {
 	return o
+}
+
+func (o VolumeCapabilityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VolumeCapability] {
+	return pulumix.Output[[]VolumeCapability]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeCapabilityArrayOutput) Index(i pulumi.IntInput) VolumeCapabilityOutput {
@@ -2734,6 +6023,12 @@ func (i VolumeMountOptionsArgs) ToVolumeMountOptionsOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeMountOptionsOutput)
 }
 
+func (i VolumeMountOptionsArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeMountOptions] {
+	return pulumix.Output[VolumeMountOptions]{
+		OutputState: i.ToVolumeMountOptionsOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i VolumeMountOptionsArgs) ToVolumeMountOptionsPtrOutput() VolumeMountOptionsPtrOutput {
 	return i.ToVolumeMountOptionsPtrOutputWithContext(context.Background())
 }
@@ -2775,6 +6070,12 @@ func (i *volumeMountOptionsPtrType) ToVolumeMountOptionsPtrOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeMountOptionsPtrOutput)
 }
 
+func (i *volumeMountOptionsPtrType) ToOutput(ctx context.Context) pulumix.Output[*VolumeMountOptions] {
+	return pulumix.Output[*VolumeMountOptions]{
+		OutputState: i.ToVolumeMountOptionsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeMountOptionsOutput struct{ *pulumi.OutputState }
 
 func (VolumeMountOptionsOutput) ElementType() reflect.Type {
@@ -2799,6 +6100,12 @@ func (o VolumeMountOptionsOutput) ToVolumeMountOptionsPtrOutputWithContext(ctx c
 	}).(VolumeMountOptionsPtrOutput)
 }
 
+func (o VolumeMountOptionsOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeMountOptions] {
+	return pulumix.Output[VolumeMountOptions]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `(string: <optional>)` - The file system type.
 func (o VolumeMountOptionsOutput) FsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VolumeMountOptions) *string { return v.FsType }).(pulumi.StringPtrOutput)
@@ -2821,6 +6128,12 @@ func (o VolumeMountOptionsPtrOutput) ToVolumeMountOptionsPtrOutput() VolumeMount
 
 func (o VolumeMountOptionsPtrOutput) ToVolumeMountOptionsPtrOutputWithContext(ctx context.Context) VolumeMountOptionsPtrOutput {
 	return o
+}
+
+func (o VolumeMountOptionsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VolumeMountOptions] {
+	return pulumix.Output[*VolumeMountOptions]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeMountOptionsPtrOutput) Elem() VolumeMountOptionsOutput {
@@ -2892,6 +6205,12 @@ func (i VolumeTopologyArgs) ToVolumeTopologyOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyOutput)
 }
 
+func (i VolumeTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeTopology] {
+	return pulumix.Output[VolumeTopology]{
+		OutputState: i.ToVolumeTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VolumeTopologyArrayInput is an input type that accepts VolumeTopologyArray and VolumeTopologyArrayOutput values.
 // You can construct a concrete instance of `VolumeTopologyArrayInput` via:
 //
@@ -2917,6 +6236,12 @@ func (i VolumeTopologyArray) ToVolumeTopologyArrayOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyArrayOutput)
 }
 
+func (i VolumeTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]VolumeTopology] {
+	return pulumix.Output[[]VolumeTopology]{
+		OutputState: i.ToVolumeTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeTopologyOutput struct{ *pulumi.OutputState }
 
 func (VolumeTopologyOutput) ElementType() reflect.Type {
@@ -2929,6 +6254,12 @@ func (o VolumeTopologyOutput) ToVolumeTopologyOutput() VolumeTopologyOutput {
 
 func (o VolumeTopologyOutput) ToVolumeTopologyOutputWithContext(ctx context.Context) VolumeTopologyOutput {
 	return o
+}
+
+func (o VolumeTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeTopology] {
+	return pulumix.Output[VolumeTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(map[string]string)` - Define the attributes for the topology request.
@@ -2951,6 +6282,12 @@ func (o VolumeTopologyArrayOutput) ToVolumeTopologyArrayOutput() VolumeTopologyA
 
 func (o VolumeTopologyArrayOutput) ToVolumeTopologyArrayOutputWithContext(ctx context.Context) VolumeTopologyArrayOutput {
 	return o
+}
+
+func (o VolumeTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VolumeTopology] {
+	return pulumix.Output[[]VolumeTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeTopologyArrayOutput) Index(i pulumi.IntInput) VolumeTopologyOutput {
@@ -2990,6 +6327,12 @@ func (i VolumeTopologyRequestArgs) ToVolumeTopologyRequestOutput() VolumeTopolog
 
 func (i VolumeTopologyRequestArgs) ToVolumeTopologyRequestOutputWithContext(ctx context.Context) VolumeTopologyRequestOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestOutput)
+}
+
+func (i VolumeTopologyRequestArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequest] {
+	return pulumix.Output[VolumeTopologyRequest]{
+		OutputState: i.ToVolumeTopologyRequestOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i VolumeTopologyRequestArgs) ToVolumeTopologyRequestPtrOutput() VolumeTopologyRequestPtrOutput {
@@ -3033,6 +6376,12 @@ func (i *volumeTopologyRequestPtrType) ToVolumeTopologyRequestPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestPtrOutput)
 }
 
+func (i *volumeTopologyRequestPtrType) ToOutput(ctx context.Context) pulumix.Output[*VolumeTopologyRequest] {
+	return pulumix.Output[*VolumeTopologyRequest]{
+		OutputState: i.ToVolumeTopologyRequestPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeTopologyRequestOutput struct{ *pulumi.OutputState }
 
 func (VolumeTopologyRequestOutput) ElementType() reflect.Type {
@@ -3057,6 +6406,12 @@ func (o VolumeTopologyRequestOutput) ToVolumeTopologyRequestPtrOutputWithContext
 	}).(VolumeTopologyRequestPtrOutput)
 }
 
+func (o VolumeTopologyRequestOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequest] {
+	return pulumix.Output[VolumeTopologyRequest]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `(“Topology“: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
 func (o VolumeTopologyRequestOutput) Required() VolumeTopologyRequestRequiredPtrOutput {
 	return o.ApplyT(func(v VolumeTopologyRequest) *VolumeTopologyRequestRequired { return v.Required }).(VolumeTopologyRequestRequiredPtrOutput)
@@ -3074,6 +6429,12 @@ func (o VolumeTopologyRequestPtrOutput) ToVolumeTopologyRequestPtrOutput() Volum
 
 func (o VolumeTopologyRequestPtrOutput) ToVolumeTopologyRequestPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestPtrOutput {
 	return o
+}
+
+func (o VolumeTopologyRequestPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VolumeTopologyRequest] {
+	return pulumix.Output[*VolumeTopologyRequest]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeTopologyRequestPtrOutput) Elem() VolumeTopologyRequestOutput {
@@ -3127,6 +6488,12 @@ func (i VolumeTopologyRequestRequiredArgs) ToVolumeTopologyRequestRequiredOutput
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredOutput)
 }
 
+func (i VolumeTopologyRequestRequiredArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequestRequired] {
+	return pulumix.Output[VolumeTopologyRequestRequired]{
+		OutputState: i.ToVolumeTopologyRequestRequiredOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i VolumeTopologyRequestRequiredArgs) ToVolumeTopologyRequestRequiredPtrOutput() VolumeTopologyRequestRequiredPtrOutput {
 	return i.ToVolumeTopologyRequestRequiredPtrOutputWithContext(context.Background())
 }
@@ -3168,6 +6535,12 @@ func (i *volumeTopologyRequestRequiredPtrType) ToVolumeTopologyRequestRequiredPt
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredPtrOutput)
 }
 
+func (i *volumeTopologyRequestRequiredPtrType) ToOutput(ctx context.Context) pulumix.Output[*VolumeTopologyRequestRequired] {
+	return pulumix.Output[*VolumeTopologyRequestRequired]{
+		OutputState: i.ToVolumeTopologyRequestRequiredPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeTopologyRequestRequiredOutput struct{ *pulumi.OutputState }
 
 func (VolumeTopologyRequestRequiredOutput) ElementType() reflect.Type {
@@ -3192,6 +6565,12 @@ func (o VolumeTopologyRequestRequiredOutput) ToVolumeTopologyRequestRequiredPtrO
 	}).(VolumeTopologyRequestRequiredPtrOutput)
 }
 
+func (o VolumeTopologyRequestRequiredOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequestRequired] {
+	return pulumix.Output[VolumeTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VolumeTopologyRequestRequiredOutput) Topologies() VolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v VolumeTopologyRequestRequired) []VolumeTopologyRequestRequiredTopology { return v.Topologies }).(VolumeTopologyRequestRequiredTopologyArrayOutput)
 }
@@ -3208,6 +6587,12 @@ func (o VolumeTopologyRequestRequiredPtrOutput) ToVolumeTopologyRequestRequiredP
 
 func (o VolumeTopologyRequestRequiredPtrOutput) ToVolumeTopologyRequestRequiredPtrOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredPtrOutput {
 	return o
+}
+
+func (o VolumeTopologyRequestRequiredPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VolumeTopologyRequestRequired] {
+	return pulumix.Output[*VolumeTopologyRequestRequired]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeTopologyRequestRequiredPtrOutput) Elem() VolumeTopologyRequestRequiredOutput {
@@ -3268,6 +6653,12 @@ func (i VolumeTopologyRequestRequiredTopologyArgs) ToVolumeTopologyRequestRequir
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredTopologyOutput)
 }
 
+func (i VolumeTopologyRequestRequiredTopologyArgs) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[VolumeTopologyRequestRequiredTopology]{
+		OutputState: i.ToVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VolumeTopologyRequestRequiredTopologyArrayInput is an input type that accepts VolumeTopologyRequestRequiredTopologyArray and VolumeTopologyRequestRequiredTopologyArrayOutput values.
 // You can construct a concrete instance of `VolumeTopologyRequestRequiredTopologyArrayInput` via:
 //
@@ -3293,6 +6684,12 @@ func (i VolumeTopologyRequestRequiredTopologyArray) ToVolumeTopologyRequestRequi
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeTopologyRequestRequiredTopologyArrayOutput)
 }
 
+func (i VolumeTopologyRequestRequiredTopologyArray) ToOutput(ctx context.Context) pulumix.Output[[]VolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]VolumeTopologyRequestRequiredTopology]{
+		OutputState: i.ToVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VolumeTopologyRequestRequiredTopologyOutput struct{ *pulumi.OutputState }
 
 func (VolumeTopologyRequestRequiredTopologyOutput) ElementType() reflect.Type {
@@ -3305,6 +6702,12 @@ func (o VolumeTopologyRequestRequiredTopologyOutput) ToVolumeTopologyRequestRequ
 
 func (o VolumeTopologyRequestRequiredTopologyOutput) ToVolumeTopologyRequestRequiredTopologyOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredTopologyOutput {
 	return o
+}
+
+func (o VolumeTopologyRequestRequiredTopologyOutput) ToOutput(ctx context.Context) pulumix.Output[VolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[VolumeTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(map[string]string)` - Define the attributes for the topology request.
@@ -3327,6 +6730,12 @@ func (o VolumeTopologyRequestRequiredTopologyArrayOutput) ToVolumeTopologyReques
 
 func (o VolumeTopologyRequestRequiredTopologyArrayOutput) ToVolumeTopologyRequestRequiredTopologyArrayOutputWithContext(ctx context.Context) VolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o
+}
+
+func (o VolumeTopologyRequestRequiredTopologyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VolumeTopologyRequestRequiredTopology] {
+	return pulumix.Output[[]VolumeTopologyRequestRequiredTopology]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VolumeTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi.IntInput) VolumeTopologyRequestRequiredTopologyOutput {
@@ -3372,6 +6781,12 @@ func (i GetAclPoliciesPolicyArgs) ToGetAclPoliciesPolicyOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclPoliciesPolicyOutput)
 }
 
+func (i GetAclPoliciesPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclPoliciesPolicy] {
+	return pulumix.Output[GetAclPoliciesPolicy]{
+		OutputState: i.ToGetAclPoliciesPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclPoliciesPolicyArrayInput is an input type that accepts GetAclPoliciesPolicyArray and GetAclPoliciesPolicyArrayOutput values.
 // You can construct a concrete instance of `GetAclPoliciesPolicyArrayInput` via:
 //
@@ -3397,6 +6812,12 @@ func (i GetAclPoliciesPolicyArray) ToGetAclPoliciesPolicyArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclPoliciesPolicyArrayOutput)
 }
 
+func (i GetAclPoliciesPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclPoliciesPolicy] {
+	return pulumix.Output[[]GetAclPoliciesPolicy]{
+		OutputState: i.ToGetAclPoliciesPolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclPoliciesPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetAclPoliciesPolicyOutput) ElementType() reflect.Type {
@@ -3409,6 +6830,12 @@ func (o GetAclPoliciesPolicyOutput) ToGetAclPoliciesPolicyOutput() GetAclPolicie
 
 func (o GetAclPoliciesPolicyOutput) ToGetAclPoliciesPolicyOutputWithContext(ctx context.Context) GetAclPoliciesPolicyOutput {
 	return o
+}
+
+func (o GetAclPoliciesPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclPoliciesPolicy] {
+	return pulumix.Output[GetAclPoliciesPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` - the description of the ACL Policy.
@@ -3433,6 +6860,12 @@ func (o GetAclPoliciesPolicyArrayOutput) ToGetAclPoliciesPolicyArrayOutput() Get
 
 func (o GetAclPoliciesPolicyArrayOutput) ToGetAclPoliciesPolicyArrayOutputWithContext(ctx context.Context) GetAclPoliciesPolicyArrayOutput {
 	return o
+}
+
+func (o GetAclPoliciesPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclPoliciesPolicy] {
+	return pulumix.Output[[]GetAclPoliciesPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetAclPoliciesPolicyOutput {
@@ -3474,6 +6907,12 @@ func (i GetAclRolePolicyArgs) ToGetAclRolePolicyOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolePolicyOutput)
 }
 
+func (i GetAclRolePolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclRolePolicy] {
+	return pulumix.Output[GetAclRolePolicy]{
+		OutputState: i.ToGetAclRolePolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclRolePolicyArrayInput is an input type that accepts GetAclRolePolicyArray and GetAclRolePolicyArrayOutput values.
 // You can construct a concrete instance of `GetAclRolePolicyArrayInput` via:
 //
@@ -3499,6 +6938,12 @@ func (i GetAclRolePolicyArray) ToGetAclRolePolicyArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolePolicyArrayOutput)
 }
 
+func (i GetAclRolePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolePolicy] {
+	return pulumix.Output[[]GetAclRolePolicy]{
+		OutputState: i.ToGetAclRolePolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclRolePolicyOutput struct{ *pulumi.OutputState }
 
 func (GetAclRolePolicyOutput) ElementType() reflect.Type {
@@ -3511,6 +6956,12 @@ func (o GetAclRolePolicyOutput) ToGetAclRolePolicyOutput() GetAclRolePolicyOutpu
 
 func (o GetAclRolePolicyOutput) ToGetAclRolePolicyOutputWithContext(ctx context.Context) GetAclRolePolicyOutput {
 	return o
+}
+
+func (o GetAclRolePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclRolePolicy] {
+	return pulumix.Output[GetAclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` - Unique name of the ACL role.
@@ -3530,6 +6981,12 @@ func (o GetAclRolePolicyArrayOutput) ToGetAclRolePolicyArrayOutput() GetAclRoleP
 
 func (o GetAclRolePolicyArrayOutput) ToGetAclRolePolicyArrayOutputWithContext(ctx context.Context) GetAclRolePolicyArrayOutput {
 	return o
+}
+
+func (o GetAclRolePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolePolicy] {
+	return pulumix.Output[[]GetAclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclRolePolicyArrayOutput) Index(i pulumi.IntInput) GetAclRolePolicyOutput {
@@ -3583,6 +7040,12 @@ func (i GetAclRolesAclRoleArgs) ToGetAclRolesAclRoleOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRoleOutput)
 }
 
+func (i GetAclRolesAclRoleArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclRolesAclRole] {
+	return pulumix.Output[GetAclRolesAclRole]{
+		OutputState: i.ToGetAclRolesAclRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclRolesAclRoleArrayInput is an input type that accepts GetAclRolesAclRoleArray and GetAclRolesAclRoleArrayOutput values.
 // You can construct a concrete instance of `GetAclRolesAclRoleArrayInput` via:
 //
@@ -3608,6 +7071,12 @@ func (i GetAclRolesAclRoleArray) ToGetAclRolesAclRoleArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRoleArrayOutput)
 }
 
+func (i GetAclRolesAclRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolesAclRole] {
+	return pulumix.Output[[]GetAclRolesAclRole]{
+		OutputState: i.ToGetAclRolesAclRoleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclRolesAclRoleOutput struct{ *pulumi.OutputState }
 
 func (GetAclRolesAclRoleOutput) ElementType() reflect.Type {
@@ -3620,6 +7089,12 @@ func (o GetAclRolesAclRoleOutput) ToGetAclRolesAclRoleOutput() GetAclRolesAclRol
 
 func (o GetAclRolesAclRoleOutput) ToGetAclRolesAclRoleOutputWithContext(ctx context.Context) GetAclRolesAclRoleOutput {
 	return o
+}
+
+func (o GetAclRolesAclRoleOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclRolesAclRole] {
+	return pulumix.Output[GetAclRolesAclRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` - The description of the ACL Role.
@@ -3654,6 +7129,12 @@ func (o GetAclRolesAclRoleArrayOutput) ToGetAclRolesAclRoleArrayOutput() GetAclR
 
 func (o GetAclRolesAclRoleArrayOutput) ToGetAclRolesAclRoleArrayOutputWithContext(ctx context.Context) GetAclRolesAclRoleArrayOutput {
 	return o
+}
+
+func (o GetAclRolesAclRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolesAclRole] {
+	return pulumix.Output[[]GetAclRolesAclRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclRolesAclRoleArrayOutput) Index(i pulumi.IntInput) GetAclRolesAclRoleOutput {
@@ -3695,6 +7176,12 @@ func (i GetAclRolesAclRolePolicyArgs) ToGetAclRolesAclRolePolicyOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRolePolicyOutput)
 }
 
+func (i GetAclRolesAclRolePolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclRolesAclRolePolicy] {
+	return pulumix.Output[GetAclRolesAclRolePolicy]{
+		OutputState: i.ToGetAclRolesAclRolePolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclRolesAclRolePolicyArrayInput is an input type that accepts GetAclRolesAclRolePolicyArray and GetAclRolesAclRolePolicyArrayOutput values.
 // You can construct a concrete instance of `GetAclRolesAclRolePolicyArrayInput` via:
 //
@@ -3720,6 +7207,12 @@ func (i GetAclRolesAclRolePolicyArray) ToGetAclRolesAclRolePolicyArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclRolesAclRolePolicyArrayOutput)
 }
 
+func (i GetAclRolesAclRolePolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolesAclRolePolicy] {
+	return pulumix.Output[[]GetAclRolesAclRolePolicy]{
+		OutputState: i.ToGetAclRolesAclRolePolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclRolesAclRolePolicyOutput struct{ *pulumi.OutputState }
 
 func (GetAclRolesAclRolePolicyOutput) ElementType() reflect.Type {
@@ -3732,6 +7225,12 @@ func (o GetAclRolesAclRolePolicyOutput) ToGetAclRolesAclRolePolicyOutput() GetAc
 
 func (o GetAclRolesAclRolePolicyOutput) ToGetAclRolesAclRolePolicyOutputWithContext(ctx context.Context) GetAclRolesAclRolePolicyOutput {
 	return o
+}
+
+func (o GetAclRolesAclRolePolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclRolesAclRolePolicy] {
+	return pulumix.Output[GetAclRolesAclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` - Unique name of the ACL role.
@@ -3751,6 +7250,12 @@ func (o GetAclRolesAclRolePolicyArrayOutput) ToGetAclRolesAclRolePolicyArrayOutp
 
 func (o GetAclRolesAclRolePolicyArrayOutput) ToGetAclRolesAclRolePolicyArrayOutputWithContext(ctx context.Context) GetAclRolesAclRolePolicyArrayOutput {
 	return o
+}
+
+func (o GetAclRolesAclRolePolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclRolesAclRolePolicy] {
+	return pulumix.Output[[]GetAclRolesAclRolePolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclRolesAclRolePolicyArrayOutput) Index(i pulumi.IntInput) GetAclRolesAclRolePolicyOutput {
@@ -3794,6 +7299,12 @@ func (i GetAclTokenRoleArgs) ToGetAclTokenRoleOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokenRoleOutput)
 }
 
+func (i GetAclTokenRoleArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclTokenRole] {
+	return pulumix.Output[GetAclTokenRole]{
+		OutputState: i.ToGetAclTokenRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclTokenRoleArrayInput is an input type that accepts GetAclTokenRoleArray and GetAclTokenRoleArrayOutput values.
 // You can construct a concrete instance of `GetAclTokenRoleArrayInput` via:
 //
@@ -3819,6 +7330,12 @@ func (i GetAclTokenRoleArray) ToGetAclTokenRoleArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokenRoleArrayOutput)
 }
 
+func (i GetAclTokenRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokenRole] {
+	return pulumix.Output[[]GetAclTokenRole]{
+		OutputState: i.ToGetAclTokenRoleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclTokenRoleOutput struct{ *pulumi.OutputState }
 
 func (GetAclTokenRoleOutput) ElementType() reflect.Type {
@@ -3831,6 +7348,12 @@ func (o GetAclTokenRoleOutput) ToGetAclTokenRoleOutput() GetAclTokenRoleOutput {
 
 func (o GetAclTokenRoleOutput) ToGetAclTokenRoleOutputWithContext(ctx context.Context) GetAclTokenRoleOutput {
 	return o
+}
+
+func (o GetAclTokenRoleOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclTokenRole] {
+	return pulumix.Output[GetAclTokenRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclTokenRoleOutput) Id() pulumi.StringOutput {
@@ -3854,6 +7377,12 @@ func (o GetAclTokenRoleArrayOutput) ToGetAclTokenRoleArrayOutput() GetAclTokenRo
 
 func (o GetAclTokenRoleArrayOutput) ToGetAclTokenRoleArrayOutputWithContext(ctx context.Context) GetAclTokenRoleArrayOutput {
 	return o
+}
+
+func (o GetAclTokenRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokenRole] {
+	return pulumix.Output[[]GetAclTokenRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclTokenRoleArrayOutput) Index(i pulumi.IntInput) GetAclTokenRoleOutput {
@@ -3927,6 +7456,12 @@ func (i GetAclTokensAclTokenArgs) ToGetAclTokensAclTokenOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokensAclTokenOutput)
 }
 
+func (i GetAclTokensAclTokenArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclTokensAclToken] {
+	return pulumix.Output[GetAclTokensAclToken]{
+		OutputState: i.ToGetAclTokensAclTokenOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclTokensAclTokenArrayInput is an input type that accepts GetAclTokensAclTokenArray and GetAclTokensAclTokenArrayOutput values.
 // You can construct a concrete instance of `GetAclTokensAclTokenArrayInput` via:
 //
@@ -3952,6 +7487,12 @@ func (i GetAclTokensAclTokenArray) ToGetAclTokensAclTokenArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokensAclTokenArrayOutput)
 }
 
+func (i GetAclTokensAclTokenArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokensAclToken] {
+	return pulumix.Output[[]GetAclTokensAclToken]{
+		OutputState: i.ToGetAclTokensAclTokenArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclTokensAclTokenOutput struct{ *pulumi.OutputState }
 
 func (GetAclTokensAclTokenOutput) ElementType() reflect.Type {
@@ -3964,6 +7505,12 @@ func (o GetAclTokensAclTokenOutput) ToGetAclTokensAclTokenOutput() GetAclTokensA
 
 func (o GetAclTokensAclTokenOutput) ToGetAclTokensAclTokenOutputWithContext(ctx context.Context) GetAclTokensAclTokenOutput {
 	return o
+}
+
+func (o GetAclTokensAclTokenOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclTokensAclToken] {
+	return pulumix.Output[GetAclTokensAclToken]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(TypeString)` Non-sensitive identifier for the token.
@@ -4022,6 +7569,12 @@ func (o GetAclTokensAclTokenArrayOutput) ToGetAclTokensAclTokenArrayOutputWithCo
 	return o
 }
 
+func (o GetAclTokensAclTokenArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokensAclToken] {
+	return pulumix.Output[[]GetAclTokensAclToken]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetAclTokensAclTokenArrayOutput) Index(i pulumi.IntInput) GetAclTokensAclTokenOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAclTokensAclToken {
 		return vs[0].([]GetAclTokensAclToken)[vs[1].(int)]
@@ -4063,6 +7616,12 @@ func (i GetAclTokensAclTokenRoleArgs) ToGetAclTokensAclTokenRoleOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokensAclTokenRoleOutput)
 }
 
+func (i GetAclTokensAclTokenRoleArgs) ToOutput(ctx context.Context) pulumix.Output[GetAclTokensAclTokenRole] {
+	return pulumix.Output[GetAclTokensAclTokenRole]{
+		OutputState: i.ToGetAclTokensAclTokenRoleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetAclTokensAclTokenRoleArrayInput is an input type that accepts GetAclTokensAclTokenRoleArray and GetAclTokensAclTokenRoleArrayOutput values.
 // You can construct a concrete instance of `GetAclTokensAclTokenRoleArrayInput` via:
 //
@@ -4088,6 +7647,12 @@ func (i GetAclTokensAclTokenRoleArray) ToGetAclTokensAclTokenRoleArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetAclTokensAclTokenRoleArrayOutput)
 }
 
+func (i GetAclTokensAclTokenRoleArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokensAclTokenRole] {
+	return pulumix.Output[[]GetAclTokensAclTokenRole]{
+		OutputState: i.ToGetAclTokensAclTokenRoleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetAclTokensAclTokenRoleOutput struct{ *pulumi.OutputState }
 
 func (GetAclTokensAclTokenRoleOutput) ElementType() reflect.Type {
@@ -4100,6 +7665,12 @@ func (o GetAclTokensAclTokenRoleOutput) ToGetAclTokensAclTokenRoleOutput() GetAc
 
 func (o GetAclTokensAclTokenRoleOutput) ToGetAclTokensAclTokenRoleOutputWithContext(ctx context.Context) GetAclTokensAclTokenRoleOutput {
 	return o
+}
+
+func (o GetAclTokensAclTokenRoleOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclTokensAclTokenRole] {
+	return pulumix.Output[GetAclTokensAclTokenRole]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetAclTokensAclTokenRoleOutput) Id() pulumi.StringOutput {
@@ -4125,10 +7696,299 @@ func (o GetAclTokensAclTokenRoleArrayOutput) ToGetAclTokensAclTokenRoleArrayOutp
 	return o
 }
 
+func (o GetAclTokensAclTokenRoleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAclTokensAclTokenRole] {
+	return pulumix.Output[[]GetAclTokensAclTokenRole]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetAclTokensAclTokenRoleArrayOutput) Index(i pulumi.IntInput) GetAclTokensAclTokenRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAclTokensAclTokenRole {
 		return vs[0].([]GetAclTokensAclTokenRole)[vs[1].(int)]
 	}).(GetAclTokensAclTokenRoleOutput)
+}
+
+type GetAllocationsAllocation struct {
+	// `(string)` - The current client status of the allocation.
+	ClientStatus string `pulumi:"clientStatus"`
+	// `(int)` - The Raft index in which the allocation was created.
+	CreateIndex int `pulumi:"createIndex"`
+	// `(int)` - The timestamp of when the allocation was created.
+	CreateTime int `pulumi:"createTime"`
+	// `(string)` - The current desired status of the allocation.
+	DesiredStatus string `pulumi:"desiredStatus"`
+	// `(string)` - The ID of the evaluation that generated the allocation.
+	EvalId string `pulumi:"evalId"`
+	// `(string)` - The ID of the evaluation that succeeds the allocation evaluation.
+	FollowupEvalId string `pulumi:"followupEvalId"`
+	// `(string)` - The ID of the allocation.
+	Id string `pulumi:"id"`
+	// `(string)` - The ID of the job related to the allocation.
+	JobId string `pulumi:"jobId"`
+	// `(string)` - The type of the job related to the allocation.
+	JobType string `pulumi:"jobType"`
+	// `(int)` - The version of the job that generated the allocation.
+	JobVersion int `pulumi:"jobVersion"`
+	// `(int)` - The Raft index in which the allocation was last modified.
+	ModifyIndex int `pulumi:"modifyIndex"`
+	// `(int)` - The timestamp of when the allocation was last modified.
+	ModifyTime int `pulumi:"modifyTime"`
+	// `(string)` - The name of the allocation.
+	Name string `pulumi:"name"`
+	// `(string)` - The namespace the allocation belongs to.
+	Namespace string `pulumi:"namespace"`
+	// `(string)` - The ID of the allocation that succeeds the allocation.
+	NextAllocation string `pulumi:"nextAllocation"`
+	// `(string)` - The ID of the node to which the allocation was scheduled.
+	NodeId string `pulumi:"nodeId"`
+	// `(string)` - The ID of the node to which the allocation was scheduled.
+	NodeName string `pulumi:"nodeName"`
+	// `(string)` - The ID of the allocation that preempted the allocation.
+	PreemptedByAllocation string `pulumi:"preemptedByAllocation"`
+	// `(string)` - The job task group related to the allocation.
+	TaskGroup string `pulumi:"taskGroup"`
+}
+
+// GetAllocationsAllocationInput is an input type that accepts GetAllocationsAllocationArgs and GetAllocationsAllocationOutput values.
+// You can construct a concrete instance of `GetAllocationsAllocationInput` via:
+//
+//	GetAllocationsAllocationArgs{...}
+type GetAllocationsAllocationInput interface {
+	pulumi.Input
+
+	ToGetAllocationsAllocationOutput() GetAllocationsAllocationOutput
+	ToGetAllocationsAllocationOutputWithContext(context.Context) GetAllocationsAllocationOutput
+}
+
+type GetAllocationsAllocationArgs struct {
+	// `(string)` - The current client status of the allocation.
+	ClientStatus pulumi.StringInput `pulumi:"clientStatus"`
+	// `(int)` - The Raft index in which the allocation was created.
+	CreateIndex pulumi.IntInput `pulumi:"createIndex"`
+	// `(int)` - The timestamp of when the allocation was created.
+	CreateTime pulumi.IntInput `pulumi:"createTime"`
+	// `(string)` - The current desired status of the allocation.
+	DesiredStatus pulumi.StringInput `pulumi:"desiredStatus"`
+	// `(string)` - The ID of the evaluation that generated the allocation.
+	EvalId pulumi.StringInput `pulumi:"evalId"`
+	// `(string)` - The ID of the evaluation that succeeds the allocation evaluation.
+	FollowupEvalId pulumi.StringInput `pulumi:"followupEvalId"`
+	// `(string)` - The ID of the allocation.
+	Id pulumi.StringInput `pulumi:"id"`
+	// `(string)` - The ID of the job related to the allocation.
+	JobId pulumi.StringInput `pulumi:"jobId"`
+	// `(string)` - The type of the job related to the allocation.
+	JobType pulumi.StringInput `pulumi:"jobType"`
+	// `(int)` - The version of the job that generated the allocation.
+	JobVersion pulumi.IntInput `pulumi:"jobVersion"`
+	// `(int)` - The Raft index in which the allocation was last modified.
+	ModifyIndex pulumi.IntInput `pulumi:"modifyIndex"`
+	// `(int)` - The timestamp of when the allocation was last modified.
+	ModifyTime pulumi.IntInput `pulumi:"modifyTime"`
+	// `(string)` - The name of the allocation.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `(string)` - The namespace the allocation belongs to.
+	Namespace pulumi.StringInput `pulumi:"namespace"`
+	// `(string)` - The ID of the allocation that succeeds the allocation.
+	NextAllocation pulumi.StringInput `pulumi:"nextAllocation"`
+	// `(string)` - The ID of the node to which the allocation was scheduled.
+	NodeId pulumi.StringInput `pulumi:"nodeId"`
+	// `(string)` - The ID of the node to which the allocation was scheduled.
+	NodeName pulumi.StringInput `pulumi:"nodeName"`
+	// `(string)` - The ID of the allocation that preempted the allocation.
+	PreemptedByAllocation pulumi.StringInput `pulumi:"preemptedByAllocation"`
+	// `(string)` - The job task group related to the allocation.
+	TaskGroup pulumi.StringInput `pulumi:"taskGroup"`
+}
+
+func (GetAllocationsAllocationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllocationsAllocation)(nil)).Elem()
+}
+
+func (i GetAllocationsAllocationArgs) ToGetAllocationsAllocationOutput() GetAllocationsAllocationOutput {
+	return i.ToGetAllocationsAllocationOutputWithContext(context.Background())
+}
+
+func (i GetAllocationsAllocationArgs) ToGetAllocationsAllocationOutputWithContext(ctx context.Context) GetAllocationsAllocationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllocationsAllocationOutput)
+}
+
+func (i GetAllocationsAllocationArgs) ToOutput(ctx context.Context) pulumix.Output[GetAllocationsAllocation] {
+	return pulumix.Output[GetAllocationsAllocation]{
+		OutputState: i.ToGetAllocationsAllocationOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetAllocationsAllocationArrayInput is an input type that accepts GetAllocationsAllocationArray and GetAllocationsAllocationArrayOutput values.
+// You can construct a concrete instance of `GetAllocationsAllocationArrayInput` via:
+//
+//	GetAllocationsAllocationArray{ GetAllocationsAllocationArgs{...} }
+type GetAllocationsAllocationArrayInput interface {
+	pulumi.Input
+
+	ToGetAllocationsAllocationArrayOutput() GetAllocationsAllocationArrayOutput
+	ToGetAllocationsAllocationArrayOutputWithContext(context.Context) GetAllocationsAllocationArrayOutput
+}
+
+type GetAllocationsAllocationArray []GetAllocationsAllocationInput
+
+func (GetAllocationsAllocationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllocationsAllocation)(nil)).Elem()
+}
+
+func (i GetAllocationsAllocationArray) ToGetAllocationsAllocationArrayOutput() GetAllocationsAllocationArrayOutput {
+	return i.ToGetAllocationsAllocationArrayOutputWithContext(context.Background())
+}
+
+func (i GetAllocationsAllocationArray) ToGetAllocationsAllocationArrayOutputWithContext(ctx context.Context) GetAllocationsAllocationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAllocationsAllocationArrayOutput)
+}
+
+func (i GetAllocationsAllocationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetAllocationsAllocation] {
+	return pulumix.Output[[]GetAllocationsAllocation]{
+		OutputState: i.ToGetAllocationsAllocationArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetAllocationsAllocationOutput struct{ *pulumi.OutputState }
+
+func (GetAllocationsAllocationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAllocationsAllocation)(nil)).Elem()
+}
+
+func (o GetAllocationsAllocationOutput) ToGetAllocationsAllocationOutput() GetAllocationsAllocationOutput {
+	return o
+}
+
+func (o GetAllocationsAllocationOutput) ToGetAllocationsAllocationOutputWithContext(ctx context.Context) GetAllocationsAllocationOutput {
+	return o
+}
+
+func (o GetAllocationsAllocationOutput) ToOutput(ctx context.Context) pulumix.Output[GetAllocationsAllocation] {
+	return pulumix.Output[GetAllocationsAllocation]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(string)` - The current client status of the allocation.
+func (o GetAllocationsAllocationOutput) ClientStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.ClientStatus }).(pulumi.StringOutput)
+}
+
+// `(int)` - The Raft index in which the allocation was created.
+func (o GetAllocationsAllocationOutput) CreateIndex() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) int { return v.CreateIndex }).(pulumi.IntOutput)
+}
+
+// `(int)` - The timestamp of when the allocation was created.
+func (o GetAllocationsAllocationOutput) CreateTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) int { return v.CreateTime }).(pulumi.IntOutput)
+}
+
+// `(string)` - The current desired status of the allocation.
+func (o GetAllocationsAllocationOutput) DesiredStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.DesiredStatus }).(pulumi.StringOutput)
+}
+
+// `(string)` - The ID of the evaluation that generated the allocation.
+func (o GetAllocationsAllocationOutput) EvalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.EvalId }).(pulumi.StringOutput)
+}
+
+// `(string)` - The ID of the evaluation that succeeds the allocation evaluation.
+func (o GetAllocationsAllocationOutput) FollowupEvalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.FollowupEvalId }).(pulumi.StringOutput)
+}
+
+// `(string)` - The ID of the allocation.
+func (o GetAllocationsAllocationOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// `(string)` - The ID of the job related to the allocation.
+func (o GetAllocationsAllocationOutput) JobId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.JobId }).(pulumi.StringOutput)
+}
+
+// `(string)` - The type of the job related to the allocation.
+func (o GetAllocationsAllocationOutput) JobType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.JobType }).(pulumi.StringOutput)
+}
+
+// `(int)` - The version of the job that generated the allocation.
+func (o GetAllocationsAllocationOutput) JobVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) int { return v.JobVersion }).(pulumi.IntOutput)
+}
+
+// `(int)` - The Raft index in which the allocation was last modified.
+func (o GetAllocationsAllocationOutput) ModifyIndex() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) int { return v.ModifyIndex }).(pulumi.IntOutput)
+}
+
+// `(int)` - The timestamp of when the allocation was last modified.
+func (o GetAllocationsAllocationOutput) ModifyTime() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) int { return v.ModifyTime }).(pulumi.IntOutput)
+}
+
+// `(string)` - The name of the allocation.
+func (o GetAllocationsAllocationOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string)` - The namespace the allocation belongs to.
+func (o GetAllocationsAllocationOutput) Namespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.Namespace }).(pulumi.StringOutput)
+}
+
+// `(string)` - The ID of the allocation that succeeds the allocation.
+func (o GetAllocationsAllocationOutput) NextAllocation() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.NextAllocation }).(pulumi.StringOutput)
+}
+
+// `(string)` - The ID of the node to which the allocation was scheduled.
+func (o GetAllocationsAllocationOutput) NodeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.NodeId }).(pulumi.StringOutput)
+}
+
+// `(string)` - The ID of the node to which the allocation was scheduled.
+func (o GetAllocationsAllocationOutput) NodeName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.NodeName }).(pulumi.StringOutput)
+}
+
+// `(string)` - The ID of the allocation that preempted the allocation.
+func (o GetAllocationsAllocationOutput) PreemptedByAllocation() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.PreemptedByAllocation }).(pulumi.StringOutput)
+}
+
+// `(string)` - The job task group related to the allocation.
+func (o GetAllocationsAllocationOutput) TaskGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.TaskGroup }).(pulumi.StringOutput)
+}
+
+type GetAllocationsAllocationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAllocationsAllocationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAllocationsAllocation)(nil)).Elem()
+}
+
+func (o GetAllocationsAllocationArrayOutput) ToGetAllocationsAllocationArrayOutput() GetAllocationsAllocationArrayOutput {
+	return o
+}
+
+func (o GetAllocationsAllocationArrayOutput) ToGetAllocationsAllocationArrayOutputWithContext(ctx context.Context) GetAllocationsAllocationArrayOutput {
+	return o
+}
+
+func (o GetAllocationsAllocationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetAllocationsAllocation] {
+	return pulumix.Output[[]GetAllocationsAllocation]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetAllocationsAllocationArrayOutput) Index(i pulumi.IntInput) GetAllocationsAllocationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAllocationsAllocation {
+		return vs[0].([]GetAllocationsAllocation)[vs[1].(int)]
+	}).(GetAllocationsAllocationOutput)
 }
 
 type GetJobConstraint struct {
@@ -4172,6 +8032,12 @@ func (i GetJobConstraintArgs) ToGetJobConstraintOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobConstraintOutput)
 }
 
+func (i GetJobConstraintArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobConstraint] {
+	return pulumix.Output[GetJobConstraint]{
+		OutputState: i.ToGetJobConstraintOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobConstraintArrayInput is an input type that accepts GetJobConstraintArray and GetJobConstraintArrayOutput values.
 // You can construct a concrete instance of `GetJobConstraintArrayInput` via:
 //
@@ -4197,6 +8063,12 @@ func (i GetJobConstraintArray) ToGetJobConstraintArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobConstraintArrayOutput)
 }
 
+func (i GetJobConstraintArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobConstraint] {
+	return pulumix.Output[[]GetJobConstraint]{
+		OutputState: i.ToGetJobConstraintArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobConstraintOutput struct{ *pulumi.OutputState }
 
 func (GetJobConstraintOutput) ElementType() reflect.Type {
@@ -4209,6 +8081,12 @@ func (o GetJobConstraintOutput) ToGetJobConstraintOutput() GetJobConstraintOutpu
 
 func (o GetJobConstraintOutput) ToGetJobConstraintOutputWithContext(ctx context.Context) GetJobConstraintOutput {
 	return o
+}
+
+func (o GetJobConstraintOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobConstraint] {
+	return pulumix.Output[GetJobConstraint]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` Attribute being constrained.
@@ -4238,6 +8116,12 @@ func (o GetJobConstraintArrayOutput) ToGetJobConstraintArrayOutput() GetJobConst
 
 func (o GetJobConstraintArrayOutput) ToGetJobConstraintArrayOutputWithContext(ctx context.Context) GetJobConstraintArrayOutput {
 	return o
+}
+
+func (o GetJobConstraintArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobConstraint] {
+	return pulumix.Output[[]GetJobConstraint]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobConstraintArrayOutput) Index(i pulumi.IntInput) GetJobConstraintOutput {
@@ -4295,6 +8179,12 @@ func (i GetJobPeriodicConfigArgs) ToGetJobPeriodicConfigOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobPeriodicConfigOutput)
 }
 
+func (i GetJobPeriodicConfigArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobPeriodicConfig] {
+	return pulumix.Output[GetJobPeriodicConfig]{
+		OutputState: i.ToGetJobPeriodicConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobPeriodicConfigArrayInput is an input type that accepts GetJobPeriodicConfigArray and GetJobPeriodicConfigArrayOutput values.
 // You can construct a concrete instance of `GetJobPeriodicConfigArrayInput` via:
 //
@@ -4320,6 +8210,12 @@ func (i GetJobPeriodicConfigArray) ToGetJobPeriodicConfigArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobPeriodicConfigArrayOutput)
 }
 
+func (i GetJobPeriodicConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobPeriodicConfig] {
+	return pulumix.Output[[]GetJobPeriodicConfig]{
+		OutputState: i.ToGetJobPeriodicConfigArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobPeriodicConfigOutput struct{ *pulumi.OutputState }
 
 func (GetJobPeriodicConfigOutput) ElementType() reflect.Type {
@@ -4332,6 +8228,12 @@ func (o GetJobPeriodicConfigOutput) ToGetJobPeriodicConfigOutput() GetJobPeriodi
 
 func (o GetJobPeriodicConfigOutput) ToGetJobPeriodicConfigOutputWithContext(ctx context.Context) GetJobPeriodicConfigOutput {
 	return o
+}
+
+func (o GetJobPeriodicConfigOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobPeriodicConfig] {
+	return pulumix.Output[GetJobPeriodicConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(boolean)` If periodic scheduling is enabled for the specified job.
@@ -4371,6 +8273,12 @@ func (o GetJobPeriodicConfigArrayOutput) ToGetJobPeriodicConfigArrayOutput() Get
 
 func (o GetJobPeriodicConfigArrayOutput) ToGetJobPeriodicConfigArrayOutputWithContext(ctx context.Context) GetJobPeriodicConfigArrayOutput {
 	return o
+}
+
+func (o GetJobPeriodicConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobPeriodicConfig] {
+	return pulumix.Output[[]GetJobPeriodicConfig]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobPeriodicConfigArrayOutput) Index(i pulumi.IntInput) GetJobPeriodicConfigOutput {
@@ -4420,6 +8328,12 @@ func (i GetJobTaskGroupArgs) ToGetJobTaskGroupOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupOutput)
 }
 
+func (i GetJobTaskGroupArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroup] {
+	return pulumix.Output[GetJobTaskGroup]{
+		OutputState: i.ToGetJobTaskGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobTaskGroupArrayInput is an input type that accepts GetJobTaskGroupArray and GetJobTaskGroupArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupArrayInput` via:
 //
@@ -4445,6 +8359,12 @@ func (i GetJobTaskGroupArray) ToGetJobTaskGroupArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupArrayOutput)
 }
 
+func (i GetJobTaskGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroup] {
+	return pulumix.Output[[]GetJobTaskGroup]{
+		OutputState: i.ToGetJobTaskGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobTaskGroupOutput struct{ *pulumi.OutputState }
 
 func (GetJobTaskGroupOutput) ElementType() reflect.Type {
@@ -4457,6 +8377,12 @@ func (o GetJobTaskGroupOutput) ToGetJobTaskGroupOutput() GetJobTaskGroupOutput {
 
 func (o GetJobTaskGroupOutput) ToGetJobTaskGroupOutputWithContext(ctx context.Context) GetJobTaskGroupOutput {
 	return o
+}
+
+func (o GetJobTaskGroupOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroup] {
+	return pulumix.Output[GetJobTaskGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupOutput) Count() pulumi.IntOutput {
@@ -4492,6 +8418,12 @@ func (o GetJobTaskGroupArrayOutput) ToGetJobTaskGroupArrayOutput() GetJobTaskGro
 
 func (o GetJobTaskGroupArrayOutput) ToGetJobTaskGroupArrayOutputWithContext(ctx context.Context) GetJobTaskGroupArrayOutput {
 	return o
+}
+
+func (o GetJobTaskGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroup] {
+	return pulumix.Output[[]GetJobTaskGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupOutput {
@@ -4539,6 +8471,12 @@ func (i GetJobTaskGroupTaskArgs) ToGetJobTaskGroupTaskOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupTaskOutput)
 }
 
+func (i GetJobTaskGroupTaskArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupTask] {
+	return pulumix.Output[GetJobTaskGroupTask]{
+		OutputState: i.ToGetJobTaskGroupTaskOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobTaskGroupTaskArrayInput is an input type that accepts GetJobTaskGroupTaskArray and GetJobTaskGroupTaskArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupTaskArrayInput` via:
 //
@@ -4564,6 +8502,12 @@ func (i GetJobTaskGroupTaskArray) ToGetJobTaskGroupTaskArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupTaskArrayOutput)
 }
 
+func (i GetJobTaskGroupTaskArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupTask] {
+	return pulumix.Output[[]GetJobTaskGroupTask]{
+		OutputState: i.ToGetJobTaskGroupTaskArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobTaskGroupTaskOutput struct{ *pulumi.OutputState }
 
 func (GetJobTaskGroupTaskOutput) ElementType() reflect.Type {
@@ -4576,6 +8520,12 @@ func (o GetJobTaskGroupTaskOutput) ToGetJobTaskGroupTaskOutput() GetJobTaskGroup
 
 func (o GetJobTaskGroupTaskOutput) ToGetJobTaskGroupTaskOutputWithContext(ctx context.Context) GetJobTaskGroupTaskOutput {
 	return o
+}
+
+func (o GetJobTaskGroupTaskOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupTask] {
+	return pulumix.Output[GetJobTaskGroupTask]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupTaskOutput) Driver() pulumi.StringOutput {
@@ -4607,6 +8557,12 @@ func (o GetJobTaskGroupTaskArrayOutput) ToGetJobTaskGroupTaskArrayOutput() GetJo
 
 func (o GetJobTaskGroupTaskArrayOutput) ToGetJobTaskGroupTaskArrayOutputWithContext(ctx context.Context) GetJobTaskGroupTaskArrayOutput {
 	return o
+}
+
+func (o GetJobTaskGroupTaskArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupTask] {
+	return pulumix.Output[[]GetJobTaskGroupTask]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupTaskArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupTaskOutput {
@@ -4650,6 +8606,12 @@ func (i GetJobTaskGroupTaskVolumeMountArgs) ToGetJobTaskGroupTaskVolumeMountOutp
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupTaskVolumeMountOutput)
 }
 
+func (i GetJobTaskGroupTaskVolumeMountArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[GetJobTaskGroupTaskVolumeMount]{
+		OutputState: i.ToGetJobTaskGroupTaskVolumeMountOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobTaskGroupTaskVolumeMountArrayInput is an input type that accepts GetJobTaskGroupTaskVolumeMountArray and GetJobTaskGroupTaskVolumeMountArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupTaskVolumeMountArrayInput` via:
 //
@@ -4675,6 +8637,12 @@ func (i GetJobTaskGroupTaskVolumeMountArray) ToGetJobTaskGroupTaskVolumeMountArr
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupTaskVolumeMountArrayOutput)
 }
 
+func (i GetJobTaskGroupTaskVolumeMountArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[[]GetJobTaskGroupTaskVolumeMount]{
+		OutputState: i.ToGetJobTaskGroupTaskVolumeMountArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobTaskGroupTaskVolumeMountOutput struct{ *pulumi.OutputState }
 
 func (GetJobTaskGroupTaskVolumeMountOutput) ElementType() reflect.Type {
@@ -4687,6 +8655,12 @@ func (o GetJobTaskGroupTaskVolumeMountOutput) ToGetJobTaskGroupTaskVolumeMountOu
 
 func (o GetJobTaskGroupTaskVolumeMountOutput) ToGetJobTaskGroupTaskVolumeMountOutputWithContext(ctx context.Context) GetJobTaskGroupTaskVolumeMountOutput {
 	return o
+}
+
+func (o GetJobTaskGroupTaskVolumeMountOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[GetJobTaskGroupTaskVolumeMount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupTaskVolumeMountOutput) Destination() pulumi.StringOutput {
@@ -4713,6 +8687,12 @@ func (o GetJobTaskGroupTaskVolumeMountArrayOutput) ToGetJobTaskGroupTaskVolumeMo
 
 func (o GetJobTaskGroupTaskVolumeMountArrayOutput) ToGetJobTaskGroupTaskVolumeMountArrayOutputWithContext(ctx context.Context) GetJobTaskGroupTaskVolumeMountArrayOutput {
 	return o
+}
+
+func (o GetJobTaskGroupTaskVolumeMountArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupTaskVolumeMount] {
+	return pulumix.Output[[]GetJobTaskGroupTaskVolumeMount]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupTaskVolumeMountArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupTaskVolumeMountOutput {
@@ -4762,6 +8742,12 @@ func (i GetJobTaskGroupVolumeArgs) ToGetJobTaskGroupVolumeOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupVolumeOutput)
 }
 
+func (i GetJobTaskGroupVolumeArgs) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupVolume] {
+	return pulumix.Output[GetJobTaskGroupVolume]{
+		OutputState: i.ToGetJobTaskGroupVolumeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetJobTaskGroupVolumeArrayInput is an input type that accepts GetJobTaskGroupVolumeArray and GetJobTaskGroupVolumeArrayOutput values.
 // You can construct a concrete instance of `GetJobTaskGroupVolumeArrayInput` via:
 //
@@ -4787,6 +8773,12 @@ func (i GetJobTaskGroupVolumeArray) ToGetJobTaskGroupVolumeArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupVolumeArrayOutput)
 }
 
+func (i GetJobTaskGroupVolumeArray) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupVolume] {
+	return pulumix.Output[[]GetJobTaskGroupVolume]{
+		OutputState: i.ToGetJobTaskGroupVolumeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetJobTaskGroupVolumeOutput struct{ *pulumi.OutputState }
 
 func (GetJobTaskGroupVolumeOutput) ElementType() reflect.Type {
@@ -4799,6 +8791,12 @@ func (o GetJobTaskGroupVolumeOutput) ToGetJobTaskGroupVolumeOutput() GetJobTaskG
 
 func (o GetJobTaskGroupVolumeOutput) ToGetJobTaskGroupVolumeOutputWithContext(ctx context.Context) GetJobTaskGroupVolumeOutput {
 	return o
+}
+
+func (o GetJobTaskGroupVolumeOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobTaskGroupVolume] {
+	return pulumix.Output[GetJobTaskGroupVolume]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(string)` Name of the job.
@@ -4831,6 +8829,12 @@ func (o GetJobTaskGroupVolumeArrayOutput) ToGetJobTaskGroupVolumeArrayOutput() G
 
 func (o GetJobTaskGroupVolumeArrayOutput) ToGetJobTaskGroupVolumeArrayOutputWithContext(ctx context.Context) GetJobTaskGroupVolumeArrayOutput {
 	return o
+}
+
+func (o GetJobTaskGroupVolumeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetJobTaskGroupVolume] {
+	return pulumix.Output[[]GetJobTaskGroupVolume]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetJobTaskGroupVolumeArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupVolumeOutput {
@@ -4876,6 +8880,12 @@ func (i GetNamespaceCapabilityArgs) ToGetNamespaceCapabilityOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceCapabilityOutput)
 }
 
+func (i GetNamespaceCapabilityArgs) ToOutput(ctx context.Context) pulumix.Output[GetNamespaceCapability] {
+	return pulumix.Output[GetNamespaceCapability]{
+		OutputState: i.ToGetNamespaceCapabilityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetNamespaceCapabilityArrayInput is an input type that accepts GetNamespaceCapabilityArray and GetNamespaceCapabilityArrayOutput values.
 // You can construct a concrete instance of `GetNamespaceCapabilityArrayInput` via:
 //
@@ -4901,6 +8911,12 @@ func (i GetNamespaceCapabilityArray) ToGetNamespaceCapabilityArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceCapabilityArrayOutput)
 }
 
+func (i GetNamespaceCapabilityArray) ToOutput(ctx context.Context) pulumix.Output[[]GetNamespaceCapability] {
+	return pulumix.Output[[]GetNamespaceCapability]{
+		OutputState: i.ToGetNamespaceCapabilityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetNamespaceCapabilityOutput struct{ *pulumi.OutputState }
 
 func (GetNamespaceCapabilityOutput) ElementType() reflect.Type {
@@ -4913,6 +8929,12 @@ func (o GetNamespaceCapabilityOutput) ToGetNamespaceCapabilityOutput() GetNamesp
 
 func (o GetNamespaceCapabilityOutput) ToGetNamespaceCapabilityOutputWithContext(ctx context.Context) GetNamespaceCapabilityOutput {
 	return o
+}
+
+func (o GetNamespaceCapabilityOutput) ToOutput(ctx context.Context) pulumix.Output[GetNamespaceCapability] {
+	return pulumix.Output[GetNamespaceCapability]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `([]string)` - Task drivers disabled for the namespace.
@@ -4939,10 +8961,575 @@ func (o GetNamespaceCapabilityArrayOutput) ToGetNamespaceCapabilityArrayOutputWi
 	return o
 }
 
+func (o GetNamespaceCapabilityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetNamespaceCapability] {
+	return pulumix.Output[[]GetNamespaceCapability]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetNamespaceCapabilityArrayOutput) Index(i pulumi.IntInput) GetNamespaceCapabilityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNamespaceCapability {
 		return vs[0].([]GetNamespaceCapability)[vs[1].(int)]
 	}).(GetNamespaceCapabilityOutput)
+}
+
+type GetNamespaceNodePoolConfig struct {
+	Alloweds []string `pulumi:"alloweds"`
+	Default  string   `pulumi:"default"`
+	Denieds  []string `pulumi:"denieds"`
+}
+
+// GetNamespaceNodePoolConfigInput is an input type that accepts GetNamespaceNodePoolConfigArgs and GetNamespaceNodePoolConfigOutput values.
+// You can construct a concrete instance of `GetNamespaceNodePoolConfigInput` via:
+//
+//	GetNamespaceNodePoolConfigArgs{...}
+type GetNamespaceNodePoolConfigInput interface {
+	pulumi.Input
+
+	ToGetNamespaceNodePoolConfigOutput() GetNamespaceNodePoolConfigOutput
+	ToGetNamespaceNodePoolConfigOutputWithContext(context.Context) GetNamespaceNodePoolConfigOutput
+}
+
+type GetNamespaceNodePoolConfigArgs struct {
+	Alloweds pulumi.StringArrayInput `pulumi:"alloweds"`
+	Default  pulumi.StringInput      `pulumi:"default"`
+	Denieds  pulumi.StringArrayInput `pulumi:"denieds"`
+}
+
+func (GetNamespaceNodePoolConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespaceNodePoolConfig)(nil)).Elem()
+}
+
+func (i GetNamespaceNodePoolConfigArgs) ToGetNamespaceNodePoolConfigOutput() GetNamespaceNodePoolConfigOutput {
+	return i.ToGetNamespaceNodePoolConfigOutputWithContext(context.Background())
+}
+
+func (i GetNamespaceNodePoolConfigArgs) ToGetNamespaceNodePoolConfigOutputWithContext(ctx context.Context) GetNamespaceNodePoolConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceNodePoolConfigOutput)
+}
+
+func (i GetNamespaceNodePoolConfigArgs) ToOutput(ctx context.Context) pulumix.Output[GetNamespaceNodePoolConfig] {
+	return pulumix.Output[GetNamespaceNodePoolConfig]{
+		OutputState: i.ToGetNamespaceNodePoolConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetNamespaceNodePoolConfigArrayInput is an input type that accepts GetNamespaceNodePoolConfigArray and GetNamespaceNodePoolConfigArrayOutput values.
+// You can construct a concrete instance of `GetNamespaceNodePoolConfigArrayInput` via:
+//
+//	GetNamespaceNodePoolConfigArray{ GetNamespaceNodePoolConfigArgs{...} }
+type GetNamespaceNodePoolConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetNamespaceNodePoolConfigArrayOutput() GetNamespaceNodePoolConfigArrayOutput
+	ToGetNamespaceNodePoolConfigArrayOutputWithContext(context.Context) GetNamespaceNodePoolConfigArrayOutput
+}
+
+type GetNamespaceNodePoolConfigArray []GetNamespaceNodePoolConfigInput
+
+func (GetNamespaceNodePoolConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespaceNodePoolConfig)(nil)).Elem()
+}
+
+func (i GetNamespaceNodePoolConfigArray) ToGetNamespaceNodePoolConfigArrayOutput() GetNamespaceNodePoolConfigArrayOutput {
+	return i.ToGetNamespaceNodePoolConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetNamespaceNodePoolConfigArray) ToGetNamespaceNodePoolConfigArrayOutputWithContext(ctx context.Context) GetNamespaceNodePoolConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceNodePoolConfigArrayOutput)
+}
+
+func (i GetNamespaceNodePoolConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]GetNamespaceNodePoolConfig] {
+	return pulumix.Output[[]GetNamespaceNodePoolConfig]{
+		OutputState: i.ToGetNamespaceNodePoolConfigArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetNamespaceNodePoolConfigOutput struct{ *pulumi.OutputState }
+
+func (GetNamespaceNodePoolConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespaceNodePoolConfig)(nil)).Elem()
+}
+
+func (o GetNamespaceNodePoolConfigOutput) ToGetNamespaceNodePoolConfigOutput() GetNamespaceNodePoolConfigOutput {
+	return o
+}
+
+func (o GetNamespaceNodePoolConfigOutput) ToGetNamespaceNodePoolConfigOutputWithContext(ctx context.Context) GetNamespaceNodePoolConfigOutput {
+	return o
+}
+
+func (o GetNamespaceNodePoolConfigOutput) ToOutput(ctx context.Context) pulumix.Output[GetNamespaceNodePoolConfig] {
+	return pulumix.Output[GetNamespaceNodePoolConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetNamespaceNodePoolConfigOutput) Alloweds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespaceNodePoolConfig) []string { return v.Alloweds }).(pulumi.StringArrayOutput)
+}
+
+func (o GetNamespaceNodePoolConfigOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespaceNodePoolConfig) string { return v.Default }).(pulumi.StringOutput)
+}
+
+func (o GetNamespaceNodePoolConfigOutput) Denieds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespaceNodePoolConfig) []string { return v.Denieds }).(pulumi.StringArrayOutput)
+}
+
+type GetNamespaceNodePoolConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNamespaceNodePoolConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespaceNodePoolConfig)(nil)).Elem()
+}
+
+func (o GetNamespaceNodePoolConfigArrayOutput) ToGetNamespaceNodePoolConfigArrayOutput() GetNamespaceNodePoolConfigArrayOutput {
+	return o
+}
+
+func (o GetNamespaceNodePoolConfigArrayOutput) ToGetNamespaceNodePoolConfigArrayOutputWithContext(ctx context.Context) GetNamespaceNodePoolConfigArrayOutput {
+	return o
+}
+
+func (o GetNamespaceNodePoolConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetNamespaceNodePoolConfig] {
+	return pulumix.Output[[]GetNamespaceNodePoolConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetNamespaceNodePoolConfigArrayOutput) Index(i pulumi.IntInput) GetNamespaceNodePoolConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNamespaceNodePoolConfig {
+		return vs[0].([]GetNamespaceNodePoolConfig)[vs[1].(int)]
+	}).(GetNamespaceNodePoolConfigOutput)
+}
+
+type GetNodePoolSchedulerConfig struct {
+	// `(string)` - Whether or not memory
+	// oversubscription is enabled in the node pool. If empty or not defined the
+	// global cluster configuration is used.
+	MemoryOversubscription string `pulumi:"memoryOversubscription"`
+	// `(string)` - The scheduler algorithm used in the node
+	// pool. If empty or not defined the global cluster configuration is used.
+	SchedulerAlgorithm string `pulumi:"schedulerAlgorithm"`
+}
+
+// GetNodePoolSchedulerConfigInput is an input type that accepts GetNodePoolSchedulerConfigArgs and GetNodePoolSchedulerConfigOutput values.
+// You can construct a concrete instance of `GetNodePoolSchedulerConfigInput` via:
+//
+//	GetNodePoolSchedulerConfigArgs{...}
+type GetNodePoolSchedulerConfigInput interface {
+	pulumi.Input
+
+	ToGetNodePoolSchedulerConfigOutput() GetNodePoolSchedulerConfigOutput
+	ToGetNodePoolSchedulerConfigOutputWithContext(context.Context) GetNodePoolSchedulerConfigOutput
+}
+
+type GetNodePoolSchedulerConfigArgs struct {
+	// `(string)` - Whether or not memory
+	// oversubscription is enabled in the node pool. If empty or not defined the
+	// global cluster configuration is used.
+	MemoryOversubscription pulumi.StringInput `pulumi:"memoryOversubscription"`
+	// `(string)` - The scheduler algorithm used in the node
+	// pool. If empty or not defined the global cluster configuration is used.
+	SchedulerAlgorithm pulumi.StringInput `pulumi:"schedulerAlgorithm"`
+}
+
+func (GetNodePoolSchedulerConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (i GetNodePoolSchedulerConfigArgs) ToGetNodePoolSchedulerConfigOutput() GetNodePoolSchedulerConfigOutput {
+	return i.ToGetNodePoolSchedulerConfigOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolSchedulerConfigArgs) ToGetNodePoolSchedulerConfigOutputWithContext(ctx context.Context) GetNodePoolSchedulerConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolSchedulerConfigOutput)
+}
+
+func (i GetNodePoolSchedulerConfigArgs) ToOutput(ctx context.Context) pulumix.Output[GetNodePoolSchedulerConfig] {
+	return pulumix.Output[GetNodePoolSchedulerConfig]{
+		OutputState: i.ToGetNodePoolSchedulerConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetNodePoolSchedulerConfigArrayInput is an input type that accepts GetNodePoolSchedulerConfigArray and GetNodePoolSchedulerConfigArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolSchedulerConfigArrayInput` via:
+//
+//	GetNodePoolSchedulerConfigArray{ GetNodePoolSchedulerConfigArgs{...} }
+type GetNodePoolSchedulerConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolSchedulerConfigArrayOutput() GetNodePoolSchedulerConfigArrayOutput
+	ToGetNodePoolSchedulerConfigArrayOutputWithContext(context.Context) GetNodePoolSchedulerConfigArrayOutput
+}
+
+type GetNodePoolSchedulerConfigArray []GetNodePoolSchedulerConfigInput
+
+func (GetNodePoolSchedulerConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (i GetNodePoolSchedulerConfigArray) ToGetNodePoolSchedulerConfigArrayOutput() GetNodePoolSchedulerConfigArrayOutput {
+	return i.ToGetNodePoolSchedulerConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolSchedulerConfigArray) ToGetNodePoolSchedulerConfigArrayOutputWithContext(ctx context.Context) GetNodePoolSchedulerConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolSchedulerConfigArrayOutput)
+}
+
+func (i GetNodePoolSchedulerConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]GetNodePoolSchedulerConfig] {
+	return pulumix.Output[[]GetNodePoolSchedulerConfig]{
+		OutputState: i.ToGetNodePoolSchedulerConfigArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetNodePoolSchedulerConfigOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolSchedulerConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (o GetNodePoolSchedulerConfigOutput) ToGetNodePoolSchedulerConfigOutput() GetNodePoolSchedulerConfigOutput {
+	return o
+}
+
+func (o GetNodePoolSchedulerConfigOutput) ToGetNodePoolSchedulerConfigOutputWithContext(ctx context.Context) GetNodePoolSchedulerConfigOutput {
+	return o
+}
+
+func (o GetNodePoolSchedulerConfigOutput) ToOutput(ctx context.Context) pulumix.Output[GetNodePoolSchedulerConfig] {
+	return pulumix.Output[GetNodePoolSchedulerConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(string)` - Whether or not memory
+// oversubscription is enabled in the node pool. If empty or not defined the
+// global cluster configuration is used.
+func (o GetNodePoolSchedulerConfigOutput) MemoryOversubscription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolSchedulerConfig) string { return v.MemoryOversubscription }).(pulumi.StringOutput)
+}
+
+// `(string)` - The scheduler algorithm used in the node
+// pool. If empty or not defined the global cluster configuration is used.
+func (o GetNodePoolSchedulerConfigOutput) SchedulerAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolSchedulerConfig) string { return v.SchedulerAlgorithm }).(pulumi.StringOutput)
+}
+
+type GetNodePoolSchedulerConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolSchedulerConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (o GetNodePoolSchedulerConfigArrayOutput) ToGetNodePoolSchedulerConfigArrayOutput() GetNodePoolSchedulerConfigArrayOutput {
+	return o
+}
+
+func (o GetNodePoolSchedulerConfigArrayOutput) ToGetNodePoolSchedulerConfigArrayOutputWithContext(ctx context.Context) GetNodePoolSchedulerConfigArrayOutput {
+	return o
+}
+
+func (o GetNodePoolSchedulerConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetNodePoolSchedulerConfig] {
+	return pulumix.Output[[]GetNodePoolSchedulerConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetNodePoolSchedulerConfigArrayOutput) Index(i pulumi.IntInput) GetNodePoolSchedulerConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolSchedulerConfig {
+		return vs[0].([]GetNodePoolSchedulerConfig)[vs[1].(int)]
+	}).(GetNodePoolSchedulerConfigOutput)
+}
+
+type GetNodePoolsNodePool struct {
+	// `(string)` - The description of the node pool.
+	Description string `pulumi:"description"`
+	// `(map[string]string)` - Arbitrary KV metadata associated with the
+	// node pool.
+	Meta map[string]string `pulumi:"meta"`
+	// `(string)` - The name of the node pool.
+	Name string `pulumi:"name"`
+	// `(block)` - Scheduler configuration for the node pool.
+	SchedulerConfigs []GetNodePoolsNodePoolSchedulerConfig `pulumi:"schedulerConfigs"`
+}
+
+// GetNodePoolsNodePoolInput is an input type that accepts GetNodePoolsNodePoolArgs and GetNodePoolsNodePoolOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolInput` via:
+//
+//	GetNodePoolsNodePoolArgs{...}
+type GetNodePoolsNodePoolInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolOutput() GetNodePoolsNodePoolOutput
+	ToGetNodePoolsNodePoolOutputWithContext(context.Context) GetNodePoolsNodePoolOutput
+}
+
+type GetNodePoolsNodePoolArgs struct {
+	// `(string)` - The description of the node pool.
+	Description pulumi.StringInput `pulumi:"description"`
+	// `(map[string]string)` - Arbitrary KV metadata associated with the
+	// node pool.
+	Meta pulumi.StringMapInput `pulumi:"meta"`
+	// `(string)` - The name of the node pool.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `(block)` - Scheduler configuration for the node pool.
+	SchedulerConfigs GetNodePoolsNodePoolSchedulerConfigArrayInput `pulumi:"schedulerConfigs"`
+}
+
+func (GetNodePoolsNodePoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolArgs) ToGetNodePoolsNodePoolOutput() GetNodePoolsNodePoolOutput {
+	return i.ToGetNodePoolsNodePoolOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolArgs) ToGetNodePoolsNodePoolOutputWithContext(ctx context.Context) GetNodePoolsNodePoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolOutput)
+}
+
+func (i GetNodePoolsNodePoolArgs) ToOutput(ctx context.Context) pulumix.Output[GetNodePoolsNodePool] {
+	return pulumix.Output[GetNodePoolsNodePool]{
+		OutputState: i.ToGetNodePoolsNodePoolOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetNodePoolsNodePoolArrayInput is an input type that accepts GetNodePoolsNodePoolArray and GetNodePoolsNodePoolArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolArrayInput` via:
+//
+//	GetNodePoolsNodePoolArray{ GetNodePoolsNodePoolArgs{...} }
+type GetNodePoolsNodePoolArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolArrayOutput() GetNodePoolsNodePoolArrayOutput
+	ToGetNodePoolsNodePoolArrayOutputWithContext(context.Context) GetNodePoolsNodePoolArrayOutput
+}
+
+type GetNodePoolsNodePoolArray []GetNodePoolsNodePoolInput
+
+func (GetNodePoolsNodePoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolArray) ToGetNodePoolsNodePoolArrayOutput() GetNodePoolsNodePoolArrayOutput {
+	return i.ToGetNodePoolsNodePoolArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolArray) ToGetNodePoolsNodePoolArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolArrayOutput)
+}
+
+func (i GetNodePoolsNodePoolArray) ToOutput(ctx context.Context) pulumix.Output[[]GetNodePoolsNodePool] {
+	return pulumix.Output[[]GetNodePoolsNodePool]{
+		OutputState: i.ToGetNodePoolsNodePoolArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetNodePoolsNodePoolOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolOutput) ToGetNodePoolsNodePoolOutput() GetNodePoolsNodePoolOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolOutput) ToGetNodePoolsNodePoolOutputWithContext(ctx context.Context) GetNodePoolsNodePoolOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolOutput) ToOutput(ctx context.Context) pulumix.Output[GetNodePoolsNodePool] {
+	return pulumix.Output[GetNodePoolsNodePool]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(string)` - The description of the node pool.
+func (o GetNodePoolsNodePoolOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// `(map[string]string)` - Arbitrary KV metadata associated with the
+// node pool.
+func (o GetNodePoolsNodePoolOutput) Meta() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) map[string]string { return v.Meta }).(pulumi.StringMapOutput)
+}
+
+// `(string)` - The name of the node pool.
+func (o GetNodePoolsNodePoolOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(block)` - Scheduler configuration for the node pool.
+func (o GetNodePoolsNodePoolOutput) SchedulerConfigs() GetNodePoolsNodePoolSchedulerConfigArrayOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) []GetNodePoolsNodePoolSchedulerConfig { return v.SchedulerConfigs }).(GetNodePoolsNodePoolSchedulerConfigArrayOutput)
+}
+
+type GetNodePoolsNodePoolArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePool)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolArrayOutput) ToGetNodePoolsNodePoolArrayOutput() GetNodePoolsNodePoolArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolArrayOutput) ToGetNodePoolsNodePoolArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetNodePoolsNodePool] {
+	return pulumix.Output[[]GetNodePoolsNodePool]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetNodePoolsNodePoolArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePool {
+		return vs[0].([]GetNodePoolsNodePool)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolOutput)
+}
+
+type GetNodePoolsNodePoolSchedulerConfig struct {
+	// `(string)` - Whether or not memory
+	// oversubscription is enabled in the node pool. If empty or not defined the
+	// global cluster configuration is used.
+	MemoryOversubscription string `pulumi:"memoryOversubscription"`
+	// `(string)` - The scheduler algorithm used in the node
+	// pool. If empty or not defined the global cluster configuration is used.
+	SchedulerAlgorithm string `pulumi:"schedulerAlgorithm"`
+}
+
+// GetNodePoolsNodePoolSchedulerConfigInput is an input type that accepts GetNodePoolsNodePoolSchedulerConfigArgs and GetNodePoolsNodePoolSchedulerConfigOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolSchedulerConfigInput` via:
+//
+//	GetNodePoolsNodePoolSchedulerConfigArgs{...}
+type GetNodePoolsNodePoolSchedulerConfigInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolSchedulerConfigOutput() GetNodePoolsNodePoolSchedulerConfigOutput
+	ToGetNodePoolsNodePoolSchedulerConfigOutputWithContext(context.Context) GetNodePoolsNodePoolSchedulerConfigOutput
+}
+
+type GetNodePoolsNodePoolSchedulerConfigArgs struct {
+	// `(string)` - Whether or not memory
+	// oversubscription is enabled in the node pool. If empty or not defined the
+	// global cluster configuration is used.
+	MemoryOversubscription pulumi.StringInput `pulumi:"memoryOversubscription"`
+	// `(string)` - The scheduler algorithm used in the node
+	// pool. If empty or not defined the global cluster configuration is used.
+	SchedulerAlgorithm pulumi.StringInput `pulumi:"schedulerAlgorithm"`
+}
+
+func (GetNodePoolsNodePoolSchedulerConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolSchedulerConfigArgs) ToGetNodePoolsNodePoolSchedulerConfigOutput() GetNodePoolsNodePoolSchedulerConfigOutput {
+	return i.ToGetNodePoolsNodePoolSchedulerConfigOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolSchedulerConfigArgs) ToGetNodePoolsNodePoolSchedulerConfigOutputWithContext(ctx context.Context) GetNodePoolsNodePoolSchedulerConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolSchedulerConfigOutput)
+}
+
+func (i GetNodePoolsNodePoolSchedulerConfigArgs) ToOutput(ctx context.Context) pulumix.Output[GetNodePoolsNodePoolSchedulerConfig] {
+	return pulumix.Output[GetNodePoolsNodePoolSchedulerConfig]{
+		OutputState: i.ToGetNodePoolsNodePoolSchedulerConfigOutputWithContext(ctx).OutputState,
+	}
+}
+
+// GetNodePoolsNodePoolSchedulerConfigArrayInput is an input type that accepts GetNodePoolsNodePoolSchedulerConfigArray and GetNodePoolsNodePoolSchedulerConfigArrayOutput values.
+// You can construct a concrete instance of `GetNodePoolsNodePoolSchedulerConfigArrayInput` via:
+//
+//	GetNodePoolsNodePoolSchedulerConfigArray{ GetNodePoolsNodePoolSchedulerConfigArgs{...} }
+type GetNodePoolsNodePoolSchedulerConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetNodePoolsNodePoolSchedulerConfigArrayOutput() GetNodePoolsNodePoolSchedulerConfigArrayOutput
+	ToGetNodePoolsNodePoolSchedulerConfigArrayOutputWithContext(context.Context) GetNodePoolsNodePoolSchedulerConfigArrayOutput
+}
+
+type GetNodePoolsNodePoolSchedulerConfigArray []GetNodePoolsNodePoolSchedulerConfigInput
+
+func (GetNodePoolsNodePoolSchedulerConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (i GetNodePoolsNodePoolSchedulerConfigArray) ToGetNodePoolsNodePoolSchedulerConfigArrayOutput() GetNodePoolsNodePoolSchedulerConfigArrayOutput {
+	return i.ToGetNodePoolsNodePoolSchedulerConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodePoolsNodePoolSchedulerConfigArray) ToGetNodePoolsNodePoolSchedulerConfigArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolSchedulerConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodePoolsNodePoolSchedulerConfigArrayOutput)
+}
+
+func (i GetNodePoolsNodePoolSchedulerConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]GetNodePoolsNodePoolSchedulerConfig] {
+	return pulumix.Output[[]GetNodePoolsNodePoolSchedulerConfig]{
+		OutputState: i.ToGetNodePoolsNodePoolSchedulerConfigArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type GetNodePoolsNodePoolSchedulerConfigOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolSchedulerConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodePoolsNodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolSchedulerConfigOutput) ToGetNodePoolsNodePoolSchedulerConfigOutput() GetNodePoolsNodePoolSchedulerConfigOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolSchedulerConfigOutput) ToGetNodePoolsNodePoolSchedulerConfigOutputWithContext(ctx context.Context) GetNodePoolsNodePoolSchedulerConfigOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolSchedulerConfigOutput) ToOutput(ctx context.Context) pulumix.Output[GetNodePoolsNodePoolSchedulerConfig] {
+	return pulumix.Output[GetNodePoolsNodePoolSchedulerConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `(string)` - Whether or not memory
+// oversubscription is enabled in the node pool. If empty or not defined the
+// global cluster configuration is used.
+func (o GetNodePoolsNodePoolSchedulerConfigOutput) MemoryOversubscription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolSchedulerConfig) string { return v.MemoryOversubscription }).(pulumi.StringOutput)
+}
+
+// `(string)` - The scheduler algorithm used in the node
+// pool. If empty or not defined the global cluster configuration is used.
+func (o GetNodePoolsNodePoolSchedulerConfigOutput) SchedulerAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePoolSchedulerConfig) string { return v.SchedulerAlgorithm }).(pulumi.StringOutput)
+}
+
+type GetNodePoolsNodePoolSchedulerConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodePoolsNodePoolSchedulerConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodePoolsNodePoolSchedulerConfig)(nil)).Elem()
+}
+
+func (o GetNodePoolsNodePoolSchedulerConfigArrayOutput) ToGetNodePoolsNodePoolSchedulerConfigArrayOutput() GetNodePoolsNodePoolSchedulerConfigArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolSchedulerConfigArrayOutput) ToGetNodePoolsNodePoolSchedulerConfigArrayOutputWithContext(ctx context.Context) GetNodePoolsNodePoolSchedulerConfigArrayOutput {
+	return o
+}
+
+func (o GetNodePoolsNodePoolSchedulerConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetNodePoolsNodePoolSchedulerConfig] {
+	return pulumix.Output[[]GetNodePoolsNodePoolSchedulerConfig]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o GetNodePoolsNodePoolSchedulerConfigArrayOutput) Index(i pulumi.IntInput) GetNodePoolsNodePoolSchedulerConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolSchedulerConfig {
+		return vs[0].([]GetNodePoolsNodePoolSchedulerConfig)[vs[1].(int)]
+	}).(GetNodePoolsNodePoolSchedulerConfigOutput)
 }
 
 type GetPluginNode struct {
@@ -4980,6 +9567,12 @@ func (i GetPluginNodeArgs) ToGetPluginNodeOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(GetPluginNodeOutput)
 }
 
+func (i GetPluginNodeArgs) ToOutput(ctx context.Context) pulumix.Output[GetPluginNode] {
+	return pulumix.Output[GetPluginNode]{
+		OutputState: i.ToGetPluginNodeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetPluginNodeArrayInput is an input type that accepts GetPluginNodeArray and GetPluginNodeArrayOutput values.
 // You can construct a concrete instance of `GetPluginNodeArrayInput` via:
 //
@@ -5005,6 +9598,12 @@ func (i GetPluginNodeArray) ToGetPluginNodeArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetPluginNodeArrayOutput)
 }
 
+func (i GetPluginNodeArray) ToOutput(ctx context.Context) pulumix.Output[[]GetPluginNode] {
+	return pulumix.Output[[]GetPluginNode]{
+		OutputState: i.ToGetPluginNodeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetPluginNodeOutput struct{ *pulumi.OutputState }
 
 func (GetPluginNodeOutput) ElementType() reflect.Type {
@@ -5017,6 +9616,12 @@ func (o GetPluginNodeOutput) ToGetPluginNodeOutput() GetPluginNodeOutput {
 
 func (o GetPluginNodeOutput) ToGetPluginNodeOutputWithContext(ctx context.Context) GetPluginNodeOutput {
 	return o
+}
+
+func (o GetPluginNodeOutput) ToOutput(ctx context.Context) pulumix.Output[GetPluginNode] {
+	return pulumix.Output[GetPluginNode]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetPluginNodeOutput) Healthy() pulumi.BoolOutput {
@@ -5043,6 +9648,12 @@ func (o GetPluginNodeArrayOutput) ToGetPluginNodeArrayOutput() GetPluginNodeArra
 
 func (o GetPluginNodeArrayOutput) ToGetPluginNodeArrayOutputWithContext(ctx context.Context) GetPluginNodeArrayOutput {
 	return o
+}
+
+func (o GetPluginNodeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetPluginNode] {
+	return pulumix.Output[[]GetPluginNode]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetPluginNodeArrayOutput) Index(i pulumi.IntInput) GetPluginNodeOutput {
@@ -5096,6 +9707,12 @@ func (i GetScalingPoliciesPolicyArgs) ToGetScalingPoliciesPolicyOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetScalingPoliciesPolicyOutput)
 }
 
+func (i GetScalingPoliciesPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[GetScalingPoliciesPolicy] {
+	return pulumix.Output[GetScalingPoliciesPolicy]{
+		OutputState: i.ToGetScalingPoliciesPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // GetScalingPoliciesPolicyArrayInput is an input type that accepts GetScalingPoliciesPolicyArray and GetScalingPoliciesPolicyArrayOutput values.
 // You can construct a concrete instance of `GetScalingPoliciesPolicyArrayInput` via:
 //
@@ -5121,6 +9738,12 @@ func (i GetScalingPoliciesPolicyArray) ToGetScalingPoliciesPolicyArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetScalingPoliciesPolicyArrayOutput)
 }
 
+func (i GetScalingPoliciesPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]GetScalingPoliciesPolicy] {
+	return pulumix.Output[[]GetScalingPoliciesPolicy]{
+		OutputState: i.ToGetScalingPoliciesPolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type GetScalingPoliciesPolicyOutput struct{ *pulumi.OutputState }
 
 func (GetScalingPoliciesPolicyOutput) ElementType() reflect.Type {
@@ -5133,6 +9756,12 @@ func (o GetScalingPoliciesPolicyOutput) ToGetScalingPoliciesPolicyOutput() GetSc
 
 func (o GetScalingPoliciesPolicyOutput) ToGetScalingPoliciesPolicyOutputWithContext(ctx context.Context) GetScalingPoliciesPolicyOutput {
 	return o
+}
+
+func (o GetScalingPoliciesPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[GetScalingPoliciesPolicy] {
+	return pulumix.Output[GetScalingPoliciesPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(boolean)` - Whether or not the scaling policy is enabled.
@@ -5169,6 +9798,12 @@ func (o GetScalingPoliciesPolicyArrayOutput) ToGetScalingPoliciesPolicyArrayOutp
 	return o
 }
 
+func (o GetScalingPoliciesPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetScalingPoliciesPolicy] {
+	return pulumix.Output[[]GetScalingPoliciesPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o GetScalingPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetScalingPoliciesPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetScalingPoliciesPolicy {
 		return vs[0].([]GetScalingPoliciesPolicy)[vs[1].(int)]
@@ -5178,10 +9813,40 @@ func (o GetScalingPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetScaling
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAuthMethodConfigInput)(nil)).Elem(), AclAuthMethodConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAuthMethodConfigPtrInput)(nil)).Elem(), AclAuthMethodConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyJobAclInput)(nil)).Elem(), AclPolicyJobAclArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyJobAclPtrInput)(nil)).Elem(), AclPolicyJobAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclRolePolicyInput)(nil)).Elem(), AclRolePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclRolePolicyArrayInput)(nil)).Elem(), AclRolePolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclTokenRoleInput)(nil)).Elem(), AclTokenRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclTokenRoleArrayInput)(nil)).Elem(), AclTokenRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeCapabilityInput)(nil)).Elem(), CsiVolumeCapabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeCapabilityArrayInput)(nil)).Elem(), CsiVolumeCapabilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeMountOptionsInput)(nil)).Elem(), CsiVolumeMountOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeMountOptionsPtrInput)(nil)).Elem(), CsiVolumeMountOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationCapabilityInput)(nil)).Elem(), CsiVolumeRegistrationCapabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationCapabilityArrayInput)(nil)).Elem(), CsiVolumeRegistrationCapabilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationMountOptionsInput)(nil)).Elem(), CsiVolumeRegistrationMountOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationMountOptionsPtrInput)(nil)).Elem(), CsiVolumeRegistrationMountOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationTopologyInput)(nil)).Elem(), CsiVolumeRegistrationTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationTopologyArrayInput)(nil)).Elem(), CsiVolumeRegistrationTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationTopologyRequestInput)(nil)).Elem(), CsiVolumeRegistrationTopologyRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationTopologyRequestPtrInput)(nil)).Elem(), CsiVolumeRegistrationTopologyRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationTopologyRequestRequiredInput)(nil)).Elem(), CsiVolumeRegistrationTopologyRequestRequiredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationTopologyRequestRequiredPtrInput)(nil)).Elem(), CsiVolumeRegistrationTopologyRequestRequiredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationTopologyRequestRequiredTopologyInput)(nil)).Elem(), CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayInput)(nil)).Elem(), CsiVolumeRegistrationTopologyRequestRequiredTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyInput)(nil)).Elem(), CsiVolumeTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyArrayInput)(nil)).Elem(), CsiVolumeTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestInput)(nil)).Elem(), CsiVolumeTopologyRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestPtrInput)(nil)).Elem(), CsiVolumeTopologyRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestPreferredInput)(nil)).Elem(), CsiVolumeTopologyRequestPreferredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestPreferredPtrInput)(nil)).Elem(), CsiVolumeTopologyRequestPreferredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestPreferredTopologyInput)(nil)).Elem(), CsiVolumeTopologyRequestPreferredTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestPreferredTopologyArrayInput)(nil)).Elem(), CsiVolumeTopologyRequestPreferredTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestRequiredInput)(nil)).Elem(), CsiVolumeTopologyRequestRequiredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestRequiredPtrInput)(nil)).Elem(), CsiVolumeTopologyRequestRequiredArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestRequiredTopologyInput)(nil)).Elem(), CsiVolumeTopologyRequestRequiredTopologyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestRequiredTopologyArrayInput)(nil)).Elem(), CsiVolumeTopologyRequestRequiredTopologyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeCapabilityInput)(nil)).Elem(), ExternalVolumeCapabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeCapabilityArrayInput)(nil)).Elem(), ExternalVolumeCapabilityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeMountOptionsInput)(nil)).Elem(), ExternalVolumeMountOptionsArgs{})
@@ -5210,6 +9875,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupVolumeArrayInput)(nil)).Elem(), JobTaskGroupVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceCapabilitiesInput)(nil)).Elem(), NamespaceCapabilitiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceCapabilitiesPtrInput)(nil)).Elem(), NamespaceCapabilitiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceNodePoolConfigInput)(nil)).Elem(), NamespaceNodePoolConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceNodePoolConfigPtrInput)(nil)).Elem(), NamespaceNodePoolConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolSchedulerConfigInput)(nil)).Elem(), NodePoolSchedulerConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolSchedulerConfigPtrInput)(nil)).Elem(), NodePoolSchedulerConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderInput)(nil)).Elem(), ProviderHeaderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderArrayInput)(nil)).Elem(), ProviderHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitInput)(nil)).Elem(), QuoteSpecificationLimitArgs{})
@@ -5241,6 +9910,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokensAclTokenArrayInput)(nil)).Elem(), GetAclTokensAclTokenArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokensAclTokenRoleInput)(nil)).Elem(), GetAclTokensAclTokenRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokensAclTokenRoleArrayInput)(nil)).Elem(), GetAclTokensAclTokenRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllocationsAllocationInput)(nil)).Elem(), GetAllocationsAllocationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAllocationsAllocationArrayInput)(nil)).Elem(), GetAllocationsAllocationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobConstraintInput)(nil)).Elem(), GetJobConstraintArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobConstraintArrayInput)(nil)).Elem(), GetJobConstraintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobPeriodicConfigInput)(nil)).Elem(), GetJobPeriodicConfigArgs{})
@@ -5255,16 +9926,54 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupVolumeArrayInput)(nil)).Elem(), GetJobTaskGroupVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceCapabilityInput)(nil)).Elem(), GetNamespaceCapabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceCapabilityArrayInput)(nil)).Elem(), GetNamespaceCapabilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceNodePoolConfigInput)(nil)).Elem(), GetNamespaceNodePoolConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceNodePoolConfigArrayInput)(nil)).Elem(), GetNamespaceNodePoolConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolSchedulerConfigInput)(nil)).Elem(), GetNodePoolSchedulerConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolSchedulerConfigArrayInput)(nil)).Elem(), GetNodePoolSchedulerConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolInput)(nil)).Elem(), GetNodePoolsNodePoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolArrayInput)(nil)).Elem(), GetNodePoolsNodePoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolSchedulerConfigInput)(nil)).Elem(), GetNodePoolsNodePoolSchedulerConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolSchedulerConfigArrayInput)(nil)).Elem(), GetNodePoolsNodePoolSchedulerConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginNodeInput)(nil)).Elem(), GetPluginNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginNodeArrayInput)(nil)).Elem(), GetPluginNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesPolicyInput)(nil)).Elem(), GetScalingPoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesPolicyArrayInput)(nil)).Elem(), GetScalingPoliciesPolicyArray{})
 	pulumi.RegisterOutputType(AclAuthMethodConfigOutput{})
 	pulumi.RegisterOutputType(AclAuthMethodConfigPtrOutput{})
+	pulumi.RegisterOutputType(AclPolicyJobAclOutput{})
+	pulumi.RegisterOutputType(AclPolicyJobAclPtrOutput{})
 	pulumi.RegisterOutputType(AclRolePolicyOutput{})
 	pulumi.RegisterOutputType(AclRolePolicyArrayOutput{})
 	pulumi.RegisterOutputType(AclTokenRoleOutput{})
 	pulumi.RegisterOutputType(AclTokenRoleArrayOutput{})
+	pulumi.RegisterOutputType(CsiVolumeCapabilityOutput{})
+	pulumi.RegisterOutputType(CsiVolumeCapabilityArrayOutput{})
+	pulumi.RegisterOutputType(CsiVolumeMountOptionsOutput{})
+	pulumi.RegisterOutputType(CsiVolumeMountOptionsPtrOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationCapabilityOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationCapabilityArrayOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationMountOptionsOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationMountOptionsPtrOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationTopologyOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationTopologyArrayOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationTopologyRequestOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationTopologyRequestPtrOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationTopologyRequestRequiredOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationTopologyRequestRequiredPtrOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput{})
+	pulumi.RegisterOutputType(CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyArrayOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyRequestOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyRequestPtrOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyRequestPreferredOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyRequestPreferredPtrOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyRequestPreferredTopologyOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyRequestPreferredTopologyArrayOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyRequestRequiredOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyRequestRequiredPtrOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyRequestRequiredTopologyOutput{})
+	pulumi.RegisterOutputType(CsiVolumeTopologyRequestRequiredTopologyArrayOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeCapabilityOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeCapabilityArrayOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeMountOptionsOutput{})
@@ -5293,6 +10002,10 @@ func init() {
 	pulumi.RegisterOutputType(JobTaskGroupVolumeArrayOutput{})
 	pulumi.RegisterOutputType(NamespaceCapabilitiesOutput{})
 	pulumi.RegisterOutputType(NamespaceCapabilitiesPtrOutput{})
+	pulumi.RegisterOutputType(NamespaceNodePoolConfigOutput{})
+	pulumi.RegisterOutputType(NamespaceNodePoolConfigPtrOutput{})
+	pulumi.RegisterOutputType(NodePoolSchedulerConfigOutput{})
+	pulumi.RegisterOutputType(NodePoolSchedulerConfigPtrOutput{})
 	pulumi.RegisterOutputType(ProviderHeaderOutput{})
 	pulumi.RegisterOutputType(ProviderHeaderArrayOutput{})
 	pulumi.RegisterOutputType(QuoteSpecificationLimitOutput{})
@@ -5324,6 +10037,8 @@ func init() {
 	pulumi.RegisterOutputType(GetAclTokensAclTokenArrayOutput{})
 	pulumi.RegisterOutputType(GetAclTokensAclTokenRoleOutput{})
 	pulumi.RegisterOutputType(GetAclTokensAclTokenRoleArrayOutput{})
+	pulumi.RegisterOutputType(GetAllocationsAllocationOutput{})
+	pulumi.RegisterOutputType(GetAllocationsAllocationArrayOutput{})
 	pulumi.RegisterOutputType(GetJobConstraintOutput{})
 	pulumi.RegisterOutputType(GetJobConstraintArrayOutput{})
 	pulumi.RegisterOutputType(GetJobPeriodicConfigOutput{})
@@ -5338,6 +10053,14 @@ func init() {
 	pulumi.RegisterOutputType(GetJobTaskGroupVolumeArrayOutput{})
 	pulumi.RegisterOutputType(GetNamespaceCapabilityOutput{})
 	pulumi.RegisterOutputType(GetNamespaceCapabilityArrayOutput{})
+	pulumi.RegisterOutputType(GetNamespaceNodePoolConfigOutput{})
+	pulumi.RegisterOutputType(GetNamespaceNodePoolConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolSchedulerConfigOutput{})
+	pulumi.RegisterOutputType(GetNodePoolSchedulerConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolArrayOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolSchedulerConfigOutput{})
+	pulumi.RegisterOutputType(GetNodePoolsNodePoolSchedulerConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetPluginNodeOutput{})
 	pulumi.RegisterOutputType(GetPluginNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetScalingPoliciesPolicyOutput{})

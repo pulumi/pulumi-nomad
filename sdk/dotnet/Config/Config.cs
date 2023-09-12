@@ -162,6 +162,16 @@ namespace Pulumi.Nomad
             set => _secretId.Set(value);
         }
 
+        private static readonly __Value<bool?> _skipVerify = new __Value<bool?>(() => __config.GetBoolean("skipVerify"));
+        /// <summary>
+        /// Skip TLS verification on client side.
+        /// </summary>
+        public static bool? SkipVerify
+        {
+            get => _skipVerify.Get();
+            set => _skipVerify.Set(value);
+        }
+
         private static readonly __Value<string?> _vaultToken = new __Value<string?>(() => __config.Get("vaultToken"));
         /// <summary>
         /// Vault token if policies are specified in the job file.

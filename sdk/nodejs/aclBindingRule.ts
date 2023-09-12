@@ -38,9 +38,11 @@ export class AclBindingRule extends pulumi.CustomResource {
      */
     public readonly authMethod!: pulumi.Output<string>;
     /**
-     * `(string: "")` - Target of the binding.
+     * `(string: <optional>)` - Target of the binding. If `bindType` is
+     * `role` or `policy` then `bindName` is required. If `bindType` is
+     * `management` than `bindName` must not be defined.
      */
-    public readonly bindName!: pulumi.Output<string>;
+    public readonly bindName!: pulumi.Output<string | undefined>;
     /**
      * `(string: <required>)` - Adjusts how this binding rule is applied
      * at login time. Valid values are `role`, `policy`, and `management`.
@@ -79,9 +81,6 @@ export class AclBindingRule extends pulumi.CustomResource {
             if ((!args || args.authMethod === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'authMethod'");
             }
-            if ((!args || args.bindName === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'bindName'");
-            }
             if ((!args || args.bindType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'bindType'");
             }
@@ -106,7 +105,9 @@ export interface AclBindingRuleState {
      */
     authMethod?: pulumi.Input<string>;
     /**
-     * `(string: "")` - Target of the binding.
+     * `(string: <optional>)` - Target of the binding. If `bindType` is
+     * `role` or `policy` then `bindName` is required. If `bindType` is
+     * `management` than `bindName` must not be defined.
      */
     bindName?: pulumi.Input<string>;
     /**
@@ -135,9 +136,11 @@ export interface AclBindingRuleArgs {
      */
     authMethod: pulumi.Input<string>;
     /**
-     * `(string: "")` - Target of the binding.
+     * `(string: <optional>)` - Target of the binding. If `bindType` is
+     * `role` or `policy` then `bindName` is required. If `bindType` is
+     * `management` than `bindName` must not be defined.
      */
-    bindName: pulumi.Input<string>;
+    bindName?: pulumi.Input<string>;
     /**
      * `(string: <required>)` - Adjusts how this binding rule is applied
      * at login time. Valid values are `role`, `policy`, and `management`.

@@ -11,8 +11,23 @@ from . import _utilities
 
 __all__ = [
     'AclAuthMethodConfigArgs',
+    'AclPolicyJobAclArgs',
     'AclRolePolicyArgs',
     'AclTokenRoleArgs',
+    'CsiVolumeCapabilityArgs',
+    'CsiVolumeMountOptionsArgs',
+    'CsiVolumeRegistrationCapabilityArgs',
+    'CsiVolumeRegistrationMountOptionsArgs',
+    'CsiVolumeRegistrationTopologyArgs',
+    'CsiVolumeRegistrationTopologyRequestArgs',
+    'CsiVolumeRegistrationTopologyRequestRequiredArgs',
+    'CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs',
+    'CsiVolumeTopologyArgs',
+    'CsiVolumeTopologyRequestArgs',
+    'CsiVolumeTopologyRequestPreferredArgs',
+    'CsiVolumeTopologyRequestPreferredTopologyArgs',
+    'CsiVolumeTopologyRequestRequiredArgs',
+    'CsiVolumeTopologyRequestRequiredTopologyArgs',
     'ExternalVolumeCapabilityArgs',
     'ExternalVolumeMountOptionsArgs',
     'ExternalVolumeTopologyArgs',
@@ -27,6 +42,8 @@ __all__ = [
     'JobTaskGroupTaskVolumeMountArgs',
     'JobTaskGroupVolumeArgs',
     'NamespaceCapabilitiesArgs',
+    'NamespaceNodePoolConfigArgs',
+    'NodePoolSchedulerConfigArgs',
     'ProviderHeaderArgs',
     'QuoteSpecificationLimitArgs',
     'QuoteSpecificationLimitRegionLimitArgs',
@@ -160,6 +177,86 @@ class AclAuthMethodConfigArgs:
 
 
 @pulumi.input_type
+class AclPolicyJobAclArgs:
+    def __init__(__self__, *,
+                 job_id: pulumi.Input[str],
+                 group: Optional[pulumi.Input[str]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 task: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] job_id: `(string: <optional>` - The job to attach the policy. Required if
+               `group` is set.
+        :param pulumi.Input[str] group: `(string: <optional>` - The group to attach the policy. Required if
+               `task` is set.
+        :param pulumi.Input[str] namespace: `(string: "default")` - The namespace to attach the policy.
+               Required if `job_id` is set.
+        :param pulumi.Input[str] task: `(string: <optional>` - The task to attach the policy.
+               
+               [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+        """
+        pulumi.set(__self__, "job_id", job_id)
+        if group is not None:
+            pulumi.set(__self__, "group", group)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if task is not None:
+            pulumi.set(__self__, "task", task)
+
+    @property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> pulumi.Input[str]:
+        """
+        `(string: <optional>` - The job to attach the policy. Required if
+        `group` is set.
+        """
+        return pulumi.get(self, "job_id")
+
+    @job_id.setter
+    def job_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "job_id", value)
+
+    @property
+    @pulumi.getter
+    def group(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>` - The group to attach the policy. Required if
+        `task` is set.
+        """
+        return pulumi.get(self, "group")
+
+    @group.setter
+    def group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group", value)
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: "default")` - The namespace to attach the policy.
+        Required if `job_id` is set.
+        """
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "namespace", value)
+
+    @property
+    @pulumi.getter
+    def task(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>` - The task to attach the policy.
+
+        [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+        """
+        return pulumi.get(self, "task")
+
+    @task.setter
+    def task(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "task", value)
+
+
+@pulumi.input_type
 class AclRolePolicyArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str]):
@@ -213,6 +310,438 @@ class AclTokenRoleArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class CsiVolumeCapabilityArgs:
+    def __init__(__self__, *,
+                 access_mode: pulumi.Input[str],
+                 attachment_mode: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_mode: `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+               - `single-node-reader-only`
+               - `single-node-writer`
+               - `multi-node-reader-only`
+               - `multi-node-single-writer`
+               - `multi-node-multi-writer`
+        :param pulumi.Input[str] attachment_mode: `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+               - `block-device`
+               - `file-system`
+        """
+        pulumi.set(__self__, "access_mode", access_mode)
+        pulumi.set(__self__, "attachment_mode", attachment_mode)
+
+    @property
+    @pulumi.getter(name="accessMode")
+    def access_mode(self) -> pulumi.Input[str]:
+        """
+        `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
+        """
+        return pulumi.get(self, "access_mode")
+
+    @access_mode.setter
+    def access_mode(self, value: pulumi.Input[str]):
+        pulumi.set(self, "access_mode", value)
+
+    @property
+    @pulumi.getter(name="attachmentMode")
+    def attachment_mode(self) -> pulumi.Input[str]:
+        """
+        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+        - `block-device`
+        - `file-system`
+        """
+        return pulumi.get(self, "attachment_mode")
+
+    @attachment_mode.setter
+    def attachment_mode(self, value: pulumi.Input[str]):
+        pulumi.set(self, "attachment_mode", value)
+
+
+@pulumi.input_type
+class CsiVolumeMountOptionsArgs:
+    def __init__(__self__, *,
+                 fs_type: Optional[pulumi.Input[str]] = None,
+                 mount_flags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] fs_type: `(string: optional)` - The file system type.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] mount_flags: `[]string: optional` - The flags passed to `mount`.
+        """
+        if fs_type is not None:
+            pulumi.set(__self__, "fs_type", fs_type)
+        if mount_flags is not None:
+            pulumi.set(__self__, "mount_flags", mount_flags)
+
+    @property
+    @pulumi.getter(name="fsType")
+    def fs_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: optional)` - The file system type.
+        """
+        return pulumi.get(self, "fs_type")
+
+    @fs_type.setter
+    def fs_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fs_type", value)
+
+    @property
+    @pulumi.getter(name="mountFlags")
+    def mount_flags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        `[]string: optional` - The flags passed to `mount`.
+        """
+        return pulumi.get(self, "mount_flags")
+
+    @mount_flags.setter
+    def mount_flags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "mount_flags", value)
+
+
+@pulumi.input_type
+class CsiVolumeRegistrationCapabilityArgs:
+    def __init__(__self__, *,
+                 access_mode: pulumi.Input[str],
+                 attachment_mode: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] access_mode: `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+               - `single-node-reader-only`
+               - `single-node-writer`
+               - `multi-node-reader-only`
+               - `multi-node-single-writer`
+               - `multi-node-multi-writer`
+        :param pulumi.Input[str] attachment_mode: `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+               - `block-device`
+               - `file-system`
+        """
+        pulumi.set(__self__, "access_mode", access_mode)
+        pulumi.set(__self__, "attachment_mode", attachment_mode)
+
+    @property
+    @pulumi.getter(name="accessMode")
+    def access_mode(self) -> pulumi.Input[str]:
+        """
+        `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
+        """
+        return pulumi.get(self, "access_mode")
+
+    @access_mode.setter
+    def access_mode(self, value: pulumi.Input[str]):
+        pulumi.set(self, "access_mode", value)
+
+    @property
+    @pulumi.getter(name="attachmentMode")
+    def attachment_mode(self) -> pulumi.Input[str]:
+        """
+        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+        - `block-device`
+        - `file-system`
+        """
+        return pulumi.get(self, "attachment_mode")
+
+    @attachment_mode.setter
+    def attachment_mode(self, value: pulumi.Input[str]):
+        pulumi.set(self, "attachment_mode", value)
+
+
+@pulumi.input_type
+class CsiVolumeRegistrationMountOptionsArgs:
+    def __init__(__self__, *,
+                 fs_type: Optional[pulumi.Input[str]] = None,
+                 mount_flags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] fs_type: `(string: <optional>)` - The file system type.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] mount_flags: `([]string: <optional>)` - The flags passed to `mount`.
+        """
+        if fs_type is not None:
+            pulumi.set(__self__, "fs_type", fs_type)
+        if mount_flags is not None:
+            pulumi.set(__self__, "mount_flags", mount_flags)
+
+    @property
+    @pulumi.getter(name="fsType")
+    def fs_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - The file system type.
+        """
+        return pulumi.get(self, "fs_type")
+
+    @fs_type.setter
+    def fs_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fs_type", value)
+
+    @property
+    @pulumi.getter(name="mountFlags")
+    def mount_flags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        `([]string: <optional>)` - The flags passed to `mount`.
+        """
+        return pulumi.get(self, "mount_flags")
+
+    @mount_flags.setter
+    def mount_flags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "mount_flags", value)
+
+
+@pulumi.input_type
+class CsiVolumeRegistrationTopologyArgs:
+    def __init__(__self__, *,
+                 segments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
+        if segments is not None:
+            pulumi.set(__self__, "segments", segments)
+
+    @property
+    @pulumi.getter
+    def segments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+        return pulumi.get(self, "segments")
+
+    @segments.setter
+    def segments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "segments", value)
+
+
+@pulumi.input_type
+class CsiVolumeRegistrationTopologyRequestArgs:
+    def __init__(__self__, *,
+                 required: Optional[pulumi.Input['CsiVolumeRegistrationTopologyRequestRequiredArgs']] = None):
+        """
+        :param pulumi.Input['CsiVolumeRegistrationTopologyRequestRequiredArgs'] required: `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional[pulumi.Input['CsiVolumeRegistrationTopologyRequestRequiredArgs']]:
+        """
+        `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+        return pulumi.get(self, "required")
+
+    @required.setter
+    def required(self, value: Optional[pulumi.Input['CsiVolumeRegistrationTopologyRequestRequiredArgs']]):
+        pulumi.set(self, "required", value)
+
+
+@pulumi.input_type
+class CsiVolumeRegistrationTopologyRequestRequiredArgs:
+    def __init__(__self__, *,
+                 topologies: pulumi.Input[Sequence[pulumi.Input['CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs']]]):
+        pulumi.set(__self__, "topologies", topologies)
+
+    @property
+    @pulumi.getter
+    def topologies(self) -> pulumi.Input[Sequence[pulumi.Input['CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs']]]:
+        return pulumi.get(self, "topologies")
+
+    @topologies.setter
+    def topologies(self, value: pulumi.Input[Sequence[pulumi.Input['CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs']]]):
+        pulumi.set(self, "topologies", value)
+
+
+@pulumi.input_type
+class CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs:
+    def __init__(__self__, *,
+                 segments: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
+        pulumi.set(__self__, "segments", segments)
+
+    @property
+    @pulumi.getter
+    def segments(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+        return pulumi.get(self, "segments")
+
+    @segments.setter
+    def segments(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
+        pulumi.set(self, "segments", value)
+
+
+@pulumi.input_type
+class CsiVolumeTopologyArgs:
+    def __init__(__self__, *,
+                 segments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
+        if segments is not None:
+            pulumi.set(__self__, "segments", segments)
+
+    @property
+    @pulumi.getter
+    def segments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+        return pulumi.get(self, "segments")
+
+    @segments.setter
+    def segments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "segments", value)
+
+
+@pulumi.input_type
+class CsiVolumeTopologyRequestArgs:
+    def __init__(__self__, *,
+                 preferred: Optional[pulumi.Input['CsiVolumeTopologyRequestPreferredArgs']] = None,
+                 required: Optional[pulumi.Input['CsiVolumeTopologyRequestRequiredArgs']] = None):
+        """
+        :param pulumi.Input['CsiVolumeTopologyRequestPreferredArgs'] preferred: `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+        :param pulumi.Input['CsiVolumeTopologyRequestRequiredArgs'] required: `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+        if preferred is not None:
+            pulumi.set(__self__, "preferred", preferred)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+
+    @property
+    @pulumi.getter
+    def preferred(self) -> Optional[pulumi.Input['CsiVolumeTopologyRequestPreferredArgs']]:
+        """
+        `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+        """
+        return pulumi.get(self, "preferred")
+
+    @preferred.setter
+    def preferred(self, value: Optional[pulumi.Input['CsiVolumeTopologyRequestPreferredArgs']]):
+        pulumi.set(self, "preferred", value)
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional[pulumi.Input['CsiVolumeTopologyRequestRequiredArgs']]:
+        """
+        `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+        return pulumi.get(self, "required")
+
+    @required.setter
+    def required(self, value: Optional[pulumi.Input['CsiVolumeTopologyRequestRequiredArgs']]):
+        pulumi.set(self, "required", value)
+
+
+@pulumi.input_type
+class CsiVolumeTopologyRequestPreferredArgs:
+    def __init__(__self__, *,
+                 topologies: pulumi.Input[Sequence[pulumi.Input['CsiVolumeTopologyRequestPreferredTopologyArgs']]]):
+        pulumi.set(__self__, "topologies", topologies)
+
+    @property
+    @pulumi.getter
+    def topologies(self) -> pulumi.Input[Sequence[pulumi.Input['CsiVolumeTopologyRequestPreferredTopologyArgs']]]:
+        return pulumi.get(self, "topologies")
+
+    @topologies.setter
+    def topologies(self, value: pulumi.Input[Sequence[pulumi.Input['CsiVolumeTopologyRequestPreferredTopologyArgs']]]):
+        pulumi.set(self, "topologies", value)
+
+
+@pulumi.input_type
+class CsiVolumeTopologyRequestPreferredTopologyArgs:
+    def __init__(__self__, *,
+                 segments: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
+        pulumi.set(__self__, "segments", segments)
+
+    @property
+    @pulumi.getter
+    def segments(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+        return pulumi.get(self, "segments")
+
+    @segments.setter
+    def segments(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
+        pulumi.set(self, "segments", value)
+
+
+@pulumi.input_type
+class CsiVolumeTopologyRequestRequiredArgs:
+    def __init__(__self__, *,
+                 topologies: pulumi.Input[Sequence[pulumi.Input['CsiVolumeTopologyRequestRequiredTopologyArgs']]]):
+        pulumi.set(__self__, "topologies", topologies)
+
+    @property
+    @pulumi.getter
+    def topologies(self) -> pulumi.Input[Sequence[pulumi.Input['CsiVolumeTopologyRequestRequiredTopologyArgs']]]:
+        return pulumi.get(self, "topologies")
+
+    @topologies.setter
+    def topologies(self, value: pulumi.Input[Sequence[pulumi.Input['CsiVolumeTopologyRequestRequiredTopologyArgs']]]):
+        pulumi.set(self, "topologies", value)
+
+
+@pulumi.input_type
+class CsiVolumeTopologyRequestRequiredTopologyArgs:
+    def __init__(__self__, *,
+                 segments: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
+        pulumi.set(__self__, "segments", segments)
+
+    @property
+    @pulumi.getter
+    def segments(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+        return pulumi.get(self, "segments")
+
+    @segments.setter
+    def segments(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
+        pulumi.set(self, "segments", value)
 
 
 @pulumi.input_type
@@ -470,11 +999,14 @@ class JobHcl2Args:
         """
         :param pulumi.Input[bool] allow_fs: `(boolean: false)` - Set this to `true` to be able to use
                HCL2 filesystem functions
-        :param pulumi.Input[bool] enabled: `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-               format instead of the default HCL.
+        :param pulumi.Input[bool] enabled: `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+               HCL2 by default.
         """
         if allow_fs is not None:
             pulumi.set(__self__, "allow_fs", allow_fs)
+        if enabled is not None:
+            warnings.warn("""Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""", DeprecationWarning)
+            pulumi.log.warn("""enabled is deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""")
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if vars is not None:
@@ -497,9 +1029,12 @@ class JobHcl2Args:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-        format instead of the default HCL.
+        `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+        HCL2 by default.
         """
+        warnings.warn("""Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""", DeprecationWarning)
+        pulumi.log.warn("""enabled is deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""")
+
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -765,6 +1300,118 @@ class NamespaceCapabilitiesArgs:
     @enabled_task_drivers.setter
     def enabled_task_drivers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "enabled_task_drivers", value)
+
+
+@pulumi.input_type
+class NamespaceNodePoolConfigArgs:
+    def __init__(__self__, *,
+                 alloweds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 default: Optional[pulumi.Input[str]] = None,
+                 denieds: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] alloweds: `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
+        :param pulumi.Input[str] default: `(string: <optional>)` - The default node pool for jobs that don't define one.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] denieds: `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+        """
+        if alloweds is not None:
+            pulumi.set(__self__, "alloweds", alloweds)
+        if default is not None:
+            pulumi.set(__self__, "default", default)
+        if denieds is not None:
+            pulumi.set(__self__, "denieds", denieds)
+
+    @property
+    @pulumi.getter
+    def alloweds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
+        """
+        return pulumi.get(self, "alloweds")
+
+    @alloweds.setter
+    def alloweds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "alloweds", value)
+
+    @property
+    @pulumi.getter
+    def default(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - The default node pool for jobs that don't define one.
+        """
+        return pulumi.get(self, "default")
+
+    @default.setter
+    def default(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default", value)
+
+    @property
+    @pulumi.getter
+    def denieds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+        """
+        return pulumi.get(self, "denieds")
+
+    @denieds.setter
+    def denieds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "denieds", value)
+
+
+@pulumi.input_type
+class NodePoolSchedulerConfigArgs:
+    def __init__(__self__, *,
+                 memory_oversubscription: Optional[pulumi.Input[str]] = None,
+                 scheduler_algorithm: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] memory_oversubscription: `(string)` - Whether or not memory
+               oversubscription is enabled in the node pool. Possible values are
+               `"enabled"` or `"disabled"`. If not defined the global cluster
+               configuration is used.
+               
+               > This option differs from Nomad, where it's represented as a boolean, to
+               allow distinguishing between memory oversubscription being disabled in the
+               node pool and this property not being set.
+        :param pulumi.Input[str] scheduler_algorithm: `(string)` - The scheduler algorithm used in the node
+               pool. Possible values are `binpack` or `spread`. If not defined the global
+               cluster configuration is used.
+        """
+        if memory_oversubscription is not None:
+            pulumi.set(__self__, "memory_oversubscription", memory_oversubscription)
+        if scheduler_algorithm is not None:
+            pulumi.set(__self__, "scheduler_algorithm", scheduler_algorithm)
+
+    @property
+    @pulumi.getter(name="memoryOversubscription")
+    def memory_oversubscription(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string)` - Whether or not memory
+        oversubscription is enabled in the node pool. Possible values are
+        `"enabled"` or `"disabled"`. If not defined the global cluster
+        configuration is used.
+
+        > This option differs from Nomad, where it's represented as a boolean, to
+        allow distinguishing between memory oversubscription being disabled in the
+        node pool and this property not being set.
+        """
+        return pulumi.get(self, "memory_oversubscription")
+
+    @memory_oversubscription.setter
+    def memory_oversubscription(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "memory_oversubscription", value)
+
+    @property
+    @pulumi.getter(name="schedulerAlgorithm")
+    def scheduler_algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string)` - The scheduler algorithm used in the node
+        pool. Possible values are `binpack` or `spread`. If not defined the global
+        cluster configuration is used.
+        """
+        return pulumi.get(self, "scheduler_algorithm")
+
+    @scheduler_algorithm.setter
+    def scheduler_algorithm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scheduler_algorithm", value)
 
 
 @pulumi.input_type

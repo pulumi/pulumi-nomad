@@ -210,18 +210,18 @@ def get_plugin(plugin_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getPlugin:getPlugin', __args__, opts=opts, typ=GetPluginResult).value
 
     return AwaitableGetPluginResult(
-        controller_required=__ret__.controller_required,
-        controllers_expected=__ret__.controllers_expected,
-        controllers_healthy=__ret__.controllers_healthy,
-        id=__ret__.id,
-        nodes=__ret__.nodes,
-        nodes_expected=__ret__.nodes_expected,
-        nodes_healthy=__ret__.nodes_healthy,
-        plugin_id=__ret__.plugin_id,
-        plugin_provider=__ret__.plugin_provider,
-        plugin_provider_version=__ret__.plugin_provider_version,
-        wait_for_healthy=__ret__.wait_for_healthy,
-        wait_for_registration=__ret__.wait_for_registration)
+        controller_required=pulumi.get(__ret__, 'controller_required'),
+        controllers_expected=pulumi.get(__ret__, 'controllers_expected'),
+        controllers_healthy=pulumi.get(__ret__, 'controllers_healthy'),
+        id=pulumi.get(__ret__, 'id'),
+        nodes=pulumi.get(__ret__, 'nodes'),
+        nodes_expected=pulumi.get(__ret__, 'nodes_expected'),
+        nodes_healthy=pulumi.get(__ret__, 'nodes_healthy'),
+        plugin_id=pulumi.get(__ret__, 'plugin_id'),
+        plugin_provider=pulumi.get(__ret__, 'plugin_provider'),
+        plugin_provider_version=pulumi.get(__ret__, 'plugin_provider_version'),
+        wait_for_healthy=pulumi.get(__ret__, 'wait_for_healthy'),
+        wait_for_registration=pulumi.get(__ret__, 'wait_for_registration'))
 
 
 @_utilities.lift_output_func(get_plugin)

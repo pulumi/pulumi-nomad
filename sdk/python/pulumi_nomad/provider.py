@@ -28,6 +28,7 @@ class ProviderArgs:
                  key_pem: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
+                 skip_verify: Optional[pulumi.Input[bool]] = None,
                  vault_token: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
@@ -44,6 +45,7 @@ class ProviderArgs:
         :param pulumi.Input[str] key_pem: PEM-encoded private key, required if cert_file or cert_pem is specified.
         :param pulumi.Input[str] region: Region of the target Nomad agent.
         :param pulumi.Input[str] secret_id: ACL token secret for API requests.
+        :param pulumi.Input[bool] skip_verify: Skip TLS verification on client side.
         :param pulumi.Input[str] vault_token: Vault token if policies are specified in the job file.
         """
         pulumi.set(__self__, "address", address)
@@ -71,6 +73,8 @@ class ProviderArgs:
             pulumi.set(__self__, "region", region)
         if secret_id is not None:
             pulumi.set(__self__, "secret_id", secret_id)
+        if skip_verify is not None:
+            pulumi.set(__self__, "skip_verify", skip_verify)
         if vault_token is not None:
             pulumi.set(__self__, "vault_token", vault_token)
 
@@ -231,6 +235,18 @@ class ProviderArgs:
         pulumi.set(self, "secret_id", value)
 
     @property
+    @pulumi.getter(name="skipVerify")
+    def skip_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Skip TLS verification on client side.
+        """
+        return pulumi.get(self, "skip_verify")
+
+    @skip_verify.setter
+    def skip_verify(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "skip_verify", value)
+
+    @property
     @pulumi.getter(name="vaultToken")
     def vault_token(self) -> Optional[pulumi.Input[str]]:
         """
@@ -261,6 +277,7 @@ class Provider(pulumi.ProviderResource):
                  key_pem: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
+                 skip_verify: Optional[pulumi.Input[bool]] = None,
                  vault_token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -284,6 +301,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[str] key_pem: PEM-encoded private key, required if cert_file or cert_pem is specified.
         :param pulumi.Input[str] region: Region of the target Nomad agent.
         :param pulumi.Input[str] secret_id: ACL token secret for API requests.
+        :param pulumi.Input[bool] skip_verify: Skip TLS verification on client side.
         :param pulumi.Input[str] vault_token: Vault token if policies are specified in the job file.
         """
         ...
@@ -326,6 +344,7 @@ class Provider(pulumi.ProviderResource):
                  key_pem: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
+                 skip_verify: Optional[pulumi.Input[bool]] = None,
                  vault_token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -351,6 +370,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["key_pem"] = key_pem
             __props__.__dict__["region"] = region
             __props__.__dict__["secret_id"] = secret_id
+            __props__.__dict__["skip_verify"] = pulumi.Output.from_input(skip_verify).apply(pulumi.runtime.to_json) if skip_verify is not None else None
             __props__.__dict__["vault_token"] = None if vault_token is None else pulumi.Output.secret(vault_token)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["consulToken", "vaultToken"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)

@@ -89,9 +89,9 @@ def get_acl_policies(prefix: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getAclPolicies:getAclPolicies', __args__, opts=opts, typ=GetAclPoliciesResult).value
 
     return AwaitableGetAclPoliciesResult(
-        id=__ret__.id,
-        policies=__ret__.policies,
-        prefix=__ret__.prefix)
+        id=pulumi.get(__ret__, 'id'),
+        policies=pulumi.get(__ret__, 'policies'),
+        prefix=pulumi.get(__ret__, 'prefix'))
 
 
 @_utilities.lift_output_func(get_acl_policies)

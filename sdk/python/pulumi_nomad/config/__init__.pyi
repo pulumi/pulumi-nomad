@@ -75,6 +75,11 @@ secretId: Optional[str]
 ACL token secret for API requests.
 """
 
+skipVerify: Optional[bool]
+"""
+Skip TLS verification on client side.
+"""
+
 vaultToken: Optional[str]
 """
 Vault token if policies are specified in the job file.

@@ -20,8 +20,8 @@ namespace Pulumi.Nomad.Inputs
         public Input<bool>? AllowFs { get; set; }
 
         /// <summary>
-        /// `(boolean: false)` - Set this to `true` if your jobspec uses the HCL2
-        /// format instead of the default HCL.
+        /// `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+        /// HCL2 by default.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

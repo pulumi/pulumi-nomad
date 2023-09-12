@@ -8,7 +8,9 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AclBindingRule struct {
@@ -17,8 +19,10 @@ type AclBindingRule struct {
 	// `(string: <required>)` - Name of the auth method for which this
 	// rule applies to.
 	AuthMethod pulumi.StringOutput `pulumi:"authMethod"`
-	// `(string: "")` - Target of the binding.
-	BindName pulumi.StringOutput `pulumi:"bindName"`
+	// `(string: <optional>)` - Target of the binding. If `bindType` is
+	// `role` or `policy` then `bindName` is required. If `bindType` is
+	// `management` than `bindName` must not be defined.
+	BindName pulumi.StringPtrOutput `pulumi:"bindName"`
 	// `(string: <required>)` - Adjusts how this binding rule is applied
 	// at login time. Valid values are `role`, `policy`, and `management`.
 	BindType pulumi.StringOutput `pulumi:"bindType"`
@@ -39,12 +43,10 @@ func NewAclBindingRule(ctx *pulumi.Context,
 	if args.AuthMethod == nil {
 		return nil, errors.New("invalid value for required argument 'AuthMethod'")
 	}
-	if args.BindName == nil {
-		return nil, errors.New("invalid value for required argument 'BindName'")
-	}
 	if args.BindType == nil {
 		return nil, errors.New("invalid value for required argument 'BindType'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AclBindingRule
 	err := ctx.RegisterResource("nomad:index/aclBindingRule:AclBindingRule", name, args, &resource, opts...)
 	if err != nil {
@@ -70,7 +72,9 @@ type aclBindingRuleState struct {
 	// `(string: <required>)` - Name of the auth method for which this
 	// rule applies to.
 	AuthMethod *string `pulumi:"authMethod"`
-	// `(string: "")` - Target of the binding.
+	// `(string: <optional>)` - Target of the binding. If `bindType` is
+	// `role` or `policy` then `bindName` is required. If `bindType` is
+	// `management` than `bindName` must not be defined.
 	BindName *string `pulumi:"bindName"`
 	// `(string: <required>)` - Adjusts how this binding rule is applied
 	// at login time. Valid values are `role`, `policy`, and `management`.
@@ -86,7 +90,9 @@ type AclBindingRuleState struct {
 	// `(string: <required>)` - Name of the auth method for which this
 	// rule applies to.
 	AuthMethod pulumi.StringPtrInput
-	// `(string: "")` - Target of the binding.
+	// `(string: <optional>)` - Target of the binding. If `bindType` is
+	// `role` or `policy` then `bindName` is required. If `bindType` is
+	// `management` than `bindName` must not be defined.
 	BindName pulumi.StringPtrInput
 	// `(string: <required>)` - Adjusts how this binding rule is applied
 	// at login time. Valid values are `role`, `policy`, and `management`.
@@ -106,8 +112,10 @@ type aclBindingRuleArgs struct {
 	// `(string: <required>)` - Name of the auth method for which this
 	// rule applies to.
 	AuthMethod string `pulumi:"authMethod"`
-	// `(string: "")` - Target of the binding.
-	BindName string `pulumi:"bindName"`
+	// `(string: <optional>)` - Target of the binding. If `bindType` is
+	// `role` or `policy` then `bindName` is required. If `bindType` is
+	// `management` than `bindName` must not be defined.
+	BindName *string `pulumi:"bindName"`
 	// `(string: <required>)` - Adjusts how this binding rule is applied
 	// at login time. Valid values are `role`, `policy`, and `management`.
 	BindType string `pulumi:"bindType"`
@@ -123,8 +131,10 @@ type AclBindingRuleArgs struct {
 	// `(string: <required>)` - Name of the auth method for which this
 	// rule applies to.
 	AuthMethod pulumi.StringInput
-	// `(string: "")` - Target of the binding.
-	BindName pulumi.StringInput
+	// `(string: <optional>)` - Target of the binding. If `bindType` is
+	// `role` or `policy` then `bindName` is required. If `bindType` is
+	// `management` than `bindName` must not be defined.
+	BindName pulumi.StringPtrInput
 	// `(string: <required>)` - Adjusts how this binding rule is applied
 	// at login time. Valid values are `role`, `policy`, and `management`.
 	BindType pulumi.StringInput
@@ -158,6 +168,12 @@ func (i *AclBindingRule) ToAclBindingRuleOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(AclBindingRuleOutput)
 }
 
+func (i *AclBindingRule) ToOutput(ctx context.Context) pulumix.Output[*AclBindingRule] {
+	return pulumix.Output[*AclBindingRule]{
+		OutputState: i.ToAclBindingRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AclBindingRuleArrayInput is an input type that accepts AclBindingRuleArray and AclBindingRuleArrayOutput values.
 // You can construct a concrete instance of `AclBindingRuleArrayInput` via:
 //
@@ -181,6 +197,12 @@ func (i AclBindingRuleArray) ToAclBindingRuleArrayOutput() AclBindingRuleArrayOu
 
 func (i AclBindingRuleArray) ToAclBindingRuleArrayOutputWithContext(ctx context.Context) AclBindingRuleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AclBindingRuleArrayOutput)
+}
+
+func (i AclBindingRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]*AclBindingRule] {
+	return pulumix.Output[[]*AclBindingRule]{
+		OutputState: i.ToAclBindingRuleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AclBindingRuleMapInput is an input type that accepts AclBindingRuleMap and AclBindingRuleMapOutput values.
@@ -208,6 +230,12 @@ func (i AclBindingRuleMap) ToAclBindingRuleMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(AclBindingRuleMapOutput)
 }
 
+func (i AclBindingRuleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AclBindingRule] {
+	return pulumix.Output[map[string]*AclBindingRule]{
+		OutputState: i.ToAclBindingRuleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AclBindingRuleOutput struct{ *pulumi.OutputState }
 
 func (AclBindingRuleOutput) ElementType() reflect.Type {
@@ -222,15 +250,23 @@ func (o AclBindingRuleOutput) ToAclBindingRuleOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o AclBindingRuleOutput) ToOutput(ctx context.Context) pulumix.Output[*AclBindingRule] {
+	return pulumix.Output[*AclBindingRule]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `(string: <required>)` - Name of the auth method for which this
 // rule applies to.
 func (o AclBindingRuleOutput) AuthMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v *AclBindingRule) pulumi.StringOutput { return v.AuthMethod }).(pulumi.StringOutput)
 }
 
-// `(string: "")` - Target of the binding.
-func (o AclBindingRuleOutput) BindName() pulumi.StringOutput {
-	return o.ApplyT(func(v *AclBindingRule) pulumi.StringOutput { return v.BindName }).(pulumi.StringOutput)
+// `(string: <optional>)` - Target of the binding. If `bindType` is
+// `role` or `policy` then `bindName` is required. If `bindType` is
+// `management` than `bindName` must not be defined.
+func (o AclBindingRuleOutput) BindName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclBindingRule) pulumi.StringPtrOutput { return v.BindName }).(pulumi.StringPtrOutput)
 }
 
 // `(string: <required>)` - Adjusts how this binding rule is applied
@@ -264,6 +300,12 @@ func (o AclBindingRuleArrayOutput) ToAclBindingRuleArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o AclBindingRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AclBindingRule] {
+	return pulumix.Output[[]*AclBindingRule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AclBindingRuleArrayOutput) Index(i pulumi.IntInput) AclBindingRuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AclBindingRule {
 		return vs[0].([]*AclBindingRule)[vs[1].(int)]
@@ -282,6 +324,12 @@ func (o AclBindingRuleMapOutput) ToAclBindingRuleMapOutput() AclBindingRuleMapOu
 
 func (o AclBindingRuleMapOutput) ToAclBindingRuleMapOutputWithContext(ctx context.Context) AclBindingRuleMapOutput {
 	return o
+}
+
+func (o AclBindingRuleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AclBindingRule] {
+	return pulumix.Output[map[string]*AclBindingRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AclBindingRuleMapOutput) MapIndex(k pulumi.StringInput) AclBindingRuleOutput {

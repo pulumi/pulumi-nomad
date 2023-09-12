@@ -36,3 +36,18 @@ export interface GetDeploymentsResult {
      */
     readonly id: string;
 }
+/**
+ * Retrieve a list of deployments in Nomad.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const example = nomad.getDeployments({});
+ * ```
+ */
+export function getDeploymentsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentsResult> {
+    return pulumi.output(getDeployments(opts))
+}

@@ -20,14 +20,16 @@ class NamespaceArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 node_pool_config: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']] = None,
                  quota: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
-        :param pulumi.Input['NamespaceCapabilitiesArgs'] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+        :param pulumi.Input['NamespaceCapabilitiesArgs'] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't
                be repeated. See below for the structure of this block.
         :param pulumi.Input[str] description: `(string: "")` - A description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the namespace.
+        :param pulumi.Input['NamespaceNodePoolConfigArgs'] node_pool_config: `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
         if capabilities is not None:
@@ -38,6 +40,8 @@ class NamespaceArgs:
             pulumi.set(__self__, "meta", meta)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if node_pool_config is not None:
+            pulumi.set(__self__, "node_pool_config", node_pool_config)
         if quota is not None:
             pulumi.set(__self__, "quota", quota)
 
@@ -45,7 +49,7 @@ class NamespaceArgs:
     @pulumi.getter
     def capabilities(self) -> Optional[pulumi.Input['NamespaceCapabilitiesArgs']]:
         """
-        `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+        `(block: <optional>)` - A block of capabilities for the namespace. Can't
         be repeated. See below for the structure of this block.
         """
         return pulumi.get(self, "capabilities")
@@ -89,6 +93,18 @@ class NamespaceArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="nodePoolConfig")
+    def node_pool_config(self) -> Optional[pulumi.Input['NamespaceNodePoolConfigArgs']]:
+        """
+        `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+        """
+        return pulumi.get(self, "node_pool_config")
+
+    @node_pool_config.setter
+    def node_pool_config(self, value: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']]):
+        pulumi.set(self, "node_pool_config", value)
 
     @property
     @pulumi.getter
@@ -110,14 +126,16 @@ class _NamespaceState:
                  description: Optional[pulumi.Input[str]] = None,
                  meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 node_pool_config: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']] = None,
                  quota: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
-        :param pulumi.Input['NamespaceCapabilitiesArgs'] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+        :param pulumi.Input['NamespaceCapabilitiesArgs'] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't
                be repeated. See below for the structure of this block.
         :param pulumi.Input[str] description: `(string: "")` - A description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the namespace.
+        :param pulumi.Input['NamespaceNodePoolConfigArgs'] node_pool_config: `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
         if capabilities is not None:
@@ -128,6 +146,8 @@ class _NamespaceState:
             pulumi.set(__self__, "meta", meta)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if node_pool_config is not None:
+            pulumi.set(__self__, "node_pool_config", node_pool_config)
         if quota is not None:
             pulumi.set(__self__, "quota", quota)
 
@@ -135,7 +155,7 @@ class _NamespaceState:
     @pulumi.getter
     def capabilities(self) -> Optional[pulumi.Input['NamespaceCapabilitiesArgs']]:
         """
-        `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+        `(block: <optional>)` - A block of capabilities for the namespace. Can't
         be repeated. See below for the structure of this block.
         """
         return pulumi.get(self, "capabilities")
@@ -179,6 +199,18 @@ class _NamespaceState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="nodePoolConfig")
+    def node_pool_config(self) -> Optional[pulumi.Input['NamespaceNodePoolConfigArgs']]:
+        """
+        `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+        """
+        return pulumi.get(self, "node_pool_config")
+
+    @node_pool_config.setter
+    def node_pool_config(self, value: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']]):
+        pulumi.set(self, "node_pool_config", value)
 
     @property
     @pulumi.getter
@@ -202,6 +234,7 @@ class Namespace(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 node_pool_config: Optional[pulumi.Input[pulumi.InputType['NamespaceNodePoolConfigArgs']]] = None,
                  quota: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -251,11 +284,12 @@ class Namespace(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+        :param pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't
                be repeated. See below for the structure of this block.
         :param pulumi.Input[str] description: `(string: "")` - A description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the namespace.
+        :param pulumi.Input[pulumi.InputType['NamespaceNodePoolConfigArgs']] node_pool_config: `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
         ...
@@ -328,6 +362,7 @@ class Namespace(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 node_pool_config: Optional[pulumi.Input[pulumi.InputType['NamespaceNodePoolConfigArgs']]] = None,
                  quota: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -342,6 +377,7 @@ class Namespace(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["meta"] = meta
             __props__.__dict__["name"] = name
+            __props__.__dict__["node_pool_config"] = node_pool_config
             __props__.__dict__["quota"] = quota
         super(Namespace, __self__).__init__(
             'nomad:index/namespace:Namespace',
@@ -357,6 +393,7 @@ class Namespace(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            node_pool_config: Optional[pulumi.Input[pulumi.InputType['NamespaceNodePoolConfigArgs']]] = None,
             quota: Optional[pulumi.Input[str]] = None) -> 'Namespace':
         """
         Get an existing Namespace resource's state with the given name, id, and optional extra
@@ -365,11 +402,12 @@ class Namespace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+        :param pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't
                be repeated. See below for the structure of this block.
         :param pulumi.Input[str] description: `(string: "")` - A description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the namespace.
+        :param pulumi.Input[pulumi.InputType['NamespaceNodePoolConfigArgs']] node_pool_config: `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -380,6 +418,7 @@ class Namespace(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["meta"] = meta
         __props__.__dict__["name"] = name
+        __props__.__dict__["node_pool_config"] = node_pool_config
         __props__.__dict__["quota"] = quota
         return Namespace(resource_name, opts=opts, __props__=__props__)
 
@@ -387,7 +426,7 @@ class Namespace(pulumi.CustomResource):
     @pulumi.getter
     def capabilities(self) -> pulumi.Output[Optional['outputs.NamespaceCapabilities']]:
         """
-        `(block: <optional>)` - A block of capabilities for the namespace. Can't 
+        `(block: <optional>)` - A block of capabilities for the namespace. Can't
         be repeated. See below for the structure of this block.
         """
         return pulumi.get(self, "capabilities")
@@ -415,6 +454,14 @@ class Namespace(pulumi.CustomResource):
         `(string: <required>)` - A unique name for the namespace.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nodePoolConfig")
+    def node_pool_config(self) -> pulumi.Output['outputs.NamespaceNodePoolConfig']:
+        """
+        `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+        """
+        return pulumi.get(self, "node_pool_config")
 
     @property
     @pulumi.getter

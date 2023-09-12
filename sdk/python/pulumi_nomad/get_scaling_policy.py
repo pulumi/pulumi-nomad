@@ -136,13 +136,13 @@ def get_scaling_policy(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getScalingPolicy:getScalingPolicy', __args__, opts=opts, typ=GetScalingPolicyResult).value
 
     return AwaitableGetScalingPolicyResult(
-        enabled=__ret__.enabled,
-        id=__ret__.id,
-        max=__ret__.max,
-        min=__ret__.min,
-        policy=__ret__.policy,
-        target=__ret__.target,
-        type=__ret__.type)
+        enabled=pulumi.get(__ret__, 'enabled'),
+        id=pulumi.get(__ret__, 'id'),
+        max=pulumi.get(__ret__, 'max'),
+        min=pulumi.get(__ret__, 'min'),
+        policy=pulumi.get(__ret__, 'policy'),
+        target=pulumi.get(__ret__, 'target'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_scaling_policy)

@@ -11,6 +11,7 @@ import com.pulumi.nomad.NamespaceArgs;
 import com.pulumi.nomad.Utilities;
 import com.pulumi.nomad.inputs.NamespaceState;
 import com.pulumi.nomad.outputs.NamespaceCapabilities;
+import com.pulumi.nomad.outputs.NamespaceNodePoolConfig;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -167,6 +168,20 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * `(block: &lt;optional&gt;)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    @Export(name="nodePoolConfig", type=NamespaceNodePoolConfig.class, parameters={})
+    private Output<NamespaceNodePoolConfig> nodePoolConfig;
+
+    /**
+     * @return `(block: &lt;optional&gt;)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    public Output<NamespaceNodePoolConfig> nodePoolConfig() {
+        return this.nodePoolConfig;
     }
     /**
      * `(string: &#34;&#34;)` - A resource quota to attach to the namespace.

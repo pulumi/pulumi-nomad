@@ -127,12 +127,12 @@ def get_volumes(namespace: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('nomad:index/getVolumes:getVolumes', __args__, opts=opts, typ=GetVolumesResult).value
 
     return AwaitableGetVolumesResult(
-        id=__ret__.id,
-        namespace=__ret__.namespace,
-        node_id=__ret__.node_id,
-        plugin_id=__ret__.plugin_id,
-        type=__ret__.type,
-        volumes=__ret__.volumes)
+        id=pulumi.get(__ret__, 'id'),
+        namespace=pulumi.get(__ret__, 'namespace'),
+        node_id=pulumi.get(__ret__, 'node_id'),
+        plugin_id=pulumi.get(__ret__, 'plugin_id'),
+        type=pulumi.get(__ret__, 'type'),
+        volumes=pulumi.get(__ret__, 'volumes'))
 
 
 @_utilities.lift_output_func(get_volumes)

@@ -44,3 +44,18 @@ export interface GetSchedulerPolicyResult {
      */
     readonly schedulerAlgorithm: string;
 }
+/**
+ * Retrieve the cluster's [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const global = nomad.getSchedulerPolicy({});
+ * ```
+ */
+export function getSchedulerPolicyOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSchedulerPolicyResult> {
+    return pulumi.output(getSchedulerPolicy(opts))
+}

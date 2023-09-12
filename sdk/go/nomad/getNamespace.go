@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information about a namespace in Nomad.
@@ -19,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -38,6 +40,7 @@ import (
 //
 // ```
 func LookupNamespace(ctx *pulumi.Context, args *LookupNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupNamespaceResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNamespaceResult
 	err := ctx.Invoke("nomad:index/getNamespace:getNamespace", args, &rv, opts...)
 	if err != nil {
@@ -61,8 +64,9 @@ type LookupNamespaceResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// `(map[string]string)` -  Arbitrary KV metadata associated with the namespace.
-	Meta map[string]string `pulumi:"meta"`
-	Name string            `pulumi:"name"`
+	Meta            map[string]string            `pulumi:"meta"`
+	Name            string                       `pulumi:"name"`
+	NodePoolConfigs []GetNamespaceNodePoolConfig `pulumi:"nodePoolConfigs"`
 	// `(string)` - The quota associated with the namespace.
 	Quota string `pulumi:"quota"`
 }
@@ -105,6 +109,12 @@ func (o LookupNamespaceResultOutput) ToLookupNamespaceResultOutputWithContext(ct
 	return o
 }
 
+func (o LookupNamespaceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupNamespaceResult] {
+	return pulumix.Output[LookupNamespaceResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 // `(block)` - Capabilities of the namespace
 func (o LookupNamespaceResultOutput) Capabilities() GetNamespaceCapabilityArrayOutput {
 	return o.ApplyT(func(v LookupNamespaceResult) []GetNamespaceCapability { return v.Capabilities }).(GetNamespaceCapabilityArrayOutput)
@@ -127,6 +137,10 @@ func (o LookupNamespaceResultOutput) Meta() pulumi.StringMapOutput {
 
 func (o LookupNamespaceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNamespaceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupNamespaceResultOutput) NodePoolConfigs() GetNamespaceNodePoolConfigArrayOutput {
+	return o.ApplyT(func(v LookupNamespaceResult) []GetNamespaceNodePoolConfig { return v.NodePoolConfigs }).(GetNamespaceNodePoolConfigArrayOutput)
 }
 
 // `(string)` - The quota associated with the namespace.
