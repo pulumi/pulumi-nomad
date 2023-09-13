@@ -83,7 +83,7 @@ namespace Pulumi.Nomad
     public partial class Namespace : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can't 
+        /// `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can't
         /// be repeated. See below for the structure of this block.
         /// </summary>
         [Output("capabilities")]
@@ -106,6 +106,12 @@ namespace Pulumi.Nomad
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+        /// </summary>
+        [Output("nodePoolConfig")]
+        public Output<Outputs.NamespaceNodePoolConfig> NodePoolConfig { get; private set; } = null!;
 
         /// <summary>
         /// `(string: "")` - A resource quota to attach to the namespace.
@@ -160,7 +166,7 @@ namespace Pulumi.Nomad
     public sealed class NamespaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can't 
+        /// `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can't
         /// be repeated. See below for the structure of this block.
         /// </summary>
         [Input("capabilities")]
@@ -191,6 +197,12 @@ namespace Pulumi.Nomad
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+        /// </summary>
+        [Input("nodePoolConfig")]
+        public Input<Inputs.NamespaceNodePoolConfigArgs>? NodePoolConfig { get; set; }
+
+        /// <summary>
         /// `(string: "")` - A resource quota to attach to the namespace.
         /// </summary>
         [Input("quota")]
@@ -205,7 +217,7 @@ namespace Pulumi.Nomad
     public sealed class NamespaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can't 
+        /// `(block: &lt;optional&gt;)` - A block of capabilities for the namespace. Can't
         /// be repeated. See below for the structure of this block.
         /// </summary>
         [Input("capabilities")]
@@ -234,6 +246,12 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+        /// </summary>
+        [Input("nodePoolConfig")]
+        public Input<Inputs.NamespaceNodePoolConfigGetArgs>? NodePoolConfig { get; set; }
 
         /// <summary>
         /// `(string: "")` - A resource quota to attach to the namespace.

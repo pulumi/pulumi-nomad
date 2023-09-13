@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Parse a HCL jobspec and produce the equivalent JSON encoded job.
@@ -22,7 +24,7 @@ import (
 //	"fmt"
 //	"os"
 //
-//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -50,6 +52,7 @@ import (
 //
 // ```
 func GetJobParser(ctx *pulumi.Context, args *GetJobParserArgs, opts ...pulumi.InvokeOption) (*GetJobParserResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetJobParserResult
 	err := ctx.Invoke("nomad:index/getJobParser:getJobParser", args, &rv, opts...)
 	if err != nil {
@@ -116,6 +119,12 @@ func (o GetJobParserResultOutput) ToGetJobParserResultOutput() GetJobParserResul
 
 func (o GetJobParserResultOutput) ToGetJobParserResultOutputWithContext(ctx context.Context) GetJobParserResultOutput {
 	return o
+}
+
+func (o GetJobParserResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobParserResult] {
+	return pulumix.Output[GetJobParserResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(boolean: true)` - flag to enable setting any unset fields to their default values.

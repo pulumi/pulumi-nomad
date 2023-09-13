@@ -22,10 +22,10 @@ import (
 	"unicode"
 
 	"github.com/hashicorp/terraform-provider-nomad/nomad"
-	"github.com/pulumi/pulumi-nomad/provider/pkg/version"
+	"github.com/pulumi/pulumi-nomad/provider/v2/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/x"
-	shimv1 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v1"
+	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
@@ -67,7 +67,7 @@ func makeResource(mod string, res string) tokens.Type {
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv1.NewProvider(nomad.Provider())
+	p := shimv2.NewProvider(nomad.Provider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -143,9 +143,8 @@ func Provider() tfbridge.ProviderInfo {
 		}, MetadataInfo: tfbridge.NewProviderMetadata(metadata),
 	}
 
-	err := x.ComputeDefaults(&prov, x.TokensSingleModule("nomad_", mainMod, x.MakeStandardToken(mainPkg)))
-	contract.AssertNoErrorf(err, "failed to compute token mappings")
-	err = x.AutoAliasing(&prov, prov.GetMetadata())
+	prov.MustComputeTokens(tfbridgetokens.SingleModule("nomad_", mainMod, tfbridgetokens.MakeStandard(mainPkg)))
+	err := prov.ApplyAutoAliases()
 	contract.AssertNoErrorf(err, "auto aliasing apply failed")
 
 	prov.SetAutonaming(255, "-")

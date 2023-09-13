@@ -5,6 +5,7 @@ package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.nomad.outputs.GetNamespaceCapability;
+import com.pulumi.nomad.outputs.GetNamespaceNodePoolConfig;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ public final class GetNamespaceResult {
      */
     private Map<String,String> meta;
     private String name;
+    private List<GetNamespaceNodePoolConfig> nodePoolConfigs;
     /**
      * @return `(string)` - The quota associated with the namespace.
      * 
@@ -71,6 +73,9 @@ public final class GetNamespaceResult {
     public String name() {
         return this.name;
     }
+    public List<GetNamespaceNodePoolConfig> nodePoolConfigs() {
+        return this.nodePoolConfigs;
+    }
     /**
      * @return `(string)` - The quota associated with the namespace.
      * 
@@ -93,6 +98,7 @@ public final class GetNamespaceResult {
         private String id;
         private Map<String,String> meta;
         private String name;
+        private List<GetNamespaceNodePoolConfig> nodePoolConfigs;
         private String quota;
         public Builder() {}
         public Builder(GetNamespaceResult defaults) {
@@ -102,6 +108,7 @@ public final class GetNamespaceResult {
     	      this.id = defaults.id;
     	      this.meta = defaults.meta;
     	      this.name = defaults.name;
+    	      this.nodePoolConfigs = defaults.nodePoolConfigs;
     	      this.quota = defaults.quota;
         }
 
@@ -134,6 +141,14 @@ public final class GetNamespaceResult {
             return this;
         }
         @CustomType.Setter
+        public Builder nodePoolConfigs(List<GetNamespaceNodePoolConfig> nodePoolConfigs) {
+            this.nodePoolConfigs = Objects.requireNonNull(nodePoolConfigs);
+            return this;
+        }
+        public Builder nodePoolConfigs(GetNamespaceNodePoolConfig... nodePoolConfigs) {
+            return nodePoolConfigs(List.of(nodePoolConfigs));
+        }
+        @CustomType.Setter
         public Builder quota(String quota) {
             this.quota = Objects.requireNonNull(quota);
             return this;
@@ -145,6 +160,7 @@ public final class GetNamespaceResult {
             o.id = id;
             o.meta = meta;
             o.name = name;
+            o.nodePoolConfigs = nodePoolConfigs;
             o.quota = quota;
             return o;
         }

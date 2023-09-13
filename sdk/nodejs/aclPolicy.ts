@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -71,6 +73,10 @@ export class AclPolicy extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+     */
+    public readonly jobAcl!: pulumi.Output<outputs.AclPolicyJobAcl | undefined>;
+    /**
      * `(string: <required>)` - A unique name for the policy.
      */
     public readonly name!: pulumi.Output<string>;
@@ -94,6 +100,7 @@ export class AclPolicy extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AclPolicyState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["jobAcl"] = state ? state.jobAcl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["rulesHcl"] = state ? state.rulesHcl : undefined;
         } else {
@@ -102,6 +109,7 @@ export class AclPolicy extends pulumi.CustomResource {
                 throw new Error("Missing required property 'rulesHcl'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["jobAcl"] = args ? args.jobAcl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["rulesHcl"] = args ? args.rulesHcl : undefined;
         }
@@ -118,6 +126,10 @@ export interface AclPolicyState {
      * `(string: "")` - A description of the policy.
      */
     description?: pulumi.Input<string>;
+    /**
+     * `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+     */
+    jobAcl?: pulumi.Input<inputs.AclPolicyJobAcl>;
     /**
      * `(string: <required>)` - A unique name for the policy.
      */
@@ -137,6 +149,10 @@ export interface AclPolicyArgs {
      * `(string: "")` - A description of the policy.
      */
     description?: pulumi.Input<string>;
+    /**
+     * `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+     */
+    jobAcl?: pulumi.Input<inputs.AclPolicyJobAcl>;
     /**
      * `(string: <required>)` - A unique name for the policy.
      */

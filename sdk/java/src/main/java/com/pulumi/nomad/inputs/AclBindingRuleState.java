@@ -33,14 +33,18 @@ public final class AclBindingRuleState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * `(string: &#34;&#34;)` - Target of the binding.
+     * `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
+     * `role` or `policy` then `bind_name` is required. If `bind_type` is
+     * `management` than `bind_name` must not be defined.
      * 
      */
     @Import(name="bindName")
     private @Nullable Output<String> bindName;
 
     /**
-     * @return `(string: &#34;&#34;)` - Target of the binding.
+     * @return `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
+     * `role` or `policy` then `bind_name` is required. If `bind_type` is
+     * `management` than `bind_name` must not be defined.
      * 
      */
     public Optional<Output<String>> bindName() {
@@ -148,7 +152,9 @@ public final class AclBindingRuleState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bindName `(string: &#34;&#34;)` - Target of the binding.
+         * @param bindName `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
+         * `role` or `policy` then `bind_name` is required. If `bind_type` is
+         * `management` than `bind_name` must not be defined.
          * 
          * @return builder
          * 
@@ -159,7 +165,9 @@ public final class AclBindingRuleState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bindName `(string: &#34;&#34;)` - Target of the binding.
+         * @param bindName `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
+         * `role` or `policy` then `bind_name` is required. If `bind_type` is
+         * `management` than `bind_name` must not be defined.
          * 
          * @return builder
          * 

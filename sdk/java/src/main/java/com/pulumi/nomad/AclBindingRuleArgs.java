@@ -33,18 +33,22 @@ public final class AclBindingRuleArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * `(string: &#34;&#34;)` - Target of the binding.
+     * `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
+     * `role` or `policy` then `bind_name` is required. If `bind_type` is
+     * `management` than `bind_name` must not be defined.
      * 
      */
-    @Import(name="bindName", required=true)
-    private Output<String> bindName;
+    @Import(name="bindName")
+    private @Nullable Output<String> bindName;
 
     /**
-     * @return `(string: &#34;&#34;)` - Target of the binding.
+     * @return `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
+     * `role` or `policy` then `bind_name` is required. If `bind_type` is
+     * `management` than `bind_name` must not be defined.
      * 
      */
-    public Output<String> bindName() {
-        return this.bindName;
+    public Optional<Output<String>> bindName() {
+        return Optional.ofNullable(this.bindName);
     }
 
     /**
@@ -148,18 +152,22 @@ public final class AclBindingRuleArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param bindName `(string: &#34;&#34;)` - Target of the binding.
+         * @param bindName `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
+         * `role` or `policy` then `bind_name` is required. If `bind_type` is
+         * `management` than `bind_name` must not be defined.
          * 
          * @return builder
          * 
          */
-        public Builder bindName(Output<String> bindName) {
+        public Builder bindName(@Nullable Output<String> bindName) {
             $.bindName = bindName;
             return this;
         }
 
         /**
-         * @param bindName `(string: &#34;&#34;)` - Target of the binding.
+         * @param bindName `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
+         * `role` or `policy` then `bind_name` is required. If `bind_type` is
+         * `management` than `bind_name` must not be defined.
          * 
          * @return builder
          * 
@@ -237,7 +245,6 @@ public final class AclBindingRuleArgs extends com.pulumi.resources.ResourceArgs 
 
         public AclBindingRuleArgs build() {
             $.authMethod = Objects.requireNonNull($.authMethod, "expected parameter 'authMethod' to be non-null");
-            $.bindName = Objects.requireNonNull($.bindName, "expected parameter 'bindName' to be non-null");
             $.bindType = Objects.requireNonNull($.bindType, "expected parameter 'bindType' to be non-null");
             return $;
         }

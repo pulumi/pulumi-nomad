@@ -59,6 +59,7 @@ export interface GetNamespaceResult {
      */
     readonly meta: {[key: string]: string};
     readonly name: string;
+    readonly nodePoolConfigs: outputs.GetNamespaceNodePoolConfig[];
     /**
      * `(string)` - The quota associated with the namespace.
      */

@@ -84,6 +84,25 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * `(boolean: false)` - Set this to `true` to use the previous HCL1
+     * parser. This option is provided for backwards compatibility only and should
+     * not be used unless absolutely necessary.
+     * 
+     */
+    @Import(name="hcl1")
+    private @Nullable Output<Boolean> hcl1;
+
+    /**
+     * @return `(boolean: false)` - Set this to `true` to use the previous HCL1
+     * parser. This option is provided for backwards compatibility only and should
+     * not be used unless absolutely necessary.
+     * 
+     */
+    public Optional<Output<Boolean>> hcl1() {
+        return Optional.ofNullable(this.hcl1);
+    }
+
+    /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      * 
      */
@@ -165,6 +184,25 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * @deprecated
+     * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     * 
+     */
+    @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead. */
+    @Import(name="readAllocationIds")
+    private @Nullable Output<Boolean> readAllocationIds;
+
+    /**
+     * @deprecated
+     * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     * 
+     */
+    @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead. */
+    public Optional<Output<Boolean>> readAllocationIds() {
+        return Optional.ofNullable(this.readAllocationIds);
+    }
+
+    /**
      * `(string: &lt;optional&gt;)` - Vault token used when registering this job.
      * Will fallback to the value declared in Nomad provider configuration, if any.
      * 
@@ -188,11 +226,13 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         this.deregisterOnDestroy = $.deregisterOnDestroy;
         this.deregisterOnIdChange = $.deregisterOnIdChange;
         this.detach = $.detach;
+        this.hcl1 = $.hcl1;
         this.hcl2 = $.hcl2;
         this.jobspec = $.jobspec;
         this.json = $.json;
         this.policyOverride = $.policyOverride;
         this.purgeOnDestroy = $.purgeOnDestroy;
+        this.readAllocationIds = $.readAllocationIds;
         this.vaultToken = $.vaultToken;
     }
 
@@ -305,6 +345,31 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param hcl1 `(boolean: false)` - Set this to `true` to use the previous HCL1
+         * parser. This option is provided for backwards compatibility only and should
+         * not be used unless absolutely necessary.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hcl1(@Nullable Output<Boolean> hcl1) {
+            $.hcl1 = hcl1;
+            return this;
+        }
+
+        /**
+         * @param hcl1 `(boolean: false)` - Set this to `true` to use the previous HCL1
+         * parser. This option is provided for backwards compatibility only and should
+         * not be used unless absolutely necessary.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hcl1(Boolean hcl1) {
+            return hcl1(Output.of(hcl1));
+        }
+
+        /**
          * @param hcl2 `(block: optional)` - Options for the HCL2 jobspec parser.
          * 
          * @return builder
@@ -413,6 +478,31 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder purgeOnDestroy(Boolean purgeOnDestroy) {
             return purgeOnDestroy(Output.of(purgeOnDestroy));
+        }
+
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+         * 
+         */
+        @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead. */
+        public Builder readAllocationIds(@Nullable Output<Boolean> readAllocationIds) {
+            $.readAllocationIds = readAllocationIds;
+            return this;
+        }
+
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+         * 
+         */
+        @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead. */
+        public Builder readAllocationIds(Boolean readAllocationIds) {
+            return readAllocationIds(Output.of(readAllocationIds));
         }
 
         /**

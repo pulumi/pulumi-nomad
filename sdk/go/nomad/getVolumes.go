@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of volumes in Nomad.
@@ -19,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -36,6 +38,7 @@ import (
 //
 // ```
 func GetVolumes(ctx *pulumi.Context, args *GetVolumesArgs, opts ...pulumi.InvokeOption) (*GetVolumesResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVolumesResult
 	err := ctx.Invoke("nomad:index/getVolumes:getVolumes", args, &rv, opts...)
 	if err != nil {
@@ -111,6 +114,12 @@ func (o GetVolumesResultOutput) ToGetVolumesResultOutput() GetVolumesResultOutpu
 
 func (o GetVolumesResultOutput) ToGetVolumesResultOutputWithContext(ctx context.Context) GetVolumesResultOutput {
 	return o
+}
+
+func (o GetVolumesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetVolumesResult] {
+	return pulumix.Output[GetVolumesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

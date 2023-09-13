@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.nomad.inputs.AclPolicyJobAclArgs;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -28,6 +29,21 @@ public final class AclPolicyArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
+    }
+
+    /**
+     * `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+     * 
+     */
+    @Import(name="jobAcl")
+    private @Nullable Output<AclPolicyJobAclArgs> jobAcl;
+
+    /**
+     * @return `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+     * 
+     */
+    public Optional<Output<AclPolicyJobAclArgs>> jobAcl() {
+        return Optional.ofNullable(this.jobAcl);
     }
 
     /**
@@ -66,6 +82,7 @@ public final class AclPolicyArgs extends com.pulumi.resources.ResourceArgs {
 
     private AclPolicyArgs(AclPolicyArgs $) {
         this.description = $.description;
+        this.jobAcl = $.jobAcl;
         this.name = $.name;
         this.rulesHcl = $.rulesHcl;
     }
@@ -107,6 +124,27 @@ public final class AclPolicyArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        /**
+         * @param jobAcl `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jobAcl(@Nullable Output<AclPolicyJobAclArgs> jobAcl) {
+            $.jobAcl = jobAcl;
+            return this;
+        }
+
+        /**
+         * @param jobAcl `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jobAcl(AclPolicyJobAclArgs jobAcl) {
+            return jobAcl(Output.of(jobAcl));
         }
 
         /**

@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // URL of the root of the target Nomad agent.
 func GetAddress(ctx *pulumi.Context) string {
@@ -71,6 +74,11 @@ func GetRegion(ctx *pulumi.Context) string {
 // ACL token secret for API requests.
 func GetSecretId(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:secretId")
+}
+
+// Skip TLS verification on client side.
+func GetSkipVerify(ctx *pulumi.Context) bool {
+	return config.GetBool(ctx, "nomad:skipVerify")
 }
 
 // Vault token if policies are specified in the job file.

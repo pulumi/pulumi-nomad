@@ -24,7 +24,7 @@ export class Provider extends pulumi.ProviderResource {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Provider.__pulumiType;
+        return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
     /**
@@ -103,6 +103,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["keyPem"] = args ? args.keyPem : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["secretId"] = args ? args.secretId : undefined;
+            resourceInputs["skipVerify"] = pulumi.output(args ? args.skipVerify : undefined).apply(JSON.stringify);
             resourceInputs["vaultToken"] = args?.vaultToken ? pulumi.secret(args.vaultToken) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -168,6 +169,10 @@ export interface ProviderArgs {
      * ACL token secret for API requests.
      */
     secretId?: pulumi.Input<string>;
+    /**
+     * Skip TLS verification on client side.
+     */
+    skipVerify?: pulumi.Input<boolean>;
     /**
      * Vault token if policies are specified in the job file.
      */

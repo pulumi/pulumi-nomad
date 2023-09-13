@@ -107,6 +107,13 @@ public final class Config {
         return Codegen.stringProp("secretId").config(config).get();
     }
 /**
+ * Skip TLS verification on client side.
+ * 
+ */
+    public Optional<Boolean> skipVerify() {
+        return Codegen.booleanProp("skipVerify").config(config).get();
+    }
+/**
  * Vault token if policies are specified in the job file.
  * 
  */

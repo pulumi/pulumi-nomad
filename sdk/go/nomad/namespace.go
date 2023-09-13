@@ -7,7 +7,9 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provisions a namespace within a Nomad cluster.
@@ -26,7 +28,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -57,7 +59,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-nomad/sdk/go/nomad"
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -103,6 +105,8 @@ type Namespace struct {
 	Meta pulumi.StringMapOutput `pulumi:"meta"`
 	// `(string: <required>)` - A unique name for the namespace.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+	NodePoolConfig NamespaceNodePoolConfigOutput `pulumi:"nodePoolConfig"`
 	// `(string: "")` - A resource quota to attach to the namespace.
 	Quota pulumi.StringPtrOutput `pulumi:"quota"`
 }
@@ -114,6 +118,7 @@ func NewNamespace(ctx *pulumi.Context,
 		args = &NamespaceArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Namespace
 	err := ctx.RegisterResource("nomad:index/namespace:Namespace", name, args, &resource, opts...)
 	if err != nil {
@@ -145,6 +150,8 @@ type namespaceState struct {
 	Meta map[string]string `pulumi:"meta"`
 	// `(string: <required>)` - A unique name for the namespace.
 	Name *string `pulumi:"name"`
+	// `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+	NodePoolConfig *NamespaceNodePoolConfig `pulumi:"nodePoolConfig"`
 	// `(string: "")` - A resource quota to attach to the namespace.
 	Quota *string `pulumi:"quota"`
 }
@@ -159,6 +166,8 @@ type NamespaceState struct {
 	Meta pulumi.StringMapInput
 	// `(string: <required>)` - A unique name for the namespace.
 	Name pulumi.StringPtrInput
+	// `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+	NodePoolConfig NamespaceNodePoolConfigPtrInput
 	// `(string: "")` - A resource quota to attach to the namespace.
 	Quota pulumi.StringPtrInput
 }
@@ -177,6 +186,8 @@ type namespaceArgs struct {
 	Meta map[string]string `pulumi:"meta"`
 	// `(string: <required>)` - A unique name for the namespace.
 	Name *string `pulumi:"name"`
+	// `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+	NodePoolConfig *NamespaceNodePoolConfig `pulumi:"nodePoolConfig"`
 	// `(string: "")` - A resource quota to attach to the namespace.
 	Quota *string `pulumi:"quota"`
 }
@@ -192,6 +203,8 @@ type NamespaceArgs struct {
 	Meta pulumi.StringMapInput
 	// `(string: <required>)` - A unique name for the namespace.
 	Name pulumi.StringPtrInput
+	// `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+	NodePoolConfig NamespaceNodePoolConfigPtrInput
 	// `(string: "")` - A resource quota to attach to the namespace.
 	Quota pulumi.StringPtrInput
 }
@@ -219,6 +232,12 @@ func (i *Namespace) ToNamespaceOutputWithContext(ctx context.Context) NamespaceO
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceOutput)
 }
 
+func (i *Namespace) ToOutput(ctx context.Context) pulumix.Output[*Namespace] {
+	return pulumix.Output[*Namespace]{
+		OutputState: i.ToNamespaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NamespaceArrayInput is an input type that accepts NamespaceArray and NamespaceArrayOutput values.
 // You can construct a concrete instance of `NamespaceArrayInput` via:
 //
@@ -242,6 +261,12 @@ func (i NamespaceArray) ToNamespaceArrayOutput() NamespaceArrayOutput {
 
 func (i NamespaceArray) ToNamespaceArrayOutputWithContext(ctx context.Context) NamespaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceArrayOutput)
+}
+
+func (i NamespaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*Namespace] {
+	return pulumix.Output[[]*Namespace]{
+		OutputState: i.ToNamespaceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // NamespaceMapInput is an input type that accepts NamespaceMap and NamespaceMapOutput values.
@@ -269,6 +294,12 @@ func (i NamespaceMap) ToNamespaceMapOutputWithContext(ctx context.Context) Names
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceMapOutput)
 }
 
+func (i NamespaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Namespace] {
+	return pulumix.Output[map[string]*Namespace]{
+		OutputState: i.ToNamespaceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NamespaceOutput struct{ *pulumi.OutputState }
 
 func (NamespaceOutput) ElementType() reflect.Type {
@@ -281,6 +312,12 @@ func (o NamespaceOutput) ToNamespaceOutput() NamespaceOutput {
 
 func (o NamespaceOutput) ToNamespaceOutputWithContext(ctx context.Context) NamespaceOutput {
 	return o
+}
+
+func (o NamespaceOutput) ToOutput(ctx context.Context) pulumix.Output[*Namespace] {
+	return pulumix.Output[*Namespace]{
+		OutputState: o.OutputState,
+	}
 }
 
 // `(block: <optional>)` - A block of capabilities for the namespace. Can't
@@ -304,6 +341,11 @@ func (o NamespaceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+func (o NamespaceOutput) NodePoolConfig() NamespaceNodePoolConfigOutput {
+	return o.ApplyT(func(v *Namespace) NamespaceNodePoolConfigOutput { return v.NodePoolConfig }).(NamespaceNodePoolConfigOutput)
+}
+
 // `(string: "")` - A resource quota to attach to the namespace.
 func (o NamespaceOutput) Quota() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Namespace) pulumi.StringPtrOutput { return v.Quota }).(pulumi.StringPtrOutput)
@@ -321,6 +363,12 @@ func (o NamespaceArrayOutput) ToNamespaceArrayOutput() NamespaceArrayOutput {
 
 func (o NamespaceArrayOutput) ToNamespaceArrayOutputWithContext(ctx context.Context) NamespaceArrayOutput {
 	return o
+}
+
+func (o NamespaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Namespace] {
+	return pulumix.Output[[]*Namespace]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NamespaceArrayOutput) Index(i pulumi.IntInput) NamespaceOutput {
@@ -341,6 +389,12 @@ func (o NamespaceMapOutput) ToNamespaceMapOutput() NamespaceMapOutput {
 
 func (o NamespaceMapOutput) ToNamespaceMapOutputWithContext(ctx context.Context) NamespaceMapOutput {
 	return o
+}
+
+func (o NamespaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Namespace] {
+	return pulumix.Output[map[string]*Namespace]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NamespaceMapOutput) MapIndex(k pulumi.StringInput) NamespaceOutput {

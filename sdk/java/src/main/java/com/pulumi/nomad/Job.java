@@ -23,7 +23,11 @@ public class Job extends com.pulumi.resources.CustomResource {
     /**
      * The IDs for allocations associated with this job.
      * 
+     * @deprecated
+     * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     * 
      */
+    @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead. */
     @Export(name="allocationIds", type=List.class, parameters={String.class})
     private Output<List<String>> allocationIds;
 
@@ -137,6 +141,24 @@ public class Job extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> detach() {
         return Codegen.optional(this.detach);
+    }
+    /**
+     * `(boolean: false)` - Set this to `true` to use the previous HCL1
+     * parser. This option is provided for backwards compatibility only and should
+     * not be used unless absolutely necessary.
+     * 
+     */
+    @Export(name="hcl1", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> hcl1;
+
+    /**
+     * @return `(boolean: false)` - Set this to `true` to use the previous HCL1
+     * parser. This option is provided for backwards compatibility only and should
+     * not be used unless absolutely necessary.
+     * 
+     */
+    public Output<Optional<Boolean>> hcl1() {
+        return Codegen.optional(this.hcl1);
     }
     /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
@@ -255,6 +277,18 @@ public class Job extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> purgeOnDestroy() {
         return Codegen.optional(this.purgeOnDestroy);
+    }
+    /**
+     * @deprecated
+     * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     * 
+     */
+    @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead. */
+    @Export(name="readAllocationIds", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> readAllocationIds;
+
+    public Output<Optional<Boolean>> readAllocationIds() {
+        return Codegen.optional(this.readAllocationIds);
     }
     /**
      * The target region for the job, as derived from the jobspec.

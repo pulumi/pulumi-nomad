@@ -73,5 +73,5 @@ def get_deployments(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet
     __ret__ = pulumi.runtime.invoke('nomad:index/getDeployments:getDeployments', __args__, opts=opts, typ=GetDeploymentsResult).value
 
     return AwaitableGetDeploymentsResult(
-        deployments=__ret__.deployments,
-        id=__ret__.id)
+        deployments=pulumi.get(__ret__, 'deployments'),
+        id=pulumi.get(__ret__, 'id'))

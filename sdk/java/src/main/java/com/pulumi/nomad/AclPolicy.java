@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.nomad.AclPolicyArgs;
 import com.pulumi.nomad.Utilities;
 import com.pulumi.nomad.inputs.AclPolicyState;
+import com.pulumi.nomad.outputs.AclPolicyJobAcl;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -102,6 +103,20 @@ public class AclPolicy extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
+    }
+    /**
+     * `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+     * 
+     */
+    @Export(name="jobAcl", type=AclPolicyJobAcl.class, parameters={})
+    private Output</* @Nullable */ AclPolicyJobAcl> jobAcl;
+
+    /**
+     * @return `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+     * 
+     */
+    public Output<Optional<AclPolicyJobAcl>> jobAcl() {
+        return Codegen.optional(this.jobAcl);
     }
     /**
      * `(string: &lt;required&gt;)` - A unique name for the policy.

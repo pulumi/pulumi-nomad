@@ -35,6 +35,31 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Task<GetSchedulerPolicyResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSchedulerPolicyResult>("nomad:index/getSchedulerPolicy:getSchedulerPolicy", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve the cluster's [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var @global = Nomad.GetSchedulerPolicy.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
+        public static Output<GetSchedulerPolicyResult> Invoke(InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSchedulerPolicyResult>("nomad:index/getSchedulerPolicy:getSchedulerPolicy", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

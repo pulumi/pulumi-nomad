@@ -97,7 +97,7 @@ def get_scheduler_policy(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
     __ret__ = pulumi.runtime.invoke('nomad:index/getSchedulerPolicy:getSchedulerPolicy', __args__, opts=opts, typ=GetSchedulerPolicyResult).value
 
     return AwaitableGetSchedulerPolicyResult(
-        id=__ret__.id,
-        memory_oversubscription_enabled=__ret__.memory_oversubscription_enabled,
-        preemption_config=__ret__.preemption_config,
-        scheduler_algorithm=__ret__.scheduler_algorithm)
+        id=pulumi.get(__ret__, 'id'),
+        memory_oversubscription_enabled=pulumi.get(__ret__, 'memory_oversubscription_enabled'),
+        preemption_config=pulumi.get(__ret__, 'preemption_config'),
+        scheduler_algorithm=pulumi.get(__ret__, 'scheduler_algorithm'))
