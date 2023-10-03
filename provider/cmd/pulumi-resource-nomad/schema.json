@@ -369,6 +369,7 @@
                     "items": {
                         "$ref": "#/types/nomad:index/CsiVolumeRegistrationTopologyRequestRequiredTopology:CsiVolumeRegistrationTopologyRequestRequiredTopology"
                     },
+                    "description": "`(List of segments: \u003crequired\u003e)` - Defines the location for the volume.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -433,6 +434,7 @@
                     "items": {
                         "$ref": "#/types/nomad:index/CsiVolumeTopologyRequestPreferredTopology:CsiVolumeTopologyRequestPreferredTopology"
                     },
+                    "description": "`(List of segments: \u003crequired\u003e)` - Defines the location for the volume.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -464,6 +466,7 @@
                     "items": {
                         "$ref": "#/types/nomad:index/CsiVolumeTopologyRequestRequiredTopology:CsiVolumeTopologyRequestRequiredTopology"
                     },
+                    "description": "`(List of segments: \u003crequired\u003e)` - Defines the location for the volume.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -562,6 +565,7 @@
                     "items": {
                         "$ref": "#/types/nomad:index/ExternalVolumeTopologyRequestPreferredTopology:ExternalVolumeTopologyRequestPreferredTopology"
                     },
+                    "description": "`(List of segments: \u003crequired\u003e)` - Defines the location for the volume.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -593,6 +597,7 @@
                     "items": {
                         "$ref": "#/types/nomad:index/ExternalVolumeTopologyRequestRequiredTopology:ExternalVolumeTopologyRequestRequiredTopology"
                     },
+                    "description": "`(List of segments: \u003crequired\u003e)` - Defines the location for the volume.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -941,6 +946,7 @@
                     "items": {
                         "$ref": "#/types/nomad:index/VolumeTopologyRequestRequiredTopology:VolumeTopologyRequestRequiredTopology"
                     },
+                    "description": "`(List of segments: \u003crequired\u003e)` - Defines the location for the volume.\n",
                     "willReplaceOnChanges": true
                 }
             },
