@@ -10,9 +10,17 @@ import java.util.Objects;
 
 @CustomType
 public final class CsiVolumeTopologyRequestPreferred {
+    /**
+     * @return `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * 
+     */
     private List<CsiVolumeTopologyRequestPreferredTopology> topologies;
 
     private CsiVolumeTopologyRequestPreferred() {}
+    /**
+     * @return `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * 
+     */
     public List<CsiVolumeTopologyRequestPreferredTopology> topologies() {
         return this.topologies;
     }

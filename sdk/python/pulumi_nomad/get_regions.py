@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetRegionsResult',
     'AwaitableGetRegionsResult',
     'get_regions',
+    'get_regions_output',
 ]
 
 @pulumi.output_type
@@ -66,3 +67,11 @@ def get_regions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegi
     return AwaitableGetRegionsResult(
         id=pulumi.get(__ret__, 'id'),
         regions=pulumi.get(__ret__, 'regions'))
+
+
+@_utilities.lift_output_func(get_regions)
+def get_regions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegionsResult]:
+    """
+    Retrieve a list of regions available in Nomad.
+    """
+    ...

@@ -14,9 +14,17 @@ public final class CsiVolumeRegistrationTopologyRequestRequiredArgs extends com.
 
     public static final CsiVolumeRegistrationTopologyRequestRequiredArgs Empty = new CsiVolumeRegistrationTopologyRequestRequiredArgs();
 
+    /**
+     * `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * 
+     */
     @Import(name="topologies", required=true)
     private Output<List<CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs>> topologies;
 
+    /**
+     * @return `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * 
+     */
     public Output<List<CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs>> topologies() {
         return this.topologies;
     }
@@ -45,15 +53,33 @@ public final class CsiVolumeRegistrationTopologyRequestRequiredArgs extends com.
             $ = new CsiVolumeRegistrationTopologyRequestRequiredArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(Output<List<CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs>> topologies) {
             $.topologies = topologies;
             return this;
         }
 
+        /**
+         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(List<CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs> topologies) {
             return topologies(Output.of(topologies));
         }
 
+        /**
+         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs... topologies) {
             return topologies(List.of(topologies));
         }

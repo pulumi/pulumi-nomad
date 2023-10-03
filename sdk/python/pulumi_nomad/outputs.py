@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 
@@ -124,22 +124,49 @@ class AclAuthMethodConfig(dict):
                  list_claim_mappings: Optional[Mapping[str, str]] = None,
                  oidc_scopes: Optional[Sequence[str]] = None,
                  signing_algs: Optional[Sequence[str]] = None):
-        pulumi.set(__self__, "allowed_redirect_uris", allowed_redirect_uris)
-        pulumi.set(__self__, "oidc_client_id", oidc_client_id)
-        pulumi.set(__self__, "oidc_client_secret", oidc_client_secret)
-        pulumi.set(__self__, "oidc_discovery_url", oidc_discovery_url)
+        AclAuthMethodConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            allowed_redirect_uris=allowed_redirect_uris,
+            oidc_client_id=oidc_client_id,
+            oidc_client_secret=oidc_client_secret,
+            oidc_discovery_url=oidc_discovery_url,
+            bound_audiences=bound_audiences,
+            claim_mappings=claim_mappings,
+            discovery_ca_pems=discovery_ca_pems,
+            list_claim_mappings=list_claim_mappings,
+            oidc_scopes=oidc_scopes,
+            signing_algs=signing_algs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             allowed_redirect_uris: Sequence[str],
+             oidc_client_id: str,
+             oidc_client_secret: str,
+             oidc_discovery_url: str,
+             bound_audiences: Optional[Sequence[str]] = None,
+             claim_mappings: Optional[Mapping[str, str]] = None,
+             discovery_ca_pems: Optional[Sequence[str]] = None,
+             list_claim_mappings: Optional[Mapping[str, str]] = None,
+             oidc_scopes: Optional[Sequence[str]] = None,
+             signing_algs: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("allowed_redirect_uris", allowed_redirect_uris)
+        _setter("oidc_client_id", oidc_client_id)
+        _setter("oidc_client_secret", oidc_client_secret)
+        _setter("oidc_discovery_url", oidc_discovery_url)
         if bound_audiences is not None:
-            pulumi.set(__self__, "bound_audiences", bound_audiences)
+            _setter("bound_audiences", bound_audiences)
         if claim_mappings is not None:
-            pulumi.set(__self__, "claim_mappings", claim_mappings)
+            _setter("claim_mappings", claim_mappings)
         if discovery_ca_pems is not None:
-            pulumi.set(__self__, "discovery_ca_pems", discovery_ca_pems)
+            _setter("discovery_ca_pems", discovery_ca_pems)
         if list_claim_mappings is not None:
-            pulumi.set(__self__, "list_claim_mappings", list_claim_mappings)
+            _setter("list_claim_mappings", list_claim_mappings)
         if oidc_scopes is not None:
-            pulumi.set(__self__, "oidc_scopes", oidc_scopes)
+            _setter("oidc_scopes", oidc_scopes)
         if signing_algs is not None:
-            pulumi.set(__self__, "signing_algs", signing_algs)
+            _setter("signing_algs", signing_algs)
 
     @property
     @pulumi.getter(name="allowedRedirectUris")
@@ -227,13 +254,28 @@ class AclPolicyJobAcl(dict):
                
                [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
         """
-        pulumi.set(__self__, "job_id", job_id)
+        AclPolicyJobAcl._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            job_id=job_id,
+            group=group,
+            namespace=namespace,
+            task=task,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             job_id: str,
+             group: Optional[str] = None,
+             namespace: Optional[str] = None,
+             task: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("job_id", job_id)
         if group is not None:
-            pulumi.set(__self__, "group", group)
+            _setter("group", group)
         if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
+            _setter("namespace", namespace)
         if task is not None:
-            pulumi.set(__self__, "task", task)
+            _setter("task", task)
 
     @property
     @pulumi.getter(name="jobId")
@@ -280,7 +322,16 @@ class AclRolePolicy(dict):
         """
         :param str name: `(string: <required>)` - A human-friendly name for this ACL Role.
         """
-        pulumi.set(__self__, "name", name)
+        AclRolePolicy._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
 
     @property
     @pulumi.getter
@@ -299,9 +350,20 @@ class AclTokenRole(dict):
         """
         :param str name: `(string: "")` - A human-friendly name for this token.
         """
-        pulumi.set(__self__, "id", id)
+        AclTokenRole._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: str,
+             name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter
@@ -352,8 +414,19 @@ class CsiVolumeCapability(dict):
                - `block-device`
                - `file-system`
         """
-        pulumi.set(__self__, "access_mode", access_mode)
-        pulumi.set(__self__, "attachment_mode", attachment_mode)
+        CsiVolumeCapability._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_mode=access_mode,
+            attachment_mode=attachment_mode,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_mode: str,
+             attachment_mode: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_mode", access_mode)
+        _setter("attachment_mode", attachment_mode)
 
     @property
     @pulumi.getter(name="accessMode")
@@ -407,10 +480,21 @@ class CsiVolumeMountOptions(dict):
         :param str fs_type: `(string: optional)` - The file system type.
         :param Sequence[str] mount_flags: `[]string: optional` - The flags passed to `mount`.
         """
+        CsiVolumeMountOptions._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            fs_type=fs_type,
+            mount_flags=mount_flags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             fs_type: Optional[str] = None,
+             mount_flags: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if fs_type is not None:
-            pulumi.set(__self__, "fs_type", fs_type)
+            _setter("fs_type", fs_type)
         if mount_flags is not None:
-            pulumi.set(__self__, "mount_flags", mount_flags)
+            _setter("mount_flags", mount_flags)
 
     @property
     @pulumi.getter(name="fsType")
@@ -464,8 +548,19 @@ class CsiVolumeRegistrationCapability(dict):
                - `block-device`
                - `file-system`
         """
-        pulumi.set(__self__, "access_mode", access_mode)
-        pulumi.set(__self__, "attachment_mode", attachment_mode)
+        CsiVolumeRegistrationCapability._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_mode=access_mode,
+            attachment_mode=attachment_mode,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_mode: str,
+             attachment_mode: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_mode", access_mode)
+        _setter("attachment_mode", attachment_mode)
 
     @property
     @pulumi.getter(name="accessMode")
@@ -519,10 +614,21 @@ class CsiVolumeRegistrationMountOptions(dict):
         :param str fs_type: `(string: <optional>)` - The file system type.
         :param Sequence[str] mount_flags: `([]string: <optional>)` - The flags passed to `mount`.
         """
+        CsiVolumeRegistrationMountOptions._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            fs_type=fs_type,
+            mount_flags=mount_flags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             fs_type: Optional[str] = None,
+             mount_flags: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if fs_type is not None:
-            pulumi.set(__self__, "fs_type", fs_type)
+            _setter("fs_type", fs_type)
         if mount_flags is not None:
-            pulumi.set(__self__, "mount_flags", mount_flags)
+            _setter("mount_flags", mount_flags)
 
     @property
     @pulumi.getter(name="fsType")
@@ -551,8 +657,17 @@ class CsiVolumeRegistrationTopology(dict):
                In addition to the above arguments, the following attributes are exported and
                can be referenced:
         """
+        CsiVolumeRegistrationTopology._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            segments=segments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             segments: Optional[Mapping[str, str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if segments is not None:
-            pulumi.set(__self__, "segments", segments)
+            _setter("segments", segments)
 
     @property
     @pulumi.getter
@@ -573,8 +688,17 @@ class CsiVolumeRegistrationTopologyRequest(dict):
         """
         :param 'CsiVolumeRegistrationTopologyRequestRequiredArgs' required: `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
         """
+        CsiVolumeRegistrationTopologyRequest._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            required=required,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             required: Optional['outputs.CsiVolumeRegistrationTopologyRequestRequired'] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if required is not None:
-            pulumi.set(__self__, "required", required)
+            _setter("required", required)
 
     @property
     @pulumi.getter
@@ -589,11 +713,26 @@ class CsiVolumeRegistrationTopologyRequest(dict):
 class CsiVolumeRegistrationTopologyRequestRequired(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.CsiVolumeRegistrationTopologyRequestRequiredTopology']):
-        pulumi.set(__self__, "topologies", topologies)
+        """
+        :param Sequence['CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        """
+        CsiVolumeRegistrationTopologyRequestRequired._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            topologies=topologies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             topologies: Sequence['outputs.CsiVolumeRegistrationTopologyRequestRequiredTopology'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("topologies", topologies)
 
     @property
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.CsiVolumeRegistrationTopologyRequestRequiredTopology']:
+        """
+        `(List of segments: <required>)` - Defines the location for the volume.
+        """
         return pulumi.get(self, "topologies")
 
 
@@ -607,7 +746,16 @@ class CsiVolumeRegistrationTopologyRequestRequiredTopology(dict):
                In addition to the above arguments, the following attributes are exported and
                can be referenced:
         """
-        pulumi.set(__self__, "segments", segments)
+        CsiVolumeRegistrationTopologyRequestRequiredTopology._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            segments=segments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             segments: Mapping[str, str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("segments", segments)
 
     @property
     @pulumi.getter
@@ -631,8 +779,17 @@ class CsiVolumeTopology(dict):
                In addition to the above arguments, the following attributes are exported and
                can be referenced:
         """
+        CsiVolumeTopology._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            segments=segments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             segments: Optional[Mapping[str, str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if segments is not None:
-            pulumi.set(__self__, "segments", segments)
+            _setter("segments", segments)
 
     @property
     @pulumi.getter
@@ -655,10 +812,21 @@ class CsiVolumeTopologyRequest(dict):
         :param 'CsiVolumeTopologyRequestPreferredArgs' preferred: `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
         :param 'CsiVolumeTopologyRequestRequiredArgs' required: `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
         """
+        CsiVolumeTopologyRequest._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            preferred=preferred,
+            required=required,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             preferred: Optional['outputs.CsiVolumeTopologyRequestPreferred'] = None,
+             required: Optional['outputs.CsiVolumeTopologyRequestRequired'] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if preferred is not None:
-            pulumi.set(__self__, "preferred", preferred)
+            _setter("preferred", preferred)
         if required is not None:
-            pulumi.set(__self__, "required", required)
+            _setter("required", required)
 
     @property
     @pulumi.getter
@@ -681,11 +849,26 @@ class CsiVolumeTopologyRequest(dict):
 class CsiVolumeTopologyRequestPreferred(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.CsiVolumeTopologyRequestPreferredTopology']):
-        pulumi.set(__self__, "topologies", topologies)
+        """
+        :param Sequence['CsiVolumeTopologyRequestPreferredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        """
+        CsiVolumeTopologyRequestPreferred._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            topologies=topologies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             topologies: Sequence['outputs.CsiVolumeTopologyRequestPreferredTopology'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("topologies", topologies)
 
     @property
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.CsiVolumeTopologyRequestPreferredTopology']:
+        """
+        `(List of segments: <required>)` - Defines the location for the volume.
+        """
         return pulumi.get(self, "topologies")
 
 
@@ -699,7 +882,16 @@ class CsiVolumeTopologyRequestPreferredTopology(dict):
                In addition to the above arguments, the following attributes are exported and
                can be referenced:
         """
-        pulumi.set(__self__, "segments", segments)
+        CsiVolumeTopologyRequestPreferredTopology._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            segments=segments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             segments: Mapping[str, str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("segments", segments)
 
     @property
     @pulumi.getter
@@ -717,11 +909,26 @@ class CsiVolumeTopologyRequestPreferredTopology(dict):
 class CsiVolumeTopologyRequestRequired(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.CsiVolumeTopologyRequestRequiredTopology']):
-        pulumi.set(__self__, "topologies", topologies)
+        """
+        :param Sequence['CsiVolumeTopologyRequestRequiredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        """
+        CsiVolumeTopologyRequestRequired._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            topologies=topologies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             topologies: Sequence['outputs.CsiVolumeTopologyRequestRequiredTopology'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("topologies", topologies)
 
     @property
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.CsiVolumeTopologyRequestRequiredTopology']:
+        """
+        `(List of segments: <required>)` - Defines the location for the volume.
+        """
         return pulumi.get(self, "topologies")
 
 
@@ -735,7 +942,16 @@ class CsiVolumeTopologyRequestRequiredTopology(dict):
                In addition to the above arguments, the following attributes are exported and
                can be referenced:
         """
-        pulumi.set(__self__, "segments", segments)
+        CsiVolumeTopologyRequestRequiredTopology._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            segments=segments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             segments: Mapping[str, str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("segments", segments)
 
     @property
     @pulumi.getter
@@ -784,8 +1000,19 @@ class ExternalVolumeCapability(dict):
                - `block-device`
                - `file-system`
         """
-        pulumi.set(__self__, "access_mode", access_mode)
-        pulumi.set(__self__, "attachment_mode", attachment_mode)
+        ExternalVolumeCapability._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_mode=access_mode,
+            attachment_mode=attachment_mode,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_mode: str,
+             attachment_mode: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_mode", access_mode)
+        _setter("attachment_mode", attachment_mode)
 
     @property
     @pulumi.getter(name="accessMode")
@@ -839,10 +1066,21 @@ class ExternalVolumeMountOptions(dict):
         :param str fs_type: `(string: optional)` - The file system type.
         :param Sequence[str] mount_flags: `[]string: optional` - The flags passed to `mount`.
         """
+        ExternalVolumeMountOptions._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            fs_type=fs_type,
+            mount_flags=mount_flags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             fs_type: Optional[str] = None,
+             mount_flags: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if fs_type is not None:
-            pulumi.set(__self__, "fs_type", fs_type)
+            _setter("fs_type", fs_type)
         if mount_flags is not None:
-            pulumi.set(__self__, "mount_flags", mount_flags)
+            _setter("mount_flags", mount_flags)
 
     @property
     @pulumi.getter(name="fsType")
@@ -871,8 +1109,17 @@ class ExternalVolumeTopology(dict):
                In addition to the above arguments, the following attributes are exported and
                can be referenced:
         """
+        ExternalVolumeTopology._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            segments=segments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             segments: Optional[Mapping[str, str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if segments is not None:
-            pulumi.set(__self__, "segments", segments)
+            _setter("segments", segments)
 
     @property
     @pulumi.getter
@@ -895,10 +1142,21 @@ class ExternalVolumeTopologyRequest(dict):
         :param 'ExternalVolumeTopologyRequestPreferredArgs' preferred: `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
         :param 'ExternalVolumeTopologyRequestRequiredArgs' required: `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
         """
+        ExternalVolumeTopologyRequest._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            preferred=preferred,
+            required=required,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             preferred: Optional['outputs.ExternalVolumeTopologyRequestPreferred'] = None,
+             required: Optional['outputs.ExternalVolumeTopologyRequestRequired'] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if preferred is not None:
-            pulumi.set(__self__, "preferred", preferred)
+            _setter("preferred", preferred)
         if required is not None:
-            pulumi.set(__self__, "required", required)
+            _setter("required", required)
 
     @property
     @pulumi.getter
@@ -921,11 +1179,26 @@ class ExternalVolumeTopologyRequest(dict):
 class ExternalVolumeTopologyRequestPreferred(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.ExternalVolumeTopologyRequestPreferredTopology']):
-        pulumi.set(__self__, "topologies", topologies)
+        """
+        :param Sequence['ExternalVolumeTopologyRequestPreferredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        """
+        ExternalVolumeTopologyRequestPreferred._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            topologies=topologies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             topologies: Sequence['outputs.ExternalVolumeTopologyRequestPreferredTopology'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("topologies", topologies)
 
     @property
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.ExternalVolumeTopologyRequestPreferredTopology']:
+        """
+        `(List of segments: <required>)` - Defines the location for the volume.
+        """
         return pulumi.get(self, "topologies")
 
 
@@ -939,7 +1212,16 @@ class ExternalVolumeTopologyRequestPreferredTopology(dict):
                In addition to the above arguments, the following attributes are exported and
                can be referenced:
         """
-        pulumi.set(__self__, "segments", segments)
+        ExternalVolumeTopologyRequestPreferredTopology._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            segments=segments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             segments: Mapping[str, str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("segments", segments)
 
     @property
     @pulumi.getter
@@ -957,11 +1239,26 @@ class ExternalVolumeTopologyRequestPreferredTopology(dict):
 class ExternalVolumeTopologyRequestRequired(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.ExternalVolumeTopologyRequestRequiredTopology']):
-        pulumi.set(__self__, "topologies", topologies)
+        """
+        :param Sequence['ExternalVolumeTopologyRequestRequiredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        """
+        ExternalVolumeTopologyRequestRequired._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            topologies=topologies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             topologies: Sequence['outputs.ExternalVolumeTopologyRequestRequiredTopology'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("topologies", topologies)
 
     @property
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.ExternalVolumeTopologyRequestRequiredTopology']:
+        """
+        `(List of segments: <required>)` - Defines the location for the volume.
+        """
         return pulumi.get(self, "topologies")
 
 
@@ -975,7 +1272,16 @@ class ExternalVolumeTopologyRequestRequiredTopology(dict):
                In addition to the above arguments, the following attributes are exported and
                can be referenced:
         """
-        pulumi.set(__self__, "segments", segments)
+        ExternalVolumeTopologyRequestRequiredTopology._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            segments=segments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             segments: Mapping[str, str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("segments", segments)
 
     @property
     @pulumi.getter
@@ -1018,12 +1324,25 @@ class JobHcl2(dict):
         :param bool enabled: `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
                HCL2 by default.
         """
+        JobHcl2._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            allow_fs=allow_fs,
+            enabled=enabled,
+            vars=vars,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             allow_fs: Optional[bool] = None,
+             enabled: Optional[bool] = None,
+             vars: Optional[Mapping[str, Any]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if allow_fs is not None:
-            pulumi.set(__self__, "allow_fs", allow_fs)
+            _setter("allow_fs", allow_fs)
         if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
+            _setter("enabled", enabled)
         if vars is not None:
-            pulumi.set(__self__, "vars", vars)
+            _setter("vars", vars)
 
     @property
     @pulumi.getter(name="allowFs")
@@ -1060,16 +1379,33 @@ class JobTaskGroup(dict):
                  name: Optional[str] = None,
                  tasks: Optional[Sequence['outputs.JobTaskGroupTask']] = None,
                  volumes: Optional[Sequence['outputs.JobTaskGroupVolume']] = None):
+        JobTaskGroup._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            count=count,
+            meta=meta,
+            name=name,
+            tasks=tasks,
+            volumes=volumes,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             count: Optional[int] = None,
+             meta: Optional[Mapping[str, Any]] = None,
+             name: Optional[str] = None,
+             tasks: Optional[Sequence['outputs.JobTaskGroupTask']] = None,
+             volumes: Optional[Sequence['outputs.JobTaskGroupVolume']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if count is not None:
-            pulumi.set(__self__, "count", count)
+            _setter("count", count)
         if meta is not None:
-            pulumi.set(__self__, "meta", meta)
+            _setter("meta", meta)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if tasks is not None:
-            pulumi.set(__self__, "tasks", tasks)
+            _setter("tasks", tasks)
         if volumes is not None:
-            pulumi.set(__self__, "volumes", volumes)
+            _setter("volumes", volumes)
 
     @property
     @pulumi.getter
@@ -1121,14 +1457,29 @@ class JobTaskGroupTask(dict):
                  meta: Optional[Mapping[str, Any]] = None,
                  name: Optional[str] = None,
                  volume_mounts: Optional[Sequence['outputs.JobTaskGroupTaskVolumeMount']] = None):
+        JobTaskGroupTask._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            driver=driver,
+            meta=meta,
+            name=name,
+            volume_mounts=volume_mounts,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             driver: Optional[str] = None,
+             meta: Optional[Mapping[str, Any]] = None,
+             name: Optional[str] = None,
+             volume_mounts: Optional[Sequence['outputs.JobTaskGroupTaskVolumeMount']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if driver is not None:
-            pulumi.set(__self__, "driver", driver)
+            _setter("driver", driver)
         if meta is not None:
-            pulumi.set(__self__, "meta", meta)
+            _setter("meta", meta)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if volume_mounts is not None:
-            pulumi.set(__self__, "volume_mounts", volume_mounts)
+            _setter("volume_mounts", volume_mounts)
 
     @property
     @pulumi.getter
@@ -1174,12 +1525,25 @@ class JobTaskGroupTaskVolumeMount(dict):
                  destination: Optional[str] = None,
                  read_only: Optional[bool] = None,
                  volume: Optional[str] = None):
+        JobTaskGroupTaskVolumeMount._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            destination=destination,
+            read_only=read_only,
+            volume=volume,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             destination: Optional[str] = None,
+             read_only: Optional[bool] = None,
+             volume: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if destination is not None:
-            pulumi.set(__self__, "destination", destination)
+            _setter("destination", destination)
         if read_only is not None:
-            pulumi.set(__self__, "read_only", read_only)
+            _setter("read_only", read_only)
         if volume is not None:
-            pulumi.set(__self__, "volume", volume)
+            _setter("volume", volume)
 
     @property
     @pulumi.getter
@@ -1221,14 +1585,29 @@ class JobTaskGroupVolume(dict):
                  read_only: Optional[bool] = None,
                  source: Optional[str] = None,
                  type: Optional[str] = None):
+        JobTaskGroupVolume._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            read_only=read_only,
+            source=source,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: Optional[str] = None,
+             read_only: Optional[bool] = None,
+             source: Optional[str] = None,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if read_only is not None:
-            pulumi.set(__self__, "read_only", read_only)
+            _setter("read_only", read_only)
         if source is not None:
-            pulumi.set(__self__, "source", source)
+            _setter("source", source)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter
@@ -1279,10 +1658,21 @@ class NamespaceCapabilities(dict):
         :param Sequence[str] disabled_task_drivers: `([]string: <optional>)` - Task drivers disabled for the namespace.
         :param Sequence[str] enabled_task_drivers: `([]string: <optional>)` - Task drivers enabled for the namespace.
         """
+        NamespaceCapabilities._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            disabled_task_drivers=disabled_task_drivers,
+            enabled_task_drivers=enabled_task_drivers,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             disabled_task_drivers: Optional[Sequence[str]] = None,
+             enabled_task_drivers: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if disabled_task_drivers is not None:
-            pulumi.set(__self__, "disabled_task_drivers", disabled_task_drivers)
+            _setter("disabled_task_drivers", disabled_task_drivers)
         if enabled_task_drivers is not None:
-            pulumi.set(__self__, "enabled_task_drivers", enabled_task_drivers)
+            _setter("enabled_task_drivers", enabled_task_drivers)
 
     @property
     @pulumi.getter(name="disabledTaskDrivers")
@@ -1312,12 +1702,25 @@ class NamespaceNodePoolConfig(dict):
         :param str default: `(string: <optional>)` - The default node pool for jobs that don't define one.
         :param Sequence[str] denieds: `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
         """
+        NamespaceNodePoolConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            alloweds=alloweds,
+            default=default,
+            denieds=denieds,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             alloweds: Optional[Sequence[str]] = None,
+             default: Optional[str] = None,
+             denieds: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if alloweds is not None:
-            pulumi.set(__self__, "alloweds", alloweds)
+            _setter("alloweds", alloweds)
         if default is not None:
-            pulumi.set(__self__, "default", default)
+            _setter("default", default)
         if denieds is not None:
-            pulumi.set(__self__, "denieds", denieds)
+            _setter("denieds", denieds)
 
     @property
     @pulumi.getter
@@ -1381,10 +1784,21 @@ class NodePoolSchedulerConfig(dict):
                pool. Possible values are `binpack` or `spread`. If not defined the global
                cluster configuration is used.
         """
+        NodePoolSchedulerConfig._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            memory_oversubscription=memory_oversubscription,
+            scheduler_algorithm=scheduler_algorithm,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             memory_oversubscription: Optional[str] = None,
+             scheduler_algorithm: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if memory_oversubscription is not None:
-            pulumi.set(__self__, "memory_oversubscription", memory_oversubscription)
+            _setter("memory_oversubscription", memory_oversubscription)
         if scheduler_algorithm is not None:
-            pulumi.set(__self__, "scheduler_algorithm", scheduler_algorithm)
+            _setter("scheduler_algorithm", scheduler_algorithm)
 
     @property
     @pulumi.getter(name="memoryOversubscription")
@@ -1440,8 +1854,19 @@ class QuoteSpecificationLimit(dict):
                may only be specified once in the `limits` block. Its structure is
                documented below.
         """
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "region_limit", region_limit)
+        QuoteSpecificationLimit._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            region=region,
+            region_limit=region_limit,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             region: str,
+             region_limit: 'outputs.QuoteSpecificationLimitRegionLimit',
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("region", region)
+        _setter("region_limit", region_limit)
 
     @property
     @pulumi.getter
@@ -1491,10 +1916,21 @@ class QuoteSpecificationLimitRegionLimit(dict):
                allocations to. A value of zero is treated as unlimited, and a negative value
                is treated as fully disallowed.
         """
+        QuoteSpecificationLimitRegionLimit._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cpu=cpu,
+            memory_mb=memory_mb,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cpu: Optional[int] = None,
+             memory_mb: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cpu is not None:
-            pulumi.set(__self__, "cpu", cpu)
+            _setter("cpu", cpu)
         if memory_mb is not None:
-            pulumi.set(__self__, "memory_mb", memory_mb)
+            _setter("memory_mb", memory_mb)
 
     @property
     @pulumi.getter
@@ -1551,8 +1987,19 @@ class VolumeCapability(dict):
                - `block-device`
                - `file-system`
         """
-        pulumi.set(__self__, "access_mode", access_mode)
-        pulumi.set(__self__, "attachment_mode", attachment_mode)
+        VolumeCapability._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_mode=access_mode,
+            attachment_mode=attachment_mode,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_mode: str,
+             attachment_mode: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("access_mode", access_mode)
+        _setter("attachment_mode", attachment_mode)
 
     @property
     @pulumi.getter(name="accessMode")
@@ -1606,10 +2053,21 @@ class VolumeMountOptions(dict):
         :param str fs_type: `(string: <optional>)` - The file system type.
         :param Sequence[str] mount_flags: `([]string: <optional>)` - The flags passed to `mount`.
         """
+        VolumeMountOptions._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            fs_type=fs_type,
+            mount_flags=mount_flags,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             fs_type: Optional[str] = None,
+             mount_flags: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if fs_type is not None:
-            pulumi.set(__self__, "fs_type", fs_type)
+            _setter("fs_type", fs_type)
         if mount_flags is not None:
-            pulumi.set(__self__, "mount_flags", mount_flags)
+            _setter("mount_flags", mount_flags)
 
     @property
     @pulumi.getter(name="fsType")
@@ -1638,8 +2096,17 @@ class VolumeTopology(dict):
                In addition to the above arguments, the following attributes are exported and
                can be referenced:
         """
+        VolumeTopology._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            segments=segments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             segments: Optional[Mapping[str, str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if segments is not None:
-            pulumi.set(__self__, "segments", segments)
+            _setter("segments", segments)
 
     @property
     @pulumi.getter
@@ -1660,8 +2127,17 @@ class VolumeTopologyRequest(dict):
         """
         :param 'VolumeTopologyRequestRequiredArgs' required: `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
         """
+        VolumeTopologyRequest._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            required=required,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             required: Optional['outputs.VolumeTopologyRequestRequired'] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if required is not None:
-            pulumi.set(__self__, "required", required)
+            _setter("required", required)
 
     @property
     @pulumi.getter
@@ -1676,11 +2152,26 @@ class VolumeTopologyRequest(dict):
 class VolumeTopologyRequestRequired(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.VolumeTopologyRequestRequiredTopology']):
-        pulumi.set(__self__, "topologies", topologies)
+        """
+        :param Sequence['VolumeTopologyRequestRequiredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        """
+        VolumeTopologyRequestRequired._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            topologies=topologies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             topologies: Sequence['outputs.VolumeTopologyRequestRequiredTopology'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("topologies", topologies)
 
     @property
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.VolumeTopologyRequestRequiredTopology']:
+        """
+        `(List of segments: <required>)` - Defines the location for the volume.
+        """
         return pulumi.get(self, "topologies")
 
 
@@ -1694,7 +2185,16 @@ class VolumeTopologyRequestRequiredTopology(dict):
                In addition to the above arguments, the following attributes are exported and
                can be referenced:
         """
-        pulumi.set(__self__, "segments", segments)
+        VolumeTopologyRequestRequiredTopology._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            segments=segments,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             segments: Mapping[str, str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("segments", segments)
 
     @property
     @pulumi.getter
@@ -1717,8 +2217,19 @@ class GetAclPoliciesPolicyResult(dict):
         :param str description: `(string)` - the description of the ACL Policy.
         :param str name: `(string)` - the name of the ACL Policy.
         """
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "name", name)
+        GetAclPoliciesPolicyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: str,
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("description", description)
+        _setter("name", name)
 
     @property
     @pulumi.getter
@@ -1744,7 +2255,16 @@ class GetAclRolePolicyResult(dict):
         """
         :param str name: `(string)` - Unique name of the ACL role.
         """
-        pulumi.set(__self__, "name", name)
+        GetAclRolePolicyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
 
     @property
     @pulumi.getter
@@ -1768,10 +2288,25 @@ class GetAclRolesAclRoleResult(dict):
         :param str name: `(string)` - Unique name of the ACL role.
         :param Sequence['GetAclRolesAclRolePolicyArgs'] policies: `(set)` - The policies applied to the role.
         """
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "policies", policies)
+        GetAclRolesAclRoleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            id=id,
+            name=name,
+            policies=policies,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: str,
+             id: str,
+             name: str,
+             policies: Sequence['outputs.GetAclRolesAclRolePolicyResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("description", description)
+        _setter("id", id)
+        _setter("name", name)
+        _setter("policies", policies)
 
     @property
     @pulumi.getter
@@ -1813,7 +2348,16 @@ class GetAclRolesAclRolePolicyResult(dict):
         """
         :param str name: `(string)` - Unique name of the ACL role.
         """
-        pulumi.set(__self__, "name", name)
+        GetAclRolesAclRolePolicyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
 
     @property
     @pulumi.getter
@@ -1832,8 +2376,19 @@ class GetAclTokenRoleResult(dict):
         """
         :param str name: `(string)` Non-sensitive identifier for this token.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
+        GetAclTokenRoleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: str,
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
+        _setter("name", name)
 
     @property
     @pulumi.getter
@@ -1872,14 +2427,37 @@ class GetAclTokensAclTokenResult(dict):
                `name` and `id` attributes.
         :param str type: `(TypeString)` The type of the token.
         """
-        pulumi.set(__self__, "accessor_id", accessor_id)
-        pulumi.set(__self__, "create_time", create_time)
-        pulumi.set(__self__, "expiration_time", expiration_time)
-        pulumi.set(__self__, "global_", global_)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "policies", policies)
-        pulumi.set(__self__, "roles", roles)
-        pulumi.set(__self__, "type", type)
+        GetAclTokensAclTokenResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            accessor_id=accessor_id,
+            create_time=create_time,
+            expiration_time=expiration_time,
+            global_=global_,
+            name=name,
+            policies=policies,
+            roles=roles,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             accessor_id: str,
+             create_time: str,
+             expiration_time: str,
+             global_: bool,
+             name: str,
+             policies: Sequence[str],
+             roles: Sequence['outputs.GetAclTokensAclTokenRoleResult'],
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("accessor_id", accessor_id)
+        _setter("create_time", create_time)
+        _setter("expiration_time", expiration_time)
+        _setter("global_", global_)
+        _setter("name", name)
+        _setter("policies", policies)
+        _setter("roles", roles)
+        _setter("type", type)
 
     @property
     @pulumi.getter(name="accessorId")
@@ -1956,8 +2534,19 @@ class GetAclTokensAclTokenRoleResult(dict):
         """
         :param str name: `(TypeString)` The name of the token.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "name", name)
+        GetAclTokensAclTokenRoleResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: str,
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
+        _setter("name", name)
 
     @property
     @pulumi.getter
@@ -2016,25 +2605,70 @@ class GetAllocationsAllocationResult(dict):
         :param str preempted_by_allocation: `(string)` - The ID of the allocation that preempted the allocation.
         :param str task_group: `(string)` - The job task group related to the allocation.
         """
-        pulumi.set(__self__, "client_status", client_status)
-        pulumi.set(__self__, "create_index", create_index)
-        pulumi.set(__self__, "create_time", create_time)
-        pulumi.set(__self__, "desired_status", desired_status)
-        pulumi.set(__self__, "eval_id", eval_id)
-        pulumi.set(__self__, "followup_eval_id", followup_eval_id)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "job_id", job_id)
-        pulumi.set(__self__, "job_type", job_type)
-        pulumi.set(__self__, "job_version", job_version)
-        pulumi.set(__self__, "modify_index", modify_index)
-        pulumi.set(__self__, "modify_time", modify_time)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "namespace", namespace)
-        pulumi.set(__self__, "next_allocation", next_allocation)
-        pulumi.set(__self__, "node_id", node_id)
-        pulumi.set(__self__, "node_name", node_name)
-        pulumi.set(__self__, "preempted_by_allocation", preempted_by_allocation)
-        pulumi.set(__self__, "task_group", task_group)
+        GetAllocationsAllocationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            client_status=client_status,
+            create_index=create_index,
+            create_time=create_time,
+            desired_status=desired_status,
+            eval_id=eval_id,
+            followup_eval_id=followup_eval_id,
+            id=id,
+            job_id=job_id,
+            job_type=job_type,
+            job_version=job_version,
+            modify_index=modify_index,
+            modify_time=modify_time,
+            name=name,
+            namespace=namespace,
+            next_allocation=next_allocation,
+            node_id=node_id,
+            node_name=node_name,
+            preempted_by_allocation=preempted_by_allocation,
+            task_group=task_group,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             client_status: str,
+             create_index: int,
+             create_time: int,
+             desired_status: str,
+             eval_id: str,
+             followup_eval_id: str,
+             id: str,
+             job_id: str,
+             job_type: str,
+             job_version: int,
+             modify_index: int,
+             modify_time: int,
+             name: str,
+             namespace: str,
+             next_allocation: str,
+             node_id: str,
+             node_name: str,
+             preempted_by_allocation: str,
+             task_group: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("client_status", client_status)
+        _setter("create_index", create_index)
+        _setter("create_time", create_time)
+        _setter("desired_status", desired_status)
+        _setter("eval_id", eval_id)
+        _setter("followup_eval_id", followup_eval_id)
+        _setter("id", id)
+        _setter("job_id", job_id)
+        _setter("job_type", job_type)
+        _setter("job_version", job_version)
+        _setter("modify_index", modify_index)
+        _setter("modify_time", modify_time)
+        _setter("name", name)
+        _setter("namespace", namespace)
+        _setter("next_allocation", next_allocation)
+        _setter("node_id", node_id)
+        _setter("node_name", node_name)
+        _setter("preempted_by_allocation", preempted_by_allocation)
+        _setter("task_group", task_group)
 
     @property
     @pulumi.getter(name="clientStatus")
@@ -2200,9 +2834,22 @@ class GetJobConstraintResult(dict):
         :param str operand: `(string)` Operator used to compare the attribute to the constraint.
         :param str rtarget: `(string)` Constraint value.
         """
-        pulumi.set(__self__, "ltarget", ltarget)
-        pulumi.set(__self__, "operand", operand)
-        pulumi.set(__self__, "rtarget", rtarget)
+        GetJobConstraintResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            ltarget=ltarget,
+            operand=operand,
+            rtarget=rtarget,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             ltarget: str,
+             operand: str,
+             rtarget: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("ltarget", ltarget)
+        _setter("operand", operand)
+        _setter("rtarget", rtarget)
 
     @property
     @pulumi.getter
@@ -2244,11 +2891,28 @@ class GetJobPeriodicConfigResult(dict):
         :param str spec_type: `(string)`
         :param str timezone: `(string)` Time zone to evaluate the next launch interval against.
         """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "prohibit_overlap", prohibit_overlap)
-        pulumi.set(__self__, "spec", spec)
-        pulumi.set(__self__, "spec_type", spec_type)
-        pulumi.set(__self__, "timezone", timezone)
+        GetJobPeriodicConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            prohibit_overlap=prohibit_overlap,
+            spec=spec,
+            spec_type=spec_type,
+            timezone=timezone,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: bool,
+             prohibit_overlap: bool,
+             spec: str,
+             spec_type: str,
+             timezone: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("enabled", enabled)
+        _setter("prohibit_overlap", prohibit_overlap)
+        _setter("spec", spec)
+        _setter("spec_type", spec_type)
+        _setter("timezone", timezone)
 
     @property
     @pulumi.getter
@@ -2302,11 +2966,28 @@ class GetJobTaskGroupResult(dict):
         """
         :param str name: `(string)` Name of the job.
         """
-        pulumi.set(__self__, "count", count)
-        pulumi.set(__self__, "meta", meta)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "tasks", tasks)
-        pulumi.set(__self__, "volumes", volumes)
+        GetJobTaskGroupResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            count=count,
+            meta=meta,
+            name=name,
+            tasks=tasks,
+            volumes=volumes,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             count: int,
+             meta: Mapping[str, Any],
+             name: str,
+             tasks: Sequence['outputs.GetJobTaskGroupTaskResult'],
+             volumes: Sequence['outputs.GetJobTaskGroupVolumeResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("count", count)
+        _setter("meta", meta)
+        _setter("name", name)
+        _setter("tasks", tasks)
+        _setter("volumes", volumes)
 
     @property
     @pulumi.getter
@@ -2347,10 +3028,25 @@ class GetJobTaskGroupTaskResult(dict):
         """
         :param str name: `(string)` Name of the job.
         """
-        pulumi.set(__self__, "driver", driver)
-        pulumi.set(__self__, "meta", meta)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "volume_mounts", volume_mounts)
+        GetJobTaskGroupTaskResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            driver=driver,
+            meta=meta,
+            name=name,
+            volume_mounts=volume_mounts,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             driver: str,
+             meta: Mapping[str, Any],
+             name: str,
+             volume_mounts: Sequence['outputs.GetJobTaskGroupTaskVolumeMountResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("driver", driver)
+        _setter("meta", meta)
+        _setter("name", name)
+        _setter("volume_mounts", volume_mounts)
 
     @property
     @pulumi.getter
@@ -2382,9 +3078,22 @@ class GetJobTaskGroupTaskVolumeMountResult(dict):
                  destination: str,
                  read_only: bool,
                  volume: str):
-        pulumi.set(__self__, "destination", destination)
-        pulumi.set(__self__, "read_only", read_only)
-        pulumi.set(__self__, "volume", volume)
+        GetJobTaskGroupTaskVolumeMountResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            destination=destination,
+            read_only=read_only,
+            volume=volume,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             destination: str,
+             read_only: bool,
+             volume: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("destination", destination)
+        _setter("read_only", read_only)
+        _setter("volume", volume)
 
     @property
     @pulumi.getter
@@ -2413,10 +3122,25 @@ class GetJobTaskGroupVolumeResult(dict):
         :param str name: `(string)` Name of the job.
         :param str type: `(string)` Scheduler type used during job creation.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "read_only", read_only)
-        pulumi.set(__self__, "source", source)
-        pulumi.set(__self__, "type", type)
+        GetJobTaskGroupVolumeResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            name=name,
+            read_only=read_only,
+            source=source,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             name: str,
+             read_only: bool,
+             source: str,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("name", name)
+        _setter("read_only", read_only)
+        _setter("source", source)
+        _setter("type", type)
 
     @property
     @pulumi.getter
@@ -2454,10 +3178,21 @@ class GetNamespaceCapabilityResult(dict):
         :param Sequence[str] disabled_task_drivers: `([]string)` - Task drivers disabled for the namespace.
         :param Sequence[str] enabled_task_drivers: `([]string)` - Task drivers enabled for the namespace.
         """
+        GetNamespaceCapabilityResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            disabled_task_drivers=disabled_task_drivers,
+            enabled_task_drivers=enabled_task_drivers,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             disabled_task_drivers: Optional[Sequence[str]] = None,
+             enabled_task_drivers: Optional[Sequence[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if disabled_task_drivers is not None:
-            pulumi.set(__self__, "disabled_task_drivers", disabled_task_drivers)
+            _setter("disabled_task_drivers", disabled_task_drivers)
         if enabled_task_drivers is not None:
-            pulumi.set(__self__, "enabled_task_drivers", enabled_task_drivers)
+            _setter("enabled_task_drivers", enabled_task_drivers)
 
     @property
     @pulumi.getter(name="disabledTaskDrivers")
@@ -2482,9 +3217,22 @@ class GetNamespaceNodePoolConfigResult(dict):
                  alloweds: Sequence[str],
                  default: str,
                  denieds: Sequence[str]):
-        pulumi.set(__self__, "alloweds", alloweds)
-        pulumi.set(__self__, "default", default)
-        pulumi.set(__self__, "denieds", denieds)
+        GetNamespaceNodePoolConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            alloweds=alloweds,
+            default=default,
+            denieds=denieds,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             alloweds: Sequence[str],
+             default: str,
+             denieds: Sequence[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("alloweds", alloweds)
+        _setter("default", default)
+        _setter("denieds", denieds)
 
     @property
     @pulumi.getter
@@ -2514,8 +3262,19 @@ class GetNodePoolSchedulerConfigResult(dict):
         :param str scheduler_algorithm: `(string)` - The scheduler algorithm used in the node
                pool. If empty or not defined the global cluster configuration is used.
         """
-        pulumi.set(__self__, "memory_oversubscription", memory_oversubscription)
-        pulumi.set(__self__, "scheduler_algorithm", scheduler_algorithm)
+        GetNodePoolSchedulerConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            memory_oversubscription=memory_oversubscription,
+            scheduler_algorithm=scheduler_algorithm,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             memory_oversubscription: str,
+             scheduler_algorithm: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("memory_oversubscription", memory_oversubscription)
+        _setter("scheduler_algorithm", scheduler_algorithm)
 
     @property
     @pulumi.getter(name="memoryOversubscription")
@@ -2551,10 +3310,25 @@ class GetNodePoolsNodePoolResult(dict):
         :param str name: `(string)` - The name of the node pool.
         :param Sequence['GetNodePoolsNodePoolSchedulerConfigArgs'] scheduler_configs: `(block)` - Scheduler configuration for the node pool.
         """
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "meta", meta)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "scheduler_configs", scheduler_configs)
+        GetNodePoolsNodePoolResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            meta=meta,
+            name=name,
+            scheduler_configs=scheduler_configs,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: str,
+             meta: Mapping[str, str],
+             name: str,
+             scheduler_configs: Sequence['outputs.GetNodePoolsNodePoolSchedulerConfigResult'],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("description", description)
+        _setter("meta", meta)
+        _setter("name", name)
+        _setter("scheduler_configs", scheduler_configs)
 
     @property
     @pulumi.getter
@@ -2602,8 +3376,19 @@ class GetNodePoolsNodePoolSchedulerConfigResult(dict):
         :param str scheduler_algorithm: `(string)` - The scheduler algorithm used in the node
                pool. If empty or not defined the global cluster configuration is used.
         """
-        pulumi.set(__self__, "memory_oversubscription", memory_oversubscription)
-        pulumi.set(__self__, "scheduler_algorithm", scheduler_algorithm)
+        GetNodePoolsNodePoolSchedulerConfigResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            memory_oversubscription=memory_oversubscription,
+            scheduler_algorithm=scheduler_algorithm,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             memory_oversubscription: str,
+             scheduler_algorithm: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("memory_oversubscription", memory_oversubscription)
+        _setter("scheduler_algorithm", scheduler_algorithm)
 
     @property
     @pulumi.getter(name="memoryOversubscription")
@@ -2631,9 +3416,22 @@ class GetPluginNodeResult(dict):
                  healthy: bool,
                  healthy_description: str,
                  name: str):
-        pulumi.set(__self__, "healthy", healthy)
-        pulumi.set(__self__, "healthy_description", healthy_description)
-        pulumi.set(__self__, "name", name)
+        GetPluginNodeResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            healthy=healthy,
+            healthy_description=healthy_description,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             healthy: bool,
+             healthy_description: str,
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("healthy", healthy)
+        _setter("healthy_description", healthy_description)
+        _setter("name", name)
 
     @property
     @pulumi.getter
@@ -2664,10 +3462,25 @@ class GetScalingPoliciesPolicyResult(dict):
         :param Mapping[str, Any] target: `(map[string]string)` - The scaling policy target.
         :param str type: `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
         """
-        pulumi.set(__self__, "enabled", enabled)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "target", target)
-        pulumi.set(__self__, "type", type)
+        GetScalingPoliciesPolicyResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enabled=enabled,
+            id=id,
+            target=target,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enabled: bool,
+             id: str,
+             target: Mapping[str, Any],
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("enabled", enabled)
+        _setter("id", id)
+        _setter("target", target)
+        _setter("type", type)
 
     @property
     @pulumi.getter

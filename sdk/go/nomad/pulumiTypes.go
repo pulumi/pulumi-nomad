@@ -1748,6 +1748,7 @@ func (o CsiVolumeRegistrationTopologyRequestPtrOutput) Required() CsiVolumeRegis
 }
 
 type CsiVolumeRegistrationTopologyRequestRequired struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies []CsiVolumeRegistrationTopologyRequestRequiredTopology `pulumi:"topologies"`
 }
 
@@ -1763,6 +1764,7 @@ type CsiVolumeRegistrationTopologyRequestRequiredInput interface {
 }
 
 type CsiVolumeRegistrationTopologyRequestRequiredArgs struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -1861,6 +1863,7 @@ func (o CsiVolumeRegistrationTopologyRequestRequiredOutput) ToOutput(ctx context
 	}
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o CsiVolumeRegistrationTopologyRequestRequiredOutput) Topologies() CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v CsiVolumeRegistrationTopologyRequestRequired) []CsiVolumeRegistrationTopologyRequestRequiredTopology {
 		return v.Topologies
@@ -1897,6 +1900,7 @@ func (o CsiVolumeRegistrationTopologyRequestRequiredPtrOutput) Elem() CsiVolumeR
 	}).(CsiVolumeRegistrationTopologyRequestRequiredOutput)
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o CsiVolumeRegistrationTopologyRequestRequiredPtrOutput) Topologies() CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v *CsiVolumeRegistrationTopologyRequestRequired) []CsiVolumeRegistrationTopologyRequestRequiredTopology {
 		if v == nil {
@@ -2347,6 +2351,7 @@ func (o CsiVolumeTopologyRequestPtrOutput) Required() CsiVolumeTopologyRequestRe
 }
 
 type CsiVolumeTopologyRequestPreferred struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies []CsiVolumeTopologyRequestPreferredTopology `pulumi:"topologies"`
 }
 
@@ -2362,6 +2367,7 @@ type CsiVolumeTopologyRequestPreferredInput interface {
 }
 
 type CsiVolumeTopologyRequestPreferredArgs struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies CsiVolumeTopologyRequestPreferredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -2460,6 +2466,7 @@ func (o CsiVolumeTopologyRequestPreferredOutput) ToOutput(ctx context.Context) p
 	}
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o CsiVolumeTopologyRequestPreferredOutput) Topologies() CsiVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o.ApplyT(func(v CsiVolumeTopologyRequestPreferred) []CsiVolumeTopologyRequestPreferredTopology {
 		return v.Topologies
@@ -2496,6 +2503,7 @@ func (o CsiVolumeTopologyRequestPreferredPtrOutput) Elem() CsiVolumeTopologyRequ
 	}).(CsiVolumeTopologyRequestPreferredOutput)
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o CsiVolumeTopologyRequestPreferredPtrOutput) Topologies() CsiVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o.ApplyT(func(v *CsiVolumeTopologyRequestPreferred) []CsiVolumeTopologyRequestPreferredTopology {
 		if v == nil {
@@ -2636,6 +2644,7 @@ func (o CsiVolumeTopologyRequestPreferredTopologyArrayOutput) Index(i pulumi.Int
 }
 
 type CsiVolumeTopologyRequestRequired struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies []CsiVolumeTopologyRequestRequiredTopology `pulumi:"topologies"`
 }
 
@@ -2651,6 +2660,7 @@ type CsiVolumeTopologyRequestRequiredInput interface {
 }
 
 type CsiVolumeTopologyRequestRequiredArgs struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies CsiVolumeTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -2749,6 +2759,7 @@ func (o CsiVolumeTopologyRequestRequiredOutput) ToOutput(ctx context.Context) pu
 	}
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o CsiVolumeTopologyRequestRequiredOutput) Topologies() CsiVolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v CsiVolumeTopologyRequestRequired) []CsiVolumeTopologyRequestRequiredTopology {
 		return v.Topologies
@@ -2785,6 +2796,7 @@ func (o CsiVolumeTopologyRequestRequiredPtrOutput) Elem() CsiVolumeTopologyReque
 	}).(CsiVolumeTopologyRequestRequiredOutput)
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o CsiVolumeTopologyRequestRequiredPtrOutput) Topologies() CsiVolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v *CsiVolumeTopologyRequestRequired) []CsiVolumeTopologyRequestRequiredTopology {
 		if v == nil {
@@ -3566,6 +3578,7 @@ func (o ExternalVolumeTopologyRequestPtrOutput) Required() ExternalVolumeTopolog
 }
 
 type ExternalVolumeTopologyRequestPreferred struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies []ExternalVolumeTopologyRequestPreferredTopology `pulumi:"topologies"`
 }
 
@@ -3581,6 +3594,7 @@ type ExternalVolumeTopologyRequestPreferredInput interface {
 }
 
 type ExternalVolumeTopologyRequestPreferredArgs struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies ExternalVolumeTopologyRequestPreferredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -3679,6 +3693,7 @@ func (o ExternalVolumeTopologyRequestPreferredOutput) ToOutput(ctx context.Conte
 	}
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o ExternalVolumeTopologyRequestPreferredOutput) Topologies() ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestPreferred) []ExternalVolumeTopologyRequestPreferredTopology {
 		return v.Topologies
@@ -3715,6 +3730,7 @@ func (o ExternalVolumeTopologyRequestPreferredPtrOutput) Elem() ExternalVolumeTo
 	}).(ExternalVolumeTopologyRequestPreferredOutput)
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o ExternalVolumeTopologyRequestPreferredPtrOutput) Topologies() ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o.ApplyT(func(v *ExternalVolumeTopologyRequestPreferred) []ExternalVolumeTopologyRequestPreferredTopology {
 		if v == nil {
@@ -3855,6 +3871,7 @@ func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) Index(i pulum
 }
 
 type ExternalVolumeTopologyRequestRequired struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies []ExternalVolumeTopologyRequestRequiredTopology `pulumi:"topologies"`
 }
 
@@ -3870,6 +3887,7 @@ type ExternalVolumeTopologyRequestRequiredInput interface {
 }
 
 type ExternalVolumeTopologyRequestRequiredArgs struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies ExternalVolumeTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -3968,6 +3986,7 @@ func (o ExternalVolumeTopologyRequestRequiredOutput) ToOutput(ctx context.Contex
 	}
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o ExternalVolumeTopologyRequestRequiredOutput) Topologies() ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestRequired) []ExternalVolumeTopologyRequestRequiredTopology {
 		return v.Topologies
@@ -4004,6 +4023,7 @@ func (o ExternalVolumeTopologyRequestRequiredPtrOutput) Elem() ExternalVolumeTop
 	}).(ExternalVolumeTopologyRequestRequiredOutput)
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o ExternalVolumeTopologyRequestRequiredPtrOutput) Topologies() ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v *ExternalVolumeTopologyRequestRequired) []ExternalVolumeTopologyRequestRequiredTopology {
 		if v == nil {
@@ -6458,6 +6478,7 @@ func (o VolumeTopologyRequestPtrOutput) Required() VolumeTopologyRequestRequired
 }
 
 type VolumeTopologyRequestRequired struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies []VolumeTopologyRequestRequiredTopology `pulumi:"topologies"`
 }
 
@@ -6473,6 +6494,7 @@ type VolumeTopologyRequestRequiredInput interface {
 }
 
 type VolumeTopologyRequestRequiredArgs struct {
+	// `(List of segments: <required>)` - Defines the location for the volume.
 	Topologies VolumeTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -6571,6 +6593,7 @@ func (o VolumeTopologyRequestRequiredOutput) ToOutput(ctx context.Context) pulum
 	}
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o VolumeTopologyRequestRequiredOutput) Topologies() VolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v VolumeTopologyRequestRequired) []VolumeTopologyRequestRequiredTopology { return v.Topologies }).(VolumeTopologyRequestRequiredTopologyArrayOutput)
 }
@@ -6605,6 +6628,7 @@ func (o VolumeTopologyRequestRequiredPtrOutput) Elem() VolumeTopologyRequestRequ
 	}).(VolumeTopologyRequestRequiredOutput)
 }
 
+// `(List of segments: <required>)` - Defines the location for the volume.
 func (o VolumeTopologyRequestRequiredPtrOutput) Topologies() VolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v *VolumeTopologyRequestRequired) []VolumeTopologyRequestRequiredTopology {
 		if v == nil {

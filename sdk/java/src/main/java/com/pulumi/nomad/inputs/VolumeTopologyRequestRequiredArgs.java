@@ -14,9 +14,17 @@ public final class VolumeTopologyRequestRequiredArgs extends com.pulumi.resource
 
     public static final VolumeTopologyRequestRequiredArgs Empty = new VolumeTopologyRequestRequiredArgs();
 
+    /**
+     * `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * 
+     */
     @Import(name="topologies", required=true)
     private Output<List<VolumeTopologyRequestRequiredTopologyArgs>> topologies;
 
+    /**
+     * @return `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * 
+     */
     public Output<List<VolumeTopologyRequestRequiredTopologyArgs>> topologies() {
         return this.topologies;
     }
@@ -45,15 +53,33 @@ public final class VolumeTopologyRequestRequiredArgs extends com.pulumi.resource
             $ = new VolumeTopologyRequestRequiredArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(Output<List<VolumeTopologyRequestRequiredTopologyArgs>> topologies) {
             $.topologies = topologies;
             return this;
         }
 
+        /**
+         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(List<VolumeTopologyRequestRequiredTopologyArgs> topologies) {
             return topologies(Output.of(topologies));
         }
 
+        /**
+         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(VolumeTopologyRequestRequiredTopologyArgs... topologies) {
             return topologies(List.of(topologies));
         }

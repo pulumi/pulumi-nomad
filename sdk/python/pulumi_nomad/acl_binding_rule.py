@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['AclBindingRuleArgs', 'AclBindingRule']
@@ -32,14 +32,31 @@ class AclBindingRuleArgs:
         :param pulumi.Input[str] selector: `(string: "")` - A boolean expression that matches against verified
                identity attributes returned from the auth method during login.
         """
-        pulumi.set(__self__, "auth_method", auth_method)
-        pulumi.set(__self__, "bind_type", bind_type)
+        AclBindingRuleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            auth_method=auth_method,
+            bind_type=bind_type,
+            bind_name=bind_name,
+            description=description,
+            selector=selector,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             auth_method: pulumi.Input[str],
+             bind_type: pulumi.Input[str],
+             bind_name: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             selector: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("auth_method", auth_method)
+        _setter("bind_type", bind_type)
         if bind_name is not None:
-            pulumi.set(__self__, "bind_name", bind_name)
+            _setter("bind_name", bind_name)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if selector is not None:
-            pulumi.set(__self__, "selector", selector)
+            _setter("selector", selector)
 
     @property
     @pulumi.getter(name="authMethod")
@@ -128,16 +145,33 @@ class _AclBindingRuleState:
         :param pulumi.Input[str] selector: `(string: "")` - A boolean expression that matches against verified
                identity attributes returned from the auth method during login.
         """
+        _AclBindingRuleState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            auth_method=auth_method,
+            bind_name=bind_name,
+            bind_type=bind_type,
+            description=description,
+            selector=selector,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             auth_method: Optional[pulumi.Input[str]] = None,
+             bind_name: Optional[pulumi.Input[str]] = None,
+             bind_type: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             selector: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if auth_method is not None:
-            pulumi.set(__self__, "auth_method", auth_method)
+            _setter("auth_method", auth_method)
         if bind_name is not None:
-            pulumi.set(__self__, "bind_name", bind_name)
+            _setter("bind_name", bind_name)
         if bind_type is not None:
-            pulumi.set(__self__, "bind_type", bind_type)
+            _setter("bind_type", bind_type)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if selector is not None:
-            pulumi.set(__self__, "selector", selector)
+            _setter("selector", selector)
 
     @property
     @pulumi.getter(name="authMethod")
@@ -249,6 +283,10 @@ class AclBindingRule(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AclBindingRuleArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -14,9 +14,17 @@ public final class ExternalVolumeTopologyRequestPreferredArgs extends com.pulumi
 
     public static final ExternalVolumeTopologyRequestPreferredArgs Empty = new ExternalVolumeTopologyRequestPreferredArgs();
 
+    /**
+     * `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * 
+     */
     @Import(name="topologies", required=true)
     private Output<List<ExternalVolumeTopologyRequestPreferredTopologyArgs>> topologies;
 
+    /**
+     * @return `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * 
+     */
     public Output<List<ExternalVolumeTopologyRequestPreferredTopologyArgs>> topologies() {
         return this.topologies;
     }
@@ -45,15 +53,33 @@ public final class ExternalVolumeTopologyRequestPreferredArgs extends com.pulumi
             $ = new ExternalVolumeTopologyRequestPreferredArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(Output<List<ExternalVolumeTopologyRequestPreferredTopologyArgs>> topologies) {
             $.topologies = topologies;
             return this;
         }
 
+        /**
+         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(List<ExternalVolumeTopologyRequestPreferredTopologyArgs> topologies) {
             return topologies(Output.of(topologies));
         }
 
+        /**
+         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * 
+         * @return builder
+         * 
+         */
         public Builder topologies(ExternalVolumeTopologyRequestPreferredTopologyArgs... topologies) {
             return topologies(List.of(topologies));
         }

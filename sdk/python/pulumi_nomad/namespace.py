@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -32,18 +32,37 @@ class NamespaceArgs:
         :param pulumi.Input['NamespaceNodePoolConfigArgs'] node_pool_config: `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
+        NamespaceArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            capabilities=capabilities,
+            description=description,
+            meta=meta,
+            name=name,
+            node_pool_config=node_pool_config,
+            quota=quota,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             capabilities: Optional[pulumi.Input['NamespaceCapabilitiesArgs']] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             node_pool_config: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']] = None,
+             quota: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if capabilities is not None:
-            pulumi.set(__self__, "capabilities", capabilities)
+            _setter("capabilities", capabilities)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if meta is not None:
-            pulumi.set(__self__, "meta", meta)
+            _setter("meta", meta)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if node_pool_config is not None:
-            pulumi.set(__self__, "node_pool_config", node_pool_config)
+            _setter("node_pool_config", node_pool_config)
         if quota is not None:
-            pulumi.set(__self__, "quota", quota)
+            _setter("quota", quota)
 
     @property
     @pulumi.getter
@@ -138,18 +157,37 @@ class _NamespaceState:
         :param pulumi.Input['NamespaceNodePoolConfigArgs'] node_pool_config: `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
+        _NamespaceState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            capabilities=capabilities,
+            description=description,
+            meta=meta,
+            name=name,
+            node_pool_config=node_pool_config,
+            quota=quota,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             capabilities: Optional[pulumi.Input['NamespaceCapabilitiesArgs']] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             node_pool_config: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']] = None,
+             quota: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if capabilities is not None:
-            pulumi.set(__self__, "capabilities", capabilities)
+            _setter("capabilities", capabilities)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if meta is not None:
-            pulumi.set(__self__, "meta", meta)
+            _setter("meta", meta)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if node_pool_config is not None:
-            pulumi.set(__self__, "node_pool_config", node_pool_config)
+            _setter("node_pool_config", node_pool_config)
         if quota is not None:
-            pulumi.set(__self__, "quota", quota)
+            _setter("quota", quota)
 
     @property
     @pulumi.getter
@@ -353,6 +391,10 @@ class Namespace(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            NamespaceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -373,10 +415,20 @@ class Namespace(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = NamespaceArgs.__new__(NamespaceArgs)
 
+            if capabilities is not None and not isinstance(capabilities, NamespaceCapabilitiesArgs):
+                capabilities = capabilities or {}
+                def _setter(key, value):
+                    capabilities[key] = value
+                NamespaceCapabilitiesArgs._configure(_setter, **capabilities)
             __props__.__dict__["capabilities"] = capabilities
             __props__.__dict__["description"] = description
             __props__.__dict__["meta"] = meta
             __props__.__dict__["name"] = name
+            if node_pool_config is not None and not isinstance(node_pool_config, NamespaceNodePoolConfigArgs):
+                node_pool_config = node_pool_config or {}
+                def _setter(key, value):
+                    node_pool_config[key] = value
+                NamespaceNodePoolConfigArgs._configure(_setter, **node_pool_config)
             __props__.__dict__["node_pool_config"] = node_pool_config
             __props__.__dict__["quota"] = quota
         super(Namespace, __self__).__init__(

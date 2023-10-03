@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -43,27 +43,58 @@ class CsiVolumeRegistrationArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         :param pulumi.Input['CsiVolumeRegistrationTopologyRequestArgs'] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         """
-        pulumi.set(__self__, "external_id", external_id)
-        pulumi.set(__self__, "plugin_id", plugin_id)
-        pulumi.set(__self__, "volume_id", volume_id)
+        CsiVolumeRegistrationArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_id=external_id,
+            plugin_id=plugin_id,
+            volume_id=volume_id,
+            capabilities=capabilities,
+            context=context,
+            deregister_on_destroy=deregister_on_destroy,
+            mount_options=mount_options,
+            name=name,
+            namespace=namespace,
+            parameters=parameters,
+            secrets=secrets,
+            topology_request=topology_request,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_id: pulumi.Input[str],
+             plugin_id: pulumi.Input[str],
+             volume_id: pulumi.Input[str],
+             capabilities: Optional[pulumi.Input[Sequence[pulumi.Input['CsiVolumeRegistrationCapabilityArgs']]]] = None,
+             context: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
+             mount_options: Optional[pulumi.Input['CsiVolumeRegistrationMountOptionsArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             namespace: Optional[pulumi.Input[str]] = None,
+             parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             topology_request: Optional[pulumi.Input['CsiVolumeRegistrationTopologyRequestArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("external_id", external_id)
+        _setter("plugin_id", plugin_id)
+        _setter("volume_id", volume_id)
         if capabilities is not None:
-            pulumi.set(__self__, "capabilities", capabilities)
+            _setter("capabilities", capabilities)
         if context is not None:
-            pulumi.set(__self__, "context", context)
+            _setter("context", context)
         if deregister_on_destroy is not None:
-            pulumi.set(__self__, "deregister_on_destroy", deregister_on_destroy)
+            _setter("deregister_on_destroy", deregister_on_destroy)
         if mount_options is not None:
-            pulumi.set(__self__, "mount_options", mount_options)
+            _setter("mount_options", mount_options)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
+            _setter("namespace", namespace)
         if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
+            _setter("parameters", parameters)
         if secrets is not None:
-            pulumi.set(__self__, "secrets", secrets)
+            _setter("secrets", secrets)
         if topology_request is not None:
-            pulumi.set(__self__, "topology_request", topology_request)
+            _setter("topology_request", topology_request)
 
     @property
     @pulumi.getter(name="externalId")
@@ -258,48 +289,97 @@ class _CsiVolumeRegistrationState:
         :param pulumi.Input['CsiVolumeRegistrationTopologyRequestArgs'] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """
+        _CsiVolumeRegistrationState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            capabilities=capabilities,
+            context=context,
+            controller_required=controller_required,
+            controllers_expected=controllers_expected,
+            controllers_healthy=controllers_healthy,
+            deregister_on_destroy=deregister_on_destroy,
+            external_id=external_id,
+            mount_options=mount_options,
+            name=name,
+            namespace=namespace,
+            nodes_expected=nodes_expected,
+            nodes_healthy=nodes_healthy,
+            parameters=parameters,
+            plugin_id=plugin_id,
+            plugin_provider=plugin_provider,
+            plugin_provider_version=plugin_provider_version,
+            schedulable=schedulable,
+            secrets=secrets,
+            topologies=topologies,
+            topology_request=topology_request,
+            volume_id=volume_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             capabilities: Optional[pulumi.Input[Sequence[pulumi.Input['CsiVolumeRegistrationCapabilityArgs']]]] = None,
+             context: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             controller_required: Optional[pulumi.Input[bool]] = None,
+             controllers_expected: Optional[pulumi.Input[int]] = None,
+             controllers_healthy: Optional[pulumi.Input[int]] = None,
+             deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
+             external_id: Optional[pulumi.Input[str]] = None,
+             mount_options: Optional[pulumi.Input['CsiVolumeRegistrationMountOptionsArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             namespace: Optional[pulumi.Input[str]] = None,
+             nodes_expected: Optional[pulumi.Input[int]] = None,
+             nodes_healthy: Optional[pulumi.Input[int]] = None,
+             parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             plugin_id: Optional[pulumi.Input[str]] = None,
+             plugin_provider: Optional[pulumi.Input[str]] = None,
+             plugin_provider_version: Optional[pulumi.Input[str]] = None,
+             schedulable: Optional[pulumi.Input[bool]] = None,
+             secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             topologies: Optional[pulumi.Input[Sequence[pulumi.Input['CsiVolumeRegistrationTopologyArgs']]]] = None,
+             topology_request: Optional[pulumi.Input['CsiVolumeRegistrationTopologyRequestArgs']] = None,
+             volume_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if capabilities is not None:
-            pulumi.set(__self__, "capabilities", capabilities)
+            _setter("capabilities", capabilities)
         if context is not None:
-            pulumi.set(__self__, "context", context)
+            _setter("context", context)
         if controller_required is not None:
-            pulumi.set(__self__, "controller_required", controller_required)
+            _setter("controller_required", controller_required)
         if controllers_expected is not None:
-            pulumi.set(__self__, "controllers_expected", controllers_expected)
+            _setter("controllers_expected", controllers_expected)
         if controllers_healthy is not None:
-            pulumi.set(__self__, "controllers_healthy", controllers_healthy)
+            _setter("controllers_healthy", controllers_healthy)
         if deregister_on_destroy is not None:
-            pulumi.set(__self__, "deregister_on_destroy", deregister_on_destroy)
+            _setter("deregister_on_destroy", deregister_on_destroy)
         if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
+            _setter("external_id", external_id)
         if mount_options is not None:
-            pulumi.set(__self__, "mount_options", mount_options)
+            _setter("mount_options", mount_options)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
+            _setter("namespace", namespace)
         if nodes_expected is not None:
-            pulumi.set(__self__, "nodes_expected", nodes_expected)
+            _setter("nodes_expected", nodes_expected)
         if nodes_healthy is not None:
-            pulumi.set(__self__, "nodes_healthy", nodes_healthy)
+            _setter("nodes_healthy", nodes_healthy)
         if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
+            _setter("parameters", parameters)
         if plugin_id is not None:
-            pulumi.set(__self__, "plugin_id", plugin_id)
+            _setter("plugin_id", plugin_id)
         if plugin_provider is not None:
-            pulumi.set(__self__, "plugin_provider", plugin_provider)
+            _setter("plugin_provider", plugin_provider)
         if plugin_provider_version is not None:
-            pulumi.set(__self__, "plugin_provider_version", plugin_provider_version)
+            _setter("plugin_provider_version", plugin_provider_version)
         if schedulable is not None:
-            pulumi.set(__self__, "schedulable", schedulable)
+            _setter("schedulable", schedulable)
         if secrets is not None:
-            pulumi.set(__self__, "secrets", secrets)
+            _setter("secrets", secrets)
         if topologies is not None:
-            pulumi.set(__self__, "topologies", topologies)
+            _setter("topologies", topologies)
         if topology_request is not None:
-            pulumi.set(__self__, "topology_request", topology_request)
+            _setter("topology_request", topology_request)
         if volume_id is not None:
-            pulumi.set(__self__, "volume_id", volume_id)
+            _setter("volume_id", volume_id)
 
     @property
     @pulumi.getter
@@ -687,6 +767,10 @@ class CsiVolumeRegistration(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            CsiVolumeRegistrationArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -719,6 +803,11 @@ class CsiVolumeRegistration(pulumi.CustomResource):
             if external_id is None and not opts.urn:
                 raise TypeError("Missing required property 'external_id'")
             __props__.__dict__["external_id"] = external_id
+            if mount_options is not None and not isinstance(mount_options, CsiVolumeRegistrationMountOptionsArgs):
+                mount_options = mount_options or {}
+                def _setter(key, value):
+                    mount_options[key] = value
+                CsiVolumeRegistrationMountOptionsArgs._configure(_setter, **mount_options)
             __props__.__dict__["mount_options"] = mount_options
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
@@ -727,6 +816,11 @@ class CsiVolumeRegistration(pulumi.CustomResource):
                 raise TypeError("Missing required property 'plugin_id'")
             __props__.__dict__["plugin_id"] = plugin_id
             __props__.__dict__["secrets"] = None if secrets is None else pulumi.Output.secret(secrets)
+            if topology_request is not None and not isinstance(topology_request, CsiVolumeRegistrationTopologyRequestArgs):
+                topology_request = topology_request or {}
+                def _setter(key, value):
+                    topology_request[key] = value
+                CsiVolumeRegistrationTopologyRequestArgs._configure(_setter, **topology_request)
             __props__.__dict__["topology_request"] = topology_request
             if volume_id is None and not opts.urn:
                 raise TypeError("Missing required property 'volume_id'")

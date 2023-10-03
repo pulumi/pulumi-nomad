@@ -133,6 +133,9 @@ export interface CsiVolumeRegistrationTopologyRequest {
 }
 
 export interface CsiVolumeRegistrationTopologyRequestRequired {
+    /**
+     * `(List of segments: <required>)` - Defines the location for the volume.
+     */
     topologies: outputs.CsiVolumeRegistrationTopologyRequestRequiredTopology[];
 }
 
@@ -168,6 +171,9 @@ export interface CsiVolumeTopologyRequest {
 }
 
 export interface CsiVolumeTopologyRequestPreferred {
+    /**
+     * `(List of segments: <required>)` - Defines the location for the volume.
+     */
     topologies: outputs.CsiVolumeTopologyRequestPreferredTopology[];
 }
 
@@ -182,6 +188,9 @@ export interface CsiVolumeTopologyRequestPreferredTopology {
 }
 
 export interface CsiVolumeTopologyRequestRequired {
+    /**
+     * `(List of segments: <required>)` - Defines the location for the volume.
+     */
     topologies: outputs.CsiVolumeTopologyRequestRequiredTopology[];
 }
 
@@ -246,6 +255,9 @@ export interface ExternalVolumeTopologyRequest {
 }
 
 export interface ExternalVolumeTopologyRequestPreferred {
+    /**
+     * `(List of segments: <required>)` - Defines the location for the volume.
+     */
     topologies: outputs.ExternalVolumeTopologyRequestPreferredTopology[];
 }
 
@@ -260,6 +272,9 @@ export interface ExternalVolumeTopologyRequestPreferredTopology {
 }
 
 export interface ExternalVolumeTopologyRequestRequired {
+    /**
+     * `(List of segments: <required>)` - Defines the location for the volume.
+     */
     topologies: outputs.ExternalVolumeTopologyRequestRequiredTopology[];
 }
 
@@ -781,6 +796,9 @@ export interface VolumeTopologyRequest {
 }
 
 export interface VolumeTopologyRequestRequired {
+    /**
+     * `(List of segments: <required>)` - Defines the location for the volume.
+     */
     topologies: outputs.VolumeTopologyRequestRequiredTopology[];
 }
 

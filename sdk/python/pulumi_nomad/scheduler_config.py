@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['SchedulerConfigArgs', 'SchedulerConfig']
@@ -23,12 +23,25 @@ class SchedulerConfigArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[bool]]] preemption_config: `(map[string]bool)` - Options to enable preemption for various schedulers.
         :param pulumi.Input[str] scheduler_algorithm: `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
         """
+        SchedulerConfigArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            memory_oversubscription_enabled=memory_oversubscription_enabled,
+            preemption_config=preemption_config,
+            scheduler_algorithm=scheduler_algorithm,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             memory_oversubscription_enabled: Optional[pulumi.Input[bool]] = None,
+             preemption_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[bool]]]] = None,
+             scheduler_algorithm: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if memory_oversubscription_enabled is not None:
-            pulumi.set(__self__, "memory_oversubscription_enabled", memory_oversubscription_enabled)
+            _setter("memory_oversubscription_enabled", memory_oversubscription_enabled)
         if preemption_config is not None:
-            pulumi.set(__self__, "preemption_config", preemption_config)
+            _setter("preemption_config", preemption_config)
         if scheduler_algorithm is not None:
-            pulumi.set(__self__, "scheduler_algorithm", scheduler_algorithm)
+            _setter("scheduler_algorithm", scheduler_algorithm)
 
     @property
     @pulumi.getter(name="memoryOversubscriptionEnabled")
@@ -79,12 +92,25 @@ class _SchedulerConfigState:
         :param pulumi.Input[Mapping[str, pulumi.Input[bool]]] preemption_config: `(map[string]bool)` - Options to enable preemption for various schedulers.
         :param pulumi.Input[str] scheduler_algorithm: `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
         """
+        _SchedulerConfigState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            memory_oversubscription_enabled=memory_oversubscription_enabled,
+            preemption_config=preemption_config,
+            scheduler_algorithm=scheduler_algorithm,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             memory_oversubscription_enabled: Optional[pulumi.Input[bool]] = None,
+             preemption_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[bool]]]] = None,
+             scheduler_algorithm: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if memory_oversubscription_enabled is not None:
-            pulumi.set(__self__, "memory_oversubscription_enabled", memory_oversubscription_enabled)
+            _setter("memory_oversubscription_enabled", memory_oversubscription_enabled)
         if preemption_config is not None:
-            pulumi.set(__self__, "preemption_config", preemption_config)
+            _setter("preemption_config", preemption_config)
         if scheduler_algorithm is not None:
-            pulumi.set(__self__, "scheduler_algorithm", scheduler_algorithm)
+            _setter("scheduler_algorithm", scheduler_algorithm)
 
     @property
     @pulumi.getter(name="memoryOversubscriptionEnabled")
@@ -208,6 +234,10 @@ class SchedulerConfig(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            SchedulerConfigArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
