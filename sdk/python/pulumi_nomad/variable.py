@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VariableArgs', 'Variable']
@@ -23,10 +23,23 @@ class VariableArgs:
         :param pulumi.Input[str] path: `(string: <required>)` - A unique path to create the variable at.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namepsace to create the variable in.
         """
-        pulumi.set(__self__, "items", items)
-        pulumi.set(__self__, "path", path)
+        VariableArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            items=items,
+            path=path,
+            namespace=namespace,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             items: pulumi.Input[Mapping[str, Any]],
+             path: pulumi.Input[str],
+             namespace: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("items", items)
+        _setter("path", path)
         if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
+            _setter("namespace", namespace)
 
     @property
     @pulumi.getter
@@ -77,12 +90,25 @@ class _VariableState:
         :param pulumi.Input[str] namespace: `(string: "default")` - The namepsace to create the variable in.
         :param pulumi.Input[str] path: `(string: <required>)` - A unique path to create the variable at.
         """
+        _VariableState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            items=items,
+            namespace=namespace,
+            path=path,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             namespace: Optional[pulumi.Input[str]] = None,
+             path: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if items is not None:
-            pulumi.set(__self__, "items", items)
+            _setter("items", items)
         if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
+            _setter("namespace", namespace)
         if path is not None:
-            pulumi.set(__self__, "path", path)
+            _setter("path", path)
 
     @property
     @pulumi.getter
@@ -214,6 +240,10 @@ class Variable(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            VariableArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

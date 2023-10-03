@@ -10,9 +10,17 @@ import java.util.Objects;
 
 @CustomType
 public final class ExternalVolumeTopologyRequestRequired {
+    /**
+     * @return `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * 
+     */
     private List<ExternalVolumeTopologyRequestRequiredTopology> topologies;
 
     private ExternalVolumeTopologyRequestRequired() {}
+    /**
+     * @return `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * 
+     */
     public List<ExternalVolumeTopologyRequestRequiredTopology> topologies() {
         return this.topologies;
     }

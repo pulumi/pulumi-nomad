@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['SentinelPolicyArgs', 'SentinelPolicy']
@@ -31,13 +31,30 @@ class SentinelPolicyArgs:
                [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the policy.
         """
-        pulumi.set(__self__, "enforcement_level", enforcement_level)
-        pulumi.set(__self__, "policy", policy)
-        pulumi.set(__self__, "scope", scope)
+        SentinelPolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            enforcement_level=enforcement_level,
+            policy=policy,
+            scope=scope,
+            description=description,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             enforcement_level: pulumi.Input[str],
+             policy: pulumi.Input[str],
+             scope: pulumi.Input[str],
+             description: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("enforcement_level", enforcement_level)
+        _setter("policy", policy)
+        _setter("scope", scope)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="enforcementLevel")
@@ -124,16 +141,33 @@ class _SentinelPolicyState:
         :param pulumi.Input[str] policy: `(string: <required>)` - The contents of the policy to register.
         :param pulumi.Input[str] scope: `(strings: <required>)` - The [scope][scope] for this policy.
         """
+        _SentinelPolicyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            enforcement_level=enforcement_level,
+            name=name,
+            policy=policy,
+            scope=scope,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             enforcement_level: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             policy: Optional[pulumi.Input[str]] = None,
+             scope: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if enforcement_level is not None:
-            pulumi.set(__self__, "enforcement_level", enforcement_level)
+            _setter("enforcement_level", enforcement_level)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if policy is not None:
-            pulumi.set(__self__, "policy", policy)
+            _setter("policy", policy)
         if scope is not None:
-            pulumi.set(__self__, "scope", scope)
+            _setter("scope", scope)
 
     @property
     @pulumi.getter
@@ -299,6 +333,10 @@ class SentinelPolicy(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            SentinelPolicyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

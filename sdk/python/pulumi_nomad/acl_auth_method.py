@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -36,14 +36,33 @@ class AclAuthMethodArgs:
                as default.
         :param pulumi.Input[str] name: `(string: <required>)` - The identifier of the ACL Auth Method.
         """
-        pulumi.set(__self__, "config", config)
-        pulumi.set(__self__, "max_token_ttl", max_token_ttl)
-        pulumi.set(__self__, "token_locality", token_locality)
-        pulumi.set(__self__, "type", type)
+        AclAuthMethodArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config=config,
+            max_token_ttl=max_token_ttl,
+            token_locality=token_locality,
+            type=type,
+            default=default,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config: pulumi.Input['AclAuthMethodConfigArgs'],
+             max_token_ttl: pulumi.Input[str],
+             token_locality: pulumi.Input[str],
+             type: pulumi.Input[str],
+             default: Optional[pulumi.Input[bool]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("config", config)
+        _setter("max_token_ttl", max_token_ttl)
+        _setter("token_locality", token_locality)
+        _setter("type", type)
         if default is not None:
-            pulumi.set(__self__, "default", default)
+            _setter("default", default)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter
@@ -146,18 +165,37 @@ class _AclAuthMethodState:
         :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
                the only supported type is `OIDC`.
         """
+        _AclAuthMethodState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            config=config,
+            default=default,
+            max_token_ttl=max_token_ttl,
+            name=name,
+            token_locality=token_locality,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             config: Optional[pulumi.Input['AclAuthMethodConfigArgs']] = None,
+             default: Optional[pulumi.Input[bool]] = None,
+             max_token_ttl: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             token_locality: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if config is not None:
-            pulumi.set(__self__, "config", config)
+            _setter("config", config)
         if default is not None:
-            pulumi.set(__self__, "default", default)
+            _setter("default", default)
         if max_token_ttl is not None:
-            pulumi.set(__self__, "max_token_ttl", max_token_ttl)
+            _setter("max_token_ttl", max_token_ttl)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if token_locality is not None:
-            pulumi.set(__self__, "token_locality", token_locality)
+            _setter("token_locality", token_locality)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter
@@ -341,6 +379,10 @@ class AclAuthMethod(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AclAuthMethodArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -361,6 +403,11 @@ class AclAuthMethod(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AclAuthMethodArgs.__new__(AclAuthMethodArgs)
 
+            if config is not None and not isinstance(config, AclAuthMethodConfigArgs):
+                config = config or {}
+                def _setter(key, value):
+                    config[key] = value
+                AclAuthMethodConfigArgs._configure(_setter, **config)
             if config is None and not opts.urn:
                 raise TypeError("Missing required property 'config'")
             __props__.__dict__["config"] = config

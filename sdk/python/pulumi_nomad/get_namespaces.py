@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetNamespacesResult',
     'AwaitableGetNamespacesResult',
     'get_namespaces',
+    'get_namespaces_output',
 ]
 
 @pulumi.output_type
@@ -83,3 +84,28 @@ def get_namespaces(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetN
     return AwaitableGetNamespacesResult(
         id=pulumi.get(__ret__, 'id'),
         namespaces=pulumi.get(__ret__, 'namespaces'))
+
+
+@_utilities.lift_output_func(get_namespaces)
+def get_namespaces_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNamespacesResult]:
+    """
+    Retrieve a list of namespaces available in Nomad.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    namespaces = nomad.get_namespaces()
+    namespace = []
+    for range in [{"value": i} for i in range(0, len(namespaces.namespaces))]:
+        namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",
+            description=f"Write to the namespace {namespaces[range['value']]}",
+            rules_hcl=f\"\"\"namespace "{namespaces[range["value"]]}" {{
+      policy = "write"
+    }}
+    \"\"\"))
+    ```
+    """
+    ...

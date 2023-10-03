@@ -6,13 +6,14 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
     'GetDeploymentsResult',
     'AwaitableGetDeploymentsResult',
     'get_deployments',
+    'get_deployments_output',
 ]
 
 @pulumi.output_type
@@ -75,3 +76,20 @@ def get_deployments(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet
     return AwaitableGetDeploymentsResult(
         deployments=pulumi.get(__ret__, 'deployments'),
         id=pulumi.get(__ret__, 'id'))
+
+
+@_utilities.lift_output_func(get_deployments)
+def get_deployments_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeploymentsResult]:
+    """
+    Retrieve a list of deployments in Nomad.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+    example = nomad.get_deployments()
+    ```
+    """
+    ...

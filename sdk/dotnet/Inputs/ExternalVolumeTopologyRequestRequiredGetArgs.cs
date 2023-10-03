@@ -14,6 +14,10 @@ namespace Pulumi.Nomad.Inputs
     {
         [Input("topologies", required: true)]
         private InputList<Inputs.ExternalVolumeTopologyRequestRequiredTopologyGetArgs>? _topologies;
+
+        /// <summary>
+        /// `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+        /// </summary>
         public InputList<Inputs.ExternalVolumeTopologyRequestRequiredTopologyGetArgs> Topologies
         {
             get => _topologies ?? (_topologies = new InputList<Inputs.ExternalVolumeTopologyRequestRequiredTopologyGetArgs>());

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -51,32 +51,63 @@ class JobArgs:
         :param pulumi.Input[str] vault_token: `(string: <optional>)` - Vault token used when registering this job.
                Will fallback to the value declared in Nomad provider configuration, if any.
         """
-        pulumi.set(__self__, "jobspec", jobspec)
+        JobArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            jobspec=jobspec,
+            consul_token=consul_token,
+            deregister_on_destroy=deregister_on_destroy,
+            deregister_on_id_change=deregister_on_id_change,
+            detach=detach,
+            hcl1=hcl1,
+            hcl2=hcl2,
+            json=json,
+            policy_override=policy_override,
+            purge_on_destroy=purge_on_destroy,
+            read_allocation_ids=read_allocation_ids,
+            vault_token=vault_token,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             jobspec: pulumi.Input[str],
+             consul_token: Optional[pulumi.Input[str]] = None,
+             deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
+             deregister_on_id_change: Optional[pulumi.Input[bool]] = None,
+             detach: Optional[pulumi.Input[bool]] = None,
+             hcl1: Optional[pulumi.Input[bool]] = None,
+             hcl2: Optional[pulumi.Input['JobHcl2Args']] = None,
+             json: Optional[pulumi.Input[bool]] = None,
+             policy_override: Optional[pulumi.Input[bool]] = None,
+             purge_on_destroy: Optional[pulumi.Input[bool]] = None,
+             read_allocation_ids: Optional[pulumi.Input[bool]] = None,
+             vault_token: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("jobspec", jobspec)
         if consul_token is not None:
-            pulumi.set(__self__, "consul_token", consul_token)
+            _setter("consul_token", consul_token)
         if deregister_on_destroy is not None:
-            pulumi.set(__self__, "deregister_on_destroy", deregister_on_destroy)
+            _setter("deregister_on_destroy", deregister_on_destroy)
         if deregister_on_id_change is not None:
-            pulumi.set(__self__, "deregister_on_id_change", deregister_on_id_change)
+            _setter("deregister_on_id_change", deregister_on_id_change)
         if detach is not None:
-            pulumi.set(__self__, "detach", detach)
+            _setter("detach", detach)
         if hcl1 is not None:
-            pulumi.set(__self__, "hcl1", hcl1)
+            _setter("hcl1", hcl1)
         if hcl2 is not None:
-            pulumi.set(__self__, "hcl2", hcl2)
+            _setter("hcl2", hcl2)
         if json is not None:
-            pulumi.set(__self__, "json", json)
+            _setter("json", json)
         if policy_override is not None:
-            pulumi.set(__self__, "policy_override", policy_override)
+            _setter("policy_override", policy_override)
         if purge_on_destroy is not None:
-            pulumi.set(__self__, "purge_on_destroy", purge_on_destroy)
+            _setter("purge_on_destroy", purge_on_destroy)
         if read_allocation_ids is not None:
             warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
             pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
         if read_allocation_ids is not None:
-            pulumi.set(__self__, "read_allocation_ids", read_allocation_ids)
+            _setter("read_allocation_ids", read_allocation_ids)
         if vault_token is not None:
-            pulumi.set(__self__, "vault_token", vault_token)
+            _setter("vault_token", vault_token)
 
     @property
     @pulumi.getter
@@ -289,56 +320,107 @@ class _JobState:
         :param pulumi.Input[str] vault_token: `(string: <optional>)` - Vault token used when registering this job.
                Will fallback to the value declared in Nomad provider configuration, if any.
         """
+        _JobState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            allocation_ids=allocation_ids,
+            consul_token=consul_token,
+            datacenters=datacenters,
+            deployment_id=deployment_id,
+            deployment_status=deployment_status,
+            deregister_on_destroy=deregister_on_destroy,
+            deregister_on_id_change=deregister_on_id_change,
+            detach=detach,
+            hcl1=hcl1,
+            hcl2=hcl2,
+            jobspec=jobspec,
+            json=json,
+            modify_index=modify_index,
+            name=name,
+            namespace=namespace,
+            policy_override=policy_override,
+            purge_on_destroy=purge_on_destroy,
+            read_allocation_ids=read_allocation_ids,
+            region=region,
+            task_groups=task_groups,
+            type=type,
+            vault_token=vault_token,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             allocation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             consul_token: Optional[pulumi.Input[str]] = None,
+             datacenters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             deployment_id: Optional[pulumi.Input[str]] = None,
+             deployment_status: Optional[pulumi.Input[str]] = None,
+             deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
+             deregister_on_id_change: Optional[pulumi.Input[bool]] = None,
+             detach: Optional[pulumi.Input[bool]] = None,
+             hcl1: Optional[pulumi.Input[bool]] = None,
+             hcl2: Optional[pulumi.Input['JobHcl2Args']] = None,
+             jobspec: Optional[pulumi.Input[str]] = None,
+             json: Optional[pulumi.Input[bool]] = None,
+             modify_index: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             namespace: Optional[pulumi.Input[str]] = None,
+             policy_override: Optional[pulumi.Input[bool]] = None,
+             purge_on_destroy: Optional[pulumi.Input[bool]] = None,
+             read_allocation_ids: Optional[pulumi.Input[bool]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             task_groups: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupArgs']]]] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             vault_token: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if allocation_ids is not None:
             warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
             pulumi.log.warn("""allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
         if allocation_ids is not None:
-            pulumi.set(__self__, "allocation_ids", allocation_ids)
+            _setter("allocation_ids", allocation_ids)
         if consul_token is not None:
-            pulumi.set(__self__, "consul_token", consul_token)
+            _setter("consul_token", consul_token)
         if datacenters is not None:
-            pulumi.set(__self__, "datacenters", datacenters)
+            _setter("datacenters", datacenters)
         if deployment_id is not None:
-            pulumi.set(__self__, "deployment_id", deployment_id)
+            _setter("deployment_id", deployment_id)
         if deployment_status is not None:
-            pulumi.set(__self__, "deployment_status", deployment_status)
+            _setter("deployment_status", deployment_status)
         if deregister_on_destroy is not None:
-            pulumi.set(__self__, "deregister_on_destroy", deregister_on_destroy)
+            _setter("deregister_on_destroy", deregister_on_destroy)
         if deregister_on_id_change is not None:
-            pulumi.set(__self__, "deregister_on_id_change", deregister_on_id_change)
+            _setter("deregister_on_id_change", deregister_on_id_change)
         if detach is not None:
-            pulumi.set(__self__, "detach", detach)
+            _setter("detach", detach)
         if hcl1 is not None:
-            pulumi.set(__self__, "hcl1", hcl1)
+            _setter("hcl1", hcl1)
         if hcl2 is not None:
-            pulumi.set(__self__, "hcl2", hcl2)
+            _setter("hcl2", hcl2)
         if jobspec is not None:
-            pulumi.set(__self__, "jobspec", jobspec)
+            _setter("jobspec", jobspec)
         if json is not None:
-            pulumi.set(__self__, "json", json)
+            _setter("json", json)
         if modify_index is not None:
-            pulumi.set(__self__, "modify_index", modify_index)
+            _setter("modify_index", modify_index)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
+            _setter("namespace", namespace)
         if policy_override is not None:
-            pulumi.set(__self__, "policy_override", policy_override)
+            _setter("policy_override", policy_override)
         if purge_on_destroy is not None:
-            pulumi.set(__self__, "purge_on_destroy", purge_on_destroy)
+            _setter("purge_on_destroy", purge_on_destroy)
         if read_allocation_ids is not None:
             warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
             pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
         if read_allocation_ids is not None:
-            pulumi.set(__self__, "read_allocation_ids", read_allocation_ids)
+            _setter("read_allocation_ids", read_allocation_ids)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if task_groups is not None:
-            pulumi.set(__self__, "task_groups", task_groups)
+            _setter("task_groups", task_groups)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
         if vault_token is not None:
-            pulumi.set(__self__, "vault_token", vault_token)
+            _setter("vault_token", vault_token)
 
     @property
     @pulumi.getter(name="allocationIds")
@@ -675,6 +757,10 @@ class Job(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            JobArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -706,6 +792,11 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["deregister_on_id_change"] = deregister_on_id_change
             __props__.__dict__["detach"] = detach
             __props__.__dict__["hcl1"] = hcl1
+            if hcl2 is not None and not isinstance(hcl2, JobHcl2Args):
+                hcl2 = hcl2 or {}
+                def _setter(key, value):
+                    hcl2[key] = value
+                JobHcl2Args._configure(_setter, **hcl2)
             __props__.__dict__["hcl2"] = hcl2
             if jobspec is None and not opts.urn:
                 raise TypeError("Missing required property 'jobspec'")
@@ -713,9 +804,6 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["json"] = json
             __props__.__dict__["policy_override"] = policy_override
             __props__.__dict__["purge_on_destroy"] = purge_on_destroy
-            if read_allocation_ids is not None and not opts.urn:
-                warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
-                pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
             __props__.__dict__["read_allocation_ids"] = read_allocation_ids
             __props__.__dict__["vault_token"] = None if vault_token is None else pulumi.Output.secret(vault_token)
             __props__.__dict__["allocation_ids"] = None

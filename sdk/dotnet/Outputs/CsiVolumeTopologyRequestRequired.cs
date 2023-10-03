@@ -13,6 +13,9 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class CsiVolumeTopologyRequestRequired
     {
+        /// <summary>
+        /// `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+        /// </summary>
         public readonly ImmutableArray<Outputs.CsiVolumeTopologyRequestRequiredTopology> Topologies;
 
         [OutputConstructor]
