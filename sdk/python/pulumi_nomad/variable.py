@@ -32,10 +32,16 @@ class VariableArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             items: pulumi.Input[Mapping[str, Any]],
-             path: pulumi.Input[str],
+             items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+             path: Optional[pulumi.Input[str]] = None,
              namespace: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if items is None:
+            raise TypeError("Missing 'items' argument")
+        if path is None:
+            raise TypeError("Missing 'path' argument")
+
         _setter("items", items)
         _setter("path", path)
         if namespace is not None:
@@ -102,7 +108,9 @@ class _VariableState:
              items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
              namespace: Optional[pulumi.Input[str]] = None,
              path: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if items is not None:
             _setter("items", items)
         if namespace is not None:

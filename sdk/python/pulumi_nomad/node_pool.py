@@ -42,7 +42,11 @@ class NodePoolArgs:
              meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              name: Optional[pulumi.Input[str]] = None,
              scheduler_config: Optional[pulumi.Input['NodePoolSchedulerConfigArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if scheduler_config is None and 'schedulerConfig' in kwargs:
+            scheduler_config = kwargs['schedulerConfig']
+
         if description is not None:
             _setter("description", description)
         if meta is not None:
@@ -131,7 +135,11 @@ class _NodePoolState:
              meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              name: Optional[pulumi.Input[str]] = None,
              scheduler_config: Optional[pulumi.Input['NodePoolSchedulerConfigArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if scheduler_config is None and 'schedulerConfig' in kwargs:
+            scheduler_config = kwargs['schedulerConfig']
+
         if description is not None:
             _setter("description", description)
         if meta is not None:
@@ -288,11 +296,7 @@ class NodePool(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["meta"] = meta
             __props__.__dict__["name"] = name
-            if scheduler_config is not None and not isinstance(scheduler_config, NodePoolSchedulerConfigArgs):
-                scheduler_config = scheduler_config or {}
-                def _setter(key, value):
-                    scheduler_config[key] = value
-                NodePoolSchedulerConfigArgs._configure(_setter, **scheduler_config)
+            scheduler_config = _utilities.configure(scheduler_config, NodePoolSchedulerConfigArgs, True)
             __props__.__dict__["scheduler_config"] = scheduler_config
         super(NodePool, __self__).__init__(
             'nomad:index/nodePool:NodePool',

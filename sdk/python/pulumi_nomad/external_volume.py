@@ -67,9 +67,9 @@ class ExternalVolumeArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             capabilities: pulumi.Input[Sequence[pulumi.Input['ExternalVolumeCapabilityArgs']]],
-             plugin_id: pulumi.Input[str],
-             volume_id: pulumi.Input[str],
+             capabilities: Optional[pulumi.Input[Sequence[pulumi.Input['ExternalVolumeCapabilityArgs']]]] = None,
+             plugin_id: Optional[pulumi.Input[str]] = None,
+             volume_id: Optional[pulumi.Input[str]] = None,
              capacity_max: Optional[pulumi.Input[str]] = None,
              capacity_min: Optional[pulumi.Input[str]] = None,
              clone_id: Optional[pulumi.Input[str]] = None,
@@ -81,7 +81,31 @@ class ExternalVolumeArgs:
              snapshot_id: Optional[pulumi.Input[str]] = None,
              topology_request: Optional[pulumi.Input['ExternalVolumeTopologyRequestArgs']] = None,
              type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if capabilities is None:
+            raise TypeError("Missing 'capabilities' argument")
+        if plugin_id is None and 'pluginId' in kwargs:
+            plugin_id = kwargs['pluginId']
+        if plugin_id is None:
+            raise TypeError("Missing 'plugin_id' argument")
+        if volume_id is None and 'volumeId' in kwargs:
+            volume_id = kwargs['volumeId']
+        if volume_id is None:
+            raise TypeError("Missing 'volume_id' argument")
+        if capacity_max is None and 'capacityMax' in kwargs:
+            capacity_max = kwargs['capacityMax']
+        if capacity_min is None and 'capacityMin' in kwargs:
+            capacity_min = kwargs['capacityMin']
+        if clone_id is None and 'cloneId' in kwargs:
+            clone_id = kwargs['cloneId']
+        if mount_options is None and 'mountOptions' in kwargs:
+            mount_options = kwargs['mountOptions']
+        if snapshot_id is None and 'snapshotId' in kwargs:
+            snapshot_id = kwargs['snapshotId']
+        if topology_request is None and 'topologyRequest' in kwargs:
+            topology_request = kwargs['topologyRequest']
+
         _setter("capabilities", capabilities)
         _setter("plugin_id", plugin_id)
         _setter("volume_id", volume_id)
@@ -381,7 +405,39 @@ class _ExternalVolumeState:
              topology_request: Optional[pulumi.Input['ExternalVolumeTopologyRequestArgs']] = None,
              type: Optional[pulumi.Input[str]] = None,
              volume_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if capacity_max is None and 'capacityMax' in kwargs:
+            capacity_max = kwargs['capacityMax']
+        if capacity_min is None and 'capacityMin' in kwargs:
+            capacity_min = kwargs['capacityMin']
+        if clone_id is None and 'cloneId' in kwargs:
+            clone_id = kwargs['cloneId']
+        if controller_required is None and 'controllerRequired' in kwargs:
+            controller_required = kwargs['controllerRequired']
+        if controllers_expected is None and 'controllersExpected' in kwargs:
+            controllers_expected = kwargs['controllersExpected']
+        if controllers_healthy is None and 'controllersHealthy' in kwargs:
+            controllers_healthy = kwargs['controllersHealthy']
+        if mount_options is None and 'mountOptions' in kwargs:
+            mount_options = kwargs['mountOptions']
+        if nodes_expected is None and 'nodesExpected' in kwargs:
+            nodes_expected = kwargs['nodesExpected']
+        if nodes_healthy is None and 'nodesHealthy' in kwargs:
+            nodes_healthy = kwargs['nodesHealthy']
+        if plugin_id is None and 'pluginId' in kwargs:
+            plugin_id = kwargs['pluginId']
+        if plugin_provider is None and 'pluginProvider' in kwargs:
+            plugin_provider = kwargs['pluginProvider']
+        if plugin_provider_version is None and 'pluginProviderVersion' in kwargs:
+            plugin_provider_version = kwargs['pluginProviderVersion']
+        if snapshot_id is None and 'snapshotId' in kwargs:
+            snapshot_id = kwargs['snapshotId']
+        if topology_request is None and 'topologyRequest' in kwargs:
+            topology_request = kwargs['topologyRequest']
+        if volume_id is None and 'volumeId' in kwargs:
+            volume_id = kwargs['volumeId']
+
         if capabilities is not None:
             _setter("capabilities", capabilities)
         if capacity_max is not None:
@@ -885,11 +941,7 @@ class ExternalVolume(pulumi.CustomResource):
             __props__.__dict__["capacity_max"] = capacity_max
             __props__.__dict__["capacity_min"] = capacity_min
             __props__.__dict__["clone_id"] = clone_id
-            if mount_options is not None and not isinstance(mount_options, ExternalVolumeMountOptionsArgs):
-                mount_options = mount_options or {}
-                def _setter(key, value):
-                    mount_options[key] = value
-                ExternalVolumeMountOptionsArgs._configure(_setter, **mount_options)
+            mount_options = _utilities.configure(mount_options, ExternalVolumeMountOptionsArgs, True)
             __props__.__dict__["mount_options"] = mount_options
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
@@ -899,11 +951,7 @@ class ExternalVolume(pulumi.CustomResource):
             __props__.__dict__["plugin_id"] = plugin_id
             __props__.__dict__["secrets"] = None if secrets is None else pulumi.Output.secret(secrets)
             __props__.__dict__["snapshot_id"] = snapshot_id
-            if topology_request is not None and not isinstance(topology_request, ExternalVolumeTopologyRequestArgs):
-                topology_request = topology_request or {}
-                def _setter(key, value):
-                    topology_request[key] = value
-                ExternalVolumeTopologyRequestArgs._configure(_setter, **topology_request)
+            topology_request = _utilities.configure(topology_request, ExternalVolumeTopologyRequestArgs, True)
             __props__.__dict__["topology_request"] = topology_request
             __props__.__dict__["type"] = type
             if volume_id is None and not opts.urn:

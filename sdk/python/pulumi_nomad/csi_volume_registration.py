@@ -61,9 +61,9 @@ class CsiVolumeRegistrationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             external_id: pulumi.Input[str],
-             plugin_id: pulumi.Input[str],
-             volume_id: pulumi.Input[str],
+             external_id: Optional[pulumi.Input[str]] = None,
+             plugin_id: Optional[pulumi.Input[str]] = None,
+             volume_id: Optional[pulumi.Input[str]] = None,
              capabilities: Optional[pulumi.Input[Sequence[pulumi.Input['CsiVolumeRegistrationCapabilityArgs']]]] = None,
              context: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
@@ -73,7 +73,27 @@ class CsiVolumeRegistrationArgs:
              parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              topology_request: Optional[pulumi.Input['CsiVolumeRegistrationTopologyRequestArgs']] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if external_id is None and 'externalId' in kwargs:
+            external_id = kwargs['externalId']
+        if external_id is None:
+            raise TypeError("Missing 'external_id' argument")
+        if plugin_id is None and 'pluginId' in kwargs:
+            plugin_id = kwargs['pluginId']
+        if plugin_id is None:
+            raise TypeError("Missing 'plugin_id' argument")
+        if volume_id is None and 'volumeId' in kwargs:
+            volume_id = kwargs['volumeId']
+        if volume_id is None:
+            raise TypeError("Missing 'volume_id' argument")
+        if deregister_on_destroy is None and 'deregisterOnDestroy' in kwargs:
+            deregister_on_destroy = kwargs['deregisterOnDestroy']
+        if mount_options is None and 'mountOptions' in kwargs:
+            mount_options = kwargs['mountOptions']
+        if topology_request is None and 'topologyRequest' in kwargs:
+            topology_request = kwargs['topologyRequest']
+
         _setter("external_id", external_id)
         _setter("plugin_id", plugin_id)
         _setter("volume_id", volume_id)
@@ -337,7 +357,35 @@ class _CsiVolumeRegistrationState:
              topologies: Optional[pulumi.Input[Sequence[pulumi.Input['CsiVolumeRegistrationTopologyArgs']]]] = None,
              topology_request: Optional[pulumi.Input['CsiVolumeRegistrationTopologyRequestArgs']] = None,
              volume_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if controller_required is None and 'controllerRequired' in kwargs:
+            controller_required = kwargs['controllerRequired']
+        if controllers_expected is None and 'controllersExpected' in kwargs:
+            controllers_expected = kwargs['controllersExpected']
+        if controllers_healthy is None and 'controllersHealthy' in kwargs:
+            controllers_healthy = kwargs['controllersHealthy']
+        if deregister_on_destroy is None and 'deregisterOnDestroy' in kwargs:
+            deregister_on_destroy = kwargs['deregisterOnDestroy']
+        if external_id is None and 'externalId' in kwargs:
+            external_id = kwargs['externalId']
+        if mount_options is None and 'mountOptions' in kwargs:
+            mount_options = kwargs['mountOptions']
+        if nodes_expected is None and 'nodesExpected' in kwargs:
+            nodes_expected = kwargs['nodesExpected']
+        if nodes_healthy is None and 'nodesHealthy' in kwargs:
+            nodes_healthy = kwargs['nodesHealthy']
+        if plugin_id is None and 'pluginId' in kwargs:
+            plugin_id = kwargs['pluginId']
+        if plugin_provider is None and 'pluginProvider' in kwargs:
+            plugin_provider = kwargs['pluginProvider']
+        if plugin_provider_version is None and 'pluginProviderVersion' in kwargs:
+            plugin_provider_version = kwargs['pluginProviderVersion']
+        if topology_request is None and 'topologyRequest' in kwargs:
+            topology_request = kwargs['topologyRequest']
+        if volume_id is None and 'volumeId' in kwargs:
+            volume_id = kwargs['volumeId']
+
         if capabilities is not None:
             _setter("capabilities", capabilities)
         if context is not None:
@@ -803,11 +851,7 @@ class CsiVolumeRegistration(pulumi.CustomResource):
             if external_id is None and not opts.urn:
                 raise TypeError("Missing required property 'external_id'")
             __props__.__dict__["external_id"] = external_id
-            if mount_options is not None and not isinstance(mount_options, CsiVolumeRegistrationMountOptionsArgs):
-                mount_options = mount_options or {}
-                def _setter(key, value):
-                    mount_options[key] = value
-                CsiVolumeRegistrationMountOptionsArgs._configure(_setter, **mount_options)
+            mount_options = _utilities.configure(mount_options, CsiVolumeRegistrationMountOptionsArgs, True)
             __props__.__dict__["mount_options"] = mount_options
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
@@ -816,11 +860,7 @@ class CsiVolumeRegistration(pulumi.CustomResource):
                 raise TypeError("Missing required property 'plugin_id'")
             __props__.__dict__["plugin_id"] = plugin_id
             __props__.__dict__["secrets"] = None if secrets is None else pulumi.Output.secret(secrets)
-            if topology_request is not None and not isinstance(topology_request, CsiVolumeRegistrationTopologyRequestArgs):
-                topology_request = topology_request or {}
-                def _setter(key, value):
-                    topology_request[key] = value
-                CsiVolumeRegistrationTopologyRequestArgs._configure(_setter, **topology_request)
+            topology_request = _utilities.configure(topology_request, CsiVolumeRegistrationTopologyRequestArgs, True)
             __props__.__dict__["topology_request"] = topology_request
             if volume_id is None and not opts.urn:
                 raise TypeError("Missing required property 'volume_id'")

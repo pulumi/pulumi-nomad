@@ -54,13 +54,21 @@ class AclTokenArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             type: pulumi.Input[str],
+             type: Optional[pulumi.Input[str]] = None,
              expiration_ttl: Optional[pulumi.Input[str]] = None,
              global_: Optional[pulumi.Input[bool]] = None,
              name: Optional[pulumi.Input[str]] = None,
              policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              roles: Optional[pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if expiration_ttl is None and 'expirationTtl' in kwargs:
+            expiration_ttl = kwargs['expirationTtl']
+        if global_ is None and 'global' in kwargs:
+            global_ = kwargs['global']
+
         _setter("type", type)
         if expiration_ttl is not None:
             _setter("expiration_ttl", expiration_ttl)
@@ -223,7 +231,21 @@ class _AclTokenState:
              roles: Optional[pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]]] = None,
              secret_id: Optional[pulumi.Input[str]] = None,
              type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if accessor_id is None and 'accessorId' in kwargs:
+            accessor_id = kwargs['accessorId']
+        if create_time is None and 'createTime' in kwargs:
+            create_time = kwargs['createTime']
+        if expiration_time is None and 'expirationTime' in kwargs:
+            expiration_time = kwargs['expirationTime']
+        if expiration_ttl is None and 'expirationTtl' in kwargs:
+            expiration_ttl = kwargs['expirationTtl']
+        if global_ is None and 'global' in kwargs:
+            global_ = kwargs['global']
+        if secret_id is None and 'secretId' in kwargs:
+            secret_id = kwargs['secretId']
+
         if accessor_id is not None:
             _setter("accessor_id", accessor_id)
         if create_time is not None:

@@ -38,11 +38,19 @@ class AclPolicyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             rules_hcl: pulumi.Input[str],
+             rules_hcl: Optional[pulumi.Input[str]] = None,
              description: Optional[pulumi.Input[str]] = None,
              job_acl: Optional[pulumi.Input['AclPolicyJobAclArgs']] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if rules_hcl is None and 'rulesHcl' in kwargs:
+            rules_hcl = kwargs['rulesHcl']
+        if rules_hcl is None:
+            raise TypeError("Missing 'rules_hcl' argument")
+        if job_acl is None and 'jobAcl' in kwargs:
+            job_acl = kwargs['jobAcl']
+
         _setter("rules_hcl", rules_hcl)
         if description is not None:
             _setter("description", description)
@@ -130,7 +138,13 @@ class _AclPolicyState:
              job_acl: Optional[pulumi.Input['AclPolicyJobAclArgs']] = None,
              name: Optional[pulumi.Input[str]] = None,
              rules_hcl: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if job_acl is None and 'jobAcl' in kwargs:
+            job_acl = kwargs['jobAcl']
+        if rules_hcl is None and 'rulesHcl' in kwargs:
+            rules_hcl = kwargs['rulesHcl']
+
         if description is not None:
             _setter("description", description)
         if job_acl is not None:
@@ -309,11 +323,7 @@ class AclPolicy(pulumi.CustomResource):
             __props__ = AclPolicyArgs.__new__(AclPolicyArgs)
 
             __props__.__dict__["description"] = description
-            if job_acl is not None and not isinstance(job_acl, AclPolicyJobAclArgs):
-                job_acl = job_acl or {}
-                def _setter(key, value):
-                    job_acl[key] = value
-                AclPolicyJobAclArgs._configure(_setter, **job_acl)
+            job_acl = _utilities.configure(job_acl, AclPolicyJobAclArgs, True)
             __props__.__dict__["job_acl"] = job_acl
             __props__.__dict__["name"] = name
             if rules_hcl is None and not opts.urn:
