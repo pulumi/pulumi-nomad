@@ -4,8 +4,12 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve the cluster's [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
@@ -53,4 +57,60 @@ type GetSchedulerPolicyResult struct {
 	PreemptionConfig map[string]bool `pulumi:"preemptionConfig"`
 	// `(string)` - Specifies whether scheduler binpacks or spreads allocations on available nodes.
 	SchedulerAlgorithm string `pulumi:"schedulerAlgorithm"`
+}
+
+func GetSchedulerPolicyOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetSchedulerPolicyResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetSchedulerPolicyResult, error) {
+		r, err := GetSchedulerPolicy(ctx, opts...)
+		var s GetSchedulerPolicyResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetSchedulerPolicyResultOutput)
+}
+
+// A collection of values returned by getSchedulerPolicy.
+type GetSchedulerPolicyResultOutput struct{ *pulumi.OutputState }
+
+func (GetSchedulerPolicyResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSchedulerPolicyResult)(nil)).Elem()
+}
+
+func (o GetSchedulerPolicyResultOutput) ToGetSchedulerPolicyResultOutput() GetSchedulerPolicyResultOutput {
+	return o
+}
+
+func (o GetSchedulerPolicyResultOutput) ToGetSchedulerPolicyResultOutputWithContext(ctx context.Context) GetSchedulerPolicyResultOutput {
+	return o
+}
+
+func (o GetSchedulerPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSchedulerPolicyResult] {
+	return pulumix.Output[GetSchedulerPolicyResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSchedulerPolicyResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSchedulerPolicyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+func (o GetSchedulerPolicyResultOutput) MemoryOversubscriptionEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSchedulerPolicyResult) bool { return v.MemoryOversubscriptionEnabled }).(pulumi.BoolOutput)
+}
+
+// `(map[string]bool)` - Options to enable preemption for various schedulers.
+func (o GetSchedulerPolicyResultOutput) PreemptionConfig() pulumi.BoolMapOutput {
+	return o.ApplyT(func(v GetSchedulerPolicyResult) map[string]bool { return v.PreemptionConfig }).(pulumi.BoolMapOutput)
+}
+
+// `(string)` - Specifies whether scheduler binpacks or spreads allocations on available nodes.
+func (o GetSchedulerPolicyResultOutput) SchedulerAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSchedulerPolicyResult) string { return v.SchedulerAlgorithm }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSchedulerPolicyResultOutput{})
 }

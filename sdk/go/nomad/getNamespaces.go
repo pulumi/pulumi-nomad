@@ -4,8 +4,12 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of namespaces available in Nomad.
@@ -64,4 +68,50 @@ type GetNamespacesResult struct {
 	Id string `pulumi:"id"`
 	// `(list of strings)` - a list of namespaces available in the cluster.
 	Namespaces []string `pulumi:"namespaces"`
+}
+
+func GetNamespacesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetNamespacesResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetNamespacesResult, error) {
+		r, err := GetNamespaces(ctx, opts...)
+		var s GetNamespacesResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetNamespacesResultOutput)
+}
+
+// A collection of values returned by getNamespaces.
+type GetNamespacesResultOutput struct{ *pulumi.OutputState }
+
+func (GetNamespacesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespacesResult)(nil)).Elem()
+}
+
+func (o GetNamespacesResultOutput) ToGetNamespacesResultOutput() GetNamespacesResultOutput {
+	return o
+}
+
+func (o GetNamespacesResultOutput) ToGetNamespacesResultOutputWithContext(ctx context.Context) GetNamespacesResultOutput {
+	return o
+}
+
+func (o GetNamespacesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetNamespacesResult] {
+	return pulumix.Output[GetNamespacesResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetNamespacesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespacesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// `(list of strings)` - a list of namespaces available in the cluster.
+func (o GetNamespacesResultOutput) Namespaces() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespacesResult) []string { return v.Namespaces }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetNamespacesResultOutput{})
 }

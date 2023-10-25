@@ -43,12 +43,24 @@ class AclBindingRuleArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             auth_method: pulumi.Input[str],
-             bind_type: pulumi.Input[str],
+             auth_method: Optional[pulumi.Input[str]] = None,
+             bind_type: Optional[pulumi.Input[str]] = None,
              bind_name: Optional[pulumi.Input[str]] = None,
              description: Optional[pulumi.Input[str]] = None,
              selector: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if auth_method is None and 'authMethod' in kwargs:
+            auth_method = kwargs['authMethod']
+        if auth_method is None:
+            raise TypeError("Missing 'auth_method' argument")
+        if bind_type is None and 'bindType' in kwargs:
+            bind_type = kwargs['bindType']
+        if bind_type is None:
+            raise TypeError("Missing 'bind_type' argument")
+        if bind_name is None and 'bindName' in kwargs:
+            bind_name = kwargs['bindName']
+
         _setter("auth_method", auth_method)
         _setter("bind_type", bind_type)
         if bind_name is not None:
@@ -161,7 +173,15 @@ class _AclBindingRuleState:
              bind_type: Optional[pulumi.Input[str]] = None,
              description: Optional[pulumi.Input[str]] = None,
              selector: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if auth_method is None and 'authMethod' in kwargs:
+            auth_method = kwargs['authMethod']
+        if bind_name is None and 'bindName' in kwargs:
+            bind_name = kwargs['bindName']
+        if bind_type is None and 'bindType' in kwargs:
+            bind_type = kwargs['bindType']
+
         if auth_method is not None:
             _setter("auth_method", auth_method)
         if bind_name is not None:

@@ -4,8 +4,12 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of regions available in Nomad.
@@ -25,4 +29,50 @@ type GetRegionsResult struct {
 	Id string `pulumi:"id"`
 	// `(list of strings)` - a list of regions available in the cluster.
 	Regions []string `pulumi:"regions"`
+}
+
+func GetRegionsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetRegionsResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetRegionsResult, error) {
+		r, err := GetRegions(ctx, opts...)
+		var s GetRegionsResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetRegionsResultOutput)
+}
+
+// A collection of values returned by getRegions.
+type GetRegionsResultOutput struct{ *pulumi.OutputState }
+
+func (GetRegionsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionsResult)(nil)).Elem()
+}
+
+func (o GetRegionsResultOutput) ToGetRegionsResultOutput() GetRegionsResultOutput {
+	return o
+}
+
+func (o GetRegionsResultOutput) ToGetRegionsResultOutputWithContext(ctx context.Context) GetRegionsResultOutput {
+	return o
+}
+
+func (o GetRegionsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetRegionsResult] {
+	return pulumix.Output[GetRegionsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRegionsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// `(list of strings)` - a list of regions available in the cluster.
+func (o GetRegionsResultOutput) Regions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRegionsResult) []string { return v.Regions }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRegionsResultOutput{})
 }

@@ -30,7 +30,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewVariable(ctx, "example", &nomad.VariableArgs{
-//				Items: pulumi.AnyMap{
+//				Items: pulumi.Map{
 //					"example_key": pulumi.Any("example_value"),
 //				},
 //				Path: pulumi.String("some/path/of/your/choosing"),
@@ -67,7 +67,7 @@ import (
 //			_, err = nomad.NewVariable(ctx, "exampleVariable", &nomad.VariableArgs{
 //				Path:      pulumi.String("some/path/of/your/choosing"),
 //				Namespace: exampleNamespace.Name,
-//				Items: pulumi.AnyMap{
+//				Items: pulumi.Map{
 //					"example_key": pulumi.Any("example_value"),
 //				},
 //			})

@@ -35,10 +35,14 @@ class QuoteSpecificationArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             limits: pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]],
+             limits: Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]]] = None,
              description: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if limits is None:
+            raise TypeError("Missing 'limits' argument")
+
         _setter("limits", limits)
         if description is not None:
             _setter("description", description)
@@ -108,7 +112,9 @@ class _QuoteSpecificationState:
              description: Optional[pulumi.Input[str]] = None,
              limits: Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if description is not None:
             _setter("description", description)
         if limits is not None:

@@ -42,12 +42,22 @@ class SentinelPolicyArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             enforcement_level: pulumi.Input[str],
-             policy: pulumi.Input[str],
-             scope: pulumi.Input[str],
+             enforcement_level: Optional[pulumi.Input[str]] = None,
+             policy: Optional[pulumi.Input[str]] = None,
+             scope: Optional[pulumi.Input[str]] = None,
              description: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if enforcement_level is None and 'enforcementLevel' in kwargs:
+            enforcement_level = kwargs['enforcementLevel']
+        if enforcement_level is None:
+            raise TypeError("Missing 'enforcement_level' argument")
+        if policy is None:
+            raise TypeError("Missing 'policy' argument")
+        if scope is None:
+            raise TypeError("Missing 'scope' argument")
+
         _setter("enforcement_level", enforcement_level)
         _setter("policy", policy)
         _setter("scope", scope)
@@ -157,7 +167,11 @@ class _SentinelPolicyState:
              name: Optional[pulumi.Input[str]] = None,
              policy: Optional[pulumi.Input[str]] = None,
              scope: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if enforcement_level is None and 'enforcementLevel' in kwargs:
+            enforcement_level = kwargs['enforcementLevel']
+
         if description is not None:
             _setter("description", description)
         if enforcement_level is not None:

@@ -69,7 +69,7 @@ class ProviderArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             address: pulumi.Input[str],
+             address: Optional[pulumi.Input[str]] = None,
              ca_file: Optional[pulumi.Input[str]] = None,
              ca_pem: Optional[pulumi.Input[str]] = None,
              cert_file: Optional[pulumi.Input[str]] = None,
@@ -84,7 +84,35 @@ class ProviderArgs:
              secret_id: Optional[pulumi.Input[str]] = None,
              skip_verify: Optional[pulumi.Input[bool]] = None,
              vault_token: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if ca_file is None and 'caFile' in kwargs:
+            ca_file = kwargs['caFile']
+        if ca_pem is None and 'caPem' in kwargs:
+            ca_pem = kwargs['caPem']
+        if cert_file is None and 'certFile' in kwargs:
+            cert_file = kwargs['certFile']
+        if cert_pem is None and 'certPem' in kwargs:
+            cert_pem = kwargs['certPem']
+        if consul_token is None and 'consulToken' in kwargs:
+            consul_token = kwargs['consulToken']
+        if http_auth is None and 'httpAuth' in kwargs:
+            http_auth = kwargs['httpAuth']
+        if ignore_env_vars is None and 'ignoreEnvVars' in kwargs:
+            ignore_env_vars = kwargs['ignoreEnvVars']
+        if key_file is None and 'keyFile' in kwargs:
+            key_file = kwargs['keyFile']
+        if key_pem is None and 'keyPem' in kwargs:
+            key_pem = kwargs['keyPem']
+        if secret_id is None and 'secretId' in kwargs:
+            secret_id = kwargs['secretId']
+        if skip_verify is None and 'skipVerify' in kwargs:
+            skip_verify = kwargs['skipVerify']
+        if vault_token is None and 'vaultToken' in kwargs:
+            vault_token = kwargs['vaultToken']
+
         _setter("address", address)
         if ca_file is not None:
             _setter("ca_file", ca_file)

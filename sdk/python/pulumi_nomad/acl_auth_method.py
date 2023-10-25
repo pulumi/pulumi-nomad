@@ -48,13 +48,27 @@ class AclAuthMethodArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             config: pulumi.Input['AclAuthMethodConfigArgs'],
-             max_token_ttl: pulumi.Input[str],
-             token_locality: pulumi.Input[str],
-             type: pulumi.Input[str],
+             config: Optional[pulumi.Input['AclAuthMethodConfigArgs']] = None,
+             max_token_ttl: Optional[pulumi.Input[str]] = None,
+             token_locality: Optional[pulumi.Input[str]] = None,
+             type: Optional[pulumi.Input[str]] = None,
              default: Optional[pulumi.Input[bool]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if config is None:
+            raise TypeError("Missing 'config' argument")
+        if max_token_ttl is None and 'maxTokenTtl' in kwargs:
+            max_token_ttl = kwargs['maxTokenTtl']
+        if max_token_ttl is None:
+            raise TypeError("Missing 'max_token_ttl' argument")
+        if token_locality is None and 'tokenLocality' in kwargs:
+            token_locality = kwargs['tokenLocality']
+        if token_locality is None:
+            raise TypeError("Missing 'token_locality' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+
         _setter("config", config)
         _setter("max_token_ttl", max_token_ttl)
         _setter("token_locality", token_locality)
@@ -183,7 +197,13 @@ class _AclAuthMethodState:
              name: Optional[pulumi.Input[str]] = None,
              token_locality: Optional[pulumi.Input[str]] = None,
              type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if max_token_ttl is None and 'maxTokenTtl' in kwargs:
+            max_token_ttl = kwargs['maxTokenTtl']
+        if token_locality is None and 'tokenLocality' in kwargs:
+            token_locality = kwargs['tokenLocality']
+
         if config is not None:
             _setter("config", config)
         if default is not None:
@@ -403,11 +423,7 @@ class AclAuthMethod(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AclAuthMethodArgs.__new__(AclAuthMethodArgs)
 
-            if config is not None and not isinstance(config, AclAuthMethodConfigArgs):
-                config = config or {}
-                def _setter(key, value):
-                    config[key] = value
-                AclAuthMethodConfigArgs._configure(_setter, **config)
+            config = _utilities.configure(config, AclAuthMethodConfigArgs, True)
             if config is None and not opts.urn:
                 raise TypeError("Missing required property 'config'")
             __props__.__dict__["config"] = config

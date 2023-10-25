@@ -50,7 +50,11 @@ class NamespaceArgs:
              name: Optional[pulumi.Input[str]] = None,
              node_pool_config: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']] = None,
              quota: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if node_pool_config is None and 'nodePoolConfig' in kwargs:
+            node_pool_config = kwargs['nodePoolConfig']
+
         if capabilities is not None:
             _setter("capabilities", capabilities)
         if description is not None:
@@ -175,7 +179,11 @@ class _NamespaceState:
              name: Optional[pulumi.Input[str]] = None,
              node_pool_config: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']] = None,
              quota: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if node_pool_config is None and 'nodePoolConfig' in kwargs:
+            node_pool_config = kwargs['nodePoolConfig']
+
         if capabilities is not None:
             _setter("capabilities", capabilities)
         if description is not None:
@@ -415,20 +423,12 @@ class Namespace(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = NamespaceArgs.__new__(NamespaceArgs)
 
-            if capabilities is not None and not isinstance(capabilities, NamespaceCapabilitiesArgs):
-                capabilities = capabilities or {}
-                def _setter(key, value):
-                    capabilities[key] = value
-                NamespaceCapabilitiesArgs._configure(_setter, **capabilities)
+            capabilities = _utilities.configure(capabilities, NamespaceCapabilitiesArgs, True)
             __props__.__dict__["capabilities"] = capabilities
             __props__.__dict__["description"] = description
             __props__.__dict__["meta"] = meta
             __props__.__dict__["name"] = name
-            if node_pool_config is not None and not isinstance(node_pool_config, NamespaceNodePoolConfigArgs):
-                node_pool_config = node_pool_config or {}
-                def _setter(key, value):
-                    node_pool_config[key] = value
-                NamespaceNodePoolConfigArgs._configure(_setter, **node_pool_config)
+            node_pool_config = _utilities.configure(node_pool_config, NamespaceNodePoolConfigArgs, True)
             __props__.__dict__["node_pool_config"] = node_pool_config
             __props__.__dict__["quota"] = quota
         super(Namespace, __self__).__init__(

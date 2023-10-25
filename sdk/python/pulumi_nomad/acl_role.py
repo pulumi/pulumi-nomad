@@ -35,10 +35,14 @@ class AclRoleArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             policies: pulumi.Input[Sequence[pulumi.Input['AclRolePolicyArgs']]],
+             policies: Optional[pulumi.Input[Sequence[pulumi.Input['AclRolePolicyArgs']]]] = None,
              description: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if policies is None:
+            raise TypeError("Missing 'policies' argument")
+
         _setter("policies", policies)
         if description is not None:
             _setter("description", description)
@@ -108,7 +112,9 @@ class _AclRoleState:
              description: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              policies: Optional[pulumi.Input[Sequence[pulumi.Input['AclRolePolicyArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+
         if description is not None:
             _setter("description", description)
         if name is not None:

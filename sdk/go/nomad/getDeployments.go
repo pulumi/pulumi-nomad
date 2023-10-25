@@ -4,8 +4,12 @@
 package nomad
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of deployments in Nomad.
@@ -49,4 +53,50 @@ type GetDeploymentsResult struct {
 	Deployments []map[string]interface{} `pulumi:"deployments"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+}
+
+func GetDeploymentsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetDeploymentsResultOutput {
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetDeploymentsResult, error) {
+		r, err := GetDeployments(ctx, opts...)
+		var s GetDeploymentsResult
+		if r != nil {
+			s = *r
+		}
+		return s, err
+	}).(GetDeploymentsResultOutput)
+}
+
+// A collection of values returned by getDeployments.
+type GetDeploymentsResultOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentsResult)(nil)).Elem()
+}
+
+func (o GetDeploymentsResultOutput) ToGetDeploymentsResultOutput() GetDeploymentsResultOutput {
+	return o
+}
+
+func (o GetDeploymentsResultOutput) ToGetDeploymentsResultOutputWithContext(ctx context.Context) GetDeploymentsResultOutput {
+	return o
+}
+
+func (o GetDeploymentsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsResult] {
+	return pulumix.Output[GetDeploymentsResult]{
+		OutputState: o.OutputState,
+	}
+}
+
+// `list of maps` a list of deployments in the cluster.
+func (o GetDeploymentsResultOutput) Deployments() pulumi.MapArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsResult) []map[string]interface{} { return v.Deployments }).(pulumi.MapArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetDeploymentsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetDeploymentsResultOutput{})
 }

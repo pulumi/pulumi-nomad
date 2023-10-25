@@ -35,7 +35,15 @@ class SchedulerConfigArgs:
              memory_oversubscription_enabled: Optional[pulumi.Input[bool]] = None,
              preemption_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[bool]]]] = None,
              scheduler_algorithm: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if memory_oversubscription_enabled is None and 'memoryOversubscriptionEnabled' in kwargs:
+            memory_oversubscription_enabled = kwargs['memoryOversubscriptionEnabled']
+        if preemption_config is None and 'preemptionConfig' in kwargs:
+            preemption_config = kwargs['preemptionConfig']
+        if scheduler_algorithm is None and 'schedulerAlgorithm' in kwargs:
+            scheduler_algorithm = kwargs['schedulerAlgorithm']
+
         if memory_oversubscription_enabled is not None:
             _setter("memory_oversubscription_enabled", memory_oversubscription_enabled)
         if preemption_config is not None:
@@ -104,7 +112,15 @@ class _SchedulerConfigState:
              memory_oversubscription_enabled: Optional[pulumi.Input[bool]] = None,
              preemption_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[bool]]]] = None,
              scheduler_algorithm: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions] = None,
+             **kwargs):
+        if memory_oversubscription_enabled is None and 'memoryOversubscriptionEnabled' in kwargs:
+            memory_oversubscription_enabled = kwargs['memoryOversubscriptionEnabled']
+        if preemption_config is None and 'preemptionConfig' in kwargs:
+            preemption_config = kwargs['preemptionConfig']
+        if scheduler_algorithm is None and 'schedulerAlgorithm' in kwargs:
+            scheduler_algorithm = kwargs['schedulerAlgorithm']
+
         if memory_oversubscription_enabled is not None:
             _setter("memory_oversubscription_enabled", memory_oversubscription_enabled)
         if preemption_config is not None:
