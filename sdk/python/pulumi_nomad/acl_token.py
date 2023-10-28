@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -42,44 +42,17 @@ class AclTokenArgs:
         :param pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]] roles: `(set: [])` - The list of roles attached to the token. Each entry has
                `name` and `id` attributes. It may be used multiple times.
         """
-        AclTokenArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            type=type,
-            expiration_ttl=expiration_ttl,
-            global_=global_,
-            name=name,
-            policies=policies,
-            roles=roles,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             type: Optional[pulumi.Input[str]] = None,
-             expiration_ttl: Optional[pulumi.Input[str]] = None,
-             global_: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             roles: Optional[pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if type is None:
-            raise TypeError("Missing 'type' argument")
-        if expiration_ttl is None and 'expirationTtl' in kwargs:
-            expiration_ttl = kwargs['expirationTtl']
-        if global_ is None and 'global' in kwargs:
-            global_ = kwargs['global']
-
-        _setter("type", type)
+        pulumi.set(__self__, "type", type)
         if expiration_ttl is not None:
-            _setter("expiration_ttl", expiration_ttl)
+            pulumi.set(__self__, "expiration_ttl", expiration_ttl)
         if global_ is not None:
-            _setter("global_", global_)
+            pulumi.set(__self__, "global_", global_)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if policies is not None:
-            _setter("policies", policies)
+            pulumi.set(__self__, "policies", policies)
         if roles is not None:
-            _setter("roles", roles)
+            pulumi.set(__self__, "roles", roles)
 
     @property
     @pulumi.getter
@@ -205,67 +178,26 @@ class _AclTokenState:
                for tokens that will have policies associated with them. Use `management`
                for tokens that can perform any action.
         """
-        _AclTokenState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            accessor_id=accessor_id,
-            create_time=create_time,
-            expiration_time=expiration_time,
-            expiration_ttl=expiration_ttl,
-            global_=global_,
-            name=name,
-            policies=policies,
-            roles=roles,
-            secret_id=secret_id,
-            type=type,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             accessor_id: Optional[pulumi.Input[str]] = None,
-             create_time: Optional[pulumi.Input[str]] = None,
-             expiration_time: Optional[pulumi.Input[str]] = None,
-             expiration_ttl: Optional[pulumi.Input[str]] = None,
-             global_: Optional[pulumi.Input[bool]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             policies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             roles: Optional[pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]]] = None,
-             secret_id: Optional[pulumi.Input[str]] = None,
-             type: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if accessor_id is None and 'accessorId' in kwargs:
-            accessor_id = kwargs['accessorId']
-        if create_time is None and 'createTime' in kwargs:
-            create_time = kwargs['createTime']
-        if expiration_time is None and 'expirationTime' in kwargs:
-            expiration_time = kwargs['expirationTime']
-        if expiration_ttl is None and 'expirationTtl' in kwargs:
-            expiration_ttl = kwargs['expirationTtl']
-        if global_ is None and 'global' in kwargs:
-            global_ = kwargs['global']
-        if secret_id is None and 'secretId' in kwargs:
-            secret_id = kwargs['secretId']
-
         if accessor_id is not None:
-            _setter("accessor_id", accessor_id)
+            pulumi.set(__self__, "accessor_id", accessor_id)
         if create_time is not None:
-            _setter("create_time", create_time)
+            pulumi.set(__self__, "create_time", create_time)
         if expiration_time is not None:
-            _setter("expiration_time", expiration_time)
+            pulumi.set(__self__, "expiration_time", expiration_time)
         if expiration_ttl is not None:
-            _setter("expiration_ttl", expiration_ttl)
+            pulumi.set(__self__, "expiration_ttl", expiration_ttl)
         if global_ is not None:
-            _setter("global_", global_)
+            pulumi.set(__self__, "global_", global_)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if policies is not None:
-            _setter("policies", policies)
+            pulumi.set(__self__, "policies", policies)
         if roles is not None:
-            _setter("roles", roles)
+            pulumi.set(__self__, "roles", roles)
         if secret_id is not None:
-            _setter("secret_id", secret_id)
+            pulumi.set(__self__, "secret_id", secret_id)
         if type is not None:
-            _setter("type", type)
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter(name="accessorId")
@@ -556,10 +488,6 @@ class AclToken(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            AclTokenArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
