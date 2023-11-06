@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from ._inputs import *
 
@@ -48,35 +48,100 @@ class ProviderArgs:
         :param pulumi.Input[bool] skip_verify: Skip TLS verification on client side.
         :param pulumi.Input[str] vault_token: Vault token if policies are specified in the job file.
         """
-        pulumi.set(__self__, "address", address)
+        ProviderArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            address=address,
+            ca_file=ca_file,
+            ca_pem=ca_pem,
+            cert_file=cert_file,
+            cert_pem=cert_pem,
+            consul_token=consul_token,
+            headers=headers,
+            http_auth=http_auth,
+            ignore_env_vars=ignore_env_vars,
+            key_file=key_file,
+            key_pem=key_pem,
+            region=region,
+            secret_id=secret_id,
+            skip_verify=skip_verify,
+            vault_token=vault_token,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             address: Optional[pulumi.Input[str]] = None,
+             ca_file: Optional[pulumi.Input[str]] = None,
+             ca_pem: Optional[pulumi.Input[str]] = None,
+             cert_file: Optional[pulumi.Input[str]] = None,
+             cert_pem: Optional[pulumi.Input[str]] = None,
+             consul_token: Optional[pulumi.Input[str]] = None,
+             headers: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderHeaderArgs']]]] = None,
+             http_auth: Optional[pulumi.Input[str]] = None,
+             ignore_env_vars: Optional[pulumi.Input[Mapping[str, pulumi.Input[bool]]]] = None,
+             key_file: Optional[pulumi.Input[str]] = None,
+             key_pem: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             secret_id: Optional[pulumi.Input[str]] = None,
+             skip_verify: Optional[pulumi.Input[bool]] = None,
+             vault_token: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if address is None:
+            raise TypeError("Missing 'address' argument")
+        if ca_file is None and 'caFile' in kwargs:
+            ca_file = kwargs['caFile']
+        if ca_pem is None and 'caPem' in kwargs:
+            ca_pem = kwargs['caPem']
+        if cert_file is None and 'certFile' in kwargs:
+            cert_file = kwargs['certFile']
+        if cert_pem is None and 'certPem' in kwargs:
+            cert_pem = kwargs['certPem']
+        if consul_token is None and 'consulToken' in kwargs:
+            consul_token = kwargs['consulToken']
+        if http_auth is None and 'httpAuth' in kwargs:
+            http_auth = kwargs['httpAuth']
+        if ignore_env_vars is None and 'ignoreEnvVars' in kwargs:
+            ignore_env_vars = kwargs['ignoreEnvVars']
+        if key_file is None and 'keyFile' in kwargs:
+            key_file = kwargs['keyFile']
+        if key_pem is None and 'keyPem' in kwargs:
+            key_pem = kwargs['keyPem']
+        if secret_id is None and 'secretId' in kwargs:
+            secret_id = kwargs['secretId']
+        if skip_verify is None and 'skipVerify' in kwargs:
+            skip_verify = kwargs['skipVerify']
+        if vault_token is None and 'vaultToken' in kwargs:
+            vault_token = kwargs['vaultToken']
+
+        _setter("address", address)
         if ca_file is not None:
-            pulumi.set(__self__, "ca_file", ca_file)
+            _setter("ca_file", ca_file)
         if ca_pem is not None:
-            pulumi.set(__self__, "ca_pem", ca_pem)
+            _setter("ca_pem", ca_pem)
         if cert_file is not None:
-            pulumi.set(__self__, "cert_file", cert_file)
+            _setter("cert_file", cert_file)
         if cert_pem is not None:
-            pulumi.set(__self__, "cert_pem", cert_pem)
+            _setter("cert_pem", cert_pem)
         if consul_token is not None:
-            pulumi.set(__self__, "consul_token", consul_token)
+            _setter("consul_token", consul_token)
         if headers is not None:
-            pulumi.set(__self__, "headers", headers)
+            _setter("headers", headers)
         if http_auth is not None:
-            pulumi.set(__self__, "http_auth", http_auth)
+            _setter("http_auth", http_auth)
         if ignore_env_vars is not None:
-            pulumi.set(__self__, "ignore_env_vars", ignore_env_vars)
+            _setter("ignore_env_vars", ignore_env_vars)
         if key_file is not None:
-            pulumi.set(__self__, "key_file", key_file)
+            _setter("key_file", key_file)
         if key_pem is not None:
-            pulumi.set(__self__, "key_pem", key_pem)
+            _setter("key_pem", key_pem)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if secret_id is not None:
-            pulumi.set(__self__, "secret_id", secret_id)
+            _setter("secret_id", secret_id)
         if skip_verify is not None:
-            pulumi.set(__self__, "skip_verify", skip_verify)
+            _setter("skip_verify", skip_verify)
         if vault_token is not None:
-            pulumi.set(__self__, "vault_token", vault_token)
+            _setter("vault_token", vault_token)
 
     @property
     @pulumi.getter
@@ -326,6 +391,10 @@ class Provider(pulumi.ProviderResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ProviderArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

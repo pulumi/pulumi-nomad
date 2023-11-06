@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -28,14 +28,33 @@ class NodePoolArgs:
         :param pulumi.Input[str] name: `(string)` - The name of the node pool.
         :param pulumi.Input['NodePoolSchedulerConfigArgs'] scheduler_config: `(block)` - Scheduler configuration for the node pool.
         """
+        NodePoolArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            meta=meta,
+            name=name,
+            scheduler_config=scheduler_config,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             scheduler_config: Optional[pulumi.Input['NodePoolSchedulerConfigArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if scheduler_config is None and 'schedulerConfig' in kwargs:
+            scheduler_config = kwargs['schedulerConfig']
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if meta is not None:
-            pulumi.set(__self__, "meta", meta)
+            _setter("meta", meta)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if scheduler_config is not None:
-            pulumi.set(__self__, "scheduler_config", scheduler_config)
+            _setter("scheduler_config", scheduler_config)
 
     @property
     @pulumi.getter
@@ -102,14 +121,33 @@ class _NodePoolState:
         :param pulumi.Input[str] name: `(string)` - The name of the node pool.
         :param pulumi.Input['NodePoolSchedulerConfigArgs'] scheduler_config: `(block)` - Scheduler configuration for the node pool.
         """
+        _NodePoolState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            meta=meta,
+            name=name,
+            scheduler_config=scheduler_config,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             scheduler_config: Optional[pulumi.Input['NodePoolSchedulerConfigArgs']] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if scheduler_config is None and 'schedulerConfig' in kwargs:
+            scheduler_config = kwargs['schedulerConfig']
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if meta is not None:
-            pulumi.set(__self__, "meta", meta)
+            _setter("meta", meta)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if scheduler_config is not None:
-            pulumi.set(__self__, "scheduler_config", scheduler_config)
+            _setter("scheduler_config", scheduler_config)
 
     @property
     @pulumi.getter
@@ -233,6 +271,10 @@ class NodePool(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            NodePoolArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -254,6 +296,11 @@ class NodePool(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["meta"] = meta
             __props__.__dict__["name"] = name
+            if scheduler_config is not None and not isinstance(scheduler_config, NodePoolSchedulerConfigArgs):
+                scheduler_config = scheduler_config or {}
+                def _setter(key, value):
+                    scheduler_config[key] = value
+                NodePoolSchedulerConfigArgs._configure(_setter, **scheduler_config)
             __props__.__dict__["scheduler_config"] = scheduler_config
         super(NodePool, __self__).__init__(
             'nomad:index/nodePool:NodePool',

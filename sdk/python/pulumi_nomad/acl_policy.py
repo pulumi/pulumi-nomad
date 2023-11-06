@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -28,13 +28,36 @@ class AclPolicyArgs:
         :param pulumi.Input['AclPolicyJobAclArgs'] job_acl: `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the policy.
         """
-        pulumi.set(__self__, "rules_hcl", rules_hcl)
+        AclPolicyArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            rules_hcl=rules_hcl,
+            description=description,
+            job_acl=job_acl,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             rules_hcl: Optional[pulumi.Input[str]] = None,
+             description: Optional[pulumi.Input[str]] = None,
+             job_acl: Optional[pulumi.Input['AclPolicyJobAclArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if rules_hcl is None and 'rulesHcl' in kwargs:
+            rules_hcl = kwargs['rulesHcl']
+        if rules_hcl is None:
+            raise TypeError("Missing 'rules_hcl' argument")
+        if job_acl is None and 'jobAcl' in kwargs:
+            job_acl = kwargs['jobAcl']
+
+        _setter("rules_hcl", rules_hcl)
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if job_acl is not None:
-            pulumi.set(__self__, "job_acl", job_acl)
+            _setter("job_acl", job_acl)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
 
     @property
     @pulumi.getter(name="rulesHcl")
@@ -101,14 +124,35 @@ class _AclPolicyState:
         :param pulumi.Input[str] rules_hcl: `(string: <required>)` - The contents of the policy to register,
                as HCL or JSON.
         """
+        _AclPolicyState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            description=description,
+            job_acl=job_acl,
+            name=name,
+            rules_hcl=rules_hcl,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             description: Optional[pulumi.Input[str]] = None,
+             job_acl: Optional[pulumi.Input['AclPolicyJobAclArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             rules_hcl: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if job_acl is None and 'jobAcl' in kwargs:
+            job_acl = kwargs['jobAcl']
+        if rules_hcl is None and 'rulesHcl' in kwargs:
+            rules_hcl = kwargs['rulesHcl']
+
         if description is not None:
-            pulumi.set(__self__, "description", description)
+            _setter("description", description)
         if job_acl is not None:
-            pulumi.set(__self__, "job_acl", job_acl)
+            _setter("job_acl", job_acl)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if rules_hcl is not None:
-            pulumi.set(__self__, "rules_hcl", rules_hcl)
+            _setter("rules_hcl", rules_hcl)
 
     @property
     @pulumi.getter
@@ -256,6 +300,10 @@ class AclPolicy(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            AclPolicyArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -275,6 +323,11 @@ class AclPolicy(pulumi.CustomResource):
             __props__ = AclPolicyArgs.__new__(AclPolicyArgs)
 
             __props__.__dict__["description"] = description
+            if job_acl is not None and not isinstance(job_acl, AclPolicyJobAclArgs):
+                job_acl = job_acl or {}
+                def _setter(key, value):
+                    job_acl[key] = value
+                AclPolicyJobAclArgs._configure(_setter, **job_acl)
             __props__.__dict__["job_acl"] = job_acl
             __props__.__dict__["name"] = name
             if rules_hcl is None and not opts.urn:

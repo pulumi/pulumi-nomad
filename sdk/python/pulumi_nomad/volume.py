@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -54,39 +54,100 @@ class VolumeArgs:
         :param pulumi.Input['VolumeTopologyRequestArgs'] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         """
-        pulumi.set(__self__, "external_id", external_id)
-        pulumi.set(__self__, "plugin_id", plugin_id)
-        pulumi.set(__self__, "volume_id", volume_id)
+        VolumeArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            external_id=external_id,
+            plugin_id=plugin_id,
+            volume_id=volume_id,
+            access_mode=access_mode,
+            attachment_mode=attachment_mode,
+            capabilities=capabilities,
+            context=context,
+            deregister_on_destroy=deregister_on_destroy,
+            mount_options=mount_options,
+            name=name,
+            namespace=namespace,
+            parameters=parameters,
+            secrets=secrets,
+            topology_request=topology_request,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             external_id: Optional[pulumi.Input[str]] = None,
+             plugin_id: Optional[pulumi.Input[str]] = None,
+             volume_id: Optional[pulumi.Input[str]] = None,
+             access_mode: Optional[pulumi.Input[str]] = None,
+             attachment_mode: Optional[pulumi.Input[str]] = None,
+             capabilities: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]]] = None,
+             context: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
+             mount_options: Optional[pulumi.Input['VolumeMountOptionsArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             namespace: Optional[pulumi.Input[str]] = None,
+             parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             topology_request: Optional[pulumi.Input['VolumeTopologyRequestArgs']] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if external_id is None and 'externalId' in kwargs:
+            external_id = kwargs['externalId']
+        if external_id is None:
+            raise TypeError("Missing 'external_id' argument")
+        if plugin_id is None and 'pluginId' in kwargs:
+            plugin_id = kwargs['pluginId']
+        if plugin_id is None:
+            raise TypeError("Missing 'plugin_id' argument")
+        if volume_id is None and 'volumeId' in kwargs:
+            volume_id = kwargs['volumeId']
+        if volume_id is None:
+            raise TypeError("Missing 'volume_id' argument")
+        if access_mode is None and 'accessMode' in kwargs:
+            access_mode = kwargs['accessMode']
+        if attachment_mode is None and 'attachmentMode' in kwargs:
+            attachment_mode = kwargs['attachmentMode']
+        if deregister_on_destroy is None and 'deregisterOnDestroy' in kwargs:
+            deregister_on_destroy = kwargs['deregisterOnDestroy']
+        if mount_options is None and 'mountOptions' in kwargs:
+            mount_options = kwargs['mountOptions']
+        if topology_request is None and 'topologyRequest' in kwargs:
+            topology_request = kwargs['topologyRequest']
+
+        _setter("external_id", external_id)
+        _setter("plugin_id", plugin_id)
+        _setter("volume_id", volume_id)
         if access_mode is not None:
             warnings.warn("""use capability instead""", DeprecationWarning)
             pulumi.log.warn("""access_mode is deprecated: use capability instead""")
         if access_mode is not None:
-            pulumi.set(__self__, "access_mode", access_mode)
+            _setter("access_mode", access_mode)
         if attachment_mode is not None:
             warnings.warn("""use capability instead""", DeprecationWarning)
             pulumi.log.warn("""attachment_mode is deprecated: use capability instead""")
         if attachment_mode is not None:
-            pulumi.set(__self__, "attachment_mode", attachment_mode)
+            _setter("attachment_mode", attachment_mode)
         if capabilities is not None:
-            pulumi.set(__self__, "capabilities", capabilities)
+            _setter("capabilities", capabilities)
         if context is not None:
-            pulumi.set(__self__, "context", context)
+            _setter("context", context)
         if deregister_on_destroy is not None:
-            pulumi.set(__self__, "deregister_on_destroy", deregister_on_destroy)
+            _setter("deregister_on_destroy", deregister_on_destroy)
         if mount_options is not None:
-            pulumi.set(__self__, "mount_options", mount_options)
+            _setter("mount_options", mount_options)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
+            _setter("namespace", namespace)
         if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
+            _setter("parameters", parameters)
         if secrets is not None:
-            pulumi.set(__self__, "secrets", secrets)
+            _setter("secrets", secrets)
         if topology_request is not None:
-            pulumi.set(__self__, "topology_request", topology_request)
+            _setter("topology_request", topology_request)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
 
     @property
     @pulumi.getter(name="externalId")
@@ -339,60 +400,147 @@ class _VolumeState:
         :param pulumi.Input[str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """
+        _VolumeState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_mode=access_mode,
+            attachment_mode=attachment_mode,
+            capabilities=capabilities,
+            context=context,
+            controller_required=controller_required,
+            controllers_expected=controllers_expected,
+            controllers_healthy=controllers_healthy,
+            deregister_on_destroy=deregister_on_destroy,
+            external_id=external_id,
+            mount_options=mount_options,
+            name=name,
+            namespace=namespace,
+            nodes_expected=nodes_expected,
+            nodes_healthy=nodes_healthy,
+            parameters=parameters,
+            plugin_id=plugin_id,
+            plugin_provider=plugin_provider,
+            plugin_provider_version=plugin_provider_version,
+            schedulable=schedulable,
+            secrets=secrets,
+            topologies=topologies,
+            topology_request=topology_request,
+            type=type,
+            volume_id=volume_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_mode: Optional[pulumi.Input[str]] = None,
+             attachment_mode: Optional[pulumi.Input[str]] = None,
+             capabilities: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]]] = None,
+             context: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             controller_required: Optional[pulumi.Input[bool]] = None,
+             controllers_expected: Optional[pulumi.Input[int]] = None,
+             controllers_healthy: Optional[pulumi.Input[int]] = None,
+             deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
+             external_id: Optional[pulumi.Input[str]] = None,
+             mount_options: Optional[pulumi.Input['VolumeMountOptionsArgs']] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             namespace: Optional[pulumi.Input[str]] = None,
+             nodes_expected: Optional[pulumi.Input[int]] = None,
+             nodes_healthy: Optional[pulumi.Input[int]] = None,
+             parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             plugin_id: Optional[pulumi.Input[str]] = None,
+             plugin_provider: Optional[pulumi.Input[str]] = None,
+             plugin_provider_version: Optional[pulumi.Input[str]] = None,
+             schedulable: Optional[pulumi.Input[bool]] = None,
+             secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+             topologies: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTopologyArgs']]]] = None,
+             topology_request: Optional[pulumi.Input['VolumeTopologyRequestArgs']] = None,
+             type: Optional[pulumi.Input[str]] = None,
+             volume_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if access_mode is None and 'accessMode' in kwargs:
+            access_mode = kwargs['accessMode']
+        if attachment_mode is None and 'attachmentMode' in kwargs:
+            attachment_mode = kwargs['attachmentMode']
+        if controller_required is None and 'controllerRequired' in kwargs:
+            controller_required = kwargs['controllerRequired']
+        if controllers_expected is None and 'controllersExpected' in kwargs:
+            controllers_expected = kwargs['controllersExpected']
+        if controllers_healthy is None and 'controllersHealthy' in kwargs:
+            controllers_healthy = kwargs['controllersHealthy']
+        if deregister_on_destroy is None and 'deregisterOnDestroy' in kwargs:
+            deregister_on_destroy = kwargs['deregisterOnDestroy']
+        if external_id is None and 'externalId' in kwargs:
+            external_id = kwargs['externalId']
+        if mount_options is None and 'mountOptions' in kwargs:
+            mount_options = kwargs['mountOptions']
+        if nodes_expected is None and 'nodesExpected' in kwargs:
+            nodes_expected = kwargs['nodesExpected']
+        if nodes_healthy is None and 'nodesHealthy' in kwargs:
+            nodes_healthy = kwargs['nodesHealthy']
+        if plugin_id is None and 'pluginId' in kwargs:
+            plugin_id = kwargs['pluginId']
+        if plugin_provider is None and 'pluginProvider' in kwargs:
+            plugin_provider = kwargs['pluginProvider']
+        if plugin_provider_version is None and 'pluginProviderVersion' in kwargs:
+            plugin_provider_version = kwargs['pluginProviderVersion']
+        if topology_request is None and 'topologyRequest' in kwargs:
+            topology_request = kwargs['topologyRequest']
+        if volume_id is None and 'volumeId' in kwargs:
+            volume_id = kwargs['volumeId']
+
         if access_mode is not None:
             warnings.warn("""use capability instead""", DeprecationWarning)
             pulumi.log.warn("""access_mode is deprecated: use capability instead""")
         if access_mode is not None:
-            pulumi.set(__self__, "access_mode", access_mode)
+            _setter("access_mode", access_mode)
         if attachment_mode is not None:
             warnings.warn("""use capability instead""", DeprecationWarning)
             pulumi.log.warn("""attachment_mode is deprecated: use capability instead""")
         if attachment_mode is not None:
-            pulumi.set(__self__, "attachment_mode", attachment_mode)
+            _setter("attachment_mode", attachment_mode)
         if capabilities is not None:
-            pulumi.set(__self__, "capabilities", capabilities)
+            _setter("capabilities", capabilities)
         if context is not None:
-            pulumi.set(__self__, "context", context)
+            _setter("context", context)
         if controller_required is not None:
-            pulumi.set(__self__, "controller_required", controller_required)
+            _setter("controller_required", controller_required)
         if controllers_expected is not None:
-            pulumi.set(__self__, "controllers_expected", controllers_expected)
+            _setter("controllers_expected", controllers_expected)
         if controllers_healthy is not None:
-            pulumi.set(__self__, "controllers_healthy", controllers_healthy)
+            _setter("controllers_healthy", controllers_healthy)
         if deregister_on_destroy is not None:
-            pulumi.set(__self__, "deregister_on_destroy", deregister_on_destroy)
+            _setter("deregister_on_destroy", deregister_on_destroy)
         if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
+            _setter("external_id", external_id)
         if mount_options is not None:
-            pulumi.set(__self__, "mount_options", mount_options)
+            _setter("mount_options", mount_options)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if namespace is not None:
-            pulumi.set(__self__, "namespace", namespace)
+            _setter("namespace", namespace)
         if nodes_expected is not None:
-            pulumi.set(__self__, "nodes_expected", nodes_expected)
+            _setter("nodes_expected", nodes_expected)
         if nodes_healthy is not None:
-            pulumi.set(__self__, "nodes_healthy", nodes_healthy)
+            _setter("nodes_healthy", nodes_healthy)
         if parameters is not None:
-            pulumi.set(__self__, "parameters", parameters)
+            _setter("parameters", parameters)
         if plugin_id is not None:
-            pulumi.set(__self__, "plugin_id", plugin_id)
+            _setter("plugin_id", plugin_id)
         if plugin_provider is not None:
-            pulumi.set(__self__, "plugin_provider", plugin_provider)
+            _setter("plugin_provider", plugin_provider)
         if plugin_provider_version is not None:
-            pulumi.set(__self__, "plugin_provider_version", plugin_provider_version)
+            _setter("plugin_provider_version", plugin_provider_version)
         if schedulable is not None:
-            pulumi.set(__self__, "schedulable", schedulable)
+            _setter("schedulable", schedulable)
         if secrets is not None:
-            pulumi.set(__self__, "secrets", secrets)
+            _setter("secrets", secrets)
         if topologies is not None:
-            pulumi.set(__self__, "topologies", topologies)
+            _setter("topologies", topologies)
         if topology_request is not None:
-            pulumi.set(__self__, "topology_request", topology_request)
+            _setter("topology_request", topology_request)
         if type is not None:
-            pulumi.set(__self__, "type", type)
+            _setter("type", type)
         if volume_id is not None:
-            pulumi.set(__self__, "volume_id", volume_id)
+            _setter("volume_id", volume_id)
 
     @property
     @pulumi.getter(name="accessMode")
@@ -840,6 +988,10 @@ class Volume(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            VolumeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -877,6 +1029,11 @@ class Volume(pulumi.CustomResource):
             if external_id is None and not opts.urn:
                 raise TypeError("Missing required property 'external_id'")
             __props__.__dict__["external_id"] = external_id
+            if mount_options is not None and not isinstance(mount_options, VolumeMountOptionsArgs):
+                mount_options = mount_options or {}
+                def _setter(key, value):
+                    mount_options[key] = value
+                VolumeMountOptionsArgs._configure(_setter, **mount_options)
             __props__.__dict__["mount_options"] = mount_options
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
@@ -885,6 +1042,11 @@ class Volume(pulumi.CustomResource):
                 raise TypeError("Missing required property 'plugin_id'")
             __props__.__dict__["plugin_id"] = plugin_id
             __props__.__dict__["secrets"] = None if secrets is None else pulumi.Output.secret(secrets)
+            if topology_request is not None and not isinstance(topology_request, VolumeTopologyRequestArgs):
+                topology_request = topology_request or {}
+                def _setter(key, value):
+                    topology_request[key] = value
+                VolumeTopologyRequestArgs._configure(_setter, **topology_request)
             __props__.__dict__["topology_request"] = topology_request
             __props__.__dict__["type"] = type
             if volume_id is None and not opts.urn:
