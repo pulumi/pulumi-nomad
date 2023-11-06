@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of node pools available in Nomad.
@@ -110,12 +109,6 @@ func (o GetNodePoolsResultOutput) ToGetNodePoolsResultOutput() GetNodePoolsResul
 
 func (o GetNodePoolsResultOutput) ToGetNodePoolsResultOutputWithContext(ctx context.Context) GetNodePoolsResultOutput {
 	return o
-}
-
-func (o GetNodePoolsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetNodePoolsResult] {
-	return pulumix.Output[GetNodePoolsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetNodePoolsResultOutput) Filter() pulumi.StringPtrOutput {

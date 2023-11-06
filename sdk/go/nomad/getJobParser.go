@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Parse a HCL jobspec and produce the equivalent JSON encoded job.
@@ -119,12 +118,6 @@ func (o GetJobParserResultOutput) ToGetJobParserResultOutput() GetJobParserResul
 
 func (o GetJobParserResultOutput) ToGetJobParserResultOutputWithContext(ctx context.Context) GetJobParserResultOutput {
 	return o
-}
-
-func (o GetJobParserResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetJobParserResult] {
-	return pulumix.Output[GetJobParserResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(boolean: true)` - flag to enable setting any unset fields to their default values.

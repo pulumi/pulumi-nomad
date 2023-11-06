@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages scheduler configuration of the Nomad cluster.
@@ -157,12 +156,6 @@ func (i *SchedulerConfig) ToSchedulerConfigOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SchedulerConfigOutput)
 }
 
-func (i *SchedulerConfig) ToOutput(ctx context.Context) pulumix.Output[*SchedulerConfig] {
-	return pulumix.Output[*SchedulerConfig]{
-		OutputState: i.ToSchedulerConfigOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SchedulerConfigArrayInput is an input type that accepts SchedulerConfigArray and SchedulerConfigArrayOutput values.
 // You can construct a concrete instance of `SchedulerConfigArrayInput` via:
 //
@@ -186,12 +179,6 @@ func (i SchedulerConfigArray) ToSchedulerConfigArrayOutput() SchedulerConfigArra
 
 func (i SchedulerConfigArray) ToSchedulerConfigArrayOutputWithContext(ctx context.Context) SchedulerConfigArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SchedulerConfigArrayOutput)
-}
-
-func (i SchedulerConfigArray) ToOutput(ctx context.Context) pulumix.Output[[]*SchedulerConfig] {
-	return pulumix.Output[[]*SchedulerConfig]{
-		OutputState: i.ToSchedulerConfigArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SchedulerConfigMapInput is an input type that accepts SchedulerConfigMap and SchedulerConfigMapOutput values.
@@ -219,12 +206,6 @@ func (i SchedulerConfigMap) ToSchedulerConfigMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SchedulerConfigMapOutput)
 }
 
-func (i SchedulerConfigMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SchedulerConfig] {
-	return pulumix.Output[map[string]*SchedulerConfig]{
-		OutputState: i.ToSchedulerConfigMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SchedulerConfigOutput struct{ *pulumi.OutputState }
 
 func (SchedulerConfigOutput) ElementType() reflect.Type {
@@ -237,12 +218,6 @@ func (o SchedulerConfigOutput) ToSchedulerConfigOutput() SchedulerConfigOutput {
 
 func (o SchedulerConfigOutput) ToSchedulerConfigOutputWithContext(ctx context.Context) SchedulerConfigOutput {
 	return o
-}
-
-func (o SchedulerConfigOutput) ToOutput(ctx context.Context) pulumix.Output[*SchedulerConfig] {
-	return pulumix.Output[*SchedulerConfig]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
@@ -274,12 +249,6 @@ func (o SchedulerConfigArrayOutput) ToSchedulerConfigArrayOutputWithContext(ctx 
 	return o
 }
 
-func (o SchedulerConfigArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SchedulerConfig] {
-	return pulumix.Output[[]*SchedulerConfig]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SchedulerConfigArrayOutput) Index(i pulumi.IntInput) SchedulerConfigOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SchedulerConfig {
 		return vs[0].([]*SchedulerConfig)[vs[1].(int)]
@@ -298,12 +267,6 @@ func (o SchedulerConfigMapOutput) ToSchedulerConfigMapOutput() SchedulerConfigMa
 
 func (o SchedulerConfigMapOutput) ToSchedulerConfigMapOutputWithContext(ctx context.Context) SchedulerConfigMapOutput {
 	return o
-}
-
-func (o SchedulerConfigMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SchedulerConfig] {
-	return pulumix.Output[map[string]*SchedulerConfig]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SchedulerConfigMapOutput) MapIndex(k pulumi.StringInput) SchedulerConfigOutput {

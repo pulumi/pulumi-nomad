@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of volumes in Nomad.
@@ -114,12 +113,6 @@ func (o GetVolumesResultOutput) ToGetVolumesResultOutput() GetVolumesResultOutpu
 
 func (o GetVolumesResultOutput) ToGetVolumesResultOutputWithContext(ctx context.Context) GetVolumesResultOutput {
 	return o
-}
-
-func (o GetVolumesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetVolumesResult] {
-	return pulumix.Output[GetVolumesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

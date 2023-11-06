@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -363,12 +362,6 @@ func (i *ExternalVolume) ToExternalVolumeOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeOutput)
 }
 
-func (i *ExternalVolume) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolume] {
-	return pulumix.Output[*ExternalVolume]{
-		OutputState: i.ToExternalVolumeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ExternalVolumeArrayInput is an input type that accepts ExternalVolumeArray and ExternalVolumeArrayOutput values.
 // You can construct a concrete instance of `ExternalVolumeArrayInput` via:
 //
@@ -392,12 +385,6 @@ func (i ExternalVolumeArray) ToExternalVolumeArrayOutput() ExternalVolumeArrayOu
 
 func (i ExternalVolumeArray) ToExternalVolumeArrayOutputWithContext(ctx context.Context) ExternalVolumeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeArrayOutput)
-}
-
-func (i ExternalVolumeArray) ToOutput(ctx context.Context) pulumix.Output[[]*ExternalVolume] {
-	return pulumix.Output[[]*ExternalVolume]{
-		OutputState: i.ToExternalVolumeArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ExternalVolumeMapInput is an input type that accepts ExternalVolumeMap and ExternalVolumeMapOutput values.
@@ -425,12 +412,6 @@ func (i ExternalVolumeMap) ToExternalVolumeMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(ExternalVolumeMapOutput)
 }
 
-func (i ExternalVolumeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExternalVolume] {
-	return pulumix.Output[map[string]*ExternalVolume]{
-		OutputState: i.ToExternalVolumeMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ExternalVolumeOutput struct{ *pulumi.OutputState }
 
 func (ExternalVolumeOutput) ElementType() reflect.Type {
@@ -443,12 +424,6 @@ func (o ExternalVolumeOutput) ToExternalVolumeOutput() ExternalVolumeOutput {
 
 func (o ExternalVolumeOutput) ToExternalVolumeOutputWithContext(ctx context.Context) ExternalVolumeOutput {
 	return o
-}
-
-func (o ExternalVolumeOutput) ToOutput(ctx context.Context) pulumix.Output[*ExternalVolume] {
-	return pulumix.Output[*ExternalVolume]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(“Capability“: <required>)` - Options for validating the capability of a volume.
@@ -580,12 +555,6 @@ func (o ExternalVolumeArrayOutput) ToExternalVolumeArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o ExternalVolumeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ExternalVolume] {
-	return pulumix.Output[[]*ExternalVolume]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ExternalVolumeArrayOutput) Index(i pulumi.IntInput) ExternalVolumeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExternalVolume {
 		return vs[0].([]*ExternalVolume)[vs[1].(int)]
@@ -604,12 +573,6 @@ func (o ExternalVolumeMapOutput) ToExternalVolumeMapOutput() ExternalVolumeMapOu
 
 func (o ExternalVolumeMapOutput) ToExternalVolumeMapOutputWithContext(ctx context.Context) ExternalVolumeMapOutput {
 	return o
-}
-
-func (o ExternalVolumeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExternalVolume] {
-	return pulumix.Output[map[string]*ExternalVolume]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ExternalVolumeMapOutput) MapIndex(k pulumi.StringInput) ExternalVolumeOutput {

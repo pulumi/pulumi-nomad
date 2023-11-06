@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -47,12 +46,6 @@ func (i HeadersArgs) ToHeadersOutputWithContext(ctx context.Context) HeadersOutp
 	return pulumi.ToOutputWithContext(ctx, i).(HeadersOutput)
 }
 
-func (i HeadersArgs) ToOutput(ctx context.Context) pulumix.Output[Headers] {
-	return pulumix.Output[Headers]{
-		OutputState: i.ToHeadersOutputWithContext(ctx).OutputState,
-	}
-}
-
 // HeadersArrayInput is an input type that accepts HeadersArray and HeadersArrayOutput values.
 // You can construct a concrete instance of `HeadersArrayInput` via:
 //
@@ -78,12 +71,6 @@ func (i HeadersArray) ToHeadersArrayOutputWithContext(ctx context.Context) Heade
 	return pulumi.ToOutputWithContext(ctx, i).(HeadersArrayOutput)
 }
 
-func (i HeadersArray) ToOutput(ctx context.Context) pulumix.Output[[]Headers] {
-	return pulumix.Output[[]Headers]{
-		OutputState: i.ToHeadersArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type HeadersOutput struct{ *pulumi.OutputState }
 
 func (HeadersOutput) ElementType() reflect.Type {
@@ -96,12 +83,6 @@ func (o HeadersOutput) ToHeadersOutput() HeadersOutput {
 
 func (o HeadersOutput) ToHeadersOutputWithContext(ctx context.Context) HeadersOutput {
 	return o
-}
-
-func (o HeadersOutput) ToOutput(ctx context.Context) pulumix.Output[Headers] {
-	return pulumix.Output[Headers]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o HeadersOutput) Name() pulumi.StringOutput {
@@ -124,12 +105,6 @@ func (o HeadersArrayOutput) ToHeadersArrayOutput() HeadersArrayOutput {
 
 func (o HeadersArrayOutput) ToHeadersArrayOutputWithContext(ctx context.Context) HeadersArrayOutput {
 	return o
-}
-
-func (o HeadersArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]Headers] {
-	return pulumix.Output[[]Headers]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o HeadersArrayOutput) Index(i pulumi.IntInput) HeadersOutput {

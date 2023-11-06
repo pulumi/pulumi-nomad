@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve the cluster's [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
@@ -83,12 +82,6 @@ func (o GetSchedulerPolicyResultOutput) ToGetSchedulerPolicyResultOutput() GetSc
 
 func (o GetSchedulerPolicyResultOutput) ToGetSchedulerPolicyResultOutputWithContext(ctx context.Context) GetSchedulerPolicyResultOutput {
 	return o
-}
-
-func (o GetSchedulerPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSchedulerPolicyResult] {
-	return pulumix.Output[GetSchedulerPolicyResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

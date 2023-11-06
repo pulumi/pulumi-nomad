@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provisions a namespace within a Nomad cluster.
@@ -232,12 +231,6 @@ func (i *Namespace) ToNamespaceOutputWithContext(ctx context.Context) NamespaceO
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceOutput)
 }
 
-func (i *Namespace) ToOutput(ctx context.Context) pulumix.Output[*Namespace] {
-	return pulumix.Output[*Namespace]{
-		OutputState: i.ToNamespaceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NamespaceArrayInput is an input type that accepts NamespaceArray and NamespaceArrayOutput values.
 // You can construct a concrete instance of `NamespaceArrayInput` via:
 //
@@ -261,12 +254,6 @@ func (i NamespaceArray) ToNamespaceArrayOutput() NamespaceArrayOutput {
 
 func (i NamespaceArray) ToNamespaceArrayOutputWithContext(ctx context.Context) NamespaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceArrayOutput)
-}
-
-func (i NamespaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*Namespace] {
-	return pulumix.Output[[]*Namespace]{
-		OutputState: i.ToNamespaceArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // NamespaceMapInput is an input type that accepts NamespaceMap and NamespaceMapOutput values.
@@ -294,12 +281,6 @@ func (i NamespaceMap) ToNamespaceMapOutputWithContext(ctx context.Context) Names
 	return pulumi.ToOutputWithContext(ctx, i).(NamespaceMapOutput)
 }
 
-func (i NamespaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Namespace] {
-	return pulumix.Output[map[string]*Namespace]{
-		OutputState: i.ToNamespaceMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NamespaceOutput struct{ *pulumi.OutputState }
 
 func (NamespaceOutput) ElementType() reflect.Type {
@@ -312,12 +293,6 @@ func (o NamespaceOutput) ToNamespaceOutput() NamespaceOutput {
 
 func (o NamespaceOutput) ToNamespaceOutputWithContext(ctx context.Context) NamespaceOutput {
 	return o
-}
-
-func (o NamespaceOutput) ToOutput(ctx context.Context) pulumix.Output[*Namespace] {
-	return pulumix.Output[*Namespace]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(block: <optional>)` - A block of capabilities for the namespace. Can't
@@ -365,12 +340,6 @@ func (o NamespaceArrayOutput) ToNamespaceArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o NamespaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Namespace] {
-	return pulumix.Output[[]*Namespace]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o NamespaceArrayOutput) Index(i pulumi.IntInput) NamespaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Namespace {
 		return vs[0].([]*Namespace)[vs[1].(int)]
@@ -389,12 +358,6 @@ func (o NamespaceMapOutput) ToNamespaceMapOutput() NamespaceMapOutput {
 
 func (o NamespaceMapOutput) ToNamespaceMapOutputWithContext(ctx context.Context) NamespaceMapOutput {
 	return o
-}
-
-func (o NamespaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Namespace] {
-	return pulumix.Output[map[string]*Namespace]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NamespaceMapOutput) MapIndex(k pulumi.StringInput) NamespaceOutput {
