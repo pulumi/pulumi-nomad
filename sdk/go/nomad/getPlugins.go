@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of dynamic plugins in Nomad.
@@ -96,12 +95,6 @@ func (o GetPluginsResultOutput) ToGetPluginsResultOutput() GetPluginsResultOutpu
 
 func (o GetPluginsResultOutput) ToGetPluginsResultOutputWithContext(ctx context.Context) GetPluginsResultOutput {
 	return o
-}
-
-func (o GetPluginsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetPluginsResult] {
-	return pulumix.Output[GetPluginsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

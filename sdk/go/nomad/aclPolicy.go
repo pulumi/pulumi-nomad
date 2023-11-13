@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages an ACL policy registered in Nomad.
@@ -205,12 +204,6 @@ func (i *AclPolicy) ToAclPolicyOutputWithContext(ctx context.Context) AclPolicyO
 	return pulumi.ToOutputWithContext(ctx, i).(AclPolicyOutput)
 }
 
-func (i *AclPolicy) ToOutput(ctx context.Context) pulumix.Output[*AclPolicy] {
-	return pulumix.Output[*AclPolicy]{
-		OutputState: i.ToAclPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AclPolicyArrayInput is an input type that accepts AclPolicyArray and AclPolicyArrayOutput values.
 // You can construct a concrete instance of `AclPolicyArrayInput` via:
 //
@@ -234,12 +227,6 @@ func (i AclPolicyArray) ToAclPolicyArrayOutput() AclPolicyArrayOutput {
 
 func (i AclPolicyArray) ToAclPolicyArrayOutputWithContext(ctx context.Context) AclPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AclPolicyArrayOutput)
-}
-
-func (i AclPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*AclPolicy] {
-	return pulumix.Output[[]*AclPolicy]{
-		OutputState: i.ToAclPolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AclPolicyMapInput is an input type that accepts AclPolicyMap and AclPolicyMapOutput values.
@@ -267,12 +254,6 @@ func (i AclPolicyMap) ToAclPolicyMapOutputWithContext(ctx context.Context) AclPo
 	return pulumi.ToOutputWithContext(ctx, i).(AclPolicyMapOutput)
 }
 
-func (i AclPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AclPolicy] {
-	return pulumix.Output[map[string]*AclPolicy]{
-		OutputState: i.ToAclPolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AclPolicyOutput struct{ *pulumi.OutputState }
 
 func (AclPolicyOutput) ElementType() reflect.Type {
@@ -285,12 +266,6 @@ func (o AclPolicyOutput) ToAclPolicyOutput() AclPolicyOutput {
 
 func (o AclPolicyOutput) ToAclPolicyOutputWithContext(ctx context.Context) AclPolicyOutput {
 	return o
-}
-
-func (o AclPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*AclPolicy] {
-	return pulumix.Output[*AclPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(string: "")` - A description of the policy.
@@ -328,12 +303,6 @@ func (o AclPolicyArrayOutput) ToAclPolicyArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o AclPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AclPolicy] {
-	return pulumix.Output[[]*AclPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AclPolicyArrayOutput) Index(i pulumi.IntInput) AclPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AclPolicy {
 		return vs[0].([]*AclPolicy)[vs[1].(int)]
@@ -352,12 +321,6 @@ func (o AclPolicyMapOutput) ToAclPolicyMapOutput() AclPolicyMapOutput {
 
 func (o AclPolicyMapOutput) ToAclPolicyMapOutputWithContext(ctx context.Context) AclPolicyMapOutput {
 	return o
-}
-
-func (o AclPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AclPolicy] {
-	return pulumix.Output[map[string]*AclPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AclPolicyMapOutput) MapIndex(k pulumi.StringInput) AclPolicyOutput {

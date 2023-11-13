@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get a list of ACL tokens.
@@ -100,12 +99,6 @@ func (o GetAclTokensResultOutput) ToGetAclTokensResultOutput() GetAclTokensResul
 
 func (o GetAclTokensResultOutput) ToGetAclTokensResultOutputWithContext(ctx context.Context) GetAclTokensResultOutput {
 	return o
-}
-
-func (o GetAclTokensResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclTokensResult] {
-	return pulumix.Output[GetAclTokensResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(list of objects)` The list of tokens found in the given prefix.

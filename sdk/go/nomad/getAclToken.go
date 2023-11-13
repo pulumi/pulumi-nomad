@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -118,12 +117,6 @@ func (o LookupAclTokenResultOutput) ToLookupAclTokenResultOutput() LookupAclToke
 
 func (o LookupAclTokenResultOutput) ToLookupAclTokenResultOutputWithContext(ctx context.Context) LookupAclTokenResultOutput {
 	return o
-}
-
-func (o LookupAclTokenResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAclTokenResult] {
-	return pulumix.Output[LookupAclTokenResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(string)` Non-sensitive identifier for this token.

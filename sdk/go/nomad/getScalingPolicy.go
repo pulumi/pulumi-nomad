@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a Scaling Policy.
@@ -108,12 +107,6 @@ func (o GetScalingPolicyResultOutput) ToGetScalingPolicyResultOutput() GetScalin
 
 func (o GetScalingPolicyResultOutput) ToGetScalingPolicyResultOutputWithContext(ctx context.Context) GetScalingPolicyResultOutput {
 	return o
-}
-
-func (o GetScalingPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetScalingPolicyResult] {
-	return pulumix.Output[GetScalingPolicyResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(boolean)` - Whether or not the scaling policy is enabled.
