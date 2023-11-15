@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of deployments in Nomad.
@@ -79,12 +78,6 @@ func (o GetDeploymentsResultOutput) ToGetDeploymentsResultOutput() GetDeployment
 
 func (o GetDeploymentsResultOutput) ToGetDeploymentsResultOutputWithContext(ctx context.Context) GetDeploymentsResultOutput {
 	return o
-}
-
-func (o GetDeploymentsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDeploymentsResult] {
-	return pulumix.Output[GetDeploymentsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `list of maps` a list of deployments in the cluster.

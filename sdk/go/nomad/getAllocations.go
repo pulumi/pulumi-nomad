@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of allocations from Nomad.
@@ -110,12 +109,6 @@ func (o GetAllocationsResultOutput) ToGetAllocationsResultOutput() GetAllocation
 
 func (o GetAllocationsResultOutput) ToGetAllocationsResultOutputWithContext(ctx context.Context) GetAllocationsResultOutput {
 	return o
-}
-
-func (o GetAllocationsResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAllocationsResult] {
-	return pulumix.Output[GetAllocationsResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(list of allocations)` - A list of allocations matching the

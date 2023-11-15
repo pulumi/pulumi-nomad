@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages an ACL Auth Method in Nomad.
@@ -231,12 +230,6 @@ func (i *AclAuthMethod) ToAclAuthMethodOutputWithContext(ctx context.Context) Ac
 	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodOutput)
 }
 
-func (i *AclAuthMethod) ToOutput(ctx context.Context) pulumix.Output[*AclAuthMethod] {
-	return pulumix.Output[*AclAuthMethod]{
-		OutputState: i.ToAclAuthMethodOutputWithContext(ctx).OutputState,
-	}
-}
-
 // AclAuthMethodArrayInput is an input type that accepts AclAuthMethodArray and AclAuthMethodArrayOutput values.
 // You can construct a concrete instance of `AclAuthMethodArrayInput` via:
 //
@@ -260,12 +253,6 @@ func (i AclAuthMethodArray) ToAclAuthMethodArrayOutput() AclAuthMethodArrayOutpu
 
 func (i AclAuthMethodArray) ToAclAuthMethodArrayOutputWithContext(ctx context.Context) AclAuthMethodArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodArrayOutput)
-}
-
-func (i AclAuthMethodArray) ToOutput(ctx context.Context) pulumix.Output[[]*AclAuthMethod] {
-	return pulumix.Output[[]*AclAuthMethod]{
-		OutputState: i.ToAclAuthMethodArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // AclAuthMethodMapInput is an input type that accepts AclAuthMethodMap and AclAuthMethodMapOutput values.
@@ -293,12 +280,6 @@ func (i AclAuthMethodMap) ToAclAuthMethodMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodMapOutput)
 }
 
-func (i AclAuthMethodMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AclAuthMethod] {
-	return pulumix.Output[map[string]*AclAuthMethod]{
-		OutputState: i.ToAclAuthMethodMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type AclAuthMethodOutput struct{ *pulumi.OutputState }
 
 func (AclAuthMethodOutput) ElementType() reflect.Type {
@@ -311,12 +292,6 @@ func (o AclAuthMethodOutput) ToAclAuthMethodOutput() AclAuthMethodOutput {
 
 func (o AclAuthMethodOutput) ToAclAuthMethodOutputWithContext(ctx context.Context) AclAuthMethodOutput {
 	return o
-}
-
-func (o AclAuthMethodOutput) ToOutput(ctx context.Context) pulumix.Output[*AclAuthMethod] {
-	return pulumix.Output[*AclAuthMethod]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Configuration specific to the auth method provider.
@@ -368,12 +343,6 @@ func (o AclAuthMethodArrayOutput) ToAclAuthMethodArrayOutputWithContext(ctx cont
 	return o
 }
 
-func (o AclAuthMethodArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AclAuthMethod] {
-	return pulumix.Output[[]*AclAuthMethod]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o AclAuthMethodArrayOutput) Index(i pulumi.IntInput) AclAuthMethodOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AclAuthMethod {
 		return vs[0].([]*AclAuthMethod)[vs[1].(int)]
@@ -392,12 +361,6 @@ func (o AclAuthMethodMapOutput) ToAclAuthMethodMapOutput() AclAuthMethodMapOutpu
 
 func (o AclAuthMethodMapOutput) ToAclAuthMethodMapOutputWithContext(ctx context.Context) AclAuthMethodMapOutput {
 	return o
-}
-
-func (o AclAuthMethodMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AclAuthMethod] {
-	return pulumix.Output[map[string]*AclAuthMethod]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o AclAuthMethodMapOutput) MapIndex(k pulumi.StringInput) AclAuthMethodOutput {

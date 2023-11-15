@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information on an ACL Role.
@@ -103,12 +102,6 @@ func (o LookupAclRoleResultOutput) ToLookupAclRoleResultOutput() LookupAclRoleRe
 
 func (o LookupAclRoleResultOutput) ToLookupAclRoleResultOutputWithContext(ctx context.Context) LookupAclRoleResultOutput {
 	return o
-}
-
-func (o LookupAclRoleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupAclRoleResult] {
-	return pulumix.Output[LookupAclRoleResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(string)` - The description of the ACL Role.

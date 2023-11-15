@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Lookup a plugin by ID. The aim of this datasource is to determine whether
@@ -137,12 +136,6 @@ func (o GetPluginResultOutput) ToGetPluginResultOutput() GetPluginResultOutput {
 
 func (o GetPluginResultOutput) ToGetPluginResultOutputWithContext(ctx context.Context) GetPluginResultOutput {
 	return o
-}
-
-func (o GetPluginResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetPluginResult] {
-	return pulumix.Output[GetPluginResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(boolean)` Whether a controller is required.
