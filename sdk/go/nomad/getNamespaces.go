@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of namespaces available in Nomad.
@@ -94,12 +93,6 @@ func (o GetNamespacesResultOutput) ToGetNamespacesResultOutput() GetNamespacesRe
 
 func (o GetNamespacesResultOutput) ToGetNamespacesResultOutputWithContext(ctx context.Context) GetNamespacesResultOutput {
 	return o
-}
-
-func (o GetNamespacesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetNamespacesResult] {
-	return pulumix.Output[GetNamespacesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // ## Example Usage
@@ -341,12 +340,6 @@ func (i *CsiVolumeRegistration) ToCsiVolumeRegistrationOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationOutput)
 }
 
-func (i *CsiVolumeRegistration) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeRegistration] {
-	return pulumix.Output[*CsiVolumeRegistration]{
-		OutputState: i.ToCsiVolumeRegistrationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // CsiVolumeRegistrationArrayInput is an input type that accepts CsiVolumeRegistrationArray and CsiVolumeRegistrationArrayOutput values.
 // You can construct a concrete instance of `CsiVolumeRegistrationArrayInput` via:
 //
@@ -370,12 +363,6 @@ func (i CsiVolumeRegistrationArray) ToCsiVolumeRegistrationArrayOutput() CsiVolu
 
 func (i CsiVolumeRegistrationArray) ToCsiVolumeRegistrationArrayOutputWithContext(ctx context.Context) CsiVolumeRegistrationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationArrayOutput)
-}
-
-func (i CsiVolumeRegistrationArray) ToOutput(ctx context.Context) pulumix.Output[[]*CsiVolumeRegistration] {
-	return pulumix.Output[[]*CsiVolumeRegistration]{
-		OutputState: i.ToCsiVolumeRegistrationArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // CsiVolumeRegistrationMapInput is an input type that accepts CsiVolumeRegistrationMap and CsiVolumeRegistrationMapOutput values.
@@ -403,12 +390,6 @@ func (i CsiVolumeRegistrationMap) ToCsiVolumeRegistrationMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(CsiVolumeRegistrationMapOutput)
 }
 
-func (i CsiVolumeRegistrationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CsiVolumeRegistration] {
-	return pulumix.Output[map[string]*CsiVolumeRegistration]{
-		OutputState: i.ToCsiVolumeRegistrationMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type CsiVolumeRegistrationOutput struct{ *pulumi.OutputState }
 
 func (CsiVolumeRegistrationOutput) ElementType() reflect.Type {
@@ -421,12 +402,6 @@ func (o CsiVolumeRegistrationOutput) ToCsiVolumeRegistrationOutput() CsiVolumeRe
 
 func (o CsiVolumeRegistrationOutput) ToCsiVolumeRegistrationOutputWithContext(ctx context.Context) CsiVolumeRegistrationOutput {
 	return o
-}
-
-func (o CsiVolumeRegistrationOutput) ToOutput(ctx context.Context) pulumix.Output[*CsiVolumeRegistration] {
-	return pulumix.Output[*CsiVolumeRegistration]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(“Capability“: <required>)` - Options for validating the capability of a volume.
@@ -548,12 +523,6 @@ func (o CsiVolumeRegistrationArrayOutput) ToCsiVolumeRegistrationArrayOutputWith
 	return o
 }
 
-func (o CsiVolumeRegistrationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CsiVolumeRegistration] {
-	return pulumix.Output[[]*CsiVolumeRegistration]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o CsiVolumeRegistrationArrayOutput) Index(i pulumi.IntInput) CsiVolumeRegistrationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CsiVolumeRegistration {
 		return vs[0].([]*CsiVolumeRegistration)[vs[1].(int)]
@@ -572,12 +541,6 @@ func (o CsiVolumeRegistrationMapOutput) ToCsiVolumeRegistrationMapOutput() CsiVo
 
 func (o CsiVolumeRegistrationMapOutput) ToCsiVolumeRegistrationMapOutputWithContext(ctx context.Context) CsiVolumeRegistrationMapOutput {
 	return o
-}
-
-func (o CsiVolumeRegistrationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CsiVolumeRegistration] {
-	return pulumix.Output[map[string]*CsiVolumeRegistration]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o CsiVolumeRegistrationMapOutput) MapIndex(k pulumi.StringInput) CsiVolumeRegistrationOutput {

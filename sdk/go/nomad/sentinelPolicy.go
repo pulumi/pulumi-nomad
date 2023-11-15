@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Manages a Sentinel policy registered in Nomad.
@@ -215,12 +214,6 @@ func (i *SentinelPolicy) ToSentinelPolicyOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SentinelPolicyOutput)
 }
 
-func (i *SentinelPolicy) ToOutput(ctx context.Context) pulumix.Output[*SentinelPolicy] {
-	return pulumix.Output[*SentinelPolicy]{
-		OutputState: i.ToSentinelPolicyOutputWithContext(ctx).OutputState,
-	}
-}
-
 // SentinelPolicyArrayInput is an input type that accepts SentinelPolicyArray and SentinelPolicyArrayOutput values.
 // You can construct a concrete instance of `SentinelPolicyArrayInput` via:
 //
@@ -244,12 +237,6 @@ func (i SentinelPolicyArray) ToSentinelPolicyArrayOutput() SentinelPolicyArrayOu
 
 func (i SentinelPolicyArray) ToSentinelPolicyArrayOutputWithContext(ctx context.Context) SentinelPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SentinelPolicyArrayOutput)
-}
-
-func (i SentinelPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SentinelPolicy] {
-	return pulumix.Output[[]*SentinelPolicy]{
-		OutputState: i.ToSentinelPolicyArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // SentinelPolicyMapInput is an input type that accepts SentinelPolicyMap and SentinelPolicyMapOutput values.
@@ -277,12 +264,6 @@ func (i SentinelPolicyMap) ToSentinelPolicyMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SentinelPolicyMapOutput)
 }
 
-func (i SentinelPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SentinelPolicy] {
-	return pulumix.Output[map[string]*SentinelPolicy]{
-		OutputState: i.ToSentinelPolicyMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type SentinelPolicyOutput struct{ *pulumi.OutputState }
 
 func (SentinelPolicyOutput) ElementType() reflect.Type {
@@ -295,12 +276,6 @@ func (o SentinelPolicyOutput) ToSentinelPolicyOutput() SentinelPolicyOutput {
 
 func (o SentinelPolicyOutput) ToSentinelPolicyOutputWithContext(ctx context.Context) SentinelPolicyOutput {
 	return o
-}
-
-func (o SentinelPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*SentinelPolicy] {
-	return pulumix.Output[*SentinelPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(string: "")` - A description of the policy.
@@ -346,12 +321,6 @@ func (o SentinelPolicyArrayOutput) ToSentinelPolicyArrayOutputWithContext(ctx co
 	return o
 }
 
-func (o SentinelPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SentinelPolicy] {
-	return pulumix.Output[[]*SentinelPolicy]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o SentinelPolicyArrayOutput) Index(i pulumi.IntInput) SentinelPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SentinelPolicy {
 		return vs[0].([]*SentinelPolicy)[vs[1].(int)]
@@ -370,12 +339,6 @@ func (o SentinelPolicyMapOutput) ToSentinelPolicyMapOutput() SentinelPolicyMapOu
 
 func (o SentinelPolicyMapOutput) ToSentinelPolicyMapOutputWithContext(ctx context.Context) SentinelPolicyMapOutput {
 	return o
-}
-
-func (o SentinelPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SentinelPolicy] {
-	return pulumix.Output[map[string]*SentinelPolicy]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o SentinelPolicyMapOutput) MapIndex(k pulumi.StringInput) SentinelPolicyOutput {

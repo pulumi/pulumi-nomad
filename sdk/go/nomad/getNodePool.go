@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information about a node pool in Nomad.
@@ -105,12 +104,6 @@ func (o LookupNodePoolResultOutput) ToLookupNodePoolResultOutput() LookupNodePoo
 
 func (o LookupNodePoolResultOutput) ToLookupNodePoolResultOutputWithContext(ctx context.Context) LookupNodePoolResultOutput {
 	return o
-}
-
-func (o LookupNodePoolResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupNodePoolResult] {
-	return pulumix.Output[LookupNodePoolResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // `(string)` - The description of the node pool.

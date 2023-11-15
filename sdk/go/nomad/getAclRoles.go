@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve a list of ACL Roles.
@@ -101,12 +100,6 @@ func (o GetAclRolesResultOutput) ToGetAclRolesResultOutput() GetAclRolesResultOu
 
 func (o GetAclRolesResultOutput) ToGetAclRolesResultOutputWithContext(ctx context.Context) GetAclRolesResultOutput {
 	return o
-}
-
-func (o GetAclRolesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetAclRolesResult] {
-	return pulumix.Output[GetAclRolesResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetAclRolesResultOutput) AclRoles() GetAclRolesAclRoleArrayOutput {
