@@ -224,7 +224,7 @@
                 },
                 "task": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e` - The task to attach the policy.\n\n[nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies\n"
+                    "description": "`(string: \u003coptional\u003e` - The task to attach the policy.\n"
                 }
             },
             "type": "object",
@@ -271,11 +271,11 @@
             "properties": {
                 "accessMode": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n"
+                    "description": "`(string: \u003crequired\u003e)` - Defines whether a volume should be available concurrently. Possible values are:\n"
                 },
                 "attachmentMode": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The storage API that will be used by the volume. Possible values are:\n- `block-device`\n- `file-system`\n"
+                    "description": "`(string)`\n"
                 }
             },
             "type": "object",
@@ -304,11 +304,11 @@
             "properties": {
                 "accessMode": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n"
+                    "description": "`(string: \u003crequired\u003e)` - Defines whether a volume should be available concurrently. Possible values are:\n"
                 },
                 "attachmentMode": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The storage API that will be used by the volume. Possible values are:\n- `block-device`\n- `file-system`\n"
+                    "description": "`(string)`\n"
                 }
             },
             "type": "object",
@@ -495,11 +495,11 @@
             "properties": {
                 "accessMode": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n"
+                    "description": "`(string: \u003crequired\u003e)` - Defines whether a volume should be available concurrently. Possible values are:\n"
                 },
                 "attachmentMode": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The storage API that will be used by the volume. Possible values are:\n- `block-device`\n- `file-system`\n"
+                    "description": "`(string)`\n"
                 }
             },
             "type": "object",
@@ -881,11 +881,11 @@
             "properties": {
                 "accessMode": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n"
+                    "description": "`(string: \u003crequired\u003e)` - Defines whether a volume should be available concurrently. Possible values are:\n"
                 },
                 "attachmentMode": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The storage API that will be used by the volume. Possible values are:\n- `block-device`\n- `file-system`\n"
+                    "description": "`(string)`\n"
                 }
             },
             "type": "object",
@@ -3800,7 +3800,7 @@
             "properties": {
                 "description": {
                     "type": "string",
-                    "description": "`(string: \"\")` - A description of the policy.\n\n[scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope\n[enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level\n"
+                    "description": "`(string: \"\")` - A description of the policy.\n"
                 },
                 "enforcementLevel": {
                     "type": "string",
@@ -3828,7 +3828,7 @@
             "inputProperties": {
                 "description": {
                     "type": "string",
-                    "description": "`(string: \"\")` - A description of the policy.\n\n[scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope\n[enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level\n"
+                    "description": "`(string: \"\")` - A description of the policy.\n"
                 },
                 "enforcementLevel": {
                     "type": "string",
@@ -3858,7 +3858,7 @@
                 "properties": {
                     "description": {
                         "type": "string",
-                        "description": "`(string: \"\")` - A description of the policy.\n\n[scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope\n[enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level\n"
+                        "description": "`(string: \"\")` - A description of the policy.\n"
                     },
                     "enforcementLevel": {
                         "type": "string",
@@ -3959,12 +3959,12 @@
             "properties": {
                 "accessMode": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n",
+                    "description": "`(string)`\n",
                     "deprecationMessage": "use capability instead"
                 },
                 "attachmentMode": {
                     "type": "string",
-                    "description": "`(string: \u003cotional\u003e)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.\n",
+                    "description": "`(string)`\n",
                     "deprecationMessage": "use capability instead"
                 },
                 "capabilities": {
@@ -4090,12 +4090,12 @@
             "inputProperties": {
                 "accessMode": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n",
+                    "description": "`(string)`\n",
                     "deprecationMessage": "use capability instead"
                 },
                 "attachmentMode": {
                     "type": "string",
-                    "description": "`(string: \u003cotional\u003e)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.\n",
+                    "description": "`(string)`\n",
                     "deprecationMessage": "use capability instead"
                 },
                 "capabilities": {
@@ -4180,12 +4180,12 @@
                 "properties": {
                     "accessMode": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n",
+                        "description": "`(string)`\n",
                         "deprecationMessage": "use capability instead"
                     },
                     "attachmentMode": {
                         "type": "string",
-                        "description": "`(string: \u003cotional\u003e)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.\n",
+                        "description": "`(string)`\n",
                         "deprecationMessage": "use capability instead"
                     },
                     "capabilities": {
