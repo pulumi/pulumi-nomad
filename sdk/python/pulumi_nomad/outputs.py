@@ -224,8 +224,6 @@ class AclPolicyJobAcl(dict):
         :param str namespace: `(string: "default")` - The namespace to attach the policy.
                Required if `job_id` is set.
         :param str task: `(string: <optional>` - The task to attach the policy.
-               
-               [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
         """
         pulumi.set(__self__, "job_id", job_id)
         if group is not None:
@@ -267,8 +265,6 @@ class AclPolicyJobAcl(dict):
     def task(self) -> Optional[str]:
         """
         `(string: <optional>` - The task to attach the policy.
-
-        [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
         """
         return pulumi.get(self, "task")
 
@@ -343,14 +339,7 @@ class CsiVolumeCapability(dict):
                  attachment_mode: str):
         """
         :param str access_mode: `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-               - `single-node-reader-only`
-               - `single-node-writer`
-               - `multi-node-reader-only`
-               - `multi-node-single-writer`
-               - `multi-node-multi-writer`
-        :param str attachment_mode: `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-               - `block-device`
-               - `file-system`
+        :param str attachment_mode: `(string)`
         """
         pulumi.set(__self__, "access_mode", access_mode)
         pulumi.set(__self__, "attachment_mode", attachment_mode)
@@ -360,11 +349,6 @@ class CsiVolumeCapability(dict):
     def access_mode(self) -> str:
         """
         `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-        - `single-node-reader-only`
-        - `single-node-writer`
-        - `multi-node-reader-only`
-        - `multi-node-single-writer`
-        - `multi-node-multi-writer`
         """
         return pulumi.get(self, "access_mode")
 
@@ -372,9 +356,7 @@ class CsiVolumeCapability(dict):
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> str:
         """
-        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-        - `block-device`
-        - `file-system`
+        `(string)`
         """
         return pulumi.get(self, "attachment_mode")
 
@@ -455,14 +437,7 @@ class CsiVolumeRegistrationCapability(dict):
                  attachment_mode: str):
         """
         :param str access_mode: `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-               - `single-node-reader-only`
-               - `single-node-writer`
-               - `multi-node-reader-only`
-               - `multi-node-single-writer`
-               - `multi-node-multi-writer`
-        :param str attachment_mode: `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-               - `block-device`
-               - `file-system`
+        :param str attachment_mode: `(string)`
         """
         pulumi.set(__self__, "access_mode", access_mode)
         pulumi.set(__self__, "attachment_mode", attachment_mode)
@@ -472,11 +447,6 @@ class CsiVolumeRegistrationCapability(dict):
     def access_mode(self) -> str:
         """
         `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-        - `single-node-reader-only`
-        - `single-node-writer`
-        - `multi-node-reader-only`
-        - `multi-node-single-writer`
-        - `multi-node-multi-writer`
         """
         return pulumi.get(self, "access_mode")
 
@@ -484,9 +454,7 @@ class CsiVolumeRegistrationCapability(dict):
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> str:
         """
-        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-        - `block-device`
-        - `file-system`
+        `(string)`
         """
         return pulumi.get(self, "attachment_mode")
 
@@ -793,14 +761,7 @@ class ExternalVolumeCapability(dict):
                  attachment_mode: str):
         """
         :param str access_mode: `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-               - `single-node-reader-only`
-               - `single-node-writer`
-               - `multi-node-reader-only`
-               - `multi-node-single-writer`
-               - `multi-node-multi-writer`
-        :param str attachment_mode: `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-               - `block-device`
-               - `file-system`
+        :param str attachment_mode: `(string)`
         """
         pulumi.set(__self__, "access_mode", access_mode)
         pulumi.set(__self__, "attachment_mode", attachment_mode)
@@ -810,11 +771,6 @@ class ExternalVolumeCapability(dict):
     def access_mode(self) -> str:
         """
         `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-        - `single-node-reader-only`
-        - `single-node-writer`
-        - `multi-node-reader-only`
-        - `multi-node-single-writer`
-        - `multi-node-multi-writer`
         """
         return pulumi.get(self, "access_mode")
 
@@ -822,9 +778,7 @@ class ExternalVolumeCapability(dict):
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> str:
         """
-        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-        - `block-device`
-        - `file-system`
+        `(string)`
         """
         return pulumi.get(self, "attachment_mode")
 
@@ -1572,14 +1526,7 @@ class VolumeCapability(dict):
                  attachment_mode: str):
         """
         :param str access_mode: `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-               - `single-node-reader-only`
-               - `single-node-writer`
-               - `multi-node-reader-only`
-               - `multi-node-single-writer`
-               - `multi-node-multi-writer`
-        :param str attachment_mode: `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-               - `block-device`
-               - `file-system`
+        :param str attachment_mode: `(string)`
         """
         pulumi.set(__self__, "access_mode", access_mode)
         pulumi.set(__self__, "attachment_mode", attachment_mode)
@@ -1589,11 +1536,6 @@ class VolumeCapability(dict):
     def access_mode(self) -> str:
         """
         `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-        - `single-node-reader-only`
-        - `single-node-writer`
-        - `multi-node-reader-only`
-        - `multi-node-single-writer`
-        - `multi-node-multi-writer`
         """
         return pulumi.get(self, "access_mode")
 
@@ -1601,9 +1543,7 @@ class VolumeCapability(dict):
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> str:
         """
-        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-        - `block-device`
-        - `file-system`
+        `(string)`
         """
         return pulumi.get(self, "attachment_mode")
 

@@ -69,16 +69,12 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
     /**
      * `(string: &lt;optional&gt;` - The task to attach the policy.
      * 
-     * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
-     * 
      */
     @Import(name="task")
     private @Nullable Output<String> task;
 
     /**
      * @return `(string: &lt;optional&gt;` - The task to attach the policy.
-     * 
-     * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
      * 
      */
     public Optional<Output<String>> task() {
@@ -184,8 +180,6 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param task `(string: &lt;optional&gt;` - The task to attach the policy.
          * 
-         * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
-         * 
          * @return builder
          * 
          */
@@ -196,8 +190,6 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param task `(string: &lt;optional&gt;` - The task to attach the policy.
-         * 
-         * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
          * 
          * @return builder
          * 

@@ -85,18 +85,13 @@ namespace Pulumi.Nomad
     public partial class Volume : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-        /// - `single-node-reader-only`
-        /// - `single-node-writer`
-        /// - `multi-node-reader-only`
-        /// - `multi-node-single-writer`
-        /// - `multi-node-multi-writer`
+        /// `(string)`
         /// </summary>
         [Output("accessMode")]
         public Output<string?> AccessMode { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        /// `(string)`
         /// </summary>
         [Output("attachmentMode")]
         public Output<string?> AttachmentMode { get; private set; } = null!;
@@ -284,18 +279,13 @@ namespace Pulumi.Nomad
     public sealed class VolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-        /// - `single-node-reader-only`
-        /// - `single-node-writer`
-        /// - `multi-node-reader-only`
-        /// - `multi-node-single-writer`
-        /// - `multi-node-multi-writer`
+        /// `(string)`
         /// </summary>
         [Input("accessMode")]
         public Input<string>? AccessMode { get; set; }
 
         /// <summary>
-        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        /// `(string)`
         /// </summary>
         [Input("attachmentMode")]
         public Input<string>? AttachmentMode { get; set; }
@@ -415,18 +405,13 @@ namespace Pulumi.Nomad
     public sealed class VolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-        /// - `single-node-reader-only`
-        /// - `single-node-writer`
-        /// - `multi-node-reader-only`
-        /// - `multi-node-single-writer`
-        /// - `multi-node-multi-writer`
+        /// `(string)`
         /// </summary>
         [Input("accessMode")]
         public Input<string>? AccessMode { get; set; }
 
         /// <summary>
-        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        /// `(string)`
         /// </summary>
         [Input("attachmentMode")]
         public Input<string>? AttachmentMode { get; set; }

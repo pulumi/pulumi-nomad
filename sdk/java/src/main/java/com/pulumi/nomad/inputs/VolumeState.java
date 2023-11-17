@@ -24,12 +24,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     public static final VolumeState Empty = new VolumeState();
 
     /**
-     * `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
+     * `(string)`
      * 
      * @deprecated
      * use capability instead
@@ -40,12 +35,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> accessMode;
 
     /**
-     * @return `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
+     * @return `(string)`
      * 
      * @deprecated
      * use capability instead
@@ -57,7 +47,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+     * `(string)`
      * 
      * @deprecated
      * use capability instead
@@ -68,7 +58,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> attachmentMode;
 
     /**
-     * @return `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+     * @return `(string)`
      * 
      * @deprecated
      * use capability instead
@@ -457,12 +447,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param accessMode `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-         * - `single-node-reader-only`
-         * - `single-node-writer`
-         * - `multi-node-reader-only`
-         * - `multi-node-single-writer`
-         * - `multi-node-multi-writer`
+         * @param accessMode `(string)`
          * 
          * @return builder
          * 
@@ -477,12 +462,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param accessMode `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-         * - `single-node-reader-only`
-         * - `single-node-writer`
-         * - `multi-node-reader-only`
-         * - `multi-node-single-writer`
-         * - `multi-node-multi-writer`
+         * @param accessMode `(string)`
          * 
          * @return builder
          * 
@@ -496,7 +476,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param attachmentMode `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+         * @param attachmentMode `(string)`
          * 
          * @return builder
          * 
@@ -511,7 +491,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param attachmentMode `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+         * @param attachmentMode `(string)`
          * 
          * @return builder
          * 

@@ -36,13 +36,8 @@ class VolumeArgs:
         :param pulumi.Input[str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
         :param pulumi.Input[str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
-        :param pulumi.Input[str] access_mode: `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-               - `single-node-reader-only`
-               - `single-node-writer`
-               - `multi-node-reader-only`
-               - `multi-node-single-writer`
-               - `multi-node-multi-writer`
-        :param pulumi.Input[str] attachment_mode: `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        :param pulumi.Input[str] access_mode: `(string)`
+        :param pulumi.Input[str] attachment_mode: `(string)`
         :param pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         :param pulumi.Input[bool] deregister_on_destroy: `(boolean: false)` - If true, the volume will be deregistered on destroy.
@@ -128,12 +123,7 @@ class VolumeArgs:
     @pulumi.getter(name="accessMode")
     def access_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-        - `single-node-reader-only`
-        - `single-node-writer`
-        - `multi-node-reader-only`
-        - `multi-node-single-writer`
-        - `multi-node-multi-writer`
+        `(string)`
         """
         warnings.warn("""use capability instead""", DeprecationWarning)
         pulumi.log.warn("""access_mode is deprecated: use capability instead""")
@@ -148,7 +138,7 @@ class VolumeArgs:
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        `(string)`
         """
         warnings.warn("""use capability instead""", DeprecationWarning)
         pulumi.log.warn("""attachment_mode is deprecated: use capability instead""")
@@ -309,13 +299,8 @@ class _VolumeState:
                  volume_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
-        :param pulumi.Input[str] access_mode: `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-               - `single-node-reader-only`
-               - `single-node-writer`
-               - `multi-node-reader-only`
-               - `multi-node-single-writer`
-               - `multi-node-multi-writer`
-        :param pulumi.Input[str] attachment_mode: `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        :param pulumi.Input[str] access_mode: `(string)`
+        :param pulumi.Input[str] attachment_mode: `(string)`
         :param pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         :param pulumi.Input[bool] controller_required: `(boolean)`
@@ -398,12 +383,7 @@ class _VolumeState:
     @pulumi.getter(name="accessMode")
     def access_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-        - `single-node-reader-only`
-        - `single-node-writer`
-        - `multi-node-reader-only`
-        - `multi-node-single-writer`
-        - `multi-node-multi-writer`
+        `(string)`
         """
         warnings.warn("""use capability instead""", DeprecationWarning)
         pulumi.log.warn("""access_mode is deprecated: use capability instead""")
@@ -418,7 +398,7 @@ class _VolumeState:
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        `(string)`
         """
         warnings.warn("""use capability instead""", DeprecationWarning)
         pulumi.log.warn("""attachment_mode is deprecated: use capability instead""")
@@ -760,13 +740,8 @@ class Volume(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access_mode: `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-               - `single-node-reader-only`
-               - `single-node-writer`
-               - `multi-node-reader-only`
-               - `multi-node-single-writer`
-               - `multi-node-multi-writer`
-        :param pulumi.Input[str] attachment_mode: `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        :param pulumi.Input[str] access_mode: `(string)`
+        :param pulumi.Input[str] attachment_mode: `(string)`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeCapabilityArgs']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         :param pulumi.Input[bool] deregister_on_destroy: `(boolean: false)` - If true, the volume will be deregistered on destroy.
@@ -942,13 +917,8 @@ class Volume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access_mode: `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-               - `single-node-reader-only`
-               - `single-node-writer`
-               - `multi-node-reader-only`
-               - `multi-node-single-writer`
-               - `multi-node-multi-writer`
-        :param pulumi.Input[str] attachment_mode: `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        :param pulumi.Input[str] access_mode: `(string)`
+        :param pulumi.Input[str] attachment_mode: `(string)`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeCapabilityArgs']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         :param pulumi.Input[bool] controller_required: `(boolean)`
@@ -1006,12 +976,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="accessMode")
     def access_mode(self) -> pulumi.Output[Optional[str]]:
         """
-        `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-        - `single-node-reader-only`
-        - `single-node-writer`
-        - `multi-node-reader-only`
-        - `multi-node-single-writer`
-        - `multi-node-multi-writer`
+        `(string)`
         """
         warnings.warn("""use capability instead""", DeprecationWarning)
         pulumi.log.warn("""access_mode is deprecated: use capability instead""")
@@ -1022,7 +987,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="attachmentMode")
     def attachment_mode(self) -> pulumi.Output[Optional[str]]:
         """
-        `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        `(string)`
         """
         warnings.warn("""use capability instead""", DeprecationWarning)
         pulumi.log.warn("""attachment_mode is deprecated: use capability instead""")

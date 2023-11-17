@@ -65,9 +65,6 @@ export class SentinelPolicy extends pulumi.CustomResource {
 
     /**
      * `(string: "")` - A description of the policy.
-     *
-     * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-     * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -134,9 +131,6 @@ export class SentinelPolicy extends pulumi.CustomResource {
 export interface SentinelPolicyState {
     /**
      * `(string: "")` - A description of the policy.
-     *
-     * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-     * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
      */
     description?: pulumi.Input<string>;
     /**
@@ -164,9 +158,6 @@ export interface SentinelPolicyState {
 export interface SentinelPolicyArgs {
     /**
      * `(string: "")` - A description of the policy.
-     *
-     * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-     * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
      */
     description?: pulumi.Input<string>;
     /**

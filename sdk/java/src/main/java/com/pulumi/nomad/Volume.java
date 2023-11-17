@@ -97,12 +97,7 @@ import javax.annotation.Nullable;
 @ResourceType(type="nomad:index/volume:Volume")
 public class Volume extends com.pulumi.resources.CustomResource {
     /**
-     * `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
+     * `(string)`
      * 
      * @deprecated
      * use capability instead
@@ -113,19 +108,14 @@ public class Volume extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> accessMode;
 
     /**
-     * @return `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
+     * @return `(string)`
      * 
      */
     public Output<Optional<String>> accessMode() {
         return Codegen.optional(this.accessMode);
     }
     /**
-     * `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+     * `(string)`
      * 
      * @deprecated
      * use capability instead
@@ -136,7 +126,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> attachmentMode;
 
     /**
-     * @return `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+     * @return `(string)`
      * 
      */
     public Output<Optional<String>> attachmentMode() {

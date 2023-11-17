@@ -36,8 +36,6 @@ export interface AclPolicyJobAcl {
     namespace?: string;
     /**
      * `(string: <optional>` - The task to attach the policy.
-     *
-     * [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
      */
     task?: string;
 }
@@ -60,17 +58,10 @@ export interface AclTokenRole {
 export interface CsiVolumeCapability {
     /**
      * `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
      */
     accessMode: string;
     /**
-     * `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-     * - `block-device`
-     * - `file-system`
+     * `(string)`
      */
     attachmentMode: string;
 }
@@ -89,17 +80,10 @@ export interface CsiVolumeMountOptions {
 export interface CsiVolumeRegistrationCapability {
     /**
      * `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
      */
     accessMode: string;
     /**
-     * `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-     * - `block-device`
-     * - `file-system`
+     * `(string)`
      */
     attachmentMode: string;
 }
@@ -207,17 +191,10 @@ export interface CsiVolumeTopologyRequestRequiredTopology {
 export interface ExternalVolumeCapability {
     /**
      * `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
      */
     accessMode: string;
     /**
-     * `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-     * - `block-device`
-     * - `file-system`
+     * `(string)`
      */
     attachmentMode: string;
 }
@@ -752,17 +729,10 @@ export interface QuoteSpecificationLimitRegionLimit {
 export interface VolumeCapability {
     /**
      * `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
      */
     accessMode: string;
     /**
-     * `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-     * - `block-device`
-     * - `file-system`
+     * `(string)`
      */
     attachmentMode: string;
 }

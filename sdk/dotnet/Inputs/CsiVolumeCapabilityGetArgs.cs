@@ -14,19 +14,12 @@ namespace Pulumi.Nomad.Inputs
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
-        /// - `single-node-reader-only`
-        /// - `single-node-writer`
-        /// - `multi-node-reader-only`
-        /// - `multi-node-single-writer`
-        /// - `multi-node-multi-writer`
         /// </summary>
         [Input("accessMode", required: true)]
         public Input<string> AccessMode { get; set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
-        /// - `block-device`
-        /// - `file-system`
+        /// `(string)`
         /// </summary>
         [Input("attachmentMode", required: true)]
         public Input<string> AttachmentMode { get; set; } = null!;

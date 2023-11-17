@@ -82,18 +82,13 @@ export class Volume extends pulumi.CustomResource {
     }
 
     /**
-     * `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
+     * `(string)`
      *
      * @deprecated use capability instead
      */
     public readonly accessMode!: pulumi.Output<string | undefined>;
     /**
-     * `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+     * `(string)`
      *
      * @deprecated use capability instead
      */
@@ -272,18 +267,13 @@ export class Volume extends pulumi.CustomResource {
  */
 export interface VolumeState {
     /**
-     * `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
+     * `(string)`
      *
      * @deprecated use capability instead
      */
     accessMode?: pulumi.Input<string>;
     /**
-     * `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+     * `(string)`
      *
      * @deprecated use capability instead
      */
@@ -383,18 +373,13 @@ export interface VolumeState {
  */
 export interface VolumeArgs {
     /**
-     * `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
+     * `(string)`
      *
      * @deprecated use capability instead
      */
     accessMode?: pulumi.Input<string>;
     /**
-     * `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+     * `(string)`
      *
      * @deprecated use capability instead
      */

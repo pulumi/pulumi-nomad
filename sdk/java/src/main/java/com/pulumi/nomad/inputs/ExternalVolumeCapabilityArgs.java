@@ -15,11 +15,6 @@ public final class ExternalVolumeCapabilityArgs extends com.pulumi.resources.Res
 
     /**
      * `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
      * 
      */
     @Import(name="accessMode", required=true)
@@ -27,11 +22,6 @@ public final class ExternalVolumeCapabilityArgs extends com.pulumi.resources.Res
 
     /**
      * @return `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
-     * - `single-node-reader-only`
-     * - `single-node-writer`
-     * - `multi-node-reader-only`
-     * - `multi-node-single-writer`
-     * - `multi-node-multi-writer`
      * 
      */
     public Output<String> accessMode() {
@@ -39,18 +29,14 @@ public final class ExternalVolumeCapabilityArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
-     * - `block-device`
-     * - `file-system`
+     * `(string)`
      * 
      */
     @Import(name="attachmentMode", required=true)
     private Output<String> attachmentMode;
 
     /**
-     * @return `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
-     * - `block-device`
-     * - `file-system`
+     * @return `(string)`
      * 
      */
     public Output<String> attachmentMode() {
@@ -84,11 +70,6 @@ public final class ExternalVolumeCapabilityArgs extends com.pulumi.resources.Res
 
         /**
          * @param accessMode `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
-         * - `single-node-reader-only`
-         * - `single-node-writer`
-         * - `multi-node-reader-only`
-         * - `multi-node-single-writer`
-         * - `multi-node-multi-writer`
          * 
          * @return builder
          * 
@@ -100,11 +81,6 @@ public final class ExternalVolumeCapabilityArgs extends com.pulumi.resources.Res
 
         /**
          * @param accessMode `(string: &lt;required&gt;)` - Defines whether a volume should be available concurrently. Possible values are:
-         * - `single-node-reader-only`
-         * - `single-node-writer`
-         * - `multi-node-reader-only`
-         * - `multi-node-single-writer`
-         * - `multi-node-multi-writer`
          * 
          * @return builder
          * 
@@ -114,9 +90,7 @@ public final class ExternalVolumeCapabilityArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param attachmentMode `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
-         * - `block-device`
-         * - `file-system`
+         * @param attachmentMode `(string)`
          * 
          * @return builder
          * 
@@ -127,9 +101,7 @@ public final class ExternalVolumeCapabilityArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param attachmentMode `(string: &lt;required&gt;)` - The storage API that will be used by the volume. Possible values are:
-         * - `block-device`
-         * - `file-system`
+         * @param attachmentMode `(string)`
          * 
          * @return builder
          * 

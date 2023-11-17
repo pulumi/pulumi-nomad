@@ -18,18 +18,12 @@ public final class SentinelPolicyArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * `(string: &#34;&#34;)` - A description of the policy.
      * 
-     * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-     * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
-     * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
      * @return `(string: &#34;&#34;)` - A description of the policy.
-     * 
-     * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-     * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
      * 
      */
     public Optional<Output<String>> description() {
@@ -129,9 +123,6 @@ public final class SentinelPolicyArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param description `(string: &#34;&#34;)` - A description of the policy.
          * 
-         * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-         * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
-         * 
          * @return builder
          * 
          */
@@ -142,9 +133,6 @@ public final class SentinelPolicyArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param description `(string: &#34;&#34;)` - A description of the policy.
-         * 
-         * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-         * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
          * 
          * @return builder
          * 

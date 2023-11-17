@@ -65,9 +65,6 @@ type SentinelPolicy struct {
 	pulumi.CustomResourceState
 
 	// `(string: "")` - A description of the policy.
-	//
-	// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-	// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// `(strings: <required>)` - The [enforcement level][enforcement-level]
 	// for this policy.
@@ -120,9 +117,6 @@ func GetSentinelPolicy(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SentinelPolicy resources.
 type sentinelPolicyState struct {
 	// `(string: "")` - A description of the policy.
-	//
-	// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-	// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 	Description *string `pulumi:"description"`
 	// `(strings: <required>)` - The [enforcement level][enforcement-level]
 	// for this policy.
@@ -137,9 +131,6 @@ type sentinelPolicyState struct {
 
 type SentinelPolicyState struct {
 	// `(string: "")` - A description of the policy.
-	//
-	// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-	// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 	Description pulumi.StringPtrInput
 	// `(strings: <required>)` - The [enforcement level][enforcement-level]
 	// for this policy.
@@ -158,9 +149,6 @@ func (SentinelPolicyState) ElementType() reflect.Type {
 
 type sentinelPolicyArgs struct {
 	// `(string: "")` - A description of the policy.
-	//
-	// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-	// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 	Description *string `pulumi:"description"`
 	// `(strings: <required>)` - The [enforcement level][enforcement-level]
 	// for this policy.
@@ -176,9 +164,6 @@ type sentinelPolicyArgs struct {
 // The set of arguments for constructing a SentinelPolicy resource.
 type SentinelPolicyArgs struct {
 	// `(string: "")` - A description of the policy.
-	//
-	// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-	// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 	Description pulumi.StringPtrInput
 	// `(strings: <required>)` - The [enforcement level][enforcement-level]
 	// for this policy.
@@ -279,9 +264,6 @@ func (o SentinelPolicyOutput) ToSentinelPolicyOutputWithContext(ctx context.Cont
 }
 
 // `(string: "")` - A description of the policy.
-//
-// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 func (o SentinelPolicyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SentinelPolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }

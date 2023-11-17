@@ -32,8 +32,6 @@ public final class AclPolicyJobAcl {
     /**
      * @return `(string: &lt;optional&gt;` - The task to attach the policy.
      * 
-     * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
-     * 
      */
     private @Nullable String task;
 
@@ -64,8 +62,6 @@ public final class AclPolicyJobAcl {
     }
     /**
      * @return `(string: &lt;optional&gt;` - The task to attach the policy.
-     * 
-     * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
      * 
      */
     public Optional<String> task() {

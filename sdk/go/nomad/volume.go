@@ -80,16 +80,11 @@ import (
 type Volume struct {
 	pulumi.CustomResourceState
 
-	// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
+	// `(string)`
 	//
 	// Deprecated: use capability instead
 	AccessMode pulumi.StringPtrOutput `pulumi:"accessMode"`
-	// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+	// `(string)`
 	//
 	// Deprecated: use capability instead
 	AttachmentMode pulumi.StringPtrOutput `pulumi:"attachmentMode"`
@@ -185,16 +180,11 @@ func GetVolume(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Volume resources.
 type volumeState struct {
-	// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
+	// `(string)`
 	//
 	// Deprecated: use capability instead
 	AccessMode *string `pulumi:"accessMode"`
-	// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+	// `(string)`
 	//
 	// Deprecated: use capability instead
 	AttachmentMode *string `pulumi:"attachmentMode"`
@@ -245,16 +235,11 @@ type volumeState struct {
 }
 
 type VolumeState struct {
-	// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
+	// `(string)`
 	//
 	// Deprecated: use capability instead
 	AccessMode pulumi.StringPtrInput
-	// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+	// `(string)`
 	//
 	// Deprecated: use capability instead
 	AttachmentMode pulumi.StringPtrInput
@@ -309,16 +294,11 @@ func (VolumeState) ElementType() reflect.Type {
 }
 
 type volumeArgs struct {
-	// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
+	// `(string)`
 	//
 	// Deprecated: use capability instead
 	AccessMode *string `pulumi:"accessMode"`
-	// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+	// `(string)`
 	//
 	// Deprecated: use capability instead
 	AttachmentMode *string `pulumi:"attachmentMode"`
@@ -352,16 +332,11 @@ type volumeArgs struct {
 
 // The set of arguments for constructing a Volume resource.
 type VolumeArgs struct {
-	// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
+	// `(string)`
 	//
 	// Deprecated: use capability instead
 	AccessMode pulumi.StringPtrInput
-	// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+	// `(string)`
 	//
 	// Deprecated: use capability instead
 	AttachmentMode pulumi.StringPtrInput
@@ -480,19 +455,14 @@ func (o VolumeOutput) ToVolumeOutputWithContext(ctx context.Context) VolumeOutpu
 	return o
 }
 
-// `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
-// - `single-node-reader-only`
-// - `single-node-writer`
-// - `multi-node-reader-only`
-// - `multi-node-single-writer`
-// - `multi-node-multi-writer`
+// `(string)`
 //
 // Deprecated: use capability instead
 func (o VolumeOutput) AccessMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.AccessMode }).(pulumi.StringPtrOutput)
 }
 
-// `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+// `(string)`
 //
 // Deprecated: use capability instead
 func (o VolumeOutput) AttachmentMode() pulumi.StringPtrOutput {

@@ -292,8 +292,6 @@ type AclPolicyJobAcl struct {
 	// Required if `jobId` is set.
 	Namespace *string `pulumi:"namespace"`
 	// `(string: <optional>` - The task to attach the policy.
-	//
-	// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
 	Task *string `pulumi:"task"`
 }
 
@@ -319,8 +317,6 @@ type AclPolicyJobAclArgs struct {
 	// Required if `jobId` is set.
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// `(string: <optional>` - The task to attach the policy.
-	//
-	// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
 	Task pulumi.StringPtrInput `pulumi:"task"`
 }
 
@@ -420,8 +416,6 @@ func (o AclPolicyJobAclOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // `(string: <optional>` - The task to attach the policy.
-//
-// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
 func (o AclPolicyJobAclOutput) Task() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AclPolicyJobAcl) *string { return v.Task }).(pulumi.StringPtrOutput)
 }
@@ -484,8 +478,6 @@ func (o AclPolicyJobAclPtrOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // `(string: <optional>` - The task to attach the policy.
-//
-// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
 func (o AclPolicyJobAclPtrOutput) Task() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclPolicyJobAcl) *string {
 		if v == nil {
@@ -697,15 +689,8 @@ func (o AclTokenRoleArrayOutput) Index(i pulumi.IntInput) AclTokenRoleOutput {
 
 type CsiVolumeCapability struct {
 	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
 	AccessMode string `pulumi:"accessMode"`
-	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-	// - `block-device`
-	// - `file-system`
+	// `(string)`
 	AttachmentMode string `pulumi:"attachmentMode"`
 }
 
@@ -722,15 +707,8 @@ type CsiVolumeCapabilityInput interface {
 
 type CsiVolumeCapabilityArgs struct {
 	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
 	AccessMode pulumi.StringInput `pulumi:"accessMode"`
-	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-	// - `block-device`
-	// - `file-system`
+	// `(string)`
 	AttachmentMode pulumi.StringInput `pulumi:"attachmentMode"`
 }
 
@@ -786,18 +764,11 @@ func (o CsiVolumeCapabilityOutput) ToCsiVolumeCapabilityOutputWithContext(ctx co
 }
 
 // `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-// - `single-node-reader-only`
-// - `single-node-writer`
-// - `multi-node-reader-only`
-// - `multi-node-single-writer`
-// - `multi-node-multi-writer`
 func (o CsiVolumeCapabilityOutput) AccessMode() pulumi.StringOutput {
 	return o.ApplyT(func(v CsiVolumeCapability) string { return v.AccessMode }).(pulumi.StringOutput)
 }
 
-// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-// - `block-device`
-// - `file-system`
+// `(string)`
 func (o CsiVolumeCapabilityOutput) AttachmentMode() pulumi.StringOutput {
 	return o.ApplyT(func(v CsiVolumeCapability) string { return v.AttachmentMode }).(pulumi.StringOutput)
 }
@@ -980,15 +951,8 @@ func (o CsiVolumeMountOptionsPtrOutput) MountFlags() pulumi.StringArrayOutput {
 
 type CsiVolumeRegistrationCapability struct {
 	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
 	AccessMode string `pulumi:"accessMode"`
-	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-	// - `block-device`
-	// - `file-system`
+	// `(string)`
 	AttachmentMode string `pulumi:"attachmentMode"`
 }
 
@@ -1005,15 +969,8 @@ type CsiVolumeRegistrationCapabilityInput interface {
 
 type CsiVolumeRegistrationCapabilityArgs struct {
 	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
 	AccessMode pulumi.StringInput `pulumi:"accessMode"`
-	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-	// - `block-device`
-	// - `file-system`
+	// `(string)`
 	AttachmentMode pulumi.StringInput `pulumi:"attachmentMode"`
 }
 
@@ -1069,18 +1026,11 @@ func (o CsiVolumeRegistrationCapabilityOutput) ToCsiVolumeRegistrationCapability
 }
 
 // `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-// - `single-node-reader-only`
-// - `single-node-writer`
-// - `multi-node-reader-only`
-// - `multi-node-single-writer`
-// - `multi-node-multi-writer`
 func (o CsiVolumeRegistrationCapabilityOutput) AccessMode() pulumi.StringOutput {
 	return o.ApplyT(func(v CsiVolumeRegistrationCapability) string { return v.AccessMode }).(pulumi.StringOutput)
 }
 
-// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-// - `block-device`
-// - `file-system`
+// `(string)`
 func (o CsiVolumeRegistrationCapabilityOutput) AttachmentMode() pulumi.StringOutput {
 	return o.ApplyT(func(v CsiVolumeRegistrationCapability) string { return v.AttachmentMode }).(pulumi.StringOutput)
 }
@@ -2505,15 +2455,8 @@ func (o CsiVolumeTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi.IntI
 
 type ExternalVolumeCapability struct {
 	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
 	AccessMode string `pulumi:"accessMode"`
-	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-	// - `block-device`
-	// - `file-system`
+	// `(string)`
 	AttachmentMode string `pulumi:"attachmentMode"`
 }
 
@@ -2530,15 +2473,8 @@ type ExternalVolumeCapabilityInput interface {
 
 type ExternalVolumeCapabilityArgs struct {
 	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
 	AccessMode pulumi.StringInput `pulumi:"accessMode"`
-	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-	// - `block-device`
-	// - `file-system`
+	// `(string)`
 	AttachmentMode pulumi.StringInput `pulumi:"attachmentMode"`
 }
 
@@ -2594,18 +2530,11 @@ func (o ExternalVolumeCapabilityOutput) ToExternalVolumeCapabilityOutputWithCont
 }
 
 // `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-// - `single-node-reader-only`
-// - `single-node-writer`
-// - `multi-node-reader-only`
-// - `multi-node-single-writer`
-// - `multi-node-multi-writer`
 func (o ExternalVolumeCapabilityOutput) AccessMode() pulumi.StringOutput {
 	return o.ApplyT(func(v ExternalVolumeCapability) string { return v.AccessMode }).(pulumi.StringOutput)
 }
 
-// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-// - `block-device`
-// - `file-system`
+// `(string)`
 func (o ExternalVolumeCapabilityOutput) AttachmentMode() pulumi.StringOutput {
 	return o.ApplyT(func(v ExternalVolumeCapability) string { return v.AttachmentMode }).(pulumi.StringOutput)
 }
@@ -4980,15 +4909,8 @@ func (o QuoteSpecificationLimitRegionLimitOutput) MemoryMb() pulumi.IntPtrOutput
 
 type VolumeCapability struct {
 	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
 	AccessMode string `pulumi:"accessMode"`
-	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-	// - `block-device`
-	// - `file-system`
+	// `(string)`
 	AttachmentMode string `pulumi:"attachmentMode"`
 }
 
@@ -5005,15 +4927,8 @@ type VolumeCapabilityInput interface {
 
 type VolumeCapabilityArgs struct {
 	// `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-	// - `single-node-reader-only`
-	// - `single-node-writer`
-	// - `multi-node-reader-only`
-	// - `multi-node-single-writer`
-	// - `multi-node-multi-writer`
 	AccessMode pulumi.StringInput `pulumi:"accessMode"`
-	// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-	// - `block-device`
-	// - `file-system`
+	// `(string)`
 	AttachmentMode pulumi.StringInput `pulumi:"attachmentMode"`
 }
 
@@ -5069,18 +4984,11 @@ func (o VolumeCapabilityOutput) ToVolumeCapabilityOutputWithContext(ctx context.
 }
 
 // `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
-// - `single-node-reader-only`
-// - `single-node-writer`
-// - `multi-node-reader-only`
-// - `multi-node-single-writer`
-// - `multi-node-multi-writer`
 func (o VolumeCapabilityOutput) AccessMode() pulumi.StringOutput {
 	return o.ApplyT(func(v VolumeCapability) string { return v.AccessMode }).(pulumi.StringOutput)
 }
 
-// `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
-// - `block-device`
-// - `file-system`
+// `(string)`
 func (o VolumeCapabilityOutput) AttachmentMode() pulumi.StringOutput {
 	return o.ApplyT(func(v VolumeCapability) string { return v.AttachmentMode }).(pulumi.StringOutput)
 }
