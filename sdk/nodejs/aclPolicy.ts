@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  *
  * const dev = new nomad.AclPolicy("dev", {
  *     description: "Submit jobs to the dev environment.",
- *     rulesHcl: fs.readFileSync(`${path.module}/dev.hcl`),
+ *     rulesHcl: fs.readFileSync(`${path.module}/dev.hcl`, "utf8"),
  * });
  * ```
  *
