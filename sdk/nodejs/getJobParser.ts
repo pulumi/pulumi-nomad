@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as nomad from "@pulumi/nomad";
  *
  * const myJob = nomad.getJobParser({
- *     hcl: fs.readFileSync(`${path.module}/jobspec.hcl`),
+ *     hcl: fs.readFileSync(`${path.module}/jobspec.hcl`, "utf8"),
  *     canonicalize: false,
  * });
  * ```
@@ -75,7 +75,7 @@ export interface GetJobParserResult {
  * import * as nomad from "@pulumi/nomad";
  *
  * const myJob = nomad.getJobParser({
- *     hcl: fs.readFileSync(`${path.module}/jobspec.hcl`),
+ *     hcl: fs.readFileSync(`${path.module}/jobspec.hcl`, "utf8"),
  *     canonicalize: false,
  * });
  * ```
