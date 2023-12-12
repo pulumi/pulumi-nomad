@@ -75,11 +75,11 @@ public final class GetAclRolesResult {
             return this;
         }
         public GetAclRolesResult build() {
-            final var o = new GetAclRolesResult();
-            o.aclRoles = aclRoles;
-            o.id = id;
-            o.prefix = prefix;
-            return o;
+            final var _resultValue = new GetAclRolesResult();
+            _resultValue.aclRoles = aclRoles;
+            _resultValue.id = id;
+            _resultValue.prefix = prefix;
+            return _resultValue;
         }
     }
 }

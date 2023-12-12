@@ -116,7 +116,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      * be repeated. See below for the structure of this block.
      * 
      */
-    @Export(name="capabilities", type=NamespaceCapabilities.class, parameters={})
+    @Export(name="capabilities", refs={NamespaceCapabilities.class}, tree="[0]")
     private Output</* @Nullable */ NamespaceCapabilities> capabilities;
 
     /**
@@ -131,7 +131,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      * `(string: &#34;&#34;)` - A description of the namespace.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -145,7 +145,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      * `(map[string]string: &lt;optional&gt;)` -  Specifies arbitrary KV metadata to associate with the namespace.
      * 
      */
-    @Export(name="meta", type=Map.class, parameters={String.class, String.class})
+    @Export(name="meta", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> meta;
 
     /**
@@ -159,7 +159,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - A unique name for the namespace.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -173,7 +173,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      * `(block: &lt;optional&gt;)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
      * 
      */
-    @Export(name="nodePoolConfig", type=NamespaceNodePoolConfig.class, parameters={})
+    @Export(name="nodePoolConfig", refs={NamespaceNodePoolConfig.class}, tree="[0]")
     private Output<NamespaceNodePoolConfig> nodePoolConfig;
 
     /**
@@ -187,7 +187,7 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      * `(string: &#34;&#34;)` - A resource quota to attach to the namespace.
      * 
      */
-    @Export(name="quota", type=String.class, parameters={})
+    @Export(name="quota", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> quota;
 
     /**

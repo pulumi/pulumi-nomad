@@ -72,7 +72,7 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
      * Configuration specific to the auth method provider.
      * 
      */
-    @Export(name="config", type=AclAuthMethodConfig.class, parameters={})
+    @Export(name="config", refs={AclAuthMethodConfig.class}, tree="[0]")
     private Output<AclAuthMethodConfig> config;
 
     /**
@@ -87,7 +87,7 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
      * as default.
      * 
      */
-    @Export(name="default", type=Boolean.class, parameters={})
+    @Export(name="default", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> default_;
 
     /**
@@ -103,7 +103,7 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
      * created by this method and is specified as a time duration such as &#34;15h&#34;.
      * 
      */
-    @Export(name="maxTokenTtl", type=String.class, parameters={})
+    @Export(name="maxTokenTtl", refs={String.class}, tree="[0]")
     private Output<String> maxTokenTtl;
 
     /**
@@ -118,7 +118,7 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - The identifier of the ACL Auth Method.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -134,7 +134,7 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
      * set to either `local` or `global`.
      * 
      */
-    @Export(name="tokenLocality", type=String.class, parameters={})
+    @Export(name="tokenLocality", refs={String.class}, tree="[0]")
     private Output<String> tokenLocality;
 
     /**
@@ -151,7 +151,7 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
      * the only supported type is `OIDC`.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

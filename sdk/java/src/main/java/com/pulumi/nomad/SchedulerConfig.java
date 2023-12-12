@@ -70,7 +70,7 @@ public class SchedulerConfig extends com.pulumi.resources.CustomResource {
      * `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
      * 
      */
-    @Export(name="memoryOversubscriptionEnabled", type=Boolean.class, parameters={})
+    @Export(name="memoryOversubscriptionEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> memoryOversubscriptionEnabled;
 
     /**
@@ -84,7 +84,7 @@ public class SchedulerConfig extends com.pulumi.resources.CustomResource {
      * `(map[string]bool)` - Options to enable preemption for various schedulers.
      * 
      */
-    @Export(name="preemptionConfig", type=Map.class, parameters={String.class, Boolean.class})
+    @Export(name="preemptionConfig", refs={Map.class,String.class,Boolean.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Boolean>> preemptionConfig;
 
     /**
@@ -98,7 +98,7 @@ public class SchedulerConfig extends com.pulumi.resources.CustomResource {
      * `(string: &#34;binpack&#34;)` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
      * 
      */
-    @Export(name="schedulerAlgorithm", type=String.class, parameters={})
+    @Export(name="schedulerAlgorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> schedulerAlgorithm;
 
     /**

@@ -53,9 +53,9 @@ public final class VolumeTopologyRequestRequiredTopology {
             return this;
         }
         public VolumeTopologyRequestRequiredTopology build() {
-            final var o = new VolumeTopologyRequestRequiredTopology();
-            o.segments = segments;
-            return o;
+            final var _resultValue = new VolumeTopologyRequestRequiredTopology();
+            _resultValue.segments = segments;
+            return _resultValue;
         }
     }
 }

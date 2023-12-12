@@ -96,7 +96,7 @@ public class Variable extends com.pulumi.resources.CustomResource {
      * `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
      * 
      */
-    @Export(name="items", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="items", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> items;
 
     /**
@@ -110,7 +110,7 @@ public class Variable extends com.pulumi.resources.CustomResource {
      * `(string: &#34;default&#34;)` - The namepsace to create the variable in.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -124,7 +124,7 @@ public class Variable extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - A unique path to create the variable at.
      * 
      */
-    @Export(name="path", type=String.class, parameters={})
+    @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
     /**

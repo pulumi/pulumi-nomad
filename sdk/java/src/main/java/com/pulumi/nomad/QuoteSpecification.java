@@ -67,7 +67,7 @@ public class QuoteSpecification extends com.pulumi.resources.CustomResource {
      * `(string: &#34;&#34;)` - A description of the quota specification.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -82,7 +82,7 @@ public class QuoteSpecification extends com.pulumi.resources.CustomResource {
      * be repeated. See below for the structure of this block.
      * 
      */
-    @Export(name="limits", type=List.class, parameters={QuoteSpecificationLimit.class})
+    @Export(name="limits", refs={List.class,QuoteSpecificationLimit.class}, tree="[0,1]")
     private Output<List<QuoteSpecificationLimit>> limits;
 
     /**
@@ -97,7 +97,7 @@ public class QuoteSpecification extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - A unique name for the quota specification.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**

@@ -73,10 +73,10 @@ public final class QuoteSpecificationLimitRegionLimit {
             return this;
         }
         public QuoteSpecificationLimitRegionLimit build() {
-            final var o = new QuoteSpecificationLimitRegionLimit();
-            o.cpu = cpu;
-            o.memoryMb = memoryMb;
-            return o;
+            final var _resultValue = new QuoteSpecificationLimitRegionLimit();
+            _resultValue.cpu = cpu;
+            _resultValue.memoryMb = memoryMb;
+            return _resultValue;
         }
     }
 }

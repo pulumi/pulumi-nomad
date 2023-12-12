@@ -240,20 +240,20 @@ public final class GetPluginResult {
             return this;
         }
         public GetPluginResult build() {
-            final var o = new GetPluginResult();
-            o.controllerRequired = controllerRequired;
-            o.controllersExpected = controllersExpected;
-            o.controllersHealthy = controllersHealthy;
-            o.id = id;
-            o.nodes = nodes;
-            o.nodesExpected = nodesExpected;
-            o.nodesHealthy = nodesHealthy;
-            o.pluginId = pluginId;
-            o.pluginProvider = pluginProvider;
-            o.pluginProviderVersion = pluginProviderVersion;
-            o.waitForHealthy = waitForHealthy;
-            o.waitForRegistration = waitForRegistration;
-            return o;
+            final var _resultValue = new GetPluginResult();
+            _resultValue.controllerRequired = controllerRequired;
+            _resultValue.controllersExpected = controllersExpected;
+            _resultValue.controllersHealthy = controllersHealthy;
+            _resultValue.id = id;
+            _resultValue.nodes = nodes;
+            _resultValue.nodesExpected = nodesExpected;
+            _resultValue.nodesHealthy = nodesHealthy;
+            _resultValue.pluginId = pluginId;
+            _resultValue.pluginProvider = pluginProvider;
+            _resultValue.pluginProviderVersion = pluginProviderVersion;
+            _resultValue.waitForHealthy = waitForHealthy;
+            _resultValue.waitForRegistration = waitForRegistration;
+            return _resultValue;
         }
     }
 }

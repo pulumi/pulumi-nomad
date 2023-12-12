@@ -156,15 +156,15 @@ public final class GetScalingPolicyResult {
             return this;
         }
         public GetScalingPolicyResult build() {
-            final var o = new GetScalingPolicyResult();
-            o.enabled = enabled;
-            o.id = id;
-            o.max = max;
-            o.min = min;
-            o.policy = policy;
-            o.target = target;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetScalingPolicyResult();
+            _resultValue.enabled = enabled;
+            _resultValue.id = id;
+            _resultValue.max = max;
+            _resultValue.min = min;
+            _resultValue.policy = policy;
+            _resultValue.target = target;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

@@ -123,13 +123,13 @@ public final class GetJobPeriodicConfig {
             return this;
         }
         public GetJobPeriodicConfig build() {
-            final var o = new GetJobPeriodicConfig();
-            o.enabled = enabled;
-            o.prohibitOverlap = prohibitOverlap;
-            o.spec = spec;
-            o.specType = specType;
-            o.timezone = timezone;
-            return o;
+            final var _resultValue = new GetJobPeriodicConfig();
+            _resultValue.enabled = enabled;
+            _resultValue.prohibitOverlap = prohibitOverlap;
+            _resultValue.spec = spec;
+            _resultValue.specType = specType;
+            _resultValue.timezone = timezone;
+            return _resultValue;
         }
     }
 }

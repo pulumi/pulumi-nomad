@@ -154,15 +154,15 @@ public final class GetNamespaceResult {
             return this;
         }
         public GetNamespaceResult build() {
-            final var o = new GetNamespaceResult();
-            o.capabilities = capabilities;
-            o.description = description;
-            o.id = id;
-            o.meta = meta;
-            o.name = name;
-            o.nodePoolConfigs = nodePoolConfigs;
-            o.quota = quota;
-            return o;
+            final var _resultValue = new GetNamespaceResult();
+            _resultValue.capabilities = capabilities;
+            _resultValue.description = description;
+            _resultValue.id = id;
+            _resultValue.meta = meta;
+            _resultValue.name = name;
+            _resultValue.nodePoolConfigs = nodePoolConfigs;
+            _resultValue.quota = quota;
+            return _resultValue;
         }
     }
 }

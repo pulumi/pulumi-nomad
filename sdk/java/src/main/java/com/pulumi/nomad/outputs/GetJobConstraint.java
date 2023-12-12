@@ -84,11 +84,11 @@ public final class GetJobConstraint {
             return this;
         }
         public GetJobConstraint build() {
-            final var o = new GetJobConstraint();
-            o.ltarget = ltarget;
-            o.operand = operand;
-            o.rtarget = rtarget;
-            return o;
+            final var _resultValue = new GetJobConstraint();
+            _resultValue.ltarget = ltarget;
+            _resultValue.operand = operand;
+            _resultValue.rtarget = rtarget;
+            return _resultValue;
         }
     }
 }

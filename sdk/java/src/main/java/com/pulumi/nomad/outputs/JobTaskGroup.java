@@ -96,13 +96,13 @@ public final class JobTaskGroup {
             return volumes(List.of(volumes));
         }
         public JobTaskGroup build() {
-            final var o = new JobTaskGroup();
-            o.count = count;
-            o.meta = meta;
-            o.name = name;
-            o.tasks = tasks;
-            o.volumes = volumes;
-            return o;
+            final var _resultValue = new JobTaskGroup();
+            _resultValue.count = count;
+            _resultValue.meta = meta;
+            _resultValue.name = name;
+            _resultValue.tasks = tasks;
+            _resultValue.volumes = volumes;
+            return _resultValue;
         }
     }
 }

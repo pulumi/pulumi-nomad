@@ -63,11 +63,11 @@ public final class JobTaskGroupTaskVolumeMount {
             return this;
         }
         public JobTaskGroupTaskVolumeMount build() {
-            final var o = new JobTaskGroupTaskVolumeMount();
-            o.destination = destination;
-            o.readOnly = readOnly;
-            o.volume = volume;
-            return o;
+            final var _resultValue = new JobTaskGroupTaskVolumeMount();
+            _resultValue.destination = destination;
+            _resultValue.readOnly = readOnly;
+            _resultValue.volume = volume;
+            return _resultValue;
         }
     }
 }

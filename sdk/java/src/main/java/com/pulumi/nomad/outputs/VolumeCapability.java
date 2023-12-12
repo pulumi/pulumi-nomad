@@ -79,10 +79,10 @@ public final class VolumeCapability {
             return this;
         }
         public VolumeCapability build() {
-            final var o = new VolumeCapability();
-            o.accessMode = accessMode;
-            o.attachmentMode = attachmentMode;
-            return o;
+            final var _resultValue = new VolumeCapability();
+            _resultValue.accessMode = accessMode;
+            _resultValue.attachmentMode = attachmentMode;
+            return _resultValue;
         }
     }
 }

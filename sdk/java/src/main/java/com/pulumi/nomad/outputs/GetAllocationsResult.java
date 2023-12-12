@@ -96,12 +96,12 @@ public final class GetAllocationsResult {
             return this;
         }
         public GetAllocationsResult build() {
-            final var o = new GetAllocationsResult();
-            o.allocations = allocations;
-            o.filter = filter;
-            o.id = id;
-            o.prefix = prefix;
-            return o;
+            final var _resultValue = new GetAllocationsResult();
+            _resultValue.allocations = allocations;
+            _resultValue.filter = filter;
+            _resultValue.id = id;
+            _resultValue.prefix = prefix;
+            return _resultValue;
         }
     }
 }

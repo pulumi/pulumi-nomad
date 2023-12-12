@@ -50,9 +50,9 @@ public final class CsiVolumeTopologyRequestPreferred {
             return topologies(List.of(topologies));
         }
         public CsiVolumeTopologyRequestPreferred build() {
-            final var o = new CsiVolumeTopologyRequestPreferred();
-            o.topologies = topologies;
-            return o;
+            final var _resultValue = new CsiVolumeTopologyRequestPreferred();
+            _resultValue.topologies = topologies;
+            return _resultValue;
         }
     }
 }

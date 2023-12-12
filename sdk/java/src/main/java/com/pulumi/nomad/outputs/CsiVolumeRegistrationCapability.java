@@ -79,10 +79,10 @@ public final class CsiVolumeRegistrationCapability {
             return this;
         }
         public CsiVolumeRegistrationCapability build() {
-            final var o = new CsiVolumeRegistrationCapability();
-            o.accessMode = accessMode;
-            o.attachmentMode = attachmentMode;
-            return o;
+            final var _resultValue = new CsiVolumeRegistrationCapability();
+            _resultValue.accessMode = accessMode;
+            _resultValue.attachmentMode = attachmentMode;
+            return _resultValue;
         }
     }
 }

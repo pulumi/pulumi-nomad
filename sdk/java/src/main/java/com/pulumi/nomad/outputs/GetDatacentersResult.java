@@ -94,12 +94,12 @@ public final class GetDatacentersResult {
             return this;
         }
         public GetDatacentersResult build() {
-            final var o = new GetDatacentersResult();
-            o.datacenters = datacenters;
-            o.id = id;
-            o.ignoreDownNodes = ignoreDownNodes;
-            o.prefix = prefix;
-            return o;
+            final var _resultValue = new GetDatacentersResult();
+            _resultValue.datacenters = datacenters;
+            _resultValue.id = id;
+            _resultValue.ignoreDownNodes = ignoreDownNodes;
+            _resultValue.prefix = prefix;
+            return _resultValue;
         }
     }
 }

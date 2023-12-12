@@ -83,11 +83,11 @@ public final class GetAclTokensResult {
             return this;
         }
         public GetAclTokensResult build() {
-            final var o = new GetAclTokensResult();
-            o.aclTokens = aclTokens;
-            o.id = id;
-            o.prefix = prefix;
-            return o;
+            final var _resultValue = new GetAclTokensResult();
+            _resultValue.aclTokens = aclTokens;
+            _resultValue.id = id;
+            _resultValue.prefix = prefix;
+            return _resultValue;
         }
     }
 }

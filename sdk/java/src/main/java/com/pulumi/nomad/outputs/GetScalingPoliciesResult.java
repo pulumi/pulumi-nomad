@@ -102,12 +102,12 @@ public final class GetScalingPoliciesResult {
             return this;
         }
         public GetScalingPoliciesResult build() {
-            final var o = new GetScalingPoliciesResult();
-            o.id = id;
-            o.jobId = jobId;
-            o.policies = policies;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetScalingPoliciesResult();
+            _resultValue.id = id;
+            _resultValue.jobId = jobId;
+            _resultValue.policies = policies;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

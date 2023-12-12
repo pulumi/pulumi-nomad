@@ -65,10 +65,10 @@ public final class GetAclPoliciesPolicy {
             return this;
         }
         public GetAclPoliciesPolicy build() {
-            final var o = new GetAclPoliciesPolicy();
-            o.description = description;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetAclPoliciesPolicy();
+            _resultValue.description = description;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

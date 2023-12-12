@@ -85,10 +85,10 @@ public final class NodePoolSchedulerConfig {
             return this;
         }
         public NodePoolSchedulerConfig build() {
-            final var o = new NodePoolSchedulerConfig();
-            o.memoryOversubscription = memoryOversubscription;
-            o.schedulerAlgorithm = schedulerAlgorithm;
-            return o;
+            final var _resultValue = new NodePoolSchedulerConfig();
+            _resultValue.memoryOversubscription = memoryOversubscription;
+            _resultValue.schedulerAlgorithm = schedulerAlgorithm;
+            return _resultValue;
         }
     }
 }

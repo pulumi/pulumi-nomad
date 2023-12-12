@@ -96,12 +96,12 @@ public final class GetNodePoolsResult {
             return this;
         }
         public GetNodePoolsResult build() {
-            final var o = new GetNodePoolsResult();
-            o.filter = filter;
-            o.id = id;
-            o.nodePools = nodePools;
-            o.prefix = prefix;
-            return o;
+            final var _resultValue = new GetNodePoolsResult();
+            _resultValue.filter = filter;
+            _resultValue.id = id;
+            _resultValue.nodePools = nodePools;
+            _resultValue.prefix = prefix;
+            return _resultValue;
         }
     }
 }

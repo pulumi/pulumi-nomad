@@ -389,27 +389,27 @@ public final class GetAllocationsAllocation {
             return this;
         }
         public GetAllocationsAllocation build() {
-            final var o = new GetAllocationsAllocation();
-            o.clientStatus = clientStatus;
-            o.createIndex = createIndex;
-            o.createTime = createTime;
-            o.desiredStatus = desiredStatus;
-            o.evalId = evalId;
-            o.followupEvalId = followupEvalId;
-            o.id = id;
-            o.jobId = jobId;
-            o.jobType = jobType;
-            o.jobVersion = jobVersion;
-            o.modifyIndex = modifyIndex;
-            o.modifyTime = modifyTime;
-            o.name = name;
-            o.namespace = namespace;
-            o.nextAllocation = nextAllocation;
-            o.nodeId = nodeId;
-            o.nodeName = nodeName;
-            o.preemptedByAllocation = preemptedByAllocation;
-            o.taskGroup = taskGroup;
-            return o;
+            final var _resultValue = new GetAllocationsAllocation();
+            _resultValue.clientStatus = clientStatus;
+            _resultValue.createIndex = createIndex;
+            _resultValue.createTime = createTime;
+            _resultValue.desiredStatus = desiredStatus;
+            _resultValue.evalId = evalId;
+            _resultValue.followupEvalId = followupEvalId;
+            _resultValue.id = id;
+            _resultValue.jobId = jobId;
+            _resultValue.jobType = jobType;
+            _resultValue.jobVersion = jobVersion;
+            _resultValue.modifyIndex = modifyIndex;
+            _resultValue.modifyTime = modifyTime;
+            _resultValue.name = name;
+            _resultValue.namespace = namespace;
+            _resultValue.nextAllocation = nextAllocation;
+            _resultValue.nodeId = nodeId;
+            _resultValue.nodeName = nodeName;
+            _resultValue.preemptedByAllocation = preemptedByAllocation;
+            _resultValue.taskGroup = taskGroup;
+            return _resultValue;
         }
     }
 }

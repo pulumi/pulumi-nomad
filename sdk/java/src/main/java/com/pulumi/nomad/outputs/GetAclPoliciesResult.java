@@ -83,11 +83,11 @@ public final class GetAclPoliciesResult {
             return this;
         }
         public GetAclPoliciesResult build() {
-            final var o = new GetAclPoliciesResult();
-            o.id = id;
-            o.policies = policies;
-            o.prefix = prefix;
-            return o;
+            final var _resultValue = new GetAclPoliciesResult();
+            _resultValue.id = id;
+            _resultValue.policies = policies;
+            _resultValue.prefix = prefix;
+            return _resultValue;
         }
     }
 }

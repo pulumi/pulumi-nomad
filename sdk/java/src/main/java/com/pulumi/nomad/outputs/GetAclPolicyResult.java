@@ -103,12 +103,12 @@ public final class GetAclPolicyResult {
             return this;
         }
         public GetAclPolicyResult build() {
-            final var o = new GetAclPolicyResult();
-            o.description = description;
-            o.id = id;
-            o.name = name;
-            o.rules = rules;
-            return o;
+            final var _resultValue = new GetAclPolicyResult();
+            _resultValue.description = description;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.rules = rules;
+            return _resultValue;
         }
     }
 }

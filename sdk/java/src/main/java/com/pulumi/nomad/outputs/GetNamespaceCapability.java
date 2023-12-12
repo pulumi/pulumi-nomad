@@ -73,10 +73,10 @@ public final class GetNamespaceCapability {
             return enabledTaskDrivers(List.of(enabledTaskDrivers));
         }
         public GetNamespaceCapability build() {
-            final var o = new GetNamespaceCapability();
-            o.disabledTaskDrivers = disabledTaskDrivers;
-            o.enabledTaskDrivers = enabledTaskDrivers;
-            return o;
+            final var _resultValue = new GetNamespaceCapability();
+            _resultValue.disabledTaskDrivers = disabledTaskDrivers;
+            _resultValue.enabledTaskDrivers = enabledTaskDrivers;
+            return _resultValue;
         }
     }
 }

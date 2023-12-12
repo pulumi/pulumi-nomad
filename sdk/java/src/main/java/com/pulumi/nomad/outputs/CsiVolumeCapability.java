@@ -79,10 +79,10 @@ public final class CsiVolumeCapability {
             return this;
         }
         public CsiVolumeCapability build() {
-            final var o = new CsiVolumeCapability();
-            o.accessMode = accessMode;
-            o.attachmentMode = attachmentMode;
-            return o;
+            final var _resultValue = new CsiVolumeCapability();
+            _resultValue.accessMode = accessMode;
+            _resultValue.attachmentMode = attachmentMode;
+            return _resultValue;
         }
     }
 }

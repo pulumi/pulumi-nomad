@@ -70,10 +70,10 @@ public final class QuoteSpecificationLimit {
             return this;
         }
         public QuoteSpecificationLimit build() {
-            final var o = new QuoteSpecificationLimit();
-            o.region = region;
-            o.regionLimit = regionLimit;
-            return o;
+            final var _resultValue = new QuoteSpecificationLimit();
+            _resultValue.region = region;
+            _resultValue.regionLimit = regionLimit;
+            return _resultValue;
         }
     }
 }

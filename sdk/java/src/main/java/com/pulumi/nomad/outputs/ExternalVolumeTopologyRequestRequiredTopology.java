@@ -53,9 +53,9 @@ public final class ExternalVolumeTopologyRequestRequiredTopology {
             return this;
         }
         public ExternalVolumeTopologyRequestRequiredTopology build() {
-            final var o = new ExternalVolumeTopologyRequestRequiredTopology();
-            o.segments = segments;
-            return o;
+            final var _resultValue = new ExternalVolumeTopologyRequestRequiredTopology();
+            _resultValue.segments = segments;
+            return _resultValue;
         }
     }
 }

@@ -61,11 +61,11 @@ public final class GetPluginNode {
             return this;
         }
         public GetPluginNode build() {
-            final var o = new GetPluginNode();
-            o.healthy = healthy;
-            o.healthyDescription = healthyDescription;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetPluginNode();
+            _resultValue.healthy = healthy;
+            _resultValue.healthyDescription = healthyDescription;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

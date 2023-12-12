@@ -71,10 +71,10 @@ public final class CsiVolumeRegistrationMountOptions {
             return mountFlags(List.of(mountFlags));
         }
         public CsiVolumeRegistrationMountOptions build() {
-            final var o = new CsiVolumeRegistrationMountOptions();
-            o.fsType = fsType;
-            o.mountFlags = mountFlags;
-            return o;
+            final var _resultValue = new CsiVolumeRegistrationMountOptions();
+            _resultValue.fsType = fsType;
+            _resultValue.mountFlags = mountFlags;
+            return _resultValue;
         }
     }
 }

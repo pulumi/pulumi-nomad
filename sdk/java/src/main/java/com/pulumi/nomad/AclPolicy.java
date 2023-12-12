@@ -94,7 +94,7 @@ public class AclPolicy extends com.pulumi.resources.CustomResource {
      * `(string: &#34;&#34;)` - A description of the policy.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -108,7 +108,7 @@ public class AclPolicy extends com.pulumi.resources.CustomResource {
      * `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
      * 
      */
-    @Export(name="jobAcl", type=AclPolicyJobAcl.class, parameters={})
+    @Export(name="jobAcl", refs={AclPolicyJobAcl.class}, tree="[0]")
     private Output</* @Nullable */ AclPolicyJobAcl> jobAcl;
 
     /**
@@ -122,7 +122,7 @@ public class AclPolicy extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - A unique name for the policy.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -137,7 +137,7 @@ public class AclPolicy extends com.pulumi.resources.CustomResource {
      * as HCL or JSON.
      * 
      */
-    @Export(name="rulesHcl", type=String.class, parameters={})
+    @Export(name="rulesHcl", refs={String.class}, tree="[0]")
     private Output<String> rulesHcl;
 
     /**

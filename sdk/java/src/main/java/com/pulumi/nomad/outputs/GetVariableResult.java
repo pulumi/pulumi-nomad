@@ -107,12 +107,12 @@ public final class GetVariableResult {
             return this;
         }
         public GetVariableResult build() {
-            final var o = new GetVariableResult();
-            o.id = id;
-            o.items = items;
-            o.namespace = namespace;
-            o.path = path;
-            return o;
+            final var _resultValue = new GetVariableResult();
+            _resultValue.id = id;
+            _resultValue.items = items;
+            _resultValue.namespace = namespace;
+            _resultValue.path = path;
+            return _resultValue;
         }
     }
 }

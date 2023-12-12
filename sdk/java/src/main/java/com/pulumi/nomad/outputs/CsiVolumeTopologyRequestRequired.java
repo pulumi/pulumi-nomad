@@ -50,9 +50,9 @@ public final class CsiVolumeTopologyRequestRequired {
             return topologies(List.of(topologies));
         }
         public CsiVolumeTopologyRequestRequired build() {
-            final var o = new CsiVolumeTopologyRequestRequired();
-            o.topologies = topologies;
-            return o;
+            final var _resultValue = new CsiVolumeTopologyRequestRequired();
+            _resultValue.topologies = topologies;
+            return _resultValue;
         }
     }
 }

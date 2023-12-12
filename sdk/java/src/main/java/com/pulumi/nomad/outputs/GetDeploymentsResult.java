@@ -68,10 +68,10 @@ public final class GetDeploymentsResult {
             return this;
         }
         public GetDeploymentsResult build() {
-            final var o = new GetDeploymentsResult();
-            o.deployments = deployments;
-            o.id = id;
-            return o;
+            final var _resultValue = new GetDeploymentsResult();
+            _resultValue.deployments = deployments;
+            _resultValue.id = id;
+            return _resultValue;
         }
     }
 }

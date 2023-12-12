@@ -67,11 +67,11 @@ public final class GetNamespaceNodePoolConfig {
             return denieds(List.of(denieds));
         }
         public GetNamespaceNodePoolConfig build() {
-            final var o = new GetNamespaceNodePoolConfig();
-            o.alloweds = alloweds;
-            o.default_ = default_;
-            o.denieds = denieds;
-            return o;
+            final var _resultValue = new GetNamespaceNodePoolConfig();
+            _resultValue.alloweds = alloweds;
+            _resultValue.default_ = default_;
+            _resultValue.denieds = denieds;
+            return _resultValue;
         }
     }
 }

@@ -68,10 +68,10 @@ public final class CsiVolumeTopologyRequest {
             return this;
         }
         public CsiVolumeTopologyRequest build() {
-            final var o = new CsiVolumeTopologyRequest();
-            o.preferred = preferred;
-            o.required = required;
-            return o;
+            final var _resultValue = new CsiVolumeTopologyRequest();
+            _resultValue.preferred = preferred;
+            _resultValue.required = required;
+            return _resultValue;
         }
     }
 }
