@@ -54,9 +54,9 @@ public final class CsiVolumeTopology {
             return this;
         }
         public CsiVolumeTopology build() {
-            final var o = new CsiVolumeTopology();
-            o.segments = segments;
-            return o;
+            final var _resultValue = new CsiVolumeTopology();
+            _resultValue.segments = segments;
+            return _resultValue;
         }
     }
 }

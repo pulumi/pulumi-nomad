@@ -115,12 +115,12 @@ public final class AclPolicyJobAcl {
             return this;
         }
         public AclPolicyJobAcl build() {
-            final var o = new AclPolicyJobAcl();
-            o.group = group;
-            o.jobId = jobId;
-            o.namespace = namespace;
-            o.task = task;
-            return o;
+            final var _resultValue = new AclPolicyJobAcl();
+            _resultValue.group = group;
+            _resultValue.jobId = jobId;
+            _resultValue.namespace = namespace;
+            _resultValue.task = task;
+            return _resultValue;
         }
     }
 }

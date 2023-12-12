@@ -71,10 +71,10 @@ public final class GetNodePoolsNodePoolSchedulerConfig {
             return this;
         }
         public GetNodePoolsNodePoolSchedulerConfig build() {
-            final var o = new GetNodePoolsNodePoolSchedulerConfig();
-            o.memoryOversubscription = memoryOversubscription;
-            o.schedulerAlgorithm = schedulerAlgorithm;
-            return o;
+            final var _resultValue = new GetNodePoolsNodePoolSchedulerConfig();
+            _resultValue.memoryOversubscription = memoryOversubscription;
+            _resultValue.schedulerAlgorithm = schedulerAlgorithm;
+            return _resultValue;
         }
     }
 }

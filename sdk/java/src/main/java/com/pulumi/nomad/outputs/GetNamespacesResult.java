@@ -69,10 +69,10 @@ public final class GetNamespacesResult {
             return namespaces(List.of(namespaces));
         }
         public GetNamespacesResult build() {
-            final var o = new GetNamespacesResult();
-            o.id = id;
-            o.namespaces = namespaces;
-            return o;
+            final var _resultValue = new GetNamespacesResult();
+            _resultValue.id = id;
+            _resultValue.namespaces = namespaces;
+            return _resultValue;
         }
     }
 }

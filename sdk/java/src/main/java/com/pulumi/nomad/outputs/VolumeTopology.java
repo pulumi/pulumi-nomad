@@ -54,9 +54,9 @@ public final class VolumeTopology {
             return this;
         }
         public VolumeTopology build() {
-            final var o = new VolumeTopology();
-            o.segments = segments;
-            return o;
+            final var _resultValue = new VolumeTopology();
+            _resultValue.segments = segments;
+            return _resultValue;
         }
     }
 }

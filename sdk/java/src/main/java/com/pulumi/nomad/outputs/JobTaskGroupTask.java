@@ -80,12 +80,12 @@ public final class JobTaskGroupTask {
             return volumeMounts(List.of(volumeMounts));
         }
         public JobTaskGroupTask build() {
-            final var o = new JobTaskGroupTask();
-            o.driver = driver;
-            o.meta = meta;
-            o.name = name;
-            o.volumeMounts = volumeMounts;
-            return o;
+            final var _resultValue = new JobTaskGroupTask();
+            _resultValue.driver = driver;
+            _resultValue.meta = meta;
+            _resultValue.name = name;
+            _resultValue.volumeMounts = volumeMounts;
+            return _resultValue;
         }
     }
 }

@@ -449,30 +449,30 @@ public final class GetJobResult {
             return this;
         }
         public GetJobResult build() {
-            final var o = new GetJobResult();
-            o.allAtOnce = allAtOnce;
-            o.constraints = constraints;
-            o.createIndex = createIndex;
-            o.datacenters = datacenters;
-            o.id = id;
-            o.jobId = jobId;
-            o.jobModifyIndex = jobModifyIndex;
-            o.modifyIndex = modifyIndex;
-            o.name = name;
-            o.namespace = namespace;
-            o.parentId = parentId;
-            o.periodicConfigs = periodicConfigs;
-            o.priority = priority;
-            o.region = region;
-            o.stable = stable;
-            o.status = status;
-            o.statusDescription = statusDescription;
-            o.stop = stop;
-            o.submitTime = submitTime;
-            o.taskGroups = taskGroups;
-            o.type = type;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetJobResult();
+            _resultValue.allAtOnce = allAtOnce;
+            _resultValue.constraints = constraints;
+            _resultValue.createIndex = createIndex;
+            _resultValue.datacenters = datacenters;
+            _resultValue.id = id;
+            _resultValue.jobId = jobId;
+            _resultValue.jobModifyIndex = jobModifyIndex;
+            _resultValue.modifyIndex = modifyIndex;
+            _resultValue.name = name;
+            _resultValue.namespace = namespace;
+            _resultValue.parentId = parentId;
+            _resultValue.periodicConfigs = periodicConfigs;
+            _resultValue.priority = priority;
+            _resultValue.region = region;
+            _resultValue.stable = stable;
+            _resultValue.status = status;
+            _resultValue.statusDescription = statusDescription;
+            _resultValue.stop = stop;
+            _resultValue.submitTime = submitTime;
+            _resultValue.taskGroups = taskGroups;
+            _resultValue.type = type;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

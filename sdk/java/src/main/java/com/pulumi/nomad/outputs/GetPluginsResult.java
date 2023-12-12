@@ -81,11 +81,11 @@ public final class GetPluginsResult {
             return this;
         }
         public GetPluginsResult build() {
-            final var o = new GetPluginsResult();
-            o.id = id;
-            o.plugins = plugins;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetPluginsResult();
+            _resultValue.id = id;
+            _resultValue.plugins = plugins;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

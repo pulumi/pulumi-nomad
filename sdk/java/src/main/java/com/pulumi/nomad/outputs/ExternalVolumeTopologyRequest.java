@@ -68,10 +68,10 @@ public final class ExternalVolumeTopologyRequest {
             return this;
         }
         public ExternalVolumeTopologyRequest build() {
-            final var o = new ExternalVolumeTopologyRequest();
-            o.preferred = preferred;
-            o.required = required;
-            return o;
+            final var _resultValue = new ExternalVolumeTopologyRequest();
+            _resultValue.preferred = preferred;
+            _resultValue.required = required;
+            return _resultValue;
         }
     }
 }

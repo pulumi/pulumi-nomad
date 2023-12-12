@@ -46,9 +46,9 @@ public final class GetAclRolePolicy {
             return this;
         }
         public GetAclRolePolicy build() {
-            final var o = new GetAclRolePolicy();
-            o.name = name;
-            return o;
+            final var _resultValue = new GetAclRolePolicy();
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

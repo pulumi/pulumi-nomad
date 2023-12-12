@@ -93,11 +93,11 @@ public final class JobHcl2 {
             return this;
         }
         public JobHcl2 build() {
-            final var o = new JobHcl2();
-            o.allowFs = allowFs;
-            o.enabled = enabled;
-            o.vars = vars;
-            return o;
+            final var _resultValue = new JobHcl2();
+            _resultValue.allowFs = allowFs;
+            _resultValue.enabled = enabled;
+            _resultValue.vars = vars;
+            return _resultValue;
         }
     }
 }

@@ -71,10 +71,10 @@ public final class VolumeMountOptions {
             return mountFlags(List.of(mountFlags));
         }
         public VolumeMountOptions build() {
-            final var o = new VolumeMountOptions();
-            o.fsType = fsType;
-            o.mountFlags = mountFlags;
-            return o;
+            final var _resultValue = new VolumeMountOptions();
+            _resultValue.fsType = fsType;
+            _resultValue.mountFlags = mountFlags;
+            return _resultValue;
         }
     }
 }

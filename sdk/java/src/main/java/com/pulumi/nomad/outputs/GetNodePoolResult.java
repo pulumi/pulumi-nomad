@@ -122,13 +122,13 @@ public final class GetNodePoolResult {
             return schedulerConfigs(List.of(schedulerConfigs));
         }
         public GetNodePoolResult build() {
-            final var o = new GetNodePoolResult();
-            o.description = description;
-            o.id = id;
-            o.meta = meta;
-            o.name = name;
-            o.schedulerConfigs = schedulerConfigs;
-            return o;
+            final var _resultValue = new GetNodePoolResult();
+            _resultValue.description = description;
+            _resultValue.id = id;
+            _resultValue.meta = meta;
+            _resultValue.name = name;
+            _resultValue.schedulerConfigs = schedulerConfigs;
+            return _resultValue;
         }
     }
 }

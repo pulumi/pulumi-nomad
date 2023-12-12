@@ -50,9 +50,9 @@ public final class VolumeTopologyRequestRequired {
             return topologies(List.of(topologies));
         }
         public VolumeTopologyRequestRequired build() {
-            final var o = new VolumeTopologyRequestRequired();
-            o.topologies = topologies;
-            return o;
+            final var _resultValue = new VolumeTopologyRequestRequired();
+            _resultValue.topologies = topologies;
+            return _resultValue;
         }
     }
 }

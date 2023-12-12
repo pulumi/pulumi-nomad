@@ -122,14 +122,14 @@ public final class GetVolumesResult {
             return this;
         }
         public GetVolumesResult build() {
-            final var o = new GetVolumesResult();
-            o.id = id;
-            o.namespace = namespace;
-            o.nodeId = nodeId;
-            o.pluginId = pluginId;
-            o.type = type;
-            o.volumes = volumes;
-            return o;
+            final var _resultValue = new GetVolumesResult();
+            _resultValue.id = id;
+            _resultValue.namespace = namespace;
+            _resultValue.nodeId = nodeId;
+            _resultValue.pluginId = pluginId;
+            _resultValue.type = type;
+            _resultValue.volumes = volumes;
+            return _resultValue;
         }
     }
 }

@@ -108,12 +108,12 @@ public final class GetAclRolesAclRole {
             return policies(List.of(policies));
         }
         public GetAclRolesAclRole build() {
-            final var o = new GetAclRolesAclRole();
-            o.description = description;
-            o.id = id;
-            o.name = name;
-            o.policies = policies;
-            return o;
+            final var _resultValue = new GetAclRolesAclRole();
+            _resultValue.description = description;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.policies = policies;
+            return _resultValue;
         }
     }
 }

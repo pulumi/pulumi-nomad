@@ -53,9 +53,9 @@ public final class CsiVolumeRegistrationTopologyRequestRequiredTopology {
             return this;
         }
         public CsiVolumeRegistrationTopologyRequestRequiredTopology build() {
-            final var o = new CsiVolumeRegistrationTopologyRequestRequiredTopology();
-            o.segments = segments;
-            return o;
+            final var _resultValue = new CsiVolumeRegistrationTopologyRequestRequiredTopology();
+            _resultValue.segments = segments;
+            return _resultValue;
         }
     }
 }

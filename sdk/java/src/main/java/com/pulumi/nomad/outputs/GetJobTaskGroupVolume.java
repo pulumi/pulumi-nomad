@@ -88,12 +88,12 @@ public final class GetJobTaskGroupVolume {
             return this;
         }
         public GetJobTaskGroupVolume build() {
-            final var o = new GetJobTaskGroupVolume();
-            o.name = name;
-            o.readOnly = readOnly;
-            o.source = source;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetJobTaskGroupVolume();
+            _resultValue.name = name;
+            _resultValue.readOnly = readOnly;
+            _resultValue.source = source;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

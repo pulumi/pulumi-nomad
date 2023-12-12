@@ -27,7 +27,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * URL of the root of the target Nomad agent.
      * 
      */
-    @Export(name="address", type=String.class, parameters={})
+    @Export(name="address", refs={String.class}, tree="[0]")
     private Output<String> address;
 
     /**
@@ -41,7 +41,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * A path to a PEM-encoded certificate authority used to verify the remote agent&#39;s certificate.
      * 
      */
-    @Export(name="caFile", type=String.class, parameters={})
+    @Export(name="caFile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> caFile;
 
     /**
@@ -55,7 +55,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * PEM-encoded certificate authority used to verify the remote agent&#39;s certificate.
      * 
      */
-    @Export(name="caPem", type=String.class, parameters={})
+    @Export(name="caPem", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> caPem;
 
     /**
@@ -69,7 +69,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
      * 
      */
-    @Export(name="certFile", type=String.class, parameters={})
+    @Export(name="certFile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> certFile;
 
     /**
@@ -83,7 +83,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
      * 
      */
-    @Export(name="certPem", type=String.class, parameters={})
+    @Export(name="certPem", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> certPem;
 
     /**
@@ -97,7 +97,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Consul token to validate Consul Connect Service Identity policies specified in the job file.
      * 
      */
-    @Export(name="consulToken", type=String.class, parameters={})
+    @Export(name="consulToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> consulToken;
 
     /**
@@ -111,7 +111,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * HTTP basic auth configuration.
      * 
      */
-    @Export(name="httpAuth", type=String.class, parameters={})
+    @Export(name="httpAuth", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> httpAuth;
 
     /**
@@ -125,7 +125,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
      * 
      */
-    @Export(name="keyFile", type=String.class, parameters={})
+    @Export(name="keyFile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> keyFile;
 
     /**
@@ -139,7 +139,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * PEM-encoded private key, required if cert_file or cert_pem is specified.
      * 
      */
-    @Export(name="keyPem", type=String.class, parameters={})
+    @Export(name="keyPem", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> keyPem;
 
     /**
@@ -153,7 +153,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Region of the target Nomad agent.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     /**
@@ -167,7 +167,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * ACL token secret for API requests.
      * 
      */
-    @Export(name="secretId", type=String.class, parameters={})
+    @Export(name="secretId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secretId;
 
     /**
@@ -181,7 +181,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * Vault token if policies are specified in the job file.
      * 
      */
-    @Export(name="vaultToken", type=String.class, parameters={})
+    @Export(name="vaultToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vaultToken;
 
     /**

@@ -48,9 +48,9 @@ public final class VolumeTopologyRequest {
             return this;
         }
         public VolumeTopologyRequest build() {
-            final var o = new VolumeTopologyRequest();
-            o.required = required;
-            return o;
+            final var _resultValue = new VolumeTopologyRequest();
+            _resultValue.required = required;
+            return _resultValue;
         }
     }
 }

@@ -75,7 +75,7 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
      * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -93,7 +93,7 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
      * for this policy.
      * 
      */
-    @Export(name="enforcementLevel", type=String.class, parameters={})
+    @Export(name="enforcementLevel", refs={String.class}, tree="[0]")
     private Output<String> enforcementLevel;
 
     /**
@@ -108,7 +108,7 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - A unique name for the policy.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -122,7 +122,7 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - The contents of the policy to register.
      * 
      */
-    @Export(name="policy", type=String.class, parameters={})
+    @Export(name="policy", refs={String.class}, tree="[0]")
     private Output<String> policy;
 
     /**
@@ -136,7 +136,7 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
      * `(strings: &lt;required&gt;)` - The [scope][scope] for this policy.
      * 
      */
-    @Export(name="scope", type=String.class, parameters={})
+    @Export(name="scope", refs={String.class}, tree="[0]")
     private Output<String> scope;
 
     /**

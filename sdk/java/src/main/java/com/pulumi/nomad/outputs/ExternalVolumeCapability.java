@@ -79,10 +79,10 @@ public final class ExternalVolumeCapability {
             return this;
         }
         public ExternalVolumeCapability build() {
-            final var o = new ExternalVolumeCapability();
-            o.accessMode = accessMode;
-            o.attachmentMode = attachmentMode;
-            return o;
+            final var _resultValue = new ExternalVolumeCapability();
+            _resultValue.accessMode = accessMode;
+            _resultValue.attachmentMode = attachmentMode;
+            return _resultValue;
         }
     }
 }

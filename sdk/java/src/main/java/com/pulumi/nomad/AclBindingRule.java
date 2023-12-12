@@ -21,7 +21,7 @@ public class AclBindingRule extends com.pulumi.resources.CustomResource {
      * rule applies to.
      * 
      */
-    @Export(name="authMethod", type=String.class, parameters={})
+    @Export(name="authMethod", refs={String.class}, tree="[0]")
     private Output<String> authMethod;
 
     /**
@@ -38,7 +38,7 @@ public class AclBindingRule extends com.pulumi.resources.CustomResource {
      * `management` than `bind_name` must not be defined.
      * 
      */
-    @Export(name="bindName", type=String.class, parameters={})
+    @Export(name="bindName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bindName;
 
     /**
@@ -55,7 +55,7 @@ public class AclBindingRule extends com.pulumi.resources.CustomResource {
      * at login time. Valid values are `role`, `policy`, and `management`.
      * 
      */
-    @Export(name="bindType", type=String.class, parameters={})
+    @Export(name="bindType", refs={String.class}, tree="[0]")
     private Output<String> bindType;
 
     /**
@@ -70,7 +70,7 @@ public class AclBindingRule extends com.pulumi.resources.CustomResource {
      * `(string: &#34;&#34;)` - Description for this ACL binding rule.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -85,7 +85,7 @@ public class AclBindingRule extends com.pulumi.resources.CustomResource {
      * identity attributes returned from the auth method during login.
      * 
      */
-    @Export(name="selector", type=String.class, parameters={})
+    @Export(name="selector", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> selector;
 
     /**

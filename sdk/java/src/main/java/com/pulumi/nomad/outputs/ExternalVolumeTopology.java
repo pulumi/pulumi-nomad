@@ -54,9 +54,9 @@ public final class ExternalVolumeTopology {
             return this;
         }
         public ExternalVolumeTopology build() {
-            final var o = new ExternalVolumeTopology();
-            o.segments = segments;
-            return o;
+            final var _resultValue = new ExternalVolumeTopology();
+            _resultValue.segments = segments;
+            return _resultValue;
         }
     }
 }

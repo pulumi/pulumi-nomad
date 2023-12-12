@@ -251,19 +251,19 @@ public final class GetAclTokenResult {
             return this;
         }
         public GetAclTokenResult build() {
-            final var o = new GetAclTokenResult();
-            o.accessorId = accessorId;
-            o.createTime = createTime;
-            o.expirationTime = expirationTime;
-            o.expirationTtl = expirationTtl;
-            o.global = global;
-            o.id = id;
-            o.name = name;
-            o.policies = policies;
-            o.roles = roles;
-            o.secretId = secretId;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetAclTokenResult();
+            _resultValue.accessorId = accessorId;
+            _resultValue.createTime = createTime;
+            _resultValue.expirationTime = expirationTime;
+            _resultValue.expirationTtl = expirationTtl;
+            _resultValue.global = global;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.policies = policies;
+            _resultValue.roles = roles;
+            _resultValue.secretId = secretId;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

@@ -106,12 +106,12 @@ public final class GetScalingPoliciesPolicy {
             return this;
         }
         public GetScalingPoliciesPolicy build() {
-            final var o = new GetScalingPoliciesPolicy();
-            o.enabled = enabled;
-            o.id = id;
-            o.target = target;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetScalingPoliciesPolicy();
+            _resultValue.enabled = enabled;
+            _resultValue.id = id;
+            _resultValue.target = target;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

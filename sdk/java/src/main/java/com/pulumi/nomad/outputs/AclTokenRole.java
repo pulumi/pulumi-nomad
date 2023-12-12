@@ -59,10 +59,10 @@ public final class AclTokenRole {
             return this;
         }
         public AclTokenRole build() {
-            final var o = new AclTokenRole();
-            o.id = id;
-            o.name = name;
-            return o;
+            final var _resultValue = new AclTokenRole();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

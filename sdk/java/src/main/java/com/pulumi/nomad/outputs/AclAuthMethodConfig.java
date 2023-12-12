@@ -155,18 +155,18 @@ public final class AclAuthMethodConfig {
             return signingAlgs(List.of(signingAlgs));
         }
         public AclAuthMethodConfig build() {
-            final var o = new AclAuthMethodConfig();
-            o.allowedRedirectUris = allowedRedirectUris;
-            o.boundAudiences = boundAudiences;
-            o.claimMappings = claimMappings;
-            o.discoveryCaPems = discoveryCaPems;
-            o.listClaimMappings = listClaimMappings;
-            o.oidcClientId = oidcClientId;
-            o.oidcClientSecret = oidcClientSecret;
-            o.oidcDiscoveryUrl = oidcDiscoveryUrl;
-            o.oidcScopes = oidcScopes;
-            o.signingAlgs = signingAlgs;
-            return o;
+            final var _resultValue = new AclAuthMethodConfig();
+            _resultValue.allowedRedirectUris = allowedRedirectUris;
+            _resultValue.boundAudiences = boundAudiences;
+            _resultValue.claimMappings = claimMappings;
+            _resultValue.discoveryCaPems = discoveryCaPems;
+            _resultValue.listClaimMappings = listClaimMappings;
+            _resultValue.oidcClientId = oidcClientId;
+            _resultValue.oidcClientSecret = oidcClientSecret;
+            _resultValue.oidcDiscoveryUrl = oidcDiscoveryUrl;
+            _resultValue.oidcScopes = oidcScopes;
+            _resultValue.signingAlgs = signingAlgs;
+            return _resultValue;
         }
     }
 }

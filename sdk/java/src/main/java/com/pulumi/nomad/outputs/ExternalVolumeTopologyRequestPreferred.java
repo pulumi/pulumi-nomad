@@ -50,9 +50,9 @@ public final class ExternalVolumeTopologyRequestPreferred {
             return topologies(List.of(topologies));
         }
         public ExternalVolumeTopologyRequestPreferred build() {
-            final var o = new ExternalVolumeTopologyRequestPreferred();
-            o.topologies = topologies;
-            return o;
+            final var _resultValue = new ExternalVolumeTopologyRequestPreferred();
+            _resultValue.topologies = topologies;
+            return _resultValue;
         }
     }
 }

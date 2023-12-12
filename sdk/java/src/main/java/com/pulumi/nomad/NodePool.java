@@ -62,7 +62,7 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      * `(string)` - The description of the node pool.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -77,7 +77,7 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      * node pool.
      * 
      */
-    @Export(name="meta", type=Map.class, parameters={String.class, String.class})
+    @Export(name="meta", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> meta;
 
     /**
@@ -92,7 +92,7 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      * `(string)` - The name of the node pool.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -106,7 +106,7 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      * `(block)` - Scheduler configuration for the node pool.
      * 
      */
-    @Export(name="schedulerConfig", type=NodePoolSchedulerConfig.class, parameters={})
+    @Export(name="schedulerConfig", refs={NodePoolSchedulerConfig.class}, tree="[0]")
     private Output</* @Nullable */ NodePoolSchedulerConfig> schedulerConfig;
 
     /**

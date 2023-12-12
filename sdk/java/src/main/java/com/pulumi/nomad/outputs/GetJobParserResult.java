@@ -106,12 +106,12 @@ public final class GetJobParserResult {
             return this;
         }
         public GetJobParserResult build() {
-            final var o = new GetJobParserResult();
-            o.canonicalize = canonicalize;
-            o.hcl = hcl;
-            o.id = id;
-            o.json = json;
-            return o;
+            final var _resultValue = new GetJobParserResult();
+            _resultValue.canonicalize = canonicalize;
+            _resultValue.hcl = hcl;
+            _resultValue.id = id;
+            _resultValue.json = json;
+            return _resultValue;
         }
     }
 }

@@ -105,12 +105,12 @@ public final class GetSchedulerPolicyResult {
             return this;
         }
         public GetSchedulerPolicyResult build() {
-            final var o = new GetSchedulerPolicyResult();
-            o.id = id;
-            o.memoryOversubscriptionEnabled = memoryOversubscriptionEnabled;
-            o.preemptionConfig = preemptionConfig;
-            o.schedulerAlgorithm = schedulerAlgorithm;
-            return o;
+            final var _resultValue = new GetSchedulerPolicyResult();
+            _resultValue.id = id;
+            _resultValue.memoryOversubscriptionEnabled = memoryOversubscriptionEnabled;
+            _resultValue.preemptionConfig = preemptionConfig;
+            _resultValue.schedulerAlgorithm = schedulerAlgorithm;
+            return _resultValue;
         }
     }
 }

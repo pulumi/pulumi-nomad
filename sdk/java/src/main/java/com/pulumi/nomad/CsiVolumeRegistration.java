@@ -99,7 +99,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(``Capability``: &lt;required&gt;)` - Options for validating the capability of a volume.
      * 
      */
-    @Export(name="capabilities", type=List.class, parameters={CsiVolumeRegistrationCapability.class})
+    @Export(name="capabilities", refs={List.class,CsiVolumeRegistrationCapability.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CsiVolumeRegistrationCapability>> capabilities;
 
     /**
@@ -113,7 +113,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      * 
      */
-    @Export(name="context", type=Map.class, parameters={String.class, String.class})
+    @Export(name="context", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> context;
 
     /**
@@ -127,7 +127,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(boolean)`
      * 
      */
-    @Export(name="controllerRequired", type=Boolean.class, parameters={})
+    @Export(name="controllerRequired", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> controllerRequired;
 
     /**
@@ -141,7 +141,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(integer)`
      * 
      */
-    @Export(name="controllersExpected", type=Integer.class, parameters={})
+    @Export(name="controllersExpected", refs={Integer.class}, tree="[0]")
     private Output<Integer> controllersExpected;
 
     /**
@@ -155,7 +155,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(integer)`
      * 
      */
-    @Export(name="controllersHealthy", type=Integer.class, parameters={})
+    @Export(name="controllersHealthy", refs={Integer.class}, tree="[0]")
     private Output<Integer> controllersHealthy;
 
     /**
@@ -169,7 +169,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(boolean: false)` - If true, the volume will be deregistered on destroy.
      * 
      */
-    @Export(name="deregisterOnDestroy", type=Boolean.class, parameters={})
+    @Export(name="deregisterOnDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deregisterOnDestroy;
 
     /**
@@ -183,7 +183,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - The ID of the physical volume from the storage provider.
      * 
      */
-    @Export(name="externalId", type=String.class, parameters={})
+    @Export(name="externalId", refs={String.class}, tree="[0]")
     private Output<String> externalId;
 
     /**
@@ -197,7 +197,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(block: &lt;optional&gt;)` Options for mounting `block-device` volumes without a pre-formatted file system.
      * 
      */
-    @Export(name="mountOptions", type=CsiVolumeRegistrationMountOptions.class, parameters={})
+    @Export(name="mountOptions", refs={CsiVolumeRegistrationMountOptions.class}, tree="[0]")
     private Output</* @Nullable */ CsiVolumeRegistrationMountOptions> mountOptions;
 
     /**
@@ -211,7 +211,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - The display name for the volume.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -225,7 +225,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(string: &#34;default&#34;)` - The namespace in which to register the volume.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> namespace;
 
     /**
@@ -239,7 +239,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(integer)`
      * 
      */
-    @Export(name="nodesExpected", type=Integer.class, parameters={})
+    @Export(name="nodesExpected", refs={Integer.class}, tree="[0]")
     private Output<Integer> nodesExpected;
 
     /**
@@ -253,7 +253,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(integer)`
      * 
      */
-    @Export(name="nodesHealthy", type=Integer.class, parameters={})
+    @Export(name="nodesHealthy", refs={Integer.class}, tree="[0]")
     private Output<Integer> nodesHealthy;
 
     /**
@@ -267,7 +267,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      * 
      */
-    @Export(name="parameters", type=Map.class, parameters={String.class, String.class})
+    @Export(name="parameters", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> parameters;
 
     /**
@@ -281,7 +281,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - The ID of the Nomad plugin for registering this volume.
      * 
      */
-    @Export(name="pluginId", type=String.class, parameters={})
+    @Export(name="pluginId", refs={String.class}, tree="[0]")
     private Output<String> pluginId;
 
     /**
@@ -295,7 +295,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(string)`
      * 
      */
-    @Export(name="pluginProvider", type=String.class, parameters={})
+    @Export(name="pluginProvider", refs={String.class}, tree="[0]")
     private Output<String> pluginProvider;
 
     /**
@@ -309,7 +309,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(string)`
      * 
      */
-    @Export(name="pluginProviderVersion", type=String.class, parameters={})
+    @Export(name="pluginProviderVersion", refs={String.class}, tree="[0]")
     private Output<String> pluginProviderVersion;
 
     /**
@@ -323,7 +323,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(boolean)`
      * 
      */
-    @Export(name="schedulable", type=Boolean.class, parameters={})
+    @Export(name="schedulable", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> schedulable;
 
     /**
@@ -337,7 +337,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      * 
      */
-    @Export(name="secrets", type=Map.class, parameters={String.class, String.class})
+    @Export(name="secrets", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> secrets;
 
     /**
@@ -351,7 +351,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(List of topologies)`
      * 
      */
-    @Export(name="topologies", type=List.class, parameters={CsiVolumeRegistrationTopology.class})
+    @Export(name="topologies", refs={List.class,CsiVolumeRegistrationTopology.class}, tree="[0,1]")
     private Output<List<CsiVolumeRegistrationTopology>> topologies;
 
     /**
@@ -365,7 +365,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(``TopologyRequest``: &lt;optional&gt;)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      * 
      */
-    @Export(name="topologyRequest", type=CsiVolumeRegistrationTopologyRequest.class, parameters={})
+    @Export(name="topologyRequest", refs={CsiVolumeRegistrationTopologyRequest.class}, tree="[0]")
     private Output</* @Nullable */ CsiVolumeRegistrationTopologyRequest> topologyRequest;
 
     /**
@@ -379,7 +379,7 @@ public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - The unique ID of the volume.
      * 
      */
-    @Export(name="volumeId", type=String.class, parameters={})
+    @Export(name="volumeId", refs={String.class}, tree="[0]")
     private Output<String> volumeId;
 
     /**

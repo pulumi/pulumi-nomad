@@ -157,7 +157,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * can be logged and shared safely without granting any access to the cluster.
      * 
      */
-    @Export(name="accessorId", type=String.class, parameters={})
+    @Export(name="accessorId", refs={String.class}, tree="[0]")
     private Output<String> accessorId;
 
     /**
@@ -172,7 +172,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * `(string)` - The timestamp the token was created.
      * 
      */
-    @Export(name="createTime", type=String.class, parameters={})
+    @Export(name="createTime", refs={String.class}, tree="[0]")
     private Output<String> createTime;
 
     /**
@@ -187,7 +187,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * considered expired and eligible for destruction.
      * 
      */
-    @Export(name="expirationTime", type=String.class, parameters={})
+    @Export(name="expirationTime", refs={String.class}, tree="[0]")
     private Output<String> expirationTime;
 
     /**
@@ -206,7 +206,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * can be referenced:
      * 
      */
-    @Export(name="expirationTtl", type=String.class, parameters={})
+    @Export(name="expirationTtl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> expirationTtl;
 
     /**
@@ -225,7 +225,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * regions, or if it will only be used in the region it was created in.
      * 
      */
-    @Export(name="global", type=Boolean.class, parameters={})
+    @Export(name="global", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> global;
 
     /**
@@ -240,7 +240,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * `(string: &#34;&#34;)` - A human-friendly name for this token.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -257,7 +257,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * used here.
      * 
      */
-    @Export(name="policies", type=List.class, parameters={String.class})
+    @Export(name="policies", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> policies;
 
     /**
@@ -275,7 +275,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * `name` and `id` attributes. It may be used multiple times.
      * 
      */
-    @Export(name="roles", type=List.class, parameters={AclTokenRole.class})
+    @Export(name="roles", refs={List.class,AclTokenRole.class}, tree="[0,1]")
     private Output</* @Nullable */ List<AclTokenRole>> roles;
 
     /**
@@ -291,7 +291,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * access to the cluster.
      * 
      */
-    @Export(name="secretId", type=String.class, parameters={})
+    @Export(name="secretId", refs={String.class}, tree="[0]")
     private Output<String> secretId;
 
     /**
@@ -308,7 +308,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * for tokens that can perform any action.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

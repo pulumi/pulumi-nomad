@@ -50,9 +50,9 @@ public final class ExternalVolumeTopologyRequestRequired {
             return topologies(List.of(topologies));
         }
         public ExternalVolumeTopologyRequestRequired build() {
-            final var o = new ExternalVolumeTopologyRequestRequired();
-            o.topologies = topologies;
-            return o;
+            final var _resultValue = new ExternalVolumeTopologyRequestRequired();
+            _resultValue.topologies = topologies;
+            return _resultValue;
         }
     }
 }

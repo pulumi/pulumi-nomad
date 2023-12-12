@@ -93,11 +93,11 @@ public final class NamespaceNodePoolConfig {
             return denieds(List.of(denieds));
         }
         public NamespaceNodePoolConfig build() {
-            final var o = new NamespaceNodePoolConfig();
-            o.alloweds = alloweds;
-            o.default_ = default_;
-            o.denieds = denieds;
-            return o;
+            final var _resultValue = new NamespaceNodePoolConfig();
+            _resultValue.alloweds = alloweds;
+            _resultValue.default_ = default_;
+            _resultValue.denieds = denieds;
+            return _resultValue;
         }
     }
 }

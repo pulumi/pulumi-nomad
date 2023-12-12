@@ -73,10 +73,10 @@ public final class NamespaceCapabilities {
             return enabledTaskDrivers(List.of(enabledTaskDrivers));
         }
         public NamespaceCapabilities build() {
-            final var o = new NamespaceCapabilities();
-            o.disabledTaskDrivers = disabledTaskDrivers;
-            o.enabledTaskDrivers = enabledTaskDrivers;
-            return o;
+            final var _resultValue = new NamespaceCapabilities();
+            _resultValue.disabledTaskDrivers = disabledTaskDrivers;
+            _resultValue.enabledTaskDrivers = enabledTaskDrivers;
+            return _resultValue;
         }
     }
 }

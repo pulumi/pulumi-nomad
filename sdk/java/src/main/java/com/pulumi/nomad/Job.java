@@ -28,7 +28,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead. */
-    @Export(name="allocationIds", type=List.class, parameters={String.class})
+    @Export(name="allocationIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allocationIds;
 
     /**
@@ -43,7 +43,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * Will fallback to the value declared in Nomad provider configuration, if any.
      * 
      */
-    @Export(name="consulToken", type=String.class, parameters={})
+    @Export(name="consulToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> consulToken;
 
     /**
@@ -58,7 +58,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * The target datacenters for the job, as derived from the jobspec.
      * 
      */
-    @Export(name="datacenters", type=List.class, parameters={String.class})
+    @Export(name="datacenters", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> datacenters;
 
     /**
@@ -72,7 +72,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
      * 
      */
-    @Export(name="deploymentId", type=String.class, parameters={})
+    @Export(name="deploymentId", refs={String.class}, tree="[0]")
     private Output<String> deploymentId;
 
     /**
@@ -86,7 +86,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * If detach = false, the status for the deployment associated with the last job create/update, if one exists.
      * 
      */
-    @Export(name="deploymentStatus", type=String.class, parameters={})
+    @Export(name="deploymentStatus", refs={String.class}, tree="[0]")
     private Output<String> deploymentStatus;
 
     /**
@@ -100,7 +100,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * If true, the job will be deregistered on destroy.
      * 
      */
-    @Export(name="deregisterOnDestroy", type=Boolean.class, parameters={})
+    @Export(name="deregisterOnDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deregisterOnDestroy;
 
     /**
@@ -115,7 +115,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * deregistered if the ID of the job in the jobspec changes.
      * 
      */
-    @Export(name="deregisterOnIdChange", type=Boolean.class, parameters={})
+    @Export(name="deregisterOnIdChange", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deregisterOnIdChange;
 
     /**
@@ -131,7 +131,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * after creating or updating, instead of monitoring.
      * 
      */
-    @Export(name="detach", type=Boolean.class, parameters={})
+    @Export(name="detach", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> detach;
 
     /**
@@ -148,7 +148,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * not be used unless absolutely necessary.
      * 
      */
-    @Export(name="hcl1", type=Boolean.class, parameters={})
+    @Export(name="hcl1", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> hcl1;
 
     /**
@@ -164,7 +164,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      * 
      */
-    @Export(name="hcl2", type=JobHcl2.class, parameters={})
+    @Export(name="hcl2", refs={JobHcl2.class}, tree="[0]")
     private Output</* @Nullable */ JobHcl2> hcl2;
 
     /**
@@ -178,7 +178,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - The contents of the jobspec to register.
      * 
      */
-    @Export(name="jobspec", type=String.class, parameters={})
+    @Export(name="jobspec", refs={String.class}, tree="[0]")
     private Output<String> jobspec;
 
     /**
@@ -193,7 +193,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * JSON instead of the default HCL.
      * 
      */
-    @Export(name="json", type=Boolean.class, parameters={})
+    @Export(name="json", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> json;
 
     /**
@@ -208,7 +208,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * Integer that increments for each change. Used to detect any changes between plan and apply.
      * 
      */
-    @Export(name="modifyIndex", type=String.class, parameters={})
+    @Export(name="modifyIndex", refs={String.class}, tree="[0]")
     private Output<String> modifyIndex;
 
     /**
@@ -222,7 +222,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * The name of the job, as derived from the jobspec.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -236,7 +236,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * The namespace of the job, as derived from the jobspec.
      * 
      */
-    @Export(name="namespace", type=String.class, parameters={})
+    @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output<String> namespace;
 
     /**
@@ -251,7 +251,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * soft-mandatory Sentinel policies and register even if they fail.
      * 
      */
-    @Export(name="policyOverride", type=Boolean.class, parameters={})
+    @Export(name="policyOverride", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> policyOverride;
 
     /**
@@ -267,7 +267,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * be purged when the resource is destroyed.
      * 
      */
-    @Export(name="purgeOnDestroy", type=Boolean.class, parameters={})
+    @Export(name="purgeOnDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> purgeOnDestroy;
 
     /**
@@ -284,7 +284,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead. */
-    @Export(name="readAllocationIds", type=Boolean.class, parameters={})
+    @Export(name="readAllocationIds", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> readAllocationIds;
 
     public Output<Optional<Boolean>> readAllocationIds() {
@@ -294,7 +294,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * The target region for the job, as derived from the jobspec.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -304,7 +304,7 @@ public class Job extends com.pulumi.resources.CustomResource {
     public Output<String> region() {
         return this.region;
     }
-    @Export(name="taskGroups", type=List.class, parameters={JobTaskGroup.class})
+    @Export(name="taskGroups", refs={List.class,JobTaskGroup.class}, tree="[0,1]")
     private Output<List<JobTaskGroup>> taskGroups;
 
     public Output<List<JobTaskGroup>> taskGroups() {
@@ -314,7 +314,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * The type of the job, as derived from the jobspec.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -329,7 +329,7 @@ public class Job extends com.pulumi.resources.CustomResource {
      * Will fallback to the value declared in Nomad provider configuration, if any.
      * 
      */
-    @Export(name="vaultToken", type=String.class, parameters={})
+    @Export(name="vaultToken", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vaultToken;
 
     /**

@@ -22,7 +22,7 @@ public class AclRole extends com.pulumi.resources.CustomResource {
      * `(string: &#34;&#34;)` - A description of the ACL Role.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -36,7 +36,7 @@ public class AclRole extends com.pulumi.resources.CustomResource {
      * `(string: &lt;required&gt;)` - A human-friendly name for this ACL Role.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -51,7 +51,7 @@ public class AclRole extends com.pulumi.resources.CustomResource {
      * ACL Role. It may be used multiple times.
      * 
      */
-    @Export(name="policies", type=List.class, parameters={AclRolePolicy.class})
+    @Export(name="policies", refs={List.class,AclRolePolicy.class}, tree="[0,1]")
     private Output<List<AclRolePolicy>> policies;
 
     /**
