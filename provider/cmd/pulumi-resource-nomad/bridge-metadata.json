@@ -566,6 +566,7 @@
             }
         }
     },
+    "auto-settings": {},
     "renames": {
         "resources": {
             "nomad:index/aclAuthMethod:AclAuthMethod": "nomad_acl_auth_method",
