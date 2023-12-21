@@ -37,6 +37,36 @@ public final class CsiVolumeRegistrationArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+     * 
+     */
+    @Import(name="capacityMax")
+    private @Nullable Output<String> capacityMax;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+     * 
+     */
+    public Optional<Output<String>> capacityMax() {
+        return Optional.ofNullable(this.capacityMax);
+    }
+
+    /**
+     * `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+     * 
+     */
+    @Import(name="capacityMin")
+    private @Nullable Output<String> capacityMin;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+     * 
+     */
+    public Optional<Output<String>> capacityMin() {
+        return Optional.ofNullable(this.capacityMin);
+    }
+
+    /**
      * `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      * 
      */
@@ -205,6 +235,8 @@ public final class CsiVolumeRegistrationArgs extends com.pulumi.resources.Resour
 
     private CsiVolumeRegistrationArgs(CsiVolumeRegistrationArgs $) {
         this.capabilities = $.capabilities;
+        this.capacityMax = $.capacityMax;
+        this.capacityMin = $.capacityMin;
         this.context = $.context;
         this.deregisterOnDestroy = $.deregisterOnDestroy;
         this.externalId = $.externalId;
@@ -265,6 +297,48 @@ public final class CsiVolumeRegistrationArgs extends com.pulumi.resources.Resour
          */
         public Builder capabilities(CsiVolumeRegistrationCapabilityArgs... capabilities) {
             return capabilities(List.of(capabilities));
+        }
+
+        /**
+         * @param capacityMax `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder capacityMax(@Nullable Output<String> capacityMax) {
+            $.capacityMax = capacityMax;
+            return this;
+        }
+
+        /**
+         * @param capacityMax `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder capacityMax(String capacityMax) {
+            return capacityMax(Output.of(capacityMax));
+        }
+
+        /**
+         * @param capacityMin `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder capacityMin(@Nullable Output<String> capacityMin) {
+            $.capacityMin = capacityMin;
+            return this;
+        }
+
+        /**
+         * @param capacityMin `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder capacityMin(String capacityMin) {
+            return capacityMin(Output.of(capacityMin));
         }
 
         /**

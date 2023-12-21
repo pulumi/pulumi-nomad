@@ -21,7 +21,8 @@ class AclAuthMethodArgs:
                  token_locality: pulumi.Input[str],
                  type: pulumi.Input[str],
                  default: Optional[pulumi.Input[bool]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 token_name_format: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AclAuthMethod resource.
         :param pulumi.Input['AclAuthMethodConfigArgs'] config: Configuration specific to the auth method provider.
@@ -35,6 +36,9 @@ class AclAuthMethodArgs:
         :param pulumi.Input[bool] default: `(bool: false)` - Defines whether this ACL Auth Method is to be set
                as default.
         :param pulumi.Input[str] name: `(string: <required>)` - The identifier of the ACL Auth Method.
+        :param pulumi.Input[str] token_name_format: `(string: <optional>)` - Defines the token name format for the
+               generated tokens This can be lightly templated using HIL '${foo}' syntax.
+               Defaults to `${auth_method_type}-${auth_method_name}`.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "max_token_ttl", max_token_ttl)
@@ -44,6 +48,8 @@ class AclAuthMethodArgs:
             pulumi.set(__self__, "default", default)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if token_name_format is not None:
+            pulumi.set(__self__, "token_name_format", token_name_format)
 
     @property
     @pulumi.getter
@@ -122,6 +128,20 @@ class AclAuthMethodArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter(name="tokenNameFormat")
+    def token_name_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - Defines the token name format for the
+        generated tokens This can be lightly templated using HIL '${foo}' syntax.
+        Defaults to `${auth_method_type}-${auth_method_name}`.
+        """
+        return pulumi.get(self, "token_name_format")
+
+    @token_name_format.setter
+    def token_name_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_name_format", value)
+
 
 @pulumi.input_type
 class _AclAuthMethodState:
@@ -131,6 +151,7 @@ class _AclAuthMethodState:
                  max_token_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  token_locality: Optional[pulumi.Input[str]] = None,
+                 token_name_format: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AclAuthMethod resources.
@@ -143,6 +164,9 @@ class _AclAuthMethodState:
         :param pulumi.Input[str] token_locality: `(string: <required>)` - Defines whether the ACL Auth Method
                creates a local or global token when performing SSO login. This field must be
                set to either `local` or `global`.
+        :param pulumi.Input[str] token_name_format: `(string: <optional>)` - Defines the token name format for the
+               generated tokens This can be lightly templated using HIL '${foo}' syntax.
+               Defaults to `${auth_method_type}-${auth_method_name}`.
         :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
                the only supported type is `OIDC`.
         """
@@ -156,6 +180,8 @@ class _AclAuthMethodState:
             pulumi.set(__self__, "name", name)
         if token_locality is not None:
             pulumi.set(__self__, "token_locality", token_locality)
+        if token_name_format is not None:
+            pulumi.set(__self__, "token_name_format", token_name_format)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -224,6 +250,20 @@ class _AclAuthMethodState:
         pulumi.set(self, "token_locality", value)
 
     @property
+    @pulumi.getter(name="tokenNameFormat")
+    def token_name_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - Defines the token name format for the
+        generated tokens This can be lightly templated using HIL '${foo}' syntax.
+        Defaults to `${auth_method_type}-${auth_method_name}`.
+        """
+        return pulumi.get(self, "token_name_format")
+
+    @token_name_format.setter
+    def token_name_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "token_name_format", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -247,6 +287,7 @@ class AclAuthMethod(pulumi.CustomResource):
                  max_token_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  token_locality: Optional[pulumi.Input[str]] = None,
+                 token_name_format: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -264,6 +305,7 @@ class AclAuthMethod(pulumi.CustomResource):
             type="OIDC",
             token_locality="global",
             max_token_ttl="10m0s",
+            token_name_format="${auth_method_type}-${value.user}",
             default=True,
             config=nomad.AclAuthMethodConfigArgs(
                 oidc_discovery_url="https://uk.auth0.com/",
@@ -291,6 +333,9 @@ class AclAuthMethod(pulumi.CustomResource):
         :param pulumi.Input[str] token_locality: `(string: <required>)` - Defines whether the ACL Auth Method
                creates a local or global token when performing SSO login. This field must be
                set to either `local` or `global`.
+        :param pulumi.Input[str] token_name_format: `(string: <optional>)` - Defines the token name format for the
+               generated tokens This can be lightly templated using HIL '${foo}' syntax.
+               Defaults to `${auth_method_type}-${auth_method_name}`.
         :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
                the only supported type is `OIDC`.
         """
@@ -315,6 +360,7 @@ class AclAuthMethod(pulumi.CustomResource):
             type="OIDC",
             token_locality="global",
             max_token_ttl="10m0s",
+            token_name_format="${auth_method_type}-${value.user}",
             default=True,
             config=nomad.AclAuthMethodConfigArgs(
                 oidc_discovery_url="https://uk.auth0.com/",
@@ -351,6 +397,7 @@ class AclAuthMethod(pulumi.CustomResource):
                  max_token_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  token_locality: Optional[pulumi.Input[str]] = None,
+                 token_name_format: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -372,6 +419,7 @@ class AclAuthMethod(pulumi.CustomResource):
             if token_locality is None and not opts.urn:
                 raise TypeError("Missing required property 'token_locality'")
             __props__.__dict__["token_locality"] = token_locality
+            __props__.__dict__["token_name_format"] = token_name_format
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
@@ -390,6 +438,7 @@ class AclAuthMethod(pulumi.CustomResource):
             max_token_ttl: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             token_locality: Optional[pulumi.Input[str]] = None,
+            token_name_format: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'AclAuthMethod':
         """
         Get an existing AclAuthMethod resource's state with the given name, id, and optional extra
@@ -407,6 +456,9 @@ class AclAuthMethod(pulumi.CustomResource):
         :param pulumi.Input[str] token_locality: `(string: <required>)` - Defines whether the ACL Auth Method
                creates a local or global token when performing SSO login. This field must be
                set to either `local` or `global`.
+        :param pulumi.Input[str] token_name_format: `(string: <optional>)` - Defines the token name format for the
+               generated tokens This can be lightly templated using HIL '${foo}' syntax.
+               Defaults to `${auth_method_type}-${auth_method_name}`.
         :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
                the only supported type is `OIDC`.
         """
@@ -419,6 +471,7 @@ class AclAuthMethod(pulumi.CustomResource):
         __props__.__dict__["max_token_ttl"] = max_token_ttl
         __props__.__dict__["name"] = name
         __props__.__dict__["token_locality"] = token_locality
+        __props__.__dict__["token_name_format"] = token_name_format
         __props__.__dict__["type"] = type
         return AclAuthMethod(resource_name, opts=opts, __props__=__props__)
 
@@ -465,6 +518,16 @@ class AclAuthMethod(pulumi.CustomResource):
         set to either `local` or `global`.
         """
         return pulumi.get(self, "token_locality")
+
+    @property
+    @pulumi.getter(name="tokenNameFormat")
+    def token_name_format(self) -> pulumi.Output[Optional[str]]:
+        """
+        `(string: <optional>)` - Defines the token name format for the
+        generated tokens This can be lightly templated using HIL '${foo}' syntax.
+        Defaults to `${auth_method_type}-${auth_method_name}`.
+        """
+        return pulumi.get(self, "token_name_format")
 
     @property
     @pulumi.getter

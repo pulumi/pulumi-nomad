@@ -48,6 +48,7 @@ import javax.annotation.Nullable;
  *             .type(&#34;OIDC&#34;)
  *             .tokenLocality(&#34;global&#34;)
  *             .maxTokenTtl(&#34;10m0s&#34;)
+ *             .tokenNameFormat(&#34;${auth_method_type}-${value.user}&#34;)
  *             .default_(true)
  *             .config(AclAuthMethodConfigArgs.builder()
  *                 .oidcDiscoveryUrl(&#34;https://uk.auth0.com/&#34;)
@@ -145,6 +146,24 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
      */
     public Output<String> tokenLocality() {
         return this.tokenLocality;
+    }
+    /**
+     * `(string: &lt;optional&gt;)` - Defines the token name format for the
+     * generated tokens This can be lightly templated using HIL &#39;${foo}&#39; syntax.
+     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     * 
+     */
+    @Export(name="tokenNameFormat", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tokenNameFormat;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - Defines the token name format for the
+     * generated tokens This can be lightly templated using HIL &#39;${foo}&#39; syntax.
+     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     * 
+     */
+    public Output<Optional<String>> tokenNameFormat() {
+        return Codegen.optional(this.tokenNameFormat);
     }
     /**
      * `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,

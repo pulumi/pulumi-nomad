@@ -29,6 +29,7 @@ namespace Pulumi.Nomad
     ///         Type = "OIDC",
     ///         TokenLocality = "global",
     ///         MaxTokenTtl = "10m0s",
+    ///         TokenNameFormat = "${auth_method_type}-${value.user}",
     ///         Default = true,
     ///         Config = new Nomad.Inputs.AclAuthMethodConfigArgs
     ///         {
@@ -90,6 +91,14 @@ namespace Pulumi.Nomad
         /// </summary>
         [Output("tokenLocality")]
         public Output<string> TokenLocality { get; private set; } = null!;
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Defines the token name format for the
+        /// generated tokens This can be lightly templated using HIL '${foo}' syntax.
+        /// Defaults to `${auth_method_type}-${auth_method_name}`.
+        /// </summary>
+        [Output("tokenNameFormat")]
+        public Output<string?> TokenNameFormat { get; private set; } = null!;
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
@@ -179,6 +188,14 @@ namespace Pulumi.Nomad
         public Input<string> TokenLocality { get; set; } = null!;
 
         /// <summary>
+        /// `(string: &lt;optional&gt;)` - Defines the token name format for the
+        /// generated tokens This can be lightly templated using HIL '${foo}' syntax.
+        /// Defaults to `${auth_method_type}-${auth_method_name}`.
+        /// </summary>
+        [Input("tokenNameFormat")]
+        public Input<string>? TokenNameFormat { get; set; }
+
+        /// <summary>
         /// `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
         /// the only supported type is `OIDC`.
         /// </summary>
@@ -226,6 +243,14 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("tokenLocality")]
         public Input<string>? TokenLocality { get; set; }
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Defines the token name format for the
+        /// generated tokens This can be lightly templated using HIL '${foo}' syntax.
+        /// Defaults to `${auth_method_type}-${auth_method_name}`.
+        /// </summary>
+        [Input("tokenNameFormat")]
+        public Input<string>? TokenNameFormat { get; set; }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,

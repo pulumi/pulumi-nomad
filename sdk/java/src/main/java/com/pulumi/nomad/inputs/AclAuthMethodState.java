@@ -101,6 +101,25 @@ public final class AclAuthMethodState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * `(string: &lt;optional&gt;)` - Defines the token name format for the
+     * generated tokens This can be lightly templated using HIL &#39;${foo}&#39; syntax.
+     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     * 
+     */
+    @Import(name="tokenNameFormat")
+    private @Nullable Output<String> tokenNameFormat;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - Defines the token name format for the
+     * generated tokens This can be lightly templated using HIL &#39;${foo}&#39; syntax.
+     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     * 
+     */
+    public Optional<Output<String>> tokenNameFormat() {
+        return Optional.ofNullable(this.tokenNameFormat);
+    }
+
+    /**
      * `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
      * the only supported type is `OIDC`.
      * 
@@ -125,6 +144,7 @@ public final class AclAuthMethodState extends com.pulumi.resources.ResourceArgs 
         this.maxTokenTtl = $.maxTokenTtl;
         this.name = $.name;
         this.tokenLocality = $.tokenLocality;
+        this.tokenNameFormat = $.tokenNameFormat;
         this.type = $.type;
     }
 
@@ -257,6 +277,31 @@ public final class AclAuthMethodState extends com.pulumi.resources.ResourceArgs 
          */
         public Builder tokenLocality(String tokenLocality) {
             return tokenLocality(Output.of(tokenLocality));
+        }
+
+        /**
+         * @param tokenNameFormat `(string: &lt;optional&gt;)` - Defines the token name format for the
+         * generated tokens This can be lightly templated using HIL &#39;${foo}&#39; syntax.
+         * Defaults to `${auth_method_type}-${auth_method_name}`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenNameFormat(@Nullable Output<String> tokenNameFormat) {
+            $.tokenNameFormat = tokenNameFormat;
+            return this;
+        }
+
+        /**
+         * @param tokenNameFormat `(string: &lt;optional&gt;)` - Defines the token name format for the
+         * generated tokens This can be lightly templated using HIL &#39;${foo}&#39; syntax.
+         * Defaults to `${auth_method_type}-${auth_method_name}`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenNameFormat(String tokenNameFormat) {
+            return tokenNameFormat(Output.of(tokenNameFormat));
         }
 
         /**

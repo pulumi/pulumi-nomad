@@ -6,53 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * Creating a volume:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as nomad from "@pulumi/nomad";
- *
- * const ebs = nomad.getPlugin({
- *     pluginId: "aws-ebs0",
- *     waitForHealthy: true,
- * });
- * const mysqlVolume = new nomad.CsiVolume("mysqlVolume", {
- *     pluginId: "aws-ebs0",
- *     volumeId: "mysql_volume",
- *     capacityMin: "10GiB",
- *     capacityMax: "20GiB",
- *     capabilities: [{
- *         accessMode: "single-node-writer",
- *         attachmentMode: "file-system",
- *     }],
- *     mountOptions: {
- *         fsType: "ext4",
- *     },
- *     topologyRequest: {
- *         required: {
- *             topologies: [
- *                 {
- *                     segments: {
- *                         rack: "R1",
- *                         zone: "us-east-1a",
- *                     },
- *                 },
- *                 {
- *                     segments: {
- *                         rack: "R2",
- *                     },
- *                 },
- *             ],
- *         },
- *     },
- * }, {
- *     dependsOn: [ebs],
- * });
- * ```
- */
 export class CsiVolume extends pulumi.CustomResource {
     /**
      * Get an existing CsiVolume resource's state with the given name, ID, and optional extra
@@ -85,14 +38,17 @@ export class CsiVolume extends pulumi.CustomResource {
      * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
     public readonly capabilities!: pulumi.Output<outputs.CsiVolumeCapability[]>;
+    public /*out*/ readonly capacity!: pulumi.Output<number>;
     /**
      * `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      */
     public readonly capacityMax!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly capacityMaxBytes!: pulumi.Output<number>;
     /**
      * `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      */
     public readonly capacityMin!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly capacityMinBytes!: pulumi.Output<number>;
     /**
      * `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      */
@@ -109,6 +65,10 @@ export class CsiVolume extends pulumi.CustomResource {
      * `(integer)`
      */
     public /*out*/ readonly controllersHealthy!: pulumi.Output<number>;
+    /**
+     * The ID of the physical volume from the storage provider.
+     */
+    public /*out*/ readonly externalId!: pulumi.Output<string>;
     /**
      * `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
      */
@@ -184,12 +144,16 @@ export class CsiVolume extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as CsiVolumeState | undefined;
             resourceInputs["capabilities"] = state ? state.capabilities : undefined;
+            resourceInputs["capacity"] = state ? state.capacity : undefined;
             resourceInputs["capacityMax"] = state ? state.capacityMax : undefined;
+            resourceInputs["capacityMaxBytes"] = state ? state.capacityMaxBytes : undefined;
             resourceInputs["capacityMin"] = state ? state.capacityMin : undefined;
+            resourceInputs["capacityMinBytes"] = state ? state.capacityMinBytes : undefined;
             resourceInputs["cloneId"] = state ? state.cloneId : undefined;
             resourceInputs["controllerRequired"] = state ? state.controllerRequired : undefined;
             resourceInputs["controllersExpected"] = state ? state.controllersExpected : undefined;
             resourceInputs["controllersHealthy"] = state ? state.controllersHealthy : undefined;
+            resourceInputs["externalId"] = state ? state.externalId : undefined;
             resourceInputs["mountOptions"] = state ? state.mountOptions : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["namespace"] = state ? state.namespace : undefined;
@@ -229,9 +193,13 @@ export class CsiVolume extends pulumi.CustomResource {
             resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
             resourceInputs["topologyRequest"] = args ? args.topologyRequest : undefined;
             resourceInputs["volumeId"] = args ? args.volumeId : undefined;
+            resourceInputs["capacity"] = undefined /*out*/;
+            resourceInputs["capacityMaxBytes"] = undefined /*out*/;
+            resourceInputs["capacityMinBytes"] = undefined /*out*/;
             resourceInputs["controllerRequired"] = undefined /*out*/;
             resourceInputs["controllersExpected"] = undefined /*out*/;
             resourceInputs["controllersHealthy"] = undefined /*out*/;
+            resourceInputs["externalId"] = undefined /*out*/;
             resourceInputs["nodesExpected"] = undefined /*out*/;
             resourceInputs["nodesHealthy"] = undefined /*out*/;
             resourceInputs["pluginProvider"] = undefined /*out*/;
@@ -254,14 +222,17 @@ export interface CsiVolumeState {
      * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
     capabilities?: pulumi.Input<pulumi.Input<inputs.CsiVolumeCapability>[]>;
+    capacity?: pulumi.Input<number>;
     /**
      * `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      */
     capacityMax?: pulumi.Input<string>;
+    capacityMaxBytes?: pulumi.Input<number>;
     /**
      * `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      */
     capacityMin?: pulumi.Input<string>;
+    capacityMinBytes?: pulumi.Input<number>;
     /**
      * `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      */
@@ -278,6 +249,10 @@ export interface CsiVolumeState {
      * `(integer)`
      */
     controllersHealthy?: pulumi.Input<number>;
+    /**
+     * The ID of the physical volume from the storage provider.
+     */
+    externalId?: pulumi.Input<string>;
     /**
      * `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
      */

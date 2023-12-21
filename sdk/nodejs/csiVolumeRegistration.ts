@@ -6,52 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * ## Example Usage
- *
- * Registering a volume:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as nomad from "@pulumi/nomad";
- *
- * const ebs = nomad.getPlugin({
- *     pluginId: "aws-ebs0",
- *     waitForHealthy: true,
- * });
- * const mysqlVolume = new nomad.Volume("mysqlVolume", {
- *     pluginId: "aws-ebs0",
- *     volumeId: "mysql_volume",
- *     externalId: module.hashistack.ebs_test_volume_id,
- *     capabilities: [{
- *         accessMode: "single-node-writer",
- *         attachmentMode: "file-system",
- *     }],
- *     mountOptions: {
- *         fsType: "ext4",
- *     },
- *     topologyRequest: {
- *         required: {
- *             topologies: [
- *                 {
- *                     segments: {
- *                         rack: "R1",
- *                         zone: "us-east-1a",
- *                     },
- *                 },
- *                 {
- *                     segments: {
- *                         rack: "R2",
- *                     },
- *                 },
- *             ],
- *         },
- *     },
- * }, {
- *     dependsOn: [ebs],
- * });
- * ```
- */
 export class CsiVolumeRegistration extends pulumi.CustomResource {
     /**
      * Get an existing CsiVolumeRegistration resource's state with the given name, ID, and optional extra
@@ -84,6 +38,17 @@ export class CsiVolumeRegistration extends pulumi.CustomResource {
      * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
     public readonly capabilities!: pulumi.Output<outputs.CsiVolumeRegistrationCapability[] | undefined>;
+    public /*out*/ readonly capacity!: pulumi.Output<number>;
+    /**
+     * `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+     */
+    public readonly capacityMax!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly capacityMaxBytes!: pulumi.Output<number>;
+    /**
+     * `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+     */
+    public readonly capacityMin!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly capacityMinBytes!: pulumi.Output<number>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      */
@@ -179,6 +144,11 @@ export class CsiVolumeRegistration extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as CsiVolumeRegistrationState | undefined;
             resourceInputs["capabilities"] = state ? state.capabilities : undefined;
+            resourceInputs["capacity"] = state ? state.capacity : undefined;
+            resourceInputs["capacityMax"] = state ? state.capacityMax : undefined;
+            resourceInputs["capacityMaxBytes"] = state ? state.capacityMaxBytes : undefined;
+            resourceInputs["capacityMin"] = state ? state.capacityMin : undefined;
+            resourceInputs["capacityMinBytes"] = state ? state.capacityMinBytes : undefined;
             resourceInputs["context"] = state ? state.context : undefined;
             resourceInputs["controllerRequired"] = state ? state.controllerRequired : undefined;
             resourceInputs["controllersExpected"] = state ? state.controllersExpected : undefined;
@@ -211,6 +181,8 @@ export class CsiVolumeRegistration extends pulumi.CustomResource {
                 throw new Error("Missing required property 'volumeId'");
             }
             resourceInputs["capabilities"] = args ? args.capabilities : undefined;
+            resourceInputs["capacityMax"] = args ? args.capacityMax : undefined;
+            resourceInputs["capacityMin"] = args ? args.capacityMin : undefined;
             resourceInputs["context"] = args ? args.context : undefined;
             resourceInputs["deregisterOnDestroy"] = args ? args.deregisterOnDestroy : undefined;
             resourceInputs["externalId"] = args ? args.externalId : undefined;
@@ -222,6 +194,9 @@ export class CsiVolumeRegistration extends pulumi.CustomResource {
             resourceInputs["secrets"] = args?.secrets ? pulumi.secret(args.secrets) : undefined;
             resourceInputs["topologyRequest"] = args ? args.topologyRequest : undefined;
             resourceInputs["volumeId"] = args ? args.volumeId : undefined;
+            resourceInputs["capacity"] = undefined /*out*/;
+            resourceInputs["capacityMaxBytes"] = undefined /*out*/;
+            resourceInputs["capacityMinBytes"] = undefined /*out*/;
             resourceInputs["controllerRequired"] = undefined /*out*/;
             resourceInputs["controllersExpected"] = undefined /*out*/;
             resourceInputs["controllersHealthy"] = undefined /*out*/;
@@ -247,6 +222,17 @@ export interface CsiVolumeRegistrationState {
      * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
     capabilities?: pulumi.Input<pulumi.Input<inputs.CsiVolumeRegistrationCapability>[]>;
+    capacity?: pulumi.Input<number>;
+    /**
+     * `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+     */
+    capacityMax?: pulumi.Input<string>;
+    capacityMaxBytes?: pulumi.Input<number>;
+    /**
+     * `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+     */
+    capacityMin?: pulumi.Input<string>;
+    capacityMinBytes?: pulumi.Input<number>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      */
@@ -337,6 +323,14 @@ export interface CsiVolumeRegistrationArgs {
      * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
     capabilities?: pulumi.Input<pulumi.Input<inputs.CsiVolumeRegistrationCapability>[]>;
+    /**
+     * `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+     */
+    capacityMax?: pulumi.Input<string>;
+    /**
+     * `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+     */
+    capacityMin?: pulumi.Input<string>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      */

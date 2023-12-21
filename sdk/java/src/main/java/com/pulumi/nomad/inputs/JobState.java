@@ -332,6 +332,38 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.region);
     }
 
+    /**
+     * `(boolean: false)` - Set this to true to force the job to run
+     * again if its status is `dead`.
+     * 
+     */
+    @Import(name="rerunIfDead")
+    private @Nullable Output<Boolean> rerunIfDead;
+
+    /**
+     * @return `(boolean: false)` - Set this to true to force the job to run
+     * again if its status is `dead`.
+     * 
+     */
+    public Optional<Output<Boolean>> rerunIfDead() {
+        return Optional.ofNullable(this.rerunIfDead);
+    }
+
+    /**
+     * The status of the job.
+     * 
+     */
+    @Import(name="status")
+    private @Nullable Output<String> status;
+
+    /**
+     * @return The status of the job.
+     * 
+     */
+    public Optional<Output<String>> status() {
+        return Optional.ofNullable(this.status);
+    }
+
     @Import(name="taskGroups")
     private @Nullable Output<List<JobTaskGroupArgs>> taskGroups;
 
@@ -393,6 +425,8 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         this.purgeOnDestroy = $.purgeOnDestroy;
         this.readAllocationIds = $.readAllocationIds;
         this.region = $.region;
+        this.rerunIfDead = $.rerunIfDead;
+        this.status = $.status;
         this.taskGroups = $.taskGroups;
         this.type = $.type;
         this.vaultToken = $.vaultToken;
@@ -865,6 +899,50 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param rerunIfDead `(boolean: false)` - Set this to true to force the job to run
+         * again if its status is `dead`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rerunIfDead(@Nullable Output<Boolean> rerunIfDead) {
+            $.rerunIfDead = rerunIfDead;
+            return this;
+        }
+
+        /**
+         * @param rerunIfDead `(boolean: false)` - Set this to true to force the job to run
+         * again if its status is `dead`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rerunIfDead(Boolean rerunIfDead) {
+            return rerunIfDead(Output.of(rerunIfDead));
+        }
+
+        /**
+         * @param status The status of the job.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder status(@Nullable Output<String> status) {
+            $.status = status;
+            return this;
+        }
+
+        /**
+         * @param status The status of the job.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder status(String status) {
+            return status(Output.of(status));
         }
 
         public Builder taskGroups(@Nullable Output<List<JobTaskGroupArgs>> taskGroups) {
