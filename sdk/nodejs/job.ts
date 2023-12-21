@@ -120,6 +120,15 @@ export class Job extends pulumi.CustomResource {
      * The target region for the job, as derived from the jobspec.
      */
     public /*out*/ readonly region!: pulumi.Output<string>;
+    /**
+     * `(boolean: false)` - Set this to true to force the job to run
+     * again if its status is `dead`.
+     */
+    public readonly rerunIfDead!: pulumi.Output<boolean | undefined>;
+    /**
+     * The status of the job.
+     */
+    public /*out*/ readonly status!: pulumi.Output<string>;
     public /*out*/ readonly taskGroups!: pulumi.Output<outputs.JobTaskGroup[]>;
     /**
      * The type of the job, as derived from the jobspec.
@@ -163,6 +172,8 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["purgeOnDestroy"] = state ? state.purgeOnDestroy : undefined;
             resourceInputs["readAllocationIds"] = state ? state.readAllocationIds : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["rerunIfDead"] = state ? state.rerunIfDead : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["taskGroups"] = state ? state.taskGroups : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["vaultToken"] = state ? state.vaultToken : undefined;
@@ -182,6 +193,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["policyOverride"] = args ? args.policyOverride : undefined;
             resourceInputs["purgeOnDestroy"] = args ? args.purgeOnDestroy : undefined;
             resourceInputs["readAllocationIds"] = args ? args.readAllocationIds : undefined;
+            resourceInputs["rerunIfDead"] = args ? args.rerunIfDead : undefined;
             resourceInputs["vaultToken"] = args?.vaultToken ? pulumi.secret(args.vaultToken) : undefined;
             resourceInputs["allocationIds"] = undefined /*out*/;
             resourceInputs["datacenters"] = undefined /*out*/;
@@ -191,6 +203,7 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["namespace"] = undefined /*out*/;
             resourceInputs["region"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
             resourceInputs["taskGroups"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
         }
@@ -291,6 +304,15 @@ export interface JobState {
      * The target region for the job, as derived from the jobspec.
      */
     region?: pulumi.Input<string>;
+    /**
+     * `(boolean: false)` - Set this to true to force the job to run
+     * again if its status is `dead`.
+     */
+    rerunIfDead?: pulumi.Input<boolean>;
+    /**
+     * The status of the job.
+     */
+    status?: pulumi.Input<string>;
     taskGroups?: pulumi.Input<pulumi.Input<inputs.JobTaskGroup>[]>;
     /**
      * The type of the job, as derived from the jobspec.
@@ -359,6 +381,11 @@ export interface JobArgs {
      * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
      */
     readAllocationIds?: pulumi.Input<boolean>;
+    /**
+     * `(boolean: false)` - Set this to true to force the job to run
+     * again if its status is `dead`.
+     */
+    rerunIfDead?: pulumi.Input<boolean>;
     /**
      * `(string: <optional>)` - Vault token used when registering this job.
      * Will fallback to the value declared in Nomad provider configuration, if any.

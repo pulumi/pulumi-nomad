@@ -21,6 +21,7 @@ import * as utilities from "./utilities";
  *     type: "OIDC",
  *     tokenLocality: "global",
  *     maxTokenTtl: "10m0s",
+ *     tokenNameFormat: `${auth_method_type}-${value.user}`,
  *     "default": true,
  *     config: {
  *         oidcDiscoveryUrl: "https://uk.auth0.com/",
@@ -91,6 +92,12 @@ export class AclAuthMethod extends pulumi.CustomResource {
      */
     public readonly tokenLocality!: pulumi.Output<string>;
     /**
+     * `(string: <optional>)` - Defines the token name format for the
+     * generated tokens This can be lightly templated using HIL '${foo}' syntax.
+     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     */
+    public readonly tokenNameFormat!: pulumi.Output<string | undefined>;
+    /**
      * `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
      * the only supported type is `OIDC`.
      */
@@ -114,6 +121,7 @@ export class AclAuthMethod extends pulumi.CustomResource {
             resourceInputs["maxTokenTtl"] = state ? state.maxTokenTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["tokenLocality"] = state ? state.tokenLocality : undefined;
+            resourceInputs["tokenNameFormat"] = state ? state.tokenNameFormat : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as AclAuthMethodArgs | undefined;
@@ -134,6 +142,7 @@ export class AclAuthMethod extends pulumi.CustomResource {
             resourceInputs["maxTokenTtl"] = args ? args.maxTokenTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["tokenLocality"] = args ? args.tokenLocality : undefined;
+            resourceInputs["tokenNameFormat"] = args ? args.tokenNameFormat : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -170,6 +179,12 @@ export interface AclAuthMethodState {
      */
     tokenLocality?: pulumi.Input<string>;
     /**
+     * `(string: <optional>)` - Defines the token name format for the
+     * generated tokens This can be lightly templated using HIL '${foo}' syntax.
+     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     */
+    tokenNameFormat?: pulumi.Input<string>;
+    /**
      * `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
      * the only supported type is `OIDC`.
      */
@@ -204,6 +219,12 @@ export interface AclAuthMethodArgs {
      * set to either `local` or `global`.
      */
     tokenLocality: pulumi.Input<string>;
+    /**
+     * `(string: <optional>)` - Defines the token name format for the
+     * generated tokens This can be lightly templated using HIL '${foo}' syntax.
+     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     */
+    tokenNameFormat?: pulumi.Input<string>;
     /**
      * `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
      * the only supported type is `OIDC`.

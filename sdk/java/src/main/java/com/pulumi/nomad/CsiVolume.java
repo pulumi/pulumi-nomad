@@ -22,78 +22,6 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
-/**
- * ## Example Usage
- * 
- * Creating a volume:
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.nomad.NomadFunctions;
- * import com.pulumi.nomad.inputs.GetPluginArgs;
- * import com.pulumi.nomad.CsiVolume;
- * import com.pulumi.nomad.CsiVolumeArgs;
- * import com.pulumi.nomad.inputs.CsiVolumeCapabilityArgs;
- * import com.pulumi.nomad.inputs.CsiVolumeMountOptionsArgs;
- * import com.pulumi.nomad.inputs.CsiVolumeTopologyRequestArgs;
- * import com.pulumi.nomad.inputs.CsiVolumeTopologyRequestRequiredArgs;
- * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()
- *             .pluginId(&#34;aws-ebs0&#34;)
- *             .waitForHealthy(true)
- *             .build());
- * 
- *         var mysqlVolume = new CsiVolume(&#34;mysqlVolume&#34;, CsiVolumeArgs.builder()        
- *             .pluginId(&#34;aws-ebs0&#34;)
- *             .volumeId(&#34;mysql_volume&#34;)
- *             .capacityMin(&#34;10GiB&#34;)
- *             .capacityMax(&#34;20GiB&#34;)
- *             .capabilities(CsiVolumeCapabilityArgs.builder()
- *                 .accessMode(&#34;single-node-writer&#34;)
- *                 .attachmentMode(&#34;file-system&#34;)
- *                 .build())
- *             .mountOptions(CsiVolumeMountOptionsArgs.builder()
- *                 .fsType(&#34;ext4&#34;)
- *                 .build())
- *             .topologyRequest(CsiVolumeTopologyRequestArgs.builder()
- *                 .required(CsiVolumeTopologyRequestRequiredArgs.builder()
- *                     .topologies(                    
- *                         CsiVolumeTopologyRequestRequiredTopologyArgs.builder()
- *                             .segments(Map.ofEntries(
- *                                 Map.entry(&#34;rack&#34;, &#34;R1&#34;),
- *                                 Map.entry(&#34;zone&#34;, &#34;us-east-1a&#34;)
- *                             ))
- *                             .build(),
- *                         CsiVolumeTopologyRequestRequiredTopologyArgs.builder()
- *                             .segments(Map.of(&#34;rack&#34;, &#34;R2&#34;))
- *                             .build())
- *                     .build())
- *                 .build())
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(ebs.applyValue(getPluginResult -&gt; getPluginResult))
- *                 .build());
- * 
- *     }
- * }
- * ```
- * 
- */
 @ResourceType(type="nomad:index/csiVolume:CsiVolume")
 public class CsiVolume extends com.pulumi.resources.CustomResource {
     /**
@@ -110,6 +38,12 @@ public class CsiVolume extends com.pulumi.resources.CustomResource {
     public Output<List<CsiVolumeCapability>> capabilities() {
         return this.capabilities;
     }
+    @Export(name="capacity", refs={Integer.class}, tree="[0]")
+    private Output<Integer> capacity;
+
+    public Output<Integer> capacity() {
+        return this.capacity;
+    }
     /**
      * `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      * 
@@ -124,6 +58,12 @@ public class CsiVolume extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> capacityMax() {
         return Codegen.optional(this.capacityMax);
     }
+    @Export(name="capacityMaxBytes", refs={Integer.class}, tree="[0]")
+    private Output<Integer> capacityMaxBytes;
+
+    public Output<Integer> capacityMaxBytes() {
+        return this.capacityMaxBytes;
+    }
     /**
      * `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      * 
@@ -137,6 +77,12 @@ public class CsiVolume extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> capacityMin() {
         return Codegen.optional(this.capacityMin);
+    }
+    @Export(name="capacityMinBytes", refs={Integer.class}, tree="[0]")
+    private Output<Integer> capacityMinBytes;
+
+    public Output<Integer> capacityMinBytes() {
+        return this.capacityMinBytes;
     }
     /**
      * `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
@@ -193,6 +139,20 @@ public class CsiVolume extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> controllersHealthy() {
         return this.controllersHealthy;
+    }
+    /**
+     * The ID of the physical volume from the storage provider.
+     * 
+     */
+    @Export(name="externalId", refs={String.class}, tree="[0]")
+    private Output<String> externalId;
+
+    /**
+     * @return The ID of the physical volume from the storage provider.
+     * 
+     */
+    public Output<String> externalId() {
+        return this.externalId;
     }
     /**
      * `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.

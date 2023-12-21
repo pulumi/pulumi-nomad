@@ -62,7 +62,12 @@ type Job struct {
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
 	ReadAllocationIds pulumi.BoolPtrOutput `pulumi:"readAllocationIds"`
 	// The target region for the job, as derived from the jobspec.
-	Region     pulumi.StringOutput     `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
+	// `(boolean: false)` - Set this to true to force the job to run
+	// again if its status is `dead`.
+	RerunIfDead pulumi.BoolPtrOutput `pulumi:"rerunIfDead"`
+	// The status of the job.
+	Status     pulumi.StringOutput     `pulumi:"status"`
 	TaskGroups JobTaskGroupArrayOutput `pulumi:"taskGroups"`
 	// The type of the job, as derived from the jobspec.
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -162,7 +167,12 @@ type jobState struct {
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
 	ReadAllocationIds *bool `pulumi:"readAllocationIds"`
 	// The target region for the job, as derived from the jobspec.
-	Region     *string        `pulumi:"region"`
+	Region *string `pulumi:"region"`
+	// `(boolean: false)` - Set this to true to force the job to run
+	// again if its status is `dead`.
+	RerunIfDead *bool `pulumi:"rerunIfDead"`
+	// The status of the job.
+	Status     *string        `pulumi:"status"`
 	TaskGroups []JobTaskGroup `pulumi:"taskGroups"`
 	// The type of the job, as derived from the jobspec.
 	Type *string `pulumi:"type"`
@@ -219,7 +229,12 @@ type JobState struct {
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
 	ReadAllocationIds pulumi.BoolPtrInput
 	// The target region for the job, as derived from the jobspec.
-	Region     pulumi.StringPtrInput
+	Region pulumi.StringPtrInput
+	// `(boolean: false)` - Set this to true to force the job to run
+	// again if its status is `dead`.
+	RerunIfDead pulumi.BoolPtrInput
+	// The status of the job.
+	Status     pulumi.StringPtrInput
 	TaskGroups JobTaskGroupArrayInput
 	// The type of the job, as derived from the jobspec.
 	Type pulumi.StringPtrInput
@@ -263,6 +278,9 @@ type jobArgs struct {
 	PurgeOnDestroy *bool `pulumi:"purgeOnDestroy"`
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
 	ReadAllocationIds *bool `pulumi:"readAllocationIds"`
+	// `(boolean: false)` - Set this to true to force the job to run
+	// again if its status is `dead`.
+	RerunIfDead *bool `pulumi:"rerunIfDead"`
 	// `(string: <optional>)` - Vault token used when registering this job.
 	// Will fallback to the value declared in Nomad provider configuration, if any.
 	VaultToken *string `pulumi:"vaultToken"`
@@ -300,6 +318,9 @@ type JobArgs struct {
 	PurgeOnDestroy pulumi.BoolPtrInput
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
 	ReadAllocationIds pulumi.BoolPtrInput
+	// `(boolean: false)` - Set this to true to force the job to run
+	// again if its status is `dead`.
+	RerunIfDead pulumi.BoolPtrInput
 	// `(string: <optional>)` - Vault token used when registering this job.
 	// Will fallback to the value declared in Nomad provider configuration, if any.
 	VaultToken pulumi.StringPtrInput
@@ -495,6 +516,17 @@ func (o JobOutput) ReadAllocationIds() pulumi.BoolPtrOutput {
 // The target region for the job, as derived from the jobspec.
 func (o JobOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// `(boolean: false)` - Set this to true to force the job to run
+// again if its status is `dead`.
+func (o JobOutput) RerunIfDead() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.RerunIfDead }).(pulumi.BoolPtrOutput)
+}
+
+// The status of the job.
+func (o JobOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
 func (o JobOutput) TaskGroups() JobTaskGroupArrayOutput {
