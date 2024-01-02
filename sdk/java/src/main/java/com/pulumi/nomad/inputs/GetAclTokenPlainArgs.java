@@ -4,6 +4,7 @@
 package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -63,7 +64,9 @@ public final class GetAclTokenPlainArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         public GetAclTokenPlainArgs build() {
-            $.accessorId = Objects.requireNonNull($.accessorId, "expected parameter 'accessorId' to be non-null");
+            if ($.accessorId == null) {
+                throw new MissingRequiredPropertyException("GetAclTokenPlainArgs", "accessorId");
+            }
             return $;
         }
     }

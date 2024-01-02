@@ -4,6 +4,7 @@
 package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -63,7 +64,9 @@ public final class GetAclRolePlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetAclRolePlainArgs build() {
-            $.id = Objects.requireNonNull($.id, "expected parameter 'id' to be non-null");
+            if ($.id == null) {
+                throw new MissingRequiredPropertyException("GetAclRolePlainArgs", "id");
+            }
             return $;
         }
     }

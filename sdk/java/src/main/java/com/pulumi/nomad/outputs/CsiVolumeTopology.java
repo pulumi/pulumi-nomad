@@ -50,6 +50,7 @@ public final class CsiVolumeTopology {
 
         @CustomType.Setter
         public Builder segments(@Nullable Map<String,String> segments) {
+
             this.segments = segments;
             return this;
         }

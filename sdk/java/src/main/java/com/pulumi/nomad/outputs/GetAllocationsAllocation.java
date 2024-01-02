@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -295,97 +296,154 @@ public final class GetAllocationsAllocation {
 
         @CustomType.Setter
         public Builder clientStatus(String clientStatus) {
-            this.clientStatus = Objects.requireNonNull(clientStatus);
+            if (clientStatus == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "clientStatus");
+            }
+            this.clientStatus = clientStatus;
             return this;
         }
         @CustomType.Setter
         public Builder createIndex(Integer createIndex) {
-            this.createIndex = Objects.requireNonNull(createIndex);
+            if (createIndex == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "createIndex");
+            }
+            this.createIndex = createIndex;
             return this;
         }
         @CustomType.Setter
         public Builder createTime(Integer createTime) {
-            this.createTime = Objects.requireNonNull(createTime);
+            if (createTime == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "createTime");
+            }
+            this.createTime = createTime;
             return this;
         }
         @CustomType.Setter
         public Builder desiredStatus(String desiredStatus) {
-            this.desiredStatus = Objects.requireNonNull(desiredStatus);
+            if (desiredStatus == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "desiredStatus");
+            }
+            this.desiredStatus = desiredStatus;
             return this;
         }
         @CustomType.Setter
         public Builder evalId(String evalId) {
-            this.evalId = Objects.requireNonNull(evalId);
+            if (evalId == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "evalId");
+            }
+            this.evalId = evalId;
             return this;
         }
         @CustomType.Setter
         public Builder followupEvalId(String followupEvalId) {
-            this.followupEvalId = Objects.requireNonNull(followupEvalId);
+            if (followupEvalId == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "followupEvalId");
+            }
+            this.followupEvalId = followupEvalId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder jobId(String jobId) {
-            this.jobId = Objects.requireNonNull(jobId);
+            if (jobId == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "jobId");
+            }
+            this.jobId = jobId;
             return this;
         }
         @CustomType.Setter
         public Builder jobType(String jobType) {
-            this.jobType = Objects.requireNonNull(jobType);
+            if (jobType == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "jobType");
+            }
+            this.jobType = jobType;
             return this;
         }
         @CustomType.Setter
         public Builder jobVersion(Integer jobVersion) {
-            this.jobVersion = Objects.requireNonNull(jobVersion);
+            if (jobVersion == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "jobVersion");
+            }
+            this.jobVersion = jobVersion;
             return this;
         }
         @CustomType.Setter
         public Builder modifyIndex(Integer modifyIndex) {
-            this.modifyIndex = Objects.requireNonNull(modifyIndex);
+            if (modifyIndex == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "modifyIndex");
+            }
+            this.modifyIndex = modifyIndex;
             return this;
         }
         @CustomType.Setter
         public Builder modifyTime(Integer modifyTime) {
-            this.modifyTime = Objects.requireNonNull(modifyTime);
+            if (modifyTime == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "modifyTime");
+            }
+            this.modifyTime = modifyTime;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(String namespace) {
-            this.namespace = Objects.requireNonNull(namespace);
+            if (namespace == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "namespace");
+            }
+            this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder nextAllocation(String nextAllocation) {
-            this.nextAllocation = Objects.requireNonNull(nextAllocation);
+            if (nextAllocation == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "nextAllocation");
+            }
+            this.nextAllocation = nextAllocation;
             return this;
         }
         @CustomType.Setter
         public Builder nodeId(String nodeId) {
-            this.nodeId = Objects.requireNonNull(nodeId);
+            if (nodeId == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "nodeId");
+            }
+            this.nodeId = nodeId;
             return this;
         }
         @CustomType.Setter
         public Builder nodeName(String nodeName) {
-            this.nodeName = Objects.requireNonNull(nodeName);
+            if (nodeName == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "nodeName");
+            }
+            this.nodeName = nodeName;
             return this;
         }
         @CustomType.Setter
         public Builder preemptedByAllocation(String preemptedByAllocation) {
-            this.preemptedByAllocation = Objects.requireNonNull(preemptedByAllocation);
+            if (preemptedByAllocation == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "preemptedByAllocation");
+            }
+            this.preemptedByAllocation = preemptedByAllocation;
             return this;
         }
         @CustomType.Setter
         public Builder taskGroup(String taskGroup) {
-            this.taskGroup = Objects.requireNonNull(taskGroup);
+            if (taskGroup == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsAllocation", "taskGroup");
+            }
+            this.taskGroup = taskGroup;
             return this;
         }
         public GetAllocationsAllocation build() {

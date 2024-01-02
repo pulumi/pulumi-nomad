@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -99,27 +100,42 @@ public final class GetJobPeriodicConfig {
 
         @CustomType.Setter
         public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("GetJobPeriodicConfig", "enabled");
+            }
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder prohibitOverlap(Boolean prohibitOverlap) {
-            this.prohibitOverlap = Objects.requireNonNull(prohibitOverlap);
+            if (prohibitOverlap == null) {
+              throw new MissingRequiredPropertyException("GetJobPeriodicConfig", "prohibitOverlap");
+            }
+            this.prohibitOverlap = prohibitOverlap;
             return this;
         }
         @CustomType.Setter
         public Builder spec(String spec) {
-            this.spec = Objects.requireNonNull(spec);
+            if (spec == null) {
+              throw new MissingRequiredPropertyException("GetJobPeriodicConfig", "spec");
+            }
+            this.spec = spec;
             return this;
         }
         @CustomType.Setter
         public Builder specType(String specType) {
-            this.specType = Objects.requireNonNull(specType);
+            if (specType == null) {
+              throw new MissingRequiredPropertyException("GetJobPeriodicConfig", "specType");
+            }
+            this.specType = specType;
             return this;
         }
         @CustomType.Setter
         public Builder timezone(String timezone) {
-            this.timezone = Objects.requireNonNull(timezone);
+            if (timezone == null) {
+              throw new MissingRequiredPropertyException("GetJobPeriodicConfig", "timezone");
+            }
+            this.timezone = timezone;
             return this;
         }
         public GetJobPeriodicConfig build() {

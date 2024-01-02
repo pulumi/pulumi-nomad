@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetNodePoolsNodePoolSchedulerConfig;
 import java.lang.String;
 import java.util.List;
@@ -89,22 +90,34 @@ public final class GetNodePoolsNodePool {
 
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetNodePoolsNodePool", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder meta(Map<String,String> meta) {
-            this.meta = Objects.requireNonNull(meta);
+            if (meta == null) {
+              throw new MissingRequiredPropertyException("GetNodePoolsNodePool", "meta");
+            }
+            this.meta = meta;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetNodePoolsNodePool", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder schedulerConfigs(List<GetNodePoolsNodePoolSchedulerConfig> schedulerConfigs) {
-            this.schedulerConfigs = Objects.requireNonNull(schedulerConfigs);
+            if (schedulerConfigs == null) {
+              throw new MissingRequiredPropertyException("GetNodePoolsNodePool", "schedulerConfigs");
+            }
+            this.schedulerConfigs = schedulerConfigs;
             return this;
         }
         public Builder schedulerConfigs(GetNodePoolsNodePoolSchedulerConfig... schedulerConfigs) {

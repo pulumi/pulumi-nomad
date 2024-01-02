@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.QuoteSpecificationLimitRegionLimit;
 import java.lang.String;
 import java.util.Objects;
@@ -61,12 +62,18 @@ public final class QuoteSpecificationLimit {
 
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("QuoteSpecificationLimit", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder regionLimit(QuoteSpecificationLimitRegionLimit regionLimit) {
-            this.regionLimit = Objects.requireNonNull(regionLimit);
+            if (regionLimit == null) {
+              throw new MissingRequiredPropertyException("QuoteSpecificationLimit", "regionLimit");
+            }
+            this.regionLimit = regionLimit;
             return this;
         }
         public QuoteSpecificationLimit build() {

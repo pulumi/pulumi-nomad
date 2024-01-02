@@ -79,16 +79,19 @@ public final class JobHcl2 {
 
         @CustomType.Setter
         public Builder allowFs(@Nullable Boolean allowFs) {
+
             this.allowFs = allowFs;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(@Nullable Boolean enabled) {
+
             this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder vars(@Nullable Map<String,Object> vars) {
+
             this.vars = vars;
             return this;
         }

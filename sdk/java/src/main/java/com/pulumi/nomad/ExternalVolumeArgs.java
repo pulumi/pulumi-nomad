@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.inputs.ExternalVolumeCapabilityArgs;
 import com.pulumi.nomad.inputs.ExternalVolumeMountOptionsArgs;
 import com.pulumi.nomad.inputs.ExternalVolumeTopologyRequestArgs;
@@ -572,9 +573,15 @@ public final class ExternalVolumeArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public ExternalVolumeArgs build() {
-            $.capabilities = Objects.requireNonNull($.capabilities, "expected parameter 'capabilities' to be non-null");
-            $.pluginId = Objects.requireNonNull($.pluginId, "expected parameter 'pluginId' to be non-null");
-            $.volumeId = Objects.requireNonNull($.volumeId, "expected parameter 'volumeId' to be non-null");
+            if ($.capabilities == null) {
+                throw new MissingRequiredPropertyException("ExternalVolumeArgs", "capabilities");
+            }
+            if ($.pluginId == null) {
+                throw new MissingRequiredPropertyException("ExternalVolumeArgs", "pluginId");
+            }
+            if ($.volumeId == null) {
+                throw new MissingRequiredPropertyException("ExternalVolumeArgs", "volumeId");
+            }
             return $;
         }
     }

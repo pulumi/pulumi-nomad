@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -70,17 +71,26 @@ public final class GetJobConstraint {
 
         @CustomType.Setter
         public Builder ltarget(String ltarget) {
-            this.ltarget = Objects.requireNonNull(ltarget);
+            if (ltarget == null) {
+              throw new MissingRequiredPropertyException("GetJobConstraint", "ltarget");
+            }
+            this.ltarget = ltarget;
             return this;
         }
         @CustomType.Setter
         public Builder operand(String operand) {
-            this.operand = Objects.requireNonNull(operand);
+            if (operand == null) {
+              throw new MissingRequiredPropertyException("GetJobConstraint", "operand");
+            }
+            this.operand = operand;
             return this;
         }
         @CustomType.Setter
         public Builder rtarget(String rtarget) {
-            this.rtarget = Objects.requireNonNull(rtarget);
+            if (rtarget == null) {
+              throw new MissingRequiredPropertyException("GetJobConstraint", "rtarget");
+            }
+            this.rtarget = rtarget;
             return this;
         }
         public GetJobConstraint build() {

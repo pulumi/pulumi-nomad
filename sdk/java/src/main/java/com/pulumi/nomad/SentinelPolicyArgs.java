@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -240,9 +241,15 @@ public final class SentinelPolicyArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public SentinelPolicyArgs build() {
-            $.enforcementLevel = Objects.requireNonNull($.enforcementLevel, "expected parameter 'enforcementLevel' to be non-null");
-            $.policy = Objects.requireNonNull($.policy, "expected parameter 'policy' to be non-null");
-            $.scope = Objects.requireNonNull($.scope, "expected parameter 'scope' to be non-null");
+            if ($.enforcementLevel == null) {
+                throw new MissingRequiredPropertyException("SentinelPolicyArgs", "enforcementLevel");
+            }
+            if ($.policy == null) {
+                throw new MissingRequiredPropertyException("SentinelPolicyArgs", "policy");
+            }
+            if ($.scope == null) {
+                throw new MissingRequiredPropertyException("SentinelPolicyArgs", "scope");
+            }
             return $;
         }
     }

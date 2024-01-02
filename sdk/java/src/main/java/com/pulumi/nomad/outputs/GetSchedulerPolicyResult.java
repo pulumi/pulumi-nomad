@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
@@ -86,22 +87,34 @@ public final class GetSchedulerPolicyResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetSchedulerPolicyResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder memoryOversubscriptionEnabled(Boolean memoryOversubscriptionEnabled) {
-            this.memoryOversubscriptionEnabled = Objects.requireNonNull(memoryOversubscriptionEnabled);
+            if (memoryOversubscriptionEnabled == null) {
+              throw new MissingRequiredPropertyException("GetSchedulerPolicyResult", "memoryOversubscriptionEnabled");
+            }
+            this.memoryOversubscriptionEnabled = memoryOversubscriptionEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder preemptionConfig(Map<String,Boolean> preemptionConfig) {
-            this.preemptionConfig = Objects.requireNonNull(preemptionConfig);
+            if (preemptionConfig == null) {
+              throw new MissingRequiredPropertyException("GetSchedulerPolicyResult", "preemptionConfig");
+            }
+            this.preemptionConfig = preemptionConfig;
             return this;
         }
         @CustomType.Setter
         public Builder schedulerAlgorithm(String schedulerAlgorithm) {
-            this.schedulerAlgorithm = Objects.requireNonNull(schedulerAlgorithm);
+            if (schedulerAlgorithm == null) {
+              throw new MissingRequiredPropertyException("GetSchedulerPolicyResult", "schedulerAlgorithm");
+            }
+            this.schedulerAlgorithm = schedulerAlgorithm;
             return this;
         }
         public GetSchedulerPolicyResult build() {

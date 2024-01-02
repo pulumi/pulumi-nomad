@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -47,17 +48,26 @@ public final class GetPluginNode {
 
         @CustomType.Setter
         public Builder healthy(Boolean healthy) {
-            this.healthy = Objects.requireNonNull(healthy);
+            if (healthy == null) {
+              throw new MissingRequiredPropertyException("GetPluginNode", "healthy");
+            }
+            this.healthy = healthy;
             return this;
         }
         @CustomType.Setter
         public Builder healthyDescription(String healthyDescription) {
-            this.healthyDescription = Objects.requireNonNull(healthyDescription);
+            if (healthyDescription == null) {
+              throw new MissingRequiredPropertyException("GetPluginNode", "healthyDescription");
+            }
+            this.healthyDescription = healthyDescription;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetPluginNode", "name");
+            }
+            this.name = name;
             return this;
         }
         public GetPluginNode build() {

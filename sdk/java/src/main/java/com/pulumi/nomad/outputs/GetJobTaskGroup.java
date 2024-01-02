@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetJobTaskGroupTask;
 import com.pulumi.nomad.outputs.GetJobTaskGroupVolume;
 import java.lang.Integer;
@@ -72,22 +73,34 @@ public final class GetJobTaskGroup {
 
         @CustomType.Setter
         public Builder count(Integer count) {
-            this.count = Objects.requireNonNull(count);
+            if (count == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroup", "count");
+            }
+            this.count = count;
             return this;
         }
         @CustomType.Setter
         public Builder meta(Map<String,Object> meta) {
-            this.meta = Objects.requireNonNull(meta);
+            if (meta == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroup", "meta");
+            }
+            this.meta = meta;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroup", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder tasks(List<GetJobTaskGroupTask> tasks) {
-            this.tasks = Objects.requireNonNull(tasks);
+            if (tasks == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroup", "tasks");
+            }
+            this.tasks = tasks;
             return this;
         }
         public Builder tasks(GetJobTaskGroupTask... tasks) {
@@ -95,7 +108,10 @@ public final class GetJobTaskGroup {
         }
         @CustomType.Setter
         public Builder volumes(List<GetJobTaskGroupVolume> volumes) {
-            this.volumes = Objects.requireNonNull(volumes);
+            if (volumes == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroup", "volumes");
+            }
+            this.volumes = volumes;
             return this;
         }
         public Builder volumes(GetJobTaskGroupVolume... volumes) {

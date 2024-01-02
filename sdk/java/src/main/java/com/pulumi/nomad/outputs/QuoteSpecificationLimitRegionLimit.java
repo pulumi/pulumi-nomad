@@ -64,11 +64,13 @@ public final class QuoteSpecificationLimitRegionLimit {
 
         @CustomType.Setter
         public Builder cpu(@Nullable Integer cpu) {
+
             this.cpu = cpu;
             return this;
         }
         @CustomType.Setter
         public Builder memoryMb(@Nullable Integer memoryMb) {
+
             this.memoryMb = memoryMb;
             return this;
         }

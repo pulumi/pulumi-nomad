@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.inputs.QuoteSpecificationLimitArgs;
 import java.lang.String;
 import java.util.List;
@@ -167,7 +168,9 @@ public final class QuoteSpecificationArgs extends com.pulumi.resources.ResourceA
         }
 
         public QuoteSpecificationArgs build() {
-            $.limits = Objects.requireNonNull($.limits, "expected parameter 'limits' to be non-null");
+            if ($.limits == null) {
+                throw new MissingRequiredPropertyException("QuoteSpecificationArgs", "limits");
+            }
             return $;
         }
     }

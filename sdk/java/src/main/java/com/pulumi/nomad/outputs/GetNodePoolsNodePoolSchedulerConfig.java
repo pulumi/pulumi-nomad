@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -62,12 +63,18 @@ public final class GetNodePoolsNodePoolSchedulerConfig {
 
         @CustomType.Setter
         public Builder memoryOversubscription(String memoryOversubscription) {
-            this.memoryOversubscription = Objects.requireNonNull(memoryOversubscription);
+            if (memoryOversubscription == null) {
+              throw new MissingRequiredPropertyException("GetNodePoolsNodePoolSchedulerConfig", "memoryOversubscription");
+            }
+            this.memoryOversubscription = memoryOversubscription;
             return this;
         }
         @CustomType.Setter
         public Builder schedulerAlgorithm(String schedulerAlgorithm) {
-            this.schedulerAlgorithm = Objects.requireNonNull(schedulerAlgorithm);
+            if (schedulerAlgorithm == null) {
+              throw new MissingRequiredPropertyException("GetNodePoolsNodePoolSchedulerConfig", "schedulerAlgorithm");
+            }
+            this.schedulerAlgorithm = schedulerAlgorithm;
             return this;
         }
         public GetNodePoolsNodePoolSchedulerConfig build() {

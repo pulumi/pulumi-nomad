@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -72,7 +73,10 @@ public final class GetDatacentersResult {
 
         @CustomType.Setter
         public Builder datacenters(List<String> datacenters) {
-            this.datacenters = Objects.requireNonNull(datacenters);
+            if (datacenters == null) {
+              throw new MissingRequiredPropertyException("GetDatacentersResult", "datacenters");
+            }
+            this.datacenters = datacenters;
             return this;
         }
         public Builder datacenters(String... datacenters) {
@@ -80,16 +84,21 @@ public final class GetDatacentersResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDatacentersResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder ignoreDownNodes(@Nullable Boolean ignoreDownNodes) {
+
             this.ignoreDownNodes = ignoreDownNodes;
             return this;
         }
         @CustomType.Setter
         public Builder prefix(@Nullable String prefix) {
+
             this.prefix = prefix;
             return this;
         }

@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -47,17 +48,26 @@ public final class GetJobTaskGroupTaskVolumeMount {
 
         @CustomType.Setter
         public Builder destination(String destination) {
-            this.destination = Objects.requireNonNull(destination);
+            if (destination == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroupTaskVolumeMount", "destination");
+            }
+            this.destination = destination;
             return this;
         }
         @CustomType.Setter
         public Builder readOnly(Boolean readOnly) {
-            this.readOnly = Objects.requireNonNull(readOnly);
+            if (readOnly == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroupTaskVolumeMount", "readOnly");
+            }
+            this.readOnly = readOnly;
             return this;
         }
         @CustomType.Setter
         public Builder volume(String volume) {
-            this.volume = Objects.requireNonNull(volume);
+            if (volume == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroupTaskVolumeMount", "volume");
+            }
+            this.volume = volume;
             return this;
         }
         public GetJobTaskGroupTaskVolumeMount build() {

@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -47,7 +48,10 @@ public final class GetNamespaceNodePoolConfig {
 
         @CustomType.Setter
         public Builder alloweds(List<String> alloweds) {
-            this.alloweds = Objects.requireNonNull(alloweds);
+            if (alloweds == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceNodePoolConfig", "alloweds");
+            }
+            this.alloweds = alloweds;
             return this;
         }
         public Builder alloweds(String... alloweds) {
@@ -55,12 +59,18 @@ public final class GetNamespaceNodePoolConfig {
         }
         @CustomType.Setter("default")
         public Builder default_(String default_) {
-            this.default_ = Objects.requireNonNull(default_);
+            if (default_ == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceNodePoolConfig", "default_");
+            }
+            this.default_ = default_;
             return this;
         }
         @CustomType.Setter
         public Builder denieds(List<String> denieds) {
-            this.denieds = Objects.requireNonNull(denieds);
+            if (denieds == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceNodePoolConfig", "denieds");
+            }
+            this.denieds = denieds;
             return this;
         }
         public Builder denieds(String... denieds) {

@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -91,7 +92,10 @@ public final class AclAuthMethodConfig {
 
         @CustomType.Setter
         public Builder allowedRedirectUris(List<String> allowedRedirectUris) {
-            this.allowedRedirectUris = Objects.requireNonNull(allowedRedirectUris);
+            if (allowedRedirectUris == null) {
+              throw new MissingRequiredPropertyException("AclAuthMethodConfig", "allowedRedirectUris");
+            }
+            this.allowedRedirectUris = allowedRedirectUris;
             return this;
         }
         public Builder allowedRedirectUris(String... allowedRedirectUris) {
@@ -99,6 +103,7 @@ public final class AclAuthMethodConfig {
         }
         @CustomType.Setter
         public Builder boundAudiences(@Nullable List<String> boundAudiences) {
+
             this.boundAudiences = boundAudiences;
             return this;
         }
@@ -107,11 +112,13 @@ public final class AclAuthMethodConfig {
         }
         @CustomType.Setter
         public Builder claimMappings(@Nullable Map<String,String> claimMappings) {
+
             this.claimMappings = claimMappings;
             return this;
         }
         @CustomType.Setter
         public Builder discoveryCaPems(@Nullable List<String> discoveryCaPems) {
+
             this.discoveryCaPems = discoveryCaPems;
             return this;
         }
@@ -120,26 +127,37 @@ public final class AclAuthMethodConfig {
         }
         @CustomType.Setter
         public Builder listClaimMappings(@Nullable Map<String,String> listClaimMappings) {
+
             this.listClaimMappings = listClaimMappings;
             return this;
         }
         @CustomType.Setter
         public Builder oidcClientId(String oidcClientId) {
-            this.oidcClientId = Objects.requireNonNull(oidcClientId);
+            if (oidcClientId == null) {
+              throw new MissingRequiredPropertyException("AclAuthMethodConfig", "oidcClientId");
+            }
+            this.oidcClientId = oidcClientId;
             return this;
         }
         @CustomType.Setter
         public Builder oidcClientSecret(String oidcClientSecret) {
-            this.oidcClientSecret = Objects.requireNonNull(oidcClientSecret);
+            if (oidcClientSecret == null) {
+              throw new MissingRequiredPropertyException("AclAuthMethodConfig", "oidcClientSecret");
+            }
+            this.oidcClientSecret = oidcClientSecret;
             return this;
         }
         @CustomType.Setter
         public Builder oidcDiscoveryUrl(String oidcDiscoveryUrl) {
-            this.oidcDiscoveryUrl = Objects.requireNonNull(oidcDiscoveryUrl);
+            if (oidcDiscoveryUrl == null) {
+              throw new MissingRequiredPropertyException("AclAuthMethodConfig", "oidcDiscoveryUrl");
+            }
+            this.oidcDiscoveryUrl = oidcDiscoveryUrl;
             return this;
         }
         @CustomType.Setter
         public Builder oidcScopes(@Nullable List<String> oidcScopes) {
+
             this.oidcScopes = oidcScopes;
             return this;
         }
@@ -148,6 +166,7 @@ public final class AclAuthMethodConfig {
         }
         @CustomType.Setter
         public Builder signingAlgs(@Nullable List<String> signingAlgs) {
+
             this.signingAlgs = signingAlgs;
             return this;
         }

@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetAllocationsAllocation;
 import java.lang.String;
 import java.util.List;
@@ -74,7 +75,10 @@ public final class GetAllocationsResult {
 
         @CustomType.Setter
         public Builder allocations(List<GetAllocationsAllocation> allocations) {
-            this.allocations = Objects.requireNonNull(allocations);
+            if (allocations == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsResult", "allocations");
+            }
+            this.allocations = allocations;
             return this;
         }
         public Builder allocations(GetAllocationsAllocation... allocations) {
@@ -82,16 +86,21 @@ public final class GetAllocationsResult {
         }
         @CustomType.Setter
         public Builder filter(@Nullable String filter) {
+
             this.filter = filter;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAllocationsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder prefix(@Nullable String prefix) {
+
             this.prefix = prefix;
             return this;
         }
