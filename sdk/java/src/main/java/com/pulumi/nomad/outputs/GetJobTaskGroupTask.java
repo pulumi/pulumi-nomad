@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetJobTaskGroupTaskVolumeMount;
 import java.lang.Object;
 import java.lang.String;
@@ -64,22 +65,34 @@ public final class GetJobTaskGroupTask {
 
         @CustomType.Setter
         public Builder driver(String driver) {
-            this.driver = Objects.requireNonNull(driver);
+            if (driver == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroupTask", "driver");
+            }
+            this.driver = driver;
             return this;
         }
         @CustomType.Setter
         public Builder meta(Map<String,Object> meta) {
-            this.meta = Objects.requireNonNull(meta);
+            if (meta == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroupTask", "meta");
+            }
+            this.meta = meta;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroupTask", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder volumeMounts(List<GetJobTaskGroupTaskVolumeMount> volumeMounts) {
-            this.volumeMounts = Objects.requireNonNull(volumeMounts);
+            if (volumeMounts == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroupTask", "volumeMounts");
+            }
+            this.volumeMounts = volumeMounts;
             return this;
         }
         public Builder volumeMounts(GetJobTaskGroupTaskVolumeMount... volumeMounts) {

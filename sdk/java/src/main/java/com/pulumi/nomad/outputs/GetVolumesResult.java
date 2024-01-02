@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -93,32 +94,42 @@ public final class GetVolumesResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetVolumesResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder nodeId(@Nullable String nodeId) {
+
             this.nodeId = nodeId;
             return this;
         }
         @CustomType.Setter
         public Builder pluginId(@Nullable String pluginId) {
+
             this.pluginId = pluginId;
             return this;
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }
         @CustomType.Setter
         public Builder volumes(List<Map<String,Object>> volumes) {
-            this.volumes = Objects.requireNonNull(volumes);
+            if (volumes == null) {
+              throw new MissingRequiredPropertyException("GetVolumesResult", "volumes");
+            }
+            this.volumes = volumes;
             return this;
         }
         public GetVolumesResult build() {

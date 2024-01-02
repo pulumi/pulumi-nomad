@@ -5,6 +5,7 @@ package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -139,8 +140,12 @@ public final class ExternalVolumeCapabilityArgs extends com.pulumi.resources.Res
         }
 
         public ExternalVolumeCapabilityArgs build() {
-            $.accessMode = Objects.requireNonNull($.accessMode, "expected parameter 'accessMode' to be non-null");
-            $.attachmentMode = Objects.requireNonNull($.attachmentMode, "expected parameter 'attachmentMode' to be non-null");
+            if ($.accessMode == null) {
+                throw new MissingRequiredPropertyException("ExternalVolumeCapabilityArgs", "accessMode");
+            }
+            if ($.attachmentMode == null) {
+                throw new MissingRequiredPropertyException("ExternalVolumeCapabilityArgs", "attachmentMode");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.inputs.CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs;
 import java.util.List;
 import java.util.Objects;
@@ -85,7 +86,9 @@ public final class CsiVolumeRegistrationTopologyRequestRequiredArgs extends com.
         }
 
         public CsiVolumeRegistrationTopologyRequestRequiredArgs build() {
-            $.topologies = Objects.requireNonNull($.topologies, "expected parameter 'topologies' to be non-null");
+            if ($.topologies == null) {
+                throw new MissingRequiredPropertyException("CsiVolumeRegistrationTopologyRequestRequiredArgs", "topologies");
+            }
             return $;
         }
     }

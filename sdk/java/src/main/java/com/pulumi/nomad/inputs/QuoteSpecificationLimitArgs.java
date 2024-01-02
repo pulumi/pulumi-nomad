@@ -5,6 +5,7 @@ package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.inputs.QuoteSpecificationLimitRegionLimitArgs;
 import java.lang.String;
 import java.util.Objects;
@@ -120,8 +121,12 @@ public final class QuoteSpecificationLimitArgs extends com.pulumi.resources.Reso
         }
 
         public QuoteSpecificationLimitArgs build() {
-            $.region = Objects.requireNonNull($.region, "expected parameter 'region' to be non-null");
-            $.regionLimit = Objects.requireNonNull($.regionLimit, "expected parameter 'regionLimit' to be non-null");
+            if ($.region == null) {
+                throw new MissingRequiredPropertyException("QuoteSpecificationLimitArgs", "region");
+            }
+            if ($.regionLimit == null) {
+                throw new MissingRequiredPropertyException("QuoteSpecificationLimitArgs", "regionLimit");
+            }
             return $;
         }
     }

@@ -59,11 +59,13 @@ public final class CsiVolumeTopologyRequest {
 
         @CustomType.Setter
         public Builder preferred(@Nullable CsiVolumeTopologyRequestPreferred preferred) {
+
             this.preferred = preferred;
             return this;
         }
         @CustomType.Setter
         public Builder required(@Nullable CsiVolumeTopologyRequestRequired required) {
+
             this.required = required;
             return this;
         }

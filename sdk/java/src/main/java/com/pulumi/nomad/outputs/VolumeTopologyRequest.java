@@ -44,6 +44,7 @@ public final class VolumeTopologyRequest {
 
         @CustomType.Setter
         public Builder required(@Nullable VolumeTopologyRequestRequired required) {
+
             this.required = required;
             return this;
         }

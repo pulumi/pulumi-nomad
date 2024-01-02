@@ -66,21 +66,25 @@ public final class JobTaskGroup {
 
         @CustomType.Setter
         public Builder count(@Nullable Integer count) {
+
             this.count = count;
             return this;
         }
         @CustomType.Setter
         public Builder meta(@Nullable Map<String,Object> meta) {
+
             this.meta = meta;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder tasks(@Nullable List<JobTaskGroupTask> tasks) {
+
             this.tasks = tasks;
             return this;
         }
@@ -89,6 +93,7 @@ public final class JobTaskGroup {
         }
         @CustomType.Setter
         public Builder volumes(@Nullable List<JobTaskGroupVolume> volumes) {
+
             this.volumes = volumes;
             return this;
         }

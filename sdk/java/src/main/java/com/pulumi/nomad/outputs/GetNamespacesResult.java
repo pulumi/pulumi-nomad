@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -57,12 +58,18 @@ public final class GetNamespacesResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetNamespacesResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder namespaces(List<String> namespaces) {
-            this.namespaces = Objects.requireNonNull(namespaces);
+            if (namespaces == null) {
+              throw new MissingRequiredPropertyException("GetNamespacesResult", "namespaces");
+            }
+            this.namespaces = namespaces;
             return this;
         }
         public Builder namespaces(String... namespaces) {

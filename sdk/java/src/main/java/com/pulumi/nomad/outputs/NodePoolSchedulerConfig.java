@@ -76,11 +76,13 @@ public final class NodePoolSchedulerConfig {
 
         @CustomType.Setter
         public Builder memoryOversubscription(@Nullable String memoryOversubscription) {
+
             this.memoryOversubscription = memoryOversubscription;
             return this;
         }
         @CustomType.Setter
         public Builder schedulerAlgorithm(@Nullable String schedulerAlgorithm) {
+
             this.schedulerAlgorithm = schedulerAlgorithm;
             return this;
         }

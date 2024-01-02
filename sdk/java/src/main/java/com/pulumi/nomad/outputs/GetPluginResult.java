@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetPluginNode;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -178,27 +179,42 @@ public final class GetPluginResult {
 
         @CustomType.Setter
         public Builder controllerRequired(Boolean controllerRequired) {
-            this.controllerRequired = Objects.requireNonNull(controllerRequired);
+            if (controllerRequired == null) {
+              throw new MissingRequiredPropertyException("GetPluginResult", "controllerRequired");
+            }
+            this.controllerRequired = controllerRequired;
             return this;
         }
         @CustomType.Setter
         public Builder controllersExpected(Integer controllersExpected) {
-            this.controllersExpected = Objects.requireNonNull(controllersExpected);
+            if (controllersExpected == null) {
+              throw new MissingRequiredPropertyException("GetPluginResult", "controllersExpected");
+            }
+            this.controllersExpected = controllersExpected;
             return this;
         }
         @CustomType.Setter
         public Builder controllersHealthy(Integer controllersHealthy) {
-            this.controllersHealthy = Objects.requireNonNull(controllersHealthy);
+            if (controllersHealthy == null) {
+              throw new MissingRequiredPropertyException("GetPluginResult", "controllersHealthy");
+            }
+            this.controllersHealthy = controllersHealthy;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetPluginResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder nodes(List<GetPluginNode> nodes) {
-            this.nodes = Objects.requireNonNull(nodes);
+            if (nodes == null) {
+              throw new MissingRequiredPropertyException("GetPluginResult", "nodes");
+            }
+            this.nodes = nodes;
             return this;
         }
         public Builder nodes(GetPluginNode... nodes) {
@@ -206,36 +222,53 @@ public final class GetPluginResult {
         }
         @CustomType.Setter
         public Builder nodesExpected(Integer nodesExpected) {
-            this.nodesExpected = Objects.requireNonNull(nodesExpected);
+            if (nodesExpected == null) {
+              throw new MissingRequiredPropertyException("GetPluginResult", "nodesExpected");
+            }
+            this.nodesExpected = nodesExpected;
             return this;
         }
         @CustomType.Setter
         public Builder nodesHealthy(Integer nodesHealthy) {
-            this.nodesHealthy = Objects.requireNonNull(nodesHealthy);
+            if (nodesHealthy == null) {
+              throw new MissingRequiredPropertyException("GetPluginResult", "nodesHealthy");
+            }
+            this.nodesHealthy = nodesHealthy;
             return this;
         }
         @CustomType.Setter
         public Builder pluginId(String pluginId) {
-            this.pluginId = Objects.requireNonNull(pluginId);
+            if (pluginId == null) {
+              throw new MissingRequiredPropertyException("GetPluginResult", "pluginId");
+            }
+            this.pluginId = pluginId;
             return this;
         }
         @CustomType.Setter
         public Builder pluginProvider(String pluginProvider) {
-            this.pluginProvider = Objects.requireNonNull(pluginProvider);
+            if (pluginProvider == null) {
+              throw new MissingRequiredPropertyException("GetPluginResult", "pluginProvider");
+            }
+            this.pluginProvider = pluginProvider;
             return this;
         }
         @CustomType.Setter
         public Builder pluginProviderVersion(String pluginProviderVersion) {
-            this.pluginProviderVersion = Objects.requireNonNull(pluginProviderVersion);
+            if (pluginProviderVersion == null) {
+              throw new MissingRequiredPropertyException("GetPluginResult", "pluginProviderVersion");
+            }
+            this.pluginProviderVersion = pluginProviderVersion;
             return this;
         }
         @CustomType.Setter
         public Builder waitForHealthy(@Nullable Boolean waitForHealthy) {
+
             this.waitForHealthy = waitForHealthy;
             return this;
         }
         @CustomType.Setter
         public Builder waitForRegistration(@Nullable Boolean waitForRegistration) {
+
             this.waitForRegistration = waitForRegistration;
             return this;
         }

@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.inputs.AclAuthMethodConfigArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -283,10 +284,18 @@ public final class AclAuthMethodArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public AclAuthMethodArgs build() {
-            $.config = Objects.requireNonNull($.config, "expected parameter 'config' to be non-null");
-            $.maxTokenTtl = Objects.requireNonNull($.maxTokenTtl, "expected parameter 'maxTokenTtl' to be non-null");
-            $.tokenLocality = Objects.requireNonNull($.tokenLocality, "expected parameter 'tokenLocality' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.config == null) {
+                throw new MissingRequiredPropertyException("AclAuthMethodArgs", "config");
+            }
+            if ($.maxTokenTtl == null) {
+                throw new MissingRequiredPropertyException("AclAuthMethodArgs", "maxTokenTtl");
+            }
+            if ($.tokenLocality == null) {
+                throw new MissingRequiredPropertyException("AclAuthMethodArgs", "tokenLocality");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("AclAuthMethodArgs", "type");
+            }
             return $;
         }
     }

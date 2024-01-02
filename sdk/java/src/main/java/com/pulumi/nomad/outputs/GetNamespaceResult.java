@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetNamespaceCapability;
 import com.pulumi.nomad.outputs.GetNamespaceNodePoolConfig;
 import java.lang.String;
@@ -114,7 +115,10 @@ public final class GetNamespaceResult {
 
         @CustomType.Setter
         public Builder capabilities(List<GetNamespaceCapability> capabilities) {
-            this.capabilities = Objects.requireNonNull(capabilities);
+            if (capabilities == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceResult", "capabilities");
+            }
+            this.capabilities = capabilities;
             return this;
         }
         public Builder capabilities(GetNamespaceCapability... capabilities) {
@@ -122,27 +126,42 @@ public final class GetNamespaceResult {
         }
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder meta(Map<String,String> meta) {
-            this.meta = Objects.requireNonNull(meta);
+            if (meta == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceResult", "meta");
+            }
+            this.meta = meta;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder nodePoolConfigs(List<GetNamespaceNodePoolConfig> nodePoolConfigs) {
-            this.nodePoolConfigs = Objects.requireNonNull(nodePoolConfigs);
+            if (nodePoolConfigs == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceResult", "nodePoolConfigs");
+            }
+            this.nodePoolConfigs = nodePoolConfigs;
             return this;
         }
         public Builder nodePoolConfigs(GetNamespaceNodePoolConfig... nodePoolConfigs) {
@@ -150,7 +169,10 @@ public final class GetNamespaceResult {
         }
         @CustomType.Setter
         public Builder quota(String quota) {
-            this.quota = Objects.requireNonNull(quota);
+            if (quota == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceResult", "quota");
+            }
+            this.quota = quota;
             return this;
         }
         public GetNamespaceResult build() {

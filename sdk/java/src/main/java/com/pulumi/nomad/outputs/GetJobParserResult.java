@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -87,22 +88,32 @@ public final class GetJobParserResult {
 
         @CustomType.Setter
         public Builder canonicalize(@Nullable Boolean canonicalize) {
+
             this.canonicalize = canonicalize;
             return this;
         }
         @CustomType.Setter
         public Builder hcl(String hcl) {
-            this.hcl = Objects.requireNonNull(hcl);
+            if (hcl == null) {
+              throw new MissingRequiredPropertyException("GetJobParserResult", "hcl");
+            }
+            this.hcl = hcl;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetJobParserResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder json(String json) {
-            this.json = Objects.requireNonNull(json);
+            if (json == null) {
+              throw new MissingRequiredPropertyException("GetJobParserResult", "json");
+            }
+            this.json = json;
             return this;
         }
         public GetJobParserResult build() {

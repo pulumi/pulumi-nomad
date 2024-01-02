@@ -58,6 +58,7 @@ public final class NamespaceCapabilities {
 
         @CustomType.Setter
         public Builder disabledTaskDrivers(@Nullable List<String> disabledTaskDrivers) {
+
             this.disabledTaskDrivers = disabledTaskDrivers;
             return this;
         }
@@ -66,6 +67,7 @@ public final class NamespaceCapabilities {
         }
         @CustomType.Setter
         public Builder enabledTaskDrivers(@Nullable List<String> enabledTaskDrivers) {
+
             this.enabledTaskDrivers = enabledTaskDrivers;
             return this;
         }

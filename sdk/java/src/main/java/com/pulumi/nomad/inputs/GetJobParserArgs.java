@@ -5,6 +5,7 @@ package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -114,7 +115,9 @@ public final class GetJobParserArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetJobParserArgs build() {
-            $.hcl = Objects.requireNonNull($.hcl, "expected parameter 'hcl' to be non-null");
+            if ($.hcl == null) {
+                throw new MissingRequiredPropertyException("GetJobParserArgs", "hcl");
+            }
             return $;
         }
     }

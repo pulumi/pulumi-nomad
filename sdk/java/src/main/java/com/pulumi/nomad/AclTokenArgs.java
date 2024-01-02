@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.inputs.AclTokenRoleArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -332,7 +333,9 @@ public final class AclTokenArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public AclTokenArgs build() {
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("AclTokenArgs", "type");
+            }
             return $;
         }
     }

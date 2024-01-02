@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.ExternalVolumeTopologyRequestPreferredTopology;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +44,10 @@ public final class ExternalVolumeTopologyRequestPreferred {
 
         @CustomType.Setter
         public Builder topologies(List<ExternalVolumeTopologyRequestPreferredTopology> topologies) {
-            this.topologies = Objects.requireNonNull(topologies);
+            if (topologies == null) {
+              throw new MissingRequiredPropertyException("ExternalVolumeTopologyRequestPreferred", "topologies");
+            }
+            this.topologies = topologies;
             return this;
         }
         public Builder topologies(ExternalVolumeTopologyRequestPreferredTopology... topologies) {

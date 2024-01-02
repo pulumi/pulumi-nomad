@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetAclRolesAclRole;
 import java.lang.String;
 import java.util.List;
@@ -58,7 +59,10 @@ public final class GetAclRolesResult {
 
         @CustomType.Setter
         public Builder aclRoles(List<GetAclRolesAclRole> aclRoles) {
-            this.aclRoles = Objects.requireNonNull(aclRoles);
+            if (aclRoles == null) {
+              throw new MissingRequiredPropertyException("GetAclRolesResult", "aclRoles");
+            }
+            this.aclRoles = aclRoles;
             return this;
         }
         public Builder aclRoles(GetAclRolesAclRole... aclRoles) {
@@ -66,11 +70,15 @@ public final class GetAclRolesResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAclRolesResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder prefix(@Nullable String prefix) {
+
             this.prefix = prefix;
             return this;
         }
