@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetAclTokenRole;
 import java.lang.Boolean;
 import java.lang.String;
@@ -191,42 +192,66 @@ public final class GetAclTokenResult {
 
         @CustomType.Setter
         public Builder accessorId(String accessorId) {
-            this.accessorId = Objects.requireNonNull(accessorId);
+            if (accessorId == null) {
+              throw new MissingRequiredPropertyException("GetAclTokenResult", "accessorId");
+            }
+            this.accessorId = accessorId;
             return this;
         }
         @CustomType.Setter
         public Builder createTime(String createTime) {
-            this.createTime = Objects.requireNonNull(createTime);
+            if (createTime == null) {
+              throw new MissingRequiredPropertyException("GetAclTokenResult", "createTime");
+            }
+            this.createTime = createTime;
             return this;
         }
         @CustomType.Setter
         public Builder expirationTime(String expirationTime) {
-            this.expirationTime = Objects.requireNonNull(expirationTime);
+            if (expirationTime == null) {
+              throw new MissingRequiredPropertyException("GetAclTokenResult", "expirationTime");
+            }
+            this.expirationTime = expirationTime;
             return this;
         }
         @CustomType.Setter
         public Builder expirationTtl(String expirationTtl) {
-            this.expirationTtl = Objects.requireNonNull(expirationTtl);
+            if (expirationTtl == null) {
+              throw new MissingRequiredPropertyException("GetAclTokenResult", "expirationTtl");
+            }
+            this.expirationTtl = expirationTtl;
             return this;
         }
         @CustomType.Setter
         public Builder global(Boolean global) {
-            this.global = Objects.requireNonNull(global);
+            if (global == null) {
+              throw new MissingRequiredPropertyException("GetAclTokenResult", "global");
+            }
+            this.global = global;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAclTokenResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetAclTokenResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder policies(List<String> policies) {
-            this.policies = Objects.requireNonNull(policies);
+            if (policies == null) {
+              throw new MissingRequiredPropertyException("GetAclTokenResult", "policies");
+            }
+            this.policies = policies;
             return this;
         }
         public Builder policies(String... policies) {
@@ -234,7 +259,10 @@ public final class GetAclTokenResult {
         }
         @CustomType.Setter
         public Builder roles(List<GetAclTokenRole> roles) {
-            this.roles = Objects.requireNonNull(roles);
+            if (roles == null) {
+              throw new MissingRequiredPropertyException("GetAclTokenResult", "roles");
+            }
+            this.roles = roles;
             return this;
         }
         public Builder roles(GetAclTokenRole... roles) {
@@ -242,12 +270,18 @@ public final class GetAclTokenResult {
         }
         @CustomType.Setter
         public Builder secretId(String secretId) {
-            this.secretId = Objects.requireNonNull(secretId);
+            if (secretId == null) {
+              throw new MissingRequiredPropertyException("GetAclTokenResult", "secretId");
+            }
+            this.secretId = secretId;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetAclTokenResult", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetAclTokenResult build() {

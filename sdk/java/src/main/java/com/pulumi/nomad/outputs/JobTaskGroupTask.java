@@ -58,21 +58,25 @@ public final class JobTaskGroupTask {
 
         @CustomType.Setter
         public Builder driver(@Nullable String driver) {
+
             this.driver = driver;
             return this;
         }
         @CustomType.Setter
         public Builder meta(@Nullable Map<String,Object> meta) {
+
             this.meta = meta;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder volumeMounts(@Nullable List<JobTaskGroupTaskVolumeMount> volumeMounts) {
+
             this.volumeMounts = volumeMounts;
             return this;
         }

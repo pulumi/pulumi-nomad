@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.inputs.CsiVolumeRegistrationCapabilityArgs;
 import com.pulumi.nomad.inputs.CsiVolumeRegistrationMountOptionsArgs;
 import com.pulumi.nomad.inputs.CsiVolumeRegistrationTopologyRequestArgs;
@@ -499,9 +500,15 @@ public final class CsiVolumeRegistrationArgs extends com.pulumi.resources.Resour
         }
 
         public CsiVolumeRegistrationArgs build() {
-            $.externalId = Objects.requireNonNull($.externalId, "expected parameter 'externalId' to be non-null");
-            $.pluginId = Objects.requireNonNull($.pluginId, "expected parameter 'pluginId' to be non-null");
-            $.volumeId = Objects.requireNonNull($.volumeId, "expected parameter 'volumeId' to be non-null");
+            if ($.externalId == null) {
+                throw new MissingRequiredPropertyException("CsiVolumeRegistrationArgs", "externalId");
+            }
+            if ($.pluginId == null) {
+                throw new MissingRequiredPropertyException("CsiVolumeRegistrationArgs", "pluginId");
+            }
+            if ($.volumeId == null) {
+                throw new MissingRequiredPropertyException("CsiVolumeRegistrationArgs", "volumeId");
+            }
             return $;
         }
     }

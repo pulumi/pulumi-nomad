@@ -49,16 +49,19 @@ public final class JobTaskGroupTaskVolumeMount {
 
         @CustomType.Setter
         public Builder destination(@Nullable String destination) {
+
             this.destination = destination;
             return this;
         }
         @CustomType.Setter
         public Builder readOnly(@Nullable Boolean readOnly) {
+
             this.readOnly = readOnly;
             return this;
         }
         @CustomType.Setter
         public Builder volume(@Nullable String volume) {
+
             this.volume = volume;
             return this;
         }

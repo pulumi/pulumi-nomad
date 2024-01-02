@@ -73,6 +73,7 @@ public final class NamespaceNodePoolConfig {
 
         @CustomType.Setter
         public Builder alloweds(@Nullable List<String> alloweds) {
+
             this.alloweds = alloweds;
             return this;
         }
@@ -81,11 +82,13 @@ public final class NamespaceNodePoolConfig {
         }
         @CustomType.Setter("default")
         public Builder default_(@Nullable String default_) {
+
             this.default_ = default_;
             return this;
         }
         @CustomType.Setter
         public Builder denieds(@Nullable List<String> denieds) {
+
             this.denieds = denieds;
             return this;
         }

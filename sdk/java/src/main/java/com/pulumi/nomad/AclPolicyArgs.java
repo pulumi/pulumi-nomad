@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.inputs.AclPolicyJobAclArgs;
 import java.lang.String;
 import java.util.Objects;
@@ -192,7 +193,9 @@ public final class AclPolicyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public AclPolicyArgs build() {
-            $.rulesHcl = Objects.requireNonNull($.rulesHcl, "expected parameter 'rulesHcl' to be non-null");
+            if ($.rulesHcl == null) {
+                throw new MissingRequiredPropertyException("AclPolicyArgs", "rulesHcl");
+            }
             return $;
         }
     }

@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetAclTokensAclToken;
 import java.lang.String;
 import java.util.List;
@@ -66,7 +67,10 @@ public final class GetAclTokensResult {
 
         @CustomType.Setter
         public Builder aclTokens(List<GetAclTokensAclToken> aclTokens) {
-            this.aclTokens = Objects.requireNonNull(aclTokens);
+            if (aclTokens == null) {
+              throw new MissingRequiredPropertyException("GetAclTokensResult", "aclTokens");
+            }
+            this.aclTokens = aclTokens;
             return this;
         }
         public Builder aclTokens(GetAclTokensAclToken... aclTokens) {
@@ -74,11 +78,15 @@ public final class GetAclTokensResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAclTokensResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder prefix(@Nullable String prefix) {
+
             this.prefix = prefix;
             return this;
         }

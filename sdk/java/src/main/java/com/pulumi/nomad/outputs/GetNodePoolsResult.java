@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetNodePoolsNodePool;
 import java.lang.String;
 import java.util.List;
@@ -74,17 +75,24 @@ public final class GetNodePoolsResult {
 
         @CustomType.Setter
         public Builder filter(@Nullable String filter) {
+
             this.filter = filter;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetNodePoolsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder nodePools(List<GetNodePoolsNodePool> nodePools) {
-            this.nodePools = Objects.requireNonNull(nodePools);
+            if (nodePools == null) {
+              throw new MissingRequiredPropertyException("GetNodePoolsResult", "nodePools");
+            }
+            this.nodePools = nodePools;
             return this;
         }
         public Builder nodePools(GetNodePoolsNodePool... nodePools) {
@@ -92,6 +100,7 @@ public final class GetNodePoolsResult {
         }
         @CustomType.Setter
         public Builder prefix(@Nullable String prefix) {
+
             this.prefix = prefix;
             return this;
         }

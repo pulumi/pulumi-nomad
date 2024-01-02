@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -70,12 +71,18 @@ public final class CsiVolumeRegistrationCapability {
 
         @CustomType.Setter
         public Builder accessMode(String accessMode) {
-            this.accessMode = Objects.requireNonNull(accessMode);
+            if (accessMode == null) {
+              throw new MissingRequiredPropertyException("CsiVolumeRegistrationCapability", "accessMode");
+            }
+            this.accessMode = accessMode;
             return this;
         }
         @CustomType.Setter
         public Builder attachmentMode(String attachmentMode) {
-            this.attachmentMode = Objects.requireNonNull(attachmentMode);
+            if (attachmentMode == null) {
+              throw new MissingRequiredPropertyException("CsiVolumeRegistrationCapability", "attachmentMode");
+            }
+            this.attachmentMode = attachmentMode;
             return this;
         }
         public CsiVolumeRegistrationCapability build() {

@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetJobConstraint;
 import com.pulumi.nomad.outputs.GetJobPeriodicConfig;
 import com.pulumi.nomad.outputs.GetJobTaskGroup;
@@ -328,12 +329,18 @@ public final class GetJobResult {
 
         @CustomType.Setter
         public Builder allAtOnce(Boolean allAtOnce) {
-            this.allAtOnce = Objects.requireNonNull(allAtOnce);
+            if (allAtOnce == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "allAtOnce");
+            }
+            this.allAtOnce = allAtOnce;
             return this;
         }
         @CustomType.Setter
         public Builder constraints(List<GetJobConstraint> constraints) {
-            this.constraints = Objects.requireNonNull(constraints);
+            if (constraints == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "constraints");
+            }
+            this.constraints = constraints;
             return this;
         }
         public Builder constraints(GetJobConstraint... constraints) {
@@ -341,12 +348,18 @@ public final class GetJobResult {
         }
         @CustomType.Setter
         public Builder createIndex(Integer createIndex) {
-            this.createIndex = Objects.requireNonNull(createIndex);
+            if (createIndex == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "createIndex");
+            }
+            this.createIndex = createIndex;
             return this;
         }
         @CustomType.Setter
         public Builder datacenters(List<String> datacenters) {
-            this.datacenters = Objects.requireNonNull(datacenters);
+            if (datacenters == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "datacenters");
+            }
+            this.datacenters = datacenters;
             return this;
         }
         public Builder datacenters(String... datacenters) {
@@ -354,42 +367,64 @@ public final class GetJobResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder jobId(String jobId) {
-            this.jobId = Objects.requireNonNull(jobId);
+            if (jobId == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "jobId");
+            }
+            this.jobId = jobId;
             return this;
         }
         @CustomType.Setter
         public Builder jobModifyIndex(Integer jobModifyIndex) {
-            this.jobModifyIndex = Objects.requireNonNull(jobModifyIndex);
+            if (jobModifyIndex == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "jobModifyIndex");
+            }
+            this.jobModifyIndex = jobModifyIndex;
             return this;
         }
         @CustomType.Setter
         public Builder modifyIndex(Integer modifyIndex) {
-            this.modifyIndex = Objects.requireNonNull(modifyIndex);
+            if (modifyIndex == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "modifyIndex");
+            }
+            this.modifyIndex = modifyIndex;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder namespace(@Nullable String namespace) {
+
             this.namespace = namespace;
             return this;
         }
         @CustomType.Setter
         public Builder parentId(String parentId) {
-            this.parentId = Objects.requireNonNull(parentId);
+            if (parentId == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "parentId");
+            }
+            this.parentId = parentId;
             return this;
         }
         @CustomType.Setter
         public Builder periodicConfigs(List<GetJobPeriodicConfig> periodicConfigs) {
-            this.periodicConfigs = Objects.requireNonNull(periodicConfigs);
+            if (periodicConfigs == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "periodicConfigs");
+            }
+            this.periodicConfigs = periodicConfigs;
             return this;
         }
         public Builder periodicConfigs(GetJobPeriodicConfig... periodicConfigs) {
@@ -397,42 +432,66 @@ public final class GetJobResult {
         }
         @CustomType.Setter
         public Builder priority(Integer priority) {
-            this.priority = Objects.requireNonNull(priority);
+            if (priority == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "priority");
+            }
+            this.priority = priority;
             return this;
         }
         @CustomType.Setter
         public Builder region(String region) {
-            this.region = Objects.requireNonNull(region);
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "region");
+            }
+            this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder stable(Boolean stable) {
-            this.stable = Objects.requireNonNull(stable);
+            if (stable == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "stable");
+            }
+            this.stable = stable;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder statusDescription(String statusDescription) {
-            this.statusDescription = Objects.requireNonNull(statusDescription);
+            if (statusDescription == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "statusDescription");
+            }
+            this.statusDescription = statusDescription;
             return this;
         }
         @CustomType.Setter
         public Builder stop(Boolean stop) {
-            this.stop = Objects.requireNonNull(stop);
+            if (stop == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "stop");
+            }
+            this.stop = stop;
             return this;
         }
         @CustomType.Setter
         public Builder submitTime(Integer submitTime) {
-            this.submitTime = Objects.requireNonNull(submitTime);
+            if (submitTime == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "submitTime");
+            }
+            this.submitTime = submitTime;
             return this;
         }
         @CustomType.Setter
         public Builder taskGroups(List<GetJobTaskGroup> taskGroups) {
-            this.taskGroups = Objects.requireNonNull(taskGroups);
+            if (taskGroups == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "taskGroups");
+            }
+            this.taskGroups = taskGroups;
             return this;
         }
         public Builder taskGroups(GetJobTaskGroup... taskGroups) {
@@ -440,12 +499,18 @@ public final class GetJobResult {
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "type");
+            }
+            this.type = type;
             return this;
         }
         @CustomType.Setter
         public Builder version(Integer version) {
-            this.version = Objects.requireNonNull(version);
+            if (version == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "version");
+            }
+            this.version = version;
             return this;
         }
         public GetJobResult build() {

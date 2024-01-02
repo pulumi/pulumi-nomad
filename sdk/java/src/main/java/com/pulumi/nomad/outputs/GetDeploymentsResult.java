@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -59,12 +60,18 @@ public final class GetDeploymentsResult {
 
         @CustomType.Setter
         public Builder deployments(List<Map<String,Object>> deployments) {
-            this.deployments = Objects.requireNonNull(deployments);
+            if (deployments == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsResult", "deployments");
+            }
+            this.deployments = deployments;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDeploymentsResult", "id");
+            }
+            this.id = id;
             return this;
         }
         public GetDeploymentsResult build() {

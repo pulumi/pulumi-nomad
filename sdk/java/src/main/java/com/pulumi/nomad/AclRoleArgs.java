@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.inputs.AclRolePolicyArgs;
 import java.lang.String;
 import java.util.List;
@@ -167,7 +168,9 @@ public final class AclRoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public AclRoleArgs build() {
-            $.policies = Objects.requireNonNull($.policies, "expected parameter 'policies' to be non-null");
+            if ($.policies == null) {
+                throw new MissingRequiredPropertyException("AclRoleArgs", "policies");
+            }
             return $;
         }
     }

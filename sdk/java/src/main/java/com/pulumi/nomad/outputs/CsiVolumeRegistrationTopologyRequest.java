@@ -44,6 +44,7 @@ public final class CsiVolumeRegistrationTopologyRequest {
 
         @CustomType.Setter
         public Builder required(@Nullable CsiVolumeRegistrationTopologyRequestRequired required) {
+
             this.required = required;
             return this;
         }

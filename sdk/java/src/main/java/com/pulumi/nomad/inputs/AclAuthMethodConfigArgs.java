@@ -5,6 +5,7 @@ package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -231,10 +232,18 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         public AclAuthMethodConfigArgs build() {
-            $.allowedRedirectUris = Objects.requireNonNull($.allowedRedirectUris, "expected parameter 'allowedRedirectUris' to be non-null");
-            $.oidcClientId = Objects.requireNonNull($.oidcClientId, "expected parameter 'oidcClientId' to be non-null");
-            $.oidcClientSecret = Objects.requireNonNull($.oidcClientSecret, "expected parameter 'oidcClientSecret' to be non-null");
-            $.oidcDiscoveryUrl = Objects.requireNonNull($.oidcDiscoveryUrl, "expected parameter 'oidcDiscoveryUrl' to be non-null");
+            if ($.allowedRedirectUris == null) {
+                throw new MissingRequiredPropertyException("AclAuthMethodConfigArgs", "allowedRedirectUris");
+            }
+            if ($.oidcClientId == null) {
+                throw new MissingRequiredPropertyException("AclAuthMethodConfigArgs", "oidcClientId");
+            }
+            if ($.oidcClientSecret == null) {
+                throw new MissingRequiredPropertyException("AclAuthMethodConfigArgs", "oidcClientSecret");
+            }
+            if ($.oidcDiscoveryUrl == null) {
+                throw new MissingRequiredPropertyException("AclAuthMethodConfigArgs", "oidcDiscoveryUrl");
+            }
             return $;
         }
     }
