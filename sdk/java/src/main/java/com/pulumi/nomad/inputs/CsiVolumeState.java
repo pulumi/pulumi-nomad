@@ -38,6 +38,13 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.capabilities);
     }
 
+    @Import(name="capacity")
+    private @Nullable Output<Integer> capacity;
+
+    public Optional<Output<Integer>> capacity() {
+        return Optional.ofNullable(this.capacity);
+    }
+
     /**
      * `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      * 
@@ -53,6 +60,13 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.capacityMax);
     }
 
+    @Import(name="capacityMaxBytes")
+    private @Nullable Output<Integer> capacityMaxBytes;
+
+    public Optional<Output<Integer>> capacityMaxBytes() {
+        return Optional.ofNullable(this.capacityMaxBytes);
+    }
+
     /**
      * `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      * 
@@ -66,6 +80,13 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> capacityMin() {
         return Optional.ofNullable(this.capacityMin);
+    }
+
+    @Import(name="capacityMinBytes")
+    private @Nullable Output<Integer> capacityMinBytes;
+
+    public Optional<Output<Integer>> capacityMinBytes() {
+        return Optional.ofNullable(this.capacityMinBytes);
     }
 
     /**
@@ -126,6 +147,21 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Integer>> controllersHealthy() {
         return Optional.ofNullable(this.controllersHealthy);
+    }
+
+    /**
+     * The ID of the physical volume from the storage provider.
+     * 
+     */
+    @Import(name="externalId")
+    private @Nullable Output<String> externalId;
+
+    /**
+     * @return The ID of the physical volume from the storage provider.
+     * 
+     */
+    public Optional<Output<String>> externalId() {
+        return Optional.ofNullable(this.externalId);
     }
 
     /**
@@ -357,12 +393,16 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
 
     private CsiVolumeState(CsiVolumeState $) {
         this.capabilities = $.capabilities;
+        this.capacity = $.capacity;
         this.capacityMax = $.capacityMax;
+        this.capacityMaxBytes = $.capacityMaxBytes;
         this.capacityMin = $.capacityMin;
+        this.capacityMinBytes = $.capacityMinBytes;
         this.cloneId = $.cloneId;
         this.controllerRequired = $.controllerRequired;
         this.controllersExpected = $.controllersExpected;
         this.controllersHealthy = $.controllersHealthy;
+        this.externalId = $.externalId;
         this.mountOptions = $.mountOptions;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -429,6 +469,15 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
             return capabilities(List.of(capabilities));
         }
 
+        public Builder capacity(@Nullable Output<Integer> capacity) {
+            $.capacity = capacity;
+            return this;
+        }
+
+        public Builder capacity(Integer capacity) {
+            return capacity(Output.of(capacity));
+        }
+
         /**
          * @param capacityMax `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
          * 
@@ -450,6 +499,15 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
             return capacityMax(Output.of(capacityMax));
         }
 
+        public Builder capacityMaxBytes(@Nullable Output<Integer> capacityMaxBytes) {
+            $.capacityMaxBytes = capacityMaxBytes;
+            return this;
+        }
+
+        public Builder capacityMaxBytes(Integer capacityMaxBytes) {
+            return capacityMaxBytes(Output.of(capacityMaxBytes));
+        }
+
         /**
          * @param capacityMin `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
          * 
@@ -469,6 +527,15 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder capacityMin(String capacityMin) {
             return capacityMin(Output.of(capacityMin));
+        }
+
+        public Builder capacityMinBytes(@Nullable Output<Integer> capacityMinBytes) {
+            $.capacityMinBytes = capacityMinBytes;
+            return this;
+        }
+
+        public Builder capacityMinBytes(Integer capacityMinBytes) {
+            return capacityMinBytes(Output.of(capacityMinBytes));
         }
 
         /**
@@ -553,6 +620,27 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder controllersHealthy(Integer controllersHealthy) {
             return controllersHealthy(Output.of(controllersHealthy));
+        }
+
+        /**
+         * @param externalId The ID of the physical volume from the storage provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalId(@Nullable Output<String> externalId) {
+            $.externalId = externalId;
+            return this;
+        }
+
+        /**
+         * @param externalId The ID of the physical volume from the storage provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalId(String externalId) {
+            return externalId(Output.of(externalId));
         }
 
         /**

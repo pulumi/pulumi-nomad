@@ -9,78 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad
 {
-    /// <summary>
-    /// ## Example Usage
-    /// 
-    /// Creating a volume:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Nomad = Pulumi.Nomad;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var ebs = Nomad.GetPlugin.Invoke(new()
-    ///     {
-    ///         PluginId = "aws-ebs0",
-    ///         WaitForHealthy = true,
-    ///     });
-    /// 
-    ///     var mysqlVolume = new Nomad.CsiVolume("mysqlVolume", new()
-    ///     {
-    ///         PluginId = "aws-ebs0",
-    ///         VolumeId = "mysql_volume",
-    ///         CapacityMin = "10GiB",
-    ///         CapacityMax = "20GiB",
-    ///         Capabilities = new[]
-    ///         {
-    ///             new Nomad.Inputs.CsiVolumeCapabilityArgs
-    ///             {
-    ///                 AccessMode = "single-node-writer",
-    ///                 AttachmentMode = "file-system",
-    ///             },
-    ///         },
-    ///         MountOptions = new Nomad.Inputs.CsiVolumeMountOptionsArgs
-    ///         {
-    ///             FsType = "ext4",
-    ///         },
-    ///         TopologyRequest = new Nomad.Inputs.CsiVolumeTopologyRequestArgs
-    ///         {
-    ///             Required = new Nomad.Inputs.CsiVolumeTopologyRequestRequiredArgs
-    ///             {
-    ///                 Topologies = new[]
-    ///                 {
-    ///                     new Nomad.Inputs.CsiVolumeTopologyRequestRequiredTopologyArgs
-    ///                     {
-    ///                         Segments = 
-    ///                         {
-    ///                             { "rack", "R1" },
-    ///                             { "zone", "us-east-1a" },
-    ///                         },
-    ///                     },
-    ///                     new Nomad.Inputs.CsiVolumeTopologyRequestRequiredTopologyArgs
-    ///                     {
-    ///                         Segments = 
-    ///                         {
-    ///                             { "rack", "R2" },
-    ///                         },
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn = new[]
-    ///         {
-    ///             ebs,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [NomadResourceType("nomad:index/csiVolume:CsiVolume")]
     public partial class CsiVolume : global::Pulumi.CustomResource
     {
@@ -90,17 +18,26 @@ namespace Pulumi.Nomad
         [Output("capabilities")]
         public Output<ImmutableArray<Outputs.CsiVolumeCapability>> Capabilities { get; private set; } = null!;
 
+        [Output("capacity")]
+        public Output<int> Capacity { get; private set; } = null!;
+
         /// <summary>
         /// `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         /// </summary>
         [Output("capacityMax")]
         public Output<string?> CapacityMax { get; private set; } = null!;
 
+        [Output("capacityMaxBytes")]
+        public Output<int> CapacityMaxBytes { get; private set; } = null!;
+
         /// <summary>
         /// `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         /// </summary>
         [Output("capacityMin")]
         public Output<string?> CapacityMin { get; private set; } = null!;
+
+        [Output("capacityMinBytes")]
+        public Output<int> CapacityMinBytes { get; private set; } = null!;
 
         /// <summary>
         /// `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
@@ -125,6 +62,12 @@ namespace Pulumi.Nomad
         /// </summary>
         [Output("controllersHealthy")]
         public Output<int> ControllersHealthy { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the physical volume from the storage provider.
+        /// </summary>
+        [Output("externalId")]
+        public Output<string> ExternalId { get; private set; } = null!;
 
         /// <summary>
         /// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
@@ -386,17 +329,26 @@ namespace Pulumi.Nomad
             set => _capabilities = value;
         }
 
+        [Input("capacity")]
+        public Input<int>? Capacity { get; set; }
+
         /// <summary>
         /// `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         /// </summary>
         [Input("capacityMax")]
         public Input<string>? CapacityMax { get; set; }
 
+        [Input("capacityMaxBytes")]
+        public Input<int>? CapacityMaxBytes { get; set; }
+
         /// <summary>
         /// `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         /// </summary>
         [Input("capacityMin")]
         public Input<string>? CapacityMin { get; set; }
+
+        [Input("capacityMinBytes")]
+        public Input<int>? CapacityMinBytes { get; set; }
 
         /// <summary>
         /// `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
@@ -421,6 +373,12 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("controllersHealthy")]
         public Input<int>? ControllersHealthy { get; set; }
+
+        /// <summary>
+        /// The ID of the physical volume from the storage provider.
+        /// </summary>
+        [Input("externalId")]
+        public Input<string>? ExternalId { get; set; }
 
         /// <summary>
         /// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.

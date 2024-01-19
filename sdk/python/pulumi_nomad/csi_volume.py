@@ -230,12 +230,16 @@ class CsiVolumeArgs:
 class _CsiVolumeState:
     def __init__(__self__, *,
                  capabilities: Optional[pulumi.Input[Sequence[pulumi.Input['CsiVolumeCapabilityArgs']]]] = None,
+                 capacity: Optional[pulumi.Input[int]] = None,
                  capacity_max: Optional[pulumi.Input[str]] = None,
+                 capacity_max_bytes: Optional[pulumi.Input[int]] = None,
                  capacity_min: Optional[pulumi.Input[str]] = None,
+                 capacity_min_bytes: Optional[pulumi.Input[int]] = None,
                  clone_id: Optional[pulumi.Input[str]] = None,
                  controller_required: Optional[pulumi.Input[bool]] = None,
                  controllers_expected: Optional[pulumi.Input[int]] = None,
                  controllers_healthy: Optional[pulumi.Input[int]] = None,
+                 external_id: Optional[pulumi.Input[str]] = None,
                  mount_options: Optional[pulumi.Input['CsiVolumeMountOptionsArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
@@ -260,6 +264,7 @@ class _CsiVolumeState:
         :param pulumi.Input[bool] controller_required: `(boolean)`
         :param pulumi.Input[int] controllers_expected: `(integer)`
         :param pulumi.Input[int] controllers_healthy: `(integer)`
+        :param pulumi.Input[str] external_id: The ID of the physical volume from the storage provider.
         :param pulumi.Input['CsiVolumeMountOptionsArgs'] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
@@ -278,10 +283,16 @@ class _CsiVolumeState:
         """
         if capabilities is not None:
             pulumi.set(__self__, "capabilities", capabilities)
+        if capacity is not None:
+            pulumi.set(__self__, "capacity", capacity)
         if capacity_max is not None:
             pulumi.set(__self__, "capacity_max", capacity_max)
+        if capacity_max_bytes is not None:
+            pulumi.set(__self__, "capacity_max_bytes", capacity_max_bytes)
         if capacity_min is not None:
             pulumi.set(__self__, "capacity_min", capacity_min)
+        if capacity_min_bytes is not None:
+            pulumi.set(__self__, "capacity_min_bytes", capacity_min_bytes)
         if clone_id is not None:
             pulumi.set(__self__, "clone_id", clone_id)
         if controller_required is not None:
@@ -290,6 +301,8 @@ class _CsiVolumeState:
             pulumi.set(__self__, "controllers_expected", controllers_expected)
         if controllers_healthy is not None:
             pulumi.set(__self__, "controllers_healthy", controllers_healthy)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
         if mount_options is not None:
             pulumi.set(__self__, "mount_options", mount_options)
         if name is not None:
@@ -334,6 +347,15 @@ class _CsiVolumeState:
         pulumi.set(self, "capabilities", value)
 
     @property
+    @pulumi.getter
+    def capacity(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "capacity")
+
+    @capacity.setter
+    def capacity(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "capacity", value)
+
+    @property
     @pulumi.getter(name="capacityMax")
     def capacity_max(self) -> Optional[pulumi.Input[str]]:
         """
@@ -346,6 +368,15 @@ class _CsiVolumeState:
         pulumi.set(self, "capacity_max", value)
 
     @property
+    @pulumi.getter(name="capacityMaxBytes")
+    def capacity_max_bytes(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "capacity_max_bytes")
+
+    @capacity_max_bytes.setter
+    def capacity_max_bytes(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "capacity_max_bytes", value)
+
+    @property
     @pulumi.getter(name="capacityMin")
     def capacity_min(self) -> Optional[pulumi.Input[str]]:
         """
@@ -356,6 +387,15 @@ class _CsiVolumeState:
     @capacity_min.setter
     def capacity_min(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "capacity_min", value)
+
+    @property
+    @pulumi.getter(name="capacityMinBytes")
+    def capacity_min_bytes(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "capacity_min_bytes")
+
+    @capacity_min_bytes.setter
+    def capacity_min_bytes(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "capacity_min_bytes", value)
 
     @property
     @pulumi.getter(name="cloneId")
@@ -404,6 +444,18 @@ class _CsiVolumeState:
     @controllers_healthy.setter
     def controllers_healthy(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "controllers_healthy", value)
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the physical volume from the storage provider.
+        """
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_id", value)
 
     @property
     @pulumi.getter(name="mountOptions")
@@ -606,48 +658,7 @@ class CsiVolume(pulumi.CustomResource):
                  volume_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## Example Usage
-
-        Creating a volume:
-
-        ```python
-        import pulumi
-        import pulumi_nomad as nomad
-
-        ebs = nomad.get_plugin(plugin_id="aws-ebs0",
-            wait_for_healthy=True)
-        mysql_volume = nomad.CsiVolume("mysqlVolume",
-            plugin_id="aws-ebs0",
-            volume_id="mysql_volume",
-            capacity_min="10GiB",
-            capacity_max="20GiB",
-            capabilities=[nomad.CsiVolumeCapabilityArgs(
-                access_mode="single-node-writer",
-                attachment_mode="file-system",
-            )],
-            mount_options=nomad.CsiVolumeMountOptionsArgs(
-                fs_type="ext4",
-            ),
-            topology_request=nomad.CsiVolumeTopologyRequestArgs(
-                required=nomad.CsiVolumeTopologyRequestRequiredArgs(
-                    topologies=[
-                        nomad.CsiVolumeTopologyRequestRequiredTopologyArgs(
-                            segments={
-                                "rack": "R1",
-                                "zone": "us-east-1a",
-                            },
-                        ),
-                        nomad.CsiVolumeTopologyRequestRequiredTopologyArgs(
-                            segments={
-                                "rack": "R2",
-                            },
-                        ),
-                    ],
-                ),
-            ),
-            opts=pulumi.ResourceOptions(depends_on=[ebs]))
-        ```
-
+        Create a CsiVolume resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeCapabilityArgs']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
@@ -671,48 +682,7 @@ class CsiVolume(pulumi.CustomResource):
                  args: CsiVolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## Example Usage
-
-        Creating a volume:
-
-        ```python
-        import pulumi
-        import pulumi_nomad as nomad
-
-        ebs = nomad.get_plugin(plugin_id="aws-ebs0",
-            wait_for_healthy=True)
-        mysql_volume = nomad.CsiVolume("mysqlVolume",
-            plugin_id="aws-ebs0",
-            volume_id="mysql_volume",
-            capacity_min="10GiB",
-            capacity_max="20GiB",
-            capabilities=[nomad.CsiVolumeCapabilityArgs(
-                access_mode="single-node-writer",
-                attachment_mode="file-system",
-            )],
-            mount_options=nomad.CsiVolumeMountOptionsArgs(
-                fs_type="ext4",
-            ),
-            topology_request=nomad.CsiVolumeTopologyRequestArgs(
-                required=nomad.CsiVolumeTopologyRequestRequiredArgs(
-                    topologies=[
-                        nomad.CsiVolumeTopologyRequestRequiredTopologyArgs(
-                            segments={
-                                "rack": "R1",
-                                "zone": "us-east-1a",
-                            },
-                        ),
-                        nomad.CsiVolumeTopologyRequestRequiredTopologyArgs(
-                            segments={
-                                "rack": "R2",
-                            },
-                        ),
-                    ],
-                ),
-            ),
-            opts=pulumi.ResourceOptions(depends_on=[ebs]))
-        ```
-
+        Create a CsiVolume resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param CsiVolumeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -769,9 +739,13 @@ class CsiVolume(pulumi.CustomResource):
             if volume_id is None and not opts.urn:
                 raise TypeError("Missing required property 'volume_id'")
             __props__.__dict__["volume_id"] = volume_id
+            __props__.__dict__["capacity"] = None
+            __props__.__dict__["capacity_max_bytes"] = None
+            __props__.__dict__["capacity_min_bytes"] = None
             __props__.__dict__["controller_required"] = None
             __props__.__dict__["controllers_expected"] = None
             __props__.__dict__["controllers_healthy"] = None
+            __props__.__dict__["external_id"] = None
             __props__.__dict__["nodes_expected"] = None
             __props__.__dict__["nodes_healthy"] = None
             __props__.__dict__["plugin_provider"] = None
@@ -791,12 +765,16 @@ class CsiVolume(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeCapabilityArgs']]]]] = None,
+            capacity: Optional[pulumi.Input[int]] = None,
             capacity_max: Optional[pulumi.Input[str]] = None,
+            capacity_max_bytes: Optional[pulumi.Input[int]] = None,
             capacity_min: Optional[pulumi.Input[str]] = None,
+            capacity_min_bytes: Optional[pulumi.Input[int]] = None,
             clone_id: Optional[pulumi.Input[str]] = None,
             controller_required: Optional[pulumi.Input[bool]] = None,
             controllers_expected: Optional[pulumi.Input[int]] = None,
             controllers_healthy: Optional[pulumi.Input[int]] = None,
+            external_id: Optional[pulumi.Input[str]] = None,
             mount_options: Optional[pulumi.Input[pulumi.InputType['CsiVolumeMountOptionsArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
@@ -826,6 +804,7 @@ class CsiVolume(pulumi.CustomResource):
         :param pulumi.Input[bool] controller_required: `(boolean)`
         :param pulumi.Input[int] controllers_expected: `(integer)`
         :param pulumi.Input[int] controllers_healthy: `(integer)`
+        :param pulumi.Input[str] external_id: The ID of the physical volume from the storage provider.
         :param pulumi.Input[pulumi.InputType['CsiVolumeMountOptionsArgs']] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
@@ -847,12 +826,16 @@ class CsiVolume(pulumi.CustomResource):
         __props__ = _CsiVolumeState.__new__(_CsiVolumeState)
 
         __props__.__dict__["capabilities"] = capabilities
+        __props__.__dict__["capacity"] = capacity
         __props__.__dict__["capacity_max"] = capacity_max
+        __props__.__dict__["capacity_max_bytes"] = capacity_max_bytes
         __props__.__dict__["capacity_min"] = capacity_min
+        __props__.__dict__["capacity_min_bytes"] = capacity_min_bytes
         __props__.__dict__["clone_id"] = clone_id
         __props__.__dict__["controller_required"] = controller_required
         __props__.__dict__["controllers_expected"] = controllers_expected
         __props__.__dict__["controllers_healthy"] = controllers_healthy
+        __props__.__dict__["external_id"] = external_id
         __props__.__dict__["mount_options"] = mount_options
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -879,6 +862,11 @@ class CsiVolume(pulumi.CustomResource):
         return pulumi.get(self, "capabilities")
 
     @property
+    @pulumi.getter
+    def capacity(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "capacity")
+
+    @property
     @pulumi.getter(name="capacityMax")
     def capacity_max(self) -> pulumi.Output[Optional[str]]:
         """
@@ -887,12 +875,22 @@ class CsiVolume(pulumi.CustomResource):
         return pulumi.get(self, "capacity_max")
 
     @property
+    @pulumi.getter(name="capacityMaxBytes")
+    def capacity_max_bytes(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "capacity_max_bytes")
+
+    @property
     @pulumi.getter(name="capacityMin")
     def capacity_min(self) -> pulumi.Output[Optional[str]]:
         """
         `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         """
         return pulumi.get(self, "capacity_min")
+
+    @property
+    @pulumi.getter(name="capacityMinBytes")
+    def capacity_min_bytes(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "capacity_min_bytes")
 
     @property
     @pulumi.getter(name="cloneId")
@@ -925,6 +923,14 @@ class CsiVolume(pulumi.CustomResource):
         `(integer)`
         """
         return pulumi.get(self, "controllers_healthy")
+
+    @property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the physical volume from the storage provider.
+        """
+        return pulumi.get(self, "external_id")
 
     @property
     @pulumi.getter(name="mountOptions")

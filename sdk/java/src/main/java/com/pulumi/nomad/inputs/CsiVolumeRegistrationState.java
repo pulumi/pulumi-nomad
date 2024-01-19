@@ -38,6 +38,57 @@ public final class CsiVolumeRegistrationState extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.capabilities);
     }
 
+    @Import(name="capacity")
+    private @Nullable Output<Integer> capacity;
+
+    public Optional<Output<Integer>> capacity() {
+        return Optional.ofNullable(this.capacity);
+    }
+
+    /**
+     * `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+     * 
+     */
+    @Import(name="capacityMax")
+    private @Nullable Output<String> capacityMax;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+     * 
+     */
+    public Optional<Output<String>> capacityMax() {
+        return Optional.ofNullable(this.capacityMax);
+    }
+
+    @Import(name="capacityMaxBytes")
+    private @Nullable Output<Integer> capacityMaxBytes;
+
+    public Optional<Output<Integer>> capacityMaxBytes() {
+        return Optional.ofNullable(this.capacityMaxBytes);
+    }
+
+    /**
+     * `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+     * 
+     */
+    @Import(name="capacityMin")
+    private @Nullable Output<String> capacityMin;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+     * 
+     */
+    public Optional<Output<String>> capacityMin() {
+        return Optional.ofNullable(this.capacityMin);
+    }
+
+    @Import(name="capacityMinBytes")
+    private @Nullable Output<Integer> capacityMinBytes;
+
+    public Optional<Output<Integer>> capacityMinBytes() {
+        return Optional.ofNullable(this.capacityMinBytes);
+    }
+
     /**
      * `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      * 
@@ -342,6 +393,11 @@ public final class CsiVolumeRegistrationState extends com.pulumi.resources.Resou
 
     private CsiVolumeRegistrationState(CsiVolumeRegistrationState $) {
         this.capabilities = $.capabilities;
+        this.capacity = $.capacity;
+        this.capacityMax = $.capacityMax;
+        this.capacityMaxBytes = $.capacityMaxBytes;
+        this.capacityMin = $.capacityMin;
+        this.capacityMinBytes = $.capacityMinBytes;
         this.context = $.context;
         this.controllerRequired = $.controllerRequired;
         this.controllersExpected = $.controllersExpected;
@@ -411,6 +467,75 @@ public final class CsiVolumeRegistrationState extends com.pulumi.resources.Resou
          */
         public Builder capabilities(CsiVolumeRegistrationCapabilityArgs... capabilities) {
             return capabilities(List.of(capabilities));
+        }
+
+        public Builder capacity(@Nullable Output<Integer> capacity) {
+            $.capacity = capacity;
+            return this;
+        }
+
+        public Builder capacity(Integer capacity) {
+            return capacity(Output.of(capacity));
+        }
+
+        /**
+         * @param capacityMax `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder capacityMax(@Nullable Output<String> capacityMax) {
+            $.capacityMax = capacityMax;
+            return this;
+        }
+
+        /**
+         * @param capacityMax `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder capacityMax(String capacityMax) {
+            return capacityMax(Output.of(capacityMax));
+        }
+
+        public Builder capacityMaxBytes(@Nullable Output<Integer> capacityMaxBytes) {
+            $.capacityMaxBytes = capacityMaxBytes;
+            return this;
+        }
+
+        public Builder capacityMaxBytes(Integer capacityMaxBytes) {
+            return capacityMaxBytes(Output.of(capacityMaxBytes));
+        }
+
+        /**
+         * @param capacityMin `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder capacityMin(@Nullable Output<String> capacityMin) {
+            $.capacityMin = capacityMin;
+            return this;
+        }
+
+        /**
+         * @param capacityMin `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder capacityMin(String capacityMin) {
+            return capacityMin(Output.of(capacityMin));
+        }
+
+        public Builder capacityMinBytes(@Nullable Output<Integer> capacityMinBytes) {
+            $.capacityMinBytes = capacityMinBytes;
+            return this;
+        }
+
+        public Builder capacityMinBytes(Integer capacityMinBytes) {
+            return capacityMinBytes(Output.of(capacityMinBytes));
         }
 
         /**

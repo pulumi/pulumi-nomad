@@ -304,6 +304,36 @@ public class Job extends com.pulumi.resources.CustomResource {
     public Output<String> region() {
         return this.region;
     }
+    /**
+     * `(boolean: false)` - Set this to true to force the job to run
+     * again if its status is `dead`.
+     * 
+     */
+    @Export(name="rerunIfDead", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> rerunIfDead;
+
+    /**
+     * @return `(boolean: false)` - Set this to true to force the job to run
+     * again if its status is `dead`.
+     * 
+     */
+    public Output<Optional<Boolean>> rerunIfDead() {
+        return Codegen.optional(this.rerunIfDead);
+    }
+    /**
+     * The status of the job.
+     * 
+     */
+    @Export(name="status", refs={String.class}, tree="[0]")
+    private Output<String> status;
+
+    /**
+     * @return The status of the job.
+     * 
+     */
+    public Output<String> status() {
+        return this.status;
+    }
     @Export(name="taskGroups", refs={List.class,JobTaskGroup.class}, tree="[0,1]")
     private Output<List<JobTaskGroup>> taskGroups;
 

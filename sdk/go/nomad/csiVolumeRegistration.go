@@ -12,75 +12,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// Registering a volume:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ebs, err := nomad.GetPlugin(ctx, &nomad.GetPluginArgs{
-//				PluginId:       "aws-ebs0",
-//				WaitForHealthy: pulumi.BoolRef(true),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = nomad.NewVolume(ctx, "mysqlVolume", &nomad.VolumeArgs{
-//				PluginId:   pulumi.String("aws-ebs0"),
-//				VolumeId:   pulumi.String("mysql_volume"),
-//				ExternalId: pulumi.Any(module.Hashistack.Ebs_test_volume_id),
-//				Capabilities: nomad.VolumeCapabilityArray{
-//					&nomad.VolumeCapabilityArgs{
-//						AccessMode:     pulumi.String("single-node-writer"),
-//						AttachmentMode: pulumi.String("file-system"),
-//					},
-//				},
-//				MountOptions: &nomad.VolumeMountOptionsArgs{
-//					FsType: pulumi.String("ext4"),
-//				},
-//				TopologyRequest: &nomad.VolumeTopologyRequestArgs{
-//					Required: &nomad.VolumeTopologyRequestRequiredArgs{
-//						Topologies: nomad.VolumeTopologyRequestRequiredTopologyArray{
-//							&nomad.VolumeTopologyRequestRequiredTopologyArgs{
-//								Segments: pulumi.StringMap{
-//									"rack": pulumi.String("R1"),
-//									"zone": pulumi.String("us-east-1a"),
-//								},
-//							},
-//							&nomad.VolumeTopologyRequestRequiredTopologyArgs{
-//								Segments: pulumi.StringMap{
-//									"rack": pulumi.String("R2"),
-//								},
-//							},
-//						},
-//					},
-//				},
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				ebs,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type CsiVolumeRegistration struct {
 	pulumi.CustomResourceState
 
 	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities CsiVolumeRegistrationCapabilityArrayOutput `pulumi:"capabilities"`
+	Capacity     pulumi.IntOutput                           `pulumi:"capacity"`
+	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+	CapacityMax      pulumi.StringPtrOutput `pulumi:"capacityMax"`
+	CapacityMaxBytes pulumi.IntOutput       `pulumi:"capacityMaxBytes"`
+	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+	CapacityMin      pulumi.StringPtrOutput `pulumi:"capacityMin"`
+	CapacityMinBytes pulumi.IntOutput       `pulumi:"capacityMinBytes"`
 	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
 	Context pulumi.StringMapOutput `pulumi:"context"`
 	// `(boolean)`
@@ -171,6 +114,13 @@ func GetCsiVolumeRegistration(ctx *pulumi.Context,
 type csiVolumeRegistrationState struct {
 	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities []CsiVolumeRegistrationCapability `pulumi:"capabilities"`
+	Capacity     *int                              `pulumi:"capacity"`
+	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+	CapacityMax      *string `pulumi:"capacityMax"`
+	CapacityMaxBytes *int    `pulumi:"capacityMaxBytes"`
+	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+	CapacityMin      *string `pulumi:"capacityMin"`
+	CapacityMinBytes *int    `pulumi:"capacityMinBytes"`
 	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
 	Context map[string]string `pulumi:"context"`
 	// `(boolean)`
@@ -216,6 +166,13 @@ type csiVolumeRegistrationState struct {
 type CsiVolumeRegistrationState struct {
 	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities CsiVolumeRegistrationCapabilityArrayInput
+	Capacity     pulumi.IntPtrInput
+	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+	CapacityMax      pulumi.StringPtrInput
+	CapacityMaxBytes pulumi.IntPtrInput
+	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+	CapacityMin      pulumi.StringPtrInput
+	CapacityMinBytes pulumi.IntPtrInput
 	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
 	Context pulumi.StringMapInput
 	// `(boolean)`
@@ -265,6 +222,10 @@ func (CsiVolumeRegistrationState) ElementType() reflect.Type {
 type csiVolumeRegistrationArgs struct {
 	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities []CsiVolumeRegistrationCapability `pulumi:"capabilities"`
+	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+	CapacityMax *string `pulumi:"capacityMax"`
+	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+	CapacityMin *string `pulumi:"capacityMin"`
 	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
 	Context map[string]string `pulumi:"context"`
 	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
@@ -293,6 +254,10 @@ type csiVolumeRegistrationArgs struct {
 type CsiVolumeRegistrationArgs struct {
 	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities CsiVolumeRegistrationCapabilityArrayInput
+	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+	CapacityMax pulumi.StringPtrInput
+	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+	CapacityMin pulumi.StringPtrInput
 	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
 	Context pulumi.StringMapInput
 	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
@@ -407,6 +372,28 @@ func (o CsiVolumeRegistrationOutput) ToCsiVolumeRegistrationOutputWithContext(ct
 // `(“Capability“: <required>)` - Options for validating the capability of a volume.
 func (o CsiVolumeRegistrationOutput) Capabilities() CsiVolumeRegistrationCapabilityArrayOutput {
 	return o.ApplyT(func(v *CsiVolumeRegistration) CsiVolumeRegistrationCapabilityArrayOutput { return v.Capabilities }).(CsiVolumeRegistrationCapabilityArrayOutput)
+}
+
+func (o CsiVolumeRegistrationOutput) Capacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistration) pulumi.IntOutput { return v.Capacity }).(pulumi.IntOutput)
+}
+
+// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+func (o CsiVolumeRegistrationOutput) CapacityMax() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistration) pulumi.StringPtrOutput { return v.CapacityMax }).(pulumi.StringPtrOutput)
+}
+
+func (o CsiVolumeRegistrationOutput) CapacityMaxBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistration) pulumi.IntOutput { return v.CapacityMaxBytes }).(pulumi.IntOutput)
+}
+
+// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+func (o CsiVolumeRegistrationOutput) CapacityMin() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistration) pulumi.StringPtrOutput { return v.CapacityMin }).(pulumi.StringPtrOutput)
+}
+
+func (o CsiVolumeRegistrationOutput) CapacityMinBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v *CsiVolumeRegistration) pulumi.IntOutput { return v.CapacityMinBytes }).(pulumi.IntOutput)
 }
 
 // `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
