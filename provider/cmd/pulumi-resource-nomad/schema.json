@@ -1808,7 +1808,7 @@
     },
     "resources": {
         "nomad:index/aclAuthMethod:AclAuthMethod": {
-            "description": "Manages an ACL Auth Method in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nCreating an ALC Auth Method:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst myNomadAclAuthMethod = new nomad.AclAuthMethod(\"myNomadAclAuthMethod\", {\n    type: \"OIDC\",\n    tokenLocality: \"global\",\n    maxTokenTtl: \"10m0s\",\n    \"default\": true,\n    config: {\n        oidcDiscoveryUrl: \"https://uk.auth0.com/\",\n        oidcClientId: \"someclientid\",\n        oidcClientSecret: \"someclientsecret-t\",\n        boundAudiences: [\"someclientid\"],\n        allowedRedirectUris: [\n            \"http://localhost:4649/oidc/callback\",\n            \"http://localhost:4646/ui/settings/tokens\",\n        ],\n        listClaimMappings: {\n            \"http://nomad.internal/roles\": \"roles\",\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nmy_nomad_acl_auth_method = nomad.AclAuthMethod(\"myNomadAclAuthMethod\",\n    type=\"OIDC\",\n    token_locality=\"global\",\n    max_token_ttl=\"10m0s\",\n    default=True,\n    config=nomad.AclAuthMethodConfigArgs(\n        oidc_discovery_url=\"https://uk.auth0.com/\",\n        oidc_client_id=\"someclientid\",\n        oidc_client_secret=\"someclientsecret-t\",\n        bound_audiences=[\"someclientid\"],\n        allowed_redirect_uris=[\n            \"http://localhost:4649/oidc/callback\",\n            \"http://localhost:4646/ui/settings/tokens\",\n        ],\n        list_claim_mappings={\n            \"http://nomad.internal/roles\": \"roles\",\n        },\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myNomadAclAuthMethod = new Nomad.AclAuthMethod(\"myNomadAclAuthMethod\", new()\n    {\n        Type = \"OIDC\",\n        TokenLocality = \"global\",\n        MaxTokenTtl = \"10m0s\",\n        Default = true,\n        Config = new Nomad.Inputs.AclAuthMethodConfigArgs\n        {\n            OidcDiscoveryUrl = \"https://uk.auth0.com/\",\n            OidcClientId = \"someclientid\",\n            OidcClientSecret = \"someclientsecret-t\",\n            BoundAudiences = new[]\n            {\n                \"someclientid\",\n            },\n            AllowedRedirectUris = new[]\n            {\n                \"http://localhost:4649/oidc/callback\",\n                \"http://localhost:4646/ui/settings/tokens\",\n            },\n            ListClaimMappings = \n            {\n                { \"http://nomad.internal/roles\", \"roles\" },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclAuthMethod(ctx, \"myNomadAclAuthMethod\", \u0026nomad.AclAuthMethodArgs{\n\t\t\tType:          pulumi.String(\"OIDC\"),\n\t\t\tTokenLocality: pulumi.String(\"global\"),\n\t\t\tMaxTokenTtl:   pulumi.String(\"10m0s\"),\n\t\t\tDefault:       pulumi.Bool(true),\n\t\t\tConfig: \u0026nomad.AclAuthMethodConfigArgs{\n\t\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://uk.auth0.com/\"),\n\t\t\t\tOidcClientId:     pulumi.String(\"someclientid\"),\n\t\t\t\tOidcClientSecret: pulumi.String(\"someclientsecret-t\"),\n\t\t\t\tBoundAudiences: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"someclientid\"),\n\t\t\t\t},\n\t\t\t\tAllowedRedirectUris: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"http://localhost:4649/oidc/callback\"),\n\t\t\t\t\tpulumi.String(\"http://localhost:4646/ui/settings/tokens\"),\n\t\t\t\t},\n\t\t\t\tListClaimMappings: pulumi.StringMap{\n\t\t\t\t\t\"http://nomad.internal/roles\": pulumi.String(\"roles\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.AclAuthMethod;\nimport com.pulumi.nomad.AclAuthMethodArgs;\nimport com.pulumi.nomad.inputs.AclAuthMethodConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myNomadAclAuthMethod = new AclAuthMethod(\"myNomadAclAuthMethod\", AclAuthMethodArgs.builder()        \n            .type(\"OIDC\")\n            .tokenLocality(\"global\")\n            .maxTokenTtl(\"10m0s\")\n            .default_(true)\n            .config(AclAuthMethodConfigArgs.builder()\n                .oidcDiscoveryUrl(\"https://uk.auth0.com/\")\n                .oidcClientId(\"someclientid\")\n                .oidcClientSecret(\"someclientsecret-t\")\n                .boundAudiences(\"someclientid\")\n                .allowedRedirectUris(                \n                    \"http://localhost:4649/oidc/callback\",\n                    \"http://localhost:4646/ui/settings/tokens\")\n                .listClaimMappings(Map.of(\"http://nomad.internal/roles\", \"roles\"))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myNomadAclAuthMethod:\n    type: nomad:AclAuthMethod\n    properties:\n      type: OIDC\n      tokenLocality: global\n      maxTokenTtl: 10m0s\n      default: true\n      config:\n        oidcDiscoveryUrl: https://uk.auth0.com/\n        oidcClientId: someclientid\n        oidcClientSecret: someclientsecret-t\n        boundAudiences:\n          - someclientid\n        allowedRedirectUris:\n          - http://localhost:4649/oidc/callback\n          - http://localhost:4646/ui/settings/tokens\n        listClaimMappings:\n          http://nomad.internal/roles: roles\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages an ACL Auth Method in Nomad.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nCreating an ALC Auth Method:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst myNomadAclAuthMethod = new nomad.AclAuthMethod(\"myNomadAclAuthMethod\", {\n    type: \"OIDC\",\n    tokenLocality: \"global\",\n    maxTokenTtl: \"10m0s\",\n    tokenNameFormat: `${auth_method_type}-${value.user}`,\n    \"default\": true,\n    config: {\n        oidcDiscoveryUrl: \"https://uk.auth0.com/\",\n        oidcClientId: \"someclientid\",\n        oidcClientSecret: \"someclientsecret-t\",\n        boundAudiences: [\"someclientid\"],\n        allowedRedirectUris: [\n            \"http://localhost:4649/oidc/callback\",\n            \"http://localhost:4646/ui/settings/tokens\",\n        ],\n        listClaimMappings: {\n            \"http://nomad.internal/roles\": \"roles\",\n        },\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nmy_nomad_acl_auth_method = nomad.AclAuthMethod(\"myNomadAclAuthMethod\",\n    type=\"OIDC\",\n    token_locality=\"global\",\n    max_token_ttl=\"10m0s\",\n    token_name_format=\"${auth_method_type}-${value.user}\",\n    default=True,\n    config=nomad.AclAuthMethodConfigArgs(\n        oidc_discovery_url=\"https://uk.auth0.com/\",\n        oidc_client_id=\"someclientid\",\n        oidc_client_secret=\"someclientsecret-t\",\n        bound_audiences=[\"someclientid\"],\n        allowed_redirect_uris=[\n            \"http://localhost:4649/oidc/callback\",\n            \"http://localhost:4646/ui/settings/tokens\",\n        ],\n        list_claim_mappings={\n            \"http://nomad.internal/roles\": \"roles\",\n        },\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myNomadAclAuthMethod = new Nomad.AclAuthMethod(\"myNomadAclAuthMethod\", new()\n    {\n        Type = \"OIDC\",\n        TokenLocality = \"global\",\n        MaxTokenTtl = \"10m0s\",\n        TokenNameFormat = \"${auth_method_type}-${value.user}\",\n        Default = true,\n        Config = new Nomad.Inputs.AclAuthMethodConfigArgs\n        {\n            OidcDiscoveryUrl = \"https://uk.auth0.com/\",\n            OidcClientId = \"someclientid\",\n            OidcClientSecret = \"someclientsecret-t\",\n            BoundAudiences = new[]\n            {\n                \"someclientid\",\n            },\n            AllowedRedirectUris = new[]\n            {\n                \"http://localhost:4649/oidc/callback\",\n                \"http://localhost:4646/ui/settings/tokens\",\n            },\n            ListClaimMappings = \n            {\n                { \"http://nomad.internal/roles\", \"roles\" },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewAclAuthMethod(ctx, \"myNomadAclAuthMethod\", \u0026nomad.AclAuthMethodArgs{\n\t\t\tType:            pulumi.String(\"OIDC\"),\n\t\t\tTokenLocality:   pulumi.String(\"global\"),\n\t\t\tMaxTokenTtl:     pulumi.String(\"10m0s\"),\n\t\t\tTokenNameFormat: pulumi.String(fmt.Sprintf(\"${auth_method_type}-${value.user}\")),\n\t\t\tDefault:         pulumi.Bool(true),\n\t\t\tConfig: \u0026nomad.AclAuthMethodConfigArgs{\n\t\t\t\tOidcDiscoveryUrl: pulumi.String(\"https://uk.auth0.com/\"),\n\t\t\t\tOidcClientId:     pulumi.String(\"someclientid\"),\n\t\t\t\tOidcClientSecret: pulumi.String(\"someclientsecret-t\"),\n\t\t\t\tBoundAudiences: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"someclientid\"),\n\t\t\t\t},\n\t\t\t\tAllowedRedirectUris: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"http://localhost:4649/oidc/callback\"),\n\t\t\t\t\tpulumi.String(\"http://localhost:4646/ui/settings/tokens\"),\n\t\t\t\t},\n\t\t\t\tListClaimMappings: pulumi.StringMap{\n\t\t\t\t\t\"http://nomad.internal/roles\": pulumi.String(\"roles\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.AclAuthMethod;\nimport com.pulumi.nomad.AclAuthMethodArgs;\nimport com.pulumi.nomad.inputs.AclAuthMethodConfigArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myNomadAclAuthMethod = new AclAuthMethod(\"myNomadAclAuthMethod\", AclAuthMethodArgs.builder()        \n            .type(\"OIDC\")\n            .tokenLocality(\"global\")\n            .maxTokenTtl(\"10m0s\")\n            .tokenNameFormat(\"${auth_method_type}-${value.user}\")\n            .default_(true)\n            .config(AclAuthMethodConfigArgs.builder()\n                .oidcDiscoveryUrl(\"https://uk.auth0.com/\")\n                .oidcClientId(\"someclientid\")\n                .oidcClientSecret(\"someclientsecret-t\")\n                .boundAudiences(\"someclientid\")\n                .allowedRedirectUris(                \n                    \"http://localhost:4649/oidc/callback\",\n                    \"http://localhost:4646/ui/settings/tokens\")\n                .listClaimMappings(Map.of(\"http://nomad.internal/roles\", \"roles\"))\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myNomadAclAuthMethod:\n    type: nomad:AclAuthMethod\n    properties:\n      type: OIDC\n      tokenLocality: global\n      maxTokenTtl: 10m0s\n      tokenNameFormat: ${auth_method_type}-${value.user}\n      default: true\n      config:\n        oidcDiscoveryUrl: https://uk.auth0.com/\n        oidcClientId: someclientid\n        oidcClientSecret: someclientsecret-t\n        boundAudiences:\n          - someclientid\n        allowedRedirectUris:\n          - http://localhost:4649/oidc/callback\n          - http://localhost:4646/ui/settings/tokens\n        listClaimMappings:\n          http://nomad.internal/roles: roles\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "config": {
                     "$ref": "#/types/nomad:index/AclAuthMethodConfig:AclAuthMethodConfig",
@@ -1829,6 +1829,10 @@
                 "tokenLocality": {
                     "type": "string",
                     "description": "`(string: \u003crequired\u003e)` - Defines whether the ACL Auth Method\ncreates a local or global token when performing SSO login. This field must be\nset to either `local` or `global`.\n"
+                },
+                "tokenNameFormat": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Defines the token name format for the\ngenerated tokens This can be lightly templated using HIL '${foo}' syntax.\nDefaults to `${auth_method_type}-${auth_method_name}`.\n"
                 },
                 "type": {
                     "type": "string",
@@ -1863,6 +1867,10 @@
                     "type": "string",
                     "description": "`(string: \u003crequired\u003e)` - Defines whether the ACL Auth Method\ncreates a local or global token when performing SSO login. This field must be\nset to either `local` or `global`.\n"
                 },
+                "tokenNameFormat": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Defines the token name format for the\ngenerated tokens This can be lightly templated using HIL '${foo}' syntax.\nDefaults to `${auth_method_type}-${auth_method_name}`.\n"
+                },
                 "type": {
                     "type": "string",
                     "description": "`(string: \u003crequired\u003e)` - ACL Auth Method SSO workflow type. Currently,\nthe only supported type is `OIDC`.\n"
@@ -1896,6 +1904,10 @@
                     "tokenLocality": {
                         "type": "string",
                         "description": "`(string: \u003crequired\u003e)` - Defines whether the ACL Auth Method\ncreates a local or global token when performing SSO login. This field must be\nset to either `local` or `global`.\n"
+                    },
+                    "tokenNameFormat": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - Defines the token name format for the\ngenerated tokens This can be lightly templated using HIL '${foo}' syntax.\nDefaults to `${auth_method_type}-${auth_method_name}`.\n"
                     },
                     "type": {
                         "type": "string",
@@ -2272,7 +2284,6 @@
             }
         },
         "nomad:index/csiVolume:CsiVolume": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\nCreating a volume:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst ebs = nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n});\nconst mysqlVolume = new nomad.CsiVolume(\"mysqlVolume\", {\n    pluginId: \"aws-ebs0\",\n    volumeId: \"mysql_volume\",\n    capacityMin: \"10GiB\",\n    capacityMax: \"20GiB\",\n    capabilities: [{\n        accessMode: \"single-node-writer\",\n        attachmentMode: \"file-system\",\n    }],\n    mountOptions: {\n        fsType: \"ext4\",\n    },\n    topologyRequest: {\n        required: {\n            topologies: [\n                {\n                    segments: {\n                        rack: \"R1\",\n                        zone: \"us-east-1a\",\n                    },\n                },\n                {\n                    segments: {\n                        rack: \"R2\",\n                    },\n                },\n            ],\n        },\n    },\n}, {\n    dependsOn: [ebs],\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\nmysql_volume = nomad.CsiVolume(\"mysqlVolume\",\n    plugin_id=\"aws-ebs0\",\n    volume_id=\"mysql_volume\",\n    capacity_min=\"10GiB\",\n    capacity_max=\"20GiB\",\n    capabilities=[nomad.CsiVolumeCapabilityArgs(\n        access_mode=\"single-node-writer\",\n        attachment_mode=\"file-system\",\n    )],\n    mount_options=nomad.CsiVolumeMountOptionsArgs(\n        fs_type=\"ext4\",\n    ),\n    topology_request=nomad.CsiVolumeTopologyRequestArgs(\n        required=nomad.CsiVolumeTopologyRequestRequiredArgs(\n            topologies=[\n                nomad.CsiVolumeTopologyRequestRequiredTopologyArgs(\n                    segments={\n                        \"rack\": \"R1\",\n                        \"zone\": \"us-east-1a\",\n                    },\n                ),\n                nomad.CsiVolumeTopologyRequestRequiredTopologyArgs(\n                    segments={\n                        \"rack\": \"R2\",\n                    },\n                ),\n            ],\n        ),\n    ),\n    opts=pulumi.ResourceOptions(depends_on=[ebs]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ebs = Nomad.GetPlugin.Invoke(new()\n    {\n        PluginId = \"aws-ebs0\",\n        WaitForHealthy = true,\n    });\n\n    var mysqlVolume = new Nomad.CsiVolume(\"mysqlVolume\", new()\n    {\n        PluginId = \"aws-ebs0\",\n        VolumeId = \"mysql_volume\",\n        CapacityMin = \"10GiB\",\n        CapacityMax = \"20GiB\",\n        Capabilities = new[]\n        {\n            new Nomad.Inputs.CsiVolumeCapabilityArgs\n            {\n                AccessMode = \"single-node-writer\",\n                AttachmentMode = \"file-system\",\n            },\n        },\n        MountOptions = new Nomad.Inputs.CsiVolumeMountOptionsArgs\n        {\n            FsType = \"ext4\",\n        },\n        TopologyRequest = new Nomad.Inputs.CsiVolumeTopologyRequestArgs\n        {\n            Required = new Nomad.Inputs.CsiVolumeTopologyRequestRequiredArgs\n            {\n                Topologies = new[]\n                {\n                    new Nomad.Inputs.CsiVolumeTopologyRequestRequiredTopologyArgs\n                    {\n                        Segments = \n                        {\n                            { \"rack\", \"R1\" },\n                            { \"zone\", \"us-east-1a\" },\n                        },\n                    },\n                    new Nomad.Inputs.CsiVolumeTopologyRequestRequiredTopologyArgs\n                    {\n                        Segments = \n                        {\n                            { \"rack\", \"R2\" },\n                        },\n                    },\n                },\n            },\n        },\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            ebs,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tebs, err := nomad.GetPlugin(ctx, \u0026nomad.GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewCsiVolume(ctx, \"mysqlVolume\", \u0026nomad.CsiVolumeArgs{\n\t\t\tPluginId:    pulumi.String(\"aws-ebs0\"),\n\t\t\tVolumeId:    pulumi.String(\"mysql_volume\"),\n\t\t\tCapacityMin: pulumi.String(\"10GiB\"),\n\t\t\tCapacityMax: pulumi.String(\"20GiB\"),\n\t\t\tCapabilities: nomad.CsiVolumeCapabilityArray{\n\t\t\t\t\u0026nomad.CsiVolumeCapabilityArgs{\n\t\t\t\t\tAccessMode:     pulumi.String(\"single-node-writer\"),\n\t\t\t\t\tAttachmentMode: pulumi.String(\"file-system\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tMountOptions: \u0026nomad.CsiVolumeMountOptionsArgs{\n\t\t\t\tFsType: pulumi.String(\"ext4\"),\n\t\t\t},\n\t\t\tTopologyRequest: \u0026nomad.CsiVolumeTopologyRequestArgs{\n\t\t\t\tRequired: \u0026nomad.CsiVolumeTopologyRequestRequiredArgs{\n\t\t\t\t\tTopologies: nomad.CsiVolumeTopologyRequestRequiredTopologyArray{\n\t\t\t\t\t\t\u0026nomad.CsiVolumeTopologyRequestRequiredTopologyArgs{\n\t\t\t\t\t\t\tSegments: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"rack\": pulumi.String(\"R1\"),\n\t\t\t\t\t\t\t\t\"zone\": pulumi.String(\"us-east-1a\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\u0026nomad.CsiVolumeTopologyRequestRequiredTopologyArgs{\n\t\t\t\t\t\t\tSegments: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"rack\": pulumi.String(\"R2\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tebs,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetPluginArgs;\nimport com.pulumi.nomad.CsiVolume;\nimport com.pulumi.nomad.CsiVolumeArgs;\nimport com.pulumi.nomad.inputs.CsiVolumeCapabilityArgs;\nimport com.pulumi.nomad.inputs.CsiVolumeMountOptionsArgs;\nimport com.pulumi.nomad.inputs.CsiVolumeTopologyRequestArgs;\nimport com.pulumi.nomad.inputs.CsiVolumeTopologyRequestRequiredArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()\n            .pluginId(\"aws-ebs0\")\n            .waitForHealthy(true)\n            .build());\n\n        var mysqlVolume = new CsiVolume(\"mysqlVolume\", CsiVolumeArgs.builder()        \n            .pluginId(\"aws-ebs0\")\n            .volumeId(\"mysql_volume\")\n            .capacityMin(\"10GiB\")\n            .capacityMax(\"20GiB\")\n            .capabilities(CsiVolumeCapabilityArgs.builder()\n                .accessMode(\"single-node-writer\")\n                .attachmentMode(\"file-system\")\n                .build())\n            .mountOptions(CsiVolumeMountOptionsArgs.builder()\n                .fsType(\"ext4\")\n                .build())\n            .topologyRequest(CsiVolumeTopologyRequestArgs.builder()\n                .required(CsiVolumeTopologyRequestRequiredArgs.builder()\n                    .topologies(                    \n                        CsiVolumeTopologyRequestRequiredTopologyArgs.builder()\n                            .segments(Map.ofEntries(\n                                Map.entry(\"rack\", \"R1\"),\n                                Map.entry(\"zone\", \"us-east-1a\")\n                            ))\n                            .build(),\n                        CsiVolumeTopologyRequestRequiredTopologyArgs.builder()\n                            .segments(Map.of(\"rack\", \"R2\"))\n                            .build())\n                    .build())\n                .build())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(ebs.applyValue(getPluginResult -\u003e getPluginResult))\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mysqlVolume:\n    type: nomad:CsiVolume\n    properties:\n      pluginId: aws-ebs0\n      volumeId: mysql_volume\n      capacityMin: 10GiB\n      capacityMax: 20GiB\n      capabilities:\n        - accessMode: single-node-writer\n          attachmentMode: file-system\n      mountOptions:\n        fsType: ext4\n      topologyRequest:\n        required:\n          topologies:\n            - segments:\n                rack: R1\n                zone: us-east-1a\n            - segments:\n                rack: R2\n    options:\n      dependson:\n        - ${ebs}\nvariables:\n  ebs:\n    fn::invoke:\n      Function: nomad:getPlugin\n      Arguments:\n        pluginId: aws-ebs0\n        waitForHealthy: true\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "capabilities": {
                     "type": "array",
@@ -2281,13 +2292,22 @@
                     },
                     "description": "`(``Capability``: \u003crequired\u003e)` - Options for validating the capability of a volume.\n"
                 },
+                "capacity": {
+                    "type": "integer"
+                },
                 "capacityMax": {
                     "type": "string",
                     "description": "`(string: \u003coptional\u003e)` - Option to signal a maximum volume size. This may not be supported by all storage providers.\n"
                 },
+                "capacityMaxBytes": {
+                    "type": "integer"
+                },
                 "capacityMin": {
                     "type": "string",
                     "description": "`(string: \u003coptional\u003e)` - Option to signal a minimum volume size. This may not be supported by all storage providers.\n"
+                },
+                "capacityMinBytes": {
+                    "type": "integer"
                 },
                 "cloneId": {
                     "type": "string",
@@ -2304,6 +2324,10 @@
                 "controllersHealthy": {
                     "type": "integer",
                     "description": "`(integer)`\n"
+                },
+                "externalId": {
+                    "type": "string",
+                    "description": "The ID of the physical volume from the storage provider.\n"
                 },
                 "mountOptions": {
                     "$ref": "#/types/nomad:index/CsiVolumeMountOptions:CsiVolumeMountOptions",
@@ -2378,9 +2402,13 @@
             },
             "required": [
                 "capabilities",
+                "capacity",
+                "capacityMaxBytes",
+                "capacityMinBytes",
                 "controllerRequired",
                 "controllersExpected",
                 "controllersHealthy",
+                "externalId",
                 "name",
                 "nodesExpected",
                 "nodesHealthy",
@@ -2402,13 +2430,11 @@
                 },
                 "capacityMax": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Option to signal a maximum volume size. This may not be supported by all storage providers.\n",
-                    "willReplaceOnChanges": true
+                    "description": "`(string: \u003coptional\u003e)` - Option to signal a maximum volume size. This may not be supported by all storage providers.\n"
                 },
                 "capacityMin": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Option to signal a minimum volume size. This may not be supported by all storage providers.\n",
-                    "willReplaceOnChanges": true
+                    "description": "`(string: \u003coptional\u003e)` - Option to signal a minimum volume size. This may not be supported by all storage providers.\n"
                 },
                 "cloneId": {
                     "type": "string",
@@ -2480,15 +2506,22 @@
                         "description": "`(``Capability``: \u003crequired\u003e)` - Options for validating the capability of a volume.\n",
                         "willReplaceOnChanges": true
                     },
+                    "capacity": {
+                        "type": "integer"
+                    },
                     "capacityMax": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - Option to signal a maximum volume size. This may not be supported by all storage providers.\n",
-                        "willReplaceOnChanges": true
+                        "description": "`(string: \u003coptional\u003e)` - Option to signal a maximum volume size. This may not be supported by all storage providers.\n"
+                    },
+                    "capacityMaxBytes": {
+                        "type": "integer"
                     },
                     "capacityMin": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - Option to signal a minimum volume size. This may not be supported by all storage providers.\n",
-                        "willReplaceOnChanges": true
+                        "description": "`(string: \u003coptional\u003e)` - Option to signal a minimum volume size. This may not be supported by all storage providers.\n"
+                    },
+                    "capacityMinBytes": {
+                        "type": "integer"
                     },
                     "cloneId": {
                         "type": "string",
@@ -2506,6 +2539,10 @@
                     "controllersHealthy": {
                         "type": "integer",
                         "description": "`(integer)`\n"
+                    },
+                    "externalId": {
+                        "type": "string",
+                        "description": "The ID of the physical volume from the storage provider.\n"
                     },
                     "mountOptions": {
                         "$ref": "#/types/nomad:index/CsiVolumeMountOptions:CsiVolumeMountOptions",
@@ -2587,7 +2624,6 @@
             }
         },
         "nomad:index/csiVolumeRegistration:CsiVolumeRegistration": {
-            "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\nRegistering a volume:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst ebs = nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n});\nconst mysqlVolume = new nomad.Volume(\"mysqlVolume\", {\n    pluginId: \"aws-ebs0\",\n    volumeId: \"mysql_volume\",\n    externalId: module.hashistack.ebs_test_volume_id,\n    capabilities: [{\n        accessMode: \"single-node-writer\",\n        attachmentMode: \"file-system\",\n    }],\n    mountOptions: {\n        fsType: \"ext4\",\n    },\n    topologyRequest: {\n        required: {\n            topologies: [\n                {\n                    segments: {\n                        rack: \"R1\",\n                        zone: \"us-east-1a\",\n                    },\n                },\n                {\n                    segments: {\n                        rack: \"R2\",\n                    },\n                },\n            ],\n        },\n    },\n}, {\n    dependsOn: [ebs],\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\nmysql_volume = nomad.Volume(\"mysqlVolume\",\n    plugin_id=\"aws-ebs0\",\n    volume_id=\"mysql_volume\",\n    external_id=module[\"hashistack\"][\"ebs_test_volume_id\"],\n    capabilities=[nomad.VolumeCapabilityArgs(\n        access_mode=\"single-node-writer\",\n        attachment_mode=\"file-system\",\n    )],\n    mount_options=nomad.VolumeMountOptionsArgs(\n        fs_type=\"ext4\",\n    ),\n    topology_request=nomad.VolumeTopologyRequestArgs(\n        required=nomad.VolumeTopologyRequestRequiredArgs(\n            topologies=[\n                nomad.VolumeTopologyRequestRequiredTopologyArgs(\n                    segments={\n                        \"rack\": \"R1\",\n                        \"zone\": \"us-east-1a\",\n                    },\n                ),\n                nomad.VolumeTopologyRequestRequiredTopologyArgs(\n                    segments={\n                        \"rack\": \"R2\",\n                    },\n                ),\n            ],\n        ),\n    ),\n    opts=pulumi.ResourceOptions(depends_on=[ebs]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ebs = Nomad.GetPlugin.Invoke(new()\n    {\n        PluginId = \"aws-ebs0\",\n        WaitForHealthy = true,\n    });\n\n    var mysqlVolume = new Nomad.Volume(\"mysqlVolume\", new()\n    {\n        PluginId = \"aws-ebs0\",\n        VolumeId = \"mysql_volume\",\n        ExternalId = module.Hashistack.Ebs_test_volume_id,\n        Capabilities = new[]\n        {\n            new Nomad.Inputs.VolumeCapabilityArgs\n            {\n                AccessMode = \"single-node-writer\",\n                AttachmentMode = \"file-system\",\n            },\n        },\n        MountOptions = new Nomad.Inputs.VolumeMountOptionsArgs\n        {\n            FsType = \"ext4\",\n        },\n        TopologyRequest = new Nomad.Inputs.VolumeTopologyRequestArgs\n        {\n            Required = new Nomad.Inputs.VolumeTopologyRequestRequiredArgs\n            {\n                Topologies = new[]\n                {\n                    new Nomad.Inputs.VolumeTopologyRequestRequiredTopologyArgs\n                    {\n                        Segments = \n                        {\n                            { \"rack\", \"R1\" },\n                            { \"zone\", \"us-east-1a\" },\n                        },\n                    },\n                    new Nomad.Inputs.VolumeTopologyRequestRequiredTopologyArgs\n                    {\n                        Segments = \n                        {\n                            { \"rack\", \"R2\" },\n                        },\n                    },\n                },\n            },\n        },\n    }, new CustomResourceOptions\n    {\n        DependsOn = new[]\n        {\n            ebs,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tebs, err := nomad.GetPlugin(ctx, \u0026nomad.GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewVolume(ctx, \"mysqlVolume\", \u0026nomad.VolumeArgs{\n\t\t\tPluginId:   pulumi.String(\"aws-ebs0\"),\n\t\t\tVolumeId:   pulumi.String(\"mysql_volume\"),\n\t\t\tExternalId: pulumi.Any(module.Hashistack.Ebs_test_volume_id),\n\t\t\tCapabilities: nomad.VolumeCapabilityArray{\n\t\t\t\t\u0026nomad.VolumeCapabilityArgs{\n\t\t\t\t\tAccessMode:     pulumi.String(\"single-node-writer\"),\n\t\t\t\t\tAttachmentMode: pulumi.String(\"file-system\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tMountOptions: \u0026nomad.VolumeMountOptionsArgs{\n\t\t\t\tFsType: pulumi.String(\"ext4\"),\n\t\t\t},\n\t\t\tTopologyRequest: \u0026nomad.VolumeTopologyRequestArgs{\n\t\t\t\tRequired: \u0026nomad.VolumeTopologyRequestRequiredArgs{\n\t\t\t\t\tTopologies: nomad.VolumeTopologyRequestRequiredTopologyArray{\n\t\t\t\t\t\t\u0026nomad.VolumeTopologyRequestRequiredTopologyArgs{\n\t\t\t\t\t\t\tSegments: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"rack\": pulumi.String(\"R1\"),\n\t\t\t\t\t\t\t\t\"zone\": pulumi.String(\"us-east-1a\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\u0026nomad.VolumeTopologyRequestRequiredTopologyArgs{\n\t\t\t\t\t\t\tSegments: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"rack\": pulumi.String(\"R2\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tebs,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetPluginArgs;\nimport com.pulumi.nomad.Volume;\nimport com.pulumi.nomad.VolumeArgs;\nimport com.pulumi.nomad.inputs.VolumeCapabilityArgs;\nimport com.pulumi.nomad.inputs.VolumeMountOptionsArgs;\nimport com.pulumi.nomad.inputs.VolumeTopologyRequestArgs;\nimport com.pulumi.nomad.inputs.VolumeTopologyRequestRequiredArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()\n            .pluginId(\"aws-ebs0\")\n            .waitForHealthy(true)\n            .build());\n\n        var mysqlVolume = new Volume(\"mysqlVolume\", VolumeArgs.builder()        \n            .pluginId(\"aws-ebs0\")\n            .volumeId(\"mysql_volume\")\n            .externalId(module.hashistack().ebs_test_volume_id())\n            .capabilities(VolumeCapabilityArgs.builder()\n                .accessMode(\"single-node-writer\")\n                .attachmentMode(\"file-system\")\n                .build())\n            .mountOptions(VolumeMountOptionsArgs.builder()\n                .fsType(\"ext4\")\n                .build())\n            .topologyRequest(VolumeTopologyRequestArgs.builder()\n                .required(VolumeTopologyRequestRequiredArgs.builder()\n                    .topologies(                    \n                        VolumeTopologyRequestRequiredTopologyArgs.builder()\n                            .segments(Map.ofEntries(\n                                Map.entry(\"rack\", \"R1\"),\n                                Map.entry(\"zone\", \"us-east-1a\")\n                            ))\n                            .build(),\n                        VolumeTopologyRequestRequiredTopologyArgs.builder()\n                            .segments(Map.of(\"rack\", \"R2\"))\n                            .build())\n                    .build())\n                .build())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(ebs.applyValue(getPluginResult -\u003e getPluginResult))\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mysqlVolume:\n    type: nomad:Volume\n    properties:\n      pluginId: aws-ebs0\n      volumeId: mysql_volume\n      externalId: ${module.hashistack.ebs_test_volume_id}\n      capabilities:\n        - accessMode: single-node-writer\n          attachmentMode: file-system\n      mountOptions:\n        fsType: ext4\n      topologyRequest:\n        required:\n          topologies:\n            - segments:\n                rack: R1\n                zone: us-east-1a\n            - segments:\n                rack: R2\n    options:\n      dependson:\n        - ${ebs}\nvariables:\n  ebs:\n    fn::invoke:\n      Function: nomad:getPlugin\n      Arguments:\n        pluginId: aws-ebs0\n        waitForHealthy: true\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "capabilities": {
                     "type": "array",
@@ -2595,6 +2631,23 @@
                         "$ref": "#/types/nomad:index/CsiVolumeRegistrationCapability:CsiVolumeRegistrationCapability"
                     },
                     "description": "`(``Capability``: \u003crequired\u003e)` - Options for validating the capability of a volume.\n"
+                },
+                "capacity": {
+                    "type": "integer"
+                },
+                "capacityMax": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Option to signal a maximum volume size. This may not be supported by all storage providers.\n"
+                },
+                "capacityMaxBytes": {
+                    "type": "integer"
+                },
+                "capacityMin": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Option to signal a minimum volume size. This may not be supported by all storage providers.\n"
+                },
+                "capacityMinBytes": {
+                    "type": "integer"
                 },
                 "context": {
                     "type": "object",
@@ -2691,6 +2744,9 @@
                 }
             },
             "required": [
+                "capacity",
+                "capacityMaxBytes",
+                "capacityMinBytes",
                 "controllerRequired",
                 "controllersExpected",
                 "controllersHealthy",
@@ -2712,6 +2768,14 @@
                         "$ref": "#/types/nomad:index/CsiVolumeRegistrationCapability:CsiVolumeRegistrationCapability"
                     },
                     "description": "`(``Capability``: \u003crequired\u003e)` - Options for validating the capability of a volume.\n"
+                },
+                "capacityMax": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Option to signal a maximum volume size. This may not be supported by all storage providers.\n"
+                },
+                "capacityMin": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Option to signal a minimum volume size. This may not be supported by all storage providers.\n"
                 },
                 "context": {
                     "type": "object",
@@ -2787,6 +2851,23 @@
                             "$ref": "#/types/nomad:index/CsiVolumeRegistrationCapability:CsiVolumeRegistrationCapability"
                         },
                         "description": "`(``Capability``: \u003crequired\u003e)` - Options for validating the capability of a volume.\n"
+                    },
+                    "capacity": {
+                        "type": "integer"
+                    },
+                    "capacityMax": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - Option to signal a maximum volume size. This may not be supported by all storage providers.\n"
+                    },
+                    "capacityMaxBytes": {
+                        "type": "integer"
+                    },
+                    "capacityMin": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - Option to signal a minimum volume size. This may not be supported by all storage providers.\n"
+                    },
+                    "capacityMinBytes": {
+                        "type": "integer"
                     },
                     "context": {
                         "type": "object",
@@ -3305,6 +3386,14 @@
                     "type": "string",
                     "description": "The target region for the job, as derived from the jobspec.\n"
                 },
+                "rerunIfDead": {
+                    "type": "boolean",
+                    "description": "`(boolean: false)` - Set this to true to force the job to run\nagain if its status is `dead`.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the job.\n"
+                },
                 "taskGroups": {
                     "type": "array",
                     "items": {
@@ -3331,6 +3420,7 @@
                 "name",
                 "namespace",
                 "region",
+                "status",
                 "taskGroups",
                 "type"
             ],
@@ -3379,6 +3469,10 @@
                 "readAllocationIds": {
                     "type": "boolean",
                     "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead."
+                },
+                "rerunIfDead": {
+                    "type": "boolean",
+                    "description": "`(boolean: false)` - Set this to true to force the job to run\nagain if its status is `dead`.\n"
                 },
                 "vaultToken": {
                     "type": "string",
@@ -3475,6 +3569,14 @@
                     "region": {
                         "type": "string",
                         "description": "The target region for the job, as derived from the jobspec.\n"
+                    },
+                    "rerunIfDead": {
+                        "type": "boolean",
+                        "description": "`(boolean: false)` - Set this to true to force the job to run\nagain if its status is `dead`.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the job.\n"
                     },
                     "taskGroups": {
                         "type": "array",
