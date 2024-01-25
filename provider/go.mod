@@ -13,6 +13,12 @@ replace (
 	// pin the vault dep
 	github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 	github.com/spf13/afero => github.com/spf13/afero v1.2.2
+
+	// github.com/hashicorp/nomad/helper/pointer is part of the
+	// github.com/hashicorp/nomad license set, and thus BUSL.
+	//
+	// We have written our own version that is not BUSL.
+	github.com/hashicorp/nomad/helper/pointer => ./pointer
 )
 
 require (
