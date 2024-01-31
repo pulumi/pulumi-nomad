@@ -131,6 +131,19 @@ namespace Pulumi.Nomad
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
+        /// <summary>
+        /// `(boolean: false)` - Set this to true to force the job to run
+        /// again if its status is `dead`.
+        /// </summary>
+        [Output("rerunIfDead")]
+        public Output<bool?> RerunIfDead { get; private set; } = null!;
+
+        /// <summary>
+        /// The status of the job.
+        /// </summary>
+        [Output("status")]
+        public Output<string> Status { get; private set; } = null!;
+
         [Output("taskGroups")]
         public Output<ImmutableArray<Outputs.JobTaskGroup>> TaskGroups { get; private set; } = null!;
 
@@ -278,6 +291,13 @@ namespace Pulumi.Nomad
 
         [Input("readAllocationIds")]
         public Input<bool>? ReadAllocationIds { get; set; }
+
+        /// <summary>
+        /// `(boolean: false)` - Set this to true to force the job to run
+        /// again if its status is `dead`.
+        /// </summary>
+        [Input("rerunIfDead")]
+        public Input<bool>? RerunIfDead { get; set; }
 
         [Input("vaultToken")]
         private Input<string>? _vaultToken;
@@ -445,6 +465,19 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// `(boolean: false)` - Set this to true to force the job to run
+        /// again if its status is `dead`.
+        /// </summary>
+        [Input("rerunIfDead")]
+        public Input<bool>? RerunIfDead { get; set; }
+
+        /// <summary>
+        /// The status of the job.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
 
         [Input("taskGroups")]
         private InputList<Inputs.JobTaskGroupGetArgs>? _taskGroups;

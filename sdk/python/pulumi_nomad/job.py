@@ -27,6 +27,7 @@ class JobArgs:
                  policy_override: Optional[pulumi.Input[bool]] = None,
                  purge_on_destroy: Optional[pulumi.Input[bool]] = None,
                  read_allocation_ids: Optional[pulumi.Input[bool]] = None,
+                 rerun_if_dead: Optional[pulumi.Input[bool]] = None,
                  vault_token: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Job resource.
@@ -48,6 +49,8 @@ class JobArgs:
                soft-mandatory Sentinel policies and register even if they fail.
         :param pulumi.Input[bool] purge_on_destroy: `(boolean: false)` - Set this to true if you want the job to
                be purged when the resource is destroyed.
+        :param pulumi.Input[bool] rerun_if_dead: `(boolean: false)` - Set this to true to force the job to run
+               again if its status is `dead`.
         :param pulumi.Input[str] vault_token: `(string: <optional>)` - Vault token used when registering this job.
                Will fallback to the value declared in Nomad provider configuration, if any.
         """
@@ -75,6 +78,8 @@ class JobArgs:
             pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
         if read_allocation_ids is not None:
             pulumi.set(__self__, "read_allocation_ids", read_allocation_ids)
+        if rerun_if_dead is not None:
+            pulumi.set(__self__, "rerun_if_dead", rerun_if_dead)
         if vault_token is not None:
             pulumi.set(__self__, "vault_token", vault_token)
 
@@ -219,6 +224,19 @@ class JobArgs:
         pulumi.set(self, "read_allocation_ids", value)
 
     @property
+    @pulumi.getter(name="rerunIfDead")
+    def rerun_if_dead(self) -> Optional[pulumi.Input[bool]]:
+        """
+        `(boolean: false)` - Set this to true to force the job to run
+        again if its status is `dead`.
+        """
+        return pulumi.get(self, "rerun_if_dead")
+
+    @rerun_if_dead.setter
+    def rerun_if_dead(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "rerun_if_dead", value)
+
+    @property
     @pulumi.getter(name="vaultToken")
     def vault_token(self) -> Optional[pulumi.Input[str]]:
         """
@@ -254,6 +272,8 @@ class _JobState:
                  purge_on_destroy: Optional[pulumi.Input[bool]] = None,
                  read_allocation_ids: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 rerun_if_dead: Optional[pulumi.Input[bool]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
                  task_groups: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vault_token: Optional[pulumi.Input[str]] = None):
@@ -285,6 +305,9 @@ class _JobState:
         :param pulumi.Input[bool] purge_on_destroy: `(boolean: false)` - Set this to true if you want the job to
                be purged when the resource is destroyed.
         :param pulumi.Input[str] region: The target region for the job, as derived from the jobspec.
+        :param pulumi.Input[bool] rerun_if_dead: `(boolean: false)` - Set this to true to force the job to run
+               again if its status is `dead`.
+        :param pulumi.Input[str] status: The status of the job.
         :param pulumi.Input[str] type: The type of the job, as derived from the jobspec.
         :param pulumi.Input[str] vault_token: `(string: <optional>)` - Vault token used when registering this job.
                Will fallback to the value declared in Nomad provider configuration, if any.
@@ -333,6 +356,10 @@ class _JobState:
             pulumi.set(__self__, "read_allocation_ids", read_allocation_ids)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if rerun_if_dead is not None:
+            pulumi.set(__self__, "rerun_if_dead", rerun_if_dead)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
         if task_groups is not None:
             pulumi.set(__self__, "task_groups", task_groups)
         if type is not None:
@@ -580,6 +607,31 @@ class _JobState:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="rerunIfDead")
+    def rerun_if_dead(self) -> Optional[pulumi.Input[bool]]:
+        """
+        `(boolean: false)` - Set this to true to force the job to run
+        again if its status is `dead`.
+        """
+        return pulumi.get(self, "rerun_if_dead")
+
+    @rerun_if_dead.setter
+    def rerun_if_dead(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "rerun_if_dead", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the job.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
     @pulumi.getter(name="taskGroups")
     def task_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupArgs']]]]:
         return pulumi.get(self, "task_groups")
@@ -630,6 +682,7 @@ class Job(pulumi.CustomResource):
                  policy_override: Optional[pulumi.Input[bool]] = None,
                  purge_on_destroy: Optional[pulumi.Input[bool]] = None,
                  read_allocation_ids: Optional[pulumi.Input[bool]] = None,
+                 rerun_if_dead: Optional[pulumi.Input[bool]] = None,
                  vault_token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -654,6 +707,8 @@ class Job(pulumi.CustomResource):
                soft-mandatory Sentinel policies and register even if they fail.
         :param pulumi.Input[bool] purge_on_destroy: `(boolean: false)` - Set this to true if you want the job to
                be purged when the resource is destroyed.
+        :param pulumi.Input[bool] rerun_if_dead: `(boolean: false)` - Set this to true to force the job to run
+               again if its status is `dead`.
         :param pulumi.Input[str] vault_token: `(string: <optional>)` - Vault token used when registering this job.
                Will fallback to the value declared in Nomad provider configuration, if any.
         """
@@ -691,6 +746,7 @@ class Job(pulumi.CustomResource):
                  policy_override: Optional[pulumi.Input[bool]] = None,
                  purge_on_destroy: Optional[pulumi.Input[bool]] = None,
                  read_allocation_ids: Optional[pulumi.Input[bool]] = None,
+                 rerun_if_dead: Optional[pulumi.Input[bool]] = None,
                  vault_token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -714,6 +770,7 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["policy_override"] = policy_override
             __props__.__dict__["purge_on_destroy"] = purge_on_destroy
             __props__.__dict__["read_allocation_ids"] = read_allocation_ids
+            __props__.__dict__["rerun_if_dead"] = rerun_if_dead
             __props__.__dict__["vault_token"] = None if vault_token is None else pulumi.Output.secret(vault_token)
             __props__.__dict__["allocation_ids"] = None
             __props__.__dict__["datacenters"] = None
@@ -723,6 +780,7 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["name"] = None
             __props__.__dict__["namespace"] = None
             __props__.__dict__["region"] = None
+            __props__.__dict__["status"] = None
             __props__.__dict__["task_groups"] = None
             __props__.__dict__["type"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["consulToken", "vaultToken"])
@@ -756,6 +814,8 @@ class Job(pulumi.CustomResource):
             purge_on_destroy: Optional[pulumi.Input[bool]] = None,
             read_allocation_ids: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            rerun_if_dead: Optional[pulumi.Input[bool]] = None,
+            status: Optional[pulumi.Input[str]] = None,
             task_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobTaskGroupArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             vault_token: Optional[pulumi.Input[str]] = None) -> 'Job':
@@ -792,6 +852,9 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[bool] purge_on_destroy: `(boolean: false)` - Set this to true if you want the job to
                be purged when the resource is destroyed.
         :param pulumi.Input[str] region: The target region for the job, as derived from the jobspec.
+        :param pulumi.Input[bool] rerun_if_dead: `(boolean: false)` - Set this to true to force the job to run
+               again if its status is `dead`.
+        :param pulumi.Input[str] status: The status of the job.
         :param pulumi.Input[str] type: The type of the job, as derived from the jobspec.
         :param pulumi.Input[str] vault_token: `(string: <optional>)` - Vault token used when registering this job.
                Will fallback to the value declared in Nomad provider configuration, if any.
@@ -819,6 +882,8 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["purge_on_destroy"] = purge_on_destroy
         __props__.__dict__["read_allocation_ids"] = read_allocation_ids
         __props__.__dict__["region"] = region
+        __props__.__dict__["rerun_if_dead"] = rerun_if_dead
+        __props__.__dict__["status"] = status
         __props__.__dict__["task_groups"] = task_groups
         __props__.__dict__["type"] = type
         __props__.__dict__["vault_token"] = vault_token
@@ -986,6 +1051,23 @@ class Job(pulumi.CustomResource):
         The target region for the job, as derived from the jobspec.
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="rerunIfDead")
+    def rerun_if_dead(self) -> pulumi.Output[Optional[bool]]:
+        """
+        `(boolean: false)` - Set this to true to force the job to run
+        again if its status is `dead`.
+        """
+        return pulumi.get(self, "rerun_if_dead")
+
+    @property
+    @pulumi.getter
+    def status(self) -> pulumi.Output[str]:
+        """
+        The status of the job.
+        """
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="taskGroups")
