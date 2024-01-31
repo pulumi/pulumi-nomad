@@ -12,80 +12,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
-//
-// Creating a volume:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ebs, err := nomad.GetPlugin(ctx, &nomad.GetPluginArgs{
-//				PluginId:       "aws-ebs0",
-//				WaitForHealthy: pulumi.BoolRef(true),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = nomad.NewCsiVolume(ctx, "mysqlVolume", &nomad.CsiVolumeArgs{
-//				PluginId:    pulumi.String("aws-ebs0"),
-//				VolumeId:    pulumi.String("mysql_volume"),
-//				CapacityMin: pulumi.String("10GiB"),
-//				CapacityMax: pulumi.String("20GiB"),
-//				Capabilities: nomad.CsiVolumeCapabilityArray{
-//					&nomad.CsiVolumeCapabilityArgs{
-//						AccessMode:     pulumi.String("single-node-writer"),
-//						AttachmentMode: pulumi.String("file-system"),
-//					},
-//				},
-//				MountOptions: &nomad.CsiVolumeMountOptionsArgs{
-//					FsType: pulumi.String("ext4"),
-//				},
-//				TopologyRequest: &nomad.CsiVolumeTopologyRequestArgs{
-//					Required: &nomad.CsiVolumeTopologyRequestRequiredArgs{
-//						Topologies: nomad.CsiVolumeTopologyRequestRequiredTopologyArray{
-//							&nomad.CsiVolumeTopologyRequestRequiredTopologyArgs{
-//								Segments: pulumi.StringMap{
-//									"rack": pulumi.String("R1"),
-//									"zone": pulumi.String("us-east-1a"),
-//								},
-//							},
-//							&nomad.CsiVolumeTopologyRequestRequiredTopologyArgs{
-//								Segments: pulumi.StringMap{
-//									"rack": pulumi.String("R2"),
-//								},
-//							},
-//						},
-//					},
-//				},
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				ebs,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 type CsiVolume struct {
 	pulumi.CustomResourceState
 
 	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities CsiVolumeCapabilityArrayOutput `pulumi:"capabilities"`
+	Capacity     pulumi.IntOutput               `pulumi:"capacity"`
 	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
-	CapacityMax pulumi.StringPtrOutput `pulumi:"capacityMax"`
+	CapacityMax      pulumi.StringPtrOutput `pulumi:"capacityMax"`
+	CapacityMaxBytes pulumi.IntOutput       `pulumi:"capacityMaxBytes"`
 	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
-	CapacityMin pulumi.StringPtrOutput `pulumi:"capacityMin"`
+	CapacityMin      pulumi.StringPtrOutput `pulumi:"capacityMin"`
+	CapacityMinBytes pulumi.IntOutput       `pulumi:"capacityMinBytes"`
 	// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
 	CloneId pulumi.StringPtrOutput `pulumi:"cloneId"`
 	// `(boolean)`
@@ -94,6 +32,8 @@ type CsiVolume struct {
 	ControllersExpected pulumi.IntOutput `pulumi:"controllersExpected"`
 	// `(integer)`
 	ControllersHealthy pulumi.IntOutput `pulumi:"controllersHealthy"`
+	// The ID of the physical volume from the storage provider.
+	ExternalId pulumi.StringOutput `pulumi:"externalId"`
 	// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions CsiVolumeMountOptionsPtrOutput `pulumi:"mountOptions"`
 	// `(string: <required>)` - The display name for the volume.
@@ -174,10 +114,13 @@ func GetCsiVolume(ctx *pulumi.Context,
 type csiVolumeState struct {
 	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities []CsiVolumeCapability `pulumi:"capabilities"`
+	Capacity     *int                  `pulumi:"capacity"`
 	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
-	CapacityMax *string `pulumi:"capacityMax"`
+	CapacityMax      *string `pulumi:"capacityMax"`
+	CapacityMaxBytes *int    `pulumi:"capacityMaxBytes"`
 	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
-	CapacityMin *string `pulumi:"capacityMin"`
+	CapacityMin      *string `pulumi:"capacityMin"`
+	CapacityMinBytes *int    `pulumi:"capacityMinBytes"`
 	// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
 	CloneId *string `pulumi:"cloneId"`
 	// `(boolean)`
@@ -186,6 +129,8 @@ type csiVolumeState struct {
 	ControllersExpected *int `pulumi:"controllersExpected"`
 	// `(integer)`
 	ControllersHealthy *int `pulumi:"controllersHealthy"`
+	// The ID of the physical volume from the storage provider.
+	ExternalId *string `pulumi:"externalId"`
 	// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions *CsiVolumeMountOptions `pulumi:"mountOptions"`
 	// `(string: <required>)` - The display name for the volume.
@@ -221,10 +166,13 @@ type csiVolumeState struct {
 type CsiVolumeState struct {
 	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities CsiVolumeCapabilityArrayInput
+	Capacity     pulumi.IntPtrInput
 	// `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
-	CapacityMax pulumi.StringPtrInput
+	CapacityMax      pulumi.StringPtrInput
+	CapacityMaxBytes pulumi.IntPtrInput
 	// `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
-	CapacityMin pulumi.StringPtrInput
+	CapacityMin      pulumi.StringPtrInput
+	CapacityMinBytes pulumi.IntPtrInput
 	// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
 	CloneId pulumi.StringPtrInput
 	// `(boolean)`
@@ -233,6 +181,8 @@ type CsiVolumeState struct {
 	ControllersExpected pulumi.IntPtrInput
 	// `(integer)`
 	ControllersHealthy pulumi.IntPtrInput
+	// The ID of the physical volume from the storage provider.
+	ExternalId pulumi.StringPtrInput
 	// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
 	MountOptions CsiVolumeMountOptionsPtrInput
 	// `(string: <required>)` - The display name for the volume.
@@ -420,14 +370,26 @@ func (o CsiVolumeOutput) Capabilities() CsiVolumeCapabilityArrayOutput {
 	return o.ApplyT(func(v *CsiVolume) CsiVolumeCapabilityArrayOutput { return v.Capabilities }).(CsiVolumeCapabilityArrayOutput)
 }
 
+func (o CsiVolumeOutput) Capacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *CsiVolume) pulumi.IntOutput { return v.Capacity }).(pulumi.IntOutput)
+}
+
 // `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
 func (o CsiVolumeOutput) CapacityMax() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CsiVolume) pulumi.StringPtrOutput { return v.CapacityMax }).(pulumi.StringPtrOutput)
 }
 
+func (o CsiVolumeOutput) CapacityMaxBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v *CsiVolume) pulumi.IntOutput { return v.CapacityMaxBytes }).(pulumi.IntOutput)
+}
+
 // `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
 func (o CsiVolumeOutput) CapacityMin() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CsiVolume) pulumi.StringPtrOutput { return v.CapacityMin }).(pulumi.StringPtrOutput)
+}
+
+func (o CsiVolumeOutput) CapacityMinBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v *CsiVolume) pulumi.IntOutput { return v.CapacityMinBytes }).(pulumi.IntOutput)
 }
 
 // `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
@@ -448,6 +410,11 @@ func (o CsiVolumeOutput) ControllersExpected() pulumi.IntOutput {
 // `(integer)`
 func (o CsiVolumeOutput) ControllersHealthy() pulumi.IntOutput {
 	return o.ApplyT(func(v *CsiVolume) pulumi.IntOutput { return v.ControllersHealthy }).(pulumi.IntOutput)
+}
+
+// The ID of the physical volume from the storage provider.
+func (o CsiVolumeOutput) ExternalId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CsiVolume) pulumi.StringOutput { return v.ExternalId }).(pulumi.StringOutput)
 }
 
 // `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.

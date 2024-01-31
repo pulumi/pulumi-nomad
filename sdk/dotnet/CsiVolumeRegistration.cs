@@ -9,77 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad
 {
-    /// <summary>
-    /// ## Example Usage
-    /// 
-    /// Registering a volume:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Nomad = Pulumi.Nomad;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var ebs = Nomad.GetPlugin.Invoke(new()
-    ///     {
-    ///         PluginId = "aws-ebs0",
-    ///         WaitForHealthy = true,
-    ///     });
-    /// 
-    ///     var mysqlVolume = new Nomad.Volume("mysqlVolume", new()
-    ///     {
-    ///         PluginId = "aws-ebs0",
-    ///         VolumeId = "mysql_volume",
-    ///         ExternalId = module.Hashistack.Ebs_test_volume_id,
-    ///         Capabilities = new[]
-    ///         {
-    ///             new Nomad.Inputs.VolumeCapabilityArgs
-    ///             {
-    ///                 AccessMode = "single-node-writer",
-    ///                 AttachmentMode = "file-system",
-    ///             },
-    ///         },
-    ///         MountOptions = new Nomad.Inputs.VolumeMountOptionsArgs
-    ///         {
-    ///             FsType = "ext4",
-    ///         },
-    ///         TopologyRequest = new Nomad.Inputs.VolumeTopologyRequestArgs
-    ///         {
-    ///             Required = new Nomad.Inputs.VolumeTopologyRequestRequiredArgs
-    ///             {
-    ///                 Topologies = new[]
-    ///                 {
-    ///                     new Nomad.Inputs.VolumeTopologyRequestRequiredTopologyArgs
-    ///                     {
-    ///                         Segments = 
-    ///                         {
-    ///                             { "rack", "R1" },
-    ///                             { "zone", "us-east-1a" },
-    ///                         },
-    ///                     },
-    ///                     new Nomad.Inputs.VolumeTopologyRequestRequiredTopologyArgs
-    ///                     {
-    ///                         Segments = 
-    ///                         {
-    ///                             { "rack", "R2" },
-    ///                         },
-    ///                     },
-    ///                 },
-    ///             },
-    ///         },
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn = new[]
-    ///         {
-    ///             ebs,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [NomadResourceType("nomad:index/csiVolumeRegistration:CsiVolumeRegistration")]
     public partial class CsiVolumeRegistration : global::Pulumi.CustomResource
     {
@@ -88,6 +17,27 @@ namespace Pulumi.Nomad
         /// </summary>
         [Output("capabilities")]
         public Output<ImmutableArray<Outputs.CsiVolumeRegistrationCapability>> Capabilities { get; private set; } = null!;
+
+        [Output("capacity")]
+        public Output<int> Capacity { get; private set; } = null!;
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+        /// </summary>
+        [Output("capacityMax")]
+        public Output<string?> CapacityMax { get; private set; } = null!;
+
+        [Output("capacityMaxBytes")]
+        public Output<int> CapacityMaxBytes { get; private set; } = null!;
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+        /// </summary>
+        [Output("capacityMin")]
+        public Output<string?> CapacityMin { get; private set; } = null!;
+
+        [Output("capacityMinBytes")]
+        public Output<int> CapacityMinBytes { get; private set; } = null!;
 
         /// <summary>
         /// `(map[string]string: &lt;optional&gt;)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
@@ -271,6 +221,18 @@ namespace Pulumi.Nomad
             set => _capabilities = value;
         }
 
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+        /// </summary>
+        [Input("capacityMax")]
+        public Input<string>? CapacityMax { get; set; }
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+        /// </summary>
+        [Input("capacityMin")]
+        public Input<string>? CapacityMin { get; set; }
+
         [Input("context")]
         private InputMap<string>? _context;
 
@@ -378,6 +340,27 @@ namespace Pulumi.Nomad
             get => _capabilities ?? (_capabilities = new InputList<Inputs.CsiVolumeRegistrationCapabilityGetArgs>());
             set => _capabilities = value;
         }
+
+        [Input("capacity")]
+        public Input<int>? Capacity { get; set; }
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
+        /// </summary>
+        [Input("capacityMax")]
+        public Input<string>? CapacityMax { get; set; }
+
+        [Input("capacityMaxBytes")]
+        public Input<int>? CapacityMaxBytes { get; set; }
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
+        /// </summary>
+        [Input("capacityMin")]
+        public Input<string>? CapacityMin { get; set; }
+
+        [Input("capacityMinBytes")]
+        public Input<int>? CapacityMinBytes { get; set; }
 
         [Input("context")]
         private InputMap<string>? _context;

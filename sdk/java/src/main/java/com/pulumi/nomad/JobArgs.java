@@ -204,6 +204,23 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * `(boolean: false)` - Set this to true to force the job to run
+     * again if its status is `dead`.
+     * 
+     */
+    @Import(name="rerunIfDead")
+    private @Nullable Output<Boolean> rerunIfDead;
+
+    /**
+     * @return `(boolean: false)` - Set this to true to force the job to run
+     * again if its status is `dead`.
+     * 
+     */
+    public Optional<Output<Boolean>> rerunIfDead() {
+        return Optional.ofNullable(this.rerunIfDead);
+    }
+
+    /**
      * `(string: &lt;optional&gt;)` - Vault token used when registering this job.
      * Will fallback to the value declared in Nomad provider configuration, if any.
      * 
@@ -234,6 +251,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         this.policyOverride = $.policyOverride;
         this.purgeOnDestroy = $.purgeOnDestroy;
         this.readAllocationIds = $.readAllocationIds;
+        this.rerunIfDead = $.rerunIfDead;
         this.vaultToken = $.vaultToken;
     }
 
@@ -504,6 +522,29 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead. */
         public Builder readAllocationIds(Boolean readAllocationIds) {
             return readAllocationIds(Output.of(readAllocationIds));
+        }
+
+        /**
+         * @param rerunIfDead `(boolean: false)` - Set this to true to force the job to run
+         * again if its status is `dead`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rerunIfDead(@Nullable Output<Boolean> rerunIfDead) {
+            $.rerunIfDead = rerunIfDead;
+            return this;
+        }
+
+        /**
+         * @param rerunIfDead `(boolean: false)` - Set this to true to force the job to run
+         * again if its status is `dead`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rerunIfDead(Boolean rerunIfDead) {
+            return rerunIfDead(Output.of(rerunIfDead));
         }
 
         /**
