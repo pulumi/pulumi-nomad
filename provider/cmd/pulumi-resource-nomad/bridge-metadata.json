@@ -712,7 +712,8 @@
             },
             "nomad:index/aclAuthMethod:AclAuthMethod": {
                 "maxTokenTtl": "max_token_ttl",
-                "tokenLocality": "token_locality"
+                "tokenLocality": "token_locality",
+                "tokenNameFormat": "token_name_format"
             },
             "nomad:index/aclBindingRule:AclBindingRule": {
                 "authMethod": "auth_method",
@@ -737,11 +738,14 @@
             "nomad:index/csiVolume:CsiVolume": {
                 "capabilities": "capability",
                 "capacityMax": "capacity_max",
+                "capacityMaxBytes": "capacity_max_bytes",
                 "capacityMin": "capacity_min",
+                "capacityMinBytes": "capacity_min_bytes",
                 "cloneId": "clone_id",
                 "controllerRequired": "controller_required",
                 "controllersExpected": "controllers_expected",
                 "controllersHealthy": "controllers_healthy",
+                "externalId": "external_id",
                 "mountOptions": "mount_options",
                 "nodesExpected": "nodes_expected",
                 "nodesHealthy": "nodes_healthy",
@@ -754,6 +758,10 @@
             },
             "nomad:index/csiVolumeRegistration:CsiVolumeRegistration": {
                 "capabilities": "capability",
+                "capacityMax": "capacity_max",
+                "capacityMaxBytes": "capacity_max_bytes",
+                "capacityMin": "capacity_min",
+                "capacityMinBytes": "capacity_min_bytes",
                 "controllerRequired": "controller_required",
                 "controllersExpected": "controllers_expected",
                 "controllersHealthy": "controllers_healthy",
@@ -919,6 +927,7 @@
                 "policyOverride": "policy_override",
                 "purgeOnDestroy": "purge_on_destroy",
                 "readAllocationIds": "read_allocation_ids",
+                "rerunIfDead": "rerun_if_dead",
                 "taskGroups": "task_groups",
                 "vaultToken": "vault_token"
             },
