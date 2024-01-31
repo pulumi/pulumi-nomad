@@ -2,6 +2,12 @@ module github.com/pulumi/pulumi-nomad/provider/v2
 
 go 1.21
 
+// Tracking from upstream:
+//
+// Pin Nomad to a commit where jobspec and jobspec2 are lincesed under MPL-2.0.
+// Remove when updating to Nomad 1.7.3+
+replace github.com/hashicorp/nomad => github.com/hashicorp/nomad v0.0.0-20240129172537-56ea3f7cdafd
+
 replace (
 	// Set to the version used by Nomad
 	// https://github.com/hashicorp/nomad/blob/v1.6.0-rc.1/go.mod#L74
@@ -236,7 +242,7 @@ require (
 	golang.org/x/mod v0.14.0 // indirect
 	golang.org/x/net v0.19.0 // indirect
 	golang.org/x/oauth2 v0.13.0 // indirect
-	golang.org/x/sync v0.5.0 // indirect
+	golang.org/x/sync v0.6.0 // indirect
 	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/term v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
