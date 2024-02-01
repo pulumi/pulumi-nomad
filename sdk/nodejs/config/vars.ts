@@ -43,7 +43,7 @@ Object.defineProperty(exports, "caPem", {
 });
 
 /**
- * A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+ * A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
  */
 export declare const certFile: string | undefined;
 Object.defineProperty(exports, "certFile", {
@@ -54,7 +54,7 @@ Object.defineProperty(exports, "certFile", {
 });
 
 /**
- * PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+ * PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
  */
 export declare const certPem: string | undefined;
 Object.defineProperty(exports, "certPem", {
@@ -109,7 +109,7 @@ Object.defineProperty(exports, "ignoreEnvVars", {
 });
 
 /**
- * A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+ * A path to a PEM-encoded private key, required if certFile or certPem is specified.
  */
 export declare const keyFile: string | undefined;
 Object.defineProperty(exports, "keyFile", {
@@ -120,7 +120,7 @@ Object.defineProperty(exports, "keyFile", {
 });
 
 /**
- * PEM-encoded private key, required if cert_file or cert_pem is specified.
+ * PEM-encoded private key, required if certFile or certPem is specified.
  */
 export declare const keyPem: string | undefined;
 Object.defineProperty(exports, "keyPem", {

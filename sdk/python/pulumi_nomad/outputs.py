@@ -124,6 +124,18 @@ class AclAuthMethodConfig(dict):
                  list_claim_mappings: Optional[Mapping[str, str]] = None,
                  oidc_scopes: Optional[Sequence[str]] = None,
                  signing_algs: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] allowed_redirect_uris: A list of allowed values that can be used for the redirect URI.
+        :param str oidc_client_id: The OAuth Client ID configured with the OIDC provider.
+        :param str oidc_client_secret: The OAuth Client Secret configured with the OIDC provider.
+        :param str oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path).
+        :param Sequence[str] bound_audiences: List of auth claims that are valid for login.
+        :param Mapping[str, str] claim_mappings: Mappings of claims (key) that will be copied to a metadata field (value).
+        :param Sequence[str] discovery_ca_pems: PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+        :param Mapping[str, str] list_claim_mappings: Mappings of list claims (key) that will be copied to a metadata field (value).
+        :param Sequence[str] oidc_scopes: List of OIDC scopes.
+        :param Sequence[str] signing_algs: A list of supported signing algorithms.
+        """
         pulumi.set(__self__, "allowed_redirect_uris", allowed_redirect_uris)
         pulumi.set(__self__, "oidc_client_id", oidc_client_id)
         pulumi.set(__self__, "oidc_client_secret", oidc_client_secret)
@@ -144,51 +156,81 @@ class AclAuthMethodConfig(dict):
     @property
     @pulumi.getter(name="allowedRedirectUris")
     def allowed_redirect_uris(self) -> Sequence[str]:
+        """
+        A list of allowed values that can be used for the redirect URI.
+        """
         return pulumi.get(self, "allowed_redirect_uris")
 
     @property
     @pulumi.getter(name="oidcClientId")
     def oidc_client_id(self) -> str:
+        """
+        The OAuth Client ID configured with the OIDC provider.
+        """
         return pulumi.get(self, "oidc_client_id")
 
     @property
     @pulumi.getter(name="oidcClientSecret")
     def oidc_client_secret(self) -> str:
+        """
+        The OAuth Client Secret configured with the OIDC provider.
+        """
         return pulumi.get(self, "oidc_client_secret")
 
     @property
     @pulumi.getter(name="oidcDiscoveryUrl")
     def oidc_discovery_url(self) -> str:
+        """
+        The OIDC Discovery URL, without any .well-known component (base path).
+        """
         return pulumi.get(self, "oidc_discovery_url")
 
     @property
     @pulumi.getter(name="boundAudiences")
     def bound_audiences(self) -> Optional[Sequence[str]]:
+        """
+        List of auth claims that are valid for login.
+        """
         return pulumi.get(self, "bound_audiences")
 
     @property
     @pulumi.getter(name="claimMappings")
     def claim_mappings(self) -> Optional[Mapping[str, str]]:
+        """
+        Mappings of claims (key) that will be copied to a metadata field (value).
+        """
         return pulumi.get(self, "claim_mappings")
 
     @property
     @pulumi.getter(name="discoveryCaPems")
     def discovery_ca_pems(self) -> Optional[Sequence[str]]:
+        """
+        PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+        """
         return pulumi.get(self, "discovery_ca_pems")
 
     @property
     @pulumi.getter(name="listClaimMappings")
     def list_claim_mappings(self) -> Optional[Mapping[str, str]]:
+        """
+        Mappings of list claims (key) that will be copied to a metadata field (value).
+        """
         return pulumi.get(self, "list_claim_mappings")
 
     @property
     @pulumi.getter(name="oidcScopes")
     def oidc_scopes(self) -> Optional[Sequence[str]]:
+        """
+        List of OIDC scopes.
+        """
         return pulumi.get(self, "oidc_scopes")
 
     @property
     @pulumi.getter(name="signingAlgs")
     def signing_algs(self) -> Optional[Sequence[str]]:
+        """
+        A list of supported signing algorithms.
+        """
         return pulumi.get(self, "signing_algs")
 
 
@@ -297,6 +339,7 @@ class AclTokenRole(dict):
                  id: str,
                  name: Optional[str] = None):
         """
+        :param str id: The ID of the ACL role to link.
         :param str name: `(string: "")` - A human-friendly name for this token.
         """
         pulumi.set(__self__, "id", id)
@@ -306,6 +349,9 @@ class AclTokenRole(dict):
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The ID of the ACL role to link.
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -1047,6 +1093,7 @@ class JobHcl2(dict):
                HCL2 filesystem functions
         :param bool enabled: `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
                HCL2 by default.
+        :param Mapping[str, Any] vars: Additional variables to use when templating the job with HCL2
         """
         if allow_fs is not None:
             pulumi.set(__self__, "allow_fs", allow_fs)
@@ -1079,6 +1126,9 @@ class JobHcl2(dict):
     @property
     @pulumi.getter
     def vars(self) -> Optional[Mapping[str, Any]]:
+        """
+        Additional variables to use when templating the job with HCL2
+        """
         return pulumi.get(self, "vars")
 
 
@@ -1866,6 +1916,7 @@ class GetAclTokenRoleResult(dict):
                  id: str,
                  name: str):
         """
+        :param str id: The ID of the ACL role.
         :param str name: `(string)` Non-sensitive identifier for this token.
         """
         pulumi.set(__self__, "id", id)
@@ -1874,6 +1925,9 @@ class GetAclTokenRoleResult(dict):
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The ID of the ACL role.
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -1990,6 +2044,7 @@ class GetAclTokensAclTokenRoleResult(dict):
                  id: str,
                  name: str):
         """
+        :param str id: The ID of the ACL role.
         :param str name: `(TypeString)` The name of the token.
         """
         pulumi.set(__self__, "id", id)
@@ -1998,6 +2053,9 @@ class GetAclTokensAclTokenRoleResult(dict):
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        The ID of the ACL role.
+        """
         return pulumi.get(self, "id")
 
     @property

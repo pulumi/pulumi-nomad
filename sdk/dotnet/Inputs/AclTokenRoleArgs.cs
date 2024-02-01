@@ -12,6 +12,9 @@ namespace Pulumi.Nomad.Inputs
 
     public sealed class AclTokenRoleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of the ACL role to link.
+        /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
 

@@ -60,9 +60,17 @@ public final class JobHcl2Args extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.enabled);
     }
 
+    /**
+     * Additional variables to use when templating the job with HCL2
+     * 
+     */
     @Import(name="vars")
     private @Nullable Output<Map<String,Object>> vars;
 
+    /**
+     * @return Additional variables to use when templating the job with HCL2
+     * 
+     */
     public Optional<Output<Map<String,Object>>> vars() {
         return Optional.ofNullable(this.vars);
     }
@@ -147,11 +155,23 @@ public final class JobHcl2Args extends com.pulumi.resources.ResourceArgs {
             return enabled(Output.of(enabled));
         }
 
+        /**
+         * @param vars Additional variables to use when templating the job with HCL2
+         * 
+         * @return builder
+         * 
+         */
         public Builder vars(@Nullable Output<Map<String,Object>> vars) {
             $.vars = vars;
             return this;
         }
 
+        /**
+         * @param vars Additional variables to use when templating the job with HCL2
+         * 
+         * @return builder
+         * 
+         */
         public Builder vars(Map<String,Object> vars) {
             return vars(Output.of(vars));
         }
