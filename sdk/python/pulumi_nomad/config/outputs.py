@@ -18,17 +18,27 @@ class Headers(dict):
     def __init__(__self__, *,
                  name: str,
                  value: str):
+        """
+        :param str name: The header name
+        :param str value: The header value
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The header name
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def value(self) -> str:
+        """
+        The header value
+        """
         return pulumi.get(self, "value")
 
 

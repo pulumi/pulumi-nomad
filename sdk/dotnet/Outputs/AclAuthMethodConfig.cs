@@ -13,15 +13,45 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class AclAuthMethodConfig
     {
+        /// <summary>
+        /// A list of allowed values that can be used for the redirect URI.
+        /// </summary>
         public readonly ImmutableArray<string> AllowedRedirectUris;
+        /// <summary>
+        /// List of auth claims that are valid for login.
+        /// </summary>
         public readonly ImmutableArray<string> BoundAudiences;
+        /// <summary>
+        /// Mappings of claims (key) that will be copied to a metadata field (value).
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? ClaimMappings;
+        /// <summary>
+        /// PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+        /// </summary>
         public readonly ImmutableArray<string> DiscoveryCaPems;
+        /// <summary>
+        /// Mappings of list claims (key) that will be copied to a metadata field (value).
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? ListClaimMappings;
+        /// <summary>
+        /// The OAuth Client ID configured with the OIDC provider.
+        /// </summary>
         public readonly string OidcClientId;
+        /// <summary>
+        /// The OAuth Client Secret configured with the OIDC provider.
+        /// </summary>
         public readonly string OidcClientSecret;
+        /// <summary>
+        /// The OIDC Discovery URL, without any .well-known component (base path).
+        /// </summary>
         public readonly string OidcDiscoveryUrl;
+        /// <summary>
+        /// List of OIDC scopes.
+        /// </summary>
         public readonly ImmutableArray<string> OidcScopes;
+        /// <summary>
+        /// A list of supported signing algorithms.
+        /// </summary>
         public readonly ImmutableArray<string> SigningAlgs;
 
         [OutputConstructor]

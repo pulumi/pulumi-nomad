@@ -28,6 +28,10 @@ namespace Pulumi.Nomad.Inputs
 
         [Input("vars")]
         private InputMap<object>? _vars;
+
+        /// <summary>
+        /// Additional variables to use when templating the job with HCL2
+        /// </summary>
         public InputMap<object> Vars
         {
             get => _vars ?? (_vars = new InputMap<object>());

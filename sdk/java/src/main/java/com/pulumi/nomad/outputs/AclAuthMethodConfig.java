@@ -13,45 +13,125 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AclAuthMethodConfig {
+    /**
+     * @return A list of allowed values that can be used for the redirect URI.
+     * 
+     */
     private List<String> allowedRedirectUris;
+    /**
+     * @return List of auth claims that are valid for login.
+     * 
+     */
     private @Nullable List<String> boundAudiences;
+    /**
+     * @return Mappings of claims (key) that will be copied to a metadata field (value).
+     * 
+     */
     private @Nullable Map<String,String> claimMappings;
+    /**
+     * @return PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     * 
+     */
     private @Nullable List<String> discoveryCaPems;
+    /**
+     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
+     * 
+     */
     private @Nullable Map<String,String> listClaimMappings;
+    /**
+     * @return The OAuth Client ID configured with the OIDC provider.
+     * 
+     */
     private String oidcClientId;
+    /**
+     * @return The OAuth Client Secret configured with the OIDC provider.
+     * 
+     */
     private String oidcClientSecret;
+    /**
+     * @return The OIDC Discovery URL, without any .well-known component (base path).
+     * 
+     */
     private String oidcDiscoveryUrl;
+    /**
+     * @return List of OIDC scopes.
+     * 
+     */
     private @Nullable List<String> oidcScopes;
+    /**
+     * @return A list of supported signing algorithms.
+     * 
+     */
     private @Nullable List<String> signingAlgs;
 
     private AclAuthMethodConfig() {}
+    /**
+     * @return A list of allowed values that can be used for the redirect URI.
+     * 
+     */
     public List<String> allowedRedirectUris() {
         return this.allowedRedirectUris;
     }
+    /**
+     * @return List of auth claims that are valid for login.
+     * 
+     */
     public List<String> boundAudiences() {
         return this.boundAudiences == null ? List.of() : this.boundAudiences;
     }
+    /**
+     * @return Mappings of claims (key) that will be copied to a metadata field (value).
+     * 
+     */
     public Map<String,String> claimMappings() {
         return this.claimMappings == null ? Map.of() : this.claimMappings;
     }
+    /**
+     * @return PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     * 
+     */
     public List<String> discoveryCaPems() {
         return this.discoveryCaPems == null ? List.of() : this.discoveryCaPems;
     }
+    /**
+     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
+     * 
+     */
     public Map<String,String> listClaimMappings() {
         return this.listClaimMappings == null ? Map.of() : this.listClaimMappings;
     }
+    /**
+     * @return The OAuth Client ID configured with the OIDC provider.
+     * 
+     */
     public String oidcClientId() {
         return this.oidcClientId;
     }
+    /**
+     * @return The OAuth Client Secret configured with the OIDC provider.
+     * 
+     */
     public String oidcClientSecret() {
         return this.oidcClientSecret;
     }
+    /**
+     * @return The OIDC Discovery URL, without any .well-known component (base path).
+     * 
+     */
     public String oidcDiscoveryUrl() {
         return this.oidcDiscoveryUrl;
     }
+    /**
+     * @return List of OIDC scopes.
+     * 
+     */
     public List<String> oidcScopes() {
         return this.oidcScopes == null ? List.of() : this.oidcScopes;
     }
+    /**
+     * @return A list of supported signing algorithms.
+     * 
+     */
     public List<String> signingAlgs() {
         return this.signingAlgs == null ? List.of() : this.signingAlgs;
     }

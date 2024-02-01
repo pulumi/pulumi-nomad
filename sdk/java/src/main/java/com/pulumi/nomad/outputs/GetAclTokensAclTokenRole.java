@@ -10,6 +10,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetAclTokensAclTokenRole {
+    /**
+     * @return The ID of the ACL role.
+     * 
+     */
     private String id;
     /**
      * @return `(TypeString)` The name of the token.
@@ -18,6 +22,10 @@ public final class GetAclTokensAclTokenRole {
     private String name;
 
     private GetAclTokensAclTokenRole() {}
+    /**
+     * @return The ID of the ACL role.
+     * 
+     */
     public String id() {
         return this.id;
     }
