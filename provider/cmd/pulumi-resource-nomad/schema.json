@@ -128,10 +128,12 @@
         "nomad:config/headers:headers": {
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The header name\n"
                 },
                 "value": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The header value\n"
                 }
             },
             "type": "object",
@@ -151,53 +153,63 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A list of allowed values that can be used for the redirect URI.\n"
                 },
                 "boundAudiences": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "List of auth claims that are valid for login.\n"
                 },
                 "claimMappings": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Mappings of claims (key) that will be copied to a metadata field (value).\n"
                 },
                 "discoveryCaPems": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.\n"
                 },
                 "listClaimMappings": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Mappings of list claims (key) that will be copied to a metadata field (value).\n"
                 },
                 "oidcClientId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The OAuth Client ID configured with the OIDC provider.\n"
                 },
                 "oidcClientSecret": {
                     "type": "string",
+                    "description": "The OAuth Client Secret configured with the OIDC provider.\n",
                     "secret": true
                 },
                 "oidcDiscoveryUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The OIDC Discovery URL, without any .well-known component (base path).\n"
                 },
                 "oidcScopes": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "List of OIDC scopes.\n"
                 },
                 "signingAlgs": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A list of supported signing algorithms.\n"
                 }
             },
             "type": "object",
@@ -247,7 +259,8 @@
         "nomad:index/AclTokenRole:AclTokenRole": {
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the ACL role to link.\n"
                 },
                 "name": {
                     "type": "string",
@@ -637,7 +650,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "pulumi.json#/Any"
-                    }
+                    },
+                    "description": "Additional variables to use when templating the job with HCL2\n"
                 }
             },
             "type": "object"
@@ -830,10 +844,12 @@
         "nomad:index/ProviderHeader:ProviderHeader": {
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The header name\n"
                 },
                 "value": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The header value\n"
                 }
             },
             "type": "object",
@@ -1065,7 +1081,8 @@
         "nomad:index/getAclTokenRole:getAclTokenRole": {
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the ACL role.\n"
                 },
                 "name": {
                     "type": "string",
@@ -1144,7 +1161,8 @@
         "nomad:index/getAclTokensAclTokenRole:getAclTokensAclTokenRole": {
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The ID of the ACL role.\n"
                 },
                 "name": {
                     "type": "string",
