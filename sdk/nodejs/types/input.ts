@@ -6,15 +6,45 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface AclAuthMethodConfig {
+    /**
+     * A list of allowed values that can be used for the redirect URI.
+     */
     allowedRedirectUris: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of auth claims that are valid for login.
+     */
     boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Mappings of claims (key) that will be copied to a metadata field (value).
+     */
     claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     */
     discoveryCaPems?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Mappings of list claims (key) that will be copied to a metadata field (value).
+     */
     listClaimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The OAuth Client ID configured with the OIDC provider.
+     */
     oidcClientId: pulumi.Input<string>;
+    /**
+     * The OAuth Client Secret configured with the OIDC provider.
+     */
     oidcClientSecret: pulumi.Input<string>;
+    /**
+     * The OIDC Discovery URL, without any .well-known component (base path).
+     */
     oidcDiscoveryUrl: pulumi.Input<string>;
+    /**
+     * List of OIDC scopes.
+     */
     oidcScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A list of supported signing algorithms.
+     */
     signingAlgs?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -50,6 +80,9 @@ export interface AclRolePolicy {
 }
 
 export interface AclTokenRole {
+    /**
+     * The ID of the ACL role to link.
+     */
     id: pulumi.Input<string>;
     /**
      * `(string: "")` - A human-friendly name for this token.
@@ -301,6 +334,9 @@ export interface JobHcl2 {
      * @deprecated Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * Additional variables to use when templating the job with HCL2
+     */
     vars?: pulumi.Input<{[key: string]: any}>;
 }
 
@@ -379,7 +415,13 @@ export interface NodePoolSchedulerConfig {
 }
 
 export interface ProviderHeader {
+    /**
+     * The header name
+     */
     name: pulumi.Input<string>;
+    /**
+     * The header value
+     */
     value: pulumi.Input<string>;
 }
 

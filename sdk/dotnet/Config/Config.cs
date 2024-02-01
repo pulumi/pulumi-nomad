@@ -187,7 +187,13 @@ namespace Pulumi.Nomad
 
              public class Headers
              {
+            /// <summary>
+            /// The header name
+            /// </summary>
                 public string Name { get; set; }
+            /// <summary>
+            /// The header value
+            /// </summary>
                 public string Value { get; set; }
             }
         }

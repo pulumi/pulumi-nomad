@@ -13,6 +13,9 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class GetAclTokenRoleResult
     {
+        /// <summary>
+        /// The ID of the ACL role.
+        /// </summary>
         public readonly string Id;
         /// <summary>
         /// `(string)` Non-sensitive identifier for this token.

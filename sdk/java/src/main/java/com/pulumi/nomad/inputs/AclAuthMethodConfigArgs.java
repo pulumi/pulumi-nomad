@@ -18,72 +18,152 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
 
     public static final AclAuthMethodConfigArgs Empty = new AclAuthMethodConfigArgs();
 
+    /**
+     * A list of allowed values that can be used for the redirect URI.
+     * 
+     */
     @Import(name="allowedRedirectUris", required=true)
     private Output<List<String>> allowedRedirectUris;
 
+    /**
+     * @return A list of allowed values that can be used for the redirect URI.
+     * 
+     */
     public Output<List<String>> allowedRedirectUris() {
         return this.allowedRedirectUris;
     }
 
+    /**
+     * List of auth claims that are valid for login.
+     * 
+     */
     @Import(name="boundAudiences")
     private @Nullable Output<List<String>> boundAudiences;
 
+    /**
+     * @return List of auth claims that are valid for login.
+     * 
+     */
     public Optional<Output<List<String>>> boundAudiences() {
         return Optional.ofNullable(this.boundAudiences);
     }
 
+    /**
+     * Mappings of claims (key) that will be copied to a metadata field (value).
+     * 
+     */
     @Import(name="claimMappings")
     private @Nullable Output<Map<String,String>> claimMappings;
 
+    /**
+     * @return Mappings of claims (key) that will be copied to a metadata field (value).
+     * 
+     */
     public Optional<Output<Map<String,String>>> claimMappings() {
         return Optional.ofNullable(this.claimMappings);
     }
 
+    /**
+     * PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     * 
+     */
     @Import(name="discoveryCaPems")
     private @Nullable Output<List<String>> discoveryCaPems;
 
+    /**
+     * @return PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     * 
+     */
     public Optional<Output<List<String>>> discoveryCaPems() {
         return Optional.ofNullable(this.discoveryCaPems);
     }
 
+    /**
+     * Mappings of list claims (key) that will be copied to a metadata field (value).
+     * 
+     */
     @Import(name="listClaimMappings")
     private @Nullable Output<Map<String,String>> listClaimMappings;
 
+    /**
+     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
+     * 
+     */
     public Optional<Output<Map<String,String>>> listClaimMappings() {
         return Optional.ofNullable(this.listClaimMappings);
     }
 
+    /**
+     * The OAuth Client ID configured with the OIDC provider.
+     * 
+     */
     @Import(name="oidcClientId", required=true)
     private Output<String> oidcClientId;
 
+    /**
+     * @return The OAuth Client ID configured with the OIDC provider.
+     * 
+     */
     public Output<String> oidcClientId() {
         return this.oidcClientId;
     }
 
+    /**
+     * The OAuth Client Secret configured with the OIDC provider.
+     * 
+     */
     @Import(name="oidcClientSecret", required=true)
     private Output<String> oidcClientSecret;
 
+    /**
+     * @return The OAuth Client Secret configured with the OIDC provider.
+     * 
+     */
     public Output<String> oidcClientSecret() {
         return this.oidcClientSecret;
     }
 
+    /**
+     * The OIDC Discovery URL, without any .well-known component (base path).
+     * 
+     */
     @Import(name="oidcDiscoveryUrl", required=true)
     private Output<String> oidcDiscoveryUrl;
 
+    /**
+     * @return The OIDC Discovery URL, without any .well-known component (base path).
+     * 
+     */
     public Output<String> oidcDiscoveryUrl() {
         return this.oidcDiscoveryUrl;
     }
 
+    /**
+     * List of OIDC scopes.
+     * 
+     */
     @Import(name="oidcScopes")
     private @Nullable Output<List<String>> oidcScopes;
 
+    /**
+     * @return List of OIDC scopes.
+     * 
+     */
     public Optional<Output<List<String>>> oidcScopes() {
         return Optional.ofNullable(this.oidcScopes);
     }
 
+    /**
+     * A list of supported signing algorithms.
+     * 
+     */
     @Import(name="signingAlgs")
     private @Nullable Output<List<String>> signingAlgs;
 
+    /**
+     * @return A list of supported signing algorithms.
+     * 
+     */
     public Optional<Output<List<String>>> signingAlgs() {
         return Optional.ofNullable(this.signingAlgs);
     }
@@ -121,112 +201,262 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
             $ = new AclAuthMethodConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param allowedRedirectUris A list of allowed values that can be used for the redirect URI.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowedRedirectUris(Output<List<String>> allowedRedirectUris) {
             $.allowedRedirectUris = allowedRedirectUris;
             return this;
         }
 
+        /**
+         * @param allowedRedirectUris A list of allowed values that can be used for the redirect URI.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowedRedirectUris(List<String> allowedRedirectUris) {
             return allowedRedirectUris(Output.of(allowedRedirectUris));
         }
 
+        /**
+         * @param allowedRedirectUris A list of allowed values that can be used for the redirect URI.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowedRedirectUris(String... allowedRedirectUris) {
             return allowedRedirectUris(List.of(allowedRedirectUris));
         }
 
+        /**
+         * @param boundAudiences List of auth claims that are valid for login.
+         * 
+         * @return builder
+         * 
+         */
         public Builder boundAudiences(@Nullable Output<List<String>> boundAudiences) {
             $.boundAudiences = boundAudiences;
             return this;
         }
 
+        /**
+         * @param boundAudiences List of auth claims that are valid for login.
+         * 
+         * @return builder
+         * 
+         */
         public Builder boundAudiences(List<String> boundAudiences) {
             return boundAudiences(Output.of(boundAudiences));
         }
 
+        /**
+         * @param boundAudiences List of auth claims that are valid for login.
+         * 
+         * @return builder
+         * 
+         */
         public Builder boundAudiences(String... boundAudiences) {
             return boundAudiences(List.of(boundAudiences));
         }
 
+        /**
+         * @param claimMappings Mappings of claims (key) that will be copied to a metadata field (value).
+         * 
+         * @return builder
+         * 
+         */
         public Builder claimMappings(@Nullable Output<Map<String,String>> claimMappings) {
             $.claimMappings = claimMappings;
             return this;
         }
 
+        /**
+         * @param claimMappings Mappings of claims (key) that will be copied to a metadata field (value).
+         * 
+         * @return builder
+         * 
+         */
         public Builder claimMappings(Map<String,String> claimMappings) {
             return claimMappings(Output.of(claimMappings));
         }
 
+        /**
+         * @param discoveryCaPems PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+         * 
+         * @return builder
+         * 
+         */
         public Builder discoveryCaPems(@Nullable Output<List<String>> discoveryCaPems) {
             $.discoveryCaPems = discoveryCaPems;
             return this;
         }
 
+        /**
+         * @param discoveryCaPems PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+         * 
+         * @return builder
+         * 
+         */
         public Builder discoveryCaPems(List<String> discoveryCaPems) {
             return discoveryCaPems(Output.of(discoveryCaPems));
         }
 
+        /**
+         * @param discoveryCaPems PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+         * 
+         * @return builder
+         * 
+         */
         public Builder discoveryCaPems(String... discoveryCaPems) {
             return discoveryCaPems(List.of(discoveryCaPems));
         }
 
+        /**
+         * @param listClaimMappings Mappings of list claims (key) that will be copied to a metadata field (value).
+         * 
+         * @return builder
+         * 
+         */
         public Builder listClaimMappings(@Nullable Output<Map<String,String>> listClaimMappings) {
             $.listClaimMappings = listClaimMappings;
             return this;
         }
 
+        /**
+         * @param listClaimMappings Mappings of list claims (key) that will be copied to a metadata field (value).
+         * 
+         * @return builder
+         * 
+         */
         public Builder listClaimMappings(Map<String,String> listClaimMappings) {
             return listClaimMappings(Output.of(listClaimMappings));
         }
 
+        /**
+         * @param oidcClientId The OAuth Client ID configured with the OIDC provider.
+         * 
+         * @return builder
+         * 
+         */
         public Builder oidcClientId(Output<String> oidcClientId) {
             $.oidcClientId = oidcClientId;
             return this;
         }
 
+        /**
+         * @param oidcClientId The OAuth Client ID configured with the OIDC provider.
+         * 
+         * @return builder
+         * 
+         */
         public Builder oidcClientId(String oidcClientId) {
             return oidcClientId(Output.of(oidcClientId));
         }
 
+        /**
+         * @param oidcClientSecret The OAuth Client Secret configured with the OIDC provider.
+         * 
+         * @return builder
+         * 
+         */
         public Builder oidcClientSecret(Output<String> oidcClientSecret) {
             $.oidcClientSecret = oidcClientSecret;
             return this;
         }
 
+        /**
+         * @param oidcClientSecret The OAuth Client Secret configured with the OIDC provider.
+         * 
+         * @return builder
+         * 
+         */
         public Builder oidcClientSecret(String oidcClientSecret) {
             return oidcClientSecret(Output.of(oidcClientSecret));
         }
 
+        /**
+         * @param oidcDiscoveryUrl The OIDC Discovery URL, without any .well-known component (base path).
+         * 
+         * @return builder
+         * 
+         */
         public Builder oidcDiscoveryUrl(Output<String> oidcDiscoveryUrl) {
             $.oidcDiscoveryUrl = oidcDiscoveryUrl;
             return this;
         }
 
+        /**
+         * @param oidcDiscoveryUrl The OIDC Discovery URL, without any .well-known component (base path).
+         * 
+         * @return builder
+         * 
+         */
         public Builder oidcDiscoveryUrl(String oidcDiscoveryUrl) {
             return oidcDiscoveryUrl(Output.of(oidcDiscoveryUrl));
         }
 
+        /**
+         * @param oidcScopes List of OIDC scopes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder oidcScopes(@Nullable Output<List<String>> oidcScopes) {
             $.oidcScopes = oidcScopes;
             return this;
         }
 
+        /**
+         * @param oidcScopes List of OIDC scopes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder oidcScopes(List<String> oidcScopes) {
             return oidcScopes(Output.of(oidcScopes));
         }
 
+        /**
+         * @param oidcScopes List of OIDC scopes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder oidcScopes(String... oidcScopes) {
             return oidcScopes(List.of(oidcScopes));
         }
 
+        /**
+         * @param signingAlgs A list of supported signing algorithms.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signingAlgs(@Nullable Output<List<String>> signingAlgs) {
             $.signingAlgs = signingAlgs;
             return this;
         }
 
+        /**
+         * @param signingAlgs A list of supported signing algorithms.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signingAlgs(List<String> signingAlgs) {
             return signingAlgs(Output.of(signingAlgs));
         }
 
+        /**
+         * @param signingAlgs A list of supported signing algorithms.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signingAlgs(String... signingAlgs) {
             return signingAlgs(List.of(signingAlgs));
         }
