@@ -26,12 +26,12 @@ func GetCaPem(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:caPem")
 }
 
-// A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+// A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 func GetCertFile(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:certFile")
 }
 
-// PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+// PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 func GetCertPem(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:certPem")
 }
@@ -56,12 +56,12 @@ func GetIgnoreEnvVars(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:ignoreEnvVars")
 }
 
-// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+// A path to a PEM-encoded private key, required if certFile or certPem is specified.
 func GetKeyFile(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:keyFile")
 }
 
-// PEM-encoded private key, required if cert_file or cert_pem is specified.
+// PEM-encoded private key, required if certFile or certPem is specified.
 func GetKeyPem(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:keyPem")
 }

@@ -6,15 +6,45 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface AclAuthMethodConfig {
+    /**
+     * A list of allowed values that can be used for the redirect URI.
+     */
     allowedRedirectUris: string[];
+    /**
+     * List of auth claims that are valid for login.
+     */
     boundAudiences?: string[];
+    /**
+     * Mappings of claims (key) that will be copied to a metadata field (value).
+     */
     claimMappings?: {[key: string]: string};
+    /**
+     * PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     */
     discoveryCaPems?: string[];
+    /**
+     * Mappings of list claims (key) that will be copied to a metadata field (value).
+     */
     listClaimMappings?: {[key: string]: string};
+    /**
+     * The OAuth Client ID configured with the OIDC provider.
+     */
     oidcClientId: string;
+    /**
+     * The OAuth Client Secret configured with the OIDC provider.
+     */
     oidcClientSecret: string;
+    /**
+     * The OIDC Discovery URL, without any .well-known component (base path).
+     */
     oidcDiscoveryUrl: string;
+    /**
+     * List of OIDC scopes.
+     */
     oidcScopes?: string[];
+    /**
+     * A list of supported signing algorithms.
+     */
     signingAlgs?: string[];
 }
 
@@ -50,6 +80,9 @@ export interface AclRolePolicy {
 }
 
 export interface AclTokenRole {
+    /**
+     * The ID of the ACL role to link.
+     */
     id: string;
     /**
      * `(string: "")` - A human-friendly name for this token.
@@ -333,6 +366,9 @@ export interface GetAclRolesAclRolePolicy {
 }
 
 export interface GetAclTokenRole {
+    /**
+     * The ID of the ACL role.
+     */
     id: string;
     /**
      * `(string)` Non-sensitive identifier for this token.
@@ -378,6 +414,9 @@ export interface GetAclTokensAclToken {
 }
 
 export interface GetAclTokensAclTokenRole {
+    /**
+     * The ID of the ACL role.
+     */
     id: string;
     /**
      * `(TypeString)` The name of the token.
@@ -645,6 +684,9 @@ export interface JobHcl2 {
      * @deprecated Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
      */
     enabled?: boolean;
+    /**
+     * Additional variables to use when templating the job with HCL2
+     */
     vars?: {[key: string]: any};
 }
 
@@ -814,7 +856,13 @@ export interface VolumeTopologyRequestRequiredTopology {
 
 export namespace config {
     export interface Headers {
+        /**
+         * The header name
+         */
         name: string;
+        /**
+         * The header value
+         */
         value: string;
     }
 

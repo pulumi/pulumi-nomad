@@ -16,9 +16,17 @@ public final class AclTokenRoleArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final AclTokenRoleArgs Empty = new AclTokenRoleArgs();
 
+    /**
+     * The ID of the ACL role to link.
+     * 
+     */
     @Import(name="id", required=true)
     private Output<String> id;
 
+    /**
+     * @return The ID of the ACL role to link.
+     * 
+     */
     public Output<String> id() {
         return this.id;
     }
@@ -63,11 +71,23 @@ public final class AclTokenRoleArgs extends com.pulumi.resources.ResourceArgs {
             $ = new AclTokenRoleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param id The ID of the ACL role to link.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(Output<String> id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param id The ID of the ACL role to link.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(String id) {
             return id(Output.of(id));
         }

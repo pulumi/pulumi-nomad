@@ -12,6 +12,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AclTokenRole {
+    /**
+     * @return The ID of the ACL role to link.
+     * 
+     */
     private String id;
     /**
      * @return `(string: &#34;&#34;)` - A human-friendly name for this token.
@@ -20,6 +24,10 @@ public final class AclTokenRole {
     private @Nullable String name;
 
     private AclTokenRole() {}
+    /**
+     * @return The ID of the ACL role to link.
+     * 
+     */
     public String id() {
         return this.id;
     }

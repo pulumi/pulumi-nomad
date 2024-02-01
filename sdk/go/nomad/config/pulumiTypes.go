@@ -14,7 +14,9 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type Headers struct {
-	Name  string `pulumi:"name"`
+	// The header name
+	Name string `pulumi:"name"`
+	// The header value
 	Value string `pulumi:"value"`
 }
 
@@ -30,7 +32,9 @@ type HeadersInput interface {
 }
 
 type HeadersArgs struct {
-	Name  pulumi.StringInput `pulumi:"name"`
+	// The header name
+	Name pulumi.StringInput `pulumi:"name"`
+	// The header value
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -85,10 +89,12 @@ func (o HeadersOutput) ToHeadersOutputWithContext(ctx context.Context) HeadersOu
 	return o
 }
 
+// The header name
 func (o HeadersOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v Headers) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The header value
 func (o HeadersOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v Headers) string { return v.Value }).(pulumi.StringOutput)
 }

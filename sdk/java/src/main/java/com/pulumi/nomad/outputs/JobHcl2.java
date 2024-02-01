@@ -30,6 +30,10 @@ public final class JobHcl2 {
      */
     @Deprecated /* Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing. */
     private @Nullable Boolean enabled;
+    /**
+     * @return Additional variables to use when templating the job with HCL2
+     * 
+     */
     private @Nullable Map<String,Object> vars;
 
     private JobHcl2() {}
@@ -53,6 +57,10 @@ public final class JobHcl2 {
     public Optional<Boolean> enabled() {
         return Optional.ofNullable(this.enabled);
     }
+    /**
+     * @return Additional variables to use when templating the job with HCL2
+     * 
+     */
     public Map<String,Object> vars() {
         return this.vars == null ? Map.of() : this.vars;
     }

@@ -23,6 +23,9 @@ namespace Pulumi.Nomad.Outputs
         /// HCL2 by default.
         /// </summary>
         public readonly bool? Enabled;
+        /// <summary>
+        /// Additional variables to use when templating the job with HCL2
+        /// </summary>
         public readonly ImmutableDictionary<string, object>? Vars;
 
         [OutputConstructor]
