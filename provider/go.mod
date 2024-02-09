@@ -14,7 +14,7 @@ replace (
 	github.com/hashicorp/hcl/v2 => github.com/hashicorp/hcl/v2 v2.9.2-0.20220525143345-ab3cae0737bc
 
 	// Set plugin-sdk version to the one used by tfbridge
-	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240129205329-74776a5cd5f9
+	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240202163305-e2a20ae13ef9
 
 	// pin the vault dep
 	github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
@@ -23,8 +23,8 @@ replace (
 
 require (
 	github.com/hashicorp/terraform-provider-nomad v1.4.21-0.20240130151023-0db895092800
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.73.0
-	github.com/pulumi/pulumi/sdk/v3 v3.104.2
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.74.0
+	github.com/pulumi/pulumi/sdk/v3 v3.105.0
 )
 
 require (
@@ -198,7 +198,7 @@ require (
 	github.com/pulumi/pulumi-java/pkg v0.9.9 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.7 // indirect
 	github.com/pulumi/pulumi-yaml v1.5.0 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.104.2 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.105.0 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
