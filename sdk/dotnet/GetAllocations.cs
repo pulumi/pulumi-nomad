@@ -14,10 +14,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Retrieve a list of allocations from Nomad.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,8 +32,7 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAllocationsResult> InvokeAsync(GetAllocationsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAllocationsResult>("nomad:index/getAllocations:getAllocations", args ?? new GetAllocationsArgs(), options.WithDefaults());
@@ -42,10 +40,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Retrieve a list of allocations from Nomad.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,8 +58,7 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAllocationsResult> Invoke(GetAllocationsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAllocationsResult>("nomad:index/getAllocations:getAllocations", args ?? new GetAllocationsInvokeArgs(), options.WithDefaults());

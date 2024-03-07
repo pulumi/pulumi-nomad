@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetNodePools(ctx *pulumi.Context, args *GetNodePoolsArgs, opts ...pulumi.InvokeOption) (*GetNodePoolsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNodePoolsResult

@@ -18,6 +18,7 @@ import (
 //
 // Registering a policy from a HCL file:
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -53,9 +54,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // Registering a policy from inline HCL:
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -82,6 +85,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type AclPolicy struct {
 	pulumi.CustomResourceState
 

@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * Creating an ALC Auth Method:
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -38,6 +39,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class AclAuthMethod extends pulumi.CustomResource {
     /**

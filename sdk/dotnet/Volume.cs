@@ -14,6 +14,7 @@ namespace Pulumi.Nomad
     /// 
     /// Registering a volume:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -80,6 +81,7 @@ namespace Pulumi.Nomad
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [NomadResourceType("nomad:index/volume:Volume")]
     public partial class Volume : global::Pulumi.CustomResource

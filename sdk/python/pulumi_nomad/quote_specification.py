@@ -144,6 +144,7 @@ class QuoteSpecification(pulumi.CustomResource):
 
         Registering a quota specification:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -158,6 +159,7 @@ class QuoteSpecification(pulumi.CustomResource):
                 ),
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -179,6 +181,7 @@ class QuoteSpecification(pulumi.CustomResource):
 
         Registering a quota specification:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -193,6 +196,7 @@ class QuoteSpecification(pulumi.CustomResource):
                 ),
             )])
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param QuoteSpecificationArgs args: The arguments to use to populate this resource's properties.

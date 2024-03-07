@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  *    Nomad Enterprise. This is not present in the open source version of Nomad.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -64,6 +66,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="nomad:index/sentinelPolicy:SentinelPolicy")

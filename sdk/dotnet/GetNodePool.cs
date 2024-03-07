@@ -14,10 +14,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Get information about a node pool in Nomad.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,8 +32,7 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetNodePoolResult> InvokeAsync(GetNodePoolArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNodePoolResult>("nomad:index/getNodePool:getNodePool", args ?? new GetNodePoolArgs(), options.WithDefaults());
@@ -42,10 +40,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Get information about a node pool in Nomad.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,8 +58,7 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetNodePoolResult> Invoke(GetNodePoolInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNodePoolResult>("nomad:index/getNodePool:getNodePool", args ?? new GetNodePoolInvokeArgs(), options.WithDefaults());

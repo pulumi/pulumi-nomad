@@ -14,10 +14,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Parse a HCL jobspec and produce the equivalent JSON encoded job.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.IO;
@@ -35,8 +34,7 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetJobParserResult> InvokeAsync(GetJobParserArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserArgs(), options.WithDefaults());
@@ -44,10 +42,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Parse a HCL jobspec and produce the equivalent JSON encoded job.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.IO;
@@ -65,8 +62,7 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetJobParserResult> Invoke(GetJobParserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserInvokeArgs(), options.WithDefaults());

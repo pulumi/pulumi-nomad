@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * Registering a node pool:
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -54,6 +56,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="nomad:index/nodePool:NodePool")

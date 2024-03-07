@@ -9,12 +9,14 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
  * const example = nomad.getDeployments({});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDeployments(opts?: pulumi.InvokeOptions): Promise<GetDeploymentsResult> {
 
@@ -41,12 +43,14 @@ export interface GetDeploymentsResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
  * const example = nomad.getDeployments({});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDeploymentsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentsResult> {
     return pulumi.output(getDeployments(opts))

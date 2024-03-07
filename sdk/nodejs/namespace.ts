@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  *
  * Registering a namespace:
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -31,9 +32,11 @@ import * as utilities from "./utilities";
  *     quota: "dev",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * Registering a namespace with a quota:
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -53,6 +56,7 @@ import * as utilities from "./utilities";
  *     quota: webTeam.name,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class Namespace extends pulumi.CustomResource {
     /**
