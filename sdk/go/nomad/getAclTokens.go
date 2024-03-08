@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetAclTokens(ctx *pulumi.Context, args *GetAclTokensArgs, opts ...pulumi.InvokeOption) (*GetAclTokensResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAclTokensResult

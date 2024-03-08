@@ -86,12 +86,14 @@ def get_scheduler_policy(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     global_ = nomad.get_scheduler_policy()
     ```
+    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -111,11 +113,13 @@ def get_scheduler_policy_output(opts: Optional[pulumi.InvokeOptions] = None) -> 
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     global_ = nomad.get_scheduler_policy()
     ```
+    <!--End PulumiCodeChooser -->
     """
     ...

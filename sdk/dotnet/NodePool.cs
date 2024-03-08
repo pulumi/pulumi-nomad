@@ -16,6 +16,7 @@ namespace Pulumi.Nomad
     /// 
     /// Registering a node pool:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,6 +37,7 @@ namespace Pulumi.Nomad
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [NomadResourceType("nomad:index/nodePool:NodePool")]
     public partial class NodePool : global::Pulumi.CustomResource

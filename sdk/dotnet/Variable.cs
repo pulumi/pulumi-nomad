@@ -14,6 +14,7 @@ namespace Pulumi.Nomad
     /// 
     /// Creating a variable in the default namespace:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,9 +34,11 @@ namespace Pulumi.Nomad
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Creating a variable in a custom namespace:
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -61,6 +64,7 @@ namespace Pulumi.Nomad
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [NomadResourceType("nomad:index/variable:Variable")]
     public partial class Variable : global::Pulumi.CustomResource

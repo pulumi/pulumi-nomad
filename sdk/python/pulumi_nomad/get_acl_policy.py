@@ -87,12 +87,14 @@ def get_acl_policy(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     my_policy = nomad.get_acl_policy(name="my-policy")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: `(string)` - the name of the ACL Policy.
@@ -117,12 +119,14 @@ def get_acl_policy_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     my_policy = nomad.get_acl_policy(name="my-policy")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: `(string)` - the name of the ACL Policy.
