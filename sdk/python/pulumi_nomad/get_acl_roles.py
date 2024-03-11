@@ -70,12 +70,14 @@ def get_acl_roles(prefix: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_acl_roles(prefix="a242")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str prefix: `(string)` An optional string to filter ACL Roles based on ID
@@ -100,12 +102,14 @@ def get_acl_roles_output(prefix: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_acl_roles(prefix="a242")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str prefix: `(string)` An optional string to filter ACL Roles based on ID

@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetAclRoles(ctx *pulumi.Context, args *GetAclRolesArgs, opts ...pulumi.InvokeOption) (*GetAclRolesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAclRolesResult

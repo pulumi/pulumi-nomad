@@ -21,12 +21,11 @@ namespace Pulumi.Nomad
         /// configured to wait, it will result in an error. For simple existence checks,
         /// use the `nomad.getPlugins` listing datasource.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// Check for the existence of a plugin:
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -43,11 +42,10 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
         /// is healthy before returning.
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetPluginResult> InvokeAsync(GetPluginArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginArgs(), options.WithDefaults());
@@ -62,12 +60,11 @@ namespace Pulumi.Nomad
         /// configured to wait, it will result in an error. For simple existence checks,
         /// use the `nomad.getPlugins` listing datasource.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// Check for the existence of a plugin:
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -84,11 +81,10 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
         /// is healthy before returning.
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetPluginResult> Invoke(GetPluginInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginInvokeArgs(), options.WithDefaults());

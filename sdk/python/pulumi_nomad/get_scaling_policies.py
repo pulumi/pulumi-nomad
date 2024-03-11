@@ -86,6 +86,7 @@ def get_scaling_policies(job_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -93,6 +94,7 @@ def get_scaling_policies(job_id: Optional[str] = None,
     example = nomad.get_scaling_policies(job_id="webapp",
         type="horizontal")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str job_id: `(string)` - An optional string to filter scaling policies based on the target job. If not provided, policies for all jobs are returned.
@@ -120,6 +122,7 @@ def get_scaling_policies_output(job_id: Optional[pulumi.Input[Optional[str]]] = 
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -127,6 +130,7 @@ def get_scaling_policies_output(job_id: Optional[pulumi.Input[Optional[str]]] = 
     example = nomad.get_scaling_policies(job_id="webapp",
         type="horizontal")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str job_id: `(string)` - An optional string to filter scaling policies based on the target job. If not provided, policies for all jobs are returned.

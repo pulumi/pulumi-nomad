@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
  *
  * Set cluster scheduler configuration:
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -31,6 +32,7 @@ import * as utilities from "./utilities";
  *     schedulerAlgorithm: "spread",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class SchedulerConfig extends pulumi.CustomResource {
     /**

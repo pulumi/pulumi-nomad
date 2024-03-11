@@ -22,6 +22,7 @@ import (
 //
 // Set cluster scheduler configuration:
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,6 +53,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type SchedulerConfig struct {
 	pulumi.CustomResourceState
 

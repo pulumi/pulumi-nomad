@@ -219,6 +219,7 @@ class SentinelPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -240,6 +241,7 @@ class SentinelPolicy(pulumi.CustomResource):
         \"\"\",
             scope="submit-job")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -267,6 +269,7 @@ class SentinelPolicy(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -288,6 +291,7 @@ class SentinelPolicy(pulumi.CustomResource):
         \"\"\",
             scope="submit-job")
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SentinelPolicyArgs args: The arguments to use to populate this resource's properties.
