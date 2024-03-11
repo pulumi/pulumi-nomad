@@ -14,10 +14,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Get a list of ACL tokens.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,8 +32,7 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAclTokensResult> InvokeAsync(GetAclTokensArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensArgs(), options.WithDefaults());
@@ -42,10 +40,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Get a list of ACL tokens.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,8 +58,7 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAclTokensResult> Invoke(GetAclTokensInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensInvokeArgs(), options.WithDefaults());

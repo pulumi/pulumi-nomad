@@ -186,6 +186,7 @@ def get_plugin(plugin_id: Optional[str] = None,
 
     Check for the existence of a plugin:
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -193,6 +194,7 @@ def get_plugin(plugin_id: Optional[str] = None,
     ebs = nomad.get_plugin(plugin_id="aws-ebs0",
         wait_for_healthy=True)
     ```
+    <!--End PulumiCodeChooser -->
 
     This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
     is healthy before returning.
@@ -243,6 +245,7 @@ def get_plugin_output(plugin_id: Optional[pulumi.Input[str]] = None,
 
     Check for the existence of a plugin:
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -250,6 +253,7 @@ def get_plugin_output(plugin_id: Optional[pulumi.Input[str]] = None,
     ebs = nomad.get_plugin(plugin_id="aws-ebs0",
         wait_for_healthy=True)
     ```
+    <!--End PulumiCodeChooser -->
 
     This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
     is healthy before returning.

@@ -120,12 +120,14 @@ def get_scaling_policy(id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_scaling_policy(id="ad19848d-1921-179c-affa-244a3543be88")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str id: `(string: <required>)` - The  ID of the scaling policy.
@@ -153,12 +155,14 @@ def get_scaling_policy_output(id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_scaling_policy(id="ad19848d-1921-179c-affa-244a3543be88")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str id: `(string: <required>)` - The  ID of the scaling policy.

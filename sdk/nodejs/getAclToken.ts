@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -17,6 +18,7 @@ import * as utilities from "./utilities";
  *     accessorId: "aa534e09-6a07-0a45-2295-a7f77063d429",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAclToken(args: GetAclTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetAclTokenResult> {
 
@@ -91,6 +93,7 @@ export interface GetAclTokenResult {
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -99,6 +102,7 @@ export interface GetAclTokenResult {
  *     accessorId: "aa534e09-6a07-0a45-2295-a7f77063d429",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAclTokenOutput(args: GetAclTokenOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclTokenResult> {
     return pulumi.output(args).apply((a: any) => getAclToken(a, opts))

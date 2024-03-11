@@ -14,10 +14,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Retrieve a list of ACL Policies.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,8 +32,7 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAclPoliciesResult> InvokeAsync(GetAclPoliciesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAclPoliciesResult>("nomad:index/getAclPolicies:getAclPolicies", args ?? new GetAclPoliciesArgs(), options.WithDefaults());
@@ -42,10 +40,9 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Retrieve a list of ACL Policies.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -61,8 +58,7 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAclPoliciesResult> Invoke(GetAclPoliciesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAclPoliciesResult>("nomad:index/getAclPolicies:getAclPolicies", args ?? new GetAclPoliciesInvokeArgs(), options.WithDefaults());

@@ -351,6 +351,7 @@ class AclToken(pulumi.CustomResource):
 
         Creating a token with limited policies:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -362,9 +363,11 @@ class AclToken(pulumi.CustomResource):
             ],
             type="client")
         ```
+        <!--End PulumiCodeChooser -->
 
         Creating a global token that will be replicated to all regions:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -377,18 +380,22 @@ class AclToken(pulumi.CustomResource):
             ],
             type="client")
         ```
+        <!--End PulumiCodeChooser -->
 
         Creating a token with full access to the cluster:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
 
         iman = nomad.AclToken("iman", type="management")
         ```
+        <!--End PulumiCodeChooser -->
 
         Accessing the token:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -398,6 +405,7 @@ class AclToken(pulumi.CustomResource):
             policies=["dev"])
         pulumi.export("nomadToken", token.secret_id)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -430,6 +438,7 @@ class AclToken(pulumi.CustomResource):
 
         Creating a token with limited policies:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -441,9 +450,11 @@ class AclToken(pulumi.CustomResource):
             ],
             type="client")
         ```
+        <!--End PulumiCodeChooser -->
 
         Creating a global token that will be replicated to all regions:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -456,18 +467,22 @@ class AclToken(pulumi.CustomResource):
             ],
             type="client")
         ```
+        <!--End PulumiCodeChooser -->
 
         Creating a token with full access to the cluster:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
 
         iman = nomad.AclToken("iman", type="management")
         ```
+        <!--End PulumiCodeChooser -->
 
         Accessing the token:
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -477,6 +492,7 @@ class AclToken(pulumi.CustomResource):
             policies=["dev"])
         pulumi.export("nomadToken", token.secret_id)
         ```
+        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param AclTokenArgs args: The arguments to use to populate this resource's properties.

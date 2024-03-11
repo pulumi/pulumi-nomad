@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +39,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetAllocations(ctx *pulumi.Context, args *GetAllocationsArgs, opts ...pulumi.InvokeOption) (*GetAllocationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAllocationsResult

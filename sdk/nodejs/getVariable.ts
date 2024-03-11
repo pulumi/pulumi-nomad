@@ -7,12 +7,14 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
  * const example = new nomad.Variable("example", {path: "path/of/existing/variable"});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getVariable(args: GetVariableArgs, opts?: pulumi.InvokeOptions): Promise<GetVariableResult> {
 
@@ -61,12 +63,14 @@ export interface GetVariableResult {
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
  * const example = new nomad.Variable("example", {path: "path/of/existing/variable"});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getVariableOutput(args: GetVariableOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVariableResult> {
     return pulumi.output(args).apply((a: any) => getVariable(a, opts))

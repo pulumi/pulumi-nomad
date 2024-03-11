@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -19,6 +20,7 @@ import * as utilities from "./utilities";
  *     filter: "Meta.env == \"prod\"",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getNodePools(args?: GetNodePoolsArgs, opts?: pulumi.InvokeOptions): Promise<GetNodePoolsResult> {
     args = args || {};
@@ -67,6 +69,7 @@ export interface GetNodePoolsResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -75,6 +78,7 @@ export interface GetNodePoolsResult {
  *     filter: "Meta.env == \"prod\"",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getNodePoolsOutput(args?: GetNodePoolsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNodePoolsResult> {
     return pulumi.output(args).apply((a: any) => getNodePools(a, opts))

@@ -86,12 +86,14 @@ def get_variable(namespace: Optional[str] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.Variable("example", path="path/of/existing/variable")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: `(string: "default")` - The namepsace in which the variable exists.
@@ -117,12 +119,14 @@ def get_variable_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
     """
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.Variable("example", path="path/of/existing/variable")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: `(string: "default")` - The namepsace in which the variable exists.

@@ -84,12 +84,14 @@ def get_node_pools(filter: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     prod = nomad.get_node_pools(filter="Meta.env == \\"prod\\"")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str filter: `(string)` - Specifies the [expression][nomad_api_filter] used to
@@ -119,12 +121,14 @@ def get_node_pools_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     prod = nomad.get_node_pools(filter="Meta.env == \\"prod\\"")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str filter: `(string)` - Specifies the [expression][nomad_api_filter] used to

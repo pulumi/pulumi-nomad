@@ -77,6 +77,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -105,6 +107,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclPoliciesResult> getAclPolicies() {
@@ -114,6 +117,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -142,6 +147,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclPoliciesResult> getAclPoliciesPlain() {
@@ -151,6 +157,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -179,6 +187,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclPoliciesResult> getAclPolicies(GetAclPoliciesArgs args) {
@@ -188,6 +197,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -216,6 +227,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclPoliciesResult> getAclPoliciesPlain(GetAclPoliciesPlainArgs args) {
@@ -225,6 +237,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -253,6 +267,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclPoliciesResult> getAclPolicies(GetAclPoliciesArgs args, InvokeOptions options) {
@@ -262,6 +277,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -290,6 +307,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclPoliciesResult> getAclPoliciesPlain(GetAclPoliciesPlainArgs args, InvokeOptions options) {
@@ -299,6 +317,8 @@ public final class NomadFunctions {
      * Retrieve information on an ACL Policy.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -327,6 +347,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclPolicyResult> getAclPolicy(GetAclPolicyArgs args) {
@@ -336,6 +357,8 @@ public final class NomadFunctions {
      * Retrieve information on an ACL Policy.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -364,6 +387,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclPolicyResult> getAclPolicyPlain(GetAclPolicyPlainArgs args) {
@@ -373,6 +397,8 @@ public final class NomadFunctions {
      * Retrieve information on an ACL Policy.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -401,6 +427,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclPolicyResult> getAclPolicy(GetAclPolicyArgs args, InvokeOptions options) {
@@ -410,6 +437,8 @@ public final class NomadFunctions {
      * Retrieve information on an ACL Policy.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -438,6 +467,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclPolicyResult> getAclPolicyPlain(GetAclPolicyPlainArgs args, InvokeOptions options) {
@@ -447,6 +477,8 @@ public final class NomadFunctions {
      * Get information on an ACL Role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -475,6 +507,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclRoleResult> getAclRole(GetAclRoleArgs args) {
@@ -484,6 +517,8 @@ public final class NomadFunctions {
      * Get information on an ACL Role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -512,6 +547,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclRoleResult> getAclRolePlain(GetAclRolePlainArgs args) {
@@ -521,6 +557,8 @@ public final class NomadFunctions {
      * Get information on an ACL Role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -549,6 +587,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclRoleResult> getAclRole(GetAclRoleArgs args, InvokeOptions options) {
@@ -558,6 +597,8 @@ public final class NomadFunctions {
      * Get information on an ACL Role.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -586,6 +627,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclRoleResult> getAclRolePlain(GetAclRolePlainArgs args, InvokeOptions options) {
@@ -595,6 +637,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -623,6 +667,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclRolesResult> getAclRoles() {
@@ -632,6 +677,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -660,6 +707,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclRolesResult> getAclRolesPlain() {
@@ -669,6 +717,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -697,6 +747,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclRolesResult> getAclRoles(GetAclRolesArgs args) {
@@ -706,6 +757,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -734,6 +787,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclRolesResult> getAclRolesPlain(GetAclRolesPlainArgs args) {
@@ -743,6 +797,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -771,6 +827,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclRolesResult> getAclRoles(GetAclRolesArgs args, InvokeOptions options) {
@@ -780,6 +837,8 @@ public final class NomadFunctions {
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -808,6 +867,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclRolesResult> getAclRolesPlain(GetAclRolesPlainArgs args, InvokeOptions options) {
@@ -815,6 +875,8 @@ public final class NomadFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -843,6 +905,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclTokenResult> getAclToken(GetAclTokenArgs args) {
@@ -850,6 +913,8 @@ public final class NomadFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -878,6 +943,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclTokenResult> getAclTokenPlain(GetAclTokenPlainArgs args) {
@@ -885,6 +951,8 @@ public final class NomadFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -913,6 +981,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclTokenResult> getAclToken(GetAclTokenArgs args, InvokeOptions options) {
@@ -920,6 +989,8 @@ public final class NomadFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -948,6 +1019,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclTokenResult> getAclTokenPlain(GetAclTokenPlainArgs args, InvokeOptions options) {
@@ -957,6 +1029,8 @@ public final class NomadFunctions {
      * Get a list of ACL tokens.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -985,6 +1059,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclTokensResult> getAclTokens() {
@@ -994,6 +1069,8 @@ public final class NomadFunctions {
      * Get a list of ACL tokens.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1022,6 +1099,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclTokensResult> getAclTokensPlain() {
@@ -1031,6 +1109,8 @@ public final class NomadFunctions {
      * Get a list of ACL tokens.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1059,6 +1139,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclTokensResult> getAclTokens(GetAclTokensArgs args) {
@@ -1068,6 +1149,8 @@ public final class NomadFunctions {
      * Get a list of ACL tokens.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1096,6 +1179,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclTokensResult> getAclTokensPlain(GetAclTokensPlainArgs args) {
@@ -1105,6 +1189,8 @@ public final class NomadFunctions {
      * Get a list of ACL tokens.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1133,6 +1219,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAclTokensResult> getAclTokens(GetAclTokensArgs args, InvokeOptions options) {
@@ -1142,6 +1229,8 @@ public final class NomadFunctions {
      * Get a list of ACL tokens.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1170,6 +1259,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAclTokensResult> getAclTokensPlain(GetAclTokensPlainArgs args, InvokeOptions options) {
@@ -1179,6 +1269,8 @@ public final class NomadFunctions {
      * Retrieve a list of allocations from Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1207,6 +1299,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAllocationsResult> getAllocations() {
@@ -1216,6 +1309,8 @@ public final class NomadFunctions {
      * Retrieve a list of allocations from Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1244,6 +1339,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAllocationsResult> getAllocationsPlain() {
@@ -1253,6 +1349,8 @@ public final class NomadFunctions {
      * Retrieve a list of allocations from Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1281,6 +1379,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAllocationsResult> getAllocations(GetAllocationsArgs args) {
@@ -1290,6 +1389,8 @@ public final class NomadFunctions {
      * Retrieve a list of allocations from Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1318,6 +1419,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAllocationsResult> getAllocationsPlain(GetAllocationsPlainArgs args) {
@@ -1327,6 +1429,8 @@ public final class NomadFunctions {
      * Retrieve a list of allocations from Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1355,6 +1459,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAllocationsResult> getAllocations(GetAllocationsArgs args, InvokeOptions options) {
@@ -1364,6 +1469,8 @@ public final class NomadFunctions {
      * Retrieve a list of allocations from Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1392,6 +1499,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAllocationsResult> getAllocationsPlain(GetAllocationsPlainArgs args, InvokeOptions options) {
@@ -1401,6 +1509,8 @@ public final class NomadFunctions {
      * Retrieve a list of datacenters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1430,6 +1540,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDatacentersResult> getDatacenters() {
@@ -1439,6 +1550,8 @@ public final class NomadFunctions {
      * Retrieve a list of datacenters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1468,6 +1581,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDatacentersResult> getDatacentersPlain() {
@@ -1477,6 +1591,8 @@ public final class NomadFunctions {
      * Retrieve a list of datacenters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1506,6 +1622,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDatacentersResult> getDatacenters(GetDatacentersArgs args) {
@@ -1515,6 +1632,8 @@ public final class NomadFunctions {
      * Retrieve a list of datacenters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1544,6 +1663,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDatacentersResult> getDatacentersPlain(GetDatacentersPlainArgs args) {
@@ -1553,6 +1673,8 @@ public final class NomadFunctions {
      * Retrieve a list of datacenters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1582,6 +1704,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDatacentersResult> getDatacenters(GetDatacentersArgs args, InvokeOptions options) {
@@ -1591,6 +1714,8 @@ public final class NomadFunctions {
      * Retrieve a list of datacenters.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1620,6 +1745,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDatacentersResult> getDatacentersPlain(GetDatacentersPlainArgs args, InvokeOptions options) {
@@ -1629,6 +1755,8 @@ public final class NomadFunctions {
      * Retrieve a list of deployments in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1654,6 +1782,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDeploymentsResult> getDeployments() {
@@ -1663,6 +1792,8 @@ public final class NomadFunctions {
      * Retrieve a list of deployments in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1688,6 +1819,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDeploymentsResult> getDeploymentsPlain() {
@@ -1697,6 +1829,8 @@ public final class NomadFunctions {
      * Retrieve a list of deployments in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1722,6 +1856,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDeploymentsResult> getDeployments(InvokeArgs args) {
@@ -1731,6 +1866,8 @@ public final class NomadFunctions {
      * Retrieve a list of deployments in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1756,6 +1893,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDeploymentsResult> getDeploymentsPlain(InvokeArgs args) {
@@ -1765,6 +1903,8 @@ public final class NomadFunctions {
      * Retrieve a list of deployments in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1790,6 +1930,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDeploymentsResult> getDeployments(InvokeArgs args, InvokeOptions options) {
@@ -1799,6 +1940,8 @@ public final class NomadFunctions {
      * Retrieve a list of deployments in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1824,6 +1967,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDeploymentsResult> getDeploymentsPlain(InvokeArgs args, InvokeOptions options) {
@@ -1838,6 +1982,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * Get the data about a snapshot:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1866,6 +2012,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetJobResult> getJob(GetJobArgs args) {
@@ -1880,6 +2027,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * Get the data about a snapshot:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1908,6 +2057,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetJobResult> getJobPlain(GetJobPlainArgs args) {
@@ -1922,6 +2072,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * Get the data about a snapshot:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1950,6 +2102,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetJobResult> getJob(GetJobArgs args, InvokeOptions options) {
@@ -1964,6 +2117,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * Get the data about a snapshot:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1992,6 +2147,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetJobResult> getJobPlain(GetJobPlainArgs args, InvokeOptions options) {
@@ -2001,6 +2157,8 @@ public final class NomadFunctions {
      * Parse a HCL jobspec and produce the equivalent JSON encoded job.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2030,6 +2188,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetJobParserResult> getJobParser(GetJobParserArgs args) {
@@ -2039,6 +2198,8 @@ public final class NomadFunctions {
      * Parse a HCL jobspec and produce the equivalent JSON encoded job.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2068,6 +2229,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetJobParserResult> getJobParserPlain(GetJobParserPlainArgs args) {
@@ -2077,6 +2239,8 @@ public final class NomadFunctions {
      * Parse a HCL jobspec and produce the equivalent JSON encoded job.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2106,6 +2270,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetJobParserResult> getJobParser(GetJobParserArgs args, InvokeOptions options) {
@@ -2115,6 +2280,8 @@ public final class NomadFunctions {
      * Parse a HCL jobspec and produce the equivalent JSON encoded job.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2144,6 +2311,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetJobParserResult> getJobParserPlain(GetJobParserPlainArgs args, InvokeOptions options) {
@@ -2153,6 +2321,8 @@ public final class NomadFunctions {
      * Get information about a namespace in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2181,6 +2351,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNamespaceResult> getNamespace(GetNamespaceArgs args) {
@@ -2190,6 +2361,8 @@ public final class NomadFunctions {
      * Get information about a namespace in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2218,6 +2391,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNamespaceResult> getNamespacePlain(GetNamespacePlainArgs args) {
@@ -2227,6 +2401,8 @@ public final class NomadFunctions {
      * Get information about a namespace in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2255,6 +2431,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNamespaceResult> getNamespace(GetNamespaceArgs args, InvokeOptions options) {
@@ -2264,6 +2441,8 @@ public final class NomadFunctions {
      * Get information about a namespace in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2292,6 +2471,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNamespaceResult> getNamespacePlain(GetNamespacePlainArgs args, InvokeOptions options) {
@@ -2301,6 +2481,8 @@ public final class NomadFunctions {
      * Retrieve a list of namespaces available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2341,6 +2523,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNamespacesResult> getNamespaces() {
@@ -2350,6 +2533,8 @@ public final class NomadFunctions {
      * Retrieve a list of namespaces available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2390,6 +2575,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNamespacesResult> getNamespacesPlain() {
@@ -2399,6 +2585,8 @@ public final class NomadFunctions {
      * Retrieve a list of namespaces available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2439,6 +2627,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNamespacesResult> getNamespaces(InvokeArgs args) {
@@ -2448,6 +2637,8 @@ public final class NomadFunctions {
      * Retrieve a list of namespaces available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2488,6 +2679,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNamespacesResult> getNamespacesPlain(InvokeArgs args) {
@@ -2497,6 +2689,8 @@ public final class NomadFunctions {
      * Retrieve a list of namespaces available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2537,6 +2731,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNamespacesResult> getNamespaces(InvokeArgs args, InvokeOptions options) {
@@ -2546,6 +2741,8 @@ public final class NomadFunctions {
      * Retrieve a list of namespaces available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2586,6 +2783,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNamespacesResult> getNamespacesPlain(InvokeArgs args, InvokeOptions options) {
@@ -2595,6 +2793,8 @@ public final class NomadFunctions {
      * Get information about a node pool in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2623,6 +2823,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNodePoolResult> getNodePool(GetNodePoolArgs args) {
@@ -2632,6 +2833,8 @@ public final class NomadFunctions {
      * Get information about a node pool in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2660,6 +2863,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNodePoolResult> getNodePoolPlain(GetNodePoolPlainArgs args) {
@@ -2669,6 +2873,8 @@ public final class NomadFunctions {
      * Get information about a node pool in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2697,6 +2903,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNodePoolResult> getNodePool(GetNodePoolArgs args, InvokeOptions options) {
@@ -2706,6 +2913,8 @@ public final class NomadFunctions {
      * Get information about a node pool in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2734,6 +2943,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNodePoolResult> getNodePoolPlain(GetNodePoolPlainArgs args, InvokeOptions options) {
@@ -2743,6 +2953,8 @@ public final class NomadFunctions {
      * Retrieve a list of node pools available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2771,6 +2983,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNodePoolsResult> getNodePools() {
@@ -2780,6 +2993,8 @@ public final class NomadFunctions {
      * Retrieve a list of node pools available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2808,6 +3023,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNodePoolsResult> getNodePoolsPlain() {
@@ -2817,6 +3033,8 @@ public final class NomadFunctions {
      * Retrieve a list of node pools available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2845,6 +3063,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNodePoolsResult> getNodePools(GetNodePoolsArgs args) {
@@ -2854,6 +3073,8 @@ public final class NomadFunctions {
      * Retrieve a list of node pools available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2882,6 +3103,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNodePoolsResult> getNodePoolsPlain(GetNodePoolsPlainArgs args) {
@@ -2891,6 +3113,8 @@ public final class NomadFunctions {
      * Retrieve a list of node pools available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2919,6 +3143,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNodePoolsResult> getNodePools(GetNodePoolsArgs args, InvokeOptions options) {
@@ -2928,6 +3153,8 @@ public final class NomadFunctions {
      * Retrieve a list of node pools available in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2956,6 +3183,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNodePoolsResult> getNodePoolsPlain(GetNodePoolsPlainArgs args, InvokeOptions options) {
@@ -2974,6 +3202,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * Check for the existence of a plugin:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3003,6 +3233,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
      * is healthy before returning.
@@ -3024,6 +3255,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * Check for the existence of a plugin:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3053,6 +3286,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
      * is healthy before returning.
@@ -3074,6 +3308,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * Check for the existence of a plugin:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3103,6 +3339,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
      * is healthy before returning.
@@ -3124,6 +3361,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * Check for the existence of a plugin:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3153,6 +3392,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
      * is healthy before returning.
@@ -3165,6 +3405,8 @@ public final class NomadFunctions {
      * Retrieve a list of dynamic plugins in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3191,6 +3433,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetPluginsResult> getPlugins() {
@@ -3200,6 +3443,8 @@ public final class NomadFunctions {
      * Retrieve a list of dynamic plugins in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3226,6 +3471,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetPluginsResult> getPluginsPlain() {
@@ -3235,6 +3481,8 @@ public final class NomadFunctions {
      * Retrieve a list of dynamic plugins in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3261,6 +3509,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetPluginsResult> getPlugins(GetPluginsArgs args) {
@@ -3270,6 +3519,8 @@ public final class NomadFunctions {
      * Retrieve a list of dynamic plugins in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3296,6 +3547,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetPluginsResult> getPluginsPlain(GetPluginsPlainArgs args) {
@@ -3305,6 +3557,8 @@ public final class NomadFunctions {
      * Retrieve a list of dynamic plugins in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3331,6 +3585,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetPluginsResult> getPlugins(GetPluginsArgs args, InvokeOptions options) {
@@ -3340,6 +3595,8 @@ public final class NomadFunctions {
      * Retrieve a list of dynamic plugins in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3366,6 +3623,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetPluginsResult> getPluginsPlain(GetPluginsPlainArgs args, InvokeOptions options) {
@@ -3417,6 +3675,8 @@ public final class NomadFunctions {
      * Retrieve a list of Scaling Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3446,6 +3706,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetScalingPoliciesResult> getScalingPolicies() {
@@ -3455,6 +3716,8 @@ public final class NomadFunctions {
      * Retrieve a list of Scaling Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3484,6 +3747,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetScalingPoliciesResult> getScalingPoliciesPlain() {
@@ -3493,6 +3757,8 @@ public final class NomadFunctions {
      * Retrieve a list of Scaling Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3522,6 +3788,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetScalingPoliciesResult> getScalingPolicies(GetScalingPoliciesArgs args) {
@@ -3531,6 +3798,8 @@ public final class NomadFunctions {
      * Retrieve a list of Scaling Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3560,6 +3829,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetScalingPoliciesResult> getScalingPoliciesPlain(GetScalingPoliciesPlainArgs args) {
@@ -3569,6 +3839,8 @@ public final class NomadFunctions {
      * Retrieve a list of Scaling Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3598,6 +3870,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetScalingPoliciesResult> getScalingPolicies(GetScalingPoliciesArgs args, InvokeOptions options) {
@@ -3607,6 +3880,8 @@ public final class NomadFunctions {
      * Retrieve a list of Scaling Policies.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3636,6 +3911,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetScalingPoliciesResult> getScalingPoliciesPlain(GetScalingPoliciesPlainArgs args, InvokeOptions options) {
@@ -3645,6 +3921,8 @@ public final class NomadFunctions {
      * Retrieve a Scaling Policy.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3673,6 +3951,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetScalingPolicyResult> getScalingPolicy(GetScalingPolicyArgs args) {
@@ -3682,6 +3961,8 @@ public final class NomadFunctions {
      * Retrieve a Scaling Policy.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3710,6 +3991,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetScalingPolicyResult> getScalingPolicyPlain(GetScalingPolicyPlainArgs args) {
@@ -3719,6 +4001,8 @@ public final class NomadFunctions {
      * Retrieve a Scaling Policy.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3747,6 +4031,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetScalingPolicyResult> getScalingPolicy(GetScalingPolicyArgs args, InvokeOptions options) {
@@ -3756,6 +4041,8 @@ public final class NomadFunctions {
      * Retrieve a Scaling Policy.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3784,6 +4071,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetScalingPolicyResult> getScalingPolicyPlain(GetScalingPolicyPlainArgs args, InvokeOptions options) {
@@ -3793,6 +4081,8 @@ public final class NomadFunctions {
      * Retrieve the cluster&#39;s [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3818,6 +4108,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetSchedulerPolicyResult> getSchedulerPolicy() {
@@ -3827,6 +4118,8 @@ public final class NomadFunctions {
      * Retrieve the cluster&#39;s [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3852,6 +4145,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetSchedulerPolicyResult> getSchedulerPolicyPlain() {
@@ -3861,6 +4155,8 @@ public final class NomadFunctions {
      * Retrieve the cluster&#39;s [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3886,6 +4182,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetSchedulerPolicyResult> getSchedulerPolicy(InvokeArgs args) {
@@ -3895,6 +4192,8 @@ public final class NomadFunctions {
      * Retrieve the cluster&#39;s [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3920,6 +4219,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetSchedulerPolicyResult> getSchedulerPolicyPlain(InvokeArgs args) {
@@ -3929,6 +4229,8 @@ public final class NomadFunctions {
      * Retrieve the cluster&#39;s [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3954,6 +4256,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetSchedulerPolicyResult> getSchedulerPolicy(InvokeArgs args, InvokeOptions options) {
@@ -3963,6 +4266,8 @@ public final class NomadFunctions {
      * Retrieve the cluster&#39;s [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3988,6 +4293,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetSchedulerPolicyResult> getSchedulerPolicyPlain(InvokeArgs args, InvokeOptions options) {
@@ -3995,6 +4301,8 @@ public final class NomadFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4023,6 +4331,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetVariableResult> getVariable(GetVariableArgs args) {
@@ -4030,6 +4339,8 @@ public final class NomadFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4058,6 +4369,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetVariableResult> getVariablePlain(GetVariablePlainArgs args) {
@@ -4065,6 +4377,8 @@ public final class NomadFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4093,6 +4407,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetVariableResult> getVariable(GetVariableArgs args, InvokeOptions options) {
@@ -4100,6 +4415,8 @@ public final class NomadFunctions {
     }
     /**
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4128,6 +4445,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetVariableResult> getVariablePlain(GetVariablePlainArgs args, InvokeOptions options) {
@@ -4137,6 +4455,8 @@ public final class NomadFunctions {
      * Retrieve a list of volumes in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4163,6 +4483,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetVolumesResult> getVolumes() {
@@ -4172,6 +4493,8 @@ public final class NomadFunctions {
      * Retrieve a list of volumes in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4198,6 +4521,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetVolumesResult> getVolumesPlain() {
@@ -4207,6 +4531,8 @@ public final class NomadFunctions {
      * Retrieve a list of volumes in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4233,6 +4559,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetVolumesResult> getVolumes(GetVolumesArgs args) {
@@ -4242,6 +4569,8 @@ public final class NomadFunctions {
      * Retrieve a list of volumes in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4268,6 +4597,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetVolumesResult> getVolumesPlain(GetVolumesPlainArgs args) {
@@ -4277,6 +4607,8 @@ public final class NomadFunctions {
      * Retrieve a list of volumes in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4303,6 +4635,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetVolumesResult> getVolumes(GetVolumesArgs args, InvokeOptions options) {
@@ -4312,6 +4645,8 @@ public final class NomadFunctions {
      * Retrieve a list of volumes in Nomad.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -4338,6 +4673,7 @@ public final class NomadFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetVolumesResult> getVolumesPlain(GetVolumesPlainArgs args, InvokeOptions options) {
