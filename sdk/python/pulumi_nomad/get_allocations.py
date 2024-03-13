@@ -22,7 +22,7 @@ class GetAllocationsResult:
     """
     A collection of values returned by getAllocations.
     """
-    def __init__(__self__, allocations=None, filter=None, id=None, prefix=None):
+    def __init__(__self__, allocations=None, filter=None, id=None, namespace=None, prefix=None):
         if allocations and not isinstance(allocations, list):
             raise TypeError("Expected argument 'allocations' to be a list")
         pulumi.set(__self__, "allocations", allocations)
@@ -32,6 +32,9 @@ class GetAllocationsResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if namespace and not isinstance(namespace, str):
+            raise TypeError("Expected argument 'namespace' to be a str")
+        pulumi.set(__self__, "namespace", namespace)
         if prefix and not isinstance(prefix, str):
             raise TypeError("Expected argument 'prefix' to be a str")
         pulumi.set(__self__, "prefix", prefix)
@@ -60,6 +63,14 @@ class GetAllocationsResult:
 
     @property
     @pulumi.getter
+    def namespace(self) -> Optional[str]:
+        """
+        `(string)` - The namespace the allocation belongs to.
+        """
+        return pulumi.get(self, "namespace")
+
+    @property
+    @pulumi.getter
     def prefix(self) -> Optional[str]:
         return pulumi.get(self, "prefix")
 
@@ -73,10 +84,12 @@ class AwaitableGetAllocationsResult(GetAllocationsResult):
             allocations=self.allocations,
             filter=self.filter,
             id=self.id,
+            namespace=self.namespace,
             prefix=self.prefix)
 
 
 def get_allocations(filter: Optional[str] = None,
+                    namespace: Optional[str] = None,
                     prefix: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAllocationsResult:
     """
@@ -96,11 +109,14 @@ def get_allocations(filter: Optional[str] = None,
 
     :param str filter: `(string: <optional>)` - Specifies the
            [expression][nomad_api_filter] used to filter the results.
+    :param str namespace: `(string: <optional>)` - Specifies the namespace to search for
+           allocations in.
     :param str prefix: `(string: <optional>)` - Specifies a string to filter allocations
            based on an ID prefix.
     """
     __args__ = dict()
     __args__['filter'] = filter
+    __args__['namespace'] = namespace
     __args__['prefix'] = prefix
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('nomad:index/getAllocations:getAllocations', __args__, opts=opts, typ=GetAllocationsResult).value
@@ -109,11 +125,13 @@ def get_allocations(filter: Optional[str] = None,
         allocations=pulumi.get(__ret__, 'allocations'),
         filter=pulumi.get(__ret__, 'filter'),
         id=pulumi.get(__ret__, 'id'),
+        namespace=pulumi.get(__ret__, 'namespace'),
         prefix=pulumi.get(__ret__, 'prefix'))
 
 
 @_utilities.lift_output_func(get_allocations)
 def get_allocations_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
+                           namespace: Optional[pulumi.Input[Optional[str]]] = None,
                            prefix: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAllocationsResult]:
     """
@@ -133,6 +151,8 @@ def get_allocations_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
 
     :param str filter: `(string: <optional>)` - Specifies the
            [expression][nomad_api_filter] used to filter the results.
+    :param str namespace: `(string: <optional>)` - Specifies the namespace to search for
+           allocations in.
     :param str prefix: `(string: <optional>)` - Specifies a string to filter allocations
            based on an ID prefix.
     """

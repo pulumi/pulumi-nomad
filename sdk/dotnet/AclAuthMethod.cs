@@ -61,7 +61,8 @@ namespace Pulumi.Nomad
     public partial class AclAuthMethod : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Configuration specific to the auth method provider.
+        /// `(block: &lt;required&gt;)` - Configuration specific to the auth method
+        /// provider.
         /// </summary>
         [Output("config")]
         public Output<Outputs.AclAuthMethodConfig> Config { get; private set; } = null!;
@@ -74,7 +75,7 @@ namespace Pulumi.Nomad
         public Output<bool?> Default { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - Defines the maximum life of a token 
+        /// `(string: &lt;required&gt;)` - Defines the maximum life of a token
         /// created by this method and is specified as a time duration such as "15h".
         /// </summary>
         [Output("maxTokenTtl")]
@@ -95,9 +96,9 @@ namespace Pulumi.Nomad
         public Output<string> TokenLocality { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - Defines the token name format for the
-        /// generated tokens This can be lightly templated using HIL '${foo}' syntax.
-        /// Defaults to `${auth_method_type}-${auth_method_name}`.
+        /// `(string: "${auth_method_type}-${auth_method_name}")` -
+        /// Defines the token name format for the generated tokens This can be lightly
+        /// templated using HIL '${foo}' syntax.
         /// </summary>
         [Output("tokenNameFormat")]
         public Output<string?> TokenNameFormat { get; private set; } = null!;
@@ -156,7 +157,8 @@ namespace Pulumi.Nomad
     public sealed class AclAuthMethodArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configuration specific to the auth method provider.
+        /// `(block: &lt;required&gt;)` - Configuration specific to the auth method
+        /// provider.
         /// </summary>
         [Input("config", required: true)]
         public Input<Inputs.AclAuthMethodConfigArgs> Config { get; set; } = null!;
@@ -169,7 +171,7 @@ namespace Pulumi.Nomad
         public Input<bool>? Default { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - Defines the maximum life of a token 
+        /// `(string: &lt;required&gt;)` - Defines the maximum life of a token
         /// created by this method and is specified as a time duration such as "15h".
         /// </summary>
         [Input("maxTokenTtl", required: true)]
@@ -190,9 +192,9 @@ namespace Pulumi.Nomad
         public Input<string> TokenLocality { get; set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - Defines the token name format for the
-        /// generated tokens This can be lightly templated using HIL '${foo}' syntax.
-        /// Defaults to `${auth_method_type}-${auth_method_name}`.
+        /// `(string: "${auth_method_type}-${auth_method_name}")` -
+        /// Defines the token name format for the generated tokens This can be lightly
+        /// templated using HIL '${foo}' syntax.
         /// </summary>
         [Input("tokenNameFormat")]
         public Input<string>? TokenNameFormat { get; set; }
@@ -213,7 +215,8 @@ namespace Pulumi.Nomad
     public sealed class AclAuthMethodState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Configuration specific to the auth method provider.
+        /// `(block: &lt;required&gt;)` - Configuration specific to the auth method
+        /// provider.
         /// </summary>
         [Input("config")]
         public Input<Inputs.AclAuthMethodConfigGetArgs>? Config { get; set; }
@@ -226,7 +229,7 @@ namespace Pulumi.Nomad
         public Input<bool>? Default { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - Defines the maximum life of a token 
+        /// `(string: &lt;required&gt;)` - Defines the maximum life of a token
         /// created by this method and is specified as a time duration such as "15h".
         /// </summary>
         [Input("maxTokenTtl")]
@@ -247,9 +250,9 @@ namespace Pulumi.Nomad
         public Input<string>? TokenLocality { get; set; }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - Defines the token name format for the
-        /// generated tokens This can be lightly templated using HIL '${foo}' syntax.
-        /// Defaults to `${auth_method_type}-${auth_method_name}`.
+        /// `(string: "${auth_method_type}-${auth_method_name}")` -
+        /// Defines the token name format for the generated tokens This can be lightly
+        /// templated using HIL '${foo}' syntax.
         /// </summary>
         [Input("tokenNameFormat")]
         public Input<string>? TokenNameFormat { get; set; }

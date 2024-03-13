@@ -6,6 +6,7 @@ package com.pulumi.nomad.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -19,14 +20,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     public static final AclAuthMethodConfigArgs Empty = new AclAuthMethodConfigArgs();
 
     /**
-     * A list of allowed values that can be used for the redirect URI.
+     * `([]string: &lt;optional&gt;)` - A list of allowed values
+     * that can be used for the redirect URI.
      * 
      */
     @Import(name="allowedRedirectUris", required=true)
     private Output<List<String>> allowedRedirectUris;
 
     /**
-     * @return A list of allowed values that can be used for the redirect URI.
+     * @return `([]string: &lt;optional&gt;)` - A list of allowed values
+     * that can be used for the redirect URI.
      * 
      */
     public Output<List<String>> allowedRedirectUris() {
@@ -34,14 +37,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * List of auth claims that are valid for login.
+     * `([]string: &lt;optional&gt;)` - List of auth claims that are
+     * valid for login.
      * 
      */
     @Import(name="boundAudiences")
     private @Nullable Output<List<String>> boundAudiences;
 
     /**
-     * @return List of auth claims that are valid for login.
+     * @return `([]string: &lt;optional&gt;)` - List of auth claims that are
+     * valid for login.
      * 
      */
     public Optional<Output<List<String>>> boundAudiences() {
@@ -49,14 +54,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Mappings of claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      * 
      */
     @Import(name="claimMappings")
     private @Nullable Output<Map<String,String>> claimMappings;
 
     /**
-     * @return Mappings of claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      * 
      */
     public Optional<Output<Map<String,String>>> claimMappings() {
@@ -64,14 +71,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     * `([]string: &lt;optional&gt;)` - PEM encoded CA certs for use
+     * by the TLS client used to talk with the OIDC Discovery URL.
      * 
      */
     @Import(name="discoveryCaPems")
     private @Nullable Output<List<String>> discoveryCaPems;
 
     /**
-     * @return PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     * @return `([]string: &lt;optional&gt;)` - PEM encoded CA certs for use
+     * by the TLS client used to talk with the OIDC Discovery URL.
      * 
      */
     public Optional<Output<List<String>>> discoveryCaPems() {
@@ -79,14 +88,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Mappings of list claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: &lt;optional&gt;)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      * 
      */
     @Import(name="listClaimMappings")
     private @Nullable Output<Map<String,String>> listClaimMappings;
 
     /**
-     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      * 
      */
     public Optional<Output<Map<String,String>>> listClaimMappings() {
@@ -94,14 +105,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The OAuth Client ID configured with the OIDC provider.
+     * `(string: &lt;required&gt;)` - The OAuth Client ID configured
+     * with the OIDC provider.
      * 
      */
     @Import(name="oidcClientId", required=true)
     private Output<String> oidcClientId;
 
     /**
-     * @return The OAuth Client ID configured with the OIDC provider.
+     * @return `(string: &lt;required&gt;)` - The OAuth Client ID configured
+     * with the OIDC provider.
      * 
      */
     public Output<String> oidcClientId() {
@@ -109,14 +122,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The OAuth Client Secret configured with the OIDC provider.
+     * `(string: &lt;required&gt;)` - The OAuth Client Secret
+     * configured with the OIDC provider.
      * 
      */
     @Import(name="oidcClientSecret", required=true)
     private Output<String> oidcClientSecret;
 
     /**
-     * @return The OAuth Client Secret configured with the OIDC provider.
+     * @return `(string: &lt;required&gt;)` - The OAuth Client Secret
+     * configured with the OIDC provider.
      * 
      */
     public Output<String> oidcClientSecret() {
@@ -124,14 +139,37 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The OIDC Discovery URL, without any .well-known component (base path).
+     * `(bool: false)` - When set to `true`, Nomad will
+     * not make a request to the identity provider to get OIDC `UserInfo`.
+     * You may wish to set this if your identity provider doesn&#39;t send any
+     * additional claims from the `UserInfo` endpoint.
+     * 
+     */
+    @Import(name="oidcDisableUserinfo")
+    private @Nullable Output<Boolean> oidcDisableUserinfo;
+
+    /**
+     * @return `(bool: false)` - When set to `true`, Nomad will
+     * not make a request to the identity provider to get OIDC `UserInfo`.
+     * You may wish to set this if your identity provider doesn&#39;t send any
+     * additional claims from the `UserInfo` endpoint.
+     * 
+     */
+    public Optional<Output<Boolean>> oidcDisableUserinfo() {
+        return Optional.ofNullable(this.oidcDisableUserinfo);
+    }
+
+    /**
+     * `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+     * without any .well-known component (base path).
      * 
      */
     @Import(name="oidcDiscoveryUrl", required=true)
     private Output<String> oidcDiscoveryUrl;
 
     /**
-     * @return The OIDC Discovery URL, without any .well-known component (base path).
+     * @return `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+     * without any .well-known component (base path).
      * 
      */
     public Output<String> oidcDiscoveryUrl() {
@@ -139,14 +177,14 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * List of OIDC scopes.
+     * `([]string: &lt;optional&gt;)` - List of OIDC scopes.
      * 
      */
     @Import(name="oidcScopes")
     private @Nullable Output<List<String>> oidcScopes;
 
     /**
-     * @return List of OIDC scopes.
+     * @return `([]string: &lt;optional&gt;)` - List of OIDC scopes.
      * 
      */
     public Optional<Output<List<String>>> oidcScopes() {
@@ -154,14 +192,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * A list of supported signing algorithms.
+     * `([]string: &lt;optional&gt;)` - A list of supported signing
+     * algorithms.
      * 
      */
     @Import(name="signingAlgs")
     private @Nullable Output<List<String>> signingAlgs;
 
     /**
-     * @return A list of supported signing algorithms.
+     * @return `([]string: &lt;optional&gt;)` - A list of supported signing
+     * algorithms.
      * 
      */
     public Optional<Output<List<String>>> signingAlgs() {
@@ -178,6 +218,7 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         this.listClaimMappings = $.listClaimMappings;
         this.oidcClientId = $.oidcClientId;
         this.oidcClientSecret = $.oidcClientSecret;
+        this.oidcDisableUserinfo = $.oidcDisableUserinfo;
         this.oidcDiscoveryUrl = $.oidcDiscoveryUrl;
         this.oidcScopes = $.oidcScopes;
         this.signingAlgs = $.signingAlgs;
@@ -202,7 +243,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param allowedRedirectUris A list of allowed values that can be used for the redirect URI.
+         * @param allowedRedirectUris `([]string: &lt;optional&gt;)` - A list of allowed values
+         * that can be used for the redirect URI.
          * 
          * @return builder
          * 
@@ -213,7 +255,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param allowedRedirectUris A list of allowed values that can be used for the redirect URI.
+         * @param allowedRedirectUris `([]string: &lt;optional&gt;)` - A list of allowed values
+         * that can be used for the redirect URI.
          * 
          * @return builder
          * 
@@ -223,7 +266,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param allowedRedirectUris A list of allowed values that can be used for the redirect URI.
+         * @param allowedRedirectUris `([]string: &lt;optional&gt;)` - A list of allowed values
+         * that can be used for the redirect URI.
          * 
          * @return builder
          * 
@@ -233,7 +277,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param boundAudiences List of auth claims that are valid for login.
+         * @param boundAudiences `([]string: &lt;optional&gt;)` - List of auth claims that are
+         * valid for login.
          * 
          * @return builder
          * 
@@ -244,7 +289,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param boundAudiences List of auth claims that are valid for login.
+         * @param boundAudiences `([]string: &lt;optional&gt;)` - List of auth claims that are
+         * valid for login.
          * 
          * @return builder
          * 
@@ -254,7 +300,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param boundAudiences List of auth claims that are valid for login.
+         * @param boundAudiences `([]string: &lt;optional&gt;)` - List of auth claims that are
+         * valid for login.
          * 
          * @return builder
          * 
@@ -264,7 +311,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param claimMappings Mappings of claims (key) that will be copied to a metadata field (value).
+         * @param claimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+         * that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
@@ -275,7 +323,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param claimMappings Mappings of claims (key) that will be copied to a metadata field (value).
+         * @param claimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+         * that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
@@ -285,7 +334,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param discoveryCaPems PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+         * @param discoveryCaPems `([]string: &lt;optional&gt;)` - PEM encoded CA certs for use
+         * by the TLS client used to talk with the OIDC Discovery URL.
          * 
          * @return builder
          * 
@@ -296,7 +346,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param discoveryCaPems PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+         * @param discoveryCaPems `([]string: &lt;optional&gt;)` - PEM encoded CA certs for use
+         * by the TLS client used to talk with the OIDC Discovery URL.
          * 
          * @return builder
          * 
@@ -306,7 +357,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param discoveryCaPems PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+         * @param discoveryCaPems `([]string: &lt;optional&gt;)` - PEM encoded CA certs for use
+         * by the TLS client used to talk with the OIDC Discovery URL.
          * 
          * @return builder
          * 
@@ -316,7 +368,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param listClaimMappings Mappings of list claims (key) that will be copied to a metadata field (value).
+         * @param listClaimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of list
+         * claims (key) that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
@@ -327,7 +380,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param listClaimMappings Mappings of list claims (key) that will be copied to a metadata field (value).
+         * @param listClaimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of list
+         * claims (key) that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
@@ -337,7 +391,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcClientId The OAuth Client ID configured with the OIDC provider.
+         * @param oidcClientId `(string: &lt;required&gt;)` - The OAuth Client ID configured
+         * with the OIDC provider.
          * 
          * @return builder
          * 
@@ -348,7 +403,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcClientId The OAuth Client ID configured with the OIDC provider.
+         * @param oidcClientId `(string: &lt;required&gt;)` - The OAuth Client ID configured
+         * with the OIDC provider.
          * 
          * @return builder
          * 
@@ -358,7 +414,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcClientSecret The OAuth Client Secret configured with the OIDC provider.
+         * @param oidcClientSecret `(string: &lt;required&gt;)` - The OAuth Client Secret
+         * configured with the OIDC provider.
          * 
          * @return builder
          * 
@@ -369,7 +426,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcClientSecret The OAuth Client Secret configured with the OIDC provider.
+         * @param oidcClientSecret `(string: &lt;required&gt;)` - The OAuth Client Secret
+         * configured with the OIDC provider.
          * 
          * @return builder
          * 
@@ -379,7 +437,35 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcDiscoveryUrl The OIDC Discovery URL, without any .well-known component (base path).
+         * @param oidcDisableUserinfo `(bool: false)` - When set to `true`, Nomad will
+         * not make a request to the identity provider to get OIDC `UserInfo`.
+         * You may wish to set this if your identity provider doesn&#39;t send any
+         * additional claims from the `UserInfo` endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcDisableUserinfo(@Nullable Output<Boolean> oidcDisableUserinfo) {
+            $.oidcDisableUserinfo = oidcDisableUserinfo;
+            return this;
+        }
+
+        /**
+         * @param oidcDisableUserinfo `(bool: false)` - When set to `true`, Nomad will
+         * not make a request to the identity provider to get OIDC `UserInfo`.
+         * You may wish to set this if your identity provider doesn&#39;t send any
+         * additional claims from the `UserInfo` endpoint.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcDisableUserinfo(Boolean oidcDisableUserinfo) {
+            return oidcDisableUserinfo(Output.of(oidcDisableUserinfo));
+        }
+
+        /**
+         * @param oidcDiscoveryUrl `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+         * without any .well-known component (base path).
          * 
          * @return builder
          * 
@@ -390,7 +476,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcDiscoveryUrl The OIDC Discovery URL, without any .well-known component (base path).
+         * @param oidcDiscoveryUrl `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+         * without any .well-known component (base path).
          * 
          * @return builder
          * 
@@ -400,7 +487,7 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcScopes List of OIDC scopes.
+         * @param oidcScopes `([]string: &lt;optional&gt;)` - List of OIDC scopes.
          * 
          * @return builder
          * 
@@ -411,7 +498,7 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcScopes List of OIDC scopes.
+         * @param oidcScopes `([]string: &lt;optional&gt;)` - List of OIDC scopes.
          * 
          * @return builder
          * 
@@ -421,7 +508,7 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcScopes List of OIDC scopes.
+         * @param oidcScopes `([]string: &lt;optional&gt;)` - List of OIDC scopes.
          * 
          * @return builder
          * 
@@ -431,7 +518,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param signingAlgs A list of supported signing algorithms.
+         * @param signingAlgs `([]string: &lt;optional&gt;)` - A list of supported signing
+         * algorithms.
          * 
          * @return builder
          * 
@@ -442,7 +530,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param signingAlgs A list of supported signing algorithms.
+         * @param signingAlgs `([]string: &lt;optional&gt;)` - A list of supported signing
+         * algorithms.
          * 
          * @return builder
          * 
@@ -452,7 +541,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param signingAlgs A list of supported signing algorithms.
+         * @param signingAlgs `([]string: &lt;optional&gt;)` - A list of supported signing
+         * algorithms.
          * 
          * @return builder
          * 

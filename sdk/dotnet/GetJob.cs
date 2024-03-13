@@ -33,6 +33,7 @@ namespace Pulumi.Nomad
         ///     var example = Nomad.GetJob.Invoke(new()
         ///     {
         ///         JobId = "example",
+        ///         Namespace = "dev",
         ///     });
         /// 
         /// });
@@ -64,6 +65,7 @@ namespace Pulumi.Nomad
         ///     var example = Nomad.GetJob.Invoke(new()
         ///     {
         ///         JobId = "example",
+        ///         Namespace = "dev",
         ///     });
         /// 
         /// });
@@ -149,9 +151,6 @@ namespace Pulumi.Nomad
         /// `(string)` Name of the job.
         /// </summary>
         public readonly string Name;
-        /// <summary>
-        /// `(string)` Namespace of the specified job.
-        /// </summary>
         public readonly string? Namespace;
         /// <summary>
         /// `(string)` Job's parent ID.

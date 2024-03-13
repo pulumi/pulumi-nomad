@@ -77,7 +77,8 @@ public final class GetAllocationsAllocation {
      */
     private String name;
     /**
-     * @return `(string)` - The namespace the allocation belongs to.
+     * @return `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+     * allocations in.
      * 
      */
     private String namespace;
@@ -200,7 +201,8 @@ public final class GetAllocationsAllocation {
         return this.name;
     }
     /**
-     * @return `(string)` - The namespace the allocation belongs to.
+     * @return `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+     * allocations in.
      * 
      */
     public String namespace() {

@@ -16,7 +16,8 @@ namespace Pulumi.Nomad.Inputs
         private InputList<string>? _allowedRedirectUris;
 
         /// <summary>
-        /// A list of allowed values that can be used for the redirect URI.
+        /// `([]string: &lt;optional&gt;)` - A list of allowed values
+        /// that can be used for the redirect URI.
         /// </summary>
         public InputList<string> AllowedRedirectUris
         {
@@ -28,7 +29,8 @@ namespace Pulumi.Nomad.Inputs
         private InputList<string>? _boundAudiences;
 
         /// <summary>
-        /// List of auth claims that are valid for login.
+        /// `([]string: &lt;optional&gt;)` - List of auth claims that are
+        /// valid for login.
         /// </summary>
         public InputList<string> BoundAudiences
         {
@@ -40,7 +42,8 @@ namespace Pulumi.Nomad.Inputs
         private InputMap<string>? _claimMappings;
 
         /// <summary>
-        /// Mappings of claims (key) that will be copied to a metadata field (value).
+        /// `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+        /// that will be copied to a metadata field (value).
         /// </summary>
         public InputMap<string> ClaimMappings
         {
@@ -52,7 +55,8 @@ namespace Pulumi.Nomad.Inputs
         private InputList<string>? _discoveryCaPems;
 
         /// <summary>
-        /// PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+        /// `([]string: &lt;optional&gt;)` - PEM encoded CA certs for use
+        /// by the TLS client used to talk with the OIDC Discovery URL.
         /// </summary>
         public InputList<string> DiscoveryCaPems
         {
@@ -64,7 +68,8 @@ namespace Pulumi.Nomad.Inputs
         private InputMap<string>? _listClaimMappings;
 
         /// <summary>
-        /// Mappings of list claims (key) that will be copied to a metadata field (value).
+        /// `(map[string]string: &lt;optional&gt;)` - Mappings of list
+        /// claims (key) that will be copied to a metadata field (value).
         /// </summary>
         public InputMap<string> ListClaimMappings
         {
@@ -73,7 +78,8 @@ namespace Pulumi.Nomad.Inputs
         }
 
         /// <summary>
-        /// The OAuth Client ID configured with the OIDC provider.
+        /// `(string: &lt;required&gt;)` - The OAuth Client ID configured
+        /// with the OIDC provider.
         /// </summary>
         [Input("oidcClientId", required: true)]
         public Input<string> OidcClientId { get; set; } = null!;
@@ -82,7 +88,8 @@ namespace Pulumi.Nomad.Inputs
         private Input<string>? _oidcClientSecret;
 
         /// <summary>
-        /// The OAuth Client Secret configured with the OIDC provider.
+        /// `(string: &lt;required&gt;)` - The OAuth Client Secret
+        /// configured with the OIDC provider.
         /// </summary>
         public Input<string>? OidcClientSecret
         {
@@ -95,7 +102,17 @@ namespace Pulumi.Nomad.Inputs
         }
 
         /// <summary>
-        /// The OIDC Discovery URL, without any .well-known component (base path).
+        /// `(bool: false)` - When set to `true`, Nomad will
+        /// not make a request to the identity provider to get OIDC `UserInfo`.
+        /// You may wish to set this if your identity provider doesn't send any
+        /// additional claims from the `UserInfo` endpoint.
+        /// </summary>
+        [Input("oidcDisableUserinfo")]
+        public Input<bool>? OidcDisableUserinfo { get; set; }
+
+        /// <summary>
+        /// `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+        /// without any .well-known component (base path).
         /// </summary>
         [Input("oidcDiscoveryUrl", required: true)]
         public Input<string> OidcDiscoveryUrl { get; set; } = null!;
@@ -104,7 +121,7 @@ namespace Pulumi.Nomad.Inputs
         private InputList<string>? _oidcScopes;
 
         /// <summary>
-        /// List of OIDC scopes.
+        /// `([]string: &lt;optional&gt;)` - List of OIDC scopes.
         /// </summary>
         public InputList<string> OidcScopes
         {
@@ -116,7 +133,8 @@ namespace Pulumi.Nomad.Inputs
         private InputList<string>? _signingAlgs;
 
         /// <summary>
-        /// A list of supported signing algorithms.
+        /// `([]string: &lt;optional&gt;)` - A list of supported signing
+        /// algorithms.
         /// </summary>
         public InputList<string> SigningAlgs
         {

@@ -75,6 +75,13 @@ namespace Pulumi.Nomad
         public string? Filter { get; set; }
 
         /// <summary>
+        /// `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+        /// allocations in.
+        /// </summary>
+        [Input("namespace")]
+        public string? Namespace { get; set; }
+
+        /// <summary>
         /// `(string: &lt;optional&gt;)` - Specifies a string to filter allocations
         /// based on an ID prefix.
         /// </summary>
@@ -95,6 +102,13 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+        /// allocations in.
+        /// </summary>
+        [Input("namespace")]
+        public Input<string>? Namespace { get; set; }
 
         /// <summary>
         /// `(string: &lt;optional&gt;)` - Specifies a string to filter allocations
@@ -123,6 +137,10 @@ namespace Pulumi.Nomad
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// `(string)` - The namespace the allocation belongs to.
+        /// </summary>
+        public readonly string? Namespace;
         public readonly string? Prefix;
 
         [OutputConstructor]
@@ -133,11 +151,14 @@ namespace Pulumi.Nomad
 
             string id,
 
+            string? @namespace,
+
             string? prefix)
         {
             Allocations = allocations;
             Filter = filter;
             Id = id;
+            Namespace = @namespace;
             Prefix = prefix;
         }
     }

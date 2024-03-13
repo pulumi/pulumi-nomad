@@ -97,6 +97,8 @@ class AclAuthMethodConfig(dict):
             suggest = "discovery_ca_pems"
         elif key == "listClaimMappings":
             suggest = "list_claim_mappings"
+        elif key == "oidcDisableUserinfo":
+            suggest = "oidc_disable_userinfo"
         elif key == "oidcScopes":
             suggest = "oidc_scopes"
         elif key == "signingAlgs":
@@ -122,19 +124,33 @@ class AclAuthMethodConfig(dict):
                  claim_mappings: Optional[Mapping[str, str]] = None,
                  discovery_ca_pems: Optional[Sequence[str]] = None,
                  list_claim_mappings: Optional[Mapping[str, str]] = None,
+                 oidc_disable_userinfo: Optional[bool] = None,
                  oidc_scopes: Optional[Sequence[str]] = None,
                  signing_algs: Optional[Sequence[str]] = None):
         """
-        :param Sequence[str] allowed_redirect_uris: A list of allowed values that can be used for the redirect URI.
-        :param str oidc_client_id: The OAuth Client ID configured with the OIDC provider.
-        :param str oidc_client_secret: The OAuth Client Secret configured with the OIDC provider.
-        :param str oidc_discovery_url: The OIDC Discovery URL, without any .well-known component (base path).
-        :param Sequence[str] bound_audiences: List of auth claims that are valid for login.
-        :param Mapping[str, str] claim_mappings: Mappings of claims (key) that will be copied to a metadata field (value).
-        :param Sequence[str] discovery_ca_pems: PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
-        :param Mapping[str, str] list_claim_mappings: Mappings of list claims (key) that will be copied to a metadata field (value).
-        :param Sequence[str] oidc_scopes: List of OIDC scopes.
-        :param Sequence[str] signing_algs: A list of supported signing algorithms.
+        :param Sequence[str] allowed_redirect_uris: `([]string: <optional>)` - A list of allowed values
+               that can be used for the redirect URI.
+        :param str oidc_client_id: `(string: <required>)` - The OAuth Client ID configured
+               with the OIDC provider.
+        :param str oidc_client_secret: `(string: <required>)` - The OAuth Client Secret
+               configured with the OIDC provider.
+        :param str oidc_discovery_url: `(string: <required>)` - The OIDC Discovery URL,
+               without any .well-known component (base path).
+        :param Sequence[str] bound_audiences: `([]string: <optional>)` - List of auth claims that are
+               valid for login.
+        :param Mapping[str, str] claim_mappings: `(map[string]string: <optional>)` - Mappings of claims (key)
+               that will be copied to a metadata field (value).
+        :param Sequence[str] discovery_ca_pems: `([]string: <optional>)` - PEM encoded CA certs for use
+               by the TLS client used to talk with the OIDC Discovery URL.
+        :param Mapping[str, str] list_claim_mappings: `(map[string]string: <optional>)` - Mappings of list
+               claims (key) that will be copied to a metadata field (value).
+        :param bool oidc_disable_userinfo: `(bool: false)` - When set to `true`, Nomad will
+               not make a request to the identity provider to get OIDC `UserInfo`.
+               You may wish to set this if your identity provider doesn't send any
+               additional claims from the `UserInfo` endpoint.
+        :param Sequence[str] oidc_scopes: `([]string: <optional>)` - List of OIDC scopes.
+        :param Sequence[str] signing_algs: `([]string: <optional>)` - A list of supported signing
+               algorithms.
         """
         pulumi.set(__self__, "allowed_redirect_uris", allowed_redirect_uris)
         pulumi.set(__self__, "oidc_client_id", oidc_client_id)
@@ -148,6 +164,8 @@ class AclAuthMethodConfig(dict):
             pulumi.set(__self__, "discovery_ca_pems", discovery_ca_pems)
         if list_claim_mappings is not None:
             pulumi.set(__self__, "list_claim_mappings", list_claim_mappings)
+        if oidc_disable_userinfo is not None:
+            pulumi.set(__self__, "oidc_disable_userinfo", oidc_disable_userinfo)
         if oidc_scopes is not None:
             pulumi.set(__self__, "oidc_scopes", oidc_scopes)
         if signing_algs is not None:
@@ -157,7 +175,8 @@ class AclAuthMethodConfig(dict):
     @pulumi.getter(name="allowedRedirectUris")
     def allowed_redirect_uris(self) -> Sequence[str]:
         """
-        A list of allowed values that can be used for the redirect URI.
+        `([]string: <optional>)` - A list of allowed values
+        that can be used for the redirect URI.
         """
         return pulumi.get(self, "allowed_redirect_uris")
 
@@ -165,7 +184,8 @@ class AclAuthMethodConfig(dict):
     @pulumi.getter(name="oidcClientId")
     def oidc_client_id(self) -> str:
         """
-        The OAuth Client ID configured with the OIDC provider.
+        `(string: <required>)` - The OAuth Client ID configured
+        with the OIDC provider.
         """
         return pulumi.get(self, "oidc_client_id")
 
@@ -173,7 +193,8 @@ class AclAuthMethodConfig(dict):
     @pulumi.getter(name="oidcClientSecret")
     def oidc_client_secret(self) -> str:
         """
-        The OAuth Client Secret configured with the OIDC provider.
+        `(string: <required>)` - The OAuth Client Secret
+        configured with the OIDC provider.
         """
         return pulumi.get(self, "oidc_client_secret")
 
@@ -181,7 +202,8 @@ class AclAuthMethodConfig(dict):
     @pulumi.getter(name="oidcDiscoveryUrl")
     def oidc_discovery_url(self) -> str:
         """
-        The OIDC Discovery URL, without any .well-known component (base path).
+        `(string: <required>)` - The OIDC Discovery URL,
+        without any .well-known component (base path).
         """
         return pulumi.get(self, "oidc_discovery_url")
 
@@ -189,7 +211,8 @@ class AclAuthMethodConfig(dict):
     @pulumi.getter(name="boundAudiences")
     def bound_audiences(self) -> Optional[Sequence[str]]:
         """
-        List of auth claims that are valid for login.
+        `([]string: <optional>)` - List of auth claims that are
+        valid for login.
         """
         return pulumi.get(self, "bound_audiences")
 
@@ -197,7 +220,8 @@ class AclAuthMethodConfig(dict):
     @pulumi.getter(name="claimMappings")
     def claim_mappings(self) -> Optional[Mapping[str, str]]:
         """
-        Mappings of claims (key) that will be copied to a metadata field (value).
+        `(map[string]string: <optional>)` - Mappings of claims (key)
+        that will be copied to a metadata field (value).
         """
         return pulumi.get(self, "claim_mappings")
 
@@ -205,7 +229,8 @@ class AclAuthMethodConfig(dict):
     @pulumi.getter(name="discoveryCaPems")
     def discovery_ca_pems(self) -> Optional[Sequence[str]]:
         """
-        PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+        `([]string: <optional>)` - PEM encoded CA certs for use
+        by the TLS client used to talk with the OIDC Discovery URL.
         """
         return pulumi.get(self, "discovery_ca_pems")
 
@@ -213,15 +238,27 @@ class AclAuthMethodConfig(dict):
     @pulumi.getter(name="listClaimMappings")
     def list_claim_mappings(self) -> Optional[Mapping[str, str]]:
         """
-        Mappings of list claims (key) that will be copied to a metadata field (value).
+        `(map[string]string: <optional>)` - Mappings of list
+        claims (key) that will be copied to a metadata field (value).
         """
         return pulumi.get(self, "list_claim_mappings")
+
+    @property
+    @pulumi.getter(name="oidcDisableUserinfo")
+    def oidc_disable_userinfo(self) -> Optional[bool]:
+        """
+        `(bool: false)` - When set to `true`, Nomad will
+        not make a request to the identity provider to get OIDC `UserInfo`.
+        You may wish to set this if your identity provider doesn't send any
+        additional claims from the `UserInfo` endpoint.
+        """
+        return pulumi.get(self, "oidc_disable_userinfo")
 
     @property
     @pulumi.getter(name="oidcScopes")
     def oidc_scopes(self) -> Optional[Sequence[str]]:
         """
-        List of OIDC scopes.
+        `([]string: <optional>)` - List of OIDC scopes.
         """
         return pulumi.get(self, "oidc_scopes")
 
@@ -229,7 +266,8 @@ class AclAuthMethodConfig(dict):
     @pulumi.getter(name="signingAlgs")
     def signing_algs(self) -> Optional[Sequence[str]]:
         """
-        A list of supported signing algorithms.
+        `([]string: <optional>)` - A list of supported signing
+        algorithms.
         """
         return pulumi.get(self, "signing_algs")
 
@@ -2103,7 +2141,8 @@ class GetAllocationsAllocationResult(dict):
         :param int modify_index: `(int)` - The Raft index in which the allocation was last modified.
         :param int modify_time: `(int)` - The timestamp of when the allocation was last modified.
         :param str name: `(string)` - The name of the allocation.
-        :param str namespace: `(string)` - The namespace the allocation belongs to.
+        :param str namespace: `(string: <optional>)` - Specifies the namespace to search for
+               allocations in.
         :param str next_allocation: `(string)` - The ID of the allocation that succeeds the allocation.
         :param str node_id: `(string)` - The ID of the node to which the allocation was scheduled.
         :param str node_name: `(string)` - The ID of the node to which the allocation was scheduled.
@@ -2238,7 +2277,8 @@ class GetAllocationsAllocationResult(dict):
     @pulumi.getter
     def namespace(self) -> str:
         """
-        `(string)` - The namespace the allocation belongs to.
+        `(string: <optional>)` - Specifies the namespace to search for
+        allocations in.
         """
         return pulumi.get(self, "namespace")
 

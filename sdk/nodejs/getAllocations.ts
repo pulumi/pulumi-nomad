@@ -28,6 +28,7 @@ export function getAllocations(args?: GetAllocationsArgs, opts?: pulumi.InvokeOp
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getAllocations:getAllocations", {
         "filter": args.filter,
+        "namespace": args.namespace,
         "prefix": args.prefix,
     }, opts);
 }
@@ -41,6 +42,11 @@ export interface GetAllocationsArgs {
      * [expression][nomadApiFilter] used to filter the results.
      */
     filter?: string;
+    /**
+     * `(string: <optional>)` - Specifies the namespace to search for
+     * allocations in.
+     */
+    namespace?: string;
     /**
      * `(string: <optional>)` - Specifies a string to filter allocations
      * based on an ID prefix.
@@ -62,6 +68,10 @@ export interface GetAllocationsResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * `(string)` - The namespace the allocation belongs to.
+     */
+    readonly namespace?: string;
     readonly prefix?: string;
 }
 /**
@@ -93,6 +103,11 @@ export interface GetAllocationsOutputArgs {
      * [expression][nomadApiFilter] used to filter the results.
      */
     filter?: pulumi.Input<string>;
+    /**
+     * `(string: <optional>)` - Specifies the namespace to search for
+     * allocations in.
+     */
+    namespace?: pulumi.Input<string>;
     /**
      * `(string: <optional>)` - Specifies a string to filter allocations
      * based on an ID prefix.

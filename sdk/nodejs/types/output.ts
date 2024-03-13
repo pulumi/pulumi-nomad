@@ -7,43 +7,59 @@ import * as outputs from "../types/output";
 
 export interface AclAuthMethodConfig {
     /**
-     * A list of allowed values that can be used for the redirect URI.
+     * `([]string: <optional>)` - A list of allowed values
+     * that can be used for the redirect URI.
      */
     allowedRedirectUris: string[];
     /**
-     * List of auth claims that are valid for login.
+     * `([]string: <optional>)` - List of auth claims that are
+     * valid for login.
      */
     boundAudiences?: string[];
     /**
-     * Mappings of claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: <optional>)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      */
     claimMappings?: {[key: string]: string};
     /**
-     * PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     * `([]string: <optional>)` - PEM encoded CA certs for use
+     * by the TLS client used to talk with the OIDC Discovery URL.
      */
     discoveryCaPems?: string[];
     /**
-     * Mappings of list claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: <optional>)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      */
     listClaimMappings?: {[key: string]: string};
     /**
-     * The OAuth Client ID configured with the OIDC provider.
+     * `(string: <required>)` - The OAuth Client ID configured
+     * with the OIDC provider.
      */
     oidcClientId: string;
     /**
-     * The OAuth Client Secret configured with the OIDC provider.
+     * `(string: <required>)` - The OAuth Client Secret
+     * configured with the OIDC provider.
      */
     oidcClientSecret: string;
     /**
-     * The OIDC Discovery URL, without any .well-known component (base path).
+     * `(bool: false)` - When set to `true`, Nomad will
+     * not make a request to the identity provider to get OIDC `UserInfo`.
+     * You may wish to set this if your identity provider doesn't send any
+     * additional claims from the `UserInfo` endpoint.
+     */
+    oidcDisableUserinfo?: boolean;
+    /**
+     * `(string: <required>)` - The OIDC Discovery URL,
+     * without any .well-known component (base path).
      */
     oidcDiscoveryUrl: string;
     /**
-     * List of OIDC scopes.
+     * `([]string: <optional>)` - List of OIDC scopes.
      */
     oidcScopes?: string[];
     /**
-     * A list of supported signing algorithms.
+     * `([]string: <optional>)` - A list of supported signing
+     * algorithms.
      */
     signingAlgs?: string[];
 }
@@ -478,7 +494,8 @@ export interface GetAllocationsAllocation {
      */
     name: string;
     /**
-     * `(string)` - The namespace the allocation belongs to.
+     * `(string: <optional>)` - Specifies the namespace to search for
+     * allocations in.
      */
     namespace: string;
     /**

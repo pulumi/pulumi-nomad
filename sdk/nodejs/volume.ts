@@ -121,7 +121,7 @@ export class Volume extends pulumi.CustomResource {
      */
     public /*out*/ readonly controllersHealthy!: pulumi.Output<number>;
     /**
-     * `(boolean: false)` - If true, the volume will be deregistered on destroy.
+     * `(boolean: true)` - If true, the volume will be deregistered on destroy.
      */
     public readonly deregisterOnDestroy!: pulumi.Output<boolean | undefined>;
     /**
@@ -311,7 +311,7 @@ export interface VolumeState {
      */
     controllersHealthy?: pulumi.Input<number>;
     /**
-     * `(boolean: false)` - If true, the volume will be deregistered on destroy.
+     * `(boolean: true)` - If true, the volume will be deregistered on destroy.
      */
     deregisterOnDestroy?: pulumi.Input<boolean>;
     /**
@@ -410,7 +410,7 @@ export interface VolumeArgs {
      */
     context?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * `(boolean: false)` - If true, the volume will be deregistered on destroy.
+     * `(boolean: true)` - If true, the volume will be deregistered on destroy.
      */
     deregisterOnDestroy?: pulumi.Input<boolean>;
     /**

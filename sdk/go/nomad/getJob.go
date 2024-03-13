@@ -34,7 +34,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.LookupJob(ctx, &nomad.LookupJobArgs{
-//				JobId: "example",
+//				JobId:     "example",
+//				Namespace: pulumi.StringRef("dev"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -80,8 +81,7 @@ type LookupJobResult struct {
 	// `(integer)` Modification Index.
 	ModifyIndex int `pulumi:"modifyIndex"`
 	// `(string)` Name of the job.
-	Name string `pulumi:"name"`
-	// `(string)` Namespace of the specified job.
+	Name      string  `pulumi:"name"`
 	Namespace *string `pulumi:"namespace"`
 	// `(string)` Job's parent ID.
 	ParentId string `pulumi:"parentId"`
@@ -192,7 +192,6 @@ func (o LookupJobResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupJobResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// `(string)` Namespace of the specified job.
 func (o LookupJobResultOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupJobResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }

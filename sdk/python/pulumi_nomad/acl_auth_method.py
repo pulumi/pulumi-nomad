@@ -25,8 +25,9 @@ class AclAuthMethodArgs:
                  token_name_format: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AclAuthMethod resource.
-        :param pulumi.Input['AclAuthMethodConfigArgs'] config: Configuration specific to the auth method provider.
-        :param pulumi.Input[str] max_token_ttl: `(string: <required>)` - Defines the maximum life of a token 
+        :param pulumi.Input['AclAuthMethodConfigArgs'] config: `(block: <required>)` - Configuration specific to the auth method
+               provider.
+        :param pulumi.Input[str] max_token_ttl: `(string: <required>)` - Defines the maximum life of a token
                created by this method and is specified as a time duration such as "15h".
         :param pulumi.Input[str] token_locality: `(string: <required>)` - Defines whether the ACL Auth Method
                creates a local or global token when performing SSO login. This field must be
@@ -36,9 +37,9 @@ class AclAuthMethodArgs:
         :param pulumi.Input[bool] default: `(bool: false)` - Defines whether this ACL Auth Method is to be set
                as default.
         :param pulumi.Input[str] name: `(string: <required>)` - The identifier of the ACL Auth Method.
-        :param pulumi.Input[str] token_name_format: `(string: <optional>)` - Defines the token name format for the
-               generated tokens This can be lightly templated using HIL '${foo}' syntax.
-               Defaults to `${auth_method_type}-${auth_method_name}`.
+        :param pulumi.Input[str] token_name_format: `(string: "${auth_method_type}-${auth_method_name}")` -
+               Defines the token name format for the generated tokens This can be lightly
+               templated using HIL '${foo}' syntax.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "max_token_ttl", max_token_ttl)
@@ -55,7 +56,8 @@ class AclAuthMethodArgs:
     @pulumi.getter
     def config(self) -> pulumi.Input['AclAuthMethodConfigArgs']:
         """
-        Configuration specific to the auth method provider.
+        `(block: <required>)` - Configuration specific to the auth method
+        provider.
         """
         return pulumi.get(self, "config")
 
@@ -67,7 +69,7 @@ class AclAuthMethodArgs:
     @pulumi.getter(name="maxTokenTtl")
     def max_token_ttl(self) -> pulumi.Input[str]:
         """
-        `(string: <required>)` - Defines the maximum life of a token 
+        `(string: <required>)` - Defines the maximum life of a token
         created by this method and is specified as a time duration such as "15h".
         """
         return pulumi.get(self, "max_token_ttl")
@@ -132,9 +134,9 @@ class AclAuthMethodArgs:
     @pulumi.getter(name="tokenNameFormat")
     def token_name_format(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <optional>)` - Defines the token name format for the
-        generated tokens This can be lightly templated using HIL '${foo}' syntax.
-        Defaults to `${auth_method_type}-${auth_method_name}`.
+        `(string: "${auth_method_type}-${auth_method_name}")` -
+        Defines the token name format for the generated tokens This can be lightly
+        templated using HIL '${foo}' syntax.
         """
         return pulumi.get(self, "token_name_format")
 
@@ -155,18 +157,19 @@ class _AclAuthMethodState:
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AclAuthMethod resources.
-        :param pulumi.Input['AclAuthMethodConfigArgs'] config: Configuration specific to the auth method provider.
+        :param pulumi.Input['AclAuthMethodConfigArgs'] config: `(block: <required>)` - Configuration specific to the auth method
+               provider.
         :param pulumi.Input[bool] default: `(bool: false)` - Defines whether this ACL Auth Method is to be set
                as default.
-        :param pulumi.Input[str] max_token_ttl: `(string: <required>)` - Defines the maximum life of a token 
+        :param pulumi.Input[str] max_token_ttl: `(string: <required>)` - Defines the maximum life of a token
                created by this method and is specified as a time duration such as "15h".
         :param pulumi.Input[str] name: `(string: <required>)` - The identifier of the ACL Auth Method.
         :param pulumi.Input[str] token_locality: `(string: <required>)` - Defines whether the ACL Auth Method
                creates a local or global token when performing SSO login. This field must be
                set to either `local` or `global`.
-        :param pulumi.Input[str] token_name_format: `(string: <optional>)` - Defines the token name format for the
-               generated tokens This can be lightly templated using HIL '${foo}' syntax.
-               Defaults to `${auth_method_type}-${auth_method_name}`.
+        :param pulumi.Input[str] token_name_format: `(string: "${auth_method_type}-${auth_method_name}")` -
+               Defines the token name format for the generated tokens This can be lightly
+               templated using HIL '${foo}' syntax.
         :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
                the only supported type is `OIDC`.
         """
@@ -189,7 +192,8 @@ class _AclAuthMethodState:
     @pulumi.getter
     def config(self) -> Optional[pulumi.Input['AclAuthMethodConfigArgs']]:
         """
-        Configuration specific to the auth method provider.
+        `(block: <required>)` - Configuration specific to the auth method
+        provider.
         """
         return pulumi.get(self, "config")
 
@@ -214,7 +218,7 @@ class _AclAuthMethodState:
     @pulumi.getter(name="maxTokenTtl")
     def max_token_ttl(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <required>)` - Defines the maximum life of a token 
+        `(string: <required>)` - Defines the maximum life of a token
         created by this method and is specified as a time duration such as "15h".
         """
         return pulumi.get(self, "max_token_ttl")
@@ -253,9 +257,9 @@ class _AclAuthMethodState:
     @pulumi.getter(name="tokenNameFormat")
     def token_name_format(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <optional>)` - Defines the token name format for the
-        generated tokens This can be lightly templated using HIL '${foo}' syntax.
-        Defaults to `${auth_method_type}-${auth_method_name}`.
+        `(string: "${auth_method_type}-${auth_method_name}")` -
+        Defines the token name format for the generated tokens This can be lightly
+        templated using HIL '${foo}' syntax.
         """
         return pulumi.get(self, "token_name_format")
 
@@ -326,18 +330,19 @@ class AclAuthMethod(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['AclAuthMethodConfigArgs']] config: Configuration specific to the auth method provider.
+        :param pulumi.Input[pulumi.InputType['AclAuthMethodConfigArgs']] config: `(block: <required>)` - Configuration specific to the auth method
+               provider.
         :param pulumi.Input[bool] default: `(bool: false)` - Defines whether this ACL Auth Method is to be set
                as default.
-        :param pulumi.Input[str] max_token_ttl: `(string: <required>)` - Defines the maximum life of a token 
+        :param pulumi.Input[str] max_token_ttl: `(string: <required>)` - Defines the maximum life of a token
                created by this method and is specified as a time duration such as "15h".
         :param pulumi.Input[str] name: `(string: <required>)` - The identifier of the ACL Auth Method.
         :param pulumi.Input[str] token_locality: `(string: <required>)` - Defines whether the ACL Auth Method
                creates a local or global token when performing SSO login. This field must be
                set to either `local` or `global`.
-        :param pulumi.Input[str] token_name_format: `(string: <optional>)` - Defines the token name format for the
-               generated tokens This can be lightly templated using HIL '${foo}' syntax.
-               Defaults to `${auth_method_type}-${auth_method_name}`.
+        :param pulumi.Input[str] token_name_format: `(string: "${auth_method_type}-${auth_method_name}")` -
+               Defines the token name format for the generated tokens This can be lightly
+               templated using HIL '${foo}' syntax.
         :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
                the only supported type is `OIDC`.
         """
@@ -451,18 +456,19 @@ class AclAuthMethod(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['AclAuthMethodConfigArgs']] config: Configuration specific to the auth method provider.
+        :param pulumi.Input[pulumi.InputType['AclAuthMethodConfigArgs']] config: `(block: <required>)` - Configuration specific to the auth method
+               provider.
         :param pulumi.Input[bool] default: `(bool: false)` - Defines whether this ACL Auth Method is to be set
                as default.
-        :param pulumi.Input[str] max_token_ttl: `(string: <required>)` - Defines the maximum life of a token 
+        :param pulumi.Input[str] max_token_ttl: `(string: <required>)` - Defines the maximum life of a token
                created by this method and is specified as a time duration such as "15h".
         :param pulumi.Input[str] name: `(string: <required>)` - The identifier of the ACL Auth Method.
         :param pulumi.Input[str] token_locality: `(string: <required>)` - Defines whether the ACL Auth Method
                creates a local or global token when performing SSO login. This field must be
                set to either `local` or `global`.
-        :param pulumi.Input[str] token_name_format: `(string: <optional>)` - Defines the token name format for the
-               generated tokens This can be lightly templated using HIL '${foo}' syntax.
-               Defaults to `${auth_method_type}-${auth_method_name}`.
+        :param pulumi.Input[str] token_name_format: `(string: "${auth_method_type}-${auth_method_name}")` -
+               Defines the token name format for the generated tokens This can be lightly
+               templated using HIL '${foo}' syntax.
         :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
                the only supported type is `OIDC`.
         """
@@ -483,7 +489,8 @@ class AclAuthMethod(pulumi.CustomResource):
     @pulumi.getter
     def config(self) -> pulumi.Output['outputs.AclAuthMethodConfig']:
         """
-        Configuration specific to the auth method provider.
+        `(block: <required>)` - Configuration specific to the auth method
+        provider.
         """
         return pulumi.get(self, "config")
 
@@ -500,7 +507,7 @@ class AclAuthMethod(pulumi.CustomResource):
     @pulumi.getter(name="maxTokenTtl")
     def max_token_ttl(self) -> pulumi.Output[str]:
         """
-        `(string: <required>)` - Defines the maximum life of a token 
+        `(string: <required>)` - Defines the maximum life of a token
         created by this method and is specified as a time duration such as "15h".
         """
         return pulumi.get(self, "max_token_ttl")
@@ -527,9 +534,9 @@ class AclAuthMethod(pulumi.CustomResource):
     @pulumi.getter(name="tokenNameFormat")
     def token_name_format(self) -> pulumi.Output[Optional[str]]:
         """
-        `(string: <optional>)` - Defines the token name format for the
-        generated tokens This can be lightly templated using HIL '${foo}' syntax.
-        Defaults to `${auth_method_type}-${auth_method_name}`.
+        `(string: "${auth_method_type}-${auth_method_name}")` -
+        Defines the token name format for the generated tokens This can be lightly
+        templated using HIL '${foo}' syntax.
         """
         return pulumi.get(self, "token_name_format")
 
