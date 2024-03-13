@@ -26,6 +26,11 @@ public final class GetAllocationsResult {
      * 
      */
     private String id;
+    /**
+     * @return `(string)` - The namespace the allocation belongs to.
+     * 
+     */
+    private @Nullable String namespace;
     private @Nullable String prefix;
 
     private GetAllocationsResult() {}
@@ -47,6 +52,13 @@ public final class GetAllocationsResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return `(string)` - The namespace the allocation belongs to.
+     * 
+     */
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
     public Optional<String> prefix() {
         return Optional.ofNullable(this.prefix);
     }
@@ -63,6 +75,7 @@ public final class GetAllocationsResult {
         private List<GetAllocationsAllocation> allocations;
         private @Nullable String filter;
         private String id;
+        private @Nullable String namespace;
         private @Nullable String prefix;
         public Builder() {}
         public Builder(GetAllocationsResult defaults) {
@@ -70,6 +83,7 @@ public final class GetAllocationsResult {
     	      this.allocations = defaults.allocations;
     	      this.filter = defaults.filter;
     	      this.id = defaults.id;
+    	      this.namespace = defaults.namespace;
     	      this.prefix = defaults.prefix;
         }
 
@@ -99,6 +113,12 @@ public final class GetAllocationsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder namespace(@Nullable String namespace) {
+
+            this.namespace = namespace;
+            return this;
+        }
+        @CustomType.Setter
         public Builder prefix(@Nullable String prefix) {
 
             this.prefix = prefix;
@@ -109,6 +129,7 @@ public final class GetAllocationsResult {
             _resultValue.allocations = allocations;
             _resultValue.filter = filter;
             _resultValue.id = id;
+            _resultValue.namespace = namespace;
             _resultValue.prefix = prefix;
             return _resultValue;
         }

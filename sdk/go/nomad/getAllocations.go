@@ -55,6 +55,9 @@ type GetAllocationsArgs struct {
 	// `(string: <optional>)` - Specifies the
 	// [expression][nomadApiFilter] used to filter the results.
 	Filter *string `pulumi:"filter"`
+	// `(string: <optional>)` - Specifies the namespace to search for
+	// allocations in.
+	Namespace *string `pulumi:"namespace"`
 	// `(string: <optional>)` - Specifies a string to filter allocations
 	// based on an ID prefix.
 	Prefix *string `pulumi:"prefix"`
@@ -67,8 +70,10 @@ type GetAllocationsResult struct {
 	Allocations []GetAllocationsAllocation `pulumi:"allocations"`
 	Filter      *string                    `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string  `pulumi:"id"`
-	Prefix *string `pulumi:"prefix"`
+	Id string `pulumi:"id"`
+	// `(string)` - The namespace the allocation belongs to.
+	Namespace *string `pulumi:"namespace"`
+	Prefix    *string `pulumi:"prefix"`
 }
 
 func GetAllocationsOutput(ctx *pulumi.Context, args GetAllocationsOutputArgs, opts ...pulumi.InvokeOption) GetAllocationsResultOutput {
@@ -89,6 +94,9 @@ type GetAllocationsOutputArgs struct {
 	// `(string: <optional>)` - Specifies the
 	// [expression][nomadApiFilter] used to filter the results.
 	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// `(string: <optional>)` - Specifies the namespace to search for
+	// allocations in.
+	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// `(string: <optional>)` - Specifies a string to filter allocations
 	// based on an ID prefix.
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
@@ -126,6 +134,11 @@ func (o GetAllocationsResultOutput) Filter() pulumi.StringPtrOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetAllocationsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAllocationsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// `(string)` - The namespace the allocation belongs to.
+func (o GetAllocationsResultOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAllocationsResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
 func (o GetAllocationsResultOutput) Prefix() pulumi.StringPtrOutput {

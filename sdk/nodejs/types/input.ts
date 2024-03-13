@@ -7,43 +7,59 @@ import * as outputs from "../types/output";
 
 export interface AclAuthMethodConfig {
     /**
-     * A list of allowed values that can be used for the redirect URI.
+     * `([]string: <optional>)` - A list of allowed values
+     * that can be used for the redirect URI.
      */
     allowedRedirectUris: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * List of auth claims that are valid for login.
+     * `([]string: <optional>)` - List of auth claims that are
+     * valid for login.
      */
     boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Mappings of claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: <optional>)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      */
     claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     * `([]string: <optional>)` - PEM encoded CA certs for use
+     * by the TLS client used to talk with the OIDC Discovery URL.
      */
     discoveryCaPems?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Mappings of list claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: <optional>)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      */
     listClaimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The OAuth Client ID configured with the OIDC provider.
+     * `(string: <required>)` - The OAuth Client ID configured
+     * with the OIDC provider.
      */
     oidcClientId: pulumi.Input<string>;
     /**
-     * The OAuth Client Secret configured with the OIDC provider.
+     * `(string: <required>)` - The OAuth Client Secret
+     * configured with the OIDC provider.
      */
     oidcClientSecret: pulumi.Input<string>;
     /**
-     * The OIDC Discovery URL, without any .well-known component (base path).
+     * `(bool: false)` - When set to `true`, Nomad will
+     * not make a request to the identity provider to get OIDC `UserInfo`.
+     * You may wish to set this if your identity provider doesn't send any
+     * additional claims from the `UserInfo` endpoint.
+     */
+    oidcDisableUserinfo?: pulumi.Input<boolean>;
+    /**
+     * `(string: <required>)` - The OIDC Discovery URL,
+     * without any .well-known component (base path).
      */
     oidcDiscoveryUrl: pulumi.Input<string>;
     /**
-     * List of OIDC scopes.
+     * `([]string: <optional>)` - List of OIDC scopes.
      */
     oidcScopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A list of supported signing algorithms.
+     * `([]string: <optional>)` - A list of supported signing
+     * algorithms.
      */
     signingAlgs?: pulumi.Input<pulumi.Input<string>[]>;
 }

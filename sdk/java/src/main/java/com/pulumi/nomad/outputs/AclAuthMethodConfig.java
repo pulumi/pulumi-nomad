@@ -5,131 +5,169 @@ package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class AclAuthMethodConfig {
     /**
-     * @return A list of allowed values that can be used for the redirect URI.
+     * @return `([]string: &lt;optional&gt;)` - A list of allowed values
+     * that can be used for the redirect URI.
      * 
      */
     private List<String> allowedRedirectUris;
     /**
-     * @return List of auth claims that are valid for login.
+     * @return `([]string: &lt;optional&gt;)` - List of auth claims that are
+     * valid for login.
      * 
      */
     private @Nullable List<String> boundAudiences;
     /**
-     * @return Mappings of claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      * 
      */
     private @Nullable Map<String,String> claimMappings;
     /**
-     * @return PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     * @return `([]string: &lt;optional&gt;)` - PEM encoded CA certs for use
+     * by the TLS client used to talk with the OIDC Discovery URL.
      * 
      */
     private @Nullable List<String> discoveryCaPems;
     /**
-     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      * 
      */
     private @Nullable Map<String,String> listClaimMappings;
     /**
-     * @return The OAuth Client ID configured with the OIDC provider.
+     * @return `(string: &lt;required&gt;)` - The OAuth Client ID configured
+     * with the OIDC provider.
      * 
      */
     private String oidcClientId;
     /**
-     * @return The OAuth Client Secret configured with the OIDC provider.
+     * @return `(string: &lt;required&gt;)` - The OAuth Client Secret
+     * configured with the OIDC provider.
      * 
      */
     private String oidcClientSecret;
     /**
-     * @return The OIDC Discovery URL, without any .well-known component (base path).
+     * @return `(bool: false)` - When set to `true`, Nomad will
+     * not make a request to the identity provider to get OIDC `UserInfo`.
+     * You may wish to set this if your identity provider doesn&#39;t send any
+     * additional claims from the `UserInfo` endpoint.
+     * 
+     */
+    private @Nullable Boolean oidcDisableUserinfo;
+    /**
+     * @return `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+     * without any .well-known component (base path).
      * 
      */
     private String oidcDiscoveryUrl;
     /**
-     * @return List of OIDC scopes.
+     * @return `([]string: &lt;optional&gt;)` - List of OIDC scopes.
      * 
      */
     private @Nullable List<String> oidcScopes;
     /**
-     * @return A list of supported signing algorithms.
+     * @return `([]string: &lt;optional&gt;)` - A list of supported signing
+     * algorithms.
      * 
      */
     private @Nullable List<String> signingAlgs;
 
     private AclAuthMethodConfig() {}
     /**
-     * @return A list of allowed values that can be used for the redirect URI.
+     * @return `([]string: &lt;optional&gt;)` - A list of allowed values
+     * that can be used for the redirect URI.
      * 
      */
     public List<String> allowedRedirectUris() {
         return this.allowedRedirectUris;
     }
     /**
-     * @return List of auth claims that are valid for login.
+     * @return `([]string: &lt;optional&gt;)` - List of auth claims that are
+     * valid for login.
      * 
      */
     public List<String> boundAudiences() {
         return this.boundAudiences == null ? List.of() : this.boundAudiences;
     }
     /**
-     * @return Mappings of claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      * 
      */
     public Map<String,String> claimMappings() {
         return this.claimMappings == null ? Map.of() : this.claimMappings;
     }
     /**
-     * @return PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+     * @return `([]string: &lt;optional&gt;)` - PEM encoded CA certs for use
+     * by the TLS client used to talk with the OIDC Discovery URL.
      * 
      */
     public List<String> discoveryCaPems() {
         return this.discoveryCaPems == null ? List.of() : this.discoveryCaPems;
     }
     /**
-     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      * 
      */
     public Map<String,String> listClaimMappings() {
         return this.listClaimMappings == null ? Map.of() : this.listClaimMappings;
     }
     /**
-     * @return The OAuth Client ID configured with the OIDC provider.
+     * @return `(string: &lt;required&gt;)` - The OAuth Client ID configured
+     * with the OIDC provider.
      * 
      */
     public String oidcClientId() {
         return this.oidcClientId;
     }
     /**
-     * @return The OAuth Client Secret configured with the OIDC provider.
+     * @return `(string: &lt;required&gt;)` - The OAuth Client Secret
+     * configured with the OIDC provider.
      * 
      */
     public String oidcClientSecret() {
         return this.oidcClientSecret;
     }
     /**
-     * @return The OIDC Discovery URL, without any .well-known component (base path).
+     * @return `(bool: false)` - When set to `true`, Nomad will
+     * not make a request to the identity provider to get OIDC `UserInfo`.
+     * You may wish to set this if your identity provider doesn&#39;t send any
+     * additional claims from the `UserInfo` endpoint.
+     * 
+     */
+    public Optional<Boolean> oidcDisableUserinfo() {
+        return Optional.ofNullable(this.oidcDisableUserinfo);
+    }
+    /**
+     * @return `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+     * without any .well-known component (base path).
      * 
      */
     public String oidcDiscoveryUrl() {
         return this.oidcDiscoveryUrl;
     }
     /**
-     * @return List of OIDC scopes.
+     * @return `([]string: &lt;optional&gt;)` - List of OIDC scopes.
      * 
      */
     public List<String> oidcScopes() {
         return this.oidcScopes == null ? List.of() : this.oidcScopes;
     }
     /**
-     * @return A list of supported signing algorithms.
+     * @return `([]string: &lt;optional&gt;)` - A list of supported signing
+     * algorithms.
      * 
      */
     public List<String> signingAlgs() {
@@ -152,6 +190,7 @@ public final class AclAuthMethodConfig {
         private @Nullable Map<String,String> listClaimMappings;
         private String oidcClientId;
         private String oidcClientSecret;
+        private @Nullable Boolean oidcDisableUserinfo;
         private String oidcDiscoveryUrl;
         private @Nullable List<String> oidcScopes;
         private @Nullable List<String> signingAlgs;
@@ -165,6 +204,7 @@ public final class AclAuthMethodConfig {
     	      this.listClaimMappings = defaults.listClaimMappings;
     	      this.oidcClientId = defaults.oidcClientId;
     	      this.oidcClientSecret = defaults.oidcClientSecret;
+    	      this.oidcDisableUserinfo = defaults.oidcDisableUserinfo;
     	      this.oidcDiscoveryUrl = defaults.oidcDiscoveryUrl;
     	      this.oidcScopes = defaults.oidcScopes;
     	      this.signingAlgs = defaults.signingAlgs;
@@ -228,6 +268,12 @@ public final class AclAuthMethodConfig {
             return this;
         }
         @CustomType.Setter
+        public Builder oidcDisableUserinfo(@Nullable Boolean oidcDisableUserinfo) {
+
+            this.oidcDisableUserinfo = oidcDisableUserinfo;
+            return this;
+        }
+        @CustomType.Setter
         public Builder oidcDiscoveryUrl(String oidcDiscoveryUrl) {
             if (oidcDiscoveryUrl == null) {
               throw new MissingRequiredPropertyException("AclAuthMethodConfig", "oidcDiscoveryUrl");
@@ -262,6 +308,7 @@ public final class AclAuthMethodConfig {
             _resultValue.listClaimMappings = listClaimMappings;
             _resultValue.oidcClientId = oidcClientId;
             _resultValue.oidcClientSecret = oidcClientSecret;
+            _resultValue.oidcDisableUserinfo = oidcDisableUserinfo;
             _resultValue.oidcDiscoveryUrl = oidcDiscoveryUrl;
             _resultValue.oidcScopes = oidcScopes;
             _resultValue.signingAlgs = signingAlgs;

@@ -109,14 +109,14 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `(boolean: false)` - If true, the volume will be deregistered on destroy.
+     * `(boolean: true)` - If true, the volume will be deregistered on destroy.
      * 
      */
     @Import(name="deregisterOnDestroy")
     private @Nullable Output<Boolean> deregisterOnDestroy;
 
     /**
-     * @return `(boolean: false)` - If true, the volume will be deregistered on destroy.
+     * @return `(boolean: true)` - If true, the volume will be deregistered on destroy.
      * 
      */
     public Optional<Output<Boolean>> deregisterOnDestroy() {
@@ -432,7 +432,7 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deregisterOnDestroy `(boolean: false)` - If true, the volume will be deregistered on destroy.
+         * @param deregisterOnDestroy `(boolean: true)` - If true, the volume will be deregistered on destroy.
          * 
          * @return builder
          * 
@@ -443,7 +443,7 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deregisterOnDestroy `(boolean: false)` - If true, the volume will be deregistered on destroy.
+         * @param deregisterOnDestroy `(boolean: true)` - If true, the volume will be deregistered on destroy.
          * 
          * @return builder
          * 

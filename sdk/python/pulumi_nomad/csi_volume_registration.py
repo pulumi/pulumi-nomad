@@ -39,7 +39,7 @@ class CsiVolumeRegistrationArgs:
         :param pulumi.Input[str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
-        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: true)` - If true, the volume will be deregistered on destroy.
         :param pulumi.Input['CsiVolumeRegistrationMountOptionsArgs'] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
@@ -161,7 +161,7 @@ class CsiVolumeRegistrationArgs:
     @pulumi.getter(name="deregisterOnDestroy")
     def deregister_on_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        `(boolean: true)` - If true, the volume will be deregistered on destroy.
         """
         return pulumi.get(self, "deregister_on_destroy")
 
@@ -280,7 +280,7 @@ class _CsiVolumeRegistrationState:
         :param pulumi.Input[bool] controller_required: `(boolean)`
         :param pulumi.Input[int] controllers_expected: `(integer)`
         :param pulumi.Input[int] controllers_healthy: `(integer)`
-        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: true)` - If true, the volume will be deregistered on destroy.
         :param pulumi.Input[str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
         :param pulumi.Input['CsiVolumeRegistrationMountOptionsArgs'] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
@@ -465,7 +465,7 @@ class _CsiVolumeRegistrationState:
     @pulumi.getter(name="deregisterOnDestroy")
     def deregister_on_destroy(self) -> Optional[pulumi.Input[bool]]:
         """
-        `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        `(boolean: true)` - If true, the volume will be deregistered on destroy.
         """
         return pulumi.get(self, "deregister_on_destroy")
 
@@ -682,7 +682,7 @@ class CsiVolumeRegistration(pulumi.CustomResource):
         :param pulumi.Input[str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
-        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: true)` - If true, the volume will be deregistered on destroy.
         :param pulumi.Input[str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
         :param pulumi.Input[pulumi.InputType['CsiVolumeRegistrationMountOptionsArgs']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
@@ -823,7 +823,7 @@ class CsiVolumeRegistration(pulumi.CustomResource):
         :param pulumi.Input[bool] controller_required: `(boolean)`
         :param pulumi.Input[int] controllers_expected: `(integer)`
         :param pulumi.Input[int] controllers_healthy: `(integer)`
-        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        :param pulumi.Input[bool] deregister_on_destroy: `(boolean: true)` - If true, the volume will be deregistered on destroy.
         :param pulumi.Input[str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
         :param pulumi.Input[pulumi.InputType['CsiVolumeRegistrationMountOptionsArgs']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
@@ -947,7 +947,7 @@ class CsiVolumeRegistration(pulumi.CustomResource):
     @pulumi.getter(name="deregisterOnDestroy")
     def deregister_on_destroy(self) -> pulumi.Output[Optional[bool]]:
         """
-        `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        `(boolean: true)` - If true, the volume will be deregistered on destroy.
         """
         return pulumi.get(self, "deregister_on_destroy")
 

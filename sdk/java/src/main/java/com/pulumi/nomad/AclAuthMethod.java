@@ -73,14 +73,16 @@ import javax.annotation.Nullable;
 @ResourceType(type="nomad:index/aclAuthMethod:AclAuthMethod")
 public class AclAuthMethod extends com.pulumi.resources.CustomResource {
     /**
-     * Configuration specific to the auth method provider.
+     * `(block: &lt;required&gt;)` - Configuration specific to the auth method
+     * provider.
      * 
      */
     @Export(name="config", refs={AclAuthMethodConfig.class}, tree="[0]")
     private Output<AclAuthMethodConfig> config;
 
     /**
-     * @return Configuration specific to the auth method provider.
+     * @return `(block: &lt;required&gt;)` - Configuration specific to the auth method
+     * provider.
      * 
      */
     public Output<AclAuthMethodConfig> config() {
@@ -151,18 +153,18 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
         return this.tokenLocality;
     }
     /**
-     * `(string: &lt;optional&gt;)` - Defines the token name format for the
-     * generated tokens This can be lightly templated using HIL &#39;${foo}&#39; syntax.
-     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     * `(string: &#34;${auth_method_type}-${auth_method_name}&#34;)` -
+     * Defines the token name format for the generated tokens This can be lightly
+     * templated using HIL &#39;${foo}&#39; syntax.
      * 
      */
     @Export(name="tokenNameFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tokenNameFormat;
 
     /**
-     * @return `(string: &lt;optional&gt;)` - Defines the token name format for the
-     * generated tokens This can be lightly templated using HIL &#39;${foo}&#39; syntax.
-     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     * @return `(string: &#34;${auth_method_type}-${auth_method_name}&#34;)` -
+     * Defines the token name format for the generated tokens This can be lightly
+     * templated using HIL &#39;${foo}&#39; syntax.
      * 
      */
     public Output<Optional<String>> tokenNameFormat() {

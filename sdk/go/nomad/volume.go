@@ -105,7 +105,7 @@ type Volume struct {
 	ControllersExpected pulumi.IntOutput `pulumi:"controllersExpected"`
 	// `(integer)`
 	ControllersHealthy pulumi.IntOutput `pulumi:"controllersHealthy"`
-	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
+	// `(boolean: true)` - If true, the volume will be deregistered on destroy.
 	DeregisterOnDestroy pulumi.BoolPtrOutput `pulumi:"deregisterOnDestroy"`
 	// `(string: <required>)` - The ID of the physical volume from the storage provider.
 	ExternalId pulumi.StringOutput `pulumi:"externalId"`
@@ -210,7 +210,7 @@ type volumeState struct {
 	ControllersExpected *int `pulumi:"controllersExpected"`
 	// `(integer)`
 	ControllersHealthy *int `pulumi:"controllersHealthy"`
-	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
+	// `(boolean: true)` - If true, the volume will be deregistered on destroy.
 	DeregisterOnDestroy *bool `pulumi:"deregisterOnDestroy"`
 	// `(string: <required>)` - The ID of the physical volume from the storage provider.
 	ExternalId *string `pulumi:"externalId"`
@@ -270,7 +270,7 @@ type VolumeState struct {
 	ControllersExpected pulumi.IntPtrInput
 	// `(integer)`
 	ControllersHealthy pulumi.IntPtrInput
-	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
+	// `(boolean: true)` - If true, the volume will be deregistered on destroy.
 	DeregisterOnDestroy pulumi.BoolPtrInput
 	// `(string: <required>)` - The ID of the physical volume from the storage provider.
 	ExternalId pulumi.StringPtrInput
@@ -328,7 +328,7 @@ type volumeArgs struct {
 	Capabilities []VolumeCapability `pulumi:"capabilities"`
 	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
 	Context map[string]string `pulumi:"context"`
-	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
+	// `(boolean: true)` - If true, the volume will be deregistered on destroy.
 	DeregisterOnDestroy *bool `pulumi:"deregisterOnDestroy"`
 	// `(string: <required>)` - The ID of the physical volume from the storage provider.
 	ExternalId string `pulumi:"externalId"`
@@ -371,7 +371,7 @@ type VolumeArgs struct {
 	Capabilities VolumeCapabilityArrayInput
 	// `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
 	Context pulumi.StringMapInput
-	// `(boolean: false)` - If true, the volume will be deregistered on destroy.
+	// `(boolean: true)` - If true, the volume will be deregistered on destroy.
 	DeregisterOnDestroy pulumi.BoolPtrInput
 	// `(string: <required>)` - The ID of the physical volume from the storage provider.
 	ExternalId pulumi.StringInput
@@ -526,7 +526,7 @@ func (o VolumeOutput) ControllersHealthy() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.ControllersHealthy }).(pulumi.IntOutput)
 }
 
-// `(boolean: false)` - If true, the volume will be deregistered on destroy.
+// `(boolean: true)` - If true, the volume will be deregistered on destroy.
 func (o VolumeOutput) DeregisterOnDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.BoolPtrOutput { return v.DeregisterOnDestroy }).(pulumi.BoolPtrOutput)
 }

@@ -2007,6 +2007,7 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getJob(GetJobArgs.builder()
      *             .jobId(&#34;example&#34;)
+     *             .namespace(&#34;dev&#34;)
      *             .build());
      * 
      *     }
@@ -2052,6 +2053,7 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getJob(GetJobArgs.builder()
      *             .jobId(&#34;example&#34;)
+     *             .namespace(&#34;dev&#34;)
      *             .build());
      * 
      *     }
@@ -2097,6 +2099,7 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getJob(GetJobArgs.builder()
      *             .jobId(&#34;example&#34;)
+     *             .namespace(&#34;dev&#34;)
      *             .build());
      * 
      *     }
@@ -2142,6 +2145,7 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getJob(GetJobArgs.builder()
      *             .jobId(&#34;example&#34;)
+     *             .namespace(&#34;dev&#34;)
      *             .build());
      * 
      *     }

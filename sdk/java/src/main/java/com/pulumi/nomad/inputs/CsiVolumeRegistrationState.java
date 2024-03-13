@@ -150,14 +150,14 @@ public final class CsiVolumeRegistrationState extends com.pulumi.resources.Resou
     }
 
     /**
-     * `(boolean: false)` - If true, the volume will be deregistered on destroy.
+     * `(boolean: true)` - If true, the volume will be deregistered on destroy.
      * 
      */
     @Import(name="deregisterOnDestroy")
     private @Nullable Output<Boolean> deregisterOnDestroy;
 
     /**
-     * @return `(boolean: false)` - If true, the volume will be deregistered on destroy.
+     * @return `(boolean: true)` - If true, the volume will be deregistered on destroy.
      * 
      */
     public Optional<Output<Boolean>> deregisterOnDestroy() {
@@ -623,7 +623,7 @@ public final class CsiVolumeRegistrationState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param deregisterOnDestroy `(boolean: false)` - If true, the volume will be deregistered on destroy.
+         * @param deregisterOnDestroy `(boolean: true)` - If true, the volume will be deregistered on destroy.
          * 
          * @return builder
          * 
@@ -634,7 +634,7 @@ public final class CsiVolumeRegistrationState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param deregisterOnDestroy `(boolean: false)` - If true, the volume will be deregistered on destroy.
+         * @param deregisterOnDestroy `(boolean: true)` - If true, the volume will be deregistered on destroy.
          * 
          * @return builder
          * 

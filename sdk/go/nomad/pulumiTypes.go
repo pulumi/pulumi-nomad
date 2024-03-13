@@ -14,25 +14,39 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type AclAuthMethodConfig struct {
-	// A list of allowed values that can be used for the redirect URI.
+	// `([]string: <optional>)` - A list of allowed values
+	// that can be used for the redirect URI.
 	AllowedRedirectUris []string `pulumi:"allowedRedirectUris"`
-	// List of auth claims that are valid for login.
+	// `([]string: <optional>)` - List of auth claims that are
+	// valid for login.
 	BoundAudiences []string `pulumi:"boundAudiences"`
-	// Mappings of claims (key) that will be copied to a metadata field (value).
+	// `(map[string]string: <optional>)` - Mappings of claims (key)
+	// that will be copied to a metadata field (value).
 	ClaimMappings map[string]string `pulumi:"claimMappings"`
-	// PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+	// `([]string: <optional>)` - PEM encoded CA certs for use
+	// by the TLS client used to talk with the OIDC Discovery URL.
 	DiscoveryCaPems []string `pulumi:"discoveryCaPems"`
-	// Mappings of list claims (key) that will be copied to a metadata field (value).
+	// `(map[string]string: <optional>)` - Mappings of list
+	// claims (key) that will be copied to a metadata field (value).
 	ListClaimMappings map[string]string `pulumi:"listClaimMappings"`
-	// The OAuth Client ID configured with the OIDC provider.
+	// `(string: <required>)` - The OAuth Client ID configured
+	// with the OIDC provider.
 	OidcClientId string `pulumi:"oidcClientId"`
-	// The OAuth Client Secret configured with the OIDC provider.
+	// `(string: <required>)` - The OAuth Client Secret
+	// configured with the OIDC provider.
 	OidcClientSecret string `pulumi:"oidcClientSecret"`
-	// The OIDC Discovery URL, without any .well-known component (base path).
+	// `(bool: false)` - When set to `true`, Nomad will
+	// not make a request to the identity provider to get OIDC `UserInfo`.
+	// You may wish to set this if your identity provider doesn't send any
+	// additional claims from the `UserInfo` endpoint.
+	OidcDisableUserinfo *bool `pulumi:"oidcDisableUserinfo"`
+	// `(string: <required>)` - The OIDC Discovery URL,
+	// without any .well-known component (base path).
 	OidcDiscoveryUrl string `pulumi:"oidcDiscoveryUrl"`
-	// List of OIDC scopes.
+	// `([]string: <optional>)` - List of OIDC scopes.
 	OidcScopes []string `pulumi:"oidcScopes"`
-	// A list of supported signing algorithms.
+	// `([]string: <optional>)` - A list of supported signing
+	// algorithms.
 	SigningAlgs []string `pulumi:"signingAlgs"`
 }
 
@@ -48,25 +62,39 @@ type AclAuthMethodConfigInput interface {
 }
 
 type AclAuthMethodConfigArgs struct {
-	// A list of allowed values that can be used for the redirect URI.
+	// `([]string: <optional>)` - A list of allowed values
+	// that can be used for the redirect URI.
 	AllowedRedirectUris pulumi.StringArrayInput `pulumi:"allowedRedirectUris"`
-	// List of auth claims that are valid for login.
+	// `([]string: <optional>)` - List of auth claims that are
+	// valid for login.
 	BoundAudiences pulumi.StringArrayInput `pulumi:"boundAudiences"`
-	// Mappings of claims (key) that will be copied to a metadata field (value).
+	// `(map[string]string: <optional>)` - Mappings of claims (key)
+	// that will be copied to a metadata field (value).
 	ClaimMappings pulumi.StringMapInput `pulumi:"claimMappings"`
-	// PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+	// `([]string: <optional>)` - PEM encoded CA certs for use
+	// by the TLS client used to talk with the OIDC Discovery URL.
 	DiscoveryCaPems pulumi.StringArrayInput `pulumi:"discoveryCaPems"`
-	// Mappings of list claims (key) that will be copied to a metadata field (value).
+	// `(map[string]string: <optional>)` - Mappings of list
+	// claims (key) that will be copied to a metadata field (value).
 	ListClaimMappings pulumi.StringMapInput `pulumi:"listClaimMappings"`
-	// The OAuth Client ID configured with the OIDC provider.
+	// `(string: <required>)` - The OAuth Client ID configured
+	// with the OIDC provider.
 	OidcClientId pulumi.StringInput `pulumi:"oidcClientId"`
-	// The OAuth Client Secret configured with the OIDC provider.
+	// `(string: <required>)` - The OAuth Client Secret
+	// configured with the OIDC provider.
 	OidcClientSecret pulumi.StringInput `pulumi:"oidcClientSecret"`
-	// The OIDC Discovery URL, without any .well-known component (base path).
+	// `(bool: false)` - When set to `true`, Nomad will
+	// not make a request to the identity provider to get OIDC `UserInfo`.
+	// You may wish to set this if your identity provider doesn't send any
+	// additional claims from the `UserInfo` endpoint.
+	OidcDisableUserinfo pulumi.BoolPtrInput `pulumi:"oidcDisableUserinfo"`
+	// `(string: <required>)` - The OIDC Discovery URL,
+	// without any .well-known component (base path).
 	OidcDiscoveryUrl pulumi.StringInput `pulumi:"oidcDiscoveryUrl"`
-	// List of OIDC scopes.
+	// `([]string: <optional>)` - List of OIDC scopes.
 	OidcScopes pulumi.StringArrayInput `pulumi:"oidcScopes"`
-	// A list of supported signing algorithms.
+	// `([]string: <optional>)` - A list of supported signing
+	// algorithms.
 	SigningAlgs pulumi.StringArrayInput `pulumi:"signingAlgs"`
 }
 
@@ -147,52 +175,69 @@ func (o AclAuthMethodConfigOutput) ToAclAuthMethodConfigPtrOutputWithContext(ctx
 	}).(AclAuthMethodConfigPtrOutput)
 }
 
-// A list of allowed values that can be used for the redirect URI.
+// `([]string: <optional>)` - A list of allowed values
+// that can be used for the redirect URI.
 func (o AclAuthMethodConfigOutput) AllowedRedirectUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.AllowedRedirectUris }).(pulumi.StringArrayOutput)
 }
 
-// List of auth claims that are valid for login.
+// `([]string: <optional>)` - List of auth claims that are
+// valid for login.
 func (o AclAuthMethodConfigOutput) BoundAudiences() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.BoundAudiences }).(pulumi.StringArrayOutput)
 }
 
-// Mappings of claims (key) that will be copied to a metadata field (value).
+// `(map[string]string: <optional>)` - Mappings of claims (key)
+// that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigOutput) ClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) map[string]string { return v.ClaimMappings }).(pulumi.StringMapOutput)
 }
 
-// PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+// `([]string: <optional>)` - PEM encoded CA certs for use
+// by the TLS client used to talk with the OIDC Discovery URL.
 func (o AclAuthMethodConfigOutput) DiscoveryCaPems() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.DiscoveryCaPems }).(pulumi.StringArrayOutput)
 }
 
-// Mappings of list claims (key) that will be copied to a metadata field (value).
+// `(map[string]string: <optional>)` - Mappings of list
+// claims (key) that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigOutput) ListClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) map[string]string { return v.ListClaimMappings }).(pulumi.StringMapOutput)
 }
 
-// The OAuth Client ID configured with the OIDC provider.
+// `(string: <required>)` - The OAuth Client ID configured
+// with the OIDC provider.
 func (o AclAuthMethodConfigOutput) OidcClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) string { return v.OidcClientId }).(pulumi.StringOutput)
 }
 
-// The OAuth Client Secret configured with the OIDC provider.
+// `(string: <required>)` - The OAuth Client Secret
+// configured with the OIDC provider.
 func (o AclAuthMethodConfigOutput) OidcClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) string { return v.OidcClientSecret }).(pulumi.StringOutput)
 }
 
-// The OIDC Discovery URL, without any .well-known component (base path).
+// `(bool: false)` - When set to `true`, Nomad will
+// not make a request to the identity provider to get OIDC `UserInfo`.
+// You may wish to set this if your identity provider doesn't send any
+// additional claims from the `UserInfo` endpoint.
+func (o AclAuthMethodConfigOutput) OidcDisableUserinfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *bool { return v.OidcDisableUserinfo }).(pulumi.BoolPtrOutput)
+}
+
+// `(string: <required>)` - The OIDC Discovery URL,
+// without any .well-known component (base path).
 func (o AclAuthMethodConfigOutput) OidcDiscoveryUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) string { return v.OidcDiscoveryUrl }).(pulumi.StringOutput)
 }
 
-// List of OIDC scopes.
+// `([]string: <optional>)` - List of OIDC scopes.
 func (o AclAuthMethodConfigOutput) OidcScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.OidcScopes }).(pulumi.StringArrayOutput)
 }
 
-// A list of supported signing algorithms.
+// `([]string: <optional>)` - A list of supported signing
+// algorithms.
 func (o AclAuthMethodConfigOutput) SigningAlgs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.SigningAlgs }).(pulumi.StringArrayOutput)
 }
@@ -221,7 +266,8 @@ func (o AclAuthMethodConfigPtrOutput) Elem() AclAuthMethodConfigOutput {
 	}).(AclAuthMethodConfigOutput)
 }
 
-// A list of allowed values that can be used for the redirect URI.
+// `([]string: <optional>)` - A list of allowed values
+// that can be used for the redirect URI.
 func (o AclAuthMethodConfigPtrOutput) AllowedRedirectUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
 		if v == nil {
@@ -231,7 +277,8 @@ func (o AclAuthMethodConfigPtrOutput) AllowedRedirectUris() pulumi.StringArrayOu
 	}).(pulumi.StringArrayOutput)
 }
 
-// List of auth claims that are valid for login.
+// `([]string: <optional>)` - List of auth claims that are
+// valid for login.
 func (o AclAuthMethodConfigPtrOutput) BoundAudiences() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
 		if v == nil {
@@ -241,7 +288,8 @@ func (o AclAuthMethodConfigPtrOutput) BoundAudiences() pulumi.StringArrayOutput 
 	}).(pulumi.StringArrayOutput)
 }
 
-// Mappings of claims (key) that will be copied to a metadata field (value).
+// `(map[string]string: <optional>)` - Mappings of claims (key)
+// that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigPtrOutput) ClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) map[string]string {
 		if v == nil {
@@ -251,7 +299,8 @@ func (o AclAuthMethodConfigPtrOutput) ClaimMappings() pulumi.StringMapOutput {
 	}).(pulumi.StringMapOutput)
 }
 
-// PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.
+// `([]string: <optional>)` - PEM encoded CA certs for use
+// by the TLS client used to talk with the OIDC Discovery URL.
 func (o AclAuthMethodConfigPtrOutput) DiscoveryCaPems() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
 		if v == nil {
@@ -261,7 +310,8 @@ func (o AclAuthMethodConfigPtrOutput) DiscoveryCaPems() pulumi.StringArrayOutput
 	}).(pulumi.StringArrayOutput)
 }
 
-// Mappings of list claims (key) that will be copied to a metadata field (value).
+// `(map[string]string: <optional>)` - Mappings of list
+// claims (key) that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigPtrOutput) ListClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) map[string]string {
 		if v == nil {
@@ -271,7 +321,8 @@ func (o AclAuthMethodConfigPtrOutput) ListClaimMappings() pulumi.StringMapOutput
 	}).(pulumi.StringMapOutput)
 }
 
-// The OAuth Client ID configured with the OIDC provider.
+// `(string: <required>)` - The OAuth Client ID configured
+// with the OIDC provider.
 func (o AclAuthMethodConfigPtrOutput) OidcClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
 		if v == nil {
@@ -281,7 +332,8 @@ func (o AclAuthMethodConfigPtrOutput) OidcClientId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The OAuth Client Secret configured with the OIDC provider.
+// `(string: <required>)` - The OAuth Client Secret
+// configured with the OIDC provider.
 func (o AclAuthMethodConfigPtrOutput) OidcClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
 		if v == nil {
@@ -291,7 +343,21 @@ func (o AclAuthMethodConfigPtrOutput) OidcClientSecret() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// The OIDC Discovery URL, without any .well-known component (base path).
+// `(bool: false)` - When set to `true`, Nomad will
+// not make a request to the identity provider to get OIDC `UserInfo`.
+// You may wish to set this if your identity provider doesn't send any
+// additional claims from the `UserInfo` endpoint.
+func (o AclAuthMethodConfigPtrOutput) OidcDisableUserinfo() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.OidcDisableUserinfo
+	}).(pulumi.BoolPtrOutput)
+}
+
+// `(string: <required>)` - The OIDC Discovery URL,
+// without any .well-known component (base path).
 func (o AclAuthMethodConfigPtrOutput) OidcDiscoveryUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
 		if v == nil {
@@ -301,7 +367,7 @@ func (o AclAuthMethodConfigPtrOutput) OidcDiscoveryUrl() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// List of OIDC scopes.
+// `([]string: <optional>)` - List of OIDC scopes.
 func (o AclAuthMethodConfigPtrOutput) OidcScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
 		if v == nil {
@@ -311,7 +377,8 @@ func (o AclAuthMethodConfigPtrOutput) OidcScopes() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// A list of supported signing algorithms.
+// `([]string: <optional>)` - A list of supported signing
+// algorithms.
 func (o AclAuthMethodConfigPtrOutput) SigningAlgs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
 		if v == nil {
@@ -6629,7 +6696,8 @@ type GetAllocationsAllocation struct {
 	ModifyTime int `pulumi:"modifyTime"`
 	// `(string)` - The name of the allocation.
 	Name string `pulumi:"name"`
-	// `(string)` - The namespace the allocation belongs to.
+	// `(string: <optional>)` - Specifies the namespace to search for
+	// allocations in.
 	Namespace string `pulumi:"namespace"`
 	// `(string)` - The ID of the allocation that succeeds the allocation.
 	NextAllocation string `pulumi:"nextAllocation"`
@@ -6681,7 +6749,8 @@ type GetAllocationsAllocationArgs struct {
 	ModifyTime pulumi.IntInput `pulumi:"modifyTime"`
 	// `(string)` - The name of the allocation.
 	Name pulumi.StringInput `pulumi:"name"`
-	// `(string)` - The namespace the allocation belongs to.
+	// `(string: <optional>)` - Specifies the namespace to search for
+	// allocations in.
 	Namespace pulumi.StringInput `pulumi:"namespace"`
 	// `(string)` - The ID of the allocation that succeeds the allocation.
 	NextAllocation pulumi.StringInput `pulumi:"nextAllocation"`
@@ -6811,7 +6880,8 @@ func (o GetAllocationsAllocationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// `(string)` - The namespace the allocation belongs to.
+// `(string: <optional>)` - Specifies the namespace to search for
+// allocations in.
 func (o GetAllocationsAllocationOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAllocationsAllocation) string { return v.Namespace }).(pulumi.StringOutput)
 }

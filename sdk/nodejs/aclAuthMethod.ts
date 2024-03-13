@@ -70,7 +70,8 @@ export class AclAuthMethod extends pulumi.CustomResource {
     }
 
     /**
-     * Configuration specific to the auth method provider.
+     * `(block: <required>)` - Configuration specific to the auth method
+     * provider.
      */
     public readonly config!: pulumi.Output<outputs.AclAuthMethodConfig>;
     /**
@@ -79,7 +80,7 @@ export class AclAuthMethod extends pulumi.CustomResource {
      */
     public readonly default!: pulumi.Output<boolean | undefined>;
     /**
-     * `(string: <required>)` - Defines the maximum life of a token 
+     * `(string: <required>)` - Defines the maximum life of a token
      * created by this method and is specified as a time duration such as "15h".
      */
     public readonly maxTokenTtl!: pulumi.Output<string>;
@@ -94,9 +95,9 @@ export class AclAuthMethod extends pulumi.CustomResource {
      */
     public readonly tokenLocality!: pulumi.Output<string>;
     /**
-     * `(string: <optional>)` - Defines the token name format for the
-     * generated tokens This can be lightly templated using HIL '${foo}' syntax.
-     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     * `(string: "${auth_method_type}-${auth_method_name}")` -
+     * Defines the token name format for the generated tokens This can be lightly
+     * templated using HIL '${foo}' syntax.
      */
     public readonly tokenNameFormat!: pulumi.Output<string | undefined>;
     /**
@@ -157,7 +158,8 @@ export class AclAuthMethod extends pulumi.CustomResource {
  */
 export interface AclAuthMethodState {
     /**
-     * Configuration specific to the auth method provider.
+     * `(block: <required>)` - Configuration specific to the auth method
+     * provider.
      */
     config?: pulumi.Input<inputs.AclAuthMethodConfig>;
     /**
@@ -166,7 +168,7 @@ export interface AclAuthMethodState {
      */
     default?: pulumi.Input<boolean>;
     /**
-     * `(string: <required>)` - Defines the maximum life of a token 
+     * `(string: <required>)` - Defines the maximum life of a token
      * created by this method and is specified as a time duration such as "15h".
      */
     maxTokenTtl?: pulumi.Input<string>;
@@ -181,9 +183,9 @@ export interface AclAuthMethodState {
      */
     tokenLocality?: pulumi.Input<string>;
     /**
-     * `(string: <optional>)` - Defines the token name format for the
-     * generated tokens This can be lightly templated using HIL '${foo}' syntax.
-     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     * `(string: "${auth_method_type}-${auth_method_name}")` -
+     * Defines the token name format for the generated tokens This can be lightly
+     * templated using HIL '${foo}' syntax.
      */
     tokenNameFormat?: pulumi.Input<string>;
     /**
@@ -198,7 +200,8 @@ export interface AclAuthMethodState {
  */
 export interface AclAuthMethodArgs {
     /**
-     * Configuration specific to the auth method provider.
+     * `(block: <required>)` - Configuration specific to the auth method
+     * provider.
      */
     config: pulumi.Input<inputs.AclAuthMethodConfig>;
     /**
@@ -207,7 +210,7 @@ export interface AclAuthMethodArgs {
      */
     default?: pulumi.Input<boolean>;
     /**
-     * `(string: <required>)` - Defines the maximum life of a token 
+     * `(string: <required>)` - Defines the maximum life of a token
      * created by this method and is specified as a time duration such as "15h".
      */
     maxTokenTtl: pulumi.Input<string>;
@@ -222,9 +225,9 @@ export interface AclAuthMethodArgs {
      */
     tokenLocality: pulumi.Input<string>;
     /**
-     * `(string: <optional>)` - Defines the token name format for the
-     * generated tokens This can be lightly templated using HIL '${foo}' syntax.
-     * Defaults to `${auth_method_type}-${auth_method_name}`.
+     * `(string: "${auth_method_type}-${auth_method_name}")` -
+     * Defines the token name format for the generated tokens This can be lightly
+     * templated using HIL '${foo}' syntax.
      */
     tokenNameFormat?: pulumi.Input<string>;
     /**

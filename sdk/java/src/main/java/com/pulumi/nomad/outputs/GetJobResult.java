@@ -55,10 +55,6 @@ public final class GetJobResult {
      * 
      */
     private String name;
-    /**
-     * @return `(string)` Namespace of the specified job.
-     * 
-     */
     private @Nullable String namespace;
     /**
      * @return `(string)` Job&#39;s parent ID.
@@ -177,10 +173,6 @@ public final class GetJobResult {
     public String name() {
         return this.name;
     }
-    /**
-     * @return `(string)` Namespace of the specified job.
-     * 
-     */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }

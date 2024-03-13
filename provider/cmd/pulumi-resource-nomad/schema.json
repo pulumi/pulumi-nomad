@@ -154,62 +154,66 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "A list of allowed values that can be used for the redirect URI.\n"
+                    "description": "`([]string: \u003coptional\u003e)` - A list of allowed values\nthat can be used for the redirect URI.\n"
                 },
                 "boundAudiences": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of auth claims that are valid for login.\n"
+                    "description": "`([]string: \u003coptional\u003e)` - List of auth claims that are\nvalid for login.\n"
                 },
                 "claimMappings": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Mappings of claims (key) that will be copied to a metadata field (value).\n"
+                    "description": "`(map[string]string: \u003coptional\u003e)` - Mappings of claims (key)\nthat will be copied to a metadata field (value).\n"
                 },
                 "discoveryCaPems": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "PEM encoded CA certs for use by the TLS client used to talk with the OIDC Discovery URL.\n"
+                    "description": "`([]string: \u003coptional\u003e)` - PEM encoded CA certs for use\nby the TLS client used to talk with the OIDC Discovery URL.\n"
                 },
                 "listClaimMappings": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Mappings of list claims (key) that will be copied to a metadata field (value).\n"
+                    "description": "`(map[string]string: \u003coptional\u003e)` - Mappings of list\nclaims (key) that will be copied to a metadata field (value).\n"
                 },
                 "oidcClientId": {
                     "type": "string",
-                    "description": "The OAuth Client ID configured with the OIDC provider.\n"
+                    "description": "`(string: \u003crequired\u003e)` - The OAuth Client ID configured\nwith the OIDC provider.\n"
                 },
                 "oidcClientSecret": {
                     "type": "string",
-                    "description": "The OAuth Client Secret configured with the OIDC provider.\n",
+                    "description": "`(string: \u003crequired\u003e)` - The OAuth Client Secret\nconfigured with the OIDC provider.\n",
                     "secret": true
+                },
+                "oidcDisableUserinfo": {
+                    "type": "boolean",
+                    "description": "`(bool: false)` - When set to `true`, Nomad will\nnot make a request to the identity provider to get OIDC `UserInfo`.\nYou may wish to set this if your identity provider doesn't send any\nadditional claims from the `UserInfo` endpoint.\n"
                 },
                 "oidcDiscoveryUrl": {
                     "type": "string",
-                    "description": "The OIDC Discovery URL, without any .well-known component (base path).\n"
+                    "description": "`(string: \u003crequired\u003e)` - The OIDC Discovery URL,\nwithout any .well-known component (base path).\n"
                 },
                 "oidcScopes": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "List of OIDC scopes.\n"
+                    "description": "`([]string: \u003coptional\u003e)` - List of OIDC scopes.\n"
                 },
                 "signingAlgs": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
-                    "description": "A list of supported signing algorithms.\n"
+                    "description": "`([]string: \u003coptional\u003e)` - A list of supported signing\nalgorithms.\n"
                 }
             },
             "type": "object",
@@ -1236,7 +1240,7 @@
                 },
                 "namespace": {
                     "type": "string",
-                    "description": "`(string)` - The namespace the allocation belongs to.\n"
+                    "description": "`(string: \u003coptional\u003e)` - Specifies the namespace to search for\nallocations in.\n"
                 },
                 "nextAllocation": {
                     "type": "string",
@@ -1830,7 +1834,7 @@
             "properties": {
                 "config": {
                     "$ref": "#/types/nomad:index/AclAuthMethodConfig:AclAuthMethodConfig",
-                    "description": "Configuration specific to the auth method provider.\n"
+                    "description": "`(block: \u003crequired\u003e)` - Configuration specific to the auth method\nprovider.\n"
                 },
                 "default": {
                     "type": "boolean",
@@ -1838,7 +1842,7 @@
                 },
                 "maxTokenTtl": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - Defines the maximum life of a token \ncreated by this method and is specified as a time duration such as \"15h\".\n"
+                    "description": "`(string: \u003crequired\u003e)` - Defines the maximum life of a token\ncreated by this method and is specified as a time duration such as \"15h\".\n"
                 },
                 "name": {
                     "type": "string",
@@ -1850,7 +1854,7 @@
                 },
                 "tokenNameFormat": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Defines the token name format for the\ngenerated tokens This can be lightly templated using HIL '${foo}' syntax.\nDefaults to `${auth_method_type}-${auth_method_name}`.\n"
+                    "description": "`(string: \"${auth_method_type}-${auth_method_name}\")` -\nDefines the token name format for the generated tokens This can be lightly\ntemplated using HIL '${foo}' syntax.\n"
                 },
                 "type": {
                     "type": "string",
@@ -1867,7 +1871,7 @@
             "inputProperties": {
                 "config": {
                     "$ref": "#/types/nomad:index/AclAuthMethodConfig:AclAuthMethodConfig",
-                    "description": "Configuration specific to the auth method provider.\n"
+                    "description": "`(block: \u003crequired\u003e)` - Configuration specific to the auth method\nprovider.\n"
                 },
                 "default": {
                     "type": "boolean",
@@ -1875,7 +1879,7 @@
                 },
                 "maxTokenTtl": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - Defines the maximum life of a token \ncreated by this method and is specified as a time duration such as \"15h\".\n"
+                    "description": "`(string: \u003crequired\u003e)` - Defines the maximum life of a token\ncreated by this method and is specified as a time duration such as \"15h\".\n"
                 },
                 "name": {
                     "type": "string",
@@ -1887,7 +1891,7 @@
                 },
                 "tokenNameFormat": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Defines the token name format for the\ngenerated tokens This can be lightly templated using HIL '${foo}' syntax.\nDefaults to `${auth_method_type}-${auth_method_name}`.\n"
+                    "description": "`(string: \"${auth_method_type}-${auth_method_name}\")` -\nDefines the token name format for the generated tokens This can be lightly\ntemplated using HIL '${foo}' syntax.\n"
                 },
                 "type": {
                     "type": "string",
@@ -1905,7 +1909,7 @@
                 "properties": {
                     "config": {
                         "$ref": "#/types/nomad:index/AclAuthMethodConfig:AclAuthMethodConfig",
-                        "description": "Configuration specific to the auth method provider.\n"
+                        "description": "`(block: \u003crequired\u003e)` - Configuration specific to the auth method\nprovider.\n"
                     },
                     "default": {
                         "type": "boolean",
@@ -1913,7 +1917,7 @@
                     },
                     "maxTokenTtl": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - Defines the maximum life of a token \ncreated by this method and is specified as a time duration such as \"15h\".\n"
+                        "description": "`(string: \u003crequired\u003e)` - Defines the maximum life of a token\ncreated by this method and is specified as a time duration such as \"15h\".\n"
                     },
                     "name": {
                         "type": "string",
@@ -1925,7 +1929,7 @@
                     },
                     "tokenNameFormat": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - Defines the token name format for the\ngenerated tokens This can be lightly templated using HIL '${foo}' syntax.\nDefaults to `${auth_method_type}-${auth_method_name}`.\n"
+                        "description": "`(string: \"${auth_method_type}-${auth_method_name}\")` -\nDefines the token name format for the generated tokens This can be lightly\ntemplated using HIL '${foo}' syntax.\n"
                     },
                     "type": {
                         "type": "string",
@@ -2688,7 +2692,7 @@
                 },
                 "deregisterOnDestroy": {
                     "type": "boolean",
-                    "description": "`(boolean: false)` - If true, the volume will be deregistered on destroy.\n"
+                    "description": "`(boolean: true)` - If true, the volume will be deregistered on destroy.\n"
                 },
                 "externalId": {
                     "type": "string",
@@ -2804,7 +2808,7 @@
                 },
                 "deregisterOnDestroy": {
                     "type": "boolean",
-                    "description": "`(boolean: false)` - If true, the volume will be deregistered on destroy.\n"
+                    "description": "`(boolean: true)` - If true, the volume will be deregistered on destroy.\n"
                 },
                 "externalId": {
                     "type": "string",
@@ -2908,7 +2912,7 @@
                     },
                     "deregisterOnDestroy": {
                         "type": "boolean",
-                        "description": "`(boolean: false)` - If true, the volume will be deregistered on destroy.\n"
+                        "description": "`(boolean: true)` - If true, the volume will be deregistered on destroy.\n"
                     },
                     "externalId": {
                         "type": "string",
@@ -4115,7 +4119,7 @@
                 },
                 "deregisterOnDestroy": {
                     "type": "boolean",
-                    "description": "`(boolean: false)` - If true, the volume will be deregistered on destroy.\n"
+                    "description": "`(boolean: true)` - If true, the volume will be deregistered on destroy.\n"
                 },
                 "externalId": {
                     "type": "string",
@@ -4234,7 +4238,7 @@
                 },
                 "deregisterOnDestroy": {
                     "type": "boolean",
-                    "description": "`(boolean: false)` - If true, the volume will be deregistered on destroy.\n"
+                    "description": "`(boolean: true)` - If true, the volume will be deregistered on destroy.\n"
                 },
                 "externalId": {
                     "type": "string",
@@ -4336,7 +4340,7 @@
                     },
                     "deregisterOnDestroy": {
                         "type": "boolean",
-                        "description": "`(boolean: false)` - If true, the volume will be deregistered on destroy.\n"
+                        "description": "`(boolean: true)` - If true, the volume will be deregistered on destroy.\n"
                     },
                     "externalId": {
                         "type": "string",
@@ -4720,6 +4724,10 @@
                         "type": "string",
                         "description": "`(string: \u003coptional\u003e)` - Specifies the\n[expression][nomad_api_filter] used to filter the results.\n"
                     },
+                    "namespace": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - Specifies the namespace to search for\nallocations in.\n"
+                    },
                     "prefix": {
                         "type": "string",
                         "description": "`(string: \u003coptional\u003e)` - Specifies a string to filter allocations\nbased on an ID prefix.\n"
@@ -4743,6 +4751,10 @@
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "`(string)` - The namespace the allocation belongs to.\n"
                     },
                     "prefix": {
                         "type": "string"
@@ -4827,7 +4839,7 @@
             }
         },
         "nomad:index/getJob:getJob": {
-            "description": "Get information on a job ID. The aim of this datasource is to enable\nyou to act on various settings and states of a particular job.\n\nAn error is triggered if zero or more than one result is returned by the query.\n\n## Example Usage\n\nGet the data about a snapshot:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = nomad.getJob({\n    jobId: \"example\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_job(job_id=\"example\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetJob.Invoke(new()\n    {\n        JobId = \"example\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupJob(ctx, \u0026nomad.LookupJobArgs{\n\t\t\tJobId: \"example\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetJobArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getJob(GetJobArgs.builder()\n            .jobId(\"example\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: nomad:getJob\n      Arguments:\n        jobId: example\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Get information on a job ID. The aim of this datasource is to enable\nyou to act on various settings and states of a particular job.\n\nAn error is triggered if zero or more than one result is returned by the query.\n\n## Example Usage\n\nGet the data about a snapshot:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = nomad.getJob({\n    jobId: \"example\",\n    namespace: \"dev\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_job(job_id=\"example\",\n    namespace=\"dev\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetJob.Invoke(new()\n    {\n        JobId = \"example\",\n        Namespace = \"dev\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupJob(ctx, \u0026nomad.LookupJobArgs{\n\t\t\tJobId:     \"example\",\n\t\t\tNamespace: pulumi.StringRef(\"dev\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetJobArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getJob(GetJobArgs.builder()\n            .jobId(\"example\")\n            .namespace(\"dev\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: nomad:getJob\n      Arguments:\n        jobId: example\n        namespace: dev\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getJob.\n",
                 "properties": {
@@ -4889,8 +4901,7 @@
                         "description": "`(string)` Name of the job.\n"
                     },
                     "namespace": {
-                        "type": "string",
-                        "description": "`(string)` Namespace of the specified job.\n"
+                        "type": "string"
                     },
                     "parentId": {
                         "type": "string",

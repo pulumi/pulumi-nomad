@@ -66,7 +66,8 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// `(string)` - The namespace the allocation belongs to.
+        /// `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+        /// allocations in.
         /// </summary>
         public readonly string Namespace;
         /// <summary>

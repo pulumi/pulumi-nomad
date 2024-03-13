@@ -64,7 +64,7 @@ namespace Pulumi.Nomad
         public Output<int> ControllersHealthy { get; private set; } = null!;
 
         /// <summary>
-        /// `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        /// `(boolean: true)` - If true, the volume will be deregistered on destroy.
         /// </summary>
         [Output("deregisterOnDestroy")]
         public Output<bool?> DeregisterOnDestroy { get; private set; } = null!;
@@ -246,7 +246,7 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        /// `(boolean: true)` - If true, the volume will be deregistered on destroy.
         /// </summary>
         [Input("deregisterOnDestroy")]
         public Input<bool>? DeregisterOnDestroy { get; set; }
@@ -393,7 +393,7 @@ namespace Pulumi.Nomad
         public Input<int>? ControllersHealthy { get; set; }
 
         /// <summary>
-        /// `(boolean: false)` - If true, the volume will be deregistered on destroy.
+        /// `(boolean: true)` - If true, the volume will be deregistered on destroy.
         /// </summary>
         [Input("deregisterOnDestroy")]
         public Input<bool>? DeregisterOnDestroy { get; set; }

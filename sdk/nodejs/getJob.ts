@@ -23,6 +23,7 @@ import * as utilities from "./utilities";
  *
  * const example = nomad.getJob({
  *     jobId: "example",
+ *     namespace: "dev",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -84,9 +85,6 @@ export interface GetJobResult {
      * `(string)` Name of the job.
      */
     readonly name: string;
-    /**
-     * `(string)` Namespace of the specified job.
-     */
     readonly namespace?: string;
     /**
      * `(string)` Job's parent ID.
@@ -154,6 +152,7 @@ export interface GetJobResult {
  *
  * const example = nomad.getJob({
  *     jobId: "example",
+ *     namespace: "dev",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

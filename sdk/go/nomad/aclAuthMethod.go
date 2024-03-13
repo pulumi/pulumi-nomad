@@ -67,7 +67,8 @@ import (
 type AclAuthMethod struct {
 	pulumi.CustomResourceState
 
-	// Configuration specific to the auth method provider.
+	// `(block: <required>)` - Configuration specific to the auth method
+	// provider.
 	Config AclAuthMethodConfigOutput `pulumi:"config"`
 	// `(bool: false)` - Defines whether this ACL Auth Method is to be set
 	// as default.
@@ -81,9 +82,9 @@ type AclAuthMethod struct {
 	// creates a local or global token when performing SSO login. This field must be
 	// set to either `local` or `global`.
 	TokenLocality pulumi.StringOutput `pulumi:"tokenLocality"`
-	// `(string: <optional>)` - Defines the token name format for the
-	// generated tokens This can be lightly templated using HIL '${foo}' syntax.
-	// Defaults to `${auth_method_type}-${auth_method_name}`.
+	// `(string: "${auth_method_type}-${auth_method_name}")` -
+	// Defines the token name format for the generated tokens This can be lightly
+	// templated using HIL '${foo}' syntax.
 	TokenNameFormat pulumi.StringPtrOutput `pulumi:"tokenNameFormat"`
 	// `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
 	// the only supported type is `OIDC`.
@@ -132,7 +133,8 @@ func GetAclAuthMethod(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AclAuthMethod resources.
 type aclAuthMethodState struct {
-	// Configuration specific to the auth method provider.
+	// `(block: <required>)` - Configuration specific to the auth method
+	// provider.
 	Config *AclAuthMethodConfig `pulumi:"config"`
 	// `(bool: false)` - Defines whether this ACL Auth Method is to be set
 	// as default.
@@ -146,9 +148,9 @@ type aclAuthMethodState struct {
 	// creates a local or global token when performing SSO login. This field must be
 	// set to either `local` or `global`.
 	TokenLocality *string `pulumi:"tokenLocality"`
-	// `(string: <optional>)` - Defines the token name format for the
-	// generated tokens This can be lightly templated using HIL '${foo}' syntax.
-	// Defaults to `${auth_method_type}-${auth_method_name}`.
+	// `(string: "${auth_method_type}-${auth_method_name}")` -
+	// Defines the token name format for the generated tokens This can be lightly
+	// templated using HIL '${foo}' syntax.
 	TokenNameFormat *string `pulumi:"tokenNameFormat"`
 	// `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
 	// the only supported type is `OIDC`.
@@ -156,7 +158,8 @@ type aclAuthMethodState struct {
 }
 
 type AclAuthMethodState struct {
-	// Configuration specific to the auth method provider.
+	// `(block: <required>)` - Configuration specific to the auth method
+	// provider.
 	Config AclAuthMethodConfigPtrInput
 	// `(bool: false)` - Defines whether this ACL Auth Method is to be set
 	// as default.
@@ -170,9 +173,9 @@ type AclAuthMethodState struct {
 	// creates a local or global token when performing SSO login. This field must be
 	// set to either `local` or `global`.
 	TokenLocality pulumi.StringPtrInput
-	// `(string: <optional>)` - Defines the token name format for the
-	// generated tokens This can be lightly templated using HIL '${foo}' syntax.
-	// Defaults to `${auth_method_type}-${auth_method_name}`.
+	// `(string: "${auth_method_type}-${auth_method_name}")` -
+	// Defines the token name format for the generated tokens This can be lightly
+	// templated using HIL '${foo}' syntax.
 	TokenNameFormat pulumi.StringPtrInput
 	// `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
 	// the only supported type is `OIDC`.
@@ -184,7 +187,8 @@ func (AclAuthMethodState) ElementType() reflect.Type {
 }
 
 type aclAuthMethodArgs struct {
-	// Configuration specific to the auth method provider.
+	// `(block: <required>)` - Configuration specific to the auth method
+	// provider.
 	Config AclAuthMethodConfig `pulumi:"config"`
 	// `(bool: false)` - Defines whether this ACL Auth Method is to be set
 	// as default.
@@ -198,9 +202,9 @@ type aclAuthMethodArgs struct {
 	// creates a local or global token when performing SSO login. This field must be
 	// set to either `local` or `global`.
 	TokenLocality string `pulumi:"tokenLocality"`
-	// `(string: <optional>)` - Defines the token name format for the
-	// generated tokens This can be lightly templated using HIL '${foo}' syntax.
-	// Defaults to `${auth_method_type}-${auth_method_name}`.
+	// `(string: "${auth_method_type}-${auth_method_name}")` -
+	// Defines the token name format for the generated tokens This can be lightly
+	// templated using HIL '${foo}' syntax.
 	TokenNameFormat *string `pulumi:"tokenNameFormat"`
 	// `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
 	// the only supported type is `OIDC`.
@@ -209,7 +213,8 @@ type aclAuthMethodArgs struct {
 
 // The set of arguments for constructing a AclAuthMethod resource.
 type AclAuthMethodArgs struct {
-	// Configuration specific to the auth method provider.
+	// `(block: <required>)` - Configuration specific to the auth method
+	// provider.
 	Config AclAuthMethodConfigInput
 	// `(bool: false)` - Defines whether this ACL Auth Method is to be set
 	// as default.
@@ -223,9 +228,9 @@ type AclAuthMethodArgs struct {
 	// creates a local or global token when performing SSO login. This field must be
 	// set to either `local` or `global`.
 	TokenLocality pulumi.StringInput
-	// `(string: <optional>)` - Defines the token name format for the
-	// generated tokens This can be lightly templated using HIL '${foo}' syntax.
-	// Defaults to `${auth_method_type}-${auth_method_name}`.
+	// `(string: "${auth_method_type}-${auth_method_name}")` -
+	// Defines the token name format for the generated tokens This can be lightly
+	// templated using HIL '${foo}' syntax.
 	TokenNameFormat pulumi.StringPtrInput
 	// `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
 	// the only supported type is `OIDC`.
@@ -319,7 +324,8 @@ func (o AclAuthMethodOutput) ToAclAuthMethodOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Configuration specific to the auth method provider.
+// `(block: <required>)` - Configuration specific to the auth method
+// provider.
 func (o AclAuthMethodOutput) Config() AclAuthMethodConfigOutput {
 	return o.ApplyT(func(v *AclAuthMethod) AclAuthMethodConfigOutput { return v.Config }).(AclAuthMethodConfigOutput)
 }
@@ -348,9 +354,9 @@ func (o AclAuthMethodOutput) TokenLocality() pulumi.StringOutput {
 	return o.ApplyT(func(v *AclAuthMethod) pulumi.StringOutput { return v.TokenLocality }).(pulumi.StringOutput)
 }
 
-// `(string: <optional>)` - Defines the token name format for the
-// generated tokens This can be lightly templated using HIL '${foo}' syntax.
-// Defaults to `${auth_method_type}-${auth_method_name}`.
+// `(string: "${auth_method_type}-${auth_method_name}")` -
+// Defines the token name format for the generated tokens This can be lightly
+// templated using HIL '${foo}' syntax.
 func (o AclAuthMethodOutput) TokenNameFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclAuthMethod) pulumi.StringPtrOutput { return v.TokenNameFormat }).(pulumi.StringPtrOutput)
 }

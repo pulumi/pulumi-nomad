@@ -33,6 +33,23 @@ public final class GetAllocationsArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
+     * `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+     * allocations in.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable Output<String> namespace;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+     * allocations in.
+     * 
+     */
+    public Optional<Output<String>> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * `(string: &lt;optional&gt;)` - Specifies a string to filter allocations
      * based on an ID prefix.
      * 
@@ -53,6 +70,7 @@ public final class GetAllocationsArgs extends com.pulumi.resources.InvokeArgs {
 
     private GetAllocationsArgs(GetAllocationsArgs $) {
         this.filter = $.filter;
+        this.namespace = $.namespace;
         this.prefix = $.prefix;
     }
 
@@ -95,6 +113,29 @@ public final class GetAllocationsArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder filter(String filter) {
             return filter(Output.of(filter));
+        }
+
+        /**
+         * @param namespace `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+         * allocations in.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable Output<String> namespace) {
+            $.namespace = namespace;
+            return this;
+        }
+
+        /**
+         * @param namespace `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+         * allocations in.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(String namespace) {
+            return namespace(Output.of(namespace));
         }
 
         /**

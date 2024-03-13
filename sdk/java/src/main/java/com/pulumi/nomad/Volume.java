@@ -216,14 +216,14 @@ public class Volume extends com.pulumi.resources.CustomResource {
         return this.controllersHealthy;
     }
     /**
-     * `(boolean: false)` - If true, the volume will be deregistered on destroy.
+     * `(boolean: true)` - If true, the volume will be deregistered on destroy.
      * 
      */
     @Export(name="deregisterOnDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deregisterOnDestroy;
 
     /**
-     * @return `(boolean: false)` - If true, the volume will be deregistered on destroy.
+     * @return `(boolean: true)` - If true, the volume will be deregistered on destroy.
      * 
      */
     public Output<Optional<Boolean>> deregisterOnDestroy() {

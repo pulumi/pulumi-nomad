@@ -159,9 +159,6 @@ class GetJobResult:
     @property
     @pulumi.getter
     def namespace(self) -> Optional[str]:
-        """
-        `(string)` Namespace of the specified job.
-        """
         return pulumi.get(self, "namespace")
 
     @property
@@ -309,7 +306,8 @@ def get_job(job_id: Optional[str] = None,
     import pulumi
     import pulumi_nomad as nomad
 
-    example = nomad.get_job(job_id="example")
+    example = nomad.get_job(job_id="example",
+        namespace="dev")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -367,7 +365,8 @@ def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_nomad as nomad
 
-    example = nomad.get_job(job_id="example")
+    example = nomad.get_job(job_id="example",
+        namespace="dev")
     ```
     <!--End PulumiCodeChooser -->
 

@@ -32,6 +32,23 @@ public final class GetAllocationsPlainArgs extends com.pulumi.resources.InvokeAr
     }
 
     /**
+     * `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+     * allocations in.
+     * 
+     */
+    @Import(name="namespace")
+    private @Nullable String namespace;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+     * allocations in.
+     * 
+     */
+    public Optional<String> namespace() {
+        return Optional.ofNullable(this.namespace);
+    }
+
+    /**
      * `(string: &lt;optional&gt;)` - Specifies a string to filter allocations
      * based on an ID prefix.
      * 
@@ -52,6 +69,7 @@ public final class GetAllocationsPlainArgs extends com.pulumi.resources.InvokeAr
 
     private GetAllocationsPlainArgs(GetAllocationsPlainArgs $) {
         this.filter = $.filter;
+        this.namespace = $.namespace;
         this.prefix = $.prefix;
     }
 
@@ -82,6 +100,18 @@ public final class GetAllocationsPlainArgs extends com.pulumi.resources.InvokeAr
          */
         public Builder filter(@Nullable String filter) {
             $.filter = filter;
+            return this;
+        }
+
+        /**
+         * @param namespace `(string: &lt;optional&gt;)` - Specifies the namespace to search for
+         * allocations in.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder namespace(@Nullable String namespace) {
+            $.namespace = namespace;
             return this;
         }
 
