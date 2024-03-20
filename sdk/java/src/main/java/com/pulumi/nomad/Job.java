@@ -24,10 +24,10 @@ public class Job extends com.pulumi.resources.CustomResource {
      * The IDs for allocations associated with this job.
      * 
      * @deprecated
-     * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      * 
      */
-    @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead. */
+    @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead. */
     @Export(name="allocationIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allocationIds;
 
@@ -280,10 +280,10 @@ public class Job extends com.pulumi.resources.CustomResource {
     }
     /**
      * @deprecated
-     * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      * 
      */
-    @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead. */
+    @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead. */
     @Export(name="readAllocationIds", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> readAllocationIds;
 

@@ -37,7 +37,7 @@ export class Job extends pulumi.CustomResource {
     /**
      * The IDs for allocations associated with this job.
      *
-     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
     public /*out*/ readonly allocationIds!: pulumi.Output<string[]>;
     /**
@@ -113,7 +113,7 @@ export class Job extends pulumi.CustomResource {
      */
     public readonly purgeOnDestroy!: pulumi.Output<boolean | undefined>;
     /**
-     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
     public readonly readAllocationIds!: pulumi.Output<boolean | undefined>;
     /**
@@ -221,7 +221,7 @@ export interface JobState {
     /**
      * The IDs for allocations associated with this job.
      *
-     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
     allocationIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -297,7 +297,7 @@ export interface JobState {
      */
     purgeOnDestroy?: pulumi.Input<boolean>;
     /**
-     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
     readAllocationIds?: pulumi.Input<boolean>;
     /**
@@ -378,7 +378,7 @@ export interface JobArgs {
      */
     purgeOnDestroy?: pulumi.Input<boolean>;
     /**
-     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
     readAllocationIds?: pulumi.Input<boolean>;
     /**
