@@ -17,7 +17,7 @@ type Job struct {
 
 	// The IDs for allocations associated with this job.
 	//
-	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	AllocationIds pulumi.StringArrayOutput `pulumi:"allocationIds"`
 	// `(string: <optional>)` - Consul token used when registering this job.
 	// Will fallback to the value declared in Nomad provider configuration, if any.
@@ -59,7 +59,7 @@ type Job struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy pulumi.BoolPtrOutput `pulumi:"purgeOnDestroy"`
-	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	ReadAllocationIds pulumi.BoolPtrOutput `pulumi:"readAllocationIds"`
 	// The target region for the job, as derived from the jobspec.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -122,7 +122,7 @@ func GetJob(ctx *pulumi.Context,
 type jobState struct {
 	// The IDs for allocations associated with this job.
 	//
-	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	AllocationIds []string `pulumi:"allocationIds"`
 	// `(string: <optional>)` - Consul token used when registering this job.
 	// Will fallback to the value declared in Nomad provider configuration, if any.
@@ -164,7 +164,7 @@ type jobState struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy *bool `pulumi:"purgeOnDestroy"`
-	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	ReadAllocationIds *bool `pulumi:"readAllocationIds"`
 	// The target region for the job, as derived from the jobspec.
 	Region *string `pulumi:"region"`
@@ -184,7 +184,7 @@ type jobState struct {
 type JobState struct {
 	// The IDs for allocations associated with this job.
 	//
-	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	AllocationIds pulumi.StringArrayInput
 	// `(string: <optional>)` - Consul token used when registering this job.
 	// Will fallback to the value declared in Nomad provider configuration, if any.
@@ -226,7 +226,7 @@ type JobState struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy pulumi.BoolPtrInput
-	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	ReadAllocationIds pulumi.BoolPtrInput
 	// The target region for the job, as derived from the jobspec.
 	Region pulumi.StringPtrInput
@@ -276,7 +276,7 @@ type jobArgs struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy *bool `pulumi:"purgeOnDestroy"`
-	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	ReadAllocationIds *bool `pulumi:"readAllocationIds"`
 	// `(boolean: false)` - Set this to true to force the job to run
 	// again if its status is `dead`.
@@ -316,7 +316,7 @@ type JobArgs struct {
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy pulumi.BoolPtrInput
-	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	ReadAllocationIds pulumi.BoolPtrInput
 	// `(boolean: false)` - Set this to true to force the job to run
 	// again if its status is `dead`.
@@ -415,7 +415,7 @@ func (o JobOutput) ToJobOutputWithContext(ctx context.Context) JobOutput {
 
 // The IDs for allocations associated with this job.
 //
-// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 func (o JobOutput) AllocationIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.AllocationIds }).(pulumi.StringArrayOutput)
 }
@@ -508,7 +508,7 @@ func (o JobOutput) PurgeOnDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.PurgeOnDestroy }).(pulumi.BoolPtrOutput)
 }
 
-// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.
+// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 func (o JobOutput) ReadAllocationIds() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.ReadAllocationIds }).(pulumi.BoolPtrOutput)
 }
