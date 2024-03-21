@@ -74,8 +74,8 @@ class JobArgs:
         if purge_on_destroy is not None:
             pulumi.set(__self__, "purge_on_destroy", purge_on_destroy)
         if read_allocation_ids is not None:
-            warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
-            pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
+            warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""", DeprecationWarning)
+            pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
         if read_allocation_ids is not None:
             pulumi.set(__self__, "read_allocation_ids", read_allocation_ids)
         if rerun_if_dead is not None:
@@ -214,8 +214,8 @@ class JobArgs:
     @property
     @pulumi.getter(name="readAllocationIds")
     def read_allocation_ids(self) -> Optional[pulumi.Input[bool]]:
-        warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
-        pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
+        warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""", DeprecationWarning)
+        pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
 
         return pulumi.get(self, "read_allocation_ids")
 
@@ -313,8 +313,8 @@ class _JobState:
                Will fallback to the value declared in Nomad provider configuration, if any.
         """
         if allocation_ids is not None:
-            warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
-            pulumi.log.warn("""allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
+            warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""", DeprecationWarning)
+            pulumi.log.warn("""allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
         if allocation_ids is not None:
             pulumi.set(__self__, "allocation_ids", allocation_ids)
         if consul_token is not None:
@@ -350,8 +350,8 @@ class _JobState:
         if purge_on_destroy is not None:
             pulumi.set(__self__, "purge_on_destroy", purge_on_destroy)
         if read_allocation_ids is not None:
-            warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
-            pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
+            warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""", DeprecationWarning)
+            pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
         if read_allocation_ids is not None:
             pulumi.set(__self__, "read_allocation_ids", read_allocation_ids)
         if region is not None:
@@ -373,8 +373,8 @@ class _JobState:
         """
         The IDs for allocations associated with this job.
         """
-        warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
-        pulumi.log.warn("""allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
+        warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""", DeprecationWarning)
+        pulumi.log.warn("""allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
 
         return pulumi.get(self, "allocation_ids")
 
@@ -585,8 +585,8 @@ class _JobState:
     @property
     @pulumi.getter(name="readAllocationIds")
     def read_allocation_ids(self) -> Optional[pulumi.Input[bool]]:
-        warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
-        pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
+        warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""", DeprecationWarning)
+        pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
 
         return pulumi.get(self, "read_allocation_ids")
 
@@ -895,8 +895,8 @@ class Job(pulumi.CustomResource):
         """
         The IDs for allocations associated with this job.
         """
-        warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
-        pulumi.log.warn("""allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
+        warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""", DeprecationWarning)
+        pulumi.log.warn("""allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
 
         return pulumi.get(self, "allocation_ids")
 
@@ -1039,8 +1039,8 @@ class Job(pulumi.CustomResource):
     @property
     @pulumi.getter(name="readAllocationIds")
     def read_allocation_ids(self) -> pulumi.Output[Optional[bool]]:
-        warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""", DeprecationWarning)
-        pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.""")
+        warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""", DeprecationWarning)
+        pulumi.log.warn("""read_allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
 
         return pulumi.get(self, "read_allocation_ids")
 
