@@ -330,7 +330,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// The IDs for allocations associated with this job.
         /// </summary>
-        [Obsolete(@"Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.")]
+        [Obsolete(@"Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead.")]
         public InputList<string> AllocationIds
         {
             get => _allocationIds ?? (_allocationIds = new InputList<string>());
