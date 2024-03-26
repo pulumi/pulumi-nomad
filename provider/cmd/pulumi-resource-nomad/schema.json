@@ -3330,7 +3330,7 @@
                         "type": "string"
                     },
                     "description": "The IDs for allocations associated with this job.\n",
-                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
+                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead."
                 },
                 "consulToken": {
                     "type": "string",
@@ -3402,7 +3402,7 @@
                 },
                 "readAllocationIds": {
                     "type": "boolean",
-                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
+                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead."
                 },
                 "region": {
                     "type": "string",
@@ -3490,7 +3490,7 @@
                 },
                 "readAllocationIds": {
                     "type": "boolean",
-                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
+                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead."
                 },
                 "rerunIfDead": {
                     "type": "boolean",
@@ -3514,7 +3514,7 @@
                             "type": "string"
                         },
                         "description": "The IDs for allocations associated with this job.\n",
-                        "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
+                        "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead."
                     },
                     "consulToken": {
                         "type": "string",
@@ -3586,7 +3586,7 @@
                     },
                     "readAllocationIds": {
                         "type": "boolean",
-                        "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
+                        "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad_allocations data source instead."
                     },
                     "region": {
                         "type": "string",
