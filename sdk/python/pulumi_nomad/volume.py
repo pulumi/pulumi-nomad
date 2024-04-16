@@ -725,13 +725,15 @@ class Volume(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
+        # It can sometimes be helpful to wait for a particular plugin to be available
         ebs = nomad.get_plugin(plugin_id="aws-ebs0",
             wait_for_healthy=True)
-        mysql_volume = nomad.Volume("mysqlVolume",
+        mysql_volume = nomad.Volume("mysql_volume",
             type="csi",
             plugin_id="aws-ebs0",
             volume_id="mysql_volume",
-            external_id=module["hashistack"]["ebs_test_volume_id"],
+            name="mysql_volume",
+            external_id=hashistack["ebsTestVolumeId"],
             capabilities=[nomad.VolumeCapabilityArgs(
                 access_mode="single-node-writer",
                 attachment_mode="file-system",
@@ -799,13 +801,15 @@ class Volume(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
+        # It can sometimes be helpful to wait for a particular plugin to be available
         ebs = nomad.get_plugin(plugin_id="aws-ebs0",
             wait_for_healthy=True)
-        mysql_volume = nomad.Volume("mysqlVolume",
+        mysql_volume = nomad.Volume("mysql_volume",
             type="csi",
             plugin_id="aws-ebs0",
             volume_id="mysql_volume",
-            external_id=module["hashistack"]["ebs_test_volume_id"],
+            name="mysql_volume",
+            external_id=hashistack["ebsTestVolumeId"],
             capabilities=[nomad.VolumeCapabilityArgs(
                 access_mode="single-node-writer",
                 attachment_mode="file-system",

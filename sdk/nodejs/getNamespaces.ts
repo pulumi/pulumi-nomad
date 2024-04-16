@@ -19,6 +19,7 @@ import * as utilities from "./utilities";
  *     const namespace: nomad.AclPolicy[] = [];
  *     for (const range = {value: 0}; range.value < namespaces.namespaces.length; range.value++) {
  *         namespace.push(new nomad.AclPolicy(`namespace-${range.value}`, {
+ *             name: `namespace-${namespaces[range.value]}`,
  *             description: `Write to the namespace ${namespaces[range.value]}`,
  *             rulesHcl: `namespace "${namespaces[range.value]}" {
  *   policy = "write"
@@ -65,6 +66,7 @@ export interface GetNamespacesResult {
  *     const namespace: nomad.AclPolicy[] = [];
  *     for (const range = {value: 0}; range.value < namespaces.namespaces.length; range.value++) {
  *         namespace.push(new nomad.AclPolicy(`namespace-${range.value}`, {
+ *             name: `namespace-${namespaces[range.value]}`,
  *             description: `Write to the namespace ${namespaces[range.value]}`,
  *             rulesHcl: `namespace "${namespaces[range.value]}" {
  *   policy = "write"

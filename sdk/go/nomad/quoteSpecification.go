@@ -31,7 +31,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.NewQuoteSpecification(ctx, "prodApi", &nomad.QuoteSpecificationArgs{
+//			_, err := nomad.NewQuoteSpecification(ctx, "prod_api", &nomad.QuoteSpecificationArgs{
+//				Name:        pulumi.String("prod-api"),
 //				Description: pulumi.String("Production instances of backend API servers"),
 //				Limits: nomad.QuoteSpecificationLimitArray{
 //					&nomad.QuoteSpecificationLimitArgs{

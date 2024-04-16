@@ -28,8 +28,8 @@ namespace Pulumi.Nomad
     /// {
     ///     var exec_only = new Nomad.SentinelPolicy("exec-only", new()
     ///     {
+    ///         Name = "exec-only",
     ///         Description = "Only allow jobs that are based on an exec driver.",
-    ///         EnforcementLevel = "soft-mandatory",
     ///         Policy = @"main = rule { all_drivers_exec }
     /// 
     /// # all_drivers_exec checks that all the drivers in use are exec
@@ -40,9 +40,9 @@ namespace Pulumi.Nomad
     ///         }
     ///     }
     /// }
-    /// 
     /// ",
     ///         Scope = "submit-job",
+    ///         EnforcementLevel = "soft-mandatory",
     ///     });
     /// 
     /// });

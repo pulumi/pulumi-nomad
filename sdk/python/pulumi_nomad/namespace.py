@@ -255,12 +255,13 @@ class Namespace(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         dev = nomad.Namespace("dev",
+            name="dev",
             description="Shared development environment.",
+            quota="dev",
             meta={
-                "foo": "bar",
                 "owner": "John Doe",
-            },
-            quota="dev")
+                "foo": "bar",
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -271,7 +272,8 @@ class Namespace(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
-        web_team = nomad.QuoteSpecification("webTeam",
+        web_team = nomad.QuoteSpecification("web_team",
+            name="web-team",
             description="web team quota",
             limits=[nomad.QuoteSpecificationLimitArgs(
                 region="global",
@@ -281,6 +283,7 @@ class Namespace(pulumi.CustomResource):
                 ),
             )])
         web = nomad.Namespace("web",
+            name="web",
             description="Web team production environment.",
             quota=web_team.name)
         ```
@@ -320,12 +323,13 @@ class Namespace(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         dev = nomad.Namespace("dev",
+            name="dev",
             description="Shared development environment.",
+            quota="dev",
             meta={
-                "foo": "bar",
                 "owner": "John Doe",
-            },
-            quota="dev")
+                "foo": "bar",
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -336,7 +340,8 @@ class Namespace(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
-        web_team = nomad.QuoteSpecification("webTeam",
+        web_team = nomad.QuoteSpecification("web_team",
+            name="web-team",
             description="web team quota",
             limits=[nomad.QuoteSpecificationLimitArgs(
                 region="global",
@@ -346,6 +351,7 @@ class Namespace(pulumi.CustomResource):
                 ),
             )])
         web = nomad.Namespace("web",
+            name="web",
             description="Web team production environment.",
             quota=web_team.name)
         ```

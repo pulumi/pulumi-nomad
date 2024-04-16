@@ -31,6 +31,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewNodePool(ctx, "dev", &nomad.NodePoolArgs{
+//				Name:        pulumi.String("dev"),
 //				Description: pulumi.String("Nodes for the development environment."),
 //				Meta: pulumi.StringMap{
 //					"department": pulumi.String("Engineering"),

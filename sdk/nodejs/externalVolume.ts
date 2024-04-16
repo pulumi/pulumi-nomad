@@ -16,14 +16,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
+ * // It can sometimes be helpful to wait for a particular plugin to be available
  * const ebs = nomad.getPlugin({
  *     pluginId: "aws-ebs0",
  *     waitForHealthy: true,
  * });
- * const mysqlVolume = new nomad.ExternalVolume("mysqlVolume", {
+ * const mysqlVolume = new nomad.ExternalVolume("mysql_volume", {
  *     type: "csi",
  *     pluginId: "aws-ebs0",
  *     volumeId: "mysql_volume",
+ *     name: "mysql_volume",
  *     capacityMin: "10GiB",
  *     capacityMax: "20GiB",
  *     capabilities: [{

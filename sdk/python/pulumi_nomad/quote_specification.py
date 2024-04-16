@@ -149,7 +149,8 @@ class QuoteSpecification(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
-        prod_api = nomad.QuoteSpecification("prodApi",
+        prod_api = nomad.QuoteSpecification("prod_api",
+            name="prod-api",
             description="Production instances of backend API servers",
             limits=[nomad.QuoteSpecificationLimitArgs(
                 region="global",
@@ -186,7 +187,8 @@ class QuoteSpecification(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
-        prod_api = nomad.QuoteSpecification("prodApi",
+        prod_api = nomad.QuoteSpecification("prod_api",
+            name="prod-api",
             description="Production instances of backend API servers",
             limits=[nomad.QuoteSpecificationLimitArgs(
                 region="global",

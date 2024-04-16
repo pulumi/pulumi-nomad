@@ -11,55 +11,6 @@ namespace Pulumi.Nomad
 {
     /// <summary>
     /// Manages an ACL policy registered in Nomad.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// Registering a policy from a HCL file:
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.IO;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Nomad = Pulumi.Nomad;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var dev = new Nomad.AclPolicy("dev", new()
-    ///     {
-    ///         Description = "Submit jobs to the dev environment.",
-    ///         RulesHcl = File.ReadAllText($"{path.Module}/dev.hcl"),
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// Registering a policy from inline HCL:
-    /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Nomad = Pulumi.Nomad;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var dev = new Nomad.AclPolicy("dev", new()
-    ///     {
-    ///         Description = "Submit jobs to the dev environment.",
-    ///         RulesHcl = @"namespace ""dev"" {
-    ///   policy = ""write""
-    /// }
-    /// 
-    /// ",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [NomadResourceType("nomad:index/aclPolicy:AclPolicy")]
     public partial class AclPolicy : global::Pulumi.CustomResource

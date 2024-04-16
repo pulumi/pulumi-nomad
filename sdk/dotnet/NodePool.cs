@@ -27,6 +27,7 @@ namespace Pulumi.Nomad
     /// {
     ///     var dev = new Nomad.NodePool("dev", new()
     ///     {
+    ///         Name = "dev",
     ///         Description = "Nodes for the development environment.",
     ///         Meta = 
     ///         {

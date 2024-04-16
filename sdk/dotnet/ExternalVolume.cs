@@ -23,17 +23,19 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     // It can sometimes be helpful to wait for a particular plugin to be available
     ///     var ebs = Nomad.GetPlugin.Invoke(new()
     ///     {
     ///         PluginId = "aws-ebs0",
     ///         WaitForHealthy = true,
     ///     });
     /// 
-    ///     var mysqlVolume = new Nomad.ExternalVolume("mysqlVolume", new()
+    ///     var mysqlVolume = new Nomad.ExternalVolume("mysql_volume", new()
     ///     {
     ///         Type = "csi",
     ///         PluginId = "aws-ebs0",
     ///         VolumeId = "mysql_volume",
+    ///         Name = "mysql_volume",
     ///         CapacityMin = "10GiB",
     ///         CapacityMax = "20GiB",
     ///         Capabilities = new[]

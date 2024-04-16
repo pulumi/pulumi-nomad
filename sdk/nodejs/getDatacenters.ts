@@ -15,8 +15,8 @@ import * as utilities from "./utilities";
  * import * as nomad from "@pulumi/nomad";
  *
  * const datacenters = nomad.getDatacenters({
- *     ignoreDownNodes: true,
  *     prefix: "prod",
+ *     ignoreDownNodes: true,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -71,8 +71,8 @@ export interface GetDatacentersResult {
  * import * as nomad from "@pulumi/nomad";
  *
  * const datacenters = nomad.getDatacenters({
- *     ignoreDownNodes: true,
  *     prefix: "prod",
+ *     ignoreDownNodes: true,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

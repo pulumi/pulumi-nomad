@@ -56,6 +56,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // It can sometimes be helpful to wait for a particular plugin to be available
  *         final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()
  *             .pluginId(&#34;aws-ebs0&#34;)
  *             .waitForHealthy(true)
@@ -65,7 +66,8 @@ import javax.annotation.Nullable;
  *             .type(&#34;csi&#34;)
  *             .pluginId(&#34;aws-ebs0&#34;)
  *             .volumeId(&#34;mysql_volume&#34;)
- *             .externalId(module.hashistack().ebs_test_volume_id())
+ *             .name(&#34;mysql_volume&#34;)
+ *             .externalId(hashistack.ebsTestVolumeId())
  *             .capabilities(VolumeCapabilityArgs.builder()
  *                 .accessMode(&#34;single-node-writer&#34;)
  *                 .attachmentMode(&#34;file-system&#34;)

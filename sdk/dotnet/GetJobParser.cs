@@ -13,56 +13,12 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// Parse a HCL jobspec and produce the equivalent JSON encoded job.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.IO;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Nomad = Pulumi.Nomad;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myJob = Nomad.GetJobParser.Invoke(new()
-        ///     {
-        ///         Hcl = File.ReadAllText($"{path.Module}/jobspec.hcl"),
-        ///         Canonicalize = false,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetJobParserResult> InvokeAsync(GetJobParserArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserArgs(), options.WithDefaults());
 
         /// <summary>
         /// Parse a HCL jobspec and produce the equivalent JSON encoded job.
-        /// 
-        /// ## Example Usage
-        /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.IO;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Nomad = Pulumi.Nomad;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var myJob = Nomad.GetJobParser.Invoke(new()
-        ///     {
-        ///         Hcl = File.ReadAllText($"{path.Module}/jobspec.hcl"),
-        ///         Canonicalize = false,
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetJobParserResult> Invoke(GetJobParserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserInvokeArgs(), options.WithDefaults());

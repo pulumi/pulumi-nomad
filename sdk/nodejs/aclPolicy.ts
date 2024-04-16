@@ -8,41 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Manages an ACL policy registered in Nomad.
- *
- * ## Example Usage
- *
- * Registering a policy from a HCL file:
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as nomad from "@pulumi/nomad";
- *
- * const dev = new nomad.AclPolicy("dev", {
- *     description: "Submit jobs to the dev environment.",
- *     rulesHcl: fs.readFileSync(`${path.module}/dev.hcl`, "utf8"),
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * Registering a policy from inline HCL:
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as nomad from "@pulumi/nomad";
- *
- * const dev = new nomad.AclPolicy("dev", {
- *     description: "Submit jobs to the dev environment.",
- *     rulesHcl: `namespace "dev" {
- *   policy = "write"
- * }
- *
- * `,
- * });
- * ```
- * <!--End PulumiCodeChooser -->
  */
 export class AclPolicy extends pulumi.CustomResource {
     /**

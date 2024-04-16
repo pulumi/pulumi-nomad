@@ -71,6 +71,7 @@ def get_namespaces(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetN
     namespace = []
     for range in [{"value": i} for i in range(0, len(namespaces.namespaces))]:
         namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",
+            name=f"namespace-{namespaces[range['value']]}",
             description=f"Write to the namespace {namespaces[range['value']]}",
             rules_hcl=f\"\"\"namespace "{namespaces[range["value"]]}" {{
       policy = "write"
@@ -104,6 +105,7 @@ def get_namespaces_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi
     namespace = []
     for range in [{"value": i} for i in range(0, len(namespaces.namespaces))]:
         namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",
+            name=f"namespace-{namespaces[range['value']]}",
             description=f"Write to the namespace {namespaces[range['value']]}",
             rules_hcl=f\"\"\"namespace "{namespaces[range["value"]]}" {{
       policy = "write"

@@ -648,12 +648,14 @@ class ExternalVolume(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
+        # It can sometimes be helpful to wait for a particular plugin to be available
         ebs = nomad.get_plugin(plugin_id="aws-ebs0",
             wait_for_healthy=True)
-        mysql_volume = nomad.ExternalVolume("mysqlVolume",
+        mysql_volume = nomad.ExternalVolume("mysql_volume",
             type="csi",
             plugin_id="aws-ebs0",
             volume_id="mysql_volume",
+            name="mysql_volume",
             capacity_min="10GiB",
             capacity_max="20GiB",
             capabilities=[nomad.ExternalVolumeCapabilityArgs(
@@ -717,12 +719,14 @@ class ExternalVolume(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
+        # It can sometimes be helpful to wait for a particular plugin to be available
         ebs = nomad.get_plugin(plugin_id="aws-ebs0",
             wait_for_healthy=True)
-        mysql_volume = nomad.ExternalVolume("mysqlVolume",
+        mysql_volume = nomad.ExternalVolume("mysql_volume",
             type="csi",
             plugin_id="aws-ebs0",
             volume_id="mysql_volume",
+            name="mysql_volume",
             capacity_min="10GiB",
             capacity_max="20GiB",
             capabilities=[nomad.ExternalVolumeCapabilityArgs(

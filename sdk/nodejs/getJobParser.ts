@@ -6,21 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Parse a HCL jobspec and produce the equivalent JSON encoded job.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as nomad from "@pulumi/nomad";
- *
- * const myJob = nomad.getJobParser({
- *     hcl: fs.readFileSync(`${path.module}/jobspec.hcl`, "utf8"),
- *     canonicalize: false,
- * });
- * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getJobParser(args: GetJobParserArgs, opts?: pulumi.InvokeOptions): Promise<GetJobParserResult> {
 
@@ -68,21 +53,6 @@ export interface GetJobParserResult {
 }
 /**
  * Parse a HCL jobspec and produce the equivalent JSON encoded job.
- *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as nomad from "@pulumi/nomad";
- *
- * const myJob = nomad.getJobParser({
- *     hcl: fs.readFileSync(`${path.module}/jobspec.hcl`, "utf8"),
- *     canonicalize: false,
- * });
- * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getJobParserOutput(args: GetJobParserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJobParserResult> {
     return pulumi.output(args).apply((a: any) => getJobParser(a, opts))

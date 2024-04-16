@@ -17,11 +17,12 @@ import * as utilities from "./utilities";
  * import * as nomad from "@pulumi/nomad";
  *
  * const dakota = new nomad.AclToken("dakota", {
+ *     name: "Dakota",
+ *     type: "client",
  *     policies: [
  *         "dev",
  *         "qa",
  *     ],
- *     type: "client",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -34,12 +35,13 @@ import * as utilities from "./utilities";
  * import * as nomad from "@pulumi/nomad";
  *
  * const dakota = new nomad.AclToken("dakota", {
- *     global: true,
+ *     name: "Dakota",
+ *     type: "client",
  *     policies: [
  *         "dev",
  *         "qa",
  *     ],
- *     type: "client",
+ *     global: true,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -51,7 +53,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const iman = new nomad.AclToken("iman", {type: "management"});
+ * const iman = new nomad.AclToken("iman", {
+ *     name: "Iman",
+ *     type: "management",
+ * });
  * ```
  * <!--End PulumiCodeChooser -->
  *

@@ -6,6 +6,28 @@ import * as utilities from "./utilities";
 
 /**
  * Retrieve a list of regions available in Nomad.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * function notImplemented(message: string) {
+ *     throw new Error(message);
+ * }
+ *
+ * export = async () => {
+ *     const myRegions = await nomad.getRegions({});
+ *     const jobs = notImplemented("The template_file data resource is not yet supported.");
+ *     const app: nomad.Job[] = [];
+ *     for (const range = {value: 0}; range.value < myRegions.regions.length; range.value++) {
+ *         app.push(new nomad.Job(`app-${range.value}`, {jobspec: jobs[range.value].rendered}));
+ *     }
+ * }
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRegions(opts?: pulumi.InvokeOptions): Promise<GetRegionsResult> {
 
@@ -29,6 +51,28 @@ export interface GetRegionsResult {
 }
 /**
  * Retrieve a list of regions available in Nomad.
+ *
+ * ## Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * function notImplemented(message: string) {
+ *     throw new Error(message);
+ * }
+ *
+ * export = async () => {
+ *     const myRegions = await nomad.getRegions({});
+ *     const jobs = notImplemented("The template_file data resource is not yet supported.");
+ *     const app: nomad.Job[] = [];
+ *     for (const range = {value: 0}; range.value < myRegions.regions.length; range.value++) {
+ *         app.push(new nomad.Job(`app-${range.value}`, {jobspec: jobs[range.value].rendered}));
+ *     }
+ * }
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRegionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetRegionsResult> {
     return pulumi.output(getRegions(opts))

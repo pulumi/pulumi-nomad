@@ -32,13 +32,14 @@ namespace Pulumi.Nomad
     /// {
     ///     var dev = new Nomad.Namespace("dev", new()
     ///     {
+    ///         Name = "dev",
     ///         Description = "Shared development environment.",
+    ///         Quota = "dev",
     ///         Meta = 
     ///         {
-    ///             { "foo", "bar" },
     ///             { "owner", "John Doe" },
+    ///             { "foo", "bar" },
     ///         },
-    ///         Quota = "dev",
     ///     });
     /// 
     /// });
@@ -56,8 +57,9 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var webTeam = new Nomad.QuoteSpecification("webTeam", new()
+    ///     var webTeam = new Nomad.QuoteSpecification("web_team", new()
     ///     {
+    ///         Name = "web-team",
     ///         Description = "web team quota",
     ///         Limits = new[]
     ///         {
@@ -75,6 +77,7 @@ namespace Pulumi.Nomad
     /// 
     ///     var web = new Nomad.Namespace("web", new()
     ///     {
+    ///         Name = "web",
     ///         Description = "Web team production environment.",
     ///         Quota = webTeam.Name,
     ///     });

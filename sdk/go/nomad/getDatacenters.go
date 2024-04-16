@@ -29,8 +29,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.GetDatacenters(ctx, &nomad.GetDatacentersArgs{
-//				IgnoreDownNodes: pulumi.BoolRef(true),
 //				Prefix:          pulumi.StringRef("prod"),
+//				IgnoreDownNodes: pulumi.BoolRef(true),
 //			}, nil)
 //			if err != nil {
 //				return err

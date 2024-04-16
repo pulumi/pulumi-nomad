@@ -33,7 +33,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.NewAclAuthMethod(ctx, "myNomadAclAuthMethod", &nomad.AclAuthMethodArgs{
+//			_, err := nomad.NewAclAuthMethod(ctx, "my_nomad_acl_auth_method", &nomad.AclAuthMethodArgs{
+//				Name:            pulumi.String("my-nomad-acl-auth-method"),
 //				Type:            pulumi.String("OIDC"),
 //				TokenLocality:   pulumi.String("global"),
 //				MaxTokenTtl:     pulumi.String("10m0s"),

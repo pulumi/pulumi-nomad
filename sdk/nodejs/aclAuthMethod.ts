@@ -18,7 +18,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const myNomadAclAuthMethod = new nomad.AclAuthMethod("myNomadAclAuthMethod", {
+ * const myNomadAclAuthMethod = new nomad.AclAuthMethod("my_nomad_acl_auth_method", {
+ *     name: "my-nomad-acl-auth-method",
  *     type: "OIDC",
  *     tokenLocality: "global",
  *     maxTokenTtl: "10m0s",

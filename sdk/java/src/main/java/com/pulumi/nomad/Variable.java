@@ -45,8 +45,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new Variable(&#34;example&#34;, VariableArgs.builder()        
- *             .items(Map.of(&#34;example_key&#34;, &#34;example_value&#34;))
  *             .path(&#34;some/path/of/your/choosing&#34;)
+ *             .items(Map.of(&#34;example_key&#34;, &#34;example_value&#34;))
  *             .build());
  * 
  *     }
@@ -80,13 +80,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exampleNamespace = new Namespace(&#34;exampleNamespace&#34;, NamespaceArgs.builder()        
+ *         var example = new Namespace(&#34;example&#34;, NamespaceArgs.builder()        
+ *             .name(&#34;example&#34;)
  *             .description(&#34;Example namespace.&#34;)
  *             .build());
  * 
  *         var exampleVariable = new Variable(&#34;exampleVariable&#34;, VariableArgs.builder()        
  *             .path(&#34;some/path/of/your/choosing&#34;)
- *             .namespace(exampleNamespace.name())
+ *             .namespace(example.name())
  *             .items(Map.of(&#34;example_key&#34;, &#34;example_value&#34;))
  *             .build());
  * 

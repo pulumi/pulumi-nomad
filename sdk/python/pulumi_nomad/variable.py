@@ -141,10 +141,10 @@ class Variable(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         example = nomad.Variable("example",
+            path="some/path/of/your/choosing",
             items={
                 "example_key": "example_value",
-            },
-            path="some/path/of/your/choosing")
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -155,10 +155,12 @@ class Variable(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
-        example_namespace = nomad.Namespace("exampleNamespace", description="Example namespace.")
-        example_variable = nomad.Variable("exampleVariable",
+        example = nomad.Namespace("example",
+            name="example",
+            description="Example namespace.")
+        example_variable = nomad.Variable("example",
             path="some/path/of/your/choosing",
-            namespace=example_namespace.name,
+            namespace=example.name,
             items={
                 "example_key": "example_value",
             })
@@ -188,10 +190,10 @@ class Variable(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         example = nomad.Variable("example",
+            path="some/path/of/your/choosing",
             items={
                 "example_key": "example_value",
-            },
-            path="some/path/of/your/choosing")
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -202,10 +204,12 @@ class Variable(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
-        example_namespace = nomad.Namespace("exampleNamespace", description="Example namespace.")
-        example_variable = nomad.Variable("exampleVariable",
+        example = nomad.Namespace("example",
+            name="example",
+            description="Example namespace.")
+        example_variable = nomad.Variable("example",
             path="some/path/of/your/choosing",
-            namespace=example_namespace.name,
+            namespace=example.name,
             items={
                 "example_key": "example_value",
             })

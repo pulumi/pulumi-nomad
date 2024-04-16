@@ -184,6 +184,7 @@ class NodePool(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         dev = nomad.NodePool("dev",
+            name="dev",
             description="Nodes for the development environment.",
             meta={
                 "department": "Engineering",
@@ -219,6 +220,7 @@ class NodePool(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         dev = nomad.NodePool("dev",
+            name="dev",
             description="Nodes for the development environment.",
             meta={
                 "department": "Engineering",

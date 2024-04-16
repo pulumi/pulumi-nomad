@@ -30,11 +30,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewAclToken(ctx, "dakota", &nomad.AclTokenArgs{
+//				Name: pulumi.String("Dakota"),
+//				Type: pulumi.String("client"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("dev"),
 //					pulumi.String("qa"),
 //				},
-//				Type: pulumi.String("client"),
 //			})
 //			if err != nil {
 //				return err
@@ -62,12 +63,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewAclToken(ctx, "dakota", &nomad.AclTokenArgs{
-//				Global: pulumi.Bool(true),
+//				Name: pulumi.String("Dakota"),
+//				Type: pulumi.String("client"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("dev"),
 //					pulumi.String("qa"),
 //				},
-//				Type: pulumi.String("client"),
+//				Global: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -95,6 +97,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewAclToken(ctx, "iman", &nomad.AclTokenArgs{
+//				Name: pulumi.String("Iman"),
 //				Type: pulumi.String("management"),
 //			})
 //			if err != nil {

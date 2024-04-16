@@ -12,46 +12,6 @@ import (
 )
 
 // Parse a HCL jobspec and produce the equivalent JSON encoded job.
-//
-// ## Example Usage
-//
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"fmt"
-//	"os"
-//
-//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := os.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.GetJobParser(ctx, &nomad.GetJobParserArgs{
-//				Hcl:          readFileOrPanic(fmt.Sprintf("%v/jobspec.hcl", path.Module)),
-//				Canonicalize: pulumi.BoolRef(false),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
 func GetJobParser(ctx *pulumi.Context, args *GetJobParserArgs, opts ...pulumi.InvokeOption) (*GetJobParserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetJobParserResult
