@@ -34,6 +34,7 @@ namespace Pulumi.Nomad
         ///         var range = new { Value = rangeIndex };
         ///         @namespace.Add(new Nomad.AclPolicy($"namespace-{range.Value}", new()
         ///         {
+        ///             Name = $"namespace-{namespaces[range.Value]}",
         ///             Description = $"Write to the namespace {namespaces[range.Value]}",
         ///             RulesHcl = @$"namespace ""{namespaces[range.Value]}"" {{
         ///   policy = ""write""
@@ -71,6 +72,7 @@ namespace Pulumi.Nomad
         ///         var range = new { Value = rangeIndex };
         ///         @namespace.Add(new Nomad.AclPolicy($"namespace-{range.Value}", new()
         ///         {
+        ///             Name = $"namespace-{namespaces[range.Value]}",
         ///             Description = $"Write to the namespace {namespaces[range.Value]}",
         ///             RulesHcl = @$"namespace ""{namespaces[range.Value]}"" {{
         ///   policy = ""write""

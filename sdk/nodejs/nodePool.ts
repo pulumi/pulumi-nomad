@@ -19,6 +19,7 @@ import * as utilities from "./utilities";
  * import * as nomad from "@pulumi/nomad";
  *
  * const dev = new nomad.NodePool("dev", {
+ *     name: "dev",
  *     description: "Nodes for the development environment.",
  *     meta: {
  *         department: "Engineering",

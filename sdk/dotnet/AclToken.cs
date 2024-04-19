@@ -25,12 +25,13 @@ namespace Pulumi.Nomad
     /// {
     ///     var dakota = new Nomad.AclToken("dakota", new()
     ///     {
+    ///         Name = "Dakota",
+    ///         Type = "client",
     ///         Policies = new[]
     ///         {
     ///             "dev",
     ///             "qa",
     ///         },
-    ///         Type = "client",
     ///     });
     /// 
     /// });
@@ -50,13 +51,14 @@ namespace Pulumi.Nomad
     /// {
     ///     var dakota = new Nomad.AclToken("dakota", new()
     ///     {
-    ///         Global = true,
+    ///         Name = "Dakota",
+    ///         Type = "client",
     ///         Policies = new[]
     ///         {
     ///             "dev",
     ///             "qa",
     ///         },
-    ///         Type = "client",
+    ///         Global = true,
     ///     });
     /// 
     /// });
@@ -76,6 +78,7 @@ namespace Pulumi.Nomad
     /// {
     ///     var iman = new Nomad.AclToken("iman", new()
     ///     {
+    ///         Name = "Iman",
     ///         Type = "management",
     ///     });
     /// 

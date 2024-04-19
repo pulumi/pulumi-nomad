@@ -15,10 +15,10 @@ import * as utilities from "./utilities";
  * import * as nomad from "@pulumi/nomad";
  *
  * const example = new nomad.Variable("example", {
+ *     path: "some/path/of/your/choosing",
  *     items: {
  *         example_key: "example_value",
  *     },
- *     path: "some/path/of/your/choosing",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -30,10 +30,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const exampleNamespace = new nomad.Namespace("exampleNamespace", {description: "Example namespace."});
- * const exampleVariable = new nomad.Variable("exampleVariable", {
+ * const example = new nomad.Namespace("example", {
+ *     name: "example",
+ *     description: "Example namespace.",
+ * });
+ * const exampleVariable = new nomad.Variable("example", {
  *     path: "some/path/of/your/choosing",
- *     namespace: exampleNamespace.name,
+ *     namespace: example.name,
  *     items: {
  *         example_key: "example_value",
  *     },

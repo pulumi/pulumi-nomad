@@ -25,8 +25,9 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myNomadAclAuthMethod = new Nomad.AclAuthMethod("myNomadAclAuthMethod", new()
+    ///     var myNomadAclAuthMethod = new Nomad.AclAuthMethod("my_nomad_acl_auth_method", new()
     ///     {
+    ///         Name = "my-nomad-acl-auth-method",
     ///         Type = "OIDC",
     ///         TokenLocality = "global",
     ///         MaxTokenTtl = "10m0s",

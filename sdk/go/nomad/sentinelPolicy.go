@@ -26,8 +26,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -36,9 +34,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewSentinelPolicy(ctx, "exec-only", &nomad.SentinelPolicyArgs{
-//				Description:      pulumi.String("Only allow jobs that are based on an exec driver."),
-//				EnforcementLevel: pulumi.String("soft-mandatory"),
-//				Policy: pulumi.String(fmt.Sprintf(`main = rule { all_drivers_exec }
+//				Name:        pulumi.String("exec-only"),
+//				Description: pulumi.String("Only allow jobs that are based on an exec driver."),
+//				Policy: pulumi.String(`main = rule { all_drivers_exec }
 //
 // # all_drivers_exec checks that all the drivers in use are exec
 //
@@ -50,9 +48,10 @@ import (
 //	    }
 //	}
 //
-// `)),
+// `),
 //
-//				Scope: pulumi.String("submit-job"),
+//				Scope:            pulumi.String("submit-job"),
+//				EnforcementLevel: pulumi.String("soft-mandatory"),
 //			})
 //			if err != nil {
 //				return err

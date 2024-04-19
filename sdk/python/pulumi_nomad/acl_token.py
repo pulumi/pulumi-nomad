@@ -357,11 +357,12 @@ class AclToken(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         dakota = nomad.AclToken("dakota",
+            name="Dakota",
+            type="client",
             policies=[
                 "dev",
                 "qa",
-            ],
-            type="client")
+            ])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -373,12 +374,13 @@ class AclToken(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         dakota = nomad.AclToken("dakota",
-            global_=True,
+            name="Dakota",
+            type="client",
             policies=[
                 "dev",
                 "qa",
             ],
-            type="client")
+            global_=True)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -389,7 +391,9 @@ class AclToken(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
-        iman = nomad.AclToken("iman", type="management")
+        iman = nomad.AclToken("iman",
+            name="Iman",
+            type="management")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -444,11 +448,12 @@ class AclToken(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         dakota = nomad.AclToken("dakota",
+            name="Dakota",
+            type="client",
             policies=[
                 "dev",
                 "qa",
-            ],
-            type="client")
+            ])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -460,12 +465,13 @@ class AclToken(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         dakota = nomad.AclToken("dakota",
-            global_=True,
+            name="Dakota",
+            type="client",
             policies=[
                 "dev",
                 "qa",
             ],
-            type="client")
+            global_=True)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -476,7 +482,9 @@ class AclToken(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
-        iman = nomad.AclToken("iman", type="management")
+        iman = nomad.AclToken("iman",
+            name="Iman",
+            type="management")
         ```
         <!--End PulumiCodeChooser -->
 

@@ -86,18 +86,6 @@ def get_job_parser(canonicalize: Optional[bool] = None,
     """
     Parse a HCL jobspec and produce the equivalent JSON encoded job.
 
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_nomad as nomad
-
-    my_job = nomad.get_job_parser(hcl=(lambda path: open(path).read())(f"{path['module']}/jobspec.hcl"),
-        canonicalize=False)
-    ```
-    <!--End PulumiCodeChooser -->
-
 
     :param bool canonicalize: `(boolean: true)` - flag to enable setting any unset fields to their default values.
     :param str hcl: `(string)` - the HCL definition of the job.
@@ -121,18 +109,6 @@ def get_job_parser_output(canonicalize: Optional[pulumi.Input[Optional[bool]]] =
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobParserResult]:
     """
     Parse a HCL jobspec and produce the equivalent JSON encoded job.
-
-    ## Example Usage
-
-    <!--Start PulumiCodeChooser -->
-    ```python
-    import pulumi
-    import pulumi_nomad as nomad
-
-    my_job = nomad.get_job_parser(hcl=(lambda path: open(path).read())(f"{path['module']}/jobspec.hcl"),
-        canonicalize=False)
-    ```
-    <!--End PulumiCodeChooser -->
 
 
     :param bool canonicalize: `(boolean: true)` - flag to enable setting any unset fields to their default values.

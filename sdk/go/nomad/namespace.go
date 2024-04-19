@@ -36,12 +36,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewNamespace(ctx, "dev", &nomad.NamespaceArgs{
+//				Name:        pulumi.String("dev"),
 //				Description: pulumi.String("Shared development environment."),
+//				Quota:       pulumi.String("dev"),
 //				Meta: pulumi.StringMap{
-//					"foo":   pulumi.String("bar"),
 //					"owner": pulumi.String("John Doe"),
+//					"foo":   pulumi.String("bar"),
 //				},
-//				Quota: pulumi.String("dev"),
 //			})
 //			if err != nil {
 //				return err
@@ -68,7 +69,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			webTeam, err := nomad.NewQuoteSpecification(ctx, "webTeam", &nomad.QuoteSpecificationArgs{
+//			webTeam, err := nomad.NewQuoteSpecification(ctx, "web_team", &nomad.QuoteSpecificationArgs{
+//				Name:        pulumi.String("web-team"),
 //				Description: pulumi.String("web team quota"),
 //				Limits: nomad.QuoteSpecificationLimitArray{
 //					&nomad.QuoteSpecificationLimitArgs{
@@ -84,6 +86,7 @@ import (
 //				return err
 //			}
 //			_, err = nomad.NewNamespace(ctx, "web", &nomad.NamespaceArgs{
+//				Name:        pulumi.String("web"),
 //				Description: pulumi.String("Web team production environment."),
 //				Quota:       webTeam.Name,
 //			})

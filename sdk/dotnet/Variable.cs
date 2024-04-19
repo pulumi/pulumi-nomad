@@ -25,11 +25,11 @@ namespace Pulumi.Nomad
     /// {
     ///     var example = new Nomad.Variable("example", new()
     ///     {
+    ///         Path = "some/path/of/your/choosing",
     ///         Items = 
     ///         {
     ///             { "example_key", "example_value" },
     ///         },
-    ///         Path = "some/path/of/your/choosing",
     ///     });
     /// 
     /// });
@@ -47,15 +47,16 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleNamespace = new Nomad.Namespace("exampleNamespace", new()
+    ///     var example = new Nomad.Namespace("example", new()
     ///     {
+    ///         Name = "example",
     ///         Description = "Example namespace.",
     ///     });
     /// 
-    ///     var exampleVariable = new Nomad.Variable("exampleVariable", new()
+    ///     var exampleVariable = new Nomad.Variable("example", new()
     ///     {
     ///         Path = "some/path/of/your/choosing",
-    ///         Namespace = exampleNamespace.Name,
+    ///         Namespace = example.Name,
     ///         Items = 
     ///         {
     ///             { "example_key", "example_value" },

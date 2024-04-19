@@ -32,15 +32,15 @@ namespace Pulumi.Nomad
     /// {
     ///     var config = new Nomad.SchedulerConfig("config", new()
     ///     {
+    ///         SchedulerAlgorithm = "spread",
     ///         MemoryOversubscriptionEnabled = true,
     ///         PreemptionConfig = 
     ///         {
+    ///             { "system_scheduler_enabled", true },
     ///             { "batch_scheduler_enabled", true },
     ///             { "service_scheduler_enabled", true },
     ///             { "sysbatch_scheduler_enabled", true },
-    ///             { "system_scheduler_enabled", true },
     ///         },
-    ///         SchedulerAlgorithm = "spread",
     ///     });
     /// 
     /// });

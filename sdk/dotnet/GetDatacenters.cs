@@ -27,8 +27,8 @@ namespace Pulumi.Nomad
         /// {
         ///     var datacenters = Nomad.GetDatacenters.Invoke(new()
         ///     {
-        ///         IgnoreDownNodes = true,
         ///         Prefix = "prod",
+        ///         IgnoreDownNodes = true,
         ///     });
         /// 
         /// });
@@ -54,8 +54,8 @@ namespace Pulumi.Nomad
         /// {
         ///     var datacenters = Nomad.GetDatacenters.Invoke(new()
         ///     {
-        ///         IgnoreDownNodes = true,
         ///         Prefix = "prod",
+        ///         IgnoreDownNodes = true,
         ///     });
         /// 
         /// });

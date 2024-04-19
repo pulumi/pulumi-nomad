@@ -16,15 +16,17 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
+ * // It can sometimes be helpful to wait for a particular plugin to be available
  * const ebs = nomad.getPlugin({
  *     pluginId: "aws-ebs0",
  *     waitForHealthy: true,
  * });
- * const mysqlVolume = new nomad.Volume("mysqlVolume", {
+ * const mysqlVolume = new nomad.Volume("mysql_volume", {
  *     type: "csi",
  *     pluginId: "aws-ebs0",
  *     volumeId: "mysql_volume",
- *     externalId: module.hashistack.ebs_test_volume_id,
+ *     name: "mysql_volume",
+ *     externalId: hashistack.ebsTestVolumeId,
  *     capabilities: [{
  *         accessMode: "single-node-writer",
  *         attachmentMode: "file-system",

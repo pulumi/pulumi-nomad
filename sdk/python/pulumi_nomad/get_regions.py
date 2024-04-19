@@ -59,6 +59,25 @@ class AwaitableGetRegionsResult(GetRegionsResult):
 def get_regions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionsResult:
     """
     Retrieve a list of regions available in Nomad.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+
+    def not_implemented(msg):
+        raise NotImplementedError(msg)
+
+    my_regions = nomad.get_regions()
+    jobs = not_implemented("The template_file data resource is not yet supported.")
+    app = []
+    for range in [{"value": i} for i in range(0, len(my_regions.regions))]:
+        app.append(nomad.Job(f"app-{range['value']}", jobspec=jobs[range["value"]]["rendered"]))
+    ```
+    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -73,5 +92,24 @@ def get_regions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegi
 def get_regions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegionsResult]:
     """
     Retrieve a list of regions available in Nomad.
+
+    ## Example Usage
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_nomad as nomad
+
+
+    def not_implemented(msg):
+        raise NotImplementedError(msg)
+
+    my_regions = nomad.get_regions()
+    jobs = not_implemented("The template_file data resource is not yet supported.")
+    app = []
+    for range in [{"value": i} for i in range(0, len(my_regions.regions))]:
+        app.append(nomad.Job(f"app-{range['value']}", jobspec=jobs[range["value"]]["rendered"]))
+    ```
+    <!--End PulumiCodeChooser -->
     """
     ...

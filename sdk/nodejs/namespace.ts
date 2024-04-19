@@ -24,12 +24,13 @@ import * as utilities from "./utilities";
  * import * as nomad from "@pulumi/nomad";
  *
  * const dev = new nomad.Namespace("dev", {
+ *     name: "dev",
  *     description: "Shared development environment.",
- *     meta: {
- *         foo: "bar",
- *         owner: "John Doe",
- *     },
  *     quota: "dev",
+ *     meta: {
+ *         owner: "John Doe",
+ *         foo: "bar",
+ *     },
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -41,7 +42,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const webTeam = new nomad.QuoteSpecification("webTeam", {
+ * const webTeam = new nomad.QuoteSpecification("web_team", {
+ *     name: "web-team",
  *     description: "web team quota",
  *     limits: [{
  *         region: "global",
@@ -52,6 +54,7 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * const web = new nomad.Namespace("web", {
+ *     name: "web",
  *     description: "Web team production environment.",
  *     quota: webTeam.name,
  * });

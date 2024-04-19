@@ -36,14 +36,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewSchedulerConfig(ctx, "config", &nomad.SchedulerConfigArgs{
+//				SchedulerAlgorithm:            pulumi.String("spread"),
 //				MemoryOversubscriptionEnabled: pulumi.Bool(true),
 //				PreemptionConfig: pulumi.BoolMap{
+//					"system_scheduler_enabled":   pulumi.Bool(true),
 //					"batch_scheduler_enabled":    pulumi.Bool(true),
 //					"service_scheduler_enabled":  pulumi.Bool(true),
 //					"sysbatch_scheduler_enabled": pulumi.Bool(true),
-//					"system_scheduler_enabled":   pulumi.Bool(true),
 //				},
-//				SchedulerAlgorithm: pulumi.String("spread"),
 //			})
 //			if err != nil {
 //				return err

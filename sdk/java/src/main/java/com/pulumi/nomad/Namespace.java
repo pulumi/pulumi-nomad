@@ -52,12 +52,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var dev = new Namespace(&#34;dev&#34;, NamespaceArgs.builder()        
+ *             .name(&#34;dev&#34;)
  *             .description(&#34;Shared development environment.&#34;)
- *             .meta(Map.ofEntries(
- *                 Map.entry(&#34;foo&#34;, &#34;bar&#34;),
- *                 Map.entry(&#34;owner&#34;, &#34;John Doe&#34;)
- *             ))
  *             .quota(&#34;dev&#34;)
+ *             .meta(Map.ofEntries(
+ *                 Map.entry(&#34;owner&#34;, &#34;John Doe&#34;),
+ *                 Map.entry(&#34;foo&#34;, &#34;bar&#34;)
+ *             ))
  *             .build());
  * 
  *     }
@@ -94,6 +95,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var webTeam = new QuoteSpecification(&#34;webTeam&#34;, QuoteSpecificationArgs.builder()        
+ *             .name(&#34;web-team&#34;)
  *             .description(&#34;web team quota&#34;)
  *             .limits(QuoteSpecificationLimitArgs.builder()
  *                 .region(&#34;global&#34;)
@@ -105,6 +107,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var web = new Namespace(&#34;web&#34;, NamespaceArgs.builder()        
+ *             .name(&#34;web&#34;)
  *             .description(&#34;Web team production environment.&#34;)
  *             .quota(webTeam.name())
  *             .build());

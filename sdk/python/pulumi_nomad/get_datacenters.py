@@ -87,8 +87,8 @@ def get_datacenters(ignore_down_nodes: Optional[bool] = None,
     import pulumi
     import pulumi_nomad as nomad
 
-    datacenters = nomad.get_datacenters(ignore_down_nodes=True,
-        prefix="prod")
+    datacenters = nomad.get_datacenters(prefix="prod",
+        ignore_down_nodes=True)
     ```
     <!--End PulumiCodeChooser -->
 
@@ -123,8 +123,8 @@ def get_datacenters_output(ignore_down_nodes: Optional[pulumi.Input[Optional[boo
     import pulumi
     import pulumi_nomad as nomad
 
-    datacenters = nomad.get_datacenters(ignore_down_nodes=True,
-        prefix="prod")
+    datacenters = nomad.get_datacenters(prefix="prod",
+        ignore_down_nodes=True)
     ```
     <!--End PulumiCodeChooser -->
 

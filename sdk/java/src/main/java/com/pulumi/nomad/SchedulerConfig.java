@@ -51,14 +51,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var config = new SchedulerConfig(&#34;config&#34;, SchedulerConfigArgs.builder()        
+ *             .schedulerAlgorithm(&#34;spread&#34;)
  *             .memoryOversubscriptionEnabled(true)
  *             .preemptionConfig(Map.ofEntries(
+ *                 Map.entry(&#34;system_scheduler_enabled&#34;, true),
  *                 Map.entry(&#34;batch_scheduler_enabled&#34;, true),
  *                 Map.entry(&#34;service_scheduler_enabled&#34;, true),
- *                 Map.entry(&#34;sysbatch_scheduler_enabled&#34;, true),
- *                 Map.entry(&#34;system_scheduler_enabled&#34;, true)
+ *                 Map.entry(&#34;sysbatch_scheduler_enabled&#34;, true)
  *             ))
- *             .schedulerAlgorithm(&#34;spread&#34;)
  *             .build());
  * 
  *     }

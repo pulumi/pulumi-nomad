@@ -18,7 +18,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * const prodApi = new nomad.QuoteSpecification("prodApi", {
+ * const prodApi = new nomad.QuoteSpecification("prod_api", {
+ *     name: "prod-api",
  *     description: "Production instances of backend API servers",
  *     limits: [{
  *         region: "global",

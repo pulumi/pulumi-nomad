@@ -18,8 +18,8 @@ import * as utilities from "./utilities";
  * import * as nomad from "@pulumi/nomad";
  *
  * const exec_only = new nomad.SentinelPolicy("exec-only", {
+ *     name: "exec-only",
  *     description: "Only allow jobs that are based on an exec driver.",
- *     enforcementLevel: "soft-mandatory",
  *     policy: `main = rule { all_drivers_exec }
  *
  * # all_drivers_exec checks that all the drivers in use are exec
@@ -30,9 +30,9 @@ import * as utilities from "./utilities";
  *         }
  *     }
  * }
- *
  * `,
  *     scope: "submit-job",
+ *     enforcementLevel: "soft-mandatory",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

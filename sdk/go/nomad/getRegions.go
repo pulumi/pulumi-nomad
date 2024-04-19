@@ -12,6 +12,49 @@ import (
 )
 
 // Retrieve a list of regions available in Nomad.
+//
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func notImplemented(message string) pulumi.AnyOutput {
+//		panic(message)
+//	}
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myRegions, err := nomad.GetRegions(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			jobs := notImplemented("The template_file data resource is not yet supported.")
+//			var app []*nomad.Job
+//			for index := 0; index < len(myRegions.Regions); index++ {
+//				key0 := index
+//				val0 := index
+//				__res, err := nomad.NewJob(ctx, fmt.Sprintf("app-%v", key0), &nomad.JobArgs{
+//					Jobspec: jobs[val0].Rendered,
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				app = append(app, __res)
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
 func GetRegions(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetRegionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRegionsResult

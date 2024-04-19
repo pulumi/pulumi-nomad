@@ -29,6 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// It can sometimes be helpful to wait for a particular plugin to be available
 //			ebs, err := nomad.GetPlugin(ctx, &nomad.GetPluginArgs{
 //				PluginId:       "aws-ebs0",
 //				WaitForHealthy: pulumi.BoolRef(true),
@@ -36,11 +37,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = nomad.NewVolume(ctx, "mysqlVolume", &nomad.VolumeArgs{
+//			_, err = nomad.NewVolume(ctx, "mysql_volume", &nomad.VolumeArgs{
 //				Type:       pulumi.String("csi"),
 //				PluginId:   pulumi.String("aws-ebs0"),
 //				VolumeId:   pulumi.String("mysql_volume"),
-//				ExternalId: pulumi.Any(module.Hashistack.Ebs_test_volume_id),
+//				Name:       pulumi.String("mysql_volume"),
+//				ExternalId: pulumi.Any(hashistack.EbsTestVolumeId),
 //				Capabilities: nomad.VolumeCapabilityArray{
 //					&nomad.VolumeCapabilityArgs{
 //						AccessMode:     pulumi.String("single-node-writer"),

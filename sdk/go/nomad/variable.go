@@ -30,10 +30,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewVariable(ctx, "example", &nomad.VariableArgs{
+//				Path: pulumi.String("some/path/of/your/choosing"),
 //				Items: pulumi.Map{
 //					"example_key": pulumi.Any("example_value"),
 //				},
-//				Path: pulumi.String("some/path/of/your/choosing"),
 //			})
 //			if err != nil {
 //				return err
@@ -60,15 +60,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleNamespace, err := nomad.NewNamespace(ctx, "exampleNamespace", &nomad.NamespaceArgs{
+//			example, err := nomad.NewNamespace(ctx, "example", &nomad.NamespaceArgs{
+//				Name:        pulumi.String("example"),
 //				Description: pulumi.String("Example namespace."),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = nomad.NewVariable(ctx, "exampleVariable", &nomad.VariableArgs{
+//			_, err = nomad.NewVariable(ctx, "example", &nomad.VariableArgs{
 //				Path:      pulumi.String("some/path/of/your/choosing"),
-//				Namespace: exampleNamespace.Name,
+//				Namespace: example.Name,
 //				Items: pulumi.Map{
 //					"example_key": pulumi.Any("example_value"),
 //				},

@@ -306,7 +306,8 @@ class AclAuthMethod(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
-        my_nomad_acl_auth_method = nomad.AclAuthMethod("myNomadAclAuthMethod",
+        my_nomad_acl_auth_method = nomad.AclAuthMethod("my_nomad_acl_auth_method",
+            name="my-nomad-acl-auth-method",
             type="OIDC",
             token_locality="global",
             max_token_ttl="10m0s",
@@ -364,7 +365,8 @@ class AclAuthMethod(pulumi.CustomResource):
         import pulumi
         import pulumi_nomad as nomad
 
-        my_nomad_acl_auth_method = nomad.AclAuthMethod("myNomadAclAuthMethod",
+        my_nomad_acl_auth_method = nomad.AclAuthMethod("my_nomad_acl_auth_method",
+            name="my-nomad-acl-auth-method",
             type="OIDC",
             token_locality="global",
             max_token_ttl="10m0s",

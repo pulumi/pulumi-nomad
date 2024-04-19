@@ -1533,8 +1533,8 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .ignoreDownNodes(true)
      *             .prefix(&#34;prod&#34;)
+     *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
@@ -1574,8 +1574,8 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .ignoreDownNodes(true)
      *             .prefix(&#34;prod&#34;)
+     *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
@@ -1615,8 +1615,8 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .ignoreDownNodes(true)
      *             .prefix(&#34;prod&#34;)
+     *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
@@ -1656,8 +1656,8 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .ignoreDownNodes(true)
      *             .prefix(&#34;prod&#34;)
+     *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
@@ -1697,8 +1697,8 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .ignoreDownNodes(true)
      *             .prefix(&#34;prod&#34;)
+     *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
@@ -1738,8 +1738,8 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .ignoreDownNodes(true)
      *             .prefix(&#34;prod&#34;)
+     *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
@@ -2160,80 +2160,12 @@ public final class NomadFunctions {
     /**
      * Parse a HCL jobspec and produce the equivalent JSON encoded job.
      * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.nomad.NomadFunctions;
-     * import com.pulumi.nomad.inputs.GetJobParserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myJob = NomadFunctions.getJobParser(GetJobParserArgs.builder()
-     *             .hcl(Files.readString(Paths.get(String.format(&#34;%s/jobspec.hcl&#34;, path.module()))))
-     *             .canonicalize(false)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetJobParserResult> getJobParser(GetJobParserArgs args) {
         return getJobParser(args, InvokeOptions.Empty);
     }
     /**
      * Parse a HCL jobspec and produce the equivalent JSON encoded job.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.nomad.NomadFunctions;
-     * import com.pulumi.nomad.inputs.GetJobParserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myJob = NomadFunctions.getJobParser(GetJobParserArgs.builder()
-     *             .hcl(Files.readString(Paths.get(String.format(&#34;%s/jobspec.hcl&#34;, path.module()))))
-     *             .canonicalize(false)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetJobParserResult> getJobParserPlain(GetJobParserPlainArgs args) {
@@ -2242,80 +2174,12 @@ public final class NomadFunctions {
     /**
      * Parse a HCL jobspec and produce the equivalent JSON encoded job.
      * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.nomad.NomadFunctions;
-     * import com.pulumi.nomad.inputs.GetJobParserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myJob = NomadFunctions.getJobParser(GetJobParserArgs.builder()
-     *             .hcl(Files.readString(Paths.get(String.format(&#34;%s/jobspec.hcl&#34;, path.module()))))
-     *             .canonicalize(false)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
-     * 
      */
     public static Output<GetJobParserResult> getJobParser(GetJobParserArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getJobParser:getJobParser", TypeShape.of(GetJobParserResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Parse a HCL jobspec and produce the equivalent JSON encoded job.
-     * 
-     * ## Example Usage
-     * 
-     * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.nomad.NomadFunctions;
-     * import com.pulumi.nomad.inputs.GetJobParserArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var myJob = NomadFunctions.getJobParser(GetJobParserArgs.builder()
-     *             .hcl(Files.readString(Paths.get(String.format(&#34;%s/jobspec.hcl&#34;, path.module()))))
-     *             .canonicalize(false)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetJobParserResult> getJobParserPlain(GetJobParserPlainArgs args, InvokeOptions options) {
@@ -2514,6 +2378,7 @@ public final class NomadFunctions {
      * 
      *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
      *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .rulesHcl(&#34;&#34;&#34;
      * namespace &#34;%s&#34; {
@@ -2566,6 +2431,7 @@ public final class NomadFunctions {
      * 
      *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
      *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .rulesHcl(&#34;&#34;&#34;
      * namespace &#34;%s&#34; {
@@ -2618,6 +2484,7 @@ public final class NomadFunctions {
      * 
      *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
      *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .rulesHcl(&#34;&#34;&#34;
      * namespace &#34;%s&#34; {
@@ -2670,6 +2537,7 @@ public final class NomadFunctions {
      * 
      *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
      *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .rulesHcl(&#34;&#34;&#34;
      * namespace &#34;%s&#34; {
@@ -2722,6 +2590,7 @@ public final class NomadFunctions {
      * 
      *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
      *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .rulesHcl(&#34;&#34;&#34;
      * namespace &#34;%s&#34; {
@@ -2774,6 +2643,7 @@ public final class NomadFunctions {
      * 
      *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
      *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
+     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
      *                 .rulesHcl(&#34;&#34;&#34;
      * namespace &#34;%s&#34; {
@@ -3636,12 +3506,22 @@ public final class NomadFunctions {
     /**
      * Retrieve a list of regions available in Nomad.
      * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetRegionsResult> getRegions() {
         return getRegions(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * Retrieve a list of regions available in Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRegionsResult> getRegionsPlain() {
@@ -3650,12 +3530,22 @@ public final class NomadFunctions {
     /**
      * Retrieve a list of regions available in Nomad.
      * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetRegionsResult> getRegions(InvokeArgs args) {
         return getRegions(args, InvokeOptions.Empty);
     }
     /**
      * Retrieve a list of regions available in Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRegionsResult> getRegionsPlain(InvokeArgs args) {
@@ -3664,12 +3554,22 @@ public final class NomadFunctions {
     /**
      * Retrieve a list of regions available in Nomad.
      * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetRegionsResult> getRegions(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getRegions:getRegions", TypeShape.of(GetRegionsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Retrieve a list of regions available in Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRegionsResult> getRegionsPlain(InvokeArgs args, InvokeOptions options) {

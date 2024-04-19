@@ -173,38 +173,6 @@ class AclPolicy(pulumi.CustomResource):
         """
         Manages an ACL policy registered in Nomad.
 
-        ## Example Usage
-
-        Registering a policy from a HCL file:
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_nomad as nomad
-
-        dev = nomad.AclPolicy("dev",
-            description="Submit jobs to the dev environment.",
-            rules_hcl=(lambda path: open(path).read())(f"{path['module']}/dev.hcl"))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        Registering a policy from inline HCL:
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_nomad as nomad
-
-        dev = nomad.AclPolicy("dev",
-            description="Submit jobs to the dev environment.",
-            rules_hcl=\"\"\"namespace "dev" {
-          policy = "write"
-        }
-
-        \"\"\")
-        ```
-        <!--End PulumiCodeChooser -->
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: `(string: "")` - A description of the policy.
@@ -221,38 +189,6 @@ class AclPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages an ACL policy registered in Nomad.
-
-        ## Example Usage
-
-        Registering a policy from a HCL file:
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_nomad as nomad
-
-        dev = nomad.AclPolicy("dev",
-            description="Submit jobs to the dev environment.",
-            rules_hcl=(lambda path: open(path).read())(f"{path['module']}/dev.hcl"))
-        ```
-        <!--End PulumiCodeChooser -->
-
-        Registering a policy from inline HCL:
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_nomad as nomad
-
-        dev = nomad.AclPolicy("dev",
-            description="Submit jobs to the dev environment.",
-            rules_hcl=\"\"\"namespace "dev" {
-          policy = "write"
-        }
-
-        \"\"\")
-        ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param AclPolicyArgs args: The arguments to use to populate this resource's properties.

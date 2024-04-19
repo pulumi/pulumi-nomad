@@ -150,14 +150,14 @@ class SchedulerConfig(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         config = nomad.SchedulerConfig("config",
+            scheduler_algorithm="spread",
             memory_oversubscription_enabled=True,
             preemption_config={
+                "system_scheduler_enabled": True,
                 "batch_scheduler_enabled": True,
                 "service_scheduler_enabled": True,
                 "sysbatch_scheduler_enabled": True,
-                "system_scheduler_enabled": True,
-            },
-            scheduler_algorithm="spread")
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -191,14 +191,14 @@ class SchedulerConfig(pulumi.CustomResource):
         import pulumi_nomad as nomad
 
         config = nomad.SchedulerConfig("config",
+            scheduler_algorithm="spread",
             memory_oversubscription_enabled=True,
             preemption_config={
+                "system_scheduler_enabled": True,
                 "batch_scheduler_enabled": True,
                 "service_scheduler_enabled": True,
                 "sysbatch_scheduler_enabled": True,
-                "system_scheduler_enabled": True,
-            },
-            scheduler_algorithm="spread")
+            })
         ```
         <!--End PulumiCodeChooser -->
 
