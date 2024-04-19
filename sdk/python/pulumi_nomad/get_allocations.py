@@ -97,14 +97,12 @@ def get_allocations(filter: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_allocations(filter="JobID == \\"example\\"")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str filter: `(string: <optional>)` - Specifies the
@@ -139,14 +137,12 @@ def get_allocations_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_allocations(filter="JobID == \\"example\\"")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str filter: `(string: <optional>)` - Specifies the

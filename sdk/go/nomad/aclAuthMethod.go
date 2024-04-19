@@ -18,7 +18,6 @@ import (
 //
 // Creating an ALC Auth Method:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -63,7 +62,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type AclAuthMethod struct {
 	pulumi.CustomResourceState
 

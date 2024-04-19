@@ -135,7 +135,6 @@ class Variable(pulumi.CustomResource):
 
         Creating a variable in the default namespace:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -146,11 +145,9 @@ class Variable(pulumi.CustomResource):
             },
             path="some/path/of/your/choosing")
         ```
-        <!--End PulumiCodeChooser -->
 
         Creating a variable in a custom namespace:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -163,7 +160,6 @@ class Variable(pulumi.CustomResource):
                 "example_key": "example_value",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -182,7 +178,6 @@ class Variable(pulumi.CustomResource):
 
         Creating a variable in the default namespace:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -193,11 +188,9 @@ class Variable(pulumi.CustomResource):
             },
             path="some/path/of/your/choosing")
         ```
-        <!--End PulumiCodeChooser -->
 
         Creating a variable in a custom namespace:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -210,7 +203,6 @@ class Variable(pulumi.CustomResource):
                 "example_key": "example_value",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param VariableArgs args: The arguments to use to populate this resource's properties.

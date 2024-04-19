@@ -249,7 +249,6 @@ class Namespace(pulumi.CustomResource):
 
         Registering a namespace:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -262,11 +261,9 @@ class Namespace(pulumi.CustomResource):
             },
             quota="dev")
         ```
-        <!--End PulumiCodeChooser -->
 
         Registering a namespace with a quota:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -284,7 +281,6 @@ class Namespace(pulumi.CustomResource):
             description="Web team production environment.",
             quota=web_team.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -314,7 +310,6 @@ class Namespace(pulumi.CustomResource):
 
         Registering a namespace:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -327,11 +322,9 @@ class Namespace(pulumi.CustomResource):
             },
             quota="dev")
         ```
-        <!--End PulumiCodeChooser -->
 
         Registering a namespace with a quota:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -349,7 +342,6 @@ class Namespace(pulumi.CustomResource):
             description="Web team production environment.",
             quota=web_team.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param NamespaceArgs args: The arguments to use to populate this resource's properties.

@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * Creating a volume:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -54,7 +53,6 @@ import * as utilities from "./utilities";
  *     dependsOn: [ebs],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class ExternalVolume extends pulumi.CustomResource {
     /**

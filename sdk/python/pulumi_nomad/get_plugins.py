@@ -72,14 +72,12 @@ def get_plugins(type: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_plugins()
     ```
-    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     __args__['type'] = type
@@ -100,13 +98,11 @@ def get_plugins_output(type: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_plugins()
     ```
-    <!--End PulumiCodeChooser -->
     """
     ...

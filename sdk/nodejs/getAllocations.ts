@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -20,7 +19,6 @@ import * as utilities from "./utilities";
  *     filter: "JobID == \"example\"",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAllocations(args?: GetAllocationsArgs, opts?: pulumi.InvokeOptions): Promise<GetAllocationsResult> {
     args = args || {};
@@ -79,7 +77,6 @@ export interface GetAllocationsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -88,7 +85,6 @@ export interface GetAllocationsResult {
  *     filter: "JobID == \"example\"",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAllocationsOutput(args?: GetAllocationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAllocationsResult> {
     return pulumi.output(args).apply((a: any) => getAllocations(a, opts))

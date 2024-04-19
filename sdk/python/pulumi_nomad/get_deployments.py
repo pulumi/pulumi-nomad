@@ -62,14 +62,12 @@ def get_deployments(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_deployments()
     ```
-    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -87,13 +85,11 @@ def get_deployments_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulum
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_deployments()
     ```
-    <!--End PulumiCodeChooser -->
     """
     ...

@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * Creating a variable in the default namespace:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -21,11 +20,9 @@ import * as utilities from "./utilities";
  *     path: "some/path/of/your/choosing",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Creating a variable in a custom namespace:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -39,7 +36,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class Variable extends pulumi.CustomResource {
     /**

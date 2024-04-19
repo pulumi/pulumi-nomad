@@ -17,7 +17,6 @@ namespace Pulumi.Nomad
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -47,7 +46,6 @@ namespace Pulumi.Nomad
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [NomadResourceType("nomad:index/sentinelPolicy:SentinelPolicy")]
     public partial class SentinelPolicy : global::Pulumi.CustomResource

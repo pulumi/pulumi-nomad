@@ -16,7 +16,6 @@ namespace Pulumi.Nomad
     /// 
     /// Registering a policy from a HCL file:
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -34,11 +33,9 @@ namespace Pulumi.Nomad
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// Registering a policy from inline HCL:
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -59,7 +56,6 @@ namespace Pulumi.Nomad
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [NomadResourceType("nomad:index/aclPolicy:AclPolicy")]
     public partial class AclPolicy : global::Pulumi.CustomResource

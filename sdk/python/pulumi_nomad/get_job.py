@@ -301,7 +301,6 @@ def get_job(job_id: Optional[str] = None,
 
     Get the data about a snapshot:
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -309,7 +308,6 @@ def get_job(job_id: Optional[str] = None,
     example = nomad.get_job(job_id="example",
         namespace="dev")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str job_id: `(string)` ID of the job.
@@ -360,7 +358,6 @@ def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
 
     Get the data about a snapshot:
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -368,7 +365,6 @@ def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
     example = nomad.get_job(job_id="example",
         namespace="dev")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str job_id: `(string)` ID of the job.

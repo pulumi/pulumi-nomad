@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * Registering a policy from a HCL file:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
@@ -24,11 +23,9 @@ import * as utilities from "./utilities";
  *     rulesHcl: fs.readFileSync(`${path.module}/dev.hcl`, "utf8"),
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Registering a policy from inline HCL:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -42,7 +39,6 @@ import * as utilities from "./utilities";
  * `,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class AclPolicy extends pulumi.CustomResource {
     /**

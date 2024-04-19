@@ -16,7 +16,6 @@ import (
 //
 // Registering a volume:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -78,7 +77,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type Volume struct {
 	pulumi.CustomResourceState
 

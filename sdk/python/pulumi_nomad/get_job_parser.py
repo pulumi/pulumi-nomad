@@ -88,7 +88,6 @@ def get_job_parser(canonicalize: Optional[bool] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -96,7 +95,6 @@ def get_job_parser(canonicalize: Optional[bool] = None,
     my_job = nomad.get_job_parser(hcl=(lambda path: open(path).read())(f"{path['module']}/jobspec.hcl"),
         canonicalize=False)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param bool canonicalize: `(boolean: true)` - flag to enable setting any unset fields to their default values.
@@ -124,7 +122,6 @@ def get_job_parser_output(canonicalize: Optional[pulumi.Input[Optional[bool]]] =
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -132,7 +129,6 @@ def get_job_parser_output(canonicalize: Optional[pulumi.Input[Optional[bool]]] =
     my_job = nomad.get_job_parser(hcl=(lambda path: open(path).read())(f"{path['module']}/jobspec.hcl"),
         canonicalize=False)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param bool canonicalize: `(boolean: true)` - flag to enable setting any unset fields to their default values.

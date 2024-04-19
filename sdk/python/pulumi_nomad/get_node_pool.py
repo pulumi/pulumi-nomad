@@ -98,14 +98,12 @@ def get_node_pool(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     dev = nomad.get_node_pool(name="dev")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: `(string)` - The name of the node pool to fetch.
@@ -131,14 +129,12 @@ def get_node_pool_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     dev = nomad.get_node_pool(name="dev")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: `(string)` - The name of the node pool to fetch.

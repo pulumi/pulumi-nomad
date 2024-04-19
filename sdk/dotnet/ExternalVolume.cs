@@ -14,7 +14,6 @@ namespace Pulumi.Nomad
     /// 
     /// Creating a volume:
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -76,13 +75,12 @@ namespace Pulumi.Nomad
     ///     {
     ///         DependsOn =
     ///         {
-    ///             ebs, 
+    ///             ebs,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [NomadResourceType("nomad:index/externalVolume:ExternalVolume")]
     public partial class ExternalVolume : global::Pulumi.CustomResource

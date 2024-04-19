@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
@@ -20,7 +19,6 @@ import * as utilities from "./utilities";
  *     canonicalize: false,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getJobParser(args: GetJobParserArgs, opts?: pulumi.InvokeOptions): Promise<GetJobParserResult> {
 
@@ -71,7 +69,6 @@ export interface GetJobParserResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
@@ -82,7 +79,6 @@ export interface GetJobParserResult {
  *     canonicalize: false,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getJobParserOutput(args: GetJobParserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJobParserResult> {
     return pulumi.output(args).apply((a: any) => getJobParser(a, opts))
