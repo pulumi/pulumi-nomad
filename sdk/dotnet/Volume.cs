@@ -77,7 +77,7 @@ namespace Pulumi.Nomad
     ///     {
     ///         DependsOn =
     ///         {
-    ///             ebs, 
+    ///             ebs,
     ///         },
     ///     });
     /// 
