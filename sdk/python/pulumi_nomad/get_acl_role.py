@@ -88,14 +88,12 @@ def get_acl_role(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_acl_role(id="aa534e09-6a07-0a45-2295-a7f77063d429")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: `(string)` The unique identifier of the ACL Role.
@@ -120,14 +118,12 @@ def get_acl_role_output(id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_acl_role(id="aa534e09-6a07-0a45-2295-a7f77063d429")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: `(string)` The unique identifier of the ACL Role.

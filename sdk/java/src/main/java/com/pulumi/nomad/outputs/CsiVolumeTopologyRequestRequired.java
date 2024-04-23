@@ -12,14 +12,14 @@ import java.util.Objects;
 @CustomType
 public final class CsiVolumeTopologyRequestRequired {
     /**
-     * @return `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * @return Defines the location for the volume.
      * 
      */
     private List<CsiVolumeTopologyRequestRequiredTopology> topologies;
 
     private CsiVolumeTopologyRequestRequired() {}
     /**
-     * @return `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * @return Defines the location for the volume.
      * 
      */
     public List<CsiVolumeTopologyRequestRequiredTopology> topologies() {

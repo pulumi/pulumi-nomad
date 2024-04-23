@@ -18,7 +18,6 @@ import (
 //
 // Registering a quota specification:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -52,7 +51,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type QuoteSpecification struct {
 	pulumi.CustomResourceState
 

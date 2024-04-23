@@ -144,7 +144,6 @@ class SchedulerConfig(pulumi.CustomResource):
 
         Set cluster scheduler configuration:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -159,7 +158,6 @@ class SchedulerConfig(pulumi.CustomResource):
                 "sysbatch_scheduler_enabled": True,
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -185,7 +183,6 @@ class SchedulerConfig(pulumi.CustomResource):
 
         Set cluster scheduler configuration:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -200,7 +197,6 @@ class SchedulerConfig(pulumi.CustomResource):
                 "sysbatch_scheduler_enabled": True,
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param SchedulerConfigArgs args: The arguments to use to populate this resource's properties.

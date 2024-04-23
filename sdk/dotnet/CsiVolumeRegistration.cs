@@ -45,21 +45,12 @@ namespace Pulumi.Nomad
         [Output("context")]
         public Output<ImmutableDictionary<string, string>?> Context { get; private set; } = null!;
 
-        /// <summary>
-        /// `(boolean)`
-        /// </summary>
         [Output("controllerRequired")]
         public Output<bool> ControllerRequired { get; private set; } = null!;
 
-        /// <summary>
-        /// `(integer)`
-        /// </summary>
         [Output("controllersExpected")]
         public Output<int> ControllersExpected { get; private set; } = null!;
 
-        /// <summary>
-        /// `(integer)`
-        /// </summary>
         [Output("controllersHealthy")]
         public Output<int> ControllersHealthy { get; private set; } = null!;
 
@@ -93,15 +84,9 @@ namespace Pulumi.Nomad
         [Output("namespace")]
         public Output<string?> Namespace { get; private set; } = null!;
 
-        /// <summary>
-        /// `(integer)`
-        /// </summary>
         [Output("nodesExpected")]
         public Output<int> NodesExpected { get; private set; } = null!;
 
-        /// <summary>
-        /// `(integer)`
-        /// </summary>
         [Output("nodesHealthy")]
         public Output<int> NodesHealthy { get; private set; } = null!;
 
@@ -117,21 +102,12 @@ namespace Pulumi.Nomad
         [Output("pluginId")]
         public Output<string> PluginId { get; private set; } = null!;
 
-        /// <summary>
-        /// `(string)`
-        /// </summary>
         [Output("pluginProvider")]
         public Output<string> PluginProvider { get; private set; } = null!;
 
-        /// <summary>
-        /// `(string)`
-        /// </summary>
         [Output("pluginProviderVersion")]
         public Output<string> PluginProviderVersion { get; private set; } = null!;
 
-        /// <summary>
-        /// `(boolean)`
-        /// </summary>
         [Output("schedulable")]
         public Output<bool> Schedulable { get; private set; } = null!;
 
@@ -141,9 +117,6 @@ namespace Pulumi.Nomad
         [Output("secrets")]
         public Output<ImmutableDictionary<string, string>?> Secrets { get; private set; } = null!;
 
-        /// <summary>
-        /// `(List of topologies)`
-        /// </summary>
         [Output("topologies")]
         public Output<ImmutableArray<Outputs.CsiVolumeRegistrationTopology>> Topologies { get; private set; } = null!;
 
@@ -374,21 +347,12 @@ namespace Pulumi.Nomad
             set => _context = value;
         }
 
-        /// <summary>
-        /// `(boolean)`
-        /// </summary>
         [Input("controllerRequired")]
         public Input<bool>? ControllerRequired { get; set; }
 
-        /// <summary>
-        /// `(integer)`
-        /// </summary>
         [Input("controllersExpected")]
         public Input<int>? ControllersExpected { get; set; }
 
-        /// <summary>
-        /// `(integer)`
-        /// </summary>
         [Input("controllersHealthy")]
         public Input<int>? ControllersHealthy { get; set; }
 
@@ -422,15 +386,9 @@ namespace Pulumi.Nomad
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
-        /// <summary>
-        /// `(integer)`
-        /// </summary>
         [Input("nodesExpected")]
         public Input<int>? NodesExpected { get; set; }
 
-        /// <summary>
-        /// `(integer)`
-        /// </summary>
         [Input("nodesHealthy")]
         public Input<int>? NodesHealthy { get; set; }
 
@@ -452,21 +410,12 @@ namespace Pulumi.Nomad
         [Input("pluginId")]
         public Input<string>? PluginId { get; set; }
 
-        /// <summary>
-        /// `(string)`
-        /// </summary>
         [Input("pluginProvider")]
         public Input<string>? PluginProvider { get; set; }
 
-        /// <summary>
-        /// `(string)`
-        /// </summary>
         [Input("pluginProviderVersion")]
         public Input<string>? PluginProviderVersion { get; set; }
 
-        /// <summary>
-        /// `(boolean)`
-        /// </summary>
         [Input("schedulable")]
         public Input<bool>? Schedulable { get; set; }
 
@@ -488,10 +437,6 @@ namespace Pulumi.Nomad
 
         [Input("topologies")]
         private InputList<Inputs.CsiVolumeRegistrationTopologyGetArgs>? _topologies;
-
-        /// <summary>
-        /// `(List of topologies)`
-        /// </summary>
         public InputList<Inputs.CsiVolumeRegistrationTopologyGetArgs> Topologies
         {
             get => _topologies ?? (_topologies = new InputList<Inputs.CsiVolumeRegistrationTopologyGetArgs>());

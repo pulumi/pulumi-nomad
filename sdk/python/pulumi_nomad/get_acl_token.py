@@ -173,14 +173,12 @@ def get_acl_token(accessor_id: Optional[str] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     my_token = nomad.get_acl_token(accessor_id="aa534e09-6a07-0a45-2295-a7f77063d429")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str accessor_id: `(string)` Non-sensitive identifier for this token.
@@ -210,14 +208,12 @@ def get_acl_token_output(accessor_id: Optional[pulumi.Input[str]] = None,
     """
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     my_token = nomad.get_acl_token(accessor_id="aa534e09-6a07-0a45-2295-a7f77063d429")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str accessor_id: `(string)` Non-sensitive identifier for this token.

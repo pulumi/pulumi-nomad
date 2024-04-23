@@ -24,7 +24,6 @@ import (
 //
 // Check for the existence of a plugin:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -49,7 +48,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
 // is healthy before returning.

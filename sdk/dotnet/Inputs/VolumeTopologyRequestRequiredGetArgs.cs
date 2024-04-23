@@ -16,7 +16,7 @@ namespace Pulumi.Nomad.Inputs
         private InputList<Inputs.VolumeTopologyRequestRequiredTopologyGetArgs>? _topologies;
 
         /// <summary>
-        /// `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+        /// Defines the location for the volume.
         /// </summary>
         public InputList<Inputs.VolumeTopologyRequestRequiredTopologyGetArgs> Topologies
         {

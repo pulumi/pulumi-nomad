@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  *
  * Check for the existence of a plugin:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -30,7 +29,6 @@ import * as utilities from "./utilities";
  *     waitForHealthy: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
  * is healthy before returning.
@@ -121,7 +119,6 @@ export interface GetPluginResult {
  *
  * Check for the existence of a plugin:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -131,7 +128,6 @@ export interface GetPluginResult {
  *     waitForHealthy: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
  * is healthy before returning.

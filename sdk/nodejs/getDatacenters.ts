@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -19,7 +18,6 @@ import * as utilities from "./utilities";
  *     ignoreDownNodes: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDatacenters(args?: GetDatacentersArgs, opts?: pulumi.InvokeOptions): Promise<GetDatacentersResult> {
     args = args || {};
@@ -65,7 +63,6 @@ export interface GetDatacentersResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -75,7 +72,6 @@ export interface GetDatacentersResult {
  *     ignoreDownNodes: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDatacentersOutput(args?: GetDatacentersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatacentersResult> {
     return pulumi.output(args).apply((a: any) => getDatacenters(a, opts))

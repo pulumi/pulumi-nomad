@@ -16,14 +16,14 @@ public final class CsiVolumeTopologyRequestRequiredArgs extends com.pulumi.resou
     public static final CsiVolumeTopologyRequestRequiredArgs Empty = new CsiVolumeTopologyRequestRequiredArgs();
 
     /**
-     * `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * Defines the location for the volume.
      * 
      */
     @Import(name="topologies", required=true)
     private Output<List<CsiVolumeTopologyRequestRequiredTopologyArgs>> topologies;
 
     /**
-     * @return `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * @return Defines the location for the volume.
      * 
      */
     public Output<List<CsiVolumeTopologyRequestRequiredTopologyArgs>> topologies() {
@@ -55,7 +55,7 @@ public final class CsiVolumeTopologyRequestRequiredArgs extends com.pulumi.resou
         }
 
         /**
-         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * @param topologies Defines the location for the volume.
          * 
          * @return builder
          * 
@@ -66,7 +66,7 @@ public final class CsiVolumeTopologyRequestRequiredArgs extends com.pulumi.resou
         }
 
         /**
-         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * @param topologies Defines the location for the volume.
          * 
          * @return builder
          * 
@@ -76,7 +76,7 @@ public final class CsiVolumeTopologyRequestRequiredArgs extends com.pulumi.resou
         }
 
         /**
-         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * @param topologies Defines the location for the volume.
          * 
          * @return builder
          * 

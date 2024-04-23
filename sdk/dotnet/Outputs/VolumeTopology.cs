@@ -13,12 +13,6 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class VolumeTopology
     {
-        /// <summary>
-        /// `(map[string]string)` - Define the attributes for the topology request.
-        /// 
-        /// In addition to the above arguments, the following attributes are exported and
-        /// can be referenced:
-        /// </summary>
         public readonly ImmutableDictionary<string, string>? Segments;
 
         [OutputConstructor]

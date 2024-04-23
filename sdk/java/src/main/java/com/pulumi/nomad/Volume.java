@@ -175,45 +175,21 @@ public class Volume extends com.pulumi.resources.CustomResource {
     public Output<Optional<Map<String,String>>> context() {
         return Codegen.optional(this.context);
     }
-    /**
-     * `(boolean)`
-     * 
-     */
     @Export(name="controllerRequired", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> controllerRequired;
 
-    /**
-     * @return `(boolean)`
-     * 
-     */
     public Output<Boolean> controllerRequired() {
         return this.controllerRequired;
     }
-    /**
-     * `(integer)`
-     * 
-     */
     @Export(name="controllersExpected", refs={Integer.class}, tree="[0]")
     private Output<Integer> controllersExpected;
 
-    /**
-     * @return `(integer)`
-     * 
-     */
     public Output<Integer> controllersExpected() {
         return this.controllersExpected;
     }
-    /**
-     * `(integer)`
-     * 
-     */
     @Export(name="controllersHealthy", refs={Integer.class}, tree="[0]")
     private Output<Integer> controllersHealthy;
 
-    /**
-     * @return `(integer)`
-     * 
-     */
     public Output<Integer> controllersHealthy() {
         return this.controllersHealthy;
     }
@@ -287,31 +263,15 @@ public class Volume extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
     }
-    /**
-     * `(integer)`
-     * 
-     */
     @Export(name="nodesExpected", refs={Integer.class}, tree="[0]")
     private Output<Integer> nodesExpected;
 
-    /**
-     * @return `(integer)`
-     * 
-     */
     public Output<Integer> nodesExpected() {
         return this.nodesExpected;
     }
-    /**
-     * `(integer)`
-     * 
-     */
     @Export(name="nodesHealthy", refs={Integer.class}, tree="[0]")
     private Output<Integer> nodesHealthy;
 
-    /**
-     * @return `(integer)`
-     * 
-     */
     public Output<Integer> nodesHealthy() {
         return this.nodesHealthy;
     }
@@ -343,45 +303,21 @@ public class Volume extends com.pulumi.resources.CustomResource {
     public Output<String> pluginId() {
         return this.pluginId;
     }
-    /**
-     * `(string)`
-     * 
-     */
     @Export(name="pluginProvider", refs={String.class}, tree="[0]")
     private Output<String> pluginProvider;
 
-    /**
-     * @return `(string)`
-     * 
-     */
     public Output<String> pluginProvider() {
         return this.pluginProvider;
     }
-    /**
-     * `(string)`
-     * 
-     */
     @Export(name="pluginProviderVersion", refs={String.class}, tree="[0]")
     private Output<String> pluginProviderVersion;
 
-    /**
-     * @return `(string)`
-     * 
-     */
     public Output<String> pluginProviderVersion() {
         return this.pluginProviderVersion;
     }
-    /**
-     * `(boolean)`
-     * 
-     */
     @Export(name="schedulable", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> schedulable;
 
-    /**
-     * @return `(boolean)`
-     * 
-     */
     public Output<Boolean> schedulable() {
         return this.schedulable;
     }
@@ -399,17 +335,9 @@ public class Volume extends com.pulumi.resources.CustomResource {
     public Output<Optional<Map<String,String>>> secrets() {
         return Codegen.optional(this.secrets);
     }
-    /**
-     * `(List of topologies)`
-     * 
-     */
     @Export(name="topologies", refs={List.class,VolumeTopology.class}, tree="[0,1]")
     private Output<List<VolumeTopology>> topologies;
 
-    /**
-     * @return `(List of topologies)`
-     * 
-     */
     public Output<List<VolumeTopology>> topologies() {
         return this.topologies;
     }

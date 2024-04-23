@@ -17,7 +17,6 @@ import (
 //
 // Registering a node pool:
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -46,7 +45,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type NodePool struct {
 	pulumi.CustomResourceState
 

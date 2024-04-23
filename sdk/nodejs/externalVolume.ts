@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * Creating a volume:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -56,7 +55,6 @@ import * as utilities from "./utilities";
  *     dependsOn: [ebs],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class ExternalVolume extends pulumi.CustomResource {
     /**
@@ -102,17 +100,8 @@ export class ExternalVolume extends pulumi.CustomResource {
      * `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      */
     public readonly cloneId!: pulumi.Output<string | undefined>;
-    /**
-     * `(boolean)`
-     */
     public /*out*/ readonly controllerRequired!: pulumi.Output<boolean>;
-    /**
-     * `(integer)`
-     */
     public /*out*/ readonly controllersExpected!: pulumi.Output<number>;
-    /**
-     * `(integer)`
-     */
     public /*out*/ readonly controllersHealthy!: pulumi.Output<number>;
     /**
      * `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
@@ -126,13 +115,7 @@ export class ExternalVolume extends pulumi.CustomResource {
      * `(string: "default")` - The namespace in which to register the volume.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
-    /**
-     * `(integer)`
-     */
     public /*out*/ readonly nodesExpected!: pulumi.Output<number>;
-    /**
-     * `(integer)`
-     */
     public /*out*/ readonly nodesHealthy!: pulumi.Output<number>;
     /**
      * `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
@@ -142,17 +125,8 @@ export class ExternalVolume extends pulumi.CustomResource {
      * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
     public readonly pluginId!: pulumi.Output<string>;
-    /**
-     * `(string)`
-     */
     public /*out*/ readonly pluginProvider!: pulumi.Output<string>;
-    /**
-     * `(string)`
-     */
     public /*out*/ readonly pluginProviderVersion!: pulumi.Output<string>;
-    /**
-     * `(boolean)`
-     */
     public /*out*/ readonly schedulable!: pulumi.Output<boolean>;
     /**
      * `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
@@ -162,9 +136,6 @@ export class ExternalVolume extends pulumi.CustomResource {
      * `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
      */
     public readonly snapshotId!: pulumi.Output<string | undefined>;
-    /**
-     * `(List of topologies)`
-     */
     public /*out*/ readonly topologies!: pulumi.Output<outputs.ExternalVolumeTopology[]>;
     /**
      * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
@@ -277,17 +248,8 @@ export interface ExternalVolumeState {
      * `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      */
     cloneId?: pulumi.Input<string>;
-    /**
-     * `(boolean)`
-     */
     controllerRequired?: pulumi.Input<boolean>;
-    /**
-     * `(integer)`
-     */
     controllersExpected?: pulumi.Input<number>;
-    /**
-     * `(integer)`
-     */
     controllersHealthy?: pulumi.Input<number>;
     /**
      * `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
@@ -301,13 +263,7 @@ export interface ExternalVolumeState {
      * `(string: "default")` - The namespace in which to register the volume.
      */
     namespace?: pulumi.Input<string>;
-    /**
-     * `(integer)`
-     */
     nodesExpected?: pulumi.Input<number>;
-    /**
-     * `(integer)`
-     */
     nodesHealthy?: pulumi.Input<number>;
     /**
      * `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
@@ -317,17 +273,8 @@ export interface ExternalVolumeState {
      * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
     pluginId?: pulumi.Input<string>;
-    /**
-     * `(string)`
-     */
     pluginProvider?: pulumi.Input<string>;
-    /**
-     * `(string)`
-     */
     pluginProviderVersion?: pulumi.Input<string>;
-    /**
-     * `(boolean)`
-     */
     schedulable?: pulumi.Input<boolean>;
     /**
      * `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
@@ -337,9 +284,6 @@ export interface ExternalVolumeState {
      * `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
      */
     snapshotId?: pulumi.Input<string>;
-    /**
-     * `(List of topologies)`
-     */
     topologies?: pulumi.Input<pulumi.Input<inputs.ExternalVolumeTopology>[]>;
     /**
      * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.

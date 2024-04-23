@@ -274,22 +274,13 @@ class _ExternalVolumeState:
         :param pulumi.Input[str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] clone_id: `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
-        :param pulumi.Input[bool] controller_required: `(boolean)`
-        :param pulumi.Input[int] controllers_expected: `(integer)`
-        :param pulumi.Input[int] controllers_healthy: `(integer)`
         :param pulumi.Input['ExternalVolumeMountOptionsArgs'] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
-        :param pulumi.Input[int] nodes_expected: `(integer)`
-        :param pulumi.Input[int] nodes_healthy: `(integer)`
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         :param pulumi.Input[str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
-        :param pulumi.Input[str] plugin_provider: `(string)`
-        :param pulumi.Input[str] plugin_provider_version: `(string)`
-        :param pulumi.Input[bool] schedulable: `(boolean)`
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         :param pulumi.Input[str] snapshot_id: `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
-        :param pulumi.Input[Sequence[pulumi.Input['ExternalVolumeTopologyArgs']]] topologies: `(List of topologies)`
         :param pulumi.Input['ExternalVolumeTopologyRequestArgs'] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
@@ -392,9 +383,6 @@ class _ExternalVolumeState:
     @property
     @pulumi.getter(name="controllerRequired")
     def controller_required(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `(boolean)`
-        """
         return pulumi.get(self, "controller_required")
 
     @controller_required.setter
@@ -404,9 +392,6 @@ class _ExternalVolumeState:
     @property
     @pulumi.getter(name="controllersExpected")
     def controllers_expected(self) -> Optional[pulumi.Input[int]]:
-        """
-        `(integer)`
-        """
         return pulumi.get(self, "controllers_expected")
 
     @controllers_expected.setter
@@ -416,9 +401,6 @@ class _ExternalVolumeState:
     @property
     @pulumi.getter(name="controllersHealthy")
     def controllers_healthy(self) -> Optional[pulumi.Input[int]]:
-        """
-        `(integer)`
-        """
         return pulumi.get(self, "controllers_healthy")
 
     @controllers_healthy.setter
@@ -464,9 +446,6 @@ class _ExternalVolumeState:
     @property
     @pulumi.getter(name="nodesExpected")
     def nodes_expected(self) -> Optional[pulumi.Input[int]]:
-        """
-        `(integer)`
-        """
         return pulumi.get(self, "nodes_expected")
 
     @nodes_expected.setter
@@ -476,9 +455,6 @@ class _ExternalVolumeState:
     @property
     @pulumi.getter(name="nodesHealthy")
     def nodes_healthy(self) -> Optional[pulumi.Input[int]]:
-        """
-        `(integer)`
-        """
         return pulumi.get(self, "nodes_healthy")
 
     @nodes_healthy.setter
@@ -512,9 +488,6 @@ class _ExternalVolumeState:
     @property
     @pulumi.getter(name="pluginProvider")
     def plugin_provider(self) -> Optional[pulumi.Input[str]]:
-        """
-        `(string)`
-        """
         return pulumi.get(self, "plugin_provider")
 
     @plugin_provider.setter
@@ -524,9 +497,6 @@ class _ExternalVolumeState:
     @property
     @pulumi.getter(name="pluginProviderVersion")
     def plugin_provider_version(self) -> Optional[pulumi.Input[str]]:
-        """
-        `(string)`
-        """
         return pulumi.get(self, "plugin_provider_version")
 
     @plugin_provider_version.setter
@@ -536,9 +506,6 @@ class _ExternalVolumeState:
     @property
     @pulumi.getter
     def schedulable(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `(boolean)`
-        """
         return pulumi.get(self, "schedulable")
 
     @schedulable.setter
@@ -572,9 +539,6 @@ class _ExternalVolumeState:
     @property
     @pulumi.getter
     def topologies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ExternalVolumeTopologyArgs']]]]:
-        """
-        `(List of topologies)`
-        """
         return pulumi.get(self, "topologies")
 
     @topologies.setter
@@ -643,7 +607,6 @@ class ExternalVolume(pulumi.CustomResource):
 
         Creating a volume:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -684,7 +647,6 @@ class ExternalVolume(pulumi.CustomResource):
             ),
             opts=pulumi.ResourceOptions(depends_on=[ebs]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -714,7 +676,6 @@ class ExternalVolume(pulumi.CustomResource):
 
         Creating a volume:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -755,7 +716,6 @@ class ExternalVolume(pulumi.CustomResource):
             ),
             opts=pulumi.ResourceOptions(depends_on=[ebs]))
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param ExternalVolumeArgs args: The arguments to use to populate this resource's properties.
@@ -870,22 +830,13 @@ class ExternalVolume(pulumi.CustomResource):
         :param pulumi.Input[str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] clone_id: `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
-        :param pulumi.Input[bool] controller_required: `(boolean)`
-        :param pulumi.Input[int] controllers_expected: `(integer)`
-        :param pulumi.Input[int] controllers_healthy: `(integer)`
         :param pulumi.Input[pulumi.InputType['ExternalVolumeMountOptionsArgs']] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
-        :param pulumi.Input[int] nodes_expected: `(integer)`
-        :param pulumi.Input[int] nodes_healthy: `(integer)`
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         :param pulumi.Input[str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
-        :param pulumi.Input[str] plugin_provider: `(string)`
-        :param pulumi.Input[str] plugin_provider_version: `(string)`
-        :param pulumi.Input[bool] schedulable: `(boolean)`
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         :param pulumi.Input[str] snapshot_id: `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ExternalVolumeTopologyArgs']]]] topologies: `(List of topologies)`
         :param pulumi.Input[pulumi.InputType['ExternalVolumeTopologyRequestArgs']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
@@ -954,25 +905,16 @@ class ExternalVolume(pulumi.CustomResource):
     @property
     @pulumi.getter(name="controllerRequired")
     def controller_required(self) -> pulumi.Output[bool]:
-        """
-        `(boolean)`
-        """
         return pulumi.get(self, "controller_required")
 
     @property
     @pulumi.getter(name="controllersExpected")
     def controllers_expected(self) -> pulumi.Output[int]:
-        """
-        `(integer)`
-        """
         return pulumi.get(self, "controllers_expected")
 
     @property
     @pulumi.getter(name="controllersHealthy")
     def controllers_healthy(self) -> pulumi.Output[int]:
-        """
-        `(integer)`
-        """
         return pulumi.get(self, "controllers_healthy")
 
     @property
@@ -1002,17 +944,11 @@ class ExternalVolume(pulumi.CustomResource):
     @property
     @pulumi.getter(name="nodesExpected")
     def nodes_expected(self) -> pulumi.Output[int]:
-        """
-        `(integer)`
-        """
         return pulumi.get(self, "nodes_expected")
 
     @property
     @pulumi.getter(name="nodesHealthy")
     def nodes_healthy(self) -> pulumi.Output[int]:
-        """
-        `(integer)`
-        """
         return pulumi.get(self, "nodes_healthy")
 
     @property
@@ -1034,25 +970,16 @@ class ExternalVolume(pulumi.CustomResource):
     @property
     @pulumi.getter(name="pluginProvider")
     def plugin_provider(self) -> pulumi.Output[str]:
-        """
-        `(string)`
-        """
         return pulumi.get(self, "plugin_provider")
 
     @property
     @pulumi.getter(name="pluginProviderVersion")
     def plugin_provider_version(self) -> pulumi.Output[str]:
-        """
-        `(string)`
-        """
         return pulumi.get(self, "plugin_provider_version")
 
     @property
     @pulumi.getter
     def schedulable(self) -> pulumi.Output[bool]:
-        """
-        `(boolean)`
-        """
         return pulumi.get(self, "schedulable")
 
     @property
@@ -1074,9 +1001,6 @@ class ExternalVolume(pulumi.CustomResource):
     @property
     @pulumi.getter
     def topologies(self) -> pulumi.Output[Sequence['outputs.ExternalVolumeTopology']]:
-        """
-        `(List of topologies)`
-        """
         return pulumi.get(self, "topologies")
 
     @property

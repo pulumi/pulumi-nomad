@@ -13,60 +13,50 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AclPolicyJobAcl {
     /**
-     * @return `(string: &lt;optional&gt;` - The group to attach the policy. Required if
-     * `task` is set.
+     * @return Group
      * 
      */
     private @Nullable String group;
     /**
-     * @return `(string: &lt;optional&gt;` - The job to attach the policy. Required if
-     * `group` is set.
+     * @return Job
      * 
      */
     private String jobId;
     /**
-     * @return `(string: &#34;default&#34;)` - The namespace to attach the policy.
-     * Required if `job_id` is set.
+     * @return Namespace
      * 
      */
     private @Nullable String namespace;
     /**
-     * @return `(string: &lt;optional&gt;` - The task to attach the policy.
-     * 
-     * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+     * @return Task
      * 
      */
     private @Nullable String task;
 
     private AclPolicyJobAcl() {}
     /**
-     * @return `(string: &lt;optional&gt;` - The group to attach the policy. Required if
-     * `task` is set.
+     * @return Group
      * 
      */
     public Optional<String> group() {
         return Optional.ofNullable(this.group);
     }
     /**
-     * @return `(string: &lt;optional&gt;` - The job to attach the policy. Required if
-     * `group` is set.
+     * @return Job
      * 
      */
     public String jobId() {
         return this.jobId;
     }
     /**
-     * @return `(string: &#34;default&#34;)` - The namespace to attach the policy.
-     * Required if `job_id` is set.
+     * @return Namespace
      * 
      */
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
     /**
-     * @return `(string: &lt;optional&gt;` - The task to attach the policy.
-     * 
-     * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+     * @return Task
      * 
      */
     public Optional<String> task() {

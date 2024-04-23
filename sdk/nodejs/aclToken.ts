@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * Creating a token with limited policies:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -25,11 +24,9 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Creating a global token that will be replicated to all regions:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -44,11 +41,9 @@ import * as utilities from "./utilities";
  *     global: true,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Creating a token with full access to the cluster:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -58,11 +53,9 @@ import * as utilities from "./utilities";
  *     type: "management",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * Accessing the token:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -73,7 +66,6 @@ import * as utilities from "./utilities";
  * });
  * export const nomadToken = token.secretId;
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class AclToken extends pulumi.CustomResource {
     /**

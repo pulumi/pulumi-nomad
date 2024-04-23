@@ -12,20 +12,14 @@ import java.util.Objects;
 @CustomType
 public final class CsiVolumeTopologyRequestRequiredTopology {
     /**
-     * @return `(map[string]string)` - Define the attributes for the topology request.
-     * 
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * @return Define the attributes for the topology request.
      * 
      */
     private Map<String,String> segments;
 
     private CsiVolumeTopologyRequestRequiredTopology() {}
     /**
-     * @return `(map[string]string)` - Define the attributes for the topology request.
-     * 
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * @return Define the attributes for the topology request.
      * 
      */
     public Map<String,String> segments() {

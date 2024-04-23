@@ -14,24 +14,19 @@ namespace Pulumi.Nomad.Outputs
     public sealed class AclPolicyJobAcl
     {
         /// <summary>
-        /// `(string: &lt;optional&gt;` - The group to attach the policy. Required if
-        /// `task` is set.
+        /// Group
         /// </summary>
         public readonly string? Group;
         /// <summary>
-        /// `(string: &lt;optional&gt;` - The job to attach the policy. Required if
-        /// `group` is set.
+        /// Job
         /// </summary>
         public readonly string JobId;
         /// <summary>
-        /// `(string: "default")` - The namespace to attach the policy.
-        /// Required if `job_id` is set.
+        /// Namespace
         /// </summary>
         public readonly string? Namespace;
         /// <summary>
-        /// `(string: &lt;optional&gt;` - The task to attach the policy.
-        /// 
-        /// [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+        /// Task
         /// </summary>
         public readonly string? Task;
 

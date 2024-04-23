@@ -73,14 +73,12 @@ def get_acl_policies(prefix: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_acl_policies(prefix="prod")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str prefix: `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
@@ -104,14 +102,12 @@ def get_acl_policies_output(prefix: Optional[pulumi.Input[Optional[str]]] = None
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_acl_policies(prefix="prod")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str prefix: `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.

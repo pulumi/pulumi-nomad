@@ -389,18 +389,13 @@ func (o AclAuthMethodConfigPtrOutput) SigningAlgs() pulumi.StringArrayOutput {
 }
 
 type AclPolicyJobAcl struct {
-	// `(string: <optional>` - The group to attach the policy. Required if
-	// `task` is set.
+	// Group
 	Group *string `pulumi:"group"`
-	// `(string: <optional>` - The job to attach the policy. Required if
-	// `group` is set.
+	// Job
 	JobId string `pulumi:"jobId"`
-	// `(string: "default")` - The namespace to attach the policy.
-	// Required if `jobId` is set.
+	// Namespace
 	Namespace *string `pulumi:"namespace"`
-	// `(string: <optional>` - The task to attach the policy.
-	//
-	// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+	// Task
 	Task *string `pulumi:"task"`
 }
 
@@ -416,18 +411,13 @@ type AclPolicyJobAclInput interface {
 }
 
 type AclPolicyJobAclArgs struct {
-	// `(string: <optional>` - The group to attach the policy. Required if
-	// `task` is set.
+	// Group
 	Group pulumi.StringPtrInput `pulumi:"group"`
-	// `(string: <optional>` - The job to attach the policy. Required if
-	// `group` is set.
+	// Job
 	JobId pulumi.StringInput `pulumi:"jobId"`
-	// `(string: "default")` - The namespace to attach the policy.
-	// Required if `jobId` is set.
+	// Namespace
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
-	// `(string: <optional>` - The task to attach the policy.
-	//
-	// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+	// Task
 	Task pulumi.StringPtrInput `pulumi:"task"`
 }
 
@@ -508,27 +498,22 @@ func (o AclPolicyJobAclOutput) ToAclPolicyJobAclPtrOutputWithContext(ctx context
 	}).(AclPolicyJobAclPtrOutput)
 }
 
-// `(string: <optional>` - The group to attach the policy. Required if
-// `task` is set.
+// Group
 func (o AclPolicyJobAclOutput) Group() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AclPolicyJobAcl) *string { return v.Group }).(pulumi.StringPtrOutput)
 }
 
-// `(string: <optional>` - The job to attach the policy. Required if
-// `group` is set.
+// Job
 func (o AclPolicyJobAclOutput) JobId() pulumi.StringOutput {
 	return o.ApplyT(func(v AclPolicyJobAcl) string { return v.JobId }).(pulumi.StringOutput)
 }
 
-// `(string: "default")` - The namespace to attach the policy.
-// Required if `jobId` is set.
+// Namespace
 func (o AclPolicyJobAclOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AclPolicyJobAcl) *string { return v.Namespace }).(pulumi.StringPtrOutput)
 }
 
-// `(string: <optional>` - The task to attach the policy.
-//
-// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+// Task
 func (o AclPolicyJobAclOutput) Task() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AclPolicyJobAcl) *string { return v.Task }).(pulumi.StringPtrOutput)
 }
@@ -557,8 +542,7 @@ func (o AclPolicyJobAclPtrOutput) Elem() AclPolicyJobAclOutput {
 	}).(AclPolicyJobAclOutput)
 }
 
-// `(string: <optional>` - The group to attach the policy. Required if
-// `task` is set.
+// Group
 func (o AclPolicyJobAclPtrOutput) Group() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclPolicyJobAcl) *string {
 		if v == nil {
@@ -568,8 +552,7 @@ func (o AclPolicyJobAclPtrOutput) Group() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// `(string: <optional>` - The job to attach the policy. Required if
-// `group` is set.
+// Job
 func (o AclPolicyJobAclPtrOutput) JobId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclPolicyJobAcl) *string {
 		if v == nil {
@@ -579,8 +562,7 @@ func (o AclPolicyJobAclPtrOutput) JobId() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// `(string: "default")` - The namespace to attach the policy.
-// Required if `jobId` is set.
+// Namespace
 func (o AclPolicyJobAclPtrOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclPolicyJobAcl) *string {
 		if v == nil {
@@ -590,9 +572,7 @@ func (o AclPolicyJobAclPtrOutput) Namespace() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// `(string: <optional>` - The task to attach the policy.
-//
-// [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+// Task
 func (o AclPolicyJobAclPtrOutput) Task() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclPolicyJobAcl) *string {
 		if v == nil {
@@ -1372,10 +1352,6 @@ func (o CsiVolumeRegistrationMountOptionsPtrOutput) MountFlags() pulumi.StringAr
 }
 
 type CsiVolumeRegistrationTopology struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -1391,10 +1367,6 @@ type CsiVolumeRegistrationTopologyInput interface {
 }
 
 type CsiVolumeRegistrationTopologyArgs struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -1449,10 +1421,6 @@ func (o CsiVolumeRegistrationTopologyOutput) ToCsiVolumeRegistrationTopologyOutp
 	return o
 }
 
-// `(map[string]string)` - Define the attributes for the topology request.
-//
-// In addition to the above arguments, the following attributes are exported and
-// can be referenced:
 func (o CsiVolumeRegistrationTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v CsiVolumeRegistrationTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -1617,7 +1585,7 @@ func (o CsiVolumeRegistrationTopologyRequestPtrOutput) Required() CsiVolumeRegis
 }
 
 type CsiVolumeRegistrationTopologyRequestRequired struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies []CsiVolumeRegistrationTopologyRequestRequiredTopology `pulumi:"topologies"`
 }
 
@@ -1633,7 +1601,7 @@ type CsiVolumeRegistrationTopologyRequestRequiredInput interface {
 }
 
 type CsiVolumeRegistrationTopologyRequestRequiredArgs struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -1714,7 +1682,7 @@ func (o CsiVolumeRegistrationTopologyRequestRequiredOutput) ToCsiVolumeRegistrat
 	}).(CsiVolumeRegistrationTopologyRequestRequiredPtrOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o CsiVolumeRegistrationTopologyRequestRequiredOutput) Topologies() CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v CsiVolumeRegistrationTopologyRequestRequired) []CsiVolumeRegistrationTopologyRequestRequiredTopology {
 		return v.Topologies
@@ -1745,7 +1713,7 @@ func (o CsiVolumeRegistrationTopologyRequestRequiredPtrOutput) Elem() CsiVolumeR
 	}).(CsiVolumeRegistrationTopologyRequestRequiredOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o CsiVolumeRegistrationTopologyRequestRequiredPtrOutput) Topologies() CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v *CsiVolumeRegistrationTopologyRequestRequired) []CsiVolumeRegistrationTopologyRequestRequiredTopology {
 		if v == nil {
@@ -1756,10 +1724,7 @@ func (o CsiVolumeRegistrationTopologyRequestRequiredPtrOutput) Topologies() CsiV
 }
 
 type CsiVolumeRegistrationTopologyRequestRequiredTopology struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define attributes for the topology request.
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -1775,10 +1740,7 @@ type CsiVolumeRegistrationTopologyRequestRequiredTopologyInput interface {
 }
 
 type CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define attributes for the topology request.
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -1833,10 +1795,7 @@ func (o CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput) ToCsiVolumeR
 	return o
 }
 
-// `(map[string]string)` - Define the attributes for the topology request.
-//
-// In addition to the above arguments, the following attributes are exported and
-// can be referenced:
+// Define attributes for the topology request.
 func (o CsiVolumeRegistrationTopologyRequestRequiredTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v CsiVolumeRegistrationTopologyRequestRequiredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -1862,10 +1821,6 @@ func (o CsiVolumeRegistrationTopologyRequestRequiredTopologyArrayOutput) Index(i
 }
 
 type CsiVolumeTopology struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -1881,10 +1836,6 @@ type CsiVolumeTopologyInput interface {
 }
 
 type CsiVolumeTopologyArgs struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -1939,10 +1890,6 @@ func (o CsiVolumeTopologyOutput) ToCsiVolumeTopologyOutputWithContext(ctx contex
 	return o
 }
 
-// `(map[string]string)` - Define the attributes for the topology request.
-//
-// In addition to the above arguments, the following attributes are exported and
-// can be referenced:
 func (o CsiVolumeTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v CsiVolumeTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -2124,7 +2071,7 @@ func (o CsiVolumeTopologyRequestPtrOutput) Required() CsiVolumeTopologyRequestRe
 }
 
 type CsiVolumeTopologyRequestPreferred struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies []CsiVolumeTopologyRequestPreferredTopology `pulumi:"topologies"`
 }
 
@@ -2140,7 +2087,7 @@ type CsiVolumeTopologyRequestPreferredInput interface {
 }
 
 type CsiVolumeTopologyRequestPreferredArgs struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies CsiVolumeTopologyRequestPreferredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -2221,7 +2168,7 @@ func (o CsiVolumeTopologyRequestPreferredOutput) ToCsiVolumeTopologyRequestPrefe
 	}).(CsiVolumeTopologyRequestPreferredPtrOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o CsiVolumeTopologyRequestPreferredOutput) Topologies() CsiVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o.ApplyT(func(v CsiVolumeTopologyRequestPreferred) []CsiVolumeTopologyRequestPreferredTopology {
 		return v.Topologies
@@ -2252,7 +2199,7 @@ func (o CsiVolumeTopologyRequestPreferredPtrOutput) Elem() CsiVolumeTopologyRequ
 	}).(CsiVolumeTopologyRequestPreferredOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o CsiVolumeTopologyRequestPreferredPtrOutput) Topologies() CsiVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o.ApplyT(func(v *CsiVolumeTopologyRequestPreferred) []CsiVolumeTopologyRequestPreferredTopology {
 		if v == nil {
@@ -2263,10 +2210,7 @@ func (o CsiVolumeTopologyRequestPreferredPtrOutput) Topologies() CsiVolumeTopolo
 }
 
 type CsiVolumeTopologyRequestPreferredTopology struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define the attributes for the topology request.
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -2282,10 +2226,7 @@ type CsiVolumeTopologyRequestPreferredTopologyInput interface {
 }
 
 type CsiVolumeTopologyRequestPreferredTopologyArgs struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define the attributes for the topology request.
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -2340,10 +2281,7 @@ func (o CsiVolumeTopologyRequestPreferredTopologyOutput) ToCsiVolumeTopologyRequ
 	return o
 }
 
-// `(map[string]string)` - Define the attributes for the topology request.
-//
-// In addition to the above arguments, the following attributes are exported and
-// can be referenced:
+// Define the attributes for the topology request.
 func (o CsiVolumeTopologyRequestPreferredTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v CsiVolumeTopologyRequestPreferredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -2369,7 +2307,7 @@ func (o CsiVolumeTopologyRequestPreferredTopologyArrayOutput) Index(i pulumi.Int
 }
 
 type CsiVolumeTopologyRequestRequired struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies []CsiVolumeTopologyRequestRequiredTopology `pulumi:"topologies"`
 }
 
@@ -2385,7 +2323,7 @@ type CsiVolumeTopologyRequestRequiredInput interface {
 }
 
 type CsiVolumeTopologyRequestRequiredArgs struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies CsiVolumeTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -2466,7 +2404,7 @@ func (o CsiVolumeTopologyRequestRequiredOutput) ToCsiVolumeTopologyRequestRequir
 	}).(CsiVolumeTopologyRequestRequiredPtrOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o CsiVolumeTopologyRequestRequiredOutput) Topologies() CsiVolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v CsiVolumeTopologyRequestRequired) []CsiVolumeTopologyRequestRequiredTopology {
 		return v.Topologies
@@ -2497,7 +2435,7 @@ func (o CsiVolumeTopologyRequestRequiredPtrOutput) Elem() CsiVolumeTopologyReque
 	}).(CsiVolumeTopologyRequestRequiredOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o CsiVolumeTopologyRequestRequiredPtrOutput) Topologies() CsiVolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v *CsiVolumeTopologyRequestRequired) []CsiVolumeTopologyRequestRequiredTopology {
 		if v == nil {
@@ -2508,10 +2446,7 @@ func (o CsiVolumeTopologyRequestRequiredPtrOutput) Topologies() CsiVolumeTopolog
 }
 
 type CsiVolumeTopologyRequestRequiredTopology struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define the attributes for the topology request.
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -2527,10 +2462,7 @@ type CsiVolumeTopologyRequestRequiredTopologyInput interface {
 }
 
 type CsiVolumeTopologyRequestRequiredTopologyArgs struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define the attributes for the topology request.
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -2585,10 +2517,7 @@ func (o CsiVolumeTopologyRequestRequiredTopologyOutput) ToCsiVolumeTopologyReque
 	return o
 }
 
-// `(map[string]string)` - Define the attributes for the topology request.
-//
-// In addition to the above arguments, the following attributes are exported and
-// can be referenced:
+// Define the attributes for the topology request.
 func (o CsiVolumeTopologyRequestRequiredTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v CsiVolumeTopologyRequestRequiredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -2897,10 +2826,6 @@ func (o ExternalVolumeMountOptionsPtrOutput) MountFlags() pulumi.StringArrayOutp
 }
 
 type ExternalVolumeTopology struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -2916,10 +2841,6 @@ type ExternalVolumeTopologyInput interface {
 }
 
 type ExternalVolumeTopologyArgs struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -2974,10 +2895,6 @@ func (o ExternalVolumeTopologyOutput) ToExternalVolumeTopologyOutputWithContext(
 	return o
 }
 
-// `(map[string]string)` - Define the attributes for the topology request.
-//
-// In addition to the above arguments, the following attributes are exported and
-// can be referenced:
 func (o ExternalVolumeTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ExternalVolumeTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -3159,7 +3076,7 @@ func (o ExternalVolumeTopologyRequestPtrOutput) Required() ExternalVolumeTopolog
 }
 
 type ExternalVolumeTopologyRequestPreferred struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies []ExternalVolumeTopologyRequestPreferredTopology `pulumi:"topologies"`
 }
 
@@ -3175,7 +3092,7 @@ type ExternalVolumeTopologyRequestPreferredInput interface {
 }
 
 type ExternalVolumeTopologyRequestPreferredArgs struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies ExternalVolumeTopologyRequestPreferredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -3256,7 +3173,7 @@ func (o ExternalVolumeTopologyRequestPreferredOutput) ToExternalVolumeTopologyRe
 	}).(ExternalVolumeTopologyRequestPreferredPtrOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o ExternalVolumeTopologyRequestPreferredOutput) Topologies() ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestPreferred) []ExternalVolumeTopologyRequestPreferredTopology {
 		return v.Topologies
@@ -3287,7 +3204,7 @@ func (o ExternalVolumeTopologyRequestPreferredPtrOutput) Elem() ExternalVolumeTo
 	}).(ExternalVolumeTopologyRequestPreferredOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o ExternalVolumeTopologyRequestPreferredPtrOutput) Topologies() ExternalVolumeTopologyRequestPreferredTopologyArrayOutput {
 	return o.ApplyT(func(v *ExternalVolumeTopologyRequestPreferred) []ExternalVolumeTopologyRequestPreferredTopology {
 		if v == nil {
@@ -3298,10 +3215,7 @@ func (o ExternalVolumeTopologyRequestPreferredPtrOutput) Topologies() ExternalVo
 }
 
 type ExternalVolumeTopologyRequestPreferredTopology struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define the attributes for the topology request.
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -3317,10 +3231,7 @@ type ExternalVolumeTopologyRequestPreferredTopologyInput interface {
 }
 
 type ExternalVolumeTopologyRequestPreferredTopologyArgs struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define the attributes for the topology request.
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -3375,10 +3286,7 @@ func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) ToExternalVolumeTo
 	return o
 }
 
-// `(map[string]string)` - Define the attributes for the topology request.
-//
-// In addition to the above arguments, the following attributes are exported and
-// can be referenced:
+// Define the attributes for the topology request.
 func (o ExternalVolumeTopologyRequestPreferredTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestPreferredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -3404,7 +3312,7 @@ func (o ExternalVolumeTopologyRequestPreferredTopologyArrayOutput) Index(i pulum
 }
 
 type ExternalVolumeTopologyRequestRequired struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies []ExternalVolumeTopologyRequestRequiredTopology `pulumi:"topologies"`
 }
 
@@ -3420,7 +3328,7 @@ type ExternalVolumeTopologyRequestRequiredInput interface {
 }
 
 type ExternalVolumeTopologyRequestRequiredArgs struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies ExternalVolumeTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -3501,7 +3409,7 @@ func (o ExternalVolumeTopologyRequestRequiredOutput) ToExternalVolumeTopologyReq
 	}).(ExternalVolumeTopologyRequestRequiredPtrOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o ExternalVolumeTopologyRequestRequiredOutput) Topologies() ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestRequired) []ExternalVolumeTopologyRequestRequiredTopology {
 		return v.Topologies
@@ -3532,7 +3440,7 @@ func (o ExternalVolumeTopologyRequestRequiredPtrOutput) Elem() ExternalVolumeTop
 	}).(ExternalVolumeTopologyRequestRequiredOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o ExternalVolumeTopologyRequestRequiredPtrOutput) Topologies() ExternalVolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v *ExternalVolumeTopologyRequestRequired) []ExternalVolumeTopologyRequestRequiredTopology {
 		if v == nil {
@@ -3543,10 +3451,7 @@ func (o ExternalVolumeTopologyRequestRequiredPtrOutput) Topologies() ExternalVol
 }
 
 type ExternalVolumeTopologyRequestRequiredTopology struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define the attributes for the topology request.
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -3562,10 +3467,7 @@ type ExternalVolumeTopologyRequestRequiredTopologyInput interface {
 }
 
 type ExternalVolumeTopologyRequestRequiredTopologyArgs struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define the attributes for the topology request.
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -3620,10 +3522,7 @@ func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) ToExternalVolumeTop
 	return o
 }
 
-// `(map[string]string)` - Define the attributes for the topology request.
-//
-// In addition to the above arguments, the following attributes are exported and
-// can be referenced:
+// Define the attributes for the topology request.
 func (o ExternalVolumeTopologyRequestRequiredTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v ExternalVolumeTopologyRequestRequiredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -5382,10 +5281,6 @@ func (o VolumeMountOptionsPtrOutput) MountFlags() pulumi.StringArrayOutput {
 }
 
 type VolumeTopology struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -5401,10 +5296,6 @@ type VolumeTopologyInput interface {
 }
 
 type VolumeTopologyArgs struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -5459,10 +5350,6 @@ func (o VolumeTopologyOutput) ToVolumeTopologyOutputWithContext(ctx context.Cont
 	return o
 }
 
-// `(map[string]string)` - Define the attributes for the topology request.
-//
-// In addition to the above arguments, the following attributes are exported and
-// can be referenced:
 func (o VolumeTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v VolumeTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }
@@ -5625,7 +5512,7 @@ func (o VolumeTopologyRequestPtrOutput) Required() VolumeTopologyRequestRequired
 }
 
 type VolumeTopologyRequestRequired struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies []VolumeTopologyRequestRequiredTopology `pulumi:"topologies"`
 }
 
@@ -5641,7 +5528,7 @@ type VolumeTopologyRequestRequiredInput interface {
 }
 
 type VolumeTopologyRequestRequiredArgs struct {
-	// `(List of segments: <required>)` - Defines the location for the volume.
+	// Defines the location for the volume.
 	Topologies VolumeTopologyRequestRequiredTopologyArrayInput `pulumi:"topologies"`
 }
 
@@ -5722,7 +5609,7 @@ func (o VolumeTopologyRequestRequiredOutput) ToVolumeTopologyRequestRequiredPtrO
 	}).(VolumeTopologyRequestRequiredPtrOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o VolumeTopologyRequestRequiredOutput) Topologies() VolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v VolumeTopologyRequestRequired) []VolumeTopologyRequestRequiredTopology { return v.Topologies }).(VolumeTopologyRequestRequiredTopologyArrayOutput)
 }
@@ -5751,7 +5638,7 @@ func (o VolumeTopologyRequestRequiredPtrOutput) Elem() VolumeTopologyRequestRequ
 	}).(VolumeTopologyRequestRequiredOutput)
 }
 
-// `(List of segments: <required>)` - Defines the location for the volume.
+// Defines the location for the volume.
 func (o VolumeTopologyRequestRequiredPtrOutput) Topologies() VolumeTopologyRequestRequiredTopologyArrayOutput {
 	return o.ApplyT(func(v *VolumeTopologyRequestRequired) []VolumeTopologyRequestRequiredTopology {
 		if v == nil {
@@ -5762,10 +5649,7 @@ func (o VolumeTopologyRequestRequiredPtrOutput) Topologies() VolumeTopologyReque
 }
 
 type VolumeTopologyRequestRequiredTopology struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define attributes for the topology request.
 	Segments map[string]string `pulumi:"segments"`
 }
 
@@ -5781,10 +5665,7 @@ type VolumeTopologyRequestRequiredTopologyInput interface {
 }
 
 type VolumeTopologyRequestRequiredTopologyArgs struct {
-	// `(map[string]string)` - Define the attributes for the topology request.
-	//
-	// In addition to the above arguments, the following attributes are exported and
-	// can be referenced:
+	// Define attributes for the topology request.
 	Segments pulumi.StringMapInput `pulumi:"segments"`
 }
 
@@ -5839,10 +5720,7 @@ func (o VolumeTopologyRequestRequiredTopologyOutput) ToVolumeTopologyRequestRequ
 	return o
 }
 
-// `(map[string]string)` - Define the attributes for the topology request.
-//
-// In addition to the above arguments, the following attributes are exported and
-// can be referenced:
+// Define attributes for the topology request.
 func (o VolumeTopologyRequestRequiredTopologyOutput) Segments() pulumi.StringMapOutput {
 	return o.ApplyT(func(v VolumeTopologyRequestRequiredTopology) map[string]string { return v.Segments }).(pulumi.StringMapOutput)
 }

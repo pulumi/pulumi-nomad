@@ -9,14 +9,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
  * const example = nomad.getPlugins({});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPlugins(args?: GetPluginsArgs, opts?: pulumi.InvokeOptions): Promise<GetPluginsResult> {
     args = args || {};
@@ -53,14 +51,12 @@ export interface GetPluginsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
  * const example = nomad.getPlugins({});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getPluginsOutput(args?: GetPluginsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginsResult> {
     return pulumi.output(args).apply((a: any) => getPlugins(a, opts))

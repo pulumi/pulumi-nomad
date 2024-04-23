@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -20,7 +19,6 @@ import * as utilities from "./utilities";
  *     id: "aa534e09-6a07-0a45-2295-a7f77063d429",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAclRole(args: GetAclRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetAclRoleResult> {
 
@@ -66,7 +64,6 @@ export interface GetAclRoleResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -75,7 +72,6 @@ export interface GetAclRoleResult {
  *     id: "aa534e09-6a07-0a45-2295-a7f77063d429",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAclRoleOutput(args: GetAclRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclRoleResult> {
     return pulumi.output(args).apply((a: any) => getAclRole(a, opts))

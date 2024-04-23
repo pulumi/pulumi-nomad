@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -18,7 +17,6 @@ import * as utilities from "./utilities";
  *     id: "ad19848d-1921-179c-affa-244a3543be88",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getScalingPolicy(args: GetScalingPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetScalingPolicyResult> {
 
@@ -73,7 +71,6 @@ export interface GetScalingPolicyResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -82,7 +79,6 @@ export interface GetScalingPolicyResult {
  *     id: "ad19848d-1921-179c-affa-244a3543be88",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getScalingPolicyOutput(args: GetScalingPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetScalingPolicyResult> {
     return pulumi.output(args).apply((a: any) => getScalingPolicy(a, opts))

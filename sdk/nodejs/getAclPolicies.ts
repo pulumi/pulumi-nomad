@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -20,7 +19,6 @@ import * as utilities from "./utilities";
  *     prefix: "prod",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAclPolicies(args?: GetAclPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<GetAclPoliciesResult> {
     args = args || {};
@@ -60,7 +58,6 @@ export interface GetAclPoliciesResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -69,7 +66,6 @@ export interface GetAclPoliciesResult {
  *     prefix: "prod",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAclPoliciesOutput(args?: GetAclPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclPoliciesResult> {
     return pulumi.output(args).apply((a: any) => getAclPolicies(a, opts))

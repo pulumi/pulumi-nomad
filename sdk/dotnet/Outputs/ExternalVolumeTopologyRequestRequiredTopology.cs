@@ -14,10 +14,7 @@ namespace Pulumi.Nomad.Outputs
     public sealed class ExternalVolumeTopologyRequestRequiredTopology
     {
         /// <summary>
-        /// `(map[string]string)` - Define the attributes for the topology request.
-        /// 
-        /// In addition to the above arguments, the following attributes are exported and
-        /// can be referenced:
+        /// Define the attributes for the topology request.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Segments;
 

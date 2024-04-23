@@ -62,7 +62,6 @@ def get_regions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegi
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -77,7 +76,6 @@ def get_regions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegi
     for range in [{"value": i} for i in range(0, len(my_regions.regions))]:
         app.append(nomad.Job(f"app-{range['value']}", jobspec=jobs[range["value"]]["rendered"]))
     ```
-    <!--End PulumiCodeChooser -->
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -95,7 +93,6 @@ def get_regions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Ou
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -110,6 +107,5 @@ def get_regions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Ou
     for range in [{"value": i} for i in range(0, len(my_regions.regions))]:
         app.append(nomad.Job(f"app-{range['value']}", jobspec=jobs[range["value"]]["rendered"]))
     ```
-    <!--End PulumiCodeChooser -->
     """
     ...
