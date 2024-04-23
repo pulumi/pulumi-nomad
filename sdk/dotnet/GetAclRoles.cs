@@ -16,7 +16,6 @@ namespace Pulumi.Nomad
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -32,7 +31,6 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAclRolesResult> InvokeAsync(GetAclRolesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAclRolesResult>("nomad:index/getAclRoles:getAclRoles", args ?? new GetAclRolesArgs(), options.WithDefaults());
@@ -42,7 +40,6 @@ namespace Pulumi.Nomad
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -58,7 +55,6 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAclRolesResult> Invoke(GetAclRolesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAclRolesResult>("nomad:index/getAclRoles:getAclRoles", args ?? new GetAclRolesInvokeArgs(), options.WithDefaults());

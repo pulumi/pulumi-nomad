@@ -66,24 +66,19 @@ export interface AclAuthMethodConfig {
 
 export interface AclPolicyJobAcl {
     /**
-     * `(string: <optional>` - The group to attach the policy. Required if
-     * `task` is set.
+     * Group
      */
     group?: string;
     /**
-     * `(string: <optional>` - The job to attach the policy. Required if
-     * `group` is set.
+     * Job
      */
     jobId: string;
     /**
-     * `(string: "default")` - The namespace to attach the policy.
-     * Required if `jobId` is set.
+     * Namespace
      */
     namespace?: string;
     /**
-     * `(string: <optional>` - The task to attach the policy.
-     *
-     * [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+     * Task
      */
     task?: string;
 }
@@ -165,12 +160,6 @@ export interface CsiVolumeRegistrationMountOptions {
 }
 
 export interface CsiVolumeRegistrationTopology {
-    /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
-     */
     segments: {[key: string]: string};
 }
 
@@ -183,28 +172,19 @@ export interface CsiVolumeRegistrationTopologyRequest {
 
 export interface CsiVolumeRegistrationTopologyRequestRequired {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: outputs.CsiVolumeRegistrationTopologyRequestRequiredTopology[];
 }
 
 export interface CsiVolumeRegistrationTopologyRequestRequiredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define attributes for the topology request.
      */
     segments: {[key: string]: string};
 }
 
 export interface CsiVolumeTopology {
-    /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
-     */
     segments: {[key: string]: string};
 }
 
@@ -221,34 +201,28 @@ export interface CsiVolumeTopologyRequest {
 
 export interface CsiVolumeTopologyRequestPreferred {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: outputs.CsiVolumeTopologyRequestPreferredTopology[];
 }
 
 export interface CsiVolumeTopologyRequestPreferredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define the attributes for the topology request.
      */
     segments: {[key: string]: string};
 }
 
 export interface CsiVolumeTopologyRequestRequired {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: outputs.CsiVolumeTopologyRequestRequiredTopology[];
 }
 
 export interface CsiVolumeTopologyRequestRequiredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define the attributes for the topology request.
      */
     segments: {[key: string]: string};
 }
@@ -283,12 +257,6 @@ export interface ExternalVolumeMountOptions {
 }
 
 export interface ExternalVolumeTopology {
-    /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
-     */
     segments: {[key: string]: string};
 }
 
@@ -305,34 +273,28 @@ export interface ExternalVolumeTopologyRequest {
 
 export interface ExternalVolumeTopologyRequestPreferred {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: outputs.ExternalVolumeTopologyRequestPreferredTopology[];
 }
 
 export interface ExternalVolumeTopologyRequestPreferredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define the attributes for the topology request.
      */
     segments: {[key: string]: string};
 }
 
 export interface ExternalVolumeTopologyRequestRequired {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: outputs.ExternalVolumeTopologyRequestRequiredTopology[];
 }
 
 export interface ExternalVolumeTopologyRequestRequiredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define the attributes for the topology request.
      */
     segments: {[key: string]: string};
 }
@@ -838,12 +800,6 @@ export interface VolumeMountOptions {
 }
 
 export interface VolumeTopology {
-    /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
-     */
     segments: {[key: string]: string};
 }
 
@@ -856,17 +812,14 @@ export interface VolumeTopologyRequest {
 
 export interface VolumeTopologyRequestRequired {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: outputs.VolumeTopologyRequestRequiredTopology[];
 }
 
 export interface VolumeTopologyRequestRequiredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define attributes for the topology request.
      */
     segments: {[key: string]: string};
 }

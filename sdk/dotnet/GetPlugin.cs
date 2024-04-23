@@ -25,7 +25,6 @@ namespace Pulumi.Nomad
         /// 
         /// Check for the existence of a plugin:
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -42,7 +41,6 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
         /// is healthy before returning.
@@ -64,7 +62,6 @@ namespace Pulumi.Nomad
         /// 
         /// Check for the existence of a plugin:
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -81,7 +78,6 @@ namespace Pulumi.Nomad
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
         /// is healthy before returning.

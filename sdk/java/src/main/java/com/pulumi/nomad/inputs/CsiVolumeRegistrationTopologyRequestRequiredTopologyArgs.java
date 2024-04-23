@@ -16,20 +16,14 @@ public final class CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs exte
     public static final CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs Empty = new CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs();
 
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     * 
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define attributes for the topology request.
      * 
      */
     @Import(name="segments", required=true)
     private Output<Map<String,String>> segments;
 
     /**
-     * @return `(map[string]string)` - Define the attributes for the topology request.
-     * 
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * @return Define attributes for the topology request.
      * 
      */
     public Output<Map<String,String>> segments() {
@@ -61,10 +55,7 @@ public final class CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs exte
         }
 
         /**
-         * @param segments `(map[string]string)` - Define the attributes for the topology request.
-         * 
-         * In addition to the above arguments, the following attributes are exported and
-         * can be referenced:
+         * @param segments Define attributes for the topology request.
          * 
          * @return builder
          * 
@@ -75,10 +66,7 @@ public final class CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs exte
         }
 
         /**
-         * @param segments `(map[string]string)` - Define the attributes for the topology request.
-         * 
-         * In addition to the above arguments, the following attributes are exported and
-         * can be referenced:
+         * @param segments Define attributes for the topology request.
          * 
          * @return builder
          * 

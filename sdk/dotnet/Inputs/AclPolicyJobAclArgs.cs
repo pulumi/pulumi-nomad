@@ -13,30 +13,25 @@ namespace Pulumi.Nomad.Inputs
     public sealed class AclPolicyJobAclArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `(string: &lt;optional&gt;` - The group to attach the policy. Required if
-        /// `task` is set.
+        /// Group
         /// </summary>
         [Input("group")]
         public Input<string>? Group { get; set; }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;` - The job to attach the policy. Required if
-        /// `group` is set.
+        /// Job
         /// </summary>
         [Input("jobId", required: true)]
         public Input<string> JobId { get; set; } = null!;
 
         /// <summary>
-        /// `(string: "default")` - The namespace to attach the policy.
-        /// Required if `job_id` is set.
+        /// Namespace
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;` - The task to attach the policy.
-        /// 
-        /// [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+        /// Task
         /// </summary>
         [Input("task")]
         public Input<string>? Task { get; set; }

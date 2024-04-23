@@ -118,14 +118,12 @@ def get_namespace(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     namespaces = nomad.get_namespace(name="default")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: `(string)` - The name of the namespace.
@@ -153,14 +151,12 @@ def get_namespace_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     namespaces = nomad.get_namespace(name="default")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: `(string)` - The name of the namespace.

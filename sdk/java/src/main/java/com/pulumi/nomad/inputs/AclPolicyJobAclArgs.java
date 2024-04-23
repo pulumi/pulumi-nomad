@@ -17,16 +17,14 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
     public static final AclPolicyJobAclArgs Empty = new AclPolicyJobAclArgs();
 
     /**
-     * `(string: &lt;optional&gt;` - The group to attach the policy. Required if
-     * `task` is set.
+     * Group
      * 
      */
     @Import(name="group")
     private @Nullable Output<String> group;
 
     /**
-     * @return `(string: &lt;optional&gt;` - The group to attach the policy. Required if
-     * `task` is set.
+     * @return Group
      * 
      */
     public Optional<Output<String>> group() {
@@ -34,16 +32,14 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * `(string: &lt;optional&gt;` - The job to attach the policy. Required if
-     * `group` is set.
+     * Job
      * 
      */
     @Import(name="jobId", required=true)
     private Output<String> jobId;
 
     /**
-     * @return `(string: &lt;optional&gt;` - The job to attach the policy. Required if
-     * `group` is set.
+     * @return Job
      * 
      */
     public Output<String> jobId() {
@@ -51,16 +47,14 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * `(string: &#34;default&#34;)` - The namespace to attach the policy.
-     * Required if `job_id` is set.
+     * Namespace
      * 
      */
     @Import(name="namespace")
     private @Nullable Output<String> namespace;
 
     /**
-     * @return `(string: &#34;default&#34;)` - The namespace to attach the policy.
-     * Required if `job_id` is set.
+     * @return Namespace
      * 
      */
     public Optional<Output<String>> namespace() {
@@ -68,18 +62,14 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * `(string: &lt;optional&gt;` - The task to attach the policy.
-     * 
-     * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+     * Task
      * 
      */
     @Import(name="task")
     private @Nullable Output<String> task;
 
     /**
-     * @return `(string: &lt;optional&gt;` - The task to attach the policy.
-     * 
-     * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+     * @return Task
      * 
      */
     public Optional<Output<String>> task() {
@@ -114,8 +104,7 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param group `(string: &lt;optional&gt;` - The group to attach the policy. Required if
-         * `task` is set.
+         * @param group Group
          * 
          * @return builder
          * 
@@ -126,8 +115,7 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param group `(string: &lt;optional&gt;` - The group to attach the policy. Required if
-         * `task` is set.
+         * @param group Group
          * 
          * @return builder
          * 
@@ -137,8 +125,7 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param jobId `(string: &lt;optional&gt;` - The job to attach the policy. Required if
-         * `group` is set.
+         * @param jobId Job
          * 
          * @return builder
          * 
@@ -149,8 +136,7 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param jobId `(string: &lt;optional&gt;` - The job to attach the policy. Required if
-         * `group` is set.
+         * @param jobId Job
          * 
          * @return builder
          * 
@@ -160,8 +146,7 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param namespace `(string: &#34;default&#34;)` - The namespace to attach the policy.
-         * Required if `job_id` is set.
+         * @param namespace Namespace
          * 
          * @return builder
          * 
@@ -172,8 +157,7 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param namespace `(string: &#34;default&#34;)` - The namespace to attach the policy.
-         * Required if `job_id` is set.
+         * @param namespace Namespace
          * 
          * @return builder
          * 
@@ -183,9 +167,7 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param task `(string: &lt;optional&gt;` - The task to attach the policy.
-         * 
-         * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+         * @param task Task
          * 
          * @return builder
          * 
@@ -196,9 +178,7 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param task `(string: &lt;optional&gt;` - The task to attach the policy.
-         * 
-         * [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+         * @param task Task
          * 
          * @return builder
          * 

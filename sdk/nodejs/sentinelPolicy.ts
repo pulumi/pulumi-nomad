@@ -12,7 +12,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -35,7 +34,6 @@ import * as utilities from "./utilities";
  *     enforcementLevel: "soft-mandatory",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class SentinelPolicy extends pulumi.CustomResource {
     /**

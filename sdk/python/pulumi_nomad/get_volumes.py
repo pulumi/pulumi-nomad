@@ -105,14 +105,12 @@ def get_volumes(namespace: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_volumes()
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: `(string: "default")` Nomad namespace.
@@ -148,14 +146,12 @@ def get_volumes_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     example = nomad.get_volumes()
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str namespace: `(string: "default")` Nomad namespace.
