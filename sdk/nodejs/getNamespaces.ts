@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -29,7 +28,6 @@ import * as utilities from "./utilities";
  *     }
  * }
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNamespaces(opts?: pulumi.InvokeOptions): Promise<GetNamespacesResult> {
 
@@ -56,7 +54,6 @@ export interface GetNamespacesResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -76,7 +73,6 @@ export interface GetNamespacesResult {
  *     }
  * }
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNamespacesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetNamespacesResult> {
     return pulumi.output(getNamespaces(opts))

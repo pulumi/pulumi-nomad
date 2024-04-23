@@ -82,7 +82,6 @@ def get_datacenters(ignore_down_nodes: Optional[bool] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -90,7 +89,6 @@ def get_datacenters(ignore_down_nodes: Optional[bool] = None,
     datacenters = nomad.get_datacenters(prefix="prod",
         ignore_down_nodes=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param bool ignore_down_nodes: `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.
@@ -118,7 +116,6 @@ def get_datacenters_output(ignore_down_nodes: Optional[pulumi.Input[Optional[boo
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
@@ -126,7 +123,6 @@ def get_datacenters_output(ignore_down_nodes: Optional[pulumi.Input[Optional[boo
     datacenters = nomad.get_datacenters(prefix="prod",
         ignore_down_nodes=True)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param bool ignore_down_nodes: `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.

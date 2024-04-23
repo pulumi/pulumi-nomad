@@ -66,24 +66,19 @@ export interface AclAuthMethodConfig {
 
 export interface AclPolicyJobAcl {
     /**
-     * `(string: <optional>` - The group to attach the policy. Required if
-     * `task` is set.
+     * Group
      */
     group?: pulumi.Input<string>;
     /**
-     * `(string: <optional>` - The job to attach the policy. Required if
-     * `group` is set.
+     * Job
      */
     jobId: pulumi.Input<string>;
     /**
-     * `(string: "default")` - The namespace to attach the policy.
-     * Required if `jobId` is set.
+     * Namespace
      */
     namespace?: pulumi.Input<string>;
     /**
-     * `(string: <optional>` - The task to attach the policy.
-     *
-     * [nomadDocsWi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+     * Task
      */
     task?: pulumi.Input<string>;
 }
@@ -165,12 +160,6 @@ export interface CsiVolumeRegistrationMountOptions {
 }
 
 export interface CsiVolumeRegistrationTopology {
-    /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
-     */
     segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
@@ -183,28 +172,19 @@ export interface CsiVolumeRegistrationTopologyRequest {
 
 export interface CsiVolumeRegistrationTopologyRequestRequired {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: pulumi.Input<pulumi.Input<inputs.CsiVolumeRegistrationTopologyRequestRequiredTopology>[]>;
 }
 
 export interface CsiVolumeRegistrationTopologyRequestRequiredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define attributes for the topology request.
      */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface CsiVolumeTopology {
-    /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
-     */
     segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
@@ -221,34 +201,28 @@ export interface CsiVolumeTopologyRequest {
 
 export interface CsiVolumeTopologyRequestPreferred {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: pulumi.Input<pulumi.Input<inputs.CsiVolumeTopologyRequestPreferredTopology>[]>;
 }
 
 export interface CsiVolumeTopologyRequestPreferredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define the attributes for the topology request.
      */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface CsiVolumeTopologyRequestRequired {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: pulumi.Input<pulumi.Input<inputs.CsiVolumeTopologyRequestRequiredTopology>[]>;
 }
 
 export interface CsiVolumeTopologyRequestRequiredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define the attributes for the topology request.
      */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
@@ -283,12 +257,6 @@ export interface ExternalVolumeMountOptions {
 }
 
 export interface ExternalVolumeTopology {
-    /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
-     */
     segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
@@ -305,34 +273,28 @@ export interface ExternalVolumeTopologyRequest {
 
 export interface ExternalVolumeTopologyRequestPreferred {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: pulumi.Input<pulumi.Input<inputs.ExternalVolumeTopologyRequestPreferredTopology>[]>;
 }
 
 export interface ExternalVolumeTopologyRequestPreferredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define the attributes for the topology request.
      */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface ExternalVolumeTopologyRequestRequired {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: pulumi.Input<pulumi.Input<inputs.ExternalVolumeTopologyRequestRequiredTopology>[]>;
 }
 
 export interface ExternalVolumeTopologyRequestRequiredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define the attributes for the topology request.
      */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
@@ -498,12 +460,6 @@ export interface VolumeMountOptions {
 }
 
 export interface VolumeTopology {
-    /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
-     */
     segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
@@ -516,17 +472,14 @@ export interface VolumeTopologyRequest {
 
 export interface VolumeTopologyRequestRequired {
     /**
-     * `(List of segments: <required>)` - Defines the location for the volume.
+     * Defines the location for the volume.
      */
     topologies: pulumi.Input<pulumi.Input<inputs.VolumeTopologyRequestRequiredTopology>[]>;
 }
 
 export interface VolumeTopologyRequestRequiredTopology {
     /**
-     * `(map[string]string)` - Define the attributes for the topology request.
-     *
-     * In addition to the above arguments, the following attributes are exported and
-     * can be referenced:
+     * Define attributes for the topology request.
      */
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

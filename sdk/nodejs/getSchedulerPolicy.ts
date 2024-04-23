@@ -9,14 +9,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
  * const global = nomad.getSchedulerPolicy({});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getSchedulerPolicy(opts?: pulumi.InvokeOptions): Promise<GetSchedulerPolicyResult> {
 
@@ -51,14 +49,12 @@ export interface GetSchedulerPolicyResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
  * const global = nomad.getSchedulerPolicy({});
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getSchedulerPolicyOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSchedulerPolicyResult> {
     return pulumi.output(getSchedulerPolicy(opts))

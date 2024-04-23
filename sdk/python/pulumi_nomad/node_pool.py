@@ -178,7 +178,6 @@ class NodePool(pulumi.CustomResource):
 
         Registering a node pool:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -191,7 +190,6 @@ class NodePool(pulumi.CustomResource):
                 "env": "dev",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -214,7 +212,6 @@ class NodePool(pulumi.CustomResource):
 
         Registering a node pool:
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_nomad as nomad
@@ -227,7 +224,6 @@ class NodePool(pulumi.CustomResource):
                 "env": "dev",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param NodePoolArgs args: The arguments to use to populate this resource's properties.

@@ -73,14 +73,12 @@ def get_acl_tokens(prefix: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     tokens = nomad.get_acl_tokens(prefix="a242")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str prefix: `(string)` Optional prefix to filter the tokens.
@@ -104,14 +102,12 @@ def get_acl_tokens_output(prefix: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_nomad as nomad
 
     tokens = nomad.get_acl_tokens(prefix="a242")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str prefix: `(string)` Optional prefix to filter the tokens.

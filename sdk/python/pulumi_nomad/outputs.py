@@ -297,15 +297,10 @@ class AclPolicyJobAcl(dict):
                  namespace: Optional[str] = None,
                  task: Optional[str] = None):
         """
-        :param str job_id: `(string: <optional>` - The job to attach the policy. Required if
-               `group` is set.
-        :param str group: `(string: <optional>` - The group to attach the policy. Required if
-               `task` is set.
-        :param str namespace: `(string: "default")` - The namespace to attach the policy.
-               Required if `job_id` is set.
-        :param str task: `(string: <optional>` - The task to attach the policy.
-               
-               [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+        :param str job_id: Job
+        :param str group: Group
+        :param str namespace: Namespace
+        :param str task: Task
         """
         pulumi.set(__self__, "job_id", job_id)
         if group is not None:
@@ -319,8 +314,7 @@ class AclPolicyJobAcl(dict):
     @pulumi.getter(name="jobId")
     def job_id(self) -> str:
         """
-        `(string: <optional>` - The job to attach the policy. Required if
-        `group` is set.
+        Job
         """
         return pulumi.get(self, "job_id")
 
@@ -328,8 +322,7 @@ class AclPolicyJobAcl(dict):
     @pulumi.getter
     def group(self) -> Optional[str]:
         """
-        `(string: <optional>` - The group to attach the policy. Required if
-        `task` is set.
+        Group
         """
         return pulumi.get(self, "group")
 
@@ -337,8 +330,7 @@ class AclPolicyJobAcl(dict):
     @pulumi.getter
     def namespace(self) -> Optional[str]:
         """
-        `(string: "default")` - The namespace to attach the policy.
-        Required if `job_id` is set.
+        Namespace
         """
         return pulumi.get(self, "namespace")
 
@@ -346,9 +338,7 @@ class AclPolicyJobAcl(dict):
     @pulumi.getter
     def task(self) -> Optional[str]:
         """
-        `(string: <optional>` - The task to attach the policy.
-
-        [nomad_docs_wi]: https://www.nomadproject.io/docs/concepts/workload-identity#workload-associated-acl-policies
+        Task
         """
         return pulumi.get(self, "task")
 
@@ -629,24 +619,12 @@ class CsiVolumeRegistrationMountOptions(dict):
 class CsiVolumeRegistrationTopology(dict):
     def __init__(__self__, *,
                  segments: Optional[Mapping[str, str]] = None):
-        """
-        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
-               
-               In addition to the above arguments, the following attributes are exported and
-               can be referenced:
-        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[Mapping[str, str]]:
-        """
-        `(map[string]string)` - Define the attributes for the topology request.
-
-        In addition to the above arguments, the following attributes are exported and
-        can be referenced:
-        """
         return pulumi.get(self, "segments")
 
 
@@ -674,7 +652,7 @@ class CsiVolumeRegistrationTopologyRequestRequired(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.CsiVolumeRegistrationTopologyRequestRequiredTopology']):
         """
-        :param Sequence['CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        :param Sequence['CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs'] topologies: Defines the location for the volume.
         """
         pulumi.set(__self__, "topologies", topologies)
 
@@ -682,7 +660,7 @@ class CsiVolumeRegistrationTopologyRequestRequired(dict):
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.CsiVolumeRegistrationTopologyRequestRequiredTopology']:
         """
-        `(List of segments: <required>)` - Defines the location for the volume.
+        Defines the location for the volume.
         """
         return pulumi.get(self, "topologies")
 
@@ -692,10 +670,7 @@ class CsiVolumeRegistrationTopologyRequestRequiredTopology(dict):
     def __init__(__self__, *,
                  segments: Mapping[str, str]):
         """
-        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
-               
-               In addition to the above arguments, the following attributes are exported and
-               can be referenced:
+        :param Mapping[str, str] segments: Define attributes for the topology request.
         """
         pulumi.set(__self__, "segments", segments)
 
@@ -703,10 +678,7 @@ class CsiVolumeRegistrationTopologyRequestRequiredTopology(dict):
     @pulumi.getter
     def segments(self) -> Mapping[str, str]:
         """
-        `(map[string]string)` - Define the attributes for the topology request.
-
-        In addition to the above arguments, the following attributes are exported and
-        can be referenced:
+        Define attributes for the topology request.
         """
         return pulumi.get(self, "segments")
 
@@ -715,24 +687,12 @@ class CsiVolumeRegistrationTopologyRequestRequiredTopology(dict):
 class CsiVolumeTopology(dict):
     def __init__(__self__, *,
                  segments: Optional[Mapping[str, str]] = None):
-        """
-        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
-               
-               In addition to the above arguments, the following attributes are exported and
-               can be referenced:
-        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[Mapping[str, str]]:
-        """
-        `(map[string]string)` - Define the attributes for the topology request.
-
-        In addition to the above arguments, the following attributes are exported and
-        can be referenced:
-        """
         return pulumi.get(self, "segments")
 
 
@@ -772,7 +732,7 @@ class CsiVolumeTopologyRequestPreferred(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.CsiVolumeTopologyRequestPreferredTopology']):
         """
-        :param Sequence['CsiVolumeTopologyRequestPreferredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        :param Sequence['CsiVolumeTopologyRequestPreferredTopologyArgs'] topologies: Defines the location for the volume.
         """
         pulumi.set(__self__, "topologies", topologies)
 
@@ -780,7 +740,7 @@ class CsiVolumeTopologyRequestPreferred(dict):
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.CsiVolumeTopologyRequestPreferredTopology']:
         """
-        `(List of segments: <required>)` - Defines the location for the volume.
+        Defines the location for the volume.
         """
         return pulumi.get(self, "topologies")
 
@@ -790,10 +750,7 @@ class CsiVolumeTopologyRequestPreferredTopology(dict):
     def __init__(__self__, *,
                  segments: Mapping[str, str]):
         """
-        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
-               
-               In addition to the above arguments, the following attributes are exported and
-               can be referenced:
+        :param Mapping[str, str] segments: Define the attributes for the topology request.
         """
         pulumi.set(__self__, "segments", segments)
 
@@ -801,10 +758,7 @@ class CsiVolumeTopologyRequestPreferredTopology(dict):
     @pulumi.getter
     def segments(self) -> Mapping[str, str]:
         """
-        `(map[string]string)` - Define the attributes for the topology request.
-
-        In addition to the above arguments, the following attributes are exported and
-        can be referenced:
+        Define the attributes for the topology request.
         """
         return pulumi.get(self, "segments")
 
@@ -814,7 +768,7 @@ class CsiVolumeTopologyRequestRequired(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.CsiVolumeTopologyRequestRequiredTopology']):
         """
-        :param Sequence['CsiVolumeTopologyRequestRequiredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        :param Sequence['CsiVolumeTopologyRequestRequiredTopologyArgs'] topologies: Defines the location for the volume.
         """
         pulumi.set(__self__, "topologies", topologies)
 
@@ -822,7 +776,7 @@ class CsiVolumeTopologyRequestRequired(dict):
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.CsiVolumeTopologyRequestRequiredTopology']:
         """
-        `(List of segments: <required>)` - Defines the location for the volume.
+        Defines the location for the volume.
         """
         return pulumi.get(self, "topologies")
 
@@ -832,10 +786,7 @@ class CsiVolumeTopologyRequestRequiredTopology(dict):
     def __init__(__self__, *,
                  segments: Mapping[str, str]):
         """
-        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
-               
-               In addition to the above arguments, the following attributes are exported and
-               can be referenced:
+        :param Mapping[str, str] segments: Define the attributes for the topology request.
         """
         pulumi.set(__self__, "segments", segments)
 
@@ -843,10 +794,7 @@ class CsiVolumeTopologyRequestRequiredTopology(dict):
     @pulumi.getter
     def segments(self) -> Mapping[str, str]:
         """
-        `(map[string]string)` - Define the attributes for the topology request.
-
-        In addition to the above arguments, the following attributes are exported and
-        can be referenced:
+        Define the attributes for the topology request.
         """
         return pulumi.get(self, "segments")
 
@@ -967,24 +915,12 @@ class ExternalVolumeMountOptions(dict):
 class ExternalVolumeTopology(dict):
     def __init__(__self__, *,
                  segments: Optional[Mapping[str, str]] = None):
-        """
-        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
-               
-               In addition to the above arguments, the following attributes are exported and
-               can be referenced:
-        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[Mapping[str, str]]:
-        """
-        `(map[string]string)` - Define the attributes for the topology request.
-
-        In addition to the above arguments, the following attributes are exported and
-        can be referenced:
-        """
         return pulumi.get(self, "segments")
 
 
@@ -1024,7 +960,7 @@ class ExternalVolumeTopologyRequestPreferred(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.ExternalVolumeTopologyRequestPreferredTopology']):
         """
-        :param Sequence['ExternalVolumeTopologyRequestPreferredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        :param Sequence['ExternalVolumeTopologyRequestPreferredTopologyArgs'] topologies: Defines the location for the volume.
         """
         pulumi.set(__self__, "topologies", topologies)
 
@@ -1032,7 +968,7 @@ class ExternalVolumeTopologyRequestPreferred(dict):
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.ExternalVolumeTopologyRequestPreferredTopology']:
         """
-        `(List of segments: <required>)` - Defines the location for the volume.
+        Defines the location for the volume.
         """
         return pulumi.get(self, "topologies")
 
@@ -1042,10 +978,7 @@ class ExternalVolumeTopologyRequestPreferredTopology(dict):
     def __init__(__self__, *,
                  segments: Mapping[str, str]):
         """
-        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
-               
-               In addition to the above arguments, the following attributes are exported and
-               can be referenced:
+        :param Mapping[str, str] segments: Define the attributes for the topology request.
         """
         pulumi.set(__self__, "segments", segments)
 
@@ -1053,10 +986,7 @@ class ExternalVolumeTopologyRequestPreferredTopology(dict):
     @pulumi.getter
     def segments(self) -> Mapping[str, str]:
         """
-        `(map[string]string)` - Define the attributes for the topology request.
-
-        In addition to the above arguments, the following attributes are exported and
-        can be referenced:
+        Define the attributes for the topology request.
         """
         return pulumi.get(self, "segments")
 
@@ -1066,7 +996,7 @@ class ExternalVolumeTopologyRequestRequired(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.ExternalVolumeTopologyRequestRequiredTopology']):
         """
-        :param Sequence['ExternalVolumeTopologyRequestRequiredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        :param Sequence['ExternalVolumeTopologyRequestRequiredTopologyArgs'] topologies: Defines the location for the volume.
         """
         pulumi.set(__self__, "topologies", topologies)
 
@@ -1074,7 +1004,7 @@ class ExternalVolumeTopologyRequestRequired(dict):
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.ExternalVolumeTopologyRequestRequiredTopology']:
         """
-        `(List of segments: <required>)` - Defines the location for the volume.
+        Defines the location for the volume.
         """
         return pulumi.get(self, "topologies")
 
@@ -1084,10 +1014,7 @@ class ExternalVolumeTopologyRequestRequiredTopology(dict):
     def __init__(__self__, *,
                  segments: Mapping[str, str]):
         """
-        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
-               
-               In addition to the above arguments, the following attributes are exported and
-               can be referenced:
+        :param Mapping[str, str] segments: Define the attributes for the topology request.
         """
         pulumi.set(__self__, "segments", segments)
 
@@ -1095,10 +1022,7 @@ class ExternalVolumeTopologyRequestRequiredTopology(dict):
     @pulumi.getter
     def segments(self) -> Mapping[str, str]:
         """
-        `(map[string]string)` - Define the attributes for the topology request.
-
-        In addition to the above arguments, the following attributes are exported and
-        can be referenced:
+        Define the attributes for the topology request.
         """
         return pulumi.get(self, "segments")
 
@@ -1750,24 +1674,12 @@ class VolumeMountOptions(dict):
 class VolumeTopology(dict):
     def __init__(__self__, *,
                  segments: Optional[Mapping[str, str]] = None):
-        """
-        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
-               
-               In addition to the above arguments, the following attributes are exported and
-               can be referenced:
-        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[Mapping[str, str]]:
-        """
-        `(map[string]string)` - Define the attributes for the topology request.
-
-        In addition to the above arguments, the following attributes are exported and
-        can be referenced:
-        """
         return pulumi.get(self, "segments")
 
 
@@ -1795,7 +1707,7 @@ class VolumeTopologyRequestRequired(dict):
     def __init__(__self__, *,
                  topologies: Sequence['outputs.VolumeTopologyRequestRequiredTopology']):
         """
-        :param Sequence['VolumeTopologyRequestRequiredTopologyArgs'] topologies: `(List of segments: <required>)` - Defines the location for the volume.
+        :param Sequence['VolumeTopologyRequestRequiredTopologyArgs'] topologies: Defines the location for the volume.
         """
         pulumi.set(__self__, "topologies", topologies)
 
@@ -1803,7 +1715,7 @@ class VolumeTopologyRequestRequired(dict):
     @pulumi.getter
     def topologies(self) -> Sequence['outputs.VolumeTopologyRequestRequiredTopology']:
         """
-        `(List of segments: <required>)` - Defines the location for the volume.
+        Defines the location for the volume.
         """
         return pulumi.get(self, "topologies")
 
@@ -1813,10 +1725,7 @@ class VolumeTopologyRequestRequiredTopology(dict):
     def __init__(__self__, *,
                  segments: Mapping[str, str]):
         """
-        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
-               
-               In addition to the above arguments, the following attributes are exported and
-               can be referenced:
+        :param Mapping[str, str] segments: Define attributes for the topology request.
         """
         pulumi.set(__self__, "segments", segments)
 
@@ -1824,10 +1733,7 @@ class VolumeTopologyRequestRequiredTopology(dict):
     @pulumi.getter
     def segments(self) -> Mapping[str, str]:
         """
-        `(map[string]string)` - Define the attributes for the topology request.
-
-        In addition to the above arguments, the following attributes are exported and
-        can be referenced:
+        Define attributes for the topology request.
         """
         return pulumi.get(self, "segments")
 

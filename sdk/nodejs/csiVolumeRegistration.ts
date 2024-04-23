@@ -53,17 +53,8 @@ export class CsiVolumeRegistration extends pulumi.CustomResource {
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      */
     public readonly context!: pulumi.Output<{[key: string]: string} | undefined>;
-    /**
-     * `(boolean)`
-     */
     public /*out*/ readonly controllerRequired!: pulumi.Output<boolean>;
-    /**
-     * `(integer)`
-     */
     public /*out*/ readonly controllersExpected!: pulumi.Output<number>;
-    /**
-     * `(integer)`
-     */
     public /*out*/ readonly controllersHealthy!: pulumi.Output<number>;
     /**
      * `(boolean: true)` - If true, the volume will be deregistered on destroy.
@@ -85,13 +76,7 @@ export class CsiVolumeRegistration extends pulumi.CustomResource {
      * `(string: "default")` - The namespace in which to register the volume.
      */
     public readonly namespace!: pulumi.Output<string | undefined>;
-    /**
-     * `(integer)`
-     */
     public /*out*/ readonly nodesExpected!: pulumi.Output<number>;
-    /**
-     * `(integer)`
-     */
     public /*out*/ readonly nodesHealthy!: pulumi.Output<number>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
@@ -101,25 +86,13 @@ export class CsiVolumeRegistration extends pulumi.CustomResource {
      * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
     public readonly pluginId!: pulumi.Output<string>;
-    /**
-     * `(string)`
-     */
     public /*out*/ readonly pluginProvider!: pulumi.Output<string>;
-    /**
-     * `(string)`
-     */
     public /*out*/ readonly pluginProviderVersion!: pulumi.Output<string>;
-    /**
-     * `(boolean)`
-     */
     public /*out*/ readonly schedulable!: pulumi.Output<boolean>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
     public readonly secrets!: pulumi.Output<{[key: string]: string} | undefined>;
-    /**
-     * `(List of topologies)`
-     */
     public /*out*/ readonly topologies!: pulumi.Output<outputs.CsiVolumeRegistrationTopology[]>;
     /**
      * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
@@ -237,17 +210,8 @@ export interface CsiVolumeRegistrationState {
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      */
     context?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * `(boolean)`
-     */
     controllerRequired?: pulumi.Input<boolean>;
-    /**
-     * `(integer)`
-     */
     controllersExpected?: pulumi.Input<number>;
-    /**
-     * `(integer)`
-     */
     controllersHealthy?: pulumi.Input<number>;
     /**
      * `(boolean: true)` - If true, the volume will be deregistered on destroy.
@@ -269,13 +233,7 @@ export interface CsiVolumeRegistrationState {
      * `(string: "default")` - The namespace in which to register the volume.
      */
     namespace?: pulumi.Input<string>;
-    /**
-     * `(integer)`
-     */
     nodesExpected?: pulumi.Input<number>;
-    /**
-     * `(integer)`
-     */
     nodesHealthy?: pulumi.Input<number>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
@@ -285,25 +243,13 @@ export interface CsiVolumeRegistrationState {
      * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
     pluginId?: pulumi.Input<string>;
-    /**
-     * `(string)`
-     */
     pluginProvider?: pulumi.Input<string>;
-    /**
-     * `(string)`
-     */
     pluginProviderVersion?: pulumi.Input<string>;
-    /**
-     * `(boolean)`
-     */
     schedulable?: pulumi.Input<boolean>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
     secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * `(List of topologies)`
-     */
     topologies?: pulumi.Input<pulumi.Input<inputs.CsiVolumeRegistrationTopology>[]>;
     /**
      * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.

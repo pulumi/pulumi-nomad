@@ -104,47 +104,23 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.cloneId);
     }
 
-    /**
-     * `(boolean)`
-     * 
-     */
     @Import(name="controllerRequired")
     private @Nullable Output<Boolean> controllerRequired;
 
-    /**
-     * @return `(boolean)`
-     * 
-     */
     public Optional<Output<Boolean>> controllerRequired() {
         return Optional.ofNullable(this.controllerRequired);
     }
 
-    /**
-     * `(integer)`
-     * 
-     */
     @Import(name="controllersExpected")
     private @Nullable Output<Integer> controllersExpected;
 
-    /**
-     * @return `(integer)`
-     * 
-     */
     public Optional<Output<Integer>> controllersExpected() {
         return Optional.ofNullable(this.controllersExpected);
     }
 
-    /**
-     * `(integer)`
-     * 
-     */
     @Import(name="controllersHealthy")
     private @Nullable Output<Integer> controllersHealthy;
 
-    /**
-     * @return `(integer)`
-     * 
-     */
     public Optional<Output<Integer>> controllersHealthy() {
         return Optional.ofNullable(this.controllersHealthy);
     }
@@ -209,32 +185,16 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.namespace);
     }
 
-    /**
-     * `(integer)`
-     * 
-     */
     @Import(name="nodesExpected")
     private @Nullable Output<Integer> nodesExpected;
 
-    /**
-     * @return `(integer)`
-     * 
-     */
     public Optional<Output<Integer>> nodesExpected() {
         return Optional.ofNullable(this.nodesExpected);
     }
 
-    /**
-     * `(integer)`
-     * 
-     */
     @Import(name="nodesHealthy")
     private @Nullable Output<Integer> nodesHealthy;
 
-    /**
-     * @return `(integer)`
-     * 
-     */
     public Optional<Output<Integer>> nodesHealthy() {
         return Optional.ofNullable(this.nodesHealthy);
     }
@@ -269,47 +229,23 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.pluginId);
     }
 
-    /**
-     * `(string)`
-     * 
-     */
     @Import(name="pluginProvider")
     private @Nullable Output<String> pluginProvider;
 
-    /**
-     * @return `(string)`
-     * 
-     */
     public Optional<Output<String>> pluginProvider() {
         return Optional.ofNullable(this.pluginProvider);
     }
 
-    /**
-     * `(string)`
-     * 
-     */
     @Import(name="pluginProviderVersion")
     private @Nullable Output<String> pluginProviderVersion;
 
-    /**
-     * @return `(string)`
-     * 
-     */
     public Optional<Output<String>> pluginProviderVersion() {
         return Optional.ofNullable(this.pluginProviderVersion);
     }
 
-    /**
-     * `(boolean)`
-     * 
-     */
     @Import(name="schedulable")
     private @Nullable Output<Boolean> schedulable;
 
-    /**
-     * @return `(boolean)`
-     * 
-     */
     public Optional<Output<Boolean>> schedulable() {
         return Optional.ofNullable(this.schedulable);
     }
@@ -344,17 +280,9 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.snapshotId);
     }
 
-    /**
-     * `(List of topologies)`
-     * 
-     */
     @Import(name="topologies")
     private @Nullable Output<List<CsiVolumeTopologyArgs>> topologies;
 
-    /**
-     * @return `(List of topologies)`
-     * 
-     */
     public Optional<Output<List<CsiVolumeTopologyArgs>>> topologies() {
         return Optional.ofNullable(this.topologies);
     }
@@ -559,65 +487,29 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
             return cloneId(Output.of(cloneId));
         }
 
-        /**
-         * @param controllerRequired `(boolean)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder controllerRequired(@Nullable Output<Boolean> controllerRequired) {
             $.controllerRequired = controllerRequired;
             return this;
         }
 
-        /**
-         * @param controllerRequired `(boolean)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder controllerRequired(Boolean controllerRequired) {
             return controllerRequired(Output.of(controllerRequired));
         }
 
-        /**
-         * @param controllersExpected `(integer)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder controllersExpected(@Nullable Output<Integer> controllersExpected) {
             $.controllersExpected = controllersExpected;
             return this;
         }
 
-        /**
-         * @param controllersExpected `(integer)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder controllersExpected(Integer controllersExpected) {
             return controllersExpected(Output.of(controllersExpected));
         }
 
-        /**
-         * @param controllersHealthy `(integer)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder controllersHealthy(@Nullable Output<Integer> controllersHealthy) {
             $.controllersHealthy = controllersHealthy;
             return this;
         }
 
-        /**
-         * @param controllersHealthy `(integer)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder controllersHealthy(Integer controllersHealthy) {
             return controllersHealthy(Output.of(controllersHealthy));
         }
@@ -706,44 +598,20 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
             return namespace(Output.of(namespace));
         }
 
-        /**
-         * @param nodesExpected `(integer)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder nodesExpected(@Nullable Output<Integer> nodesExpected) {
             $.nodesExpected = nodesExpected;
             return this;
         }
 
-        /**
-         * @param nodesExpected `(integer)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder nodesExpected(Integer nodesExpected) {
             return nodesExpected(Output.of(nodesExpected));
         }
 
-        /**
-         * @param nodesHealthy `(integer)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder nodesHealthy(@Nullable Output<Integer> nodesHealthy) {
             $.nodesHealthy = nodesHealthy;
             return this;
         }
 
-        /**
-         * @param nodesHealthy `(integer)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder nodesHealthy(Integer nodesHealthy) {
             return nodesHealthy(Output.of(nodesHealthy));
         }
@@ -790,65 +658,29 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
             return pluginId(Output.of(pluginId));
         }
 
-        /**
-         * @param pluginProvider `(string)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder pluginProvider(@Nullable Output<String> pluginProvider) {
             $.pluginProvider = pluginProvider;
             return this;
         }
 
-        /**
-         * @param pluginProvider `(string)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder pluginProvider(String pluginProvider) {
             return pluginProvider(Output.of(pluginProvider));
         }
 
-        /**
-         * @param pluginProviderVersion `(string)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder pluginProviderVersion(@Nullable Output<String> pluginProviderVersion) {
             $.pluginProviderVersion = pluginProviderVersion;
             return this;
         }
 
-        /**
-         * @param pluginProviderVersion `(string)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder pluginProviderVersion(String pluginProviderVersion) {
             return pluginProviderVersion(Output.of(pluginProviderVersion));
         }
 
-        /**
-         * @param schedulable `(boolean)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder schedulable(@Nullable Output<Boolean> schedulable) {
             $.schedulable = schedulable;
             return this;
         }
 
-        /**
-         * @param schedulable `(boolean)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder schedulable(Boolean schedulable) {
             return schedulable(Output.of(schedulable));
         }
@@ -895,33 +727,15 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
             return snapshotId(Output.of(snapshotId));
         }
 
-        /**
-         * @param topologies `(List of topologies)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder topologies(@Nullable Output<List<CsiVolumeTopologyArgs>> topologies) {
             $.topologies = topologies;
             return this;
         }
 
-        /**
-         * @param topologies `(List of topologies)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder topologies(List<CsiVolumeTopologyArgs> topologies) {
             return topologies(Output.of(topologies));
         }
 
-        /**
-         * @param topologies `(List of topologies)`
-         * 
-         * @return builder
-         * 
-         */
         public Builder topologies(CsiVolumeTopologyArgs... topologies) {
             return topologies(List.of(topologies));
         }

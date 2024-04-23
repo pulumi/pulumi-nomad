@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * Registering a quota specification:
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -30,7 +29,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class QuoteSpecification extends pulumi.CustomResource {
     /**

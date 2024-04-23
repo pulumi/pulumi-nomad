@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -27,7 +26,6 @@ import * as utilities from "./utilities";
  *     }
  * }
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getRegions(opts?: pulumi.InvokeOptions): Promise<GetRegionsResult> {
 
@@ -54,7 +52,6 @@ export interface GetRegionsResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
@@ -72,7 +69,6 @@ export interface GetRegionsResult {
  *     }
  * }
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getRegionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetRegionsResult> {
     return pulumi.output(getRegions(opts))

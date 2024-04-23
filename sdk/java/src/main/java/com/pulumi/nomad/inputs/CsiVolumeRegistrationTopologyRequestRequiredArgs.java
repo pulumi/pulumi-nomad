@@ -16,14 +16,14 @@ public final class CsiVolumeRegistrationTopologyRequestRequiredArgs extends com.
     public static final CsiVolumeRegistrationTopologyRequestRequiredArgs Empty = new CsiVolumeRegistrationTopologyRequestRequiredArgs();
 
     /**
-     * `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * Defines the location for the volume.
      * 
      */
     @Import(name="topologies", required=true)
     private Output<List<CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs>> topologies;
 
     /**
-     * @return `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+     * @return Defines the location for the volume.
      * 
      */
     public Output<List<CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs>> topologies() {
@@ -55,7 +55,7 @@ public final class CsiVolumeRegistrationTopologyRequestRequiredArgs extends com.
         }
 
         /**
-         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * @param topologies Defines the location for the volume.
          * 
          * @return builder
          * 
@@ -66,7 +66,7 @@ public final class CsiVolumeRegistrationTopologyRequestRequiredArgs extends com.
         }
 
         /**
-         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * @param topologies Defines the location for the volume.
          * 
          * @return builder
          * 
@@ -76,7 +76,7 @@ public final class CsiVolumeRegistrationTopologyRequestRequiredArgs extends com.
         }
 
         /**
-         * @param topologies `(List of segments: &lt;required&gt;)` - Defines the location for the volume.
+         * @param topologies Defines the location for the volume.
          * 
          * @return builder
          * 
