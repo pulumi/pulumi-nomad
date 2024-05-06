@@ -25,17 +25,17 @@ type Provider struct {
 	CaFile pulumi.StringPtrOutput `pulumi:"caFile"`
 	// PEM-encoded certificate authority used to verify the remote agent's certificate.
 	CaPem pulumi.StringPtrOutput `pulumi:"caPem"`
-	// A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+	// A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 	CertFile pulumi.StringPtrOutput `pulumi:"certFile"`
-	// PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+	// PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 	CertPem pulumi.StringPtrOutput `pulumi:"certPem"`
 	// Consul token to validate Consul Connect Service Identity policies specified in the job file.
 	ConsulToken pulumi.StringPtrOutput `pulumi:"consulToken"`
 	// HTTP basic auth configuration.
 	HttpAuth pulumi.StringPtrOutput `pulumi:"httpAuth"`
-	// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+	// A path to a PEM-encoded private key, required if certFile or certPem is specified.
 	KeyFile pulumi.StringPtrOutput `pulumi:"keyFile"`
-	// PEM-encoded private key, required if cert_file or cert_pem is specified.
+	// PEM-encoded private key, required if certFile or certPem is specified.
 	KeyPem pulumi.StringPtrOutput `pulumi:"keyPem"`
 	// Region of the target Nomad agent.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
@@ -85,9 +85,9 @@ type providerArgs struct {
 	CaFile *string `pulumi:"caFile"`
 	// PEM-encoded certificate authority used to verify the remote agent's certificate.
 	CaPem *string `pulumi:"caPem"`
-	// A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+	// A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 	CertFile *string `pulumi:"certFile"`
-	// PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+	// PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 	CertPem *string `pulumi:"certPem"`
 	// Consul token to validate Consul Connect Service Identity policies specified in the job file.
 	ConsulToken *string `pulumi:"consulToken"`
@@ -97,9 +97,9 @@ type providerArgs struct {
 	HttpAuth *string `pulumi:"httpAuth"`
 	// A set of environment variables that are ignored by the provider when configuring the Nomad API client.
 	IgnoreEnvVars map[string]bool `pulumi:"ignoreEnvVars"`
-	// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+	// A path to a PEM-encoded private key, required if certFile or certPem is specified.
 	KeyFile *string `pulumi:"keyFile"`
-	// PEM-encoded private key, required if cert_file or cert_pem is specified.
+	// PEM-encoded private key, required if certFile or certPem is specified.
 	KeyPem *string `pulumi:"keyPem"`
 	// Region of the target Nomad agent.
 	Region *string `pulumi:"region"`
@@ -119,9 +119,9 @@ type ProviderArgs struct {
 	CaFile pulumi.StringPtrInput
 	// PEM-encoded certificate authority used to verify the remote agent's certificate.
 	CaPem pulumi.StringPtrInput
-	// A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+	// A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 	CertFile pulumi.StringPtrInput
-	// PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+	// PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 	CertPem pulumi.StringPtrInput
 	// Consul token to validate Consul Connect Service Identity policies specified in the job file.
 	ConsulToken pulumi.StringPtrInput
@@ -131,9 +131,9 @@ type ProviderArgs struct {
 	HttpAuth pulumi.StringPtrInput
 	// A set of environment variables that are ignored by the provider when configuring the Nomad API client.
 	IgnoreEnvVars pulumi.BoolMapInput
-	// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+	// A path to a PEM-encoded private key, required if certFile or certPem is specified.
 	KeyFile pulumi.StringPtrInput
-	// PEM-encoded private key, required if cert_file or cert_pem is specified.
+	// PEM-encoded private key, required if certFile or certPem is specified.
 	KeyPem pulumi.StringPtrInput
 	// Region of the target Nomad agent.
 	Region pulumi.StringPtrInput
@@ -197,12 +197,12 @@ func (o ProviderOutput) CaPem() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CaPem }).(pulumi.StringPtrOutput)
 }
 
-// A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+// A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 func (o ProviderOutput) CertFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CertFile }).(pulumi.StringPtrOutput)
 }
 
-// PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+// PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 func (o ProviderOutput) CertPem() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CertPem }).(pulumi.StringPtrOutput)
 }
@@ -217,12 +217,12 @@ func (o ProviderOutput) HttpAuth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.HttpAuth }).(pulumi.StringPtrOutput)
 }
 
-// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+// A path to a PEM-encoded private key, required if certFile or certPem is specified.
 func (o ProviderOutput) KeyFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.KeyFile }).(pulumi.StringPtrOutput)
 }
 
-// PEM-encoded private key, required if cert_file or cert_pem is specified.
+// PEM-encoded private key, required if certFile or certPem is specified.
 func (o ProviderOutput) KeyPem() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.KeyPem }).(pulumi.StringPtrOutput)
 }
