@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * Creating an ALC Auth Method:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,28 +47,29 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myNomadAclAuthMethod = new AclAuthMethod(&#34;myNomadAclAuthMethod&#34;, AclAuthMethodArgs.builder()        
- *             .name(&#34;my-nomad-acl-auth-method&#34;)
- *             .type(&#34;OIDC&#34;)
- *             .tokenLocality(&#34;global&#34;)
- *             .maxTokenTtl(&#34;10m0s&#34;)
- *             .tokenNameFormat(&#34;${auth_method_type}-${value.user}&#34;)
+ *         var myNomadAclAuthMethod = new AclAuthMethod("myNomadAclAuthMethod", AclAuthMethodArgs.builder()        
+ *             .name("my-nomad-acl-auth-method")
+ *             .type("OIDC")
+ *             .tokenLocality("global")
+ *             .maxTokenTtl("10m0s")
+ *             .tokenNameFormat("${auth_method_type}-${value.user}")
  *             .default_(true)
  *             .config(AclAuthMethodConfigArgs.builder()
- *                 .oidcDiscoveryUrl(&#34;https://uk.auth0.com/&#34;)
- *                 .oidcClientId(&#34;someclientid&#34;)
- *                 .oidcClientSecret(&#34;someclientsecret-t&#34;)
- *                 .boundAudiences(&#34;someclientid&#34;)
+ *                 .oidcDiscoveryUrl("https://uk.auth0.com/")
+ *                 .oidcClientId("someclientid")
+ *                 .oidcClientSecret("someclientsecret-t")
+ *                 .boundAudiences("someclientid")
  *                 .allowedRedirectUris(                
- *                     &#34;http://localhost:4649/oidc/callback&#34;,
- *                     &#34;http://localhost:4646/ui/settings/tokens&#34;)
- *                 .listClaimMappings(Map.of(&#34;http://nomad.internal/roles&#34;, &#34;roles&#34;))
+ *                     "http://localhost:4649/oidc/callback",
+ *                     "http://localhost:4646/ui/settings/tokens")
+ *                 .listClaimMappings(Map.of("http://nomad.internal/roles", "roles"))
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

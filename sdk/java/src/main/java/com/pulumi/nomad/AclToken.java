@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * Creating a token with limited policies:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,23 +45,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var dakota = new AclToken(&#34;dakota&#34;, AclTokenArgs.builder()        
- *             .name(&#34;Dakota&#34;)
- *             .type(&#34;client&#34;)
+ *         var dakota = new AclToken("dakota", AclTokenArgs.builder()        
+ *             .name("Dakota")
+ *             .type("client")
  *             .policies(            
- *                 &#34;dev&#34;,
- *                 &#34;qa&#34;)
+ *                 "dev",
+ *                 "qa")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Creating a global token that will be replicated to all regions:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -81,24 +84,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var dakota = new AclToken(&#34;dakota&#34;, AclTokenArgs.builder()        
- *             .name(&#34;Dakota&#34;)
- *             .type(&#34;client&#34;)
+ *         var dakota = new AclToken("dakota", AclTokenArgs.builder()        
+ *             .name("Dakota")
+ *             .type("client")
  *             .policies(            
- *                 &#34;dev&#34;,
- *                 &#34;qa&#34;)
+ *                 "dev",
+ *                 "qa")
  *             .global(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Creating a token with full access to the cluster:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -119,20 +124,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var iman = new AclToken(&#34;iman&#34;, AclTokenArgs.builder()        
- *             .name(&#34;Iman&#34;)
- *             .type(&#34;management&#34;)
+ *         var iman = new AclToken("iman", AclTokenArgs.builder()        
+ *             .name("Iman")
+ *             .type("management")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Accessing the token:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -153,15 +160,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var token = new AclToken(&#34;token&#34;, AclTokenArgs.builder()        
- *             .type(&#34;client&#34;)
- *             .policies(&#34;dev&#34;)
+ *         var token = new AclToken("token", AclTokenArgs.builder()        
+ *             .type("client")
+ *             .policies("dev")
  *             .build());
  * 
- *         ctx.export(&#34;nomadToken&#34;, token.secretId());
+ *         ctx.export("nomadToken", token.secretId());
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
