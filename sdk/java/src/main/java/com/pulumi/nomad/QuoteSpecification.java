@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * Registering a quota specification:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,11 +48,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var prodApi = new QuoteSpecification(&#34;prodApi&#34;, QuoteSpecificationArgs.builder()        
- *             .name(&#34;prod-api&#34;)
- *             .description(&#34;Production instances of backend API servers&#34;)
+ *         var prodApi = new QuoteSpecification("prodApi", QuoteSpecificationArgs.builder()        
+ *             .name("prod-api")
+ *             .description("Production instances of backend API servers")
  *             .limits(QuoteSpecificationLimitArgs.builder()
- *                 .region(&#34;global&#34;)
+ *                 .region("global")
  *                 .regionLimit(QuoteSpecificationLimitRegionLimitArgs.builder()
  *                     .cpu(2400)
  *                     .memoryMb(1200)
@@ -61,7 +62,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

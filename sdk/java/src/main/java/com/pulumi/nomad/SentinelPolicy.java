@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,28 +45,29 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exec_only = new SentinelPolicy(&#34;exec-only&#34;, SentinelPolicyArgs.builder()        
- *             .name(&#34;exec-only&#34;)
- *             .description(&#34;Only allow jobs that are based on an exec driver.&#34;)
- *             .policy(&#34;&#34;&#34;
+ *         var exec_only = new SentinelPolicy("exec-only", SentinelPolicyArgs.builder()        
+ *             .name("exec-only")
+ *             .description("Only allow jobs that are based on an exec driver.")
+ *             .policy("""
  * main = rule { all_drivers_exec }
  * 
  * # all_drivers_exec checks that all the drivers in use are exec
  * all_drivers_exec = rule {
  *     all job.task_groups as tg {
  *         all tg.tasks as task {
- *             task.driver is &#34;exec&#34;
+ *             task.driver is "exec"
  *         }
  *     }
  * }
- *             &#34;&#34;&#34;)
- *             .scope(&#34;submit-job&#34;)
- *             .enforcementLevel(&#34;soft-mandatory&#34;)
+ *             """)
+ *             .scope("submit-job")
+ *             .enforcementLevel("soft-mandatory")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * Creating a variable in the default namespace:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,20 +45,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Variable(&#34;example&#34;, VariableArgs.builder()        
- *             .path(&#34;some/path/of/your/choosing&#34;)
- *             .items(Map.of(&#34;example_key&#34;, &#34;example_value&#34;))
+ *         var example = new Variable("example", VariableArgs.builder()        
+ *             .path("some/path/of/your/choosing")
+ *             .items(Map.of("example_key", "example_value"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Creating a variable in a custom namespace:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -80,20 +83,21 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Namespace(&#34;example&#34;, NamespaceArgs.builder()        
- *             .name(&#34;example&#34;)
- *             .description(&#34;Example namespace.&#34;)
+ *         var example = new Namespace("example", NamespaceArgs.builder()        
+ *             .name("example")
+ *             .description("Example namespace.")
  *             .build());
  * 
- *         var exampleVariable = new Variable(&#34;exampleVariable&#34;, VariableArgs.builder()        
- *             .path(&#34;some/path/of/your/choosing&#34;)
+ *         var exampleVariable = new Variable("exampleVariable", VariableArgs.builder()        
+ *             .path("some/path/of/your/choosing")
  *             .namespace(example.name())
- *             .items(Map.of(&#34;example_key&#34;, &#34;example_value&#34;))
+ *             .items(Map.of("example_key", "example_value"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * Creating a volume:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -58,45 +59,46 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // It can sometimes be helpful to wait for a particular plugin to be available
  *         final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()
- *             .pluginId(&#34;aws-ebs0&#34;)
+ *             .pluginId("aws-ebs0")
  *             .waitForHealthy(true)
  *             .build());
  * 
- *         var mysqlVolume = new ExternalVolume(&#34;mysqlVolume&#34;, ExternalVolumeArgs.builder()        
- *             .type(&#34;csi&#34;)
- *             .pluginId(&#34;aws-ebs0&#34;)
- *             .volumeId(&#34;mysql_volume&#34;)
- *             .name(&#34;mysql_volume&#34;)
- *             .capacityMin(&#34;10GiB&#34;)
- *             .capacityMax(&#34;20GiB&#34;)
+ *         var mysqlVolume = new ExternalVolume("mysqlVolume", ExternalVolumeArgs.builder()        
+ *             .type("csi")
+ *             .pluginId("aws-ebs0")
+ *             .volumeId("mysql_volume")
+ *             .name("mysql_volume")
+ *             .capacityMin("10GiB")
+ *             .capacityMax("20GiB")
  *             .capabilities(ExternalVolumeCapabilityArgs.builder()
- *                 .accessMode(&#34;single-node-writer&#34;)
- *                 .attachmentMode(&#34;file-system&#34;)
+ *                 .accessMode("single-node-writer")
+ *                 .attachmentMode("file-system")
  *                 .build())
  *             .mountOptions(ExternalVolumeMountOptionsArgs.builder()
- *                 .fsType(&#34;ext4&#34;)
+ *                 .fsType("ext4")
  *                 .build())
  *             .topologyRequest(ExternalVolumeTopologyRequestArgs.builder()
  *                 .required(ExternalVolumeTopologyRequestRequiredArgs.builder()
  *                     .topologies(                    
  *                         ExternalVolumeTopologyRequestRequiredTopologyArgs.builder()
  *                             .segments(Map.ofEntries(
- *                                 Map.entry(&#34;rack&#34;, &#34;R1&#34;),
- *                                 Map.entry(&#34;zone&#34;, &#34;us-east-1a&#34;)
+ *                                 Map.entry("rack", "R1"),
+ *                                 Map.entry("zone", "us-east-1a")
  *                             ))
  *                             .build(),
  *                         ExternalVolumeTopologyRequestRequiredTopologyArgs.builder()
- *                             .segments(Map.of(&#34;rack&#34;, &#34;R2&#34;))
+ *                             .segments(Map.of("rack", "R2"))
  *                             .build())
  *                     .build())
  *                 .build())
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(ebs.applyValue(getPluginResult -&gt; getPluginResult))
+ *                 .dependsOn(ebs.applyValue(getPluginResult -> getPluginResult))
  *                 .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

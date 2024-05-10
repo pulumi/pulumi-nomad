@@ -79,7 +79,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -101,12 +102,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclPolicies(GetAclPoliciesArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -119,7 +121,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -141,12 +144,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclPolicies(GetAclPoliciesArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -159,7 +163,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -181,12 +186,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclPolicies(GetAclPoliciesArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -199,7 +205,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -221,12 +228,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclPolicies(GetAclPoliciesArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -239,7 +247,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -261,12 +270,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclPolicies(GetAclPoliciesArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -279,7 +289,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -301,12 +312,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclPolicies(GetAclPoliciesArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -319,7 +331,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -341,12 +354,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myPolicy = NomadFunctions.getAclPolicy(GetAclPolicyArgs.builder()
-     *             .name(&#34;my-policy&#34;)
+     *             .name("my-policy")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -359,7 +373,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -381,12 +396,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myPolicy = NomadFunctions.getAclPolicy(GetAclPolicyArgs.builder()
-     *             .name(&#34;my-policy&#34;)
+     *             .name("my-policy")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -399,7 +415,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -421,12 +438,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myPolicy = NomadFunctions.getAclPolicy(GetAclPolicyArgs.builder()
-     *             .name(&#34;my-policy&#34;)
+     *             .name("my-policy")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -439,7 +457,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -461,12 +480,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myPolicy = NomadFunctions.getAclPolicy(GetAclPolicyArgs.builder()
-     *             .name(&#34;my-policy&#34;)
+     *             .name("my-policy")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -479,7 +499,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -501,12 +522,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclRole(GetAclRoleArgs.builder()
-     *             .id(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .id("aa534e09-6a07-0a45-2295-a7f77063d429")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -519,7 +541,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -541,12 +564,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclRole(GetAclRoleArgs.builder()
-     *             .id(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .id("aa534e09-6a07-0a45-2295-a7f77063d429")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -559,7 +583,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -581,12 +606,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclRole(GetAclRoleArgs.builder()
-     *             .id(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .id("aa534e09-6a07-0a45-2295-a7f77063d429")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -599,7 +625,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -621,12 +648,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclRole(GetAclRoleArgs.builder()
-     *             .id(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .id("aa534e09-6a07-0a45-2295-a7f77063d429")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -639,7 +667,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -661,12 +690,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -679,7 +709,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -701,12 +732,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -719,7 +751,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -741,12 +774,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -759,7 +793,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -781,12 +816,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -799,7 +835,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -821,12 +858,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -839,7 +877,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -861,12 +900,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -877,7 +917,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -899,12 +940,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myToken = NomadFunctions.getAclToken(GetAclTokenArgs.builder()
-     *             .accessorId(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .accessorId("aa534e09-6a07-0a45-2295-a7f77063d429")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -915,7 +957,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -937,12 +980,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myToken = NomadFunctions.getAclToken(GetAclTokenArgs.builder()
-     *             .accessorId(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .accessorId("aa534e09-6a07-0a45-2295-a7f77063d429")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -953,7 +997,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -975,12 +1020,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myToken = NomadFunctions.getAclToken(GetAclTokenArgs.builder()
-     *             .accessorId(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .accessorId("aa534e09-6a07-0a45-2295-a7f77063d429")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -991,7 +1037,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1013,12 +1060,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myToken = NomadFunctions.getAclToken(GetAclTokenArgs.builder()
-     *             .accessorId(&#34;aa534e09-6a07-0a45-2295-a7f77063d429&#34;)
+     *             .accessorId("aa534e09-6a07-0a45-2295-a7f77063d429")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1031,7 +1079,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1053,12 +1102,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var tokens = NomadFunctions.getAclTokens(GetAclTokensArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1071,7 +1121,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1093,12 +1144,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var tokens = NomadFunctions.getAclTokens(GetAclTokensArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1111,7 +1163,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1133,12 +1186,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var tokens = NomadFunctions.getAclTokens(GetAclTokensArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1151,7 +1205,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1173,12 +1228,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var tokens = NomadFunctions.getAclTokens(GetAclTokensArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1191,7 +1247,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1213,12 +1270,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var tokens = NomadFunctions.getAclTokens(GetAclTokensArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1231,7 +1289,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1253,12 +1312,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var tokens = NomadFunctions.getAclTokens(GetAclTokensArgs.builder()
-     *             .prefix(&#34;a242&#34;)
+     *             .prefix("a242")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1271,7 +1331,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1293,12 +1354,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter(&#34;JobID == \&#34;example\&#34;&#34;)
+     *             .filter("JobID == \"example\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1311,7 +1373,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1333,12 +1396,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter(&#34;JobID == \&#34;example\&#34;&#34;)
+     *             .filter("JobID == \"example\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1351,7 +1415,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1373,12 +1438,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter(&#34;JobID == \&#34;example\&#34;&#34;)
+     *             .filter("JobID == \"example\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1391,7 +1457,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1413,12 +1480,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter(&#34;JobID == \&#34;example\&#34;&#34;)
+     *             .filter("JobID == \"example\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1431,7 +1499,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1453,12 +1522,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter(&#34;JobID == \&#34;example\&#34;&#34;)
+     *             .filter("JobID == \"example\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1471,7 +1541,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1493,12 +1564,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter(&#34;JobID == \&#34;example\&#34;&#34;)
+     *             .filter("JobID == \"example\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1511,7 +1583,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1533,13 +1606,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1552,7 +1626,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1574,13 +1649,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1593,7 +1669,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1615,13 +1692,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1634,7 +1712,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1656,13 +1735,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1675,7 +1755,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1697,13 +1778,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1716,7 +1798,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1738,13 +1821,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
-     *             .prefix(&#34;prod&#34;)
+     *             .prefix("prod")
      *             .ignoreDownNodes(true)
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1757,7 +1841,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1781,7 +1866,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1794,7 +1880,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1818,7 +1905,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1831,7 +1919,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1855,7 +1944,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1868,7 +1958,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1892,7 +1983,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1905,7 +1997,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1929,7 +2022,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1942,7 +2036,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1966,7 +2061,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1984,7 +2080,8 @@ public final class NomadFunctions {
      * Get the data about a snapshot:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2006,13 +2103,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getJob(GetJobArgs.builder()
-     *             .jobId(&#34;example&#34;)
-     *             .namespace(&#34;dev&#34;)
+     *             .jobId("example")
+     *             .namespace("dev")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2030,7 +2128,8 @@ public final class NomadFunctions {
      * Get the data about a snapshot:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2052,13 +2151,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getJob(GetJobArgs.builder()
-     *             .jobId(&#34;example&#34;)
-     *             .namespace(&#34;dev&#34;)
+     *             .jobId("example")
+     *             .namespace("dev")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2076,7 +2176,8 @@ public final class NomadFunctions {
      * Get the data about a snapshot:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2098,13 +2199,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getJob(GetJobArgs.builder()
-     *             .jobId(&#34;example&#34;)
-     *             .namespace(&#34;dev&#34;)
+     *             .jobId("example")
+     *             .namespace("dev")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2122,7 +2224,8 @@ public final class NomadFunctions {
      * Get the data about a snapshot:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2144,13 +2247,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getJob(GetJobArgs.builder()
-     *             .jobId(&#34;example&#34;)
-     *             .namespace(&#34;dev&#34;)
+     *             .jobId("example")
+     *             .namespace("dev")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2191,7 +2295,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2213,12 +2318,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .name(&#34;default&#34;)
+     *             .name("default")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2231,7 +2337,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2253,12 +2360,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .name(&#34;default&#34;)
+     *             .name("default")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2271,7 +2379,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2293,12 +2402,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .name(&#34;default&#34;)
+     *             .name("default")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2311,7 +2421,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2333,12 +2444,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespace(GetNamespaceArgs.builder()
-     *             .name(&#34;default&#34;)
+     *             .name("default")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2351,7 +2463,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2376,22 +2489,23 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
-     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
-     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .rulesHcl(&#34;&#34;&#34;
-     * namespace &#34;%s&#34; {
-     *   policy = &#34;write&#34;
+     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .rulesHcl("""
+     * namespace "%s" {
+     *   policy = "write"
      * }
-     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .build());
      * 
      *         
      * }
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2404,7 +2518,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2429,22 +2544,23 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
-     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
-     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .rulesHcl(&#34;&#34;&#34;
-     * namespace &#34;%s&#34; {
-     *   policy = &#34;write&#34;
+     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .rulesHcl("""
+     * namespace "%s" {
+     *   policy = "write"
      * }
-     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .build());
      * 
      *         
      * }
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2457,7 +2573,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2482,22 +2599,23 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
-     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
-     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .rulesHcl(&#34;&#34;&#34;
-     * namespace &#34;%s&#34; {
-     *   policy = &#34;write&#34;
+     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .rulesHcl("""
+     * namespace "%s" {
+     *   policy = "write"
      * }
-     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .build());
      * 
      *         
      * }
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2510,7 +2628,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2535,22 +2654,23 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
-     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
-     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .rulesHcl(&#34;&#34;&#34;
-     * namespace &#34;%s&#34; {
-     *   policy = &#34;write&#34;
+     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .rulesHcl("""
+     * namespace "%s" {
+     *   policy = "write"
      * }
-     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .build());
      * 
      *         
      * }
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2563,7 +2683,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2588,22 +2709,23 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
-     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
-     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .rulesHcl(&#34;&#34;&#34;
-     * namespace &#34;%s&#34; {
-     *   policy = &#34;write&#34;
+     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .rulesHcl("""
+     * namespace "%s" {
+     *   policy = "write"
      * }
-     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .build());
      * 
      *         
      * }
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2616,7 +2738,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2641,22 +2764,23 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
-     *         for (var i = 0; i &lt; namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy(&#34;namespace-&#34; + i, AclPolicyArgs.builder()            
-     *                 .name(String.format(&#34;namespace-%s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .description(String.format(&#34;Write to the namespace %s&#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
-     *                 .rulesHcl(&#34;&#34;&#34;
-     * namespace &#34;%s&#34; {
-     *   policy = &#34;write&#34;
+     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .rulesHcl("""
+     * namespace "%s" {
+     *   policy = "write"
      * }
-     * &#34;, namespaces.applyValue(getNamespacesResult -&gt; getNamespacesResult)[range.value()]))
+     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .build());
      * 
      *         
      * }
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2669,7 +2793,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2691,12 +2816,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var dev = NomadFunctions.getNodePool(GetNodePoolArgs.builder()
-     *             .name(&#34;dev&#34;)
+     *             .name("dev")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2709,7 +2835,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2731,12 +2858,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var dev = NomadFunctions.getNodePool(GetNodePoolArgs.builder()
-     *             .name(&#34;dev&#34;)
+     *             .name("dev")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2749,7 +2877,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2771,12 +2900,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var dev = NomadFunctions.getNodePool(GetNodePoolArgs.builder()
-     *             .name(&#34;dev&#34;)
+     *             .name("dev")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2789,7 +2919,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2811,12 +2942,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var dev = NomadFunctions.getNodePool(GetNodePoolArgs.builder()
-     *             .name(&#34;dev&#34;)
+     *             .name("dev")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2829,7 +2961,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2851,12 +2984,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter(&#34;Meta.env == \&#34;prod\&#34;&#34;)
+     *             .filter("Meta.env == \"prod\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2869,7 +3003,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2891,12 +3026,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter(&#34;Meta.env == \&#34;prod\&#34;&#34;)
+     *             .filter("Meta.env == \"prod\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2909,7 +3045,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2931,12 +3068,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter(&#34;Meta.env == \&#34;prod\&#34;&#34;)
+     *             .filter("Meta.env == \"prod\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2949,7 +3087,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2971,12 +3110,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter(&#34;Meta.env == \&#34;prod\&#34;&#34;)
+     *             .filter("Meta.env == \"prod\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2989,7 +3129,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3011,12 +3152,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter(&#34;Meta.env == \&#34;prod\&#34;&#34;)
+     *             .filter("Meta.env == \"prod\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3029,7 +3171,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3051,12 +3194,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter(&#34;Meta.env == \&#34;prod\&#34;&#34;)
+     *             .filter("Meta.env == \"prod\"")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3078,7 +3222,8 @@ public final class NomadFunctions {
      * Check for the existence of a plugin:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3100,13 +3245,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()
-     *             .pluginId(&#34;aws-ebs0&#34;)
+     *             .pluginId("aws-ebs0")
      *             .waitForHealthy(true)
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
@@ -3131,7 +3277,8 @@ public final class NomadFunctions {
      * Check for the existence of a plugin:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3153,13 +3300,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()
-     *             .pluginId(&#34;aws-ebs0&#34;)
+     *             .pluginId("aws-ebs0")
      *             .waitForHealthy(true)
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
@@ -3184,7 +3332,8 @@ public final class NomadFunctions {
      * Check for the existence of a plugin:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3206,13 +3355,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()
-     *             .pluginId(&#34;aws-ebs0&#34;)
+     *             .pluginId("aws-ebs0")
      *             .waitForHealthy(true)
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
@@ -3237,7 +3387,8 @@ public final class NomadFunctions {
      * Check for the existence of a plugin:
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3259,13 +3410,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()
-     *             .pluginId(&#34;aws-ebs0&#34;)
+     *             .pluginId("aws-ebs0")
      *             .waitForHealthy(true)
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
@@ -3281,7 +3433,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3306,7 +3459,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3319,7 +3473,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3344,7 +3499,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3357,7 +3513,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3382,7 +3539,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3395,7 +3553,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3420,7 +3579,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3433,7 +3593,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3458,7 +3619,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3471,7 +3633,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3496,7 +3659,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3581,7 +3745,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3603,13 +3768,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getScalingPolicies(GetScalingPoliciesArgs.builder()
-     *             .jobId(&#34;webapp&#34;)
-     *             .type(&#34;horizontal&#34;)
+     *             .jobId("webapp")
+     *             .type("horizontal")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3622,7 +3788,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3644,13 +3811,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getScalingPolicies(GetScalingPoliciesArgs.builder()
-     *             .jobId(&#34;webapp&#34;)
-     *             .type(&#34;horizontal&#34;)
+     *             .jobId("webapp")
+     *             .type("horizontal")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3663,7 +3831,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3685,13 +3854,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getScalingPolicies(GetScalingPoliciesArgs.builder()
-     *             .jobId(&#34;webapp&#34;)
-     *             .type(&#34;horizontal&#34;)
+     *             .jobId("webapp")
+     *             .type("horizontal")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3704,7 +3874,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3726,13 +3897,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getScalingPolicies(GetScalingPoliciesArgs.builder()
-     *             .jobId(&#34;webapp&#34;)
-     *             .type(&#34;horizontal&#34;)
+     *             .jobId("webapp")
+     *             .type("horizontal")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3745,7 +3917,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3767,13 +3940,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getScalingPolicies(GetScalingPoliciesArgs.builder()
-     *             .jobId(&#34;webapp&#34;)
-     *             .type(&#34;horizontal&#34;)
+     *             .jobId("webapp")
+     *             .type("horizontal")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3786,7 +3960,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3808,13 +3983,14 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getScalingPolicies(GetScalingPoliciesArgs.builder()
-     *             .jobId(&#34;webapp&#34;)
-     *             .type(&#34;horizontal&#34;)
+     *             .jobId("webapp")
+     *             .type("horizontal")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3827,7 +4003,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3849,12 +4026,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getScalingPolicy(GetScalingPolicyArgs.builder()
-     *             .id(&#34;ad19848d-1921-179c-affa-244a3543be88&#34;)
+     *             .id("ad19848d-1921-179c-affa-244a3543be88")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3867,7 +4045,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3889,12 +4068,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getScalingPolicy(GetScalingPolicyArgs.builder()
-     *             .id(&#34;ad19848d-1921-179c-affa-244a3543be88&#34;)
+     *             .id("ad19848d-1921-179c-affa-244a3543be88")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3907,7 +4087,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3929,12 +4110,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getScalingPolicy(GetScalingPolicyArgs.builder()
-     *             .id(&#34;ad19848d-1921-179c-affa-244a3543be88&#34;)
+     *             .id("ad19848d-1921-179c-affa-244a3543be88")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3947,7 +4129,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3969,12 +4152,13 @@ public final class NomadFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = NomadFunctions.getScalingPolicy(GetScalingPolicyArgs.builder()
-     *             .id(&#34;ad19848d-1921-179c-affa-244a3543be88&#34;)
+     *             .id("ad19848d-1921-179c-affa-244a3543be88")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3987,7 +4171,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4011,7 +4196,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4024,7 +4210,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4048,7 +4235,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4061,7 +4249,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4085,7 +4274,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4098,7 +4288,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4122,7 +4313,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4135,7 +4327,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4159,7 +4352,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4172,7 +4366,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4196,7 +4391,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4207,7 +4403,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4228,13 +4425,14 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var example = new Variable(&#34;example&#34;, VariableArgs.builder()        
-     *             .path(&#34;path/of/existing/variable&#34;)
+     *         var example = new Variable("example", VariableArgs.builder()        
+     *             .path("path/of/existing/variable")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4245,7 +4443,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4266,13 +4465,14 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var example = new Variable(&#34;example&#34;, VariableArgs.builder()        
-     *             .path(&#34;path/of/existing/variable&#34;)
+     *         var example = new Variable("example", VariableArgs.builder()        
+     *             .path("path/of/existing/variable")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4283,7 +4483,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4304,13 +4505,14 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var example = new Variable(&#34;example&#34;, VariableArgs.builder()        
-     *             .path(&#34;path/of/existing/variable&#34;)
+     *         var example = new Variable("example", VariableArgs.builder()        
+     *             .path("path/of/existing/variable")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4321,7 +4523,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4342,13 +4545,14 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var example = new Variable(&#34;example&#34;, VariableArgs.builder()        
-     *             .path(&#34;path/of/existing/variable&#34;)
+     *         var example = new Variable("example", VariableArgs.builder()        
+     *             .path("path/of/existing/variable")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4361,7 +4565,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4386,7 +4591,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4399,7 +4605,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4424,7 +4631,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4437,7 +4645,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4462,7 +4671,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4475,7 +4685,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4500,7 +4711,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4513,7 +4725,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4538,7 +4751,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -4551,7 +4765,8 @@ public final class NomadFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -4576,7 +4791,8 @@ public final class NomadFunctions {
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

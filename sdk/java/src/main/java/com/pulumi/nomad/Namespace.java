@@ -30,7 +30,8 @@ import javax.annotation.Nullable;
  * Registering a namespace:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -51,25 +52,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var dev = new Namespace(&#34;dev&#34;, NamespaceArgs.builder()        
- *             .name(&#34;dev&#34;)
- *             .description(&#34;Shared development environment.&#34;)
- *             .quota(&#34;dev&#34;)
+ *         var dev = new Namespace("dev", NamespaceArgs.builder()        
+ *             .name("dev")
+ *             .description("Shared development environment.")
+ *             .quota("dev")
  *             .meta(Map.ofEntries(
- *                 Map.entry(&#34;owner&#34;, &#34;John Doe&#34;),
- *                 Map.entry(&#34;foo&#34;, &#34;bar&#34;)
+ *                 Map.entry("owner", "John Doe"),
+ *                 Map.entry("foo", "bar")
  *             ))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * Registering a namespace with a quota:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -94,11 +97,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var webTeam = new QuoteSpecification(&#34;webTeam&#34;, QuoteSpecificationArgs.builder()        
- *             .name(&#34;web-team&#34;)
- *             .description(&#34;web team quota&#34;)
+ *         var webTeam = new QuoteSpecification("webTeam", QuoteSpecificationArgs.builder()        
+ *             .name("web-team")
+ *             .description("web team quota")
  *             .limits(QuoteSpecificationLimitArgs.builder()
- *                 .region(&#34;global&#34;)
+ *                 .region("global")
  *                 .regionLimit(QuoteSpecificationLimitRegionLimitArgs.builder()
  *                     .cpu(1000)
  *                     .memoryMb(256)
@@ -106,15 +109,16 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var web = new Namespace(&#34;web&#34;, NamespaceArgs.builder()        
- *             .name(&#34;web&#34;)
- *             .description(&#34;Web team production environment.&#34;)
+ *         var web = new Namespace("web", NamespaceArgs.builder()        
+ *             .name("web")
+ *             .description("Web team production environment.")
  *             .quota(webTeam.name())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

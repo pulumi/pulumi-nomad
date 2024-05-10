@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * Registering a node pool:
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,18 +46,19 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var dev = new NodePool(&#34;dev&#34;, NodePoolArgs.builder()        
- *             .name(&#34;dev&#34;)
- *             .description(&#34;Nodes for the development environment.&#34;)
+ *         var dev = new NodePool("dev", NodePoolArgs.builder()        
+ *             .name("dev")
+ *             .description("Nodes for the development environment.")
  *             .meta(Map.ofEntries(
- *                 Map.entry(&#34;department&#34;, &#34;Engineering&#34;),
- *                 Map.entry(&#34;env&#34;, &#34;dev&#34;)
+ *                 Map.entry("department", "Engineering"),
+ *                 Map.entry("env", "dev")
  *             ))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
