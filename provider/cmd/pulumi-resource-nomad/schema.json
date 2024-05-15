@@ -4745,7 +4745,7 @@
                 "description": "A collection of values returned by getDeployments.\n",
                 "properties": {
                     "deployments": {
-                        "description": "`list of maps` a list of deployments in the cluster.\n",
+                        "description": "`list of maps` a list of deployments in the cluster.\n* `ID`: `string` Deployment ID.\n* `JobID`: `string` Job ID associated with the deployment.\n* `JobVersion`: `string` Job version.\n* `Status`: `string` Deployment status.\n* `StatusDescription`: `string` Detailed description of the deployment's status.\n",
                         "items": {
                             "additionalProperties": {
                                 "$ref": "pulumi.json#/Any"
