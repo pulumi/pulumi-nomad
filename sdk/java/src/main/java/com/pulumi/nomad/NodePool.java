@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var dev = new NodePool("dev", NodePoolArgs.builder()        
+ *         var dev = new NodePool("dev", NodePoolArgs.builder()
  *             .name("dev")
  *             .description("Nodes for the development environment.")
  *             .meta(Map.ofEntries(
