@@ -2490,7 +2490,7 @@ public final class NomadFunctions {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
      *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .rulesHcl("""
@@ -2545,7 +2545,7 @@ public final class NomadFunctions {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
      *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .rulesHcl("""
@@ -2600,7 +2600,7 @@ public final class NomadFunctions {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
      *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .rulesHcl("""
@@ -2655,7 +2655,7 @@ public final class NomadFunctions {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
      *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .rulesHcl("""
@@ -2710,7 +2710,7 @@ public final class NomadFunctions {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
      *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .rulesHcl("""
@@ -2765,7 +2765,7 @@ public final class NomadFunctions {
      *         final var namespaces = NomadFunctions.getNamespaces();
      * 
      *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
-     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()            
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
      *                 .rulesHcl("""
@@ -4425,7 +4425,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var example = new Variable("example", VariableArgs.builder()        
+     *         var example = new Variable("example", VariableArgs.builder()
      *             .path("path/of/existing/variable")
      *             .build());
      * 
@@ -4465,7 +4465,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var example = new Variable("example", VariableArgs.builder()        
+     *         var example = new Variable("example", VariableArgs.builder()
      *             .path("path/of/existing/variable")
      *             .build());
      * 
@@ -4505,7 +4505,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var example = new Variable("example", VariableArgs.builder()        
+     *         var example = new Variable("example", VariableArgs.builder()
      *             .path("path/of/existing/variable")
      *             .build());
      * 
@@ -4545,7 +4545,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var example = new Variable("example", VariableArgs.builder()        
+     *         var example = new Variable("example", VariableArgs.builder()
      *             .path("path/of/existing/variable")
      *             .build());
      * 

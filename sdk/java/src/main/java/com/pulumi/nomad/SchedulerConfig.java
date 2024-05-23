@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var config = new SchedulerConfig("config", SchedulerConfigArgs.builder()        
+ *         var config = new SchedulerConfig("config", SchedulerConfigArgs.builder()
  *             .schedulerAlgorithm("spread")
  *             .memoryOversubscriptionEnabled(true)
  *             .preemptionConfig(Map.ofEntries(

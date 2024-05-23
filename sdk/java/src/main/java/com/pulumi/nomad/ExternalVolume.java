@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
  *             .waitForHealthy(true)
  *             .build());
  * 
- *         var mysqlVolume = new ExternalVolume("mysqlVolume", ExternalVolumeArgs.builder()        
+ *         var mysqlVolume = new ExternalVolume("mysqlVolume", ExternalVolumeArgs.builder()
  *             .type("csi")
  *             .pluginId("aws-ebs0")
  *             .volumeId("mysql_volume")
