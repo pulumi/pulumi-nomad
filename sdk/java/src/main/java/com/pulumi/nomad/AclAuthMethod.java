@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var myNomadAclAuthMethod = new AclAuthMethod("myNomadAclAuthMethod", AclAuthMethodArgs.builder()        
+ *         var myNomadAclAuthMethod = new AclAuthMethod("myNomadAclAuthMethod", AclAuthMethodArgs.builder()
  *             .name("my-nomad-acl-auth-method")
  *             .type("OIDC")
  *             .tokenLocality("global")

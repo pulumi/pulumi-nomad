@@ -60,6 +60,11 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `list of maps` a list of deployments in the cluster.
+        /// * `ID`: `string` Deployment ID.
+        /// * `JobID`: `string` Job ID associated with the deployment.
+        /// * `JobVersion`: `string` Job version.
+        /// * `Status`: `string` Deployment status.
+        /// * `StatusDescription`: `string` Detailed description of the deployment's status.
         /// </summary>
         public readonly ImmutableArray<ImmutableDictionary<string, object>> Deployments;
         /// <summary>

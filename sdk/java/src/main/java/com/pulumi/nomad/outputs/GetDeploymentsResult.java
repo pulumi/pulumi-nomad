@@ -15,6 +15,11 @@ import java.util.Objects;
 public final class GetDeploymentsResult {
     /**
      * @return `list of maps` a list of deployments in the cluster.
+     * * `ID`: `string` Deployment ID.
+     * * `JobID`: `string` Job ID associated with the deployment.
+     * * `JobVersion`: `string` Job version.
+     * * `Status`: `string` Deployment status.
+     * * `StatusDescription`: `string` Detailed description of the deployment&#39;s status.
      * 
      */
     private List<Map<String,Object>> deployments;
@@ -27,6 +32,11 @@ public final class GetDeploymentsResult {
     private GetDeploymentsResult() {}
     /**
      * @return `list of maps` a list of deployments in the cluster.
+     * * `ID`: `string` Deployment ID.
+     * * `JobID`: `string` Job ID associated with the deployment.
+     * * `JobVersion`: `string` Job version.
+     * * `Status`: `string` Deployment status.
+     * * `StatusDescription`: `string` Detailed description of the deployment&#39;s status.
      * 
      */
     public List<Map<String,Object>> deployments() {

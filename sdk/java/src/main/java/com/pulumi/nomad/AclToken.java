@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var dakota = new AclToken("dakota", AclTokenArgs.builder()        
+ *         var dakota = new AclToken("dakota", AclTokenArgs.builder()
  *             .name("Dakota")
  *             .type("client")
  *             .policies(            
@@ -84,7 +84,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var dakota = new AclToken("dakota", AclTokenArgs.builder()        
+ *         var dakota = new AclToken("dakota", AclTokenArgs.builder()
  *             .name("Dakota")
  *             .type("client")
  *             .policies(            
@@ -124,7 +124,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var iman = new AclToken("iman", AclTokenArgs.builder()        
+ *         var iman = new AclToken("iman", AclTokenArgs.builder()
  *             .name("Iman")
  *             .type("management")
  *             .build());
@@ -160,7 +160,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var token = new AclToken("token", AclTokenArgs.builder()        
+ *         var token = new AclToken("token", AclTokenArgs.builder()
  *             .type("client")
  *             .policies("dev")
  *             .build());

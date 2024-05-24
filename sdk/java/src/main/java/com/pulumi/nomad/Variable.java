@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Variable("example", VariableArgs.builder()        
+ *         var example = new Variable("example", VariableArgs.builder()
  *             .path("some/path/of/your/choosing")
  *             .items(Map.of("example_key", "example_value"))
  *             .build());
@@ -83,12 +83,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example = new Namespace("example", NamespaceArgs.builder()        
+ *         var example = new Namespace("example", NamespaceArgs.builder()
  *             .name("example")
  *             .description("Example namespace.")
  *             .build());
  * 
- *         var exampleVariable = new Variable("exampleVariable", VariableArgs.builder()        
+ *         var exampleVariable = new Variable("exampleVariable", VariableArgs.builder()
  *             .path("some/path/of/your/choosing")
  *             .namespace(example.name())
  *             .items(Map.of("example_key", "example_value"))

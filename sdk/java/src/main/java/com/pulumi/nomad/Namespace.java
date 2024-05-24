@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var dev = new Namespace("dev", NamespaceArgs.builder()        
+ *         var dev = new Namespace("dev", NamespaceArgs.builder()
  *             .name("dev")
  *             .description("Shared development environment.")
  *             .quota("dev")
@@ -97,7 +97,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var webTeam = new QuoteSpecification("webTeam", QuoteSpecificationArgs.builder()        
+ *         var webTeam = new QuoteSpecification("webTeam", QuoteSpecificationArgs.builder()
  *             .name("web-team")
  *             .description("web team quota")
  *             .limits(QuoteSpecificationLimitArgs.builder()
@@ -109,7 +109,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var web = new Namespace("web", NamespaceArgs.builder()        
+ *         var web = new Namespace("web", NamespaceArgs.builder()
  *             .name("web")
  *             .description("Web team production environment.")
  *             .quota(webTeam.name())

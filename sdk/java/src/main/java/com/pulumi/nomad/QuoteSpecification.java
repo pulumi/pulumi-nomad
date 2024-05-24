@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var prodApi = new QuoteSpecification("prodApi", QuoteSpecificationArgs.builder()        
+ *         var prodApi = new QuoteSpecification("prodApi", QuoteSpecificationArgs.builder()
  *             .name("prod-api")
  *             .description("Production instances of backend API servers")
  *             .limits(QuoteSpecificationLimitArgs.builder()
