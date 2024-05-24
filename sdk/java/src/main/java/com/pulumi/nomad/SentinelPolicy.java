@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var exec_only = new SentinelPolicy("exec-only", SentinelPolicyArgs.builder()        
+ *         var exec_only = new SentinelPolicy("exec-only", SentinelPolicyArgs.builder()
  *             .name("exec-only")
  *             .description("Only allow jobs that are based on an exec driver.")
  *             .policy("""
