@@ -10,37 +10,70 @@ export interface AclAuthMethodConfig {
      * `([]string: <optional>)` - A list of allowed values
      * that can be used for the redirect URI.
      */
-    allowedRedirectUris: string[];
+    allowedRedirectUris?: string[];
     /**
      * `([]string: <optional>)` - List of auth claims that are
      * valid for login.
      */
     boundAudiences?: string[];
     /**
-     * `(map[string]string: <optional>)` - Mappings of claims (key)
-     * that will be copied to a metadata field (value).
+     * `([]string: <optional>)` - The value against which to match
+     * the iss claim in a JWT.
+     */
+    boundIssuers?: string[];
+    /**
+     * Mappings of claims (key) that will be copied to a metadata field (value).
      */
     claimMappings?: {[key: string]: string};
+    /**
+     * `(string: <optional>)` - Duration of leeway when validating
+     * all claims in the form of a time duration such as "5m" or "1h".
+     */
+    clockSkewLeeway?: string;
     /**
      * `([]string: <optional>)` - PEM encoded CA certs for use
      * by the TLS client used to talk with the OIDC Discovery URL.
      */
     discoveryCaPems?: string[];
     /**
-     * `(map[string]string: <optional>)` - Mappings of list
-     * claims (key) that will be copied to a metadata field (value).
+     * `(string: <optional>)` - Duration of leeway when validating
+     * expiration of a JWT in the form of a time duration such as "5m" or "1h".
+     */
+    expirationLeeway?: string;
+    /**
+     * `(string: <optional>)` - PEM encoded CA cert for use by the 
+     * TLS client used to talk with the JWKS server.
+     */
+    jwksCaCert?: string;
+    /**
+     * `(string: <optional>)` - JSON Web Key Sets url for authenticating
+     * signatures.
+     */
+    jwksUrl?: string;
+    /**
+     * `([]string: <optional>)` - List of PEM-encoded 
+     * public keys to use to authenticate signatures locally.
+     */
+    jwtValidationPubKeys?: string[];
+    /**
+     * Mappings of list claims (key) that will be copied to a metadata field (value).
      */
     listClaimMappings?: {[key: string]: string};
     /**
-     * `(string: <required>)` - The OAuth Client ID configured
+     * `(string: <optional>)` - Duration of leeway when validating
+     * not before values of a token in the form of a time duration such as "5m" or "1h".
+     */
+    notBeforeLeeway?: string;
+    /**
+     * `(string: <optional>)` - The OAuth Client ID configured
      * with the OIDC provider.
      */
-    oidcClientId: string;
+    oidcClientId?: string;
     /**
-     * `(string: <required>)` - The OAuth Client Secret
+     * `(string: <optional>)` - The OAuth Client Secret
      * configured with the OIDC provider.
      */
-    oidcClientSecret: string;
+    oidcClientSecret?: string;
     /**
      * `(bool: false)` - When set to `true`, Nomad will
      * not make a request to the identity provider to get OIDC `UserInfo`.
@@ -49,10 +82,10 @@ export interface AclAuthMethodConfig {
      */
     oidcDisableUserinfo?: boolean;
     /**
-     * `(string: <required>)` - The OIDC Discovery URL,
+     * `(string: <optional>)` - The OIDC Discovery URL,
      * without any .well-known component (base path).
      */
-    oidcDiscoveryUrl: string;
+    oidcDiscoveryUrl?: string;
     /**
      * `([]string: <optional>)` - List of OIDC scopes.
      */
@@ -558,6 +591,33 @@ export interface GetJobTaskGroupVolume {
      * `(string)` Scheduler type used during job creation.
      */
     type: string;
+}
+
+export interface GetJwksKey {
+    /**
+     * `(string)` - JWK field `alg`
+     */
+    algorithm: string;
+    /**
+     * `(string)` - JWK field `e`
+     */
+    exponent: string;
+    /**
+     * `(string)` - JWK field `kid`
+     */
+    keyId: string;
+    /**
+     * `(string)` - JWK field `kty`
+     */
+    keyType: string;
+    /**
+     * `(string)` - JWK field `use`
+     */
+    keyUse: string;
+    /**
+     * `(string)` - JWK field `n`
+     */
+    modulus: string;
 }
 
 export interface GetNamespaceCapability {

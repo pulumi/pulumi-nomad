@@ -34,6 +34,7 @@
         "getDeployments.ts",
         "getJob.ts",
         "getJobParser.ts",
+        "getJwks.ts",
         "getNamespace.ts",
         "getNamespaces.ts",
         "getNodePool.ts",

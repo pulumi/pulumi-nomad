@@ -5,7 +5,6 @@ package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -24,16 +23,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
      * that can be used for the redirect URI.
      * 
      */
-    @Import(name="allowedRedirectUris", required=true)
-    private Output<List<String>> allowedRedirectUris;
+    @Import(name="allowedRedirectUris")
+    private @Nullable Output<List<String>> allowedRedirectUris;
 
     /**
      * @return `([]string: &lt;optional&gt;)` - A list of allowed values
      * that can be used for the redirect URI.
      * 
      */
-    public Output<List<String>> allowedRedirectUris() {
-        return this.allowedRedirectUris;
+    public Optional<Output<List<String>>> allowedRedirectUris() {
+        return Optional.ofNullable(this.allowedRedirectUris);
     }
 
     /**
@@ -54,20 +53,52 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
-     * that will be copied to a metadata field (value).
+     * `([]string: &lt;optional&gt;)` - The value against which to match
+     * the iss claim in a JWT.
+     * 
+     */
+    @Import(name="boundIssuers")
+    private @Nullable Output<List<String>> boundIssuers;
+
+    /**
+     * @return `([]string: &lt;optional&gt;)` - The value against which to match
+     * the iss claim in a JWT.
+     * 
+     */
+    public Optional<Output<List<String>>> boundIssuers() {
+        return Optional.ofNullable(this.boundIssuers);
+    }
+
+    /**
+     * Mappings of claims (key) that will be copied to a metadata field (value).
      * 
      */
     @Import(name="claimMappings")
     private @Nullable Output<Map<String,String>> claimMappings;
 
     /**
-     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
-     * that will be copied to a metadata field (value).
+     * @return Mappings of claims (key) that will be copied to a metadata field (value).
      * 
      */
     public Optional<Output<Map<String,String>>> claimMappings() {
         return Optional.ofNullable(this.claimMappings);
+    }
+
+    /**
+     * `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * 
+     */
+    @Import(name="clockSkewLeeway")
+    private @Nullable Output<String> clockSkewLeeway;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * 
+     */
+    public Optional<Output<String>> clockSkewLeeway() {
+        return Optional.ofNullable(this.clockSkewLeeway);
     }
 
     /**
@@ -88,16 +119,82 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * `(map[string]string: &lt;optional&gt;)` - Mappings of list
-     * claims (key) that will be copied to a metadata field (value).
+     * `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * expiration of a JWT in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * 
+     */
+    @Import(name="expirationLeeway")
+    private @Nullable Output<String> expirationLeeway;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * expiration of a JWT in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * 
+     */
+    public Optional<Output<String>> expirationLeeway() {
+        return Optional.ofNullable(this.expirationLeeway);
+    }
+
+    /**
+     * `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the
+     * TLS client used to talk with the JWKS server.
+     * 
+     */
+    @Import(name="jwksCaCert")
+    private @Nullable Output<String> jwksCaCert;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the
+     * TLS client used to talk with the JWKS server.
+     * 
+     */
+    public Optional<Output<String>> jwksCaCert() {
+        return Optional.ofNullable(this.jwksCaCert);
+    }
+
+    /**
+     * `(string: &lt;optional&gt;)` - JSON Web Key Sets url for authenticating
+     * signatures.
+     * 
+     */
+    @Import(name="jwksUrl")
+    private @Nullable Output<String> jwksUrl;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - JSON Web Key Sets url for authenticating
+     * signatures.
+     * 
+     */
+    public Optional<Output<String>> jwksUrl() {
+        return Optional.ofNullable(this.jwksUrl);
+    }
+
+    /**
+     * `([]string: &lt;optional&gt;)` - List of PEM-encoded
+     * public keys to use to authenticate signatures locally.
+     * 
+     */
+    @Import(name="jwtValidationPubKeys")
+    private @Nullable Output<List<String>> jwtValidationPubKeys;
+
+    /**
+     * @return `([]string: &lt;optional&gt;)` - List of PEM-encoded
+     * public keys to use to authenticate signatures locally.
+     * 
+     */
+    public Optional<Output<List<String>>> jwtValidationPubKeys() {
+        return Optional.ofNullable(this.jwtValidationPubKeys);
+    }
+
+    /**
+     * Mappings of list claims (key) that will be copied to a metadata field (value).
      * 
      */
     @Import(name="listClaimMappings")
     private @Nullable Output<Map<String,String>> listClaimMappings;
 
     /**
-     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of list
-     * claims (key) that will be copied to a metadata field (value).
+     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
      * 
      */
     public Optional<Output<Map<String,String>>> listClaimMappings() {
@@ -105,37 +202,54 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * `(string: &lt;required&gt;)` - The OAuth Client ID configured
-     * with the OIDC provider.
+     * `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
      * 
      */
-    @Import(name="oidcClientId", required=true)
-    private Output<String> oidcClientId;
+    @Import(name="notBeforeLeeway")
+    private @Nullable Output<String> notBeforeLeeway;
 
     /**
-     * @return `(string: &lt;required&gt;)` - The OAuth Client ID configured
-     * with the OIDC provider.
+     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
      * 
      */
-    public Output<String> oidcClientId() {
-        return this.oidcClientId;
+    public Optional<Output<String>> notBeforeLeeway() {
+        return Optional.ofNullable(this.notBeforeLeeway);
     }
 
     /**
-     * `(string: &lt;required&gt;)` - The OAuth Client Secret
-     * configured with the OIDC provider.
+     * `(string: &lt;optional&gt;)` - The OAuth Client ID configured
+     * with the OIDC provider.
      * 
      */
-    @Import(name="oidcClientSecret", required=true)
-    private Output<String> oidcClientSecret;
+    @Import(name="oidcClientId")
+    private @Nullable Output<String> oidcClientId;
 
     /**
-     * @return `(string: &lt;required&gt;)` - The OAuth Client Secret
+     * @return `(string: &lt;optional&gt;)` - The OAuth Client ID configured
+     * with the OIDC provider.
+     * 
+     */
+    public Optional<Output<String>> oidcClientId() {
+        return Optional.ofNullable(this.oidcClientId);
+    }
+
+    /**
+     * `(string: &lt;optional&gt;)` - The OAuth Client Secret
      * configured with the OIDC provider.
      * 
      */
-    public Output<String> oidcClientSecret() {
-        return this.oidcClientSecret;
+    @Import(name="oidcClientSecret")
+    private @Nullable Output<String> oidcClientSecret;
+
+    /**
+     * @return `(string: &lt;optional&gt;)` - The OAuth Client Secret
+     * configured with the OIDC provider.
+     * 
+     */
+    public Optional<Output<String>> oidcClientSecret() {
+        return Optional.ofNullable(this.oidcClientSecret);
     }
 
     /**
@@ -160,20 +274,20 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+     * `(string: &lt;optional&gt;)` - The OIDC Discovery URL,
      * without any .well-known component (base path).
      * 
      */
-    @Import(name="oidcDiscoveryUrl", required=true)
-    private Output<String> oidcDiscoveryUrl;
+    @Import(name="oidcDiscoveryUrl")
+    private @Nullable Output<String> oidcDiscoveryUrl;
 
     /**
-     * @return `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+     * @return `(string: &lt;optional&gt;)` - The OIDC Discovery URL,
      * without any .well-known component (base path).
      * 
      */
-    public Output<String> oidcDiscoveryUrl() {
-        return this.oidcDiscoveryUrl;
+    public Optional<Output<String>> oidcDiscoveryUrl() {
+        return Optional.ofNullable(this.oidcDiscoveryUrl);
     }
 
     /**
@@ -213,9 +327,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     private AclAuthMethodConfigArgs(AclAuthMethodConfigArgs $) {
         this.allowedRedirectUris = $.allowedRedirectUris;
         this.boundAudiences = $.boundAudiences;
+        this.boundIssuers = $.boundIssuers;
         this.claimMappings = $.claimMappings;
+        this.clockSkewLeeway = $.clockSkewLeeway;
         this.discoveryCaPems = $.discoveryCaPems;
+        this.expirationLeeway = $.expirationLeeway;
+        this.jwksCaCert = $.jwksCaCert;
+        this.jwksUrl = $.jwksUrl;
+        this.jwtValidationPubKeys = $.jwtValidationPubKeys;
         this.listClaimMappings = $.listClaimMappings;
+        this.notBeforeLeeway = $.notBeforeLeeway;
         this.oidcClientId = $.oidcClientId;
         this.oidcClientSecret = $.oidcClientSecret;
         this.oidcDisableUserinfo = $.oidcDisableUserinfo;
@@ -249,7 +370,7 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
          * @return builder
          * 
          */
-        public Builder allowedRedirectUris(Output<List<String>> allowedRedirectUris) {
+        public Builder allowedRedirectUris(@Nullable Output<List<String>> allowedRedirectUris) {
             $.allowedRedirectUris = allowedRedirectUris;
             return this;
         }
@@ -311,8 +432,41 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param claimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
-         * that will be copied to a metadata field (value).
+         * @param boundIssuers `([]string: &lt;optional&gt;)` - The value against which to match
+         * the iss claim in a JWT.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder boundIssuers(@Nullable Output<List<String>> boundIssuers) {
+            $.boundIssuers = boundIssuers;
+            return this;
+        }
+
+        /**
+         * @param boundIssuers `([]string: &lt;optional&gt;)` - The value against which to match
+         * the iss claim in a JWT.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder boundIssuers(List<String> boundIssuers) {
+            return boundIssuers(Output.of(boundIssuers));
+        }
+
+        /**
+         * @param boundIssuers `([]string: &lt;optional&gt;)` - The value against which to match
+         * the iss claim in a JWT.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder boundIssuers(String... boundIssuers) {
+            return boundIssuers(List.of(boundIssuers));
+        }
+
+        /**
+         * @param claimMappings Mappings of claims (key) that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
@@ -323,14 +477,36 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param claimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
-         * that will be copied to a metadata field (value).
+         * @param claimMappings Mappings of claims (key) that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
          */
         public Builder claimMappings(Map<String,String> claimMappings) {
             return claimMappings(Output.of(claimMappings));
+        }
+
+        /**
+         * @param clockSkewLeeway `(string: &lt;optional&gt;)` - Duration of leeway when validating
+         * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clockSkewLeeway(@Nullable Output<String> clockSkewLeeway) {
+            $.clockSkewLeeway = clockSkewLeeway;
+            return this;
+        }
+
+        /**
+         * @param clockSkewLeeway `(string: &lt;optional&gt;)` - Duration of leeway when validating
+         * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clockSkewLeeway(String clockSkewLeeway) {
+            return clockSkewLeeway(Output.of(clockSkewLeeway));
         }
 
         /**
@@ -368,8 +544,110 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param listClaimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of list
-         * claims (key) that will be copied to a metadata field (value).
+         * @param expirationLeeway `(string: &lt;optional&gt;)` - Duration of leeway when validating
+         * expiration of a JWT in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expirationLeeway(@Nullable Output<String> expirationLeeway) {
+            $.expirationLeeway = expirationLeeway;
+            return this;
+        }
+
+        /**
+         * @param expirationLeeway `(string: &lt;optional&gt;)` - Duration of leeway when validating
+         * expiration of a JWT in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder expirationLeeway(String expirationLeeway) {
+            return expirationLeeway(Output.of(expirationLeeway));
+        }
+
+        /**
+         * @param jwksCaCert `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the
+         * TLS client used to talk with the JWKS server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwksCaCert(@Nullable Output<String> jwksCaCert) {
+            $.jwksCaCert = jwksCaCert;
+            return this;
+        }
+
+        /**
+         * @param jwksCaCert `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the
+         * TLS client used to talk with the JWKS server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwksCaCert(String jwksCaCert) {
+            return jwksCaCert(Output.of(jwksCaCert));
+        }
+
+        /**
+         * @param jwksUrl `(string: &lt;optional&gt;)` - JSON Web Key Sets url for authenticating
+         * signatures.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwksUrl(@Nullable Output<String> jwksUrl) {
+            $.jwksUrl = jwksUrl;
+            return this;
+        }
+
+        /**
+         * @param jwksUrl `(string: &lt;optional&gt;)` - JSON Web Key Sets url for authenticating
+         * signatures.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwksUrl(String jwksUrl) {
+            return jwksUrl(Output.of(jwksUrl));
+        }
+
+        /**
+         * @param jwtValidationPubKeys `([]string: &lt;optional&gt;)` - List of PEM-encoded
+         * public keys to use to authenticate signatures locally.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwtValidationPubKeys(@Nullable Output<List<String>> jwtValidationPubKeys) {
+            $.jwtValidationPubKeys = jwtValidationPubKeys;
+            return this;
+        }
+
+        /**
+         * @param jwtValidationPubKeys `([]string: &lt;optional&gt;)` - List of PEM-encoded
+         * public keys to use to authenticate signatures locally.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwtValidationPubKeys(List<String> jwtValidationPubKeys) {
+            return jwtValidationPubKeys(Output.of(jwtValidationPubKeys));
+        }
+
+        /**
+         * @param jwtValidationPubKeys `([]string: &lt;optional&gt;)` - List of PEM-encoded
+         * public keys to use to authenticate signatures locally.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwtValidationPubKeys(String... jwtValidationPubKeys) {
+            return jwtValidationPubKeys(List.of(jwtValidationPubKeys));
+        }
+
+        /**
+         * @param listClaimMappings Mappings of list claims (key) that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
@@ -380,8 +658,7 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param listClaimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of list
-         * claims (key) that will be copied to a metadata field (value).
+         * @param listClaimMappings Mappings of list claims (key) that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
@@ -391,19 +668,42 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcClientId `(string: &lt;required&gt;)` - The OAuth Client ID configured
+         * @param notBeforeLeeway `(string: &lt;optional&gt;)` - Duration of leeway when validating
+         * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notBeforeLeeway(@Nullable Output<String> notBeforeLeeway) {
+            $.notBeforeLeeway = notBeforeLeeway;
+            return this;
+        }
+
+        /**
+         * @param notBeforeLeeway `(string: &lt;optional&gt;)` - Duration of leeway when validating
+         * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder notBeforeLeeway(String notBeforeLeeway) {
+            return notBeforeLeeway(Output.of(notBeforeLeeway));
+        }
+
+        /**
+         * @param oidcClientId `(string: &lt;optional&gt;)` - The OAuth Client ID configured
          * with the OIDC provider.
          * 
          * @return builder
          * 
          */
-        public Builder oidcClientId(Output<String> oidcClientId) {
+        public Builder oidcClientId(@Nullable Output<String> oidcClientId) {
             $.oidcClientId = oidcClientId;
             return this;
         }
 
         /**
-         * @param oidcClientId `(string: &lt;required&gt;)` - The OAuth Client ID configured
+         * @param oidcClientId `(string: &lt;optional&gt;)` - The OAuth Client ID configured
          * with the OIDC provider.
          * 
          * @return builder
@@ -414,19 +714,19 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcClientSecret `(string: &lt;required&gt;)` - The OAuth Client Secret
+         * @param oidcClientSecret `(string: &lt;optional&gt;)` - The OAuth Client Secret
          * configured with the OIDC provider.
          * 
          * @return builder
          * 
          */
-        public Builder oidcClientSecret(Output<String> oidcClientSecret) {
+        public Builder oidcClientSecret(@Nullable Output<String> oidcClientSecret) {
             $.oidcClientSecret = oidcClientSecret;
             return this;
         }
 
         /**
-         * @param oidcClientSecret `(string: &lt;required&gt;)` - The OAuth Client Secret
+         * @param oidcClientSecret `(string: &lt;optional&gt;)` - The OAuth Client Secret
          * configured with the OIDC provider.
          * 
          * @return builder
@@ -464,19 +764,19 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param oidcDiscoveryUrl `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+         * @param oidcDiscoveryUrl `(string: &lt;optional&gt;)` - The OIDC Discovery URL,
          * without any .well-known component (base path).
          * 
          * @return builder
          * 
          */
-        public Builder oidcDiscoveryUrl(Output<String> oidcDiscoveryUrl) {
+        public Builder oidcDiscoveryUrl(@Nullable Output<String> oidcDiscoveryUrl) {
             $.oidcDiscoveryUrl = oidcDiscoveryUrl;
             return this;
         }
 
         /**
-         * @param oidcDiscoveryUrl `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+         * @param oidcDiscoveryUrl `(string: &lt;optional&gt;)` - The OIDC Discovery URL,
          * without any .well-known component (base path).
          * 
          * @return builder
@@ -552,18 +852,6 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         public AclAuthMethodConfigArgs build() {
-            if ($.allowedRedirectUris == null) {
-                throw new MissingRequiredPropertyException("AclAuthMethodConfigArgs", "allowedRedirectUris");
-            }
-            if ($.oidcClientId == null) {
-                throw new MissingRequiredPropertyException("AclAuthMethodConfigArgs", "oidcClientId");
-            }
-            if ($.oidcClientSecret == null) {
-                throw new MissingRequiredPropertyException("AclAuthMethodConfigArgs", "oidcClientSecret");
-            }
-            if ($.oidcDiscoveryUrl == null) {
-                throw new MissingRequiredPropertyException("AclAuthMethodConfigArgs", "oidcDiscoveryUrl");
-            }
             return $;
         }
     }

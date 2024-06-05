@@ -12,7 +12,7 @@ namespace Pulumi.Nomad.Inputs
 
     public sealed class AclAuthMethodConfigArgs : global::Pulumi.ResourceArgs
     {
-        [Input("allowedRedirectUris", required: true)]
+        [Input("allowedRedirectUris")]
         private InputList<string>? _allowedRedirectUris;
 
         /// <summary>
@@ -38,18 +38,37 @@ namespace Pulumi.Nomad.Inputs
             set => _boundAudiences = value;
         }
 
+        [Input("boundIssuers")]
+        private InputList<string>? _boundIssuers;
+
+        /// <summary>
+        /// `([]string: &lt;optional&gt;)` - The value against which to match
+        /// the iss claim in a JWT.
+        /// </summary>
+        public InputList<string> BoundIssuers
+        {
+            get => _boundIssuers ?? (_boundIssuers = new InputList<string>());
+            set => _boundIssuers = value;
+        }
+
         [Input("claimMappings")]
         private InputMap<string>? _claimMappings;
 
         /// <summary>
-        /// `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
-        /// that will be copied to a metadata field (value).
+        /// Mappings of claims (key) that will be copied to a metadata field (value).
         /// </summary>
         public InputMap<string> ClaimMappings
         {
             get => _claimMappings ?? (_claimMappings = new InputMap<string>());
             set => _claimMappings = value;
         }
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Duration of leeway when validating
+        /// all claims in the form of a time duration such as "5m" or "1h".
+        /// </summary>
+        [Input("clockSkewLeeway")]
+        public Input<string>? ClockSkewLeeway { get; set; }
 
         [Input("discoveryCaPems")]
         private InputList<string>? _discoveryCaPems;
@@ -64,12 +83,45 @@ namespace Pulumi.Nomad.Inputs
             set => _discoveryCaPems = value;
         }
 
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - Duration of leeway when validating
+        /// expiration of a JWT in the form of a time duration such as "5m" or "1h".
+        /// </summary>
+        [Input("expirationLeeway")]
+        public Input<string>? ExpirationLeeway { get; set; }
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the 
+        /// TLS client used to talk with the JWKS server.
+        /// </summary>
+        [Input("jwksCaCert")]
+        public Input<string>? JwksCaCert { get; set; }
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - JSON Web Key Sets url for authenticating
+        /// signatures.
+        /// </summary>
+        [Input("jwksUrl")]
+        public Input<string>? JwksUrl { get; set; }
+
+        [Input("jwtValidationPubKeys")]
+        private InputList<string>? _jwtValidationPubKeys;
+
+        /// <summary>
+        /// `([]string: &lt;optional&gt;)` - List of PEM-encoded 
+        /// public keys to use to authenticate signatures locally.
+        /// </summary>
+        public InputList<string> JwtValidationPubKeys
+        {
+            get => _jwtValidationPubKeys ?? (_jwtValidationPubKeys = new InputList<string>());
+            set => _jwtValidationPubKeys = value;
+        }
+
         [Input("listClaimMappings")]
         private InputMap<string>? _listClaimMappings;
 
         /// <summary>
-        /// `(map[string]string: &lt;optional&gt;)` - Mappings of list
-        /// claims (key) that will be copied to a metadata field (value).
+        /// Mappings of list claims (key) that will be copied to a metadata field (value).
         /// </summary>
         public InputMap<string> ListClaimMappings
         {
@@ -78,17 +130,24 @@ namespace Pulumi.Nomad.Inputs
         }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The OAuth Client ID configured
+        /// `(string: &lt;optional&gt;)` - Duration of leeway when validating
+        /// not before values of a token in the form of a time duration such as "5m" or "1h".
+        /// </summary>
+        [Input("notBeforeLeeway")]
+        public Input<string>? NotBeforeLeeway { get; set; }
+
+        /// <summary>
+        /// `(string: &lt;optional&gt;)` - The OAuth Client ID configured
         /// with the OIDC provider.
         /// </summary>
-        [Input("oidcClientId", required: true)]
-        public Input<string> OidcClientId { get; set; } = null!;
+        [Input("oidcClientId")]
+        public Input<string>? OidcClientId { get; set; }
 
-        [Input("oidcClientSecret", required: true)]
+        [Input("oidcClientSecret")]
         private Input<string>? _oidcClientSecret;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The OAuth Client Secret
+        /// `(string: &lt;optional&gt;)` - The OAuth Client Secret
         /// configured with the OIDC provider.
         /// </summary>
         public Input<string>? OidcClientSecret
@@ -111,11 +170,11 @@ namespace Pulumi.Nomad.Inputs
         public Input<bool>? OidcDisableUserinfo { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+        /// `(string: &lt;optional&gt;)` - The OIDC Discovery URL,
         /// without any .well-known component (base path).
         /// </summary>
-        [Input("oidcDiscoveryUrl", required: true)]
-        public Input<string> OidcDiscoveryUrl { get; set; } = null!;
+        [Input("oidcDiscoveryUrl")]
+        public Input<string>? OidcDiscoveryUrl { get; set; }
 
         [Input("oidcScopes")]
         private InputList<string>? _oidcScopes;

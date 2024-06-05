@@ -174,16 +174,16 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.tokenNameFormat);
     }
     /**
-     * `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
-     * the only supported type is `OIDC`.
+     * `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Valid values,
+     * are `OIDC` and `JWT`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
-     * the only supported type is `OIDC`.
+     * @return `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Valid values,
+     * are `OIDC` and `JWT`.
      * 
      */
     public Output<String> type() {

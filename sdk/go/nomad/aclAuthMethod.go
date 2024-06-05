@@ -85,8 +85,8 @@ type AclAuthMethod struct {
 	// Defines the token name format for the generated tokens This can be lightly
 	// templated using HIL '${foo}' syntax.
 	TokenNameFormat pulumi.StringPtrOutput `pulumi:"tokenNameFormat"`
-	// `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-	// the only supported type is `OIDC`.
+	// `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+	// are `OIDC` and `JWT`.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -151,8 +151,8 @@ type aclAuthMethodState struct {
 	// Defines the token name format for the generated tokens This can be lightly
 	// templated using HIL '${foo}' syntax.
 	TokenNameFormat *string `pulumi:"tokenNameFormat"`
-	// `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-	// the only supported type is `OIDC`.
+	// `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+	// are `OIDC` and `JWT`.
 	Type *string `pulumi:"type"`
 }
 
@@ -176,8 +176,8 @@ type AclAuthMethodState struct {
 	// Defines the token name format for the generated tokens This can be lightly
 	// templated using HIL '${foo}' syntax.
 	TokenNameFormat pulumi.StringPtrInput
-	// `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-	// the only supported type is `OIDC`.
+	// `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+	// are `OIDC` and `JWT`.
 	Type pulumi.StringPtrInput
 }
 
@@ -205,8 +205,8 @@ type aclAuthMethodArgs struct {
 	// Defines the token name format for the generated tokens This can be lightly
 	// templated using HIL '${foo}' syntax.
 	TokenNameFormat *string `pulumi:"tokenNameFormat"`
-	// `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-	// the only supported type is `OIDC`.
+	// `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+	// are `OIDC` and `JWT`.
 	Type string `pulumi:"type"`
 }
 
@@ -231,8 +231,8 @@ type AclAuthMethodArgs struct {
 	// Defines the token name format for the generated tokens This can be lightly
 	// templated using HIL '${foo}' syntax.
 	TokenNameFormat pulumi.StringPtrInput
-	// `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-	// the only supported type is `OIDC`.
+	// `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+	// are `OIDC` and `JWT`.
 	Type pulumi.StringInput
 }
 
@@ -360,8 +360,8 @@ func (o AclAuthMethodOutput) TokenNameFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclAuthMethod) pulumi.StringPtrOutput { return v.TokenNameFormat }).(pulumi.StringPtrOutput)
 }
 
-// `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-// the only supported type is `OIDC`.
+// `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+// are `OIDC` and `JWT`.
 func (o AclAuthMethodOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *AclAuthMethod) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

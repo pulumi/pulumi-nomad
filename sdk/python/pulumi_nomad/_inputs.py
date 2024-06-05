@@ -58,56 +58,93 @@ __all__ = [
 @pulumi.input_type
 class AclAuthMethodConfigArgs:
     def __init__(__self__, *,
-                 allowed_redirect_uris: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 oidc_client_id: pulumi.Input[str],
-                 oidc_client_secret: pulumi.Input[str],
-                 oidc_discovery_url: pulumi.Input[str],
+                 allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 bound_issuers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 clock_skew_leeway: Optional[pulumi.Input[str]] = None,
                  discovery_ca_pems: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 expiration_leeway: Optional[pulumi.Input[str]] = None,
+                 jwks_ca_cert: Optional[pulumi.Input[str]] = None,
+                 jwks_url: Optional[pulumi.Input[str]] = None,
+                 jwt_validation_pub_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  list_claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 not_before_leeway: Optional[pulumi.Input[str]] = None,
+                 oidc_client_id: Optional[pulumi.Input[str]] = None,
+                 oidc_client_secret: Optional[pulumi.Input[str]] = None,
                  oidc_disable_userinfo: Optional[pulumi.Input[bool]] = None,
+                 oidc_discovery_url: Optional[pulumi.Input[str]] = None,
                  oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  signing_algs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_redirect_uris: `([]string: <optional>)` - A list of allowed values
                that can be used for the redirect URI.
-        :param pulumi.Input[str] oidc_client_id: `(string: <required>)` - The OAuth Client ID configured
-               with the OIDC provider.
-        :param pulumi.Input[str] oidc_client_secret: `(string: <required>)` - The OAuth Client Secret
-               configured with the OIDC provider.
-        :param pulumi.Input[str] oidc_discovery_url: `(string: <required>)` - The OIDC Discovery URL,
-               without any .well-known component (base path).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_audiences: `([]string: <optional>)` - List of auth claims that are
                valid for login.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] claim_mappings: `(map[string]string: <optional>)` - Mappings of claims (key)
-               that will be copied to a metadata field (value).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_issuers: `([]string: <optional>)` - The value against which to match
+               the iss claim in a JWT.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] claim_mappings: Mappings of claims (key) that will be copied to a metadata field (value).
+        :param pulumi.Input[str] clock_skew_leeway: `(string: <optional>)` - Duration of leeway when validating
+               all claims in the form of a time duration such as "5m" or "1h".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] discovery_ca_pems: `([]string: <optional>)` - PEM encoded CA certs for use
                by the TLS client used to talk with the OIDC Discovery URL.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] list_claim_mappings: `(map[string]string: <optional>)` - Mappings of list
-               claims (key) that will be copied to a metadata field (value).
+        :param pulumi.Input[str] expiration_leeway: `(string: <optional>)` - Duration of leeway when validating
+               expiration of a JWT in the form of a time duration such as "5m" or "1h".
+        :param pulumi.Input[str] jwks_ca_cert: `(string: <optional>)` - PEM encoded CA cert for use by the 
+               TLS client used to talk with the JWKS server.
+        :param pulumi.Input[str] jwks_url: `(string: <optional>)` - JSON Web Key Sets url for authenticating
+               signatures.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pub_keys: `([]string: <optional>)` - List of PEM-encoded 
+               public keys to use to authenticate signatures locally.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] list_claim_mappings: Mappings of list claims (key) that will be copied to a metadata field (value).
+        :param pulumi.Input[str] not_before_leeway: `(string: <optional>)` - Duration of leeway when validating
+               not before values of a token in the form of a time duration such as "5m" or "1h".
+        :param pulumi.Input[str] oidc_client_id: `(string: <optional>)` - The OAuth Client ID configured
+               with the OIDC provider.
+        :param pulumi.Input[str] oidc_client_secret: `(string: <optional>)` - The OAuth Client Secret
+               configured with the OIDC provider.
         :param pulumi.Input[bool] oidc_disable_userinfo: `(bool: false)` - When set to `true`, Nomad will
                not make a request to the identity provider to get OIDC `UserInfo`.
                You may wish to set this if your identity provider doesn't send any
                additional claims from the `UserInfo` endpoint.
+        :param pulumi.Input[str] oidc_discovery_url: `(string: <optional>)` - The OIDC Discovery URL,
+               without any .well-known component (base path).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] oidc_scopes: `([]string: <optional>)` - List of OIDC scopes.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] signing_algs: `([]string: <optional>)` - A list of supported signing
                algorithms.
         """
-        pulumi.set(__self__, "allowed_redirect_uris", allowed_redirect_uris)
-        pulumi.set(__self__, "oidc_client_id", oidc_client_id)
-        pulumi.set(__self__, "oidc_client_secret", oidc_client_secret)
-        pulumi.set(__self__, "oidc_discovery_url", oidc_discovery_url)
+        if allowed_redirect_uris is not None:
+            pulumi.set(__self__, "allowed_redirect_uris", allowed_redirect_uris)
         if bound_audiences is not None:
             pulumi.set(__self__, "bound_audiences", bound_audiences)
+        if bound_issuers is not None:
+            pulumi.set(__self__, "bound_issuers", bound_issuers)
         if claim_mappings is not None:
             pulumi.set(__self__, "claim_mappings", claim_mappings)
+        if clock_skew_leeway is not None:
+            pulumi.set(__self__, "clock_skew_leeway", clock_skew_leeway)
         if discovery_ca_pems is not None:
             pulumi.set(__self__, "discovery_ca_pems", discovery_ca_pems)
+        if expiration_leeway is not None:
+            pulumi.set(__self__, "expiration_leeway", expiration_leeway)
+        if jwks_ca_cert is not None:
+            pulumi.set(__self__, "jwks_ca_cert", jwks_ca_cert)
+        if jwks_url is not None:
+            pulumi.set(__self__, "jwks_url", jwks_url)
+        if jwt_validation_pub_keys is not None:
+            pulumi.set(__self__, "jwt_validation_pub_keys", jwt_validation_pub_keys)
         if list_claim_mappings is not None:
             pulumi.set(__self__, "list_claim_mappings", list_claim_mappings)
+        if not_before_leeway is not None:
+            pulumi.set(__self__, "not_before_leeway", not_before_leeway)
+        if oidc_client_id is not None:
+            pulumi.set(__self__, "oidc_client_id", oidc_client_id)
+        if oidc_client_secret is not None:
+            pulumi.set(__self__, "oidc_client_secret", oidc_client_secret)
         if oidc_disable_userinfo is not None:
             pulumi.set(__self__, "oidc_disable_userinfo", oidc_disable_userinfo)
+        if oidc_discovery_url is not None:
+            pulumi.set(__self__, "oidc_discovery_url", oidc_discovery_url)
         if oidc_scopes is not None:
             pulumi.set(__self__, "oidc_scopes", oidc_scopes)
         if signing_algs is not None:
@@ -115,7 +152,7 @@ class AclAuthMethodConfigArgs:
 
     @property
     @pulumi.getter(name="allowedRedirectUris")
-    def allowed_redirect_uris(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+    def allowed_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         `([]string: <optional>)` - A list of allowed values
         that can be used for the redirect URI.
@@ -123,47 +160,8 @@ class AclAuthMethodConfigArgs:
         return pulumi.get(self, "allowed_redirect_uris")
 
     @allowed_redirect_uris.setter
-    def allowed_redirect_uris(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+    def allowed_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "allowed_redirect_uris", value)
-
-    @property
-    @pulumi.getter(name="oidcClientId")
-    def oidc_client_id(self) -> pulumi.Input[str]:
-        """
-        `(string: <required>)` - The OAuth Client ID configured
-        with the OIDC provider.
-        """
-        return pulumi.get(self, "oidc_client_id")
-
-    @oidc_client_id.setter
-    def oidc_client_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "oidc_client_id", value)
-
-    @property
-    @pulumi.getter(name="oidcClientSecret")
-    def oidc_client_secret(self) -> pulumi.Input[str]:
-        """
-        `(string: <required>)` - The OAuth Client Secret
-        configured with the OIDC provider.
-        """
-        return pulumi.get(self, "oidc_client_secret")
-
-    @oidc_client_secret.setter
-    def oidc_client_secret(self, value: pulumi.Input[str]):
-        pulumi.set(self, "oidc_client_secret", value)
-
-    @property
-    @pulumi.getter(name="oidcDiscoveryUrl")
-    def oidc_discovery_url(self) -> pulumi.Input[str]:
-        """
-        `(string: <required>)` - The OIDC Discovery URL,
-        without any .well-known component (base path).
-        """
-        return pulumi.get(self, "oidc_discovery_url")
-
-    @oidc_discovery_url.setter
-    def oidc_discovery_url(self, value: pulumi.Input[str]):
-        pulumi.set(self, "oidc_discovery_url", value)
 
     @property
     @pulumi.getter(name="boundAudiences")
@@ -179,17 +177,42 @@ class AclAuthMethodConfigArgs:
         pulumi.set(self, "bound_audiences", value)
 
     @property
+    @pulumi.getter(name="boundIssuers")
+    def bound_issuers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        `([]string: <optional>)` - The value against which to match
+        the iss claim in a JWT.
+        """
+        return pulumi.get(self, "bound_issuers")
+
+    @bound_issuers.setter
+    def bound_issuers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "bound_issuers", value)
+
+    @property
     @pulumi.getter(name="claimMappings")
     def claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        `(map[string]string: <optional>)` - Mappings of claims (key)
-        that will be copied to a metadata field (value).
+        Mappings of claims (key) that will be copied to a metadata field (value).
         """
         return pulumi.get(self, "claim_mappings")
 
     @claim_mappings.setter
     def claim_mappings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "claim_mappings", value)
+
+    @property
+    @pulumi.getter(name="clockSkewLeeway")
+    def clock_skew_leeway(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - Duration of leeway when validating
+        all claims in the form of a time duration such as "5m" or "1h".
+        """
+        return pulumi.get(self, "clock_skew_leeway")
+
+    @clock_skew_leeway.setter
+    def clock_skew_leeway(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "clock_skew_leeway", value)
 
     @property
     @pulumi.getter(name="discoveryCaPems")
@@ -205,17 +228,107 @@ class AclAuthMethodConfigArgs:
         pulumi.set(self, "discovery_ca_pems", value)
 
     @property
+    @pulumi.getter(name="expirationLeeway")
+    def expiration_leeway(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - Duration of leeway when validating
+        expiration of a JWT in the form of a time duration such as "5m" or "1h".
+        """
+        return pulumi.get(self, "expiration_leeway")
+
+    @expiration_leeway.setter
+    def expiration_leeway(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expiration_leeway", value)
+
+    @property
+    @pulumi.getter(name="jwksCaCert")
+    def jwks_ca_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - PEM encoded CA cert for use by the 
+        TLS client used to talk with the JWKS server.
+        """
+        return pulumi.get(self, "jwks_ca_cert")
+
+    @jwks_ca_cert.setter
+    def jwks_ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "jwks_ca_cert", value)
+
+    @property
+    @pulumi.getter(name="jwksUrl")
+    def jwks_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - JSON Web Key Sets url for authenticating
+        signatures.
+        """
+        return pulumi.get(self, "jwks_url")
+
+    @jwks_url.setter
+    def jwks_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "jwks_url", value)
+
+    @property
+    @pulumi.getter(name="jwtValidationPubKeys")
+    def jwt_validation_pub_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        `([]string: <optional>)` - List of PEM-encoded 
+        public keys to use to authenticate signatures locally.
+        """
+        return pulumi.get(self, "jwt_validation_pub_keys")
+
+    @jwt_validation_pub_keys.setter
+    def jwt_validation_pub_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "jwt_validation_pub_keys", value)
+
+    @property
     @pulumi.getter(name="listClaimMappings")
     def list_claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        `(map[string]string: <optional>)` - Mappings of list
-        claims (key) that will be copied to a metadata field (value).
+        Mappings of list claims (key) that will be copied to a metadata field (value).
         """
         return pulumi.get(self, "list_claim_mappings")
 
     @list_claim_mappings.setter
     def list_claim_mappings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "list_claim_mappings", value)
+
+    @property
+    @pulumi.getter(name="notBeforeLeeway")
+    def not_before_leeway(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - Duration of leeway when validating
+        not before values of a token in the form of a time duration such as "5m" or "1h".
+        """
+        return pulumi.get(self, "not_before_leeway")
+
+    @not_before_leeway.setter
+    def not_before_leeway(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "not_before_leeway", value)
+
+    @property
+    @pulumi.getter(name="oidcClientId")
+    def oidc_client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - The OAuth Client ID configured
+        with the OIDC provider.
+        """
+        return pulumi.get(self, "oidc_client_id")
+
+    @oidc_client_id.setter
+    def oidc_client_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oidc_client_id", value)
+
+    @property
+    @pulumi.getter(name="oidcClientSecret")
+    def oidc_client_secret(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - The OAuth Client Secret
+        configured with the OIDC provider.
+        """
+        return pulumi.get(self, "oidc_client_secret")
+
+    @oidc_client_secret.setter
+    def oidc_client_secret(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oidc_client_secret", value)
 
     @property
     @pulumi.getter(name="oidcDisableUserinfo")
@@ -231,6 +344,19 @@ class AclAuthMethodConfigArgs:
     @oidc_disable_userinfo.setter
     def oidc_disable_userinfo(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "oidc_disable_userinfo", value)
+
+    @property
+    @pulumi.getter(name="oidcDiscoveryUrl")
+    def oidc_discovery_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        `(string: <optional>)` - The OIDC Discovery URL,
+        without any .well-known component (base path).
+        """
+        return pulumi.get(self, "oidc_discovery_url")
+
+    @oidc_discovery_url.setter
+    def oidc_discovery_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oidc_discovery_url", value)
 
     @property
     @pulumi.getter(name="oidcScopes")

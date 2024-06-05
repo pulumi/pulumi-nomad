@@ -100,6 +100,11 @@ export const getJobParser: typeof import("./getJobParser").getJobParser = null a
 export const getJobParserOutput: typeof import("./getJobParser").getJobParserOutput = null as any;
 utilities.lazyLoad(exports, ["getJobParser","getJobParserOutput"], () => require("./getJobParser"));
 
+export { GetJwksResult } from "./getJwks";
+export const getJwks: typeof import("./getJwks").getJwks = null as any;
+export const getJwksOutput: typeof import("./getJwks").getJwksOutput = null as any;
+utilities.lazyLoad(exports, ["getJwks","getJwksOutput"], () => require("./getJwks"));
+
 export { GetNamespaceArgs, GetNamespaceResult, GetNamespaceOutputArgs } from "./getNamespace";
 export const getNamespace: typeof import("./getNamespace").getNamespace = null as any;
 export const getNamespaceOutput: typeof import("./getNamespace").getNamespaceOutput = null as any;

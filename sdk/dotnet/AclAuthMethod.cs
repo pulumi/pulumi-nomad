@@ -103,8 +103,8 @@ namespace Pulumi.Nomad
         public Output<string?> TokenNameFormat { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
-        /// the only supported type is `OIDC`.
+        /// `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Valid values,
+        /// are `OIDC` and `JWT`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -199,8 +199,8 @@ namespace Pulumi.Nomad
         public Input<string>? TokenNameFormat { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
-        /// the only supported type is `OIDC`.
+        /// `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Valid values,
+        /// are `OIDC` and `JWT`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -257,8 +257,8 @@ namespace Pulumi.Nomad
         public Input<string>? TokenNameFormat { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
-        /// the only supported type is `OIDC`.
+        /// `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Valid values,
+        /// are `OIDC` and `JWT`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

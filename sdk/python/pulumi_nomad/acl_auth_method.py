@@ -32,8 +32,8 @@ class AclAuthMethodArgs:
         :param pulumi.Input[str] token_locality: `(string: <required>)` - Defines whether the ACL Auth Method
                creates a local or global token when performing SSO login. This field must be
                set to either `local` or `global`.
-        :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-               the only supported type is `OIDC`.
+        :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+               are `OIDC` and `JWT`.
         :param pulumi.Input[bool] default: `(bool: false)` - Defines whether this ACL Auth Method is to be set
                as default.
         :param pulumi.Input[str] name: `(string: <required>)` - The identifier of the ACL Auth Method.
@@ -96,8 +96,8 @@ class AclAuthMethodArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-        the only supported type is `OIDC`.
+        `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+        are `OIDC` and `JWT`.
         """
         return pulumi.get(self, "type")
 
@@ -170,8 +170,8 @@ class _AclAuthMethodState:
         :param pulumi.Input[str] token_name_format: `(string: "${auth_method_type}-${auth_method_name}")` -
                Defines the token name format for the generated tokens This can be lightly
                templated using HIL '${foo}' syntax.
-        :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-               the only supported type is `OIDC`.
+        :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+               are `OIDC` and `JWT`.
         """
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -271,8 +271,8 @@ class _AclAuthMethodState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-        the only supported type is `OIDC`.
+        `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+        are `OIDC` and `JWT`.
         """
         return pulumi.get(self, "type")
 
@@ -342,8 +342,8 @@ class AclAuthMethod(pulumi.CustomResource):
         :param pulumi.Input[str] token_name_format: `(string: "${auth_method_type}-${auth_method_name}")` -
                Defines the token name format for the generated tokens This can be lightly
                templated using HIL '${foo}' syntax.
-        :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-               the only supported type is `OIDC`.
+        :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+               are `OIDC` and `JWT`.
         """
         ...
     @overload
@@ -467,8 +467,8 @@ class AclAuthMethod(pulumi.CustomResource):
         :param pulumi.Input[str] token_name_format: `(string: "${auth_method_type}-${auth_method_name}")` -
                Defines the token name format for the generated tokens This can be lightly
                templated using HIL '${foo}' syntax.
-        :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-               the only supported type is `OIDC`.
+        :param pulumi.Input[str] type: `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+               are `OIDC` and `JWT`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -542,8 +542,8 @@ class AclAuthMethod(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-        the only supported type is `OIDC`.
+        `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+        are `OIDC` and `JWT`.
         """
         return pulumi.get(self, "type")
 

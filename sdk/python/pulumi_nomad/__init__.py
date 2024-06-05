@@ -24,6 +24,7 @@ from .get_datacenters import *
 from .get_deployments import *
 from .get_job import *
 from .get_job_parser import *
+from .get_jwks import *
 from .get_namespace import *
 from .get_namespaces import *
 from .get_node_pool import *

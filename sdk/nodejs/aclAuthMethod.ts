@@ -100,8 +100,8 @@ export class AclAuthMethod extends pulumi.CustomResource {
      */
     public readonly tokenNameFormat!: pulumi.Output<string | undefined>;
     /**
-     * `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-     * the only supported type is `OIDC`.
+     * `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+     * are `OIDC` and `JWT`.
      */
     public readonly type!: pulumi.Output<string>;
 
@@ -188,8 +188,8 @@ export interface AclAuthMethodState {
      */
     tokenNameFormat?: pulumi.Input<string>;
     /**
-     * `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-     * the only supported type is `OIDC`.
+     * `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+     * are `OIDC` and `JWT`.
      */
     type?: pulumi.Input<string>;
 }
@@ -230,8 +230,8 @@ export interface AclAuthMethodArgs {
      */
     tokenNameFormat?: pulumi.Input<string>;
     /**
-     * `(string: <required>)` - ACL Auth Method SSO workflow type. Currently,
-     * the only supported type is `OIDC`.
+     * `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
+     * are `OIDC` and `JWT`.
      */
     type: pulumi.Input<string>;
 }
