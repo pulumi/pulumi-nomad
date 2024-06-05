@@ -122,16 +122,16 @@ public final class AclAuthMethodState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
-     * the only supported type is `OIDC`.
+     * `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Valid values,
+     * are `OIDC` and `JWT`.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
-     * the only supported type is `OIDC`.
+     * @return `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Valid values,
+     * are `OIDC` and `JWT`.
      * 
      */
     public Optional<Output<String>> type() {
@@ -309,8 +309,8 @@ public final class AclAuthMethodState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
-         * the only supported type is `OIDC`.
+         * @param type `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Valid values,
+         * are `OIDC` and `JWT`.
          * 
          * @return builder
          * 
@@ -321,8 +321,8 @@ public final class AclAuthMethodState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Currently,
-         * the only supported type is `OIDC`.
+         * @param type `(string: &lt;required&gt;)` - ACL Auth Method SSO workflow type. Valid values,
+         * are `OIDC` and `JWT`.
          * 
          * @return builder
          * 

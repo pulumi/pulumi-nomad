@@ -10,37 +10,70 @@ export interface AclAuthMethodConfig {
      * `([]string: <optional>)` - A list of allowed values
      * that can be used for the redirect URI.
      */
-    allowedRedirectUris: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * `([]string: <optional>)` - List of auth claims that are
      * valid for login.
      */
     boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `(map[string]string: <optional>)` - Mappings of claims (key)
-     * that will be copied to a metadata field (value).
+     * `([]string: <optional>)` - The value against which to match
+     * the iss claim in a JWT.
+     */
+    boundIssuers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Mappings of claims (key) that will be copied to a metadata field (value).
      */
     claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * `(string: <optional>)` - Duration of leeway when validating
+     * all claims in the form of a time duration such as "5m" or "1h".
+     */
+    clockSkewLeeway?: pulumi.Input<string>;
     /**
      * `([]string: <optional>)` - PEM encoded CA certs for use
      * by the TLS client used to talk with the OIDC Discovery URL.
      */
     discoveryCaPems?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * `(map[string]string: <optional>)` - Mappings of list
-     * claims (key) that will be copied to a metadata field (value).
+     * `(string: <optional>)` - Duration of leeway when validating
+     * expiration of a JWT in the form of a time duration such as "5m" or "1h".
+     */
+    expirationLeeway?: pulumi.Input<string>;
+    /**
+     * `(string: <optional>)` - PEM encoded CA cert for use by the 
+     * TLS client used to talk with the JWKS server.
+     */
+    jwksCaCert?: pulumi.Input<string>;
+    /**
+     * `(string: <optional>)` - JSON Web Key Sets url for authenticating
+     * signatures.
+     */
+    jwksUrl?: pulumi.Input<string>;
+    /**
+     * `([]string: <optional>)` - List of PEM-encoded 
+     * public keys to use to authenticate signatures locally.
+     */
+    jwtValidationPubKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Mappings of list claims (key) that will be copied to a metadata field (value).
      */
     listClaimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * `(string: <required>)` - The OAuth Client ID configured
+     * `(string: <optional>)` - Duration of leeway when validating
+     * not before values of a token in the form of a time duration such as "5m" or "1h".
+     */
+    notBeforeLeeway?: pulumi.Input<string>;
+    /**
+     * `(string: <optional>)` - The OAuth Client ID configured
      * with the OIDC provider.
      */
-    oidcClientId: pulumi.Input<string>;
+    oidcClientId?: pulumi.Input<string>;
     /**
-     * `(string: <required>)` - The OAuth Client Secret
+     * `(string: <optional>)` - The OAuth Client Secret
      * configured with the OIDC provider.
      */
-    oidcClientSecret: pulumi.Input<string>;
+    oidcClientSecret?: pulumi.Input<string>;
     /**
      * `(bool: false)` - When set to `true`, Nomad will
      * not make a request to the identity provider to get OIDC `UserInfo`.
@@ -49,10 +82,10 @@ export interface AclAuthMethodConfig {
      */
     oidcDisableUserinfo?: pulumi.Input<boolean>;
     /**
-     * `(string: <required>)` - The OIDC Discovery URL,
+     * `(string: <optional>)` - The OIDC Discovery URL,
      * without any .well-known component (base path).
      */
-    oidcDiscoveryUrl: pulumi.Input<string>;
+    oidcDiscoveryUrl?: pulumi.Input<string>;
     /**
      * `([]string: <optional>)` - List of OIDC scopes.
      */

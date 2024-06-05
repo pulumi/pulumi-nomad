@@ -20,29 +20,48 @@ type AclAuthMethodConfig struct {
 	// `([]string: <optional>)` - List of auth claims that are
 	// valid for login.
 	BoundAudiences []string `pulumi:"boundAudiences"`
-	// `(map[string]string: <optional>)` - Mappings of claims (key)
-	// that will be copied to a metadata field (value).
+	// `([]string: <optional>)` - The value against which to match
+	// the iss claim in a JWT.
+	BoundIssuers []string `pulumi:"boundIssuers"`
+	// Mappings of claims (key) that will be copied to a metadata field (value).
 	ClaimMappings map[string]string `pulumi:"claimMappings"`
+	// `(string: <optional>)` - Duration of leeway when validating
+	// all claims in the form of a time duration such as "5m" or "1h".
+	ClockSkewLeeway *string `pulumi:"clockSkewLeeway"`
 	// `([]string: <optional>)` - PEM encoded CA certs for use
 	// by the TLS client used to talk with the OIDC Discovery URL.
 	DiscoveryCaPems []string `pulumi:"discoveryCaPems"`
-	// `(map[string]string: <optional>)` - Mappings of list
-	// claims (key) that will be copied to a metadata field (value).
+	// `(string: <optional>)` - Duration of leeway when validating
+	// expiration of a JWT in the form of a time duration such as "5m" or "1h".
+	ExpirationLeeway *string `pulumi:"expirationLeeway"`
+	// `(string: <optional>)` - PEM encoded CA cert for use by the
+	// TLS client used to talk with the JWKS server.
+	JwksCaCert *string `pulumi:"jwksCaCert"`
+	// `(string: <optional>)` - JSON Web Key Sets url for authenticating
+	// signatures.
+	JwksUrl *string `pulumi:"jwksUrl"`
+	// `([]string: <optional>)` - List of PEM-encoded
+	// public keys to use to authenticate signatures locally.
+	JwtValidationPubKeys []string `pulumi:"jwtValidationPubKeys"`
+	// Mappings of list claims (key) that will be copied to a metadata field (value).
 	ListClaimMappings map[string]string `pulumi:"listClaimMappings"`
-	// `(string: <required>)` - The OAuth Client ID configured
+	// `(string: <optional>)` - Duration of leeway when validating
+	// not before values of a token in the form of a time duration such as "5m" or "1h".
+	NotBeforeLeeway *string `pulumi:"notBeforeLeeway"`
+	// `(string: <optional>)` - The OAuth Client ID configured
 	// with the OIDC provider.
-	OidcClientId string `pulumi:"oidcClientId"`
-	// `(string: <required>)` - The OAuth Client Secret
+	OidcClientId *string `pulumi:"oidcClientId"`
+	// `(string: <optional>)` - The OAuth Client Secret
 	// configured with the OIDC provider.
-	OidcClientSecret string `pulumi:"oidcClientSecret"`
+	OidcClientSecret *string `pulumi:"oidcClientSecret"`
 	// `(bool: false)` - When set to `true`, Nomad will
 	// not make a request to the identity provider to get OIDC `UserInfo`.
 	// You may wish to set this if your identity provider doesn't send any
 	// additional claims from the `UserInfo` endpoint.
 	OidcDisableUserinfo *bool `pulumi:"oidcDisableUserinfo"`
-	// `(string: <required>)` - The OIDC Discovery URL,
+	// `(string: <optional>)` - The OIDC Discovery URL,
 	// without any .well-known component (base path).
-	OidcDiscoveryUrl string `pulumi:"oidcDiscoveryUrl"`
+	OidcDiscoveryUrl *string `pulumi:"oidcDiscoveryUrl"`
 	// `([]string: <optional>)` - List of OIDC scopes.
 	OidcScopes []string `pulumi:"oidcScopes"`
 	// `([]string: <optional>)` - A list of supported signing
@@ -68,29 +87,48 @@ type AclAuthMethodConfigArgs struct {
 	// `([]string: <optional>)` - List of auth claims that are
 	// valid for login.
 	BoundAudiences pulumi.StringArrayInput `pulumi:"boundAudiences"`
-	// `(map[string]string: <optional>)` - Mappings of claims (key)
-	// that will be copied to a metadata field (value).
+	// `([]string: <optional>)` - The value against which to match
+	// the iss claim in a JWT.
+	BoundIssuers pulumi.StringArrayInput `pulumi:"boundIssuers"`
+	// Mappings of claims (key) that will be copied to a metadata field (value).
 	ClaimMappings pulumi.StringMapInput `pulumi:"claimMappings"`
+	// `(string: <optional>)` - Duration of leeway when validating
+	// all claims in the form of a time duration such as "5m" or "1h".
+	ClockSkewLeeway pulumi.StringPtrInput `pulumi:"clockSkewLeeway"`
 	// `([]string: <optional>)` - PEM encoded CA certs for use
 	// by the TLS client used to talk with the OIDC Discovery URL.
 	DiscoveryCaPems pulumi.StringArrayInput `pulumi:"discoveryCaPems"`
-	// `(map[string]string: <optional>)` - Mappings of list
-	// claims (key) that will be copied to a metadata field (value).
+	// `(string: <optional>)` - Duration of leeway when validating
+	// expiration of a JWT in the form of a time duration such as "5m" or "1h".
+	ExpirationLeeway pulumi.StringPtrInput `pulumi:"expirationLeeway"`
+	// `(string: <optional>)` - PEM encoded CA cert for use by the
+	// TLS client used to talk with the JWKS server.
+	JwksCaCert pulumi.StringPtrInput `pulumi:"jwksCaCert"`
+	// `(string: <optional>)` - JSON Web Key Sets url for authenticating
+	// signatures.
+	JwksUrl pulumi.StringPtrInput `pulumi:"jwksUrl"`
+	// `([]string: <optional>)` - List of PEM-encoded
+	// public keys to use to authenticate signatures locally.
+	JwtValidationPubKeys pulumi.StringArrayInput `pulumi:"jwtValidationPubKeys"`
+	// Mappings of list claims (key) that will be copied to a metadata field (value).
 	ListClaimMappings pulumi.StringMapInput `pulumi:"listClaimMappings"`
-	// `(string: <required>)` - The OAuth Client ID configured
+	// `(string: <optional>)` - Duration of leeway when validating
+	// not before values of a token in the form of a time duration such as "5m" or "1h".
+	NotBeforeLeeway pulumi.StringPtrInput `pulumi:"notBeforeLeeway"`
+	// `(string: <optional>)` - The OAuth Client ID configured
 	// with the OIDC provider.
-	OidcClientId pulumi.StringInput `pulumi:"oidcClientId"`
-	// `(string: <required>)` - The OAuth Client Secret
+	OidcClientId pulumi.StringPtrInput `pulumi:"oidcClientId"`
+	// `(string: <optional>)` - The OAuth Client Secret
 	// configured with the OIDC provider.
-	OidcClientSecret pulumi.StringInput `pulumi:"oidcClientSecret"`
+	OidcClientSecret pulumi.StringPtrInput `pulumi:"oidcClientSecret"`
 	// `(bool: false)` - When set to `true`, Nomad will
 	// not make a request to the identity provider to get OIDC `UserInfo`.
 	// You may wish to set this if your identity provider doesn't send any
 	// additional claims from the `UserInfo` endpoint.
 	OidcDisableUserinfo pulumi.BoolPtrInput `pulumi:"oidcDisableUserinfo"`
-	// `(string: <required>)` - The OIDC Discovery URL,
+	// `(string: <optional>)` - The OIDC Discovery URL,
 	// without any .well-known component (base path).
-	OidcDiscoveryUrl pulumi.StringInput `pulumi:"oidcDiscoveryUrl"`
+	OidcDiscoveryUrl pulumi.StringPtrInput `pulumi:"oidcDiscoveryUrl"`
 	// `([]string: <optional>)` - List of OIDC scopes.
 	OidcScopes pulumi.StringArrayInput `pulumi:"oidcScopes"`
 	// `([]string: <optional>)` - A list of supported signing
@@ -187,10 +225,21 @@ func (o AclAuthMethodConfigOutput) BoundAudiences() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.BoundAudiences }).(pulumi.StringArrayOutput)
 }
 
-// `(map[string]string: <optional>)` - Mappings of claims (key)
-// that will be copied to a metadata field (value).
+// `([]string: <optional>)` - The value against which to match
+// the iss claim in a JWT.
+func (o AclAuthMethodConfigOutput) BoundIssuers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.BoundIssuers }).(pulumi.StringArrayOutput)
+}
+
+// Mappings of claims (key) that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigOutput) ClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) map[string]string { return v.ClaimMappings }).(pulumi.StringMapOutput)
+}
+
+// `(string: <optional>)` - Duration of leeway when validating
+// all claims in the form of a time duration such as "5m" or "1h".
+func (o AclAuthMethodConfigOutput) ClockSkewLeeway() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.ClockSkewLeeway }).(pulumi.StringPtrOutput)
 }
 
 // `([]string: <optional>)` - PEM encoded CA certs for use
@@ -199,22 +248,51 @@ func (o AclAuthMethodConfigOutput) DiscoveryCaPems() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.DiscoveryCaPems }).(pulumi.StringArrayOutput)
 }
 
-// `(map[string]string: <optional>)` - Mappings of list
-// claims (key) that will be copied to a metadata field (value).
+// `(string: <optional>)` - Duration of leeway when validating
+// expiration of a JWT in the form of a time duration such as "5m" or "1h".
+func (o AclAuthMethodConfigOutput) ExpirationLeeway() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.ExpirationLeeway }).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>)` - PEM encoded CA cert for use by the
+// TLS client used to talk with the JWKS server.
+func (o AclAuthMethodConfigOutput) JwksCaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.JwksCaCert }).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>)` - JSON Web Key Sets url for authenticating
+// signatures.
+func (o AclAuthMethodConfigOutput) JwksUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.JwksUrl }).(pulumi.StringPtrOutput)
+}
+
+// `([]string: <optional>)` - List of PEM-encoded
+// public keys to use to authenticate signatures locally.
+func (o AclAuthMethodConfigOutput) JwtValidationPubKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.JwtValidationPubKeys }).(pulumi.StringArrayOutput)
+}
+
+// Mappings of list claims (key) that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigOutput) ListClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) map[string]string { return v.ListClaimMappings }).(pulumi.StringMapOutput)
 }
 
-// `(string: <required>)` - The OAuth Client ID configured
-// with the OIDC provider.
-func (o AclAuthMethodConfigOutput) OidcClientId() pulumi.StringOutput {
-	return o.ApplyT(func(v AclAuthMethodConfig) string { return v.OidcClientId }).(pulumi.StringOutput)
+// `(string: <optional>)` - Duration of leeway when validating
+// not before values of a token in the form of a time duration such as "5m" or "1h".
+func (o AclAuthMethodConfigOutput) NotBeforeLeeway() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.NotBeforeLeeway }).(pulumi.StringPtrOutput)
 }
 
-// `(string: <required>)` - The OAuth Client Secret
+// `(string: <optional>)` - The OAuth Client ID configured
+// with the OIDC provider.
+func (o AclAuthMethodConfigOutput) OidcClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.OidcClientId }).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>)` - The OAuth Client Secret
 // configured with the OIDC provider.
-func (o AclAuthMethodConfigOutput) OidcClientSecret() pulumi.StringOutput {
-	return o.ApplyT(func(v AclAuthMethodConfig) string { return v.OidcClientSecret }).(pulumi.StringOutput)
+func (o AclAuthMethodConfigOutput) OidcClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.OidcClientSecret }).(pulumi.StringPtrOutput)
 }
 
 // `(bool: false)` - When set to `true`, Nomad will
@@ -225,10 +303,10 @@ func (o AclAuthMethodConfigOutput) OidcDisableUserinfo() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) *bool { return v.OidcDisableUserinfo }).(pulumi.BoolPtrOutput)
 }
 
-// `(string: <required>)` - The OIDC Discovery URL,
+// `(string: <optional>)` - The OIDC Discovery URL,
 // without any .well-known component (base path).
-func (o AclAuthMethodConfigOutput) OidcDiscoveryUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v AclAuthMethodConfig) string { return v.OidcDiscoveryUrl }).(pulumi.StringOutput)
+func (o AclAuthMethodConfigOutput) OidcDiscoveryUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.OidcDiscoveryUrl }).(pulumi.StringPtrOutput)
 }
 
 // `([]string: <optional>)` - List of OIDC scopes.
@@ -288,8 +366,18 @@ func (o AclAuthMethodConfigPtrOutput) BoundAudiences() pulumi.StringArrayOutput 
 	}).(pulumi.StringArrayOutput)
 }
 
-// `(map[string]string: <optional>)` - Mappings of claims (key)
-// that will be copied to a metadata field (value).
+// `([]string: <optional>)` - The value against which to match
+// the iss claim in a JWT.
+func (o AclAuthMethodConfigPtrOutput) BoundIssuers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.BoundIssuers
+	}).(pulumi.StringArrayOutput)
+}
+
+// Mappings of claims (key) that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigPtrOutput) ClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) map[string]string {
 		if v == nil {
@@ -297,6 +385,17 @@ func (o AclAuthMethodConfigPtrOutput) ClaimMappings() pulumi.StringMapOutput {
 		}
 		return v.ClaimMappings
 	}).(pulumi.StringMapOutput)
+}
+
+// `(string: <optional>)` - Duration of leeway when validating
+// all claims in the form of a time duration such as "5m" or "1h".
+func (o AclAuthMethodConfigPtrOutput) ClockSkewLeeway() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClockSkewLeeway
+	}).(pulumi.StringPtrOutput)
 }
 
 // `([]string: <optional>)` - PEM encoded CA certs for use
@@ -310,8 +409,51 @@ func (o AclAuthMethodConfigPtrOutput) DiscoveryCaPems() pulumi.StringArrayOutput
 	}).(pulumi.StringArrayOutput)
 }
 
-// `(map[string]string: <optional>)` - Mappings of list
-// claims (key) that will be copied to a metadata field (value).
+// `(string: <optional>)` - Duration of leeway when validating
+// expiration of a JWT in the form of a time duration such as "5m" or "1h".
+func (o AclAuthMethodConfigPtrOutput) ExpirationLeeway() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ExpirationLeeway
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>)` - PEM encoded CA cert for use by the
+// TLS client used to talk with the JWKS server.
+func (o AclAuthMethodConfigPtrOutput) JwksCaCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.JwksCaCert
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>)` - JSON Web Key Sets url for authenticating
+// signatures.
+func (o AclAuthMethodConfigPtrOutput) JwksUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.JwksUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// `([]string: <optional>)` - List of PEM-encoded
+// public keys to use to authenticate signatures locally.
+func (o AclAuthMethodConfigPtrOutput) JwtValidationPubKeys() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.JwtValidationPubKeys
+	}).(pulumi.StringArrayOutput)
+}
+
+// Mappings of list claims (key) that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigPtrOutput) ListClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) map[string]string {
 		if v == nil {
@@ -321,25 +463,36 @@ func (o AclAuthMethodConfigPtrOutput) ListClaimMappings() pulumi.StringMapOutput
 	}).(pulumi.StringMapOutput)
 }
 
-// `(string: <required>)` - The OAuth Client ID configured
+// `(string: <optional>)` - Duration of leeway when validating
+// not before values of a token in the form of a time duration such as "5m" or "1h".
+func (o AclAuthMethodConfigPtrOutput) NotBeforeLeeway() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NotBeforeLeeway
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>)` - The OAuth Client ID configured
 // with the OIDC provider.
 func (o AclAuthMethodConfigPtrOutput) OidcClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.OidcClientId
+		return v.OidcClientId
 	}).(pulumi.StringPtrOutput)
 }
 
-// `(string: <required>)` - The OAuth Client Secret
+// `(string: <optional>)` - The OAuth Client Secret
 // configured with the OIDC provider.
 func (o AclAuthMethodConfigPtrOutput) OidcClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.OidcClientSecret
+		return v.OidcClientSecret
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -356,14 +509,14 @@ func (o AclAuthMethodConfigPtrOutput) OidcDisableUserinfo() pulumi.BoolPtrOutput
 	}).(pulumi.BoolPtrOutput)
 }
 
-// `(string: <required>)` - The OIDC Discovery URL,
+// `(string: <optional>)` - The OIDC Discovery URL,
 // without any .well-known component (base path).
 func (o AclAuthMethodConfigPtrOutput) OidcDiscoveryUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.OidcDiscoveryUrl
+		return v.OidcDiscoveryUrl
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -7517,6 +7670,148 @@ func (o GetJobTaskGroupVolumeArrayOutput) Index(i pulumi.IntInput) GetJobTaskGro
 	}).(GetJobTaskGroupVolumeOutput)
 }
 
+type GetJwksKey struct {
+	// `(string)` - JWK field `alg`
+	Algorithm string `pulumi:"algorithm"`
+	// `(string)` - JWK field `e`
+	Exponent string `pulumi:"exponent"`
+	// `(string)` - JWK field `kid`
+	KeyId string `pulumi:"keyId"`
+	// `(string)` - JWK field `kty`
+	KeyType string `pulumi:"keyType"`
+	// `(string)` - JWK field `use`
+	KeyUse string `pulumi:"keyUse"`
+	// `(string)` - JWK field `n`
+	Modulus string `pulumi:"modulus"`
+}
+
+// GetJwksKeyInput is an input type that accepts GetJwksKeyArgs and GetJwksKeyOutput values.
+// You can construct a concrete instance of `GetJwksKeyInput` via:
+//
+//	GetJwksKeyArgs{...}
+type GetJwksKeyInput interface {
+	pulumi.Input
+
+	ToGetJwksKeyOutput() GetJwksKeyOutput
+	ToGetJwksKeyOutputWithContext(context.Context) GetJwksKeyOutput
+}
+
+type GetJwksKeyArgs struct {
+	// `(string)` - JWK field `alg`
+	Algorithm pulumi.StringInput `pulumi:"algorithm"`
+	// `(string)` - JWK field `e`
+	Exponent pulumi.StringInput `pulumi:"exponent"`
+	// `(string)` - JWK field `kid`
+	KeyId pulumi.StringInput `pulumi:"keyId"`
+	// `(string)` - JWK field `kty`
+	KeyType pulumi.StringInput `pulumi:"keyType"`
+	// `(string)` - JWK field `use`
+	KeyUse pulumi.StringInput `pulumi:"keyUse"`
+	// `(string)` - JWK field `n`
+	Modulus pulumi.StringInput `pulumi:"modulus"`
+}
+
+func (GetJwksKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJwksKey)(nil)).Elem()
+}
+
+func (i GetJwksKeyArgs) ToGetJwksKeyOutput() GetJwksKeyOutput {
+	return i.ToGetJwksKeyOutputWithContext(context.Background())
+}
+
+func (i GetJwksKeyArgs) ToGetJwksKeyOutputWithContext(ctx context.Context) GetJwksKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJwksKeyOutput)
+}
+
+// GetJwksKeyArrayInput is an input type that accepts GetJwksKeyArray and GetJwksKeyArrayOutput values.
+// You can construct a concrete instance of `GetJwksKeyArrayInput` via:
+//
+//	GetJwksKeyArray{ GetJwksKeyArgs{...} }
+type GetJwksKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetJwksKeyArrayOutput() GetJwksKeyArrayOutput
+	ToGetJwksKeyArrayOutputWithContext(context.Context) GetJwksKeyArrayOutput
+}
+
+type GetJwksKeyArray []GetJwksKeyInput
+
+func (GetJwksKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetJwksKey)(nil)).Elem()
+}
+
+func (i GetJwksKeyArray) ToGetJwksKeyArrayOutput() GetJwksKeyArrayOutput {
+	return i.ToGetJwksKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetJwksKeyArray) ToGetJwksKeyArrayOutputWithContext(ctx context.Context) GetJwksKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJwksKeyArrayOutput)
+}
+
+type GetJwksKeyOutput struct{ *pulumi.OutputState }
+
+func (GetJwksKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJwksKey)(nil)).Elem()
+}
+
+func (o GetJwksKeyOutput) ToGetJwksKeyOutput() GetJwksKeyOutput {
+	return o
+}
+
+func (o GetJwksKeyOutput) ToGetJwksKeyOutputWithContext(ctx context.Context) GetJwksKeyOutput {
+	return o
+}
+
+// `(string)` - JWK field `alg`
+func (o GetJwksKeyOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJwksKey) string { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+// `(string)` - JWK field `e`
+func (o GetJwksKeyOutput) Exponent() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJwksKey) string { return v.Exponent }).(pulumi.StringOutput)
+}
+
+// `(string)` - JWK field `kid`
+func (o GetJwksKeyOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJwksKey) string { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// `(string)` - JWK field `kty`
+func (o GetJwksKeyOutput) KeyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJwksKey) string { return v.KeyType }).(pulumi.StringOutput)
+}
+
+// `(string)` - JWK field `use`
+func (o GetJwksKeyOutput) KeyUse() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJwksKey) string { return v.KeyUse }).(pulumi.StringOutput)
+}
+
+// `(string)` - JWK field `n`
+func (o GetJwksKeyOutput) Modulus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJwksKey) string { return v.Modulus }).(pulumi.StringOutput)
+}
+
+type GetJwksKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetJwksKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetJwksKey)(nil)).Elem()
+}
+
+func (o GetJwksKeyArrayOutput) ToGetJwksKeyArrayOutput() GetJwksKeyArrayOutput {
+	return o
+}
+
+func (o GetJwksKeyArrayOutput) ToGetJwksKeyArrayOutputWithContext(ctx context.Context) GetJwksKeyArrayOutput {
+	return o
+}
+
+func (o GetJwksKeyArrayOutput) Index(i pulumi.IntInput) GetJwksKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetJwksKey {
+		return vs[0].([]GetJwksKey)[vs[1].(int)]
+	}).(GetJwksKeyOutput)
+}
+
 type GetNamespaceCapability struct {
 	// `([]string)` - Task drivers disabled for the namespace.
 	DisabledTaskDrivers []string `pulumi:"disabledTaskDrivers"`
@@ -8430,6 +8725,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupTaskVolumeMountArrayInput)(nil)).Elem(), GetJobTaskGroupTaskVolumeMountArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupVolumeInput)(nil)).Elem(), GetJobTaskGroupVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupVolumeArrayInput)(nil)).Elem(), GetJobTaskGroupVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJwksKeyInput)(nil)).Elem(), GetJwksKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJwksKeyArrayInput)(nil)).Elem(), GetJwksKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceCapabilityInput)(nil)).Elem(), GetNamespaceCapabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceCapabilityArrayInput)(nil)).Elem(), GetNamespaceCapabilityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceNodePoolConfigInput)(nil)).Elem(), GetNamespaceNodePoolConfigArgs{})
@@ -8557,6 +8854,8 @@ func init() {
 	pulumi.RegisterOutputType(GetJobTaskGroupTaskVolumeMountArrayOutput{})
 	pulumi.RegisterOutputType(GetJobTaskGroupVolumeOutput{})
 	pulumi.RegisterOutputType(GetJobTaskGroupVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetJwksKeyOutput{})
+	pulumi.RegisterOutputType(GetJwksKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetNamespaceCapabilityOutput{})
 	pulumi.RegisterOutputType(GetNamespaceCapabilityArrayOutput{})
 	pulumi.RegisterOutputType(GetNamespaceNodePoolConfigOutput{})

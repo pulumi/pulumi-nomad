@@ -4,7 +4,6 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -20,7 +19,7 @@ public final class AclAuthMethodConfig {
      * that can be used for the redirect URI.
      * 
      */
-    private List<String> allowedRedirectUris;
+    private @Nullable List<String> allowedRedirectUris;
     /**
      * @return `([]string: &lt;optional&gt;)` - List of auth claims that are
      * valid for login.
@@ -28,11 +27,22 @@ public final class AclAuthMethodConfig {
      */
     private @Nullable List<String> boundAudiences;
     /**
-     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
-     * that will be copied to a metadata field (value).
+     * @return `([]string: &lt;optional&gt;)` - The value against which to match
+     * the iss claim in a JWT.
+     * 
+     */
+    private @Nullable List<String> boundIssuers;
+    /**
+     * @return Mappings of claims (key) that will be copied to a metadata field (value).
      * 
      */
     private @Nullable Map<String,String> claimMappings;
+    /**
+     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * 
+     */
+    private @Nullable String clockSkewLeeway;
     /**
      * @return `([]string: &lt;optional&gt;)` - PEM encoded CA certs for use
      * by the TLS client used to talk with the OIDC Discovery URL.
@@ -40,23 +50,52 @@ public final class AclAuthMethodConfig {
      */
     private @Nullable List<String> discoveryCaPems;
     /**
-     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of list
-     * claims (key) that will be copied to a metadata field (value).
+     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * expiration of a JWT in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * 
+     */
+    private @Nullable String expirationLeeway;
+    /**
+     * @return `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the
+     * TLS client used to talk with the JWKS server.
+     * 
+     */
+    private @Nullable String jwksCaCert;
+    /**
+     * @return `(string: &lt;optional&gt;)` - JSON Web Key Sets url for authenticating
+     * signatures.
+     * 
+     */
+    private @Nullable String jwksUrl;
+    /**
+     * @return `([]string: &lt;optional&gt;)` - List of PEM-encoded
+     * public keys to use to authenticate signatures locally.
+     * 
+     */
+    private @Nullable List<String> jwtValidationPubKeys;
+    /**
+     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
      * 
      */
     private @Nullable Map<String,String> listClaimMappings;
     /**
-     * @return `(string: &lt;required&gt;)` - The OAuth Client ID configured
+     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * 
+     */
+    private @Nullable String notBeforeLeeway;
+    /**
+     * @return `(string: &lt;optional&gt;)` - The OAuth Client ID configured
      * with the OIDC provider.
      * 
      */
-    private String oidcClientId;
+    private @Nullable String oidcClientId;
     /**
-     * @return `(string: &lt;required&gt;)` - The OAuth Client Secret
+     * @return `(string: &lt;optional&gt;)` - The OAuth Client Secret
      * configured with the OIDC provider.
      * 
      */
-    private String oidcClientSecret;
+    private @Nullable String oidcClientSecret;
     /**
      * @return `(bool: false)` - When set to `true`, Nomad will
      * not make a request to the identity provider to get OIDC `UserInfo`.
@@ -66,11 +105,11 @@ public final class AclAuthMethodConfig {
      */
     private @Nullable Boolean oidcDisableUserinfo;
     /**
-     * @return `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+     * @return `(string: &lt;optional&gt;)` - The OIDC Discovery URL,
      * without any .well-known component (base path).
      * 
      */
-    private String oidcDiscoveryUrl;
+    private @Nullable String oidcDiscoveryUrl;
     /**
      * @return `([]string: &lt;optional&gt;)` - List of OIDC scopes.
      * 
@@ -90,7 +129,7 @@ public final class AclAuthMethodConfig {
      * 
      */
     public List<String> allowedRedirectUris() {
-        return this.allowedRedirectUris;
+        return this.allowedRedirectUris == null ? List.of() : this.allowedRedirectUris;
     }
     /**
      * @return `([]string: &lt;optional&gt;)` - List of auth claims that are
@@ -101,12 +140,27 @@ public final class AclAuthMethodConfig {
         return this.boundAudiences == null ? List.of() : this.boundAudiences;
     }
     /**
-     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
-     * that will be copied to a metadata field (value).
+     * @return `([]string: &lt;optional&gt;)` - The value against which to match
+     * the iss claim in a JWT.
+     * 
+     */
+    public List<String> boundIssuers() {
+        return this.boundIssuers == null ? List.of() : this.boundIssuers;
+    }
+    /**
+     * @return Mappings of claims (key) that will be copied to a metadata field (value).
      * 
      */
     public Map<String,String> claimMappings() {
         return this.claimMappings == null ? Map.of() : this.claimMappings;
+    }
+    /**
+     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * 
+     */
+    public Optional<String> clockSkewLeeway() {
+        return Optional.ofNullable(this.clockSkewLeeway);
     }
     /**
      * @return `([]string: &lt;optional&gt;)` - PEM encoded CA certs for use
@@ -117,28 +171,67 @@ public final class AclAuthMethodConfig {
         return this.discoveryCaPems == null ? List.of() : this.discoveryCaPems;
     }
     /**
-     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of list
-     * claims (key) that will be copied to a metadata field (value).
+     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * expiration of a JWT in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * 
+     */
+    public Optional<String> expirationLeeway() {
+        return Optional.ofNullable(this.expirationLeeway);
+    }
+    /**
+     * @return `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the
+     * TLS client used to talk with the JWKS server.
+     * 
+     */
+    public Optional<String> jwksCaCert() {
+        return Optional.ofNullable(this.jwksCaCert);
+    }
+    /**
+     * @return `(string: &lt;optional&gt;)` - JSON Web Key Sets url for authenticating
+     * signatures.
+     * 
+     */
+    public Optional<String> jwksUrl() {
+        return Optional.ofNullable(this.jwksUrl);
+    }
+    /**
+     * @return `([]string: &lt;optional&gt;)` - List of PEM-encoded
+     * public keys to use to authenticate signatures locally.
+     * 
+     */
+    public List<String> jwtValidationPubKeys() {
+        return this.jwtValidationPubKeys == null ? List.of() : this.jwtValidationPubKeys;
+    }
+    /**
+     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
      * 
      */
     public Map<String,String> listClaimMappings() {
         return this.listClaimMappings == null ? Map.of() : this.listClaimMappings;
     }
     /**
-     * @return `(string: &lt;required&gt;)` - The OAuth Client ID configured
+     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
+     * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * 
+     */
+    public Optional<String> notBeforeLeeway() {
+        return Optional.ofNullable(this.notBeforeLeeway);
+    }
+    /**
+     * @return `(string: &lt;optional&gt;)` - The OAuth Client ID configured
      * with the OIDC provider.
      * 
      */
-    public String oidcClientId() {
-        return this.oidcClientId;
+    public Optional<String> oidcClientId() {
+        return Optional.ofNullable(this.oidcClientId);
     }
     /**
-     * @return `(string: &lt;required&gt;)` - The OAuth Client Secret
+     * @return `(string: &lt;optional&gt;)` - The OAuth Client Secret
      * configured with the OIDC provider.
      * 
      */
-    public String oidcClientSecret() {
-        return this.oidcClientSecret;
+    public Optional<String> oidcClientSecret() {
+        return Optional.ofNullable(this.oidcClientSecret);
     }
     /**
      * @return `(bool: false)` - When set to `true`, Nomad will
@@ -151,12 +244,12 @@ public final class AclAuthMethodConfig {
         return Optional.ofNullable(this.oidcDisableUserinfo);
     }
     /**
-     * @return `(string: &lt;required&gt;)` - The OIDC Discovery URL,
+     * @return `(string: &lt;optional&gt;)` - The OIDC Discovery URL,
      * without any .well-known component (base path).
      * 
      */
-    public String oidcDiscoveryUrl() {
-        return this.oidcDiscoveryUrl;
+    public Optional<String> oidcDiscoveryUrl() {
+        return Optional.ofNullable(this.oidcDiscoveryUrl);
     }
     /**
      * @return `([]string: &lt;optional&gt;)` - List of OIDC scopes.
@@ -183,15 +276,22 @@ public final class AclAuthMethodConfig {
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<String> allowedRedirectUris;
+        private @Nullable List<String> allowedRedirectUris;
         private @Nullable List<String> boundAudiences;
+        private @Nullable List<String> boundIssuers;
         private @Nullable Map<String,String> claimMappings;
+        private @Nullable String clockSkewLeeway;
         private @Nullable List<String> discoveryCaPems;
+        private @Nullable String expirationLeeway;
+        private @Nullable String jwksCaCert;
+        private @Nullable String jwksUrl;
+        private @Nullable List<String> jwtValidationPubKeys;
         private @Nullable Map<String,String> listClaimMappings;
-        private String oidcClientId;
-        private String oidcClientSecret;
+        private @Nullable String notBeforeLeeway;
+        private @Nullable String oidcClientId;
+        private @Nullable String oidcClientSecret;
         private @Nullable Boolean oidcDisableUserinfo;
-        private String oidcDiscoveryUrl;
+        private @Nullable String oidcDiscoveryUrl;
         private @Nullable List<String> oidcScopes;
         private @Nullable List<String> signingAlgs;
         public Builder() {}
@@ -199,9 +299,16 @@ public final class AclAuthMethodConfig {
     	      Objects.requireNonNull(defaults);
     	      this.allowedRedirectUris = defaults.allowedRedirectUris;
     	      this.boundAudiences = defaults.boundAudiences;
+    	      this.boundIssuers = defaults.boundIssuers;
     	      this.claimMappings = defaults.claimMappings;
+    	      this.clockSkewLeeway = defaults.clockSkewLeeway;
     	      this.discoveryCaPems = defaults.discoveryCaPems;
+    	      this.expirationLeeway = defaults.expirationLeeway;
+    	      this.jwksCaCert = defaults.jwksCaCert;
+    	      this.jwksUrl = defaults.jwksUrl;
+    	      this.jwtValidationPubKeys = defaults.jwtValidationPubKeys;
     	      this.listClaimMappings = defaults.listClaimMappings;
+    	      this.notBeforeLeeway = defaults.notBeforeLeeway;
     	      this.oidcClientId = defaults.oidcClientId;
     	      this.oidcClientSecret = defaults.oidcClientSecret;
     	      this.oidcDisableUserinfo = defaults.oidcDisableUserinfo;
@@ -211,10 +318,8 @@ public final class AclAuthMethodConfig {
         }
 
         @CustomType.Setter
-        public Builder allowedRedirectUris(List<String> allowedRedirectUris) {
-            if (allowedRedirectUris == null) {
-              throw new MissingRequiredPropertyException("AclAuthMethodConfig", "allowedRedirectUris");
-            }
+        public Builder allowedRedirectUris(@Nullable List<String> allowedRedirectUris) {
+
             this.allowedRedirectUris = allowedRedirectUris;
             return this;
         }
@@ -231,9 +336,24 @@ public final class AclAuthMethodConfig {
             return boundAudiences(List.of(boundAudiences));
         }
         @CustomType.Setter
+        public Builder boundIssuers(@Nullable List<String> boundIssuers) {
+
+            this.boundIssuers = boundIssuers;
+            return this;
+        }
+        public Builder boundIssuers(String... boundIssuers) {
+            return boundIssuers(List.of(boundIssuers));
+        }
+        @CustomType.Setter
         public Builder claimMappings(@Nullable Map<String,String> claimMappings) {
 
             this.claimMappings = claimMappings;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clockSkewLeeway(@Nullable String clockSkewLeeway) {
+
+            this.clockSkewLeeway = clockSkewLeeway;
             return this;
         }
         @CustomType.Setter
@@ -246,24 +366,53 @@ public final class AclAuthMethodConfig {
             return discoveryCaPems(List.of(discoveryCaPems));
         }
         @CustomType.Setter
+        public Builder expirationLeeway(@Nullable String expirationLeeway) {
+
+            this.expirationLeeway = expirationLeeway;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder jwksCaCert(@Nullable String jwksCaCert) {
+
+            this.jwksCaCert = jwksCaCert;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder jwksUrl(@Nullable String jwksUrl) {
+
+            this.jwksUrl = jwksUrl;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder jwtValidationPubKeys(@Nullable List<String> jwtValidationPubKeys) {
+
+            this.jwtValidationPubKeys = jwtValidationPubKeys;
+            return this;
+        }
+        public Builder jwtValidationPubKeys(String... jwtValidationPubKeys) {
+            return jwtValidationPubKeys(List.of(jwtValidationPubKeys));
+        }
+        @CustomType.Setter
         public Builder listClaimMappings(@Nullable Map<String,String> listClaimMappings) {
 
             this.listClaimMappings = listClaimMappings;
             return this;
         }
         @CustomType.Setter
-        public Builder oidcClientId(String oidcClientId) {
-            if (oidcClientId == null) {
-              throw new MissingRequiredPropertyException("AclAuthMethodConfig", "oidcClientId");
-            }
+        public Builder notBeforeLeeway(@Nullable String notBeforeLeeway) {
+
+            this.notBeforeLeeway = notBeforeLeeway;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder oidcClientId(@Nullable String oidcClientId) {
+
             this.oidcClientId = oidcClientId;
             return this;
         }
         @CustomType.Setter
-        public Builder oidcClientSecret(String oidcClientSecret) {
-            if (oidcClientSecret == null) {
-              throw new MissingRequiredPropertyException("AclAuthMethodConfig", "oidcClientSecret");
-            }
+        public Builder oidcClientSecret(@Nullable String oidcClientSecret) {
+
             this.oidcClientSecret = oidcClientSecret;
             return this;
         }
@@ -274,10 +423,8 @@ public final class AclAuthMethodConfig {
             return this;
         }
         @CustomType.Setter
-        public Builder oidcDiscoveryUrl(String oidcDiscoveryUrl) {
-            if (oidcDiscoveryUrl == null) {
-              throw new MissingRequiredPropertyException("AclAuthMethodConfig", "oidcDiscoveryUrl");
-            }
+        public Builder oidcDiscoveryUrl(@Nullable String oidcDiscoveryUrl) {
+
             this.oidcDiscoveryUrl = oidcDiscoveryUrl;
             return this;
         }
@@ -303,9 +450,16 @@ public final class AclAuthMethodConfig {
             final var _resultValue = new AclAuthMethodConfig();
             _resultValue.allowedRedirectUris = allowedRedirectUris;
             _resultValue.boundAudiences = boundAudiences;
+            _resultValue.boundIssuers = boundIssuers;
             _resultValue.claimMappings = claimMappings;
+            _resultValue.clockSkewLeeway = clockSkewLeeway;
             _resultValue.discoveryCaPems = discoveryCaPems;
+            _resultValue.expirationLeeway = expirationLeeway;
+            _resultValue.jwksCaCert = jwksCaCert;
+            _resultValue.jwksUrl = jwksUrl;
+            _resultValue.jwtValidationPubKeys = jwtValidationPubKeys;
             _resultValue.listClaimMappings = listClaimMappings;
+            _resultValue.notBeforeLeeway = notBeforeLeeway;
             _resultValue.oidcClientId = oidcClientId;
             _resultValue.oidcClientSecret = oidcClientSecret;
             _resultValue.oidcDisableUserinfo = oidcDisableUserinfo;

@@ -57,6 +57,7 @@ import com.pulumi.nomad.outputs.GetDatacentersResult;
 import com.pulumi.nomad.outputs.GetDeploymentsResult;
 import com.pulumi.nomad.outputs.GetJobParserResult;
 import com.pulumi.nomad.outputs.GetJobResult;
+import com.pulumi.nomad.outputs.GetJwksResult;
 import com.pulumi.nomad.outputs.GetNamespaceResult;
 import com.pulumi.nomad.outputs.GetNamespacesResult;
 import com.pulumi.nomad.outputs.GetNodePoolResult;
@@ -2288,6 +2289,258 @@ public final class NomadFunctions {
      */
     public static CompletableFuture<GetJobParserResult> getJobParserPlain(GetJobParserPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getJobParser:getJobParser", TypeShape.of(GetJobParserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve the cluster JWKS public keys.
+     * 
+     * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
+     * (`pem_keys`), which may be more convenient for use.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getJwks();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetJwksResult> getJwks() {
+        return getJwks(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve the cluster JWKS public keys.
+     * 
+     * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
+     * (`pem_keys`), which may be more convenient for use.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getJwks();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetJwksResult> getJwksPlain() {
+        return getJwksPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve the cluster JWKS public keys.
+     * 
+     * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
+     * (`pem_keys`), which may be more convenient for use.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getJwks();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetJwksResult> getJwks(InvokeArgs args) {
+        return getJwks(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve the cluster JWKS public keys.
+     * 
+     * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
+     * (`pem_keys`), which may be more convenient for use.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getJwks();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetJwksResult> getJwksPlain(InvokeArgs args) {
+        return getJwksPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve the cluster JWKS public keys.
+     * 
+     * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
+     * (`pem_keys`), which may be more convenient for use.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getJwks();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetJwksResult> getJwks(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getJwks:getJwks", TypeShape.of(GetJwksResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve the cluster JWKS public keys.
+     * 
+     * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
+     * (`pem_keys`), which may be more convenient for use.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getJwks();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetJwksResult> getJwksPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("nomad:index/getJwks:getJwks", TypeShape.of(GetJwksResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Get information about a namespace in Nomad.

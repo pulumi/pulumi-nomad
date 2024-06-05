@@ -167,12 +167,23 @@
                     },
                     "description": "`([]string: \u003coptional\u003e)` - List of auth claims that are\nvalid for login.\n"
                 },
+                "boundIssuers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "`([]string: \u003coptional\u003e)` - The value against which to match\nthe iss claim in a JWT.\n"
+                },
                 "claimMappings": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "`(map[string]string: \u003coptional\u003e)` - Mappings of claims (key)\nthat will be copied to a metadata field (value).\n"
+                    "description": "Mappings of claims (key) that will be copied to a metadata field (value).\n"
+                },
+                "clockSkewLeeway": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Duration of leeway when validating\nall claims in the form of a time duration such as \"5m\" or \"1h\".\n"
                 },
                 "discoveryCaPems": {
                     "type": "array",
@@ -181,20 +192,43 @@
                     },
                     "description": "`([]string: \u003coptional\u003e)` - PEM encoded CA certs for use\nby the TLS client used to talk with the OIDC Discovery URL.\n"
                 },
+                "expirationLeeway": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Duration of leeway when validating\nexpiration of a JWT in the form of a time duration such as \"5m\" or \"1h\".\n"
+                },
+                "jwksCaCert": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - PEM encoded CA cert for use by the \nTLS client used to talk with the JWKS server.\n"
+                },
+                "jwksUrl": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - JSON Web Key Sets url for authenticating\nsignatures.\n"
+                },
+                "jwtValidationPubKeys": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "`([]string: \u003coptional\u003e)` - List of PEM-encoded \npublic keys to use to authenticate signatures locally.\n"
+                },
                 "listClaimMappings": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "`(map[string]string: \u003coptional\u003e)` - Mappings of list\nclaims (key) that will be copied to a metadata field (value).\n"
+                    "description": "Mappings of list claims (key) that will be copied to a metadata field (value).\n"
+                },
+                "notBeforeLeeway": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Duration of leeway when validating\nnot before values of a token in the form of a time duration such as \"5m\" or \"1h\".\n"
                 },
                 "oidcClientId": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The OAuth Client ID configured\nwith the OIDC provider.\n"
+                    "description": "`(string: \u003coptional\u003e)` - The OAuth Client ID configured\nwith the OIDC provider.\n"
                 },
                 "oidcClientSecret": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The OAuth Client Secret\nconfigured with the OIDC provider.\n",
+                    "description": "`(string: \u003coptional\u003e)` - The OAuth Client Secret\nconfigured with the OIDC provider.\n",
                     "secret": true
                 },
                 "oidcDisableUserinfo": {
@@ -203,7 +237,7 @@
                 },
                 "oidcDiscoveryUrl": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The OIDC Discovery URL,\nwithout any .well-known component (base path).\n"
+                    "description": "`(string: \u003coptional\u003e)` - The OIDC Discovery URL,\nwithout any .well-known component (base path).\n"
                 },
                 "oidcScopes": {
                     "type": "array",
@@ -220,13 +254,7 @@
                     "description": "`([]string: \u003coptional\u003e)` - A list of supported signing\nalgorithms.\n"
                 }
             },
-            "type": "object",
-            "required": [
-                "allowedRedirectUris",
-                "oidcClientId",
-                "oidcClientSecret",
-                "oidcDiscoveryUrl"
-            ]
+            "type": "object"
         },
         "nomad:index/AclPolicyJobAcl:AclPolicyJobAcl": {
             "properties": {
@@ -1486,6 +1514,48 @@
                 }
             }
         },
+        "nomad:index/getJwksKey:getJwksKey": {
+            "properties": {
+                "algorithm": {
+                    "type": "string",
+                    "description": "`(string)` - JWK field `alg`\n"
+                },
+                "exponent": {
+                    "type": "string",
+                    "description": "`(string)` - JWK field `e`\n"
+                },
+                "keyId": {
+                    "type": "string",
+                    "description": "`(string)` - JWK field `kid`\n"
+                },
+                "keyType": {
+                    "type": "string",
+                    "description": "`(string)` - JWK field `kty`\n"
+                },
+                "keyUse": {
+                    "type": "string",
+                    "description": "`(string)` - JWK field `use`\n"
+                },
+                "modulus": {
+                    "type": "string",
+                    "description": "`(string)` - JWK field `n`\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "algorithm",
+                "exponent",
+                "keyId",
+                "keyType",
+                "keyUse",
+                "modulus"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "nomad:index/getNamespaceCapability:getNamespaceCapability": {
             "properties": {
                 "disabledTaskDrivers": {
@@ -1858,7 +1928,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - ACL Auth Method SSO workflow type. Currently,\nthe only supported type is `OIDC`.\n"
+                    "description": "`(string: \u003crequired\u003e)` - ACL Auth Method SSO workflow type. Valid values,\nare `OIDC` and `JWT`.\n"
                 }
             },
             "required": [
@@ -1895,7 +1965,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - ACL Auth Method SSO workflow type. Currently,\nthe only supported type is `OIDC`.\n"
+                    "description": "`(string: \u003crequired\u003e)` - ACL Auth Method SSO workflow type. Valid values,\nare `OIDC` and `JWT`.\n"
                 }
             },
             "requiredInputs": [
@@ -1933,7 +2003,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - ACL Auth Method SSO workflow type. Currently,\nthe only supported type is `OIDC`.\n"
+                        "description": "`(string: \u003crequired\u003e)` - ACL Auth Method SSO workflow type. Valid values,\nare `OIDC` and `JWT`.\n"
                     }
                 },
                 "type": "object"
@@ -4954,6 +5024,38 @@
                 "required": [
                     "hcl",
                     "json",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
+        "nomad:index/getJwks:getJwks": {
+            "description": "Retrieve the cluster JWKS public keys.\n\nThe keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings\n(`pem_keys`), which may be more convenient for use.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = nomad.getJwks({});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_jwks()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetJwks.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetJwks(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getJwks();\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: nomad:getJwks\n      Arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "outputs": {
+                "description": "A collection of values returned by getJwks.\n",
+                "properties": {
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "keys": {
+                        "description": "`list of maps` a list of JWK keys in structured format: see [RFC7517](https://datatracker.ietf.org/doc/html/rfc7517) for the\nJWK field meanings.\n",
+                        "items": {
+                            "$ref": "#/types/nomad:index/getJwksKey:getJwksKey"
+                        },
+                        "type": "array"
+                    },
+                    "pemKeys": {
+                        "description": "`list of strings` a list JWK keys rendered as PEM-encoded X.509 keys\n",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "keys",
+                    "pemKeys",
                     "id"
                 ],
                 "type": "object"
