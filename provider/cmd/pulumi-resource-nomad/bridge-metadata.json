@@ -14,7 +14,13 @@
                                 "bound_audiences": {
                                     "maxItemsOne": false
                                 },
+                                "bound_issuer": {
+                                    "maxItemsOne": false
+                                },
                                 "discovery_ca_pem": {
+                                    "maxItemsOne": false
+                                },
+                                "jwt_validation_pub_keys": {
                                     "maxItemsOne": false
                                 },
                                 "oidc_scopes": {
@@ -452,6 +458,17 @@
             },
             "nomad_job_parser": {
                 "current": "nomad:index/getJobParser:getJobParser"
+            },
+            "nomad_jwks": {
+                "current": "nomad:index/getJwks:getJwks",
+                "fields": {
+                    "keys": {
+                        "maxItemsOne": false
+                    },
+                    "pem_keys": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "nomad_namespace": {
                 "current": "nomad:index/getNamespace:getNamespace",
