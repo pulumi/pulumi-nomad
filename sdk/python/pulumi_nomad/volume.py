@@ -126,6 +126,7 @@ class VolumeArgs:
 
     @property
     @pulumi.getter(name="accessMode")
+    @_utilities.deprecated("""use capability instead""")
     def access_mode(self) -> Optional[pulumi.Input[str]]:
         """
         `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
@@ -135,9 +136,6 @@ class VolumeArgs:
         - `multi-node-single-writer`
         - `multi-node-multi-writer`
         """
-        warnings.warn("""use capability instead""", DeprecationWarning)
-        pulumi.log.warn("""access_mode is deprecated: use capability instead""")
-
         return pulumi.get(self, "access_mode")
 
     @access_mode.setter
@@ -146,13 +144,11 @@ class VolumeArgs:
 
     @property
     @pulumi.getter(name="attachmentMode")
+    @_utilities.deprecated("""use capability instead""")
     def attachment_mode(self) -> Optional[pulumi.Input[str]]:
         """
         `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
         """
-        warnings.warn("""use capability instead""", DeprecationWarning)
-        pulumi.log.warn("""attachment_mode is deprecated: use capability instead""")
-
         return pulumi.get(self, "attachment_mode")
 
     @attachment_mode.setter
@@ -387,6 +383,7 @@ class _VolumeState:
 
     @property
     @pulumi.getter(name="accessMode")
+    @_utilities.deprecated("""use capability instead""")
     def access_mode(self) -> Optional[pulumi.Input[str]]:
         """
         `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
@@ -396,9 +393,6 @@ class _VolumeState:
         - `multi-node-single-writer`
         - `multi-node-multi-writer`
         """
-        warnings.warn("""use capability instead""", DeprecationWarning)
-        pulumi.log.warn("""access_mode is deprecated: use capability instead""")
-
         return pulumi.get(self, "access_mode")
 
     @access_mode.setter
@@ -407,13 +401,11 @@ class _VolumeState:
 
     @property
     @pulumi.getter(name="attachmentMode")
+    @_utilities.deprecated("""use capability instead""")
     def attachment_mode(self) -> Optional[pulumi.Input[str]]:
         """
         `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
         """
-        warnings.warn("""use capability instead""", DeprecationWarning)
-        pulumi.log.warn("""attachment_mode is deprecated: use capability instead""")
-
         return pulumi.get(self, "attachment_mode")
 
     @attachment_mode.setter
@@ -721,7 +713,7 @@ class Volume(pulumi.CustomResource):
                     ],
                 ),
             ),
-            opts=pulumi.ResourceOptions(depends_on=[ebs]))
+            opts = pulumi.ResourceOptions(depends_on=[ebs]))
         ```
 
         :param str resource_name: The name of the resource.
@@ -795,7 +787,7 @@ class Volume(pulumi.CustomResource):
                     ],
                 ),
             ),
-            opts=pulumi.ResourceOptions(depends_on=[ebs]))
+            opts = pulumi.ResourceOptions(depends_on=[ebs]))
         ```
 
         :param str resource_name: The name of the resource.
@@ -963,6 +955,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="accessMode")
+    @_utilities.deprecated("""use capability instead""")
     def access_mode(self) -> pulumi.Output[Optional[str]]:
         """
         `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
@@ -972,20 +965,15 @@ class Volume(pulumi.CustomResource):
         - `multi-node-single-writer`
         - `multi-node-multi-writer`
         """
-        warnings.warn("""use capability instead""", DeprecationWarning)
-        pulumi.log.warn("""access_mode is deprecated: use capability instead""")
-
         return pulumi.get(self, "access_mode")
 
     @property
     @pulumi.getter(name="attachmentMode")
+    @_utilities.deprecated("""use capability instead""")
     def attachment_mode(self) -> pulumi.Output[Optional[str]]:
         """
         `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
         """
-        warnings.warn("""use capability instead""", DeprecationWarning)
-        pulumi.log.warn("""attachment_mode is deprecated: use capability instead""")
-
         return pulumi.get(self, "attachment_mode")
 
     @property
