@@ -1194,14 +1194,12 @@ class JobHcl2Args:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""")
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
         `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
         HCL2 by default.
         """
-        warnings.warn("""Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""", DeprecationWarning)
-        pulumi.log.warn("""enabled is deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""")
-
         return pulumi.get(self, "enabled")
 
     @enabled.setter

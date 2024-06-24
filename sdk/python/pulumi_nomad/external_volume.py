@@ -645,7 +645,7 @@ class ExternalVolume(pulumi.CustomResource):
                     ],
                 ),
             ),
-            opts=pulumi.ResourceOptions(depends_on=[ebs]))
+            opts = pulumi.ResourceOptions(depends_on=[ebs]))
         ```
 
         :param str resource_name: The name of the resource.
@@ -714,7 +714,7 @@ class ExternalVolume(pulumi.CustomResource):
                     ],
                 ),
             ),
-            opts=pulumi.ResourceOptions(depends_on=[ebs]))
+            opts = pulumi.ResourceOptions(depends_on=[ebs]))
         ```
 
         :param str resource_name: The name of the resource.
