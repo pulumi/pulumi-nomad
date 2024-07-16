@@ -388,7 +388,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
-                    }
+                    },
+                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n"
                 }
             },
             "type": "object",
@@ -447,7 +448,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
-                    }
+                    },
+                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n"
                 }
             },
             "type": "object",
@@ -577,7 +579,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
-                    }
+                    },
+                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n"
                 }
             },
             "type": "object",
@@ -965,7 +968,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
-                    }
+                    },
+                    "description": "`(map[string]string)` - Define the attributes for the topology request.\n\nIn addition to the above arguments, the following attributes are exported and\ncan be referenced:\n"
                 }
             },
             "type": "object",
