@@ -16,9 +16,23 @@ public final class CsiVolumeRegistrationTopologyArgs extends com.pulumi.resource
 
     public static final CsiVolumeRegistrationTopologyArgs Empty = new CsiVolumeRegistrationTopologyArgs();
 
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     * 
+     */
     @Import(name="segments")
     private @Nullable Output<Map<String,String>> segments;
 
+    /**
+     * @return `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     * 
+     */
     public Optional<Output<Map<String,String>>> segments() {
         return Optional.ofNullable(this.segments);
     }
@@ -47,11 +61,29 @@ public final class CsiVolumeRegistrationTopologyArgs extends com.pulumi.resource
             $ = new CsiVolumeRegistrationTopologyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param segments `(map[string]string)` - Define the attributes for the topology request.
+         * 
+         * In addition to the above arguments, the following attributes are exported and
+         * can be referenced:
+         * 
+         * @return builder
+         * 
+         */
         public Builder segments(@Nullable Output<Map<String,String>> segments) {
             $.segments = segments;
             return this;
         }
 
+        /**
+         * @param segments `(map[string]string)` - Define the attributes for the topology request.
+         * 
+         * In addition to the above arguments, the following attributes are exported and
+         * can be referenced:
+         * 
+         * @return builder
+         * 
+         */
         public Builder segments(Map<String,String> segments) {
             return segments(Output.of(segments));
         }

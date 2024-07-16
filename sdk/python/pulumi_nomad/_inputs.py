@@ -698,12 +698,24 @@ class CsiVolumeRegistrationMountOptionsArgs:
 class CsiVolumeRegistrationTopologyArgs:
     def __init__(__self__, *,
                  segments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
         return pulumi.get(self, "segments")
 
     @segments.setter
@@ -782,12 +794,24 @@ class CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs:
 class CsiVolumeTopologyArgs:
     def __init__(__self__, *,
                  segments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
         return pulumi.get(self, "segments")
 
     @segments.setter
@@ -1016,12 +1040,24 @@ class ExternalVolumeMountOptionsArgs:
 class ExternalVolumeTopologyArgs:
     def __init__(__self__, *,
                  segments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
         return pulumi.get(self, "segments")
 
     @segments.setter
@@ -1799,12 +1835,24 @@ class VolumeMountOptionsArgs:
 class VolumeTopologyArgs:
     def __init__(__self__, *,
                  segments: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
         return pulumi.get(self, "segments")
 
     @segments.setter

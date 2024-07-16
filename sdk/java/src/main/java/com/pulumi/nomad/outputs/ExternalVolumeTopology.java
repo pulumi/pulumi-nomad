@@ -11,9 +11,23 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ExternalVolumeTopology {
+    /**
+     * @return `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     * 
+     */
     private @Nullable Map<String,String> segments;
 
     private ExternalVolumeTopology() {}
+    /**
+     * @return `(map[string]string)` - Define the attributes for the topology request.
+     * 
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     * 
+     */
     public Map<String,String> segments() {
         return this.segments == null ? Map.of() : this.segments;
     }

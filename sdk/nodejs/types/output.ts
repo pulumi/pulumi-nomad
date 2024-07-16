@@ -193,6 +193,12 @@ export interface CsiVolumeRegistrationMountOptions {
 }
 
 export interface CsiVolumeRegistrationTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
     segments: {[key: string]: string};
 }
 
@@ -218,6 +224,12 @@ export interface CsiVolumeRegistrationTopologyRequestRequiredTopology {
 }
 
 export interface CsiVolumeTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
     segments: {[key: string]: string};
 }
 
@@ -290,6 +302,12 @@ export interface ExternalVolumeMountOptions {
 }
 
 export interface ExternalVolumeTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
     segments: {[key: string]: string};
 }
 
@@ -860,6 +878,12 @@ export interface VolumeMountOptions {
 }
 
 export interface VolumeTopology {
+    /**
+     * `(map[string]string)` - Define the attributes for the topology request.
+     *
+     * In addition to the above arguments, the following attributes are exported and
+     * can be referenced:
+     */
     segments: {[key: string]: string};
 }
 
