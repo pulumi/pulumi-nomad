@@ -732,12 +732,24 @@ class CsiVolumeRegistrationMountOptions(dict):
 class CsiVolumeRegistrationTopology(dict):
     def __init__(__self__, *,
                  segments: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[Mapping[str, str]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
         return pulumi.get(self, "segments")
 
 
@@ -800,12 +812,24 @@ class CsiVolumeRegistrationTopologyRequestRequiredTopology(dict):
 class CsiVolumeTopology(dict):
     def __init__(__self__, *,
                  segments: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[Mapping[str, str]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
         return pulumi.get(self, "segments")
 
 
@@ -1028,12 +1052,24 @@ class ExternalVolumeMountOptions(dict):
 class ExternalVolumeTopology(dict):
     def __init__(__self__, *,
                  segments: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[Mapping[str, str]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
         return pulumi.get(self, "segments")
 
 
@@ -1785,12 +1821,24 @@ class VolumeMountOptions(dict):
 class VolumeTopology(dict):
     def __init__(__self__, *,
                  segments: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] segments: `(map[string]string)` - Define the attributes for the topology request.
+               
+               In addition to the above arguments, the following attributes are exported and
+               can be referenced:
+        """
         if segments is not None:
             pulumi.set(__self__, "segments", segments)
 
     @property
     @pulumi.getter
     def segments(self) -> Optional[Mapping[str, str]]:
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
         return pulumi.get(self, "segments")
 
 
