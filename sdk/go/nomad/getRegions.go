@@ -37,7 +37,7 @@ import (
 //			}
 //			jobs := notImplemented("The template_file data resource is not yet supported.")
 //			var app []*nomad.Job
-//			for index := 0; index < len(myRegions.Regions); index++ {
+//			for index := 0; index < int(len(myRegions.Regions)); index++ {
 //				key0 := index
 //				val0 := index
 //				__res, err := nomad.NewJob(ctx, fmt.Sprintf("app-%v", key0), &nomad.JobArgs{

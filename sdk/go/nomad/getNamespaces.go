@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			var namespace []*nomad.AclPolicy
-//			for index := 0; index < len(namespaces.Namespaces); index++ {
+//			for index := 0; index < int(len(namespaces.Namespaces)); index++ {
 //				key0 := index
 //				val0 := index
 //				__res, err := nomad.NewAclPolicy(ctx, fmt.Sprintf("namespace-%v", key0), &nomad.AclPolicyArgs{
