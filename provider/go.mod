@@ -4,13 +4,13 @@ go 1.22
 
 toolchain go1.22.4
 
-// Tracking from upstream:
-//
-// Pin Nomad to a commit where jobspec and jobspec2 are lincesed under MPL-2.0.
-// Remove when updating to Nomad 1.7.3+
-replace github.com/hashicorp/nomad => github.com/hashicorp/nomad v0.0.0-20240129172537-56ea3f7cdafd
-
 replace (
+
+	// Copied from upstream:
+	//
+	//	Fix error tidying due to Nomad downstream dependencies and the recent
+	//	migration of the metrics library.
+	github.com/armon/go-metrics => github.com/hashicorp/go-metrics v0.5.3
 	// Set to the version used by Nomad
 	// https://github.com/hashicorp/nomad/blob/v1.6.0-rc.1/go.mod#L74
 	github.com/hashicorp/hcl/v2 => github.com/hashicorp/hcl/v2 v2.9.2-0.20220525143345-ab3cae0737bc
@@ -116,7 +116,7 @@ require (
 	github.com/google/wire v0.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.2 // indirect
 	github.com/googleapis/gax-go/v2 v2.12.2 // indirect
-	github.com/gorilla/mux v1.8.0 // indirect
+	github.com/gorilla/mux v1.8.1 // indirect
 	github.com/gorilla/websocket v1.5.1 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
 	github.com/hashicorp/cronexpr v1.1.2 // indirect
@@ -161,7 +161,7 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
-	github.com/klauspost/compress v1.15.11 // indirect
+	github.com/klauspost/compress v1.16.0 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
