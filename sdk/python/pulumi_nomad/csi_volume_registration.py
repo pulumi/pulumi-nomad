@@ -623,38 +623,38 @@ class CsiVolumeRegistration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationCapabilityArgs']]]]] = None,
+                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeRegistrationCapabilityArgs', 'CsiVolumeRegistrationCapabilityArgsDict']]]]] = None,
                  capacity_max: Optional[pulumi.Input[str]] = None,
                  capacity_min: Optional[pulumi.Input[str]] = None,
                  context: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
-                 mount_options: Optional[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationMountOptionsArgs']]] = None,
+                 mount_options: Optional[pulumi.Input[Union['CsiVolumeRegistrationMountOptionsArgs', 'CsiVolumeRegistrationMountOptionsArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  plugin_id: Optional[pulumi.Input[str]] = None,
                  secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 topology_request: Optional[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationTopologyRequestArgs']]] = None,
+                 topology_request: Optional[pulumi.Input[Union['CsiVolumeRegistrationTopologyRequestArgs', 'CsiVolumeRegistrationTopologyRequestArgsDict']]] = None,
                  volume_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a CsiVolumeRegistration resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationCapabilityArgs']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeRegistrationCapabilityArgs', 'CsiVolumeRegistrationCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         :param pulumi.Input[bool] deregister_on_destroy: `(boolean: true)` - If true, the volume will be deregistered on destroy.
         :param pulumi.Input[str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
-        :param pulumi.Input[pulumi.InputType['CsiVolumeRegistrationMountOptionsArgs']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[Union['CsiVolumeRegistrationMountOptionsArgs', 'CsiVolumeRegistrationMountOptionsArgsDict']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         :param pulumi.Input[str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-        :param pulumi.Input[pulumi.InputType['CsiVolumeRegistrationTopologyRequestArgs']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[Union['CsiVolumeRegistrationTopologyRequestArgs', 'CsiVolumeRegistrationTopologyRequestArgsDict']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """
         ...
@@ -680,19 +680,19 @@ class CsiVolumeRegistration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationCapabilityArgs']]]]] = None,
+                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeRegistrationCapabilityArgs', 'CsiVolumeRegistrationCapabilityArgsDict']]]]] = None,
                  capacity_max: Optional[pulumi.Input[str]] = None,
                  capacity_min: Optional[pulumi.Input[str]] = None,
                  context: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
                  external_id: Optional[pulumi.Input[str]] = None,
-                 mount_options: Optional[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationMountOptionsArgs']]] = None,
+                 mount_options: Optional[pulumi.Input[Union['CsiVolumeRegistrationMountOptionsArgs', 'CsiVolumeRegistrationMountOptionsArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  plugin_id: Optional[pulumi.Input[str]] = None,
                  secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 topology_request: Optional[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationTopologyRequestArgs']]] = None,
+                 topology_request: Optional[pulumi.Input[Union['CsiVolumeRegistrationTopologyRequestArgs', 'CsiVolumeRegistrationTopologyRequestArgsDict']]] = None,
                  volume_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -747,7 +747,7 @@ class CsiVolumeRegistration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationCapabilityArgs']]]]] = None,
+            capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeRegistrationCapabilityArgs', 'CsiVolumeRegistrationCapabilityArgsDict']]]]] = None,
             capacity: Optional[pulumi.Input[int]] = None,
             capacity_max: Optional[pulumi.Input[str]] = None,
             capacity_max_bytes: Optional[pulumi.Input[int]] = None,
@@ -759,7 +759,7 @@ class CsiVolumeRegistration(pulumi.CustomResource):
             controllers_healthy: Optional[pulumi.Input[int]] = None,
             deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
             external_id: Optional[pulumi.Input[str]] = None,
-            mount_options: Optional[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationMountOptionsArgs']]] = None,
+            mount_options: Optional[pulumi.Input[Union['CsiVolumeRegistrationMountOptionsArgs', 'CsiVolumeRegistrationMountOptionsArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             nodes_expected: Optional[pulumi.Input[int]] = None,
@@ -770,8 +770,8 @@ class CsiVolumeRegistration(pulumi.CustomResource):
             plugin_provider_version: Optional[pulumi.Input[str]] = None,
             schedulable: Optional[pulumi.Input[bool]] = None,
             secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-            topologies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationTopologyArgs']]]]] = None,
-            topology_request: Optional[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationTopologyRequestArgs']]] = None,
+            topologies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeRegistrationTopologyArgs', 'CsiVolumeRegistrationTopologyArgsDict']]]]] = None,
+            topology_request: Optional[pulumi.Input[Union['CsiVolumeRegistrationTopologyRequestArgs', 'CsiVolumeRegistrationTopologyRequestArgsDict']]] = None,
             volume_id: Optional[pulumi.Input[str]] = None) -> 'CsiVolumeRegistration':
         """
         Get an existing CsiVolumeRegistration resource's state with the given name, id, and optional extra
@@ -780,19 +780,19 @@ class CsiVolumeRegistration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeRegistrationCapabilityArgs']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeRegistrationCapabilityArgs', 'CsiVolumeRegistrationCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         :param pulumi.Input[bool] deregister_on_destroy: `(boolean: true)` - If true, the volume will be deregistered on destroy.
         :param pulumi.Input[str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
-        :param pulumi.Input[pulumi.InputType['CsiVolumeRegistrationMountOptionsArgs']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[Union['CsiVolumeRegistrationMountOptionsArgs', 'CsiVolumeRegistrationMountOptionsArgsDict']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         :param pulumi.Input[str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-        :param pulumi.Input[pulumi.InputType['CsiVolumeRegistrationTopologyRequestArgs']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[Union['CsiVolumeRegistrationTopologyRequestArgs', 'CsiVolumeRegistrationTopologyRequestArgsDict']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

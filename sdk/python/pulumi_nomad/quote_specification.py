@@ -134,7 +134,7 @@ class QuoteSpecification(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QuoteSpecificationLimitArgs']]]]] = None,
+                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -151,19 +151,19 @@ class QuoteSpecification(pulumi.CustomResource):
         prod_api = nomad.QuoteSpecification("prod_api",
             name="prod-api",
             description="Production instances of backend API servers",
-            limits=[nomad.QuoteSpecificationLimitArgs(
-                region="global",
-                region_limit=nomad.QuoteSpecificationLimitRegionLimitArgs(
-                    cpu=2400,
-                    memory_mb=1200,
-                ),
-            )])
+            limits=[{
+                "region": "global",
+                "region_limit": {
+                    "cpu": 2400,
+                    "memory_mb": 1200,
+                },
+            }])
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: `(string: "")` - A description of the quota specification.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QuoteSpecificationLimitArgs']]]] limits: `(block: <required>)` - A block of quota limits to enforce. Can
+        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]] limits: `(block: <required>)` - A block of quota limits to enforce. Can
                be repeated. See below for the structure of this block.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the quota specification.
         """
@@ -187,13 +187,13 @@ class QuoteSpecification(pulumi.CustomResource):
         prod_api = nomad.QuoteSpecification("prod_api",
             name="prod-api",
             description="Production instances of backend API servers",
-            limits=[nomad.QuoteSpecificationLimitArgs(
-                region="global",
-                region_limit=nomad.QuoteSpecificationLimitRegionLimitArgs(
-                    cpu=2400,
-                    memory_mb=1200,
-                ),
-            )])
+            limits=[{
+                "region": "global",
+                "region_limit": {
+                    "cpu": 2400,
+                    "memory_mb": 1200,
+                },
+            }])
         ```
 
         :param str resource_name: The name of the resource.
@@ -212,7 +212,7 @@ class QuoteSpecification(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QuoteSpecificationLimitArgs']]]]] = None,
+                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -239,7 +239,7 @@ class QuoteSpecification(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
-            limits: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QuoteSpecificationLimitArgs']]]]] = None,
+            limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None) -> 'QuoteSpecification':
         """
         Get an existing QuoteSpecification resource's state with the given name, id, and optional extra
@@ -249,7 +249,7 @@ class QuoteSpecification(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: `(string: "")` - A description of the quota specification.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['QuoteSpecificationLimitArgs']]]] limits: `(block: <required>)` - A block of quota limits to enforce. Can
+        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]] limits: `(block: <required>)` - A block of quota limits to enforce. Can
                be repeated. See below for the structure of this block.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the quota specification.
         """

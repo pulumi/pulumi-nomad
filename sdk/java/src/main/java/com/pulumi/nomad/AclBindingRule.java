@@ -101,7 +101,7 @@ public class AclBindingRule extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AclBindingRule(String name) {
+    public AclBindingRule(java.lang.String name) {
         this(name, AclBindingRuleArgs.Empty);
     }
     /**
@@ -109,7 +109,7 @@ public class AclBindingRule extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AclBindingRule(String name, AclBindingRuleArgs args) {
+    public AclBindingRule(java.lang.String name, AclBindingRuleArgs args) {
         this(name, args, null);
     }
     /**
@@ -118,15 +118,22 @@ public class AclBindingRule extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AclBindingRule(String name, AclBindingRuleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/aclBindingRule:AclBindingRule", name, args == null ? AclBindingRuleArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public AclBindingRule(java.lang.String name, AclBindingRuleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/aclBindingRule:AclBindingRule", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AclBindingRule(String name, Output<String> id, @Nullable AclBindingRuleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/aclBindingRule:AclBindingRule", name, state, makeResourceOptions(options, id));
+    private AclBindingRule(java.lang.String name, Output<java.lang.String> id, @Nullable AclBindingRuleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/aclBindingRule:AclBindingRule", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static AclBindingRuleArgs makeArgs(AclBindingRuleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AclBindingRuleArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -142,7 +149,7 @@ public class AclBindingRule extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AclBindingRule get(String name, Output<String> id, @Nullable AclBindingRuleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AclBindingRule get(java.lang.String name, Output<java.lang.String> id, @Nullable AclBindingRuleState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AclBindingRule(name, id, state, options);
     }
 }

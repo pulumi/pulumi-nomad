@@ -230,11 +230,11 @@ class Namespace(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']]] = None,
+                 capabilities: Optional[pulumi.Input[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 node_pool_config: Optional[pulumi.Input[pulumi.InputType['NamespaceNodePoolConfigArgs']]] = None,
+                 node_pool_config: Optional[pulumi.Input[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict']]] = None,
                  quota: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -272,13 +272,13 @@ class Namespace(pulumi.CustomResource):
         web_team = nomad.QuoteSpecification("web_team",
             name="web-team",
             description="web team quota",
-            limits=[nomad.QuoteSpecificationLimitArgs(
-                region="global",
-                region_limit=nomad.QuoteSpecificationLimitRegionLimitArgs(
-                    cpu=1000,
-                    memory_mb=256,
-                ),
-            )])
+            limits=[{
+                "region": "global",
+                "region_limit": {
+                    "cpu": 1000,
+                    "memory_mb": 256,
+                },
+            }])
         web = nomad.Namespace("web",
             name="web",
             description="Web team production environment.",
@@ -287,12 +287,12 @@ class Namespace(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't
+        :param pulumi.Input[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't
                be repeated. See below for the structure of this block.
         :param pulumi.Input[str] description: `(string: "")` - A description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the namespace.
-        :param pulumi.Input[pulumi.InputType['NamespaceNodePoolConfigArgs']] node_pool_config: `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+        :param pulumi.Input[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict']] node_pool_config: `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
         ...
@@ -336,13 +336,13 @@ class Namespace(pulumi.CustomResource):
         web_team = nomad.QuoteSpecification("web_team",
             name="web-team",
             description="web team quota",
-            limits=[nomad.QuoteSpecificationLimitArgs(
-                region="global",
-                region_limit=nomad.QuoteSpecificationLimitRegionLimitArgs(
-                    cpu=1000,
-                    memory_mb=256,
-                ),
-            )])
+            limits=[{
+                "region": "global",
+                "region_limit": {
+                    "cpu": 1000,
+                    "memory_mb": 256,
+                },
+            }])
         web = nomad.Namespace("web",
             name="web",
             description="Web team production environment.",
@@ -364,11 +364,11 @@ class Namespace(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']]] = None,
+                 capabilities: Optional[pulumi.Input[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 node_pool_config: Optional[pulumi.Input[pulumi.InputType['NamespaceNodePoolConfigArgs']]] = None,
+                 node_pool_config: Optional[pulumi.Input[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict']]] = None,
                  quota: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -395,11 +395,11 @@ class Namespace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            capabilities: Optional[pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']]] = None,
+            capabilities: Optional[pulumi.Input[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']]] = None,
             description: Optional[pulumi.Input[str]] = None,
             meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            node_pool_config: Optional[pulumi.Input[pulumi.InputType['NamespaceNodePoolConfigArgs']]] = None,
+            node_pool_config: Optional[pulumi.Input[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict']]] = None,
             quota: Optional[pulumi.Input[str]] = None) -> 'Namespace':
         """
         Get an existing Namespace resource's state with the given name, id, and optional extra
@@ -408,12 +408,12 @@ class Namespace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['NamespaceCapabilitiesArgs']] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't
+        :param pulumi.Input[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't
                be repeated. See below for the structure of this block.
         :param pulumi.Input[str] description: `(string: "")` - A description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the namespace.
-        :param pulumi.Input[pulumi.InputType['NamespaceNodePoolConfigArgs']] node_pool_config: `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
+        :param pulumi.Input[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict']] node_pool_config: `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
         :param pulumi.Input[str] quota: `(string: "")` - A resource quota to attach to the namespace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
