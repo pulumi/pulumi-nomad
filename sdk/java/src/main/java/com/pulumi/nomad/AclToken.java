@@ -348,7 +348,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AclToken(String name) {
+    public AclToken(java.lang.String name) {
         this(name, AclTokenArgs.Empty);
     }
     /**
@@ -356,7 +356,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AclToken(String name, AclTokenArgs args) {
+    public AclToken(java.lang.String name, AclTokenArgs args) {
         this(name, args, null);
     }
     /**
@@ -365,15 +365,22 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AclToken(String name, AclTokenArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/aclToken:AclToken", name, args == null ? AclTokenArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public AclToken(java.lang.String name, AclTokenArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/aclToken:AclToken", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AclToken(String name, Output<String> id, @Nullable AclTokenState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/aclToken:AclToken", name, state, makeResourceOptions(options, id));
+    private AclToken(java.lang.String name, Output<java.lang.String> id, @Nullable AclTokenState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/aclToken:AclToken", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static AclTokenArgs makeArgs(AclTokenArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AclTokenArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -392,7 +399,7 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AclToken get(String name, Output<String> id, @Nullable AclTokenState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AclToken get(java.lang.String name, Output<java.lang.String> id, @Nullable AclTokenState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AclToken(name, id, state, options);
     }
 }

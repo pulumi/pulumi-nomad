@@ -38,9 +38,9 @@ import (
 //				key0 := index
 //				val0 := index
 //				__res, err := nomad.NewAclPolicy(ctx, fmt.Sprintf("namespace-%v", key0), &nomad.AclPolicyArgs{
-//					Name:        pulumi.String(fmt.Sprintf("namespace-%v", namespaces[val0])),
-//					Description: pulumi.String(fmt.Sprintf("Write to the namespace %v", namespaces[val0])),
-//					RulesHcl:    pulumi.String(fmt.Sprintf("namespace \"%v\" {\n  policy = \"write\"\n}\n", namespaces[val0])),
+//					Name:        pulumi.Sprintf("namespace-%v", namespaces[val0]),
+//					Description: pulumi.Sprintf("Write to the namespace %v", namespaces[val0]),
+//					RulesHcl:    pulumi.Sprintf("namespace \"%v\" {\n  policy = \"write\"\n}\n", namespaces[val0]),
 //				})
 //				if err != nil {
 //					return err

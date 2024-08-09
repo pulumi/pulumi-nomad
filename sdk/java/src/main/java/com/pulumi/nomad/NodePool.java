@@ -127,7 +127,7 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public NodePool(String name) {
+    public NodePool(java.lang.String name) {
         this(name, NodePoolArgs.Empty);
     }
     /**
@@ -135,7 +135,7 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public NodePool(String name, @Nullable NodePoolArgs args) {
+    public NodePool(java.lang.String name, @Nullable NodePoolArgs args) {
         this(name, args, null);
     }
     /**
@@ -144,15 +144,22 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public NodePool(String name, @Nullable NodePoolArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/nodePool:NodePool", name, args == null ? NodePoolArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public NodePool(java.lang.String name, @Nullable NodePoolArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/nodePool:NodePool", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private NodePool(String name, Output<String> id, @Nullable NodePoolState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/nodePool:NodePool", name, state, makeResourceOptions(options, id));
+    private NodePool(java.lang.String name, Output<java.lang.String> id, @Nullable NodePoolState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/nodePool:NodePool", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static NodePoolArgs makeArgs(@Nullable NodePoolArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? NodePoolArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -168,7 +175,7 @@ public class NodePool extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static NodePool get(String name, Output<String> id, @Nullable NodePoolState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static NodePool get(java.lang.String name, Output<java.lang.String> id, @Nullable NodePoolState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new NodePool(name, id, state, options);
     }
 }

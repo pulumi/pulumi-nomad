@@ -118,7 +118,7 @@ public class QuoteSpecification extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public QuoteSpecification(String name) {
+    public QuoteSpecification(java.lang.String name) {
         this(name, QuoteSpecificationArgs.Empty);
     }
     /**
@@ -126,7 +126,7 @@ public class QuoteSpecification extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public QuoteSpecification(String name, QuoteSpecificationArgs args) {
+    public QuoteSpecification(java.lang.String name, QuoteSpecificationArgs args) {
         this(name, args, null);
     }
     /**
@@ -135,15 +135,22 @@ public class QuoteSpecification extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public QuoteSpecification(String name, QuoteSpecificationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/quoteSpecification:QuoteSpecification", name, args == null ? QuoteSpecificationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public QuoteSpecification(java.lang.String name, QuoteSpecificationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/quoteSpecification:QuoteSpecification", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private QuoteSpecification(String name, Output<String> id, @Nullable QuoteSpecificationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/quoteSpecification:QuoteSpecification", name, state, makeResourceOptions(options, id));
+    private QuoteSpecification(java.lang.String name, Output<java.lang.String> id, @Nullable QuoteSpecificationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/quoteSpecification:QuoteSpecification", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static QuoteSpecificationArgs makeArgs(QuoteSpecificationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? QuoteSpecificationArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -159,7 +166,7 @@ public class QuoteSpecification extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static QuoteSpecification get(String name, Output<String> id, @Nullable QuoteSpecificationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static QuoteSpecification get(java.lang.String name, Output<java.lang.String> id, @Nullable QuoteSpecificationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new QuoteSpecification(name, id, state, options);
     }
 }

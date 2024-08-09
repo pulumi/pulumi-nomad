@@ -286,7 +286,7 @@ class AclAuthMethod(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 config: Optional[pulumi.Input[pulumi.InputType['AclAuthMethodConfigArgs']]] = None,
+                 config: Optional[pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
                  default: Optional[pulumi.Input[bool]] = None,
                  max_token_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -312,24 +312,24 @@ class AclAuthMethod(pulumi.CustomResource):
             max_token_ttl="10m0s",
             token_name_format="${auth_method_type}-${value.user}",
             default=True,
-            config=nomad.AclAuthMethodConfigArgs(
-                oidc_discovery_url="https://uk.auth0.com/",
-                oidc_client_id="someclientid",
-                oidc_client_secret="someclientsecret-t",
-                bound_audiences=["someclientid"],
-                allowed_redirect_uris=[
+            config={
+                "oidc_discovery_url": "https://uk.auth0.com/",
+                "oidc_client_id": "someclientid",
+                "oidc_client_secret": "someclientsecret-t",
+                "bound_audiences": ["someclientid"],
+                "allowed_redirect_uris": [
                     "http://localhost:4649/oidc/callback",
                     "http://localhost:4646/ui/settings/tokens",
                 ],
-                list_claim_mappings={
-                    "http://nomad.internal/roles": "roles",
+                "list_claim_mappings": {
+                    "http___nomad_internal_roles": "roles",
                 },
-            ))
+            })
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['AclAuthMethodConfigArgs']] config: `(block: <required>)` - Configuration specific to the auth method
+        :param pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']] config: `(block: <required>)` - Configuration specific to the auth method
                provider.
         :param pulumi.Input[bool] default: `(bool: false)` - Defines whether this ACL Auth Method is to be set
                as default.
@@ -369,19 +369,19 @@ class AclAuthMethod(pulumi.CustomResource):
             max_token_ttl="10m0s",
             token_name_format="${auth_method_type}-${value.user}",
             default=True,
-            config=nomad.AclAuthMethodConfigArgs(
-                oidc_discovery_url="https://uk.auth0.com/",
-                oidc_client_id="someclientid",
-                oidc_client_secret="someclientsecret-t",
-                bound_audiences=["someclientid"],
-                allowed_redirect_uris=[
+            config={
+                "oidc_discovery_url": "https://uk.auth0.com/",
+                "oidc_client_id": "someclientid",
+                "oidc_client_secret": "someclientsecret-t",
+                "bound_audiences": ["someclientid"],
+                "allowed_redirect_uris": [
                     "http://localhost:4649/oidc/callback",
                     "http://localhost:4646/ui/settings/tokens",
                 ],
-                list_claim_mappings={
-                    "http://nomad.internal/roles": "roles",
+                "list_claim_mappings": {
+                    "http___nomad_internal_roles": "roles",
                 },
-            ))
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -399,7 +399,7 @@ class AclAuthMethod(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 config: Optional[pulumi.Input[pulumi.InputType['AclAuthMethodConfigArgs']]] = None,
+                 config: Optional[pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
                  default: Optional[pulumi.Input[bool]] = None,
                  max_token_ttl: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -440,7 +440,7 @@ class AclAuthMethod(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            config: Optional[pulumi.Input[pulumi.InputType['AclAuthMethodConfigArgs']]] = None,
+            config: Optional[pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
             default: Optional[pulumi.Input[bool]] = None,
             max_token_ttl: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -454,7 +454,7 @@ class AclAuthMethod(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['AclAuthMethodConfigArgs']] config: `(block: <required>)` - Configuration specific to the auth method
+        :param pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']] config: `(block: <required>)` - Configuration specific to the auth method
                provider.
         :param pulumi.Input[bool] default: `(bool: false)` - Defines whether this ACL Auth Method is to be set
                as default.

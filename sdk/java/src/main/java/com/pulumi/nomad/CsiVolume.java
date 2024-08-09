@@ -297,7 +297,7 @@ public class CsiVolume extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public CsiVolume(String name) {
+    public CsiVolume(java.lang.String name) {
         this(name, CsiVolumeArgs.Empty);
     }
     /**
@@ -305,7 +305,7 @@ public class CsiVolume extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public CsiVolume(String name, CsiVolumeArgs args) {
+    public CsiVolume(java.lang.String name, CsiVolumeArgs args) {
         this(name, args, null);
     }
     /**
@@ -314,15 +314,22 @@ public class CsiVolume extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public CsiVolume(String name, CsiVolumeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/csiVolume:CsiVolume", name, args == null ? CsiVolumeArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public CsiVolume(java.lang.String name, CsiVolumeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/csiVolume:CsiVolume", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private CsiVolume(String name, Output<String> id, @Nullable CsiVolumeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/csiVolume:CsiVolume", name, state, makeResourceOptions(options, id));
+    private CsiVolume(java.lang.String name, Output<java.lang.String> id, @Nullable CsiVolumeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/csiVolume:CsiVolume", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static CsiVolumeArgs makeArgs(CsiVolumeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? CsiVolumeArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -341,7 +348,7 @@ public class CsiVolume extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static CsiVolume get(String name, Output<String> id, @Nullable CsiVolumeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static CsiVolume get(java.lang.String name, Output<java.lang.String> id, @Nullable CsiVolumeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new CsiVolume(name, id, state, options);
     }
 }

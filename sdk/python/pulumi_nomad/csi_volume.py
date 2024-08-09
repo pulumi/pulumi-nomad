@@ -607,36 +607,36 @@ class CsiVolume(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeCapabilityArgs']]]]] = None,
+                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeCapabilityArgs', 'CsiVolumeCapabilityArgsDict']]]]] = None,
                  capacity_max: Optional[pulumi.Input[str]] = None,
                  capacity_min: Optional[pulumi.Input[str]] = None,
                  clone_id: Optional[pulumi.Input[str]] = None,
-                 mount_options: Optional[pulumi.Input[pulumi.InputType['CsiVolumeMountOptionsArgs']]] = None,
+                 mount_options: Optional[pulumi.Input[Union['CsiVolumeMountOptionsArgs', 'CsiVolumeMountOptionsArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  plugin_id: Optional[pulumi.Input[str]] = None,
                  secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
-                 topology_request: Optional[pulumi.Input[pulumi.InputType['CsiVolumeTopologyRequestArgs']]] = None,
+                 topology_request: Optional[pulumi.Input[Union['CsiVolumeTopologyRequestArgs', 'CsiVolumeTopologyRequestArgsDict']]] = None,
                  volume_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a CsiVolume resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeCapabilityArgs']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeCapabilityArgs', 'CsiVolumeCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] clone_id: `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
-        :param pulumi.Input[pulumi.InputType['CsiVolumeMountOptionsArgs']] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[Union['CsiVolumeMountOptionsArgs', 'CsiVolumeMountOptionsArgsDict']] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         :param pulumi.Input[str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         :param pulumi.Input[str] snapshot_id: `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
-        :param pulumi.Input[pulumi.InputType['CsiVolumeTopologyRequestArgs']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[Union['CsiVolumeTopologyRequestArgs', 'CsiVolumeTopologyRequestArgsDict']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """
         ...
@@ -662,18 +662,18 @@ class CsiVolume(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeCapabilityArgs']]]]] = None,
+                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeCapabilityArgs', 'CsiVolumeCapabilityArgsDict']]]]] = None,
                  capacity_max: Optional[pulumi.Input[str]] = None,
                  capacity_min: Optional[pulumi.Input[str]] = None,
                  clone_id: Optional[pulumi.Input[str]] = None,
-                 mount_options: Optional[pulumi.Input[pulumi.InputType['CsiVolumeMountOptionsArgs']]] = None,
+                 mount_options: Optional[pulumi.Input[Union['CsiVolumeMountOptionsArgs', 'CsiVolumeMountOptionsArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  plugin_id: Optional[pulumi.Input[str]] = None,
                  secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
-                 topology_request: Optional[pulumi.Input[pulumi.InputType['CsiVolumeTopologyRequestArgs']]] = None,
+                 topology_request: Optional[pulumi.Input[Union['CsiVolumeTopologyRequestArgs', 'CsiVolumeTopologyRequestArgsDict']]] = None,
                  volume_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -728,7 +728,7 @@ class CsiVolume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeCapabilityArgs']]]]] = None,
+            capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeCapabilityArgs', 'CsiVolumeCapabilityArgsDict']]]]] = None,
             capacity: Optional[pulumi.Input[int]] = None,
             capacity_max: Optional[pulumi.Input[str]] = None,
             capacity_max_bytes: Optional[pulumi.Input[int]] = None,
@@ -739,7 +739,7 @@ class CsiVolume(pulumi.CustomResource):
             controllers_expected: Optional[pulumi.Input[int]] = None,
             controllers_healthy: Optional[pulumi.Input[int]] = None,
             external_id: Optional[pulumi.Input[str]] = None,
-            mount_options: Optional[pulumi.Input[pulumi.InputType['CsiVolumeMountOptionsArgs']]] = None,
+            mount_options: Optional[pulumi.Input[Union['CsiVolumeMountOptionsArgs', 'CsiVolumeMountOptionsArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             nodes_expected: Optional[pulumi.Input[int]] = None,
@@ -751,8 +751,8 @@ class CsiVolume(pulumi.CustomResource):
             schedulable: Optional[pulumi.Input[bool]] = None,
             secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             snapshot_id: Optional[pulumi.Input[str]] = None,
-            topologies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeTopologyArgs']]]]] = None,
-            topology_request: Optional[pulumi.Input[pulumi.InputType['CsiVolumeTopologyRequestArgs']]] = None,
+            topologies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeTopologyArgs', 'CsiVolumeTopologyArgsDict']]]]] = None,
+            topology_request: Optional[pulumi.Input[Union['CsiVolumeTopologyRequestArgs', 'CsiVolumeTopologyRequestArgsDict']]] = None,
             volume_id: Optional[pulumi.Input[str]] = None) -> 'CsiVolume':
         """
         Get an existing CsiVolume resource's state with the given name, id, and optional extra
@@ -761,19 +761,19 @@ class CsiVolume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CsiVolumeCapabilityArgs']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeCapabilityArgs', 'CsiVolumeCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[str] clone_id: `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
         :param pulumi.Input[str] external_id: The ID of the physical volume from the storage provider.
-        :param pulumi.Input[pulumi.InputType['CsiVolumeMountOptionsArgs']] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[Union['CsiVolumeMountOptionsArgs', 'CsiVolumeMountOptionsArgsDict']] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namespace in which to register the volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] parameters: `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         :param pulumi.Input[str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] secrets: `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         :param pulumi.Input[str] snapshot_id: `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
-        :param pulumi.Input[pulumi.InputType['CsiVolumeTopologyRequestArgs']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[Union['CsiVolumeTopologyRequestArgs', 'CsiVolumeTopologyRequestArgsDict']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

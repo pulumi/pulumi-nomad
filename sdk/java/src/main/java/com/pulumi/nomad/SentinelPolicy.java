@@ -156,7 +156,7 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public SentinelPolicy(String name) {
+    public SentinelPolicy(java.lang.String name) {
         this(name, SentinelPolicyArgs.Empty);
     }
     /**
@@ -164,7 +164,7 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public SentinelPolicy(String name, SentinelPolicyArgs args) {
+    public SentinelPolicy(java.lang.String name, SentinelPolicyArgs args) {
         this(name, args, null);
     }
     /**
@@ -173,15 +173,22 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public SentinelPolicy(String name, SentinelPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/sentinelPolicy:SentinelPolicy", name, args == null ? SentinelPolicyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public SentinelPolicy(java.lang.String name, SentinelPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/sentinelPolicy:SentinelPolicy", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private SentinelPolicy(String name, Output<String> id, @Nullable SentinelPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/sentinelPolicy:SentinelPolicy", name, state, makeResourceOptions(options, id));
+    private SentinelPolicy(java.lang.String name, Output<java.lang.String> id, @Nullable SentinelPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/sentinelPolicy:SentinelPolicy", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static SentinelPolicyArgs makeArgs(SentinelPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SentinelPolicyArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -197,7 +204,7 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static SentinelPolicy get(String name, Output<String> id, @Nullable SentinelPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static SentinelPolicy get(java.lang.String name, Output<java.lang.String> id, @Nullable SentinelPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new SentinelPolicy(name, id, state, options);
     }
 }

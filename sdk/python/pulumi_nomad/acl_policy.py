@@ -166,7 +166,7 @@ class AclPolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 job_acl: Optional[pulumi.Input[pulumi.InputType['AclPolicyJobAclArgs']]] = None,
+                 job_acl: Optional[pulumi.Input[Union['AclPolicyJobAclArgs', 'AclPolicyJobAclArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rules_hcl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -176,7 +176,7 @@ class AclPolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: `(string: "")` - A description of the policy.
-        :param pulumi.Input[pulumi.InputType['AclPolicyJobAclArgs']] job_acl: `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+        :param pulumi.Input[Union['AclPolicyJobAclArgs', 'AclPolicyJobAclArgsDict']] job_acl: `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the policy.
         :param pulumi.Input[str] rules_hcl: `(string: <required>)` - The contents of the policy to register,
                as HCL or JSON.
@@ -206,7 +206,7 @@ class AclPolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 job_acl: Optional[pulumi.Input[pulumi.InputType['AclPolicyJobAclArgs']]] = None,
+                 job_acl: Optional[pulumi.Input[Union['AclPolicyJobAclArgs', 'AclPolicyJobAclArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rules_hcl: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -235,7 +235,7 @@ class AclPolicy(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
-            job_acl: Optional[pulumi.Input[pulumi.InputType['AclPolicyJobAclArgs']]] = None,
+            job_acl: Optional[pulumi.Input[Union['AclPolicyJobAclArgs', 'AclPolicyJobAclArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             rules_hcl: Optional[pulumi.Input[str]] = None) -> 'AclPolicy':
         """
@@ -246,7 +246,7 @@ class AclPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: `(string: "")` - A description of the policy.
-        :param pulumi.Input[pulumi.InputType['AclPolicyJobAclArgs']] job_acl: `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+        :param pulumi.Input[Union['AclPolicyJobAclArgs', 'AclPolicyJobAclArgsDict']] job_acl: `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the policy.
         :param pulumi.Input[str] rules_hcl: `(string: <required>)` - The contents of the policy to register,
                as HCL or JSON.
