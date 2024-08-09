@@ -169,7 +169,7 @@ class NodePool(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 scheduler_config: Optional[pulumi.Input[pulumi.InputType['NodePoolSchedulerConfigArgs']]] = None,
+                 scheduler_config: Optional[pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None,
                  __props__=None):
         """
         Provisions a node pool within a Nomad cluster.
@@ -197,7 +197,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string)` - Arbitrary KV metadata associated with the
                node pool.
         :param pulumi.Input[str] name: `(string)` - The name of the node pool.
-        :param pulumi.Input[pulumi.InputType['NodePoolSchedulerConfigArgs']] scheduler_config: `(block)` - Scheduler configuration for the node pool.
+        :param pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']] scheduler_config: `(block)` - Scheduler configuration for the node pool.
         """
         ...
     @overload
@@ -243,7 +243,7 @@ class NodePool(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 scheduler_config: Optional[pulumi.Input[pulumi.InputType['NodePoolSchedulerConfigArgs']]] = None,
+                 scheduler_config: Optional[pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -270,7 +270,7 @@ class NodePool(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            scheduler_config: Optional[pulumi.Input[pulumi.InputType['NodePoolSchedulerConfigArgs']]] = None) -> 'NodePool':
+            scheduler_config: Optional[pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None) -> 'NodePool':
         """
         Get an existing NodePool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -282,7 +282,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] meta: `(map[string]string)` - Arbitrary KV metadata associated with the
                node pool.
         :param pulumi.Input[str] name: `(string)` - The name of the node pool.
-        :param pulumi.Input[pulumi.InputType['NodePoolSchedulerConfigArgs']] scheduler_config: `(block)` - Scheduler configuration for the node pool.
+        :param pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']] scheduler_config: `(block)` - Scheduler configuration for the node pool.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
