@@ -270,7 +270,7 @@ class Provider(pulumi.ProviderResource):
                  cert_file: Optional[pulumi.Input[str]] = None,
                  cert_pem: Optional[pulumi.Input[str]] = None,
                  consul_token: Optional[pulumi.Input[str]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]]] = None,
+                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]]] = None,
                  http_auth: Optional[pulumi.Input[str]] = None,
                  ignore_env_vars: Optional[pulumi.Input[Mapping[str, pulumi.Input[bool]]]] = None,
                  key_file: Optional[pulumi.Input[str]] = None,
@@ -294,7 +294,7 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[str] cert_file: A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
         :param pulumi.Input[str] cert_pem: PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
         :param pulumi.Input[str] consul_token: Consul token to validate Consul Connect Service Identity policies specified in the job file.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]] headers: The headers to send with each Nomad request.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]] headers: The headers to send with each Nomad request.
         :param pulumi.Input[str] http_auth: HTTP basic auth configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[bool]]] ignore_env_vars: A set of environment variables that are ignored by the provider when configuring the Nomad API client.
         :param pulumi.Input[str] key_file: A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
@@ -337,7 +337,7 @@ class Provider(pulumi.ProviderResource):
                  cert_file: Optional[pulumi.Input[str]] = None,
                  cert_pem: Optional[pulumi.Input[str]] = None,
                  consul_token: Optional[pulumi.Input[str]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProviderHeaderArgs']]]]] = None,
+                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]]] = None,
                  http_auth: Optional[pulumi.Input[str]] = None,
                  ignore_env_vars: Optional[pulumi.Input[Mapping[str, pulumi.Input[bool]]]] = None,
                  key_file: Optional[pulumi.Input[str]] = None,

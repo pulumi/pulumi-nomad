@@ -670,7 +670,7 @@ class Job(pulumi.CustomResource):
                  deregister_on_id_change: Optional[pulumi.Input[bool]] = None,
                  detach: Optional[pulumi.Input[bool]] = None,
                  hcl1: Optional[pulumi.Input[bool]] = None,
-                 hcl2: Optional[pulumi.Input[pulumi.InputType['JobHcl2Args']]] = None,
+                 hcl2: Optional[pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']]] = None,
                  jobspec: Optional[pulumi.Input[str]] = None,
                  json: Optional[pulumi.Input[bool]] = None,
                  policy_override: Optional[pulumi.Input[bool]] = None,
@@ -693,7 +693,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[bool] hcl1: `(boolean: false)` - Set this to `true` to use the previous HCL1
                parser. This option is provided for backwards compatibility only and should
                not be used unless absolutely necessary.
-        :param pulumi.Input[pulumi.InputType['JobHcl2Args']] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
+        :param pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
         :param pulumi.Input[str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
         :param pulumi.Input[bool] json: `(boolean: false)` - Set this to `true` if your jobspec is structured with
                JSON instead of the default HCL.
@@ -734,7 +734,7 @@ class Job(pulumi.CustomResource):
                  deregister_on_id_change: Optional[pulumi.Input[bool]] = None,
                  detach: Optional[pulumi.Input[bool]] = None,
                  hcl1: Optional[pulumi.Input[bool]] = None,
-                 hcl2: Optional[pulumi.Input[pulumi.InputType['JobHcl2Args']]] = None,
+                 hcl2: Optional[pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']]] = None,
                  jobspec: Optional[pulumi.Input[str]] = None,
                  json: Optional[pulumi.Input[bool]] = None,
                  policy_override: Optional[pulumi.Input[bool]] = None,
@@ -798,7 +798,7 @@ class Job(pulumi.CustomResource):
             deregister_on_id_change: Optional[pulumi.Input[bool]] = None,
             detach: Optional[pulumi.Input[bool]] = None,
             hcl1: Optional[pulumi.Input[bool]] = None,
-            hcl2: Optional[pulumi.Input[pulumi.InputType['JobHcl2Args']]] = None,
+            hcl2: Optional[pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']]] = None,
             jobspec: Optional[pulumi.Input[str]] = None,
             json: Optional[pulumi.Input[bool]] = None,
             modify_index: Optional[pulumi.Input[str]] = None,
@@ -810,7 +810,7 @@ class Job(pulumi.CustomResource):
             region: Optional[pulumi.Input[str]] = None,
             rerun_if_dead: Optional[pulumi.Input[bool]] = None,
             status: Optional[pulumi.Input[str]] = None,
-            task_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['JobTaskGroupArgs']]]]] = None,
+            task_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobTaskGroupArgs', 'JobTaskGroupArgsDict']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             vault_token: Optional[pulumi.Input[str]] = None) -> 'Job':
         """
@@ -834,7 +834,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[bool] hcl1: `(boolean: false)` - Set this to `true` to use the previous HCL1
                parser. This option is provided for backwards compatibility only and should
                not be used unless absolutely necessary.
-        :param pulumi.Input[pulumi.InputType['JobHcl2Args']] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
+        :param pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
         :param pulumi.Input[str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
         :param pulumi.Input[bool] json: `(boolean: false)` - Set this to `true` if your jobspec is structured with
                JSON instead of the default HCL.

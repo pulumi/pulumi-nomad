@@ -194,7 +194,7 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AclAuthMethod(String name) {
+    public AclAuthMethod(java.lang.String name) {
         this(name, AclAuthMethodArgs.Empty);
     }
     /**
@@ -202,7 +202,7 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AclAuthMethod(String name, AclAuthMethodArgs args) {
+    public AclAuthMethod(java.lang.String name, AclAuthMethodArgs args) {
         this(name, args, null);
     }
     /**
@@ -211,15 +211,22 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AclAuthMethod(String name, AclAuthMethodArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/aclAuthMethod:AclAuthMethod", name, args == null ? AclAuthMethodArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public AclAuthMethod(java.lang.String name, AclAuthMethodArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/aclAuthMethod:AclAuthMethod", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AclAuthMethod(String name, Output<String> id, @Nullable AclAuthMethodState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("nomad:index/aclAuthMethod:AclAuthMethod", name, state, makeResourceOptions(options, id));
+    private AclAuthMethod(java.lang.String name, Output<java.lang.String> id, @Nullable AclAuthMethodState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("nomad:index/aclAuthMethod:AclAuthMethod", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static AclAuthMethodArgs makeArgs(AclAuthMethodArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AclAuthMethodArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -235,7 +242,7 @@ public class AclAuthMethod extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AclAuthMethod get(String name, Output<String> id, @Nullable AclAuthMethodState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AclAuthMethod get(java.lang.String name, Output<java.lang.String> id, @Nullable AclAuthMethodState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AclAuthMethod(name, id, state, options);
     }
 }
