@@ -108,7 +108,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(map[string]string)` - Map of items in the variable.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Items;
+        public readonly ImmutableDictionary<string, string> Items;
         /// <summary>
         /// `(string)` - The namespace in which the variable exists.
         /// </summary>
@@ -122,7 +122,7 @@ namespace Pulumi.Nomad
         private GetVariableResult(
             string id,
 
-            ImmutableDictionary<string, object> items,
+            ImmutableDictionary<string, string> items,
 
             string? @namespace,
 

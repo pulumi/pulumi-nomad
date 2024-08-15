@@ -74,7 +74,7 @@ class GetVolumesResult:
 
     @property
     @pulumi.getter
-    def volumes(self) -> Sequence[Mapping[str, Any]]:
+    def volumes(self) -> Sequence[Mapping[str, str]]:
         """
         `list of maps` a list of volumes in the cluster.
         """

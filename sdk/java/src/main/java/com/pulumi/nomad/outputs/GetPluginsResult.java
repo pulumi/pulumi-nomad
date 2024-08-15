@@ -5,7 +5,6 @@ package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +23,7 @@ public final class GetPluginsResult {
      * @return `(list of maps)` a list of dynamic plugins registered in the cluster.
      * 
      */
-    private List<Map<String,Object>> plugins;
+    private List<Map<String,String>> plugins;
     private @Nullable String type;
 
     private GetPluginsResult() {}
@@ -39,7 +38,7 @@ public final class GetPluginsResult {
      * @return `(list of maps)` a list of dynamic plugins registered in the cluster.
      * 
      */
-    public List<Map<String,Object>> plugins() {
+    public List<Map<String,String>> plugins() {
         return this.plugins;
     }
     public Optional<String> type() {
@@ -56,7 +55,7 @@ public final class GetPluginsResult {
     @CustomType.Builder
     public static final class Builder {
         private String id;
-        private List<Map<String,Object>> plugins;
+        private List<Map<String,String>> plugins;
         private @Nullable String type;
         public Builder() {}
         public Builder(GetPluginsResult defaults) {
@@ -75,7 +74,7 @@ public final class GetPluginsResult {
             return this;
         }
         @CustomType.Setter
-        public Builder plugins(List<Map<String,Object>> plugins) {
+        public Builder plugins(List<Map<String,String>> plugins) {
             if (plugins == null) {
               throw new MissingRequiredPropertyException("GetPluginsResult", "plugins");
             }

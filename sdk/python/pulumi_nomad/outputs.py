@@ -1198,13 +1198,13 @@ class JobHcl2(dict):
     def __init__(__self__, *,
                  allow_fs: Optional[bool] = None,
                  enabled: Optional[bool] = None,
-                 vars: Optional[Mapping[str, Any]] = None):
+                 vars: Optional[Mapping[str, str]] = None):
         """
         :param bool allow_fs: `(boolean: false)` - Set this to `true` to be able to use
                HCL2 filesystem functions
         :param bool enabled: `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
                HCL2 by default.
-        :param Mapping[str, Any] vars: Additional variables to use when templating the job with HCL2
+        :param Mapping[str, str] vars: Additional variables to use when templating the job with HCL2
         """
         if allow_fs is not None:
             pulumi.set(__self__, "allow_fs", allow_fs)
@@ -1234,7 +1234,7 @@ class JobHcl2(dict):
 
     @property
     @pulumi.getter
-    def vars(self) -> Optional[Mapping[str, Any]]:
+    def vars(self) -> Optional[Mapping[str, str]]:
         """
         Additional variables to use when templating the job with HCL2
         """
@@ -1245,7 +1245,7 @@ class JobHcl2(dict):
 class JobTaskGroup(dict):
     def __init__(__self__, *,
                  count: Optional[int] = None,
-                 meta: Optional[Mapping[str, Any]] = None,
+                 meta: Optional[Mapping[str, str]] = None,
                  name: Optional[str] = None,
                  tasks: Optional[Sequence['outputs.JobTaskGroupTask']] = None,
                  volumes: Optional[Sequence['outputs.JobTaskGroupVolume']] = None):
@@ -1267,7 +1267,7 @@ class JobTaskGroup(dict):
 
     @property
     @pulumi.getter
-    def meta(self) -> Optional[Mapping[str, Any]]:
+    def meta(self) -> Optional[Mapping[str, str]]:
         return pulumi.get(self, "meta")
 
     @property
@@ -1307,7 +1307,7 @@ class JobTaskGroupTask(dict):
 
     def __init__(__self__, *,
                  driver: Optional[str] = None,
-                 meta: Optional[Mapping[str, Any]] = None,
+                 meta: Optional[Mapping[str, str]] = None,
                  name: Optional[str] = None,
                  volume_mounts: Optional[Sequence['outputs.JobTaskGroupTaskVolumeMount']] = None):
         if driver is not None:
@@ -1326,7 +1326,7 @@ class JobTaskGroupTask(dict):
 
     @property
     @pulumi.getter
-    def meta(self) -> Optional[Mapping[str, Any]]:
+    def meta(self) -> Optional[Mapping[str, str]]:
         return pulumi.get(self, "meta")
 
     @property
@@ -2494,7 +2494,7 @@ class GetJobPeriodicConfigResult(dict):
 class GetJobTaskGroupResult(dict):
     def __init__(__self__, *,
                  count: int,
-                 meta: Mapping[str, Any],
+                 meta: Mapping[str, str],
                  name: str,
                  tasks: Sequence['outputs.GetJobTaskGroupTaskResult'],
                  volumes: Sequence['outputs.GetJobTaskGroupVolumeResult']):
@@ -2514,7 +2514,7 @@ class GetJobTaskGroupResult(dict):
 
     @property
     @pulumi.getter
-    def meta(self) -> Mapping[str, Any]:
+    def meta(self) -> Mapping[str, str]:
         return pulumi.get(self, "meta")
 
     @property
@@ -2540,7 +2540,7 @@ class GetJobTaskGroupResult(dict):
 class GetJobTaskGroupTaskResult(dict):
     def __init__(__self__, *,
                  driver: str,
-                 meta: Mapping[str, Any],
+                 meta: Mapping[str, str],
                  name: str,
                  volume_mounts: Sequence['outputs.GetJobTaskGroupTaskVolumeMountResult']):
         """
@@ -2558,7 +2558,7 @@ class GetJobTaskGroupTaskResult(dict):
 
     @property
     @pulumi.getter
-    def meta(self) -> Mapping[str, Any]:
+    def meta(self) -> Mapping[str, str]:
         return pulumi.get(self, "meta")
 
     @property
@@ -2928,12 +2928,12 @@ class GetScalingPoliciesPolicyResult(dict):
     def __init__(__self__, *,
                  enabled: bool,
                  id: str,
-                 target: Mapping[str, Any],
+                 target: Mapping[str, str],
                  type: str):
         """
         :param bool enabled: `(boolean)` - Whether or not the scaling policy is enabled.
         :param str id: `(string)` - The scaling policy ID.
-        :param Mapping[str, Any] target: `(map[string]string)` - The scaling policy target.
+        :param Mapping[str, str] target: `(map[string]string)` - The scaling policy target.
         :param str type: `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
         """
         pulumi.set(__self__, "enabled", enabled)
@@ -2959,7 +2959,7 @@ class GetScalingPoliciesPolicyResult(dict):
 
     @property
     @pulumi.getter
-    def target(self) -> Mapping[str, Any]:
+    def target(self) -> Mapping[str, str]:
         """
         `(map[string]string)` - The scaling policy target.
         """

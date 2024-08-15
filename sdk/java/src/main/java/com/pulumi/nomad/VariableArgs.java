@@ -6,7 +6,6 @@ package com.pulumi.nomad;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -23,13 +22,13 @@ public final class VariableArgs extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="items", required=true)
-    private Output<Map<String,Object>> items;
+    private Output<Map<String,String>> items;
 
     /**
      * @return `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
      * 
      */
-    public Output<Map<String,Object>> items() {
+    public Output<Map<String,String>> items() {
         return this.items;
     }
 
@@ -95,7 +94,7 @@ public final class VariableArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder items(Output<Map<String,Object>> items) {
+        public Builder items(Output<Map<String,String>> items) {
             $.items = items;
             return this;
         }
@@ -106,7 +105,7 @@ public final class VariableArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder items(Map<String,Object> items) {
+        public Builder items(Map<String,String> items) {
             return items(Output.of(items));
         }
 

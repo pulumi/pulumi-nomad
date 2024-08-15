@@ -137,7 +137,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `list of maps` a list of volumes in the cluster.
         /// </summary>
-        public readonly ImmutableArray<ImmutableDictionary<string, object>> Volumes;
+        public readonly ImmutableArray<ImmutableDictionary<string, string>> Volumes;
 
         [OutputConstructor]
         private GetVolumesResult(
@@ -151,7 +151,7 @@ namespace Pulumi.Nomad
 
             string? type,
 
-            ImmutableArray<ImmutableDictionary<string, object>> volumes)
+            ImmutableArray<ImmutableDictionary<string, string>> volumes)
         {
             Id = id;
             Namespace = @namespace;

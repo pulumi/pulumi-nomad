@@ -366,12 +366,12 @@ export interface JobHcl2 {
     /**
      * Additional variables to use when templating the job with HCL2
      */
-    vars?: pulumi.Input<{[key: string]: any}>;
+    vars?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 export interface JobTaskGroup {
     count?: pulumi.Input<number>;
-    meta?: pulumi.Input<{[key: string]: any}>;
+    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name?: pulumi.Input<string>;
     tasks?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupTask>[]>;
     volumes?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupVolume>[]>;
@@ -379,7 +379,7 @@ export interface JobTaskGroup {
 
 export interface JobTaskGroupTask {
     driver?: pulumi.Input<string>;
-    meta?: pulumi.Input<{[key: string]: any}>;
+    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name?: pulumi.Input<string>;
     volumeMounts?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupTaskVolumeMount>[]>;
 }

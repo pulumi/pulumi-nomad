@@ -14,7 +14,7 @@ namespace Pulumi.Nomad.Outputs
     public sealed class JobTaskGroup
     {
         public readonly int? Count;
-        public readonly ImmutableDictionary<string, object>? Meta;
+        public readonly ImmutableDictionary<string, string>? Meta;
         public readonly string? Name;
         public readonly ImmutableArray<Outputs.JobTaskGroupTask> Tasks;
         public readonly ImmutableArray<Outputs.JobTaskGroupVolume> Volumes;
@@ -23,7 +23,7 @@ namespace Pulumi.Nomad.Outputs
         private JobTaskGroup(
             int? count,
 
-            ImmutableDictionary<string, object>? meta,
+            ImmutableDictionary<string, string>? meta,
 
             string? name,
 

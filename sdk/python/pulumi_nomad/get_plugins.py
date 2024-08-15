@@ -42,7 +42,7 @@ class GetPluginsResult:
 
     @property
     @pulumi.getter
-    def plugins(self) -> Sequence[Mapping[str, Any]]:
+    def plugins(self) -> Sequence[Mapping[str, str]]:
         """
         `(list of maps)` a list of dynamic plugins registered in the cluster.
         """

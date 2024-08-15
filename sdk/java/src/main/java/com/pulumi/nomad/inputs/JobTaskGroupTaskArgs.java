@@ -6,7 +6,6 @@ package com.pulumi.nomad.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.nomad.inputs.JobTaskGroupTaskVolumeMountArgs;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -27,9 +26,9 @@ public final class JobTaskGroupTaskArgs extends com.pulumi.resources.ResourceArg
     }
 
     @Import(name="meta")
-    private @Nullable Output<Map<String,Object>> meta;
+    private @Nullable Output<Map<String,String>> meta;
 
-    public Optional<Output<Map<String,Object>>> meta() {
+    public Optional<Output<Map<String,String>>> meta() {
         return Optional.ofNullable(this.meta);
     }
 
@@ -83,12 +82,12 @@ public final class JobTaskGroupTaskArgs extends com.pulumi.resources.ResourceArg
             return driver(Output.of(driver));
         }
 
-        public Builder meta(@Nullable Output<Map<String,Object>> meta) {
+        public Builder meta(@Nullable Output<Map<String,String>> meta) {
             $.meta = meta;
             return this;
         }
 
-        public Builder meta(Map<String,Object> meta) {
+        public Builder meta(Map<String,String> meta) {
             return meta(Output.of(meta));
         }
 

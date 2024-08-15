@@ -113,7 +113,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(map[string]string)` - The scaling policy target.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Target;
+        public readonly ImmutableDictionary<string, string> Target;
         /// <summary>
         /// `(string)` - The scaling policy type.
         /// </summary>
@@ -131,7 +131,7 @@ namespace Pulumi.Nomad
 
             string policy,
 
-            ImmutableDictionary<string, object> target,
+            ImmutableDictionary<string, string> target,
 
             string type)
         {

@@ -66,7 +66,7 @@ namespace Pulumi.Nomad
         /// * `Status`: `string` Deployment status.
         /// * `StatusDescription`: `string` Detailed description of the deployment's status.
         /// </summary>
-        public readonly ImmutableArray<ImmutableDictionary<string, object>> Deployments;
+        public readonly ImmutableArray<ImmutableDictionary<string, string>> Deployments;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -74,7 +74,7 @@ namespace Pulumi.Nomad
 
         [OutputConstructor]
         private GetDeploymentsResult(
-            ImmutableArray<ImmutableDictionary<string, object>> deployments,
+            ImmutableArray<ImmutableDictionary<string, string>> deployments,
 
             string id)
         {

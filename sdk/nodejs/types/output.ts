@@ -573,7 +573,7 @@ export interface GetJobPeriodicConfig {
 
 export interface GetJobTaskGroup {
     count: number;
-    meta: {[key: string]: any};
+    meta: {[key: string]: string};
     /**
      * `(string)` Name of the job.
      */
@@ -584,7 +584,7 @@ export interface GetJobTaskGroup {
 
 export interface GetJobTaskGroupTask {
     driver: string;
-    meta: {[key: string]: any};
+    meta: {[key: string]: string};
     /**
      * `(string)` Name of the job.
      */
@@ -721,7 +721,7 @@ export interface GetScalingPoliciesPolicy {
     /**
      * `(map[string]string)` - The scaling policy target.
      */
-    target: {[key: string]: any};
+    target: {[key: string]: string};
     /**
      * `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
      */
@@ -744,12 +744,12 @@ export interface JobHcl2 {
     /**
      * Additional variables to use when templating the job with HCL2
      */
-    vars?: {[key: string]: any};
+    vars?: {[key: string]: string};
 }
 
 export interface JobTaskGroup {
     count: number;
-    meta: {[key: string]: any};
+    meta: {[key: string]: string};
     name: string;
     tasks: outputs.JobTaskGroupTask[];
     volumes: outputs.JobTaskGroupVolume[];
@@ -757,7 +757,7 @@ export interface JobTaskGroup {
 
 export interface JobTaskGroupTask {
     driver: string;
-    meta: {[key: string]: any};
+    meta: {[key: string]: string};
     name: string;
     volumeMounts: outputs.JobTaskGroupTaskVolumeMount[];
 }

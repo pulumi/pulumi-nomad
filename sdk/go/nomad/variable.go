@@ -30,8 +30,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nomad.NewVariable(ctx, "example", &nomad.VariableArgs{
 //				Path: pulumi.String("some/path/of/your/choosing"),
-//				Items: pulumi.Map{
-//					"example_key": pulumi.Any("example_value"),
+//				Items: pulumi.StringMap{
+//					"example_key": pulumi.String("example_value"),
 //				},
 //			})
 //			if err != nil {
@@ -67,8 +67,8 @@ import (
 //			_, err = nomad.NewVariable(ctx, "example", &nomad.VariableArgs{
 //				Path:      pulumi.String("some/path/of/your/choosing"),
 //				Namespace: example.Name,
-//				Items: pulumi.Map{
-//					"example_key": pulumi.Any("example_value"),
+//				Items: pulumi.StringMap{
+//					"example_key": pulumi.String("example_value"),
 //				},
 //			})
 //			if err != nil {
@@ -83,7 +83,7 @@ type Variable struct {
 	pulumi.CustomResourceState
 
 	// `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
-	Items pulumi.MapOutput `pulumi:"items"`
+	Items pulumi.StringMapOutput `pulumi:"items"`
 	// `(string: "default")` - The namepsace to create the variable in.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// `(string: <required>)` - A unique path to create the variable at.
@@ -104,7 +104,7 @@ func NewVariable(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
 	if args.Items != nil {
-		args.Items = pulumi.ToSecret(args.Items).(pulumi.MapInput)
+		args.Items = pulumi.ToSecret(args.Items).(pulumi.StringMapInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"items",
@@ -134,7 +134,7 @@ func GetVariable(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Variable resources.
 type variableState struct {
 	// `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
-	Items map[string]interface{} `pulumi:"items"`
+	Items map[string]string `pulumi:"items"`
 	// `(string: "default")` - The namepsace to create the variable in.
 	Namespace *string `pulumi:"namespace"`
 	// `(string: <required>)` - A unique path to create the variable at.
@@ -143,7 +143,7 @@ type variableState struct {
 
 type VariableState struct {
 	// `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
-	Items pulumi.MapInput
+	Items pulumi.StringMapInput
 	// `(string: "default")` - The namepsace to create the variable in.
 	Namespace pulumi.StringPtrInput
 	// `(string: <required>)` - A unique path to create the variable at.
@@ -156,7 +156,7 @@ func (VariableState) ElementType() reflect.Type {
 
 type variableArgs struct {
 	// `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
-	Items map[string]interface{} `pulumi:"items"`
+	Items map[string]string `pulumi:"items"`
 	// `(string: "default")` - The namepsace to create the variable in.
 	Namespace *string `pulumi:"namespace"`
 	// `(string: <required>)` - A unique path to create the variable at.
@@ -166,7 +166,7 @@ type variableArgs struct {
 // The set of arguments for constructing a Variable resource.
 type VariableArgs struct {
 	// `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
-	Items pulumi.MapInput
+	Items pulumi.StringMapInput
 	// `(string: "default")` - The namepsace to create the variable in.
 	Namespace pulumi.StringPtrInput
 	// `(string: <required>)` - A unique path to create the variable at.
@@ -261,8 +261,8 @@ func (o VariableOutput) ToVariableOutputWithContext(ctx context.Context) Variabl
 }
 
 // `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
-func (o VariableOutput) Items() pulumi.MapOutput {
-	return o.ApplyT(func(v *Variable) pulumi.MapOutput { return v.Items }).(pulumi.MapOutput)
+func (o VariableOutput) Items() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Variable) pulumi.StringMapOutput { return v.Items }).(pulumi.StringMapOutput)
 }
 
 // `(string: "default")` - The namepsace to create the variable in.

@@ -45,7 +45,7 @@ class GetVariableResult:
 
     @property
     @pulumi.getter
-    def items(self) -> Mapping[str, Any]:
+    def items(self) -> Mapping[str, str]:
         """
         `(map[string]string)` - Map of items in the variable.
         """

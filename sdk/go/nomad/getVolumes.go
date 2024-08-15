@@ -68,7 +68,7 @@ type GetVolumesResult struct {
 	PluginId  *string `pulumi:"pluginId"`
 	Type      *string `pulumi:"type"`
 	// `list of maps` a list of volumes in the cluster.
-	Volumes []map[string]interface{} `pulumi:"volumes"`
+	Volumes []map[string]string `pulumi:"volumes"`
 }
 
 func GetVolumesOutput(ctx *pulumi.Context, args GetVolumesOutputArgs, opts ...pulumi.InvokeOption) GetVolumesResultOutput {
@@ -138,8 +138,8 @@ func (o GetVolumesResultOutput) Type() pulumi.StringPtrOutput {
 }
 
 // `list of maps` a list of volumes in the cluster.
-func (o GetVolumesResultOutput) Volumes() pulumi.MapArrayOutput {
-	return o.ApplyT(func(v GetVolumesResult) []map[string]interface{} { return v.Volumes }).(pulumi.MapArrayOutput)
+func (o GetVolumesResultOutput) Volumes() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v GetVolumesResult) []map[string]string { return v.Volumes }).(pulumi.StringMapArrayOutput)
 }
 
 func init() {

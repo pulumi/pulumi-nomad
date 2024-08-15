@@ -14,7 +14,7 @@ namespace Pulumi.Nomad.Outputs
     public sealed class JobTaskGroupTask
     {
         public readonly string? Driver;
-        public readonly ImmutableDictionary<string, object>? Meta;
+        public readonly ImmutableDictionary<string, string>? Meta;
         public readonly string? Name;
         public readonly ImmutableArray<Outputs.JobTaskGroupTaskVolumeMount> VolumeMounts;
 
@@ -22,7 +22,7 @@ namespace Pulumi.Nomad.Outputs
         private JobTaskGroupTask(
             string? driver,
 
-            ImmutableDictionary<string, object>? meta,
+            ImmutableDictionary<string, string>? meta,
 
             string? name,
 

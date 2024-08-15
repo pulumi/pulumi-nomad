@@ -14,12 +14,12 @@ __all__ = ['VariableArgs', 'Variable']
 @pulumi.input_type
 class VariableArgs:
     def __init__(__self__, *,
-                 items: pulumi.Input[Mapping[str, Any]],
+                 items: pulumi.Input[Mapping[str, pulumi.Input[str]]],
                  path: pulumi.Input[str],
                  namespace: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Variable resource.
-        :param pulumi.Input[Mapping[str, Any]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
         :param pulumi.Input[str] path: `(string: <required>)` - A unique path to create the variable at.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namepsace to create the variable in.
         """
@@ -30,14 +30,14 @@ class VariableArgs:
 
     @property
     @pulumi.getter
-    def items(self) -> pulumi.Input[Mapping[str, Any]]:
+    def items(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
         """
         `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
         """
         return pulumi.get(self, "items")
 
     @items.setter
-    def items(self, value: pulumi.Input[Mapping[str, Any]]):
+    def items(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "items", value)
 
     @property
@@ -68,12 +68,12 @@ class VariableArgs:
 @pulumi.input_type
 class _VariableState:
     def __init__(__self__, *,
-                 items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Variable resources.
-        :param pulumi.Input[Mapping[str, Any]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namepsace to create the variable in.
         :param pulumi.Input[str] path: `(string: <required>)` - A unique path to create the variable at.
         """
@@ -86,14 +86,14 @@ class _VariableState:
 
     @property
     @pulumi.getter
-    def items(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def items(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
         """
         return pulumi.get(self, "items")
 
     @items.setter
-    def items(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def items(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "items", value)
 
     @property
@@ -126,7 +126,7 @@ class Variable(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -165,7 +165,7 @@ class Variable(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namepsace to create the variable in.
         :param pulumi.Input[str] path: `(string: <required>)` - A unique path to create the variable at.
         """
@@ -223,7 +223,7 @@ class Variable(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  namespace: Optional[pulumi.Input[str]] = None,
                  path: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -254,7 +254,7 @@ class Variable(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            items: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            items: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             namespace: Optional[pulumi.Input[str]] = None,
             path: Optional[pulumi.Input[str]] = None) -> 'Variable':
         """
@@ -264,7 +264,7 @@ class Variable(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
         :param pulumi.Input[str] namespace: `(string: "default")` - The namepsace to create the variable in.
         :param pulumi.Input[str] path: `(string: <required>)` - A unique path to create the variable at.
         """
@@ -279,7 +279,7 @@ class Variable(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def items(self) -> pulumi.Output[Mapping[str, Any]]:
+    def items(self) -> pulumi.Output[Mapping[str, str]]:
         """
         `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
         """

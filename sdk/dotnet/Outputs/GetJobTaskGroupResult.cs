@@ -14,7 +14,7 @@ namespace Pulumi.Nomad.Outputs
     public sealed class GetJobTaskGroupResult
     {
         public readonly int Count;
-        public readonly ImmutableDictionary<string, object> Meta;
+        public readonly ImmutableDictionary<string, string> Meta;
         /// <summary>
         /// `(string)` Name of the job.
         /// </summary>
@@ -26,7 +26,7 @@ namespace Pulumi.Nomad.Outputs
         private GetJobTaskGroupResult(
             int count,
 
-            ImmutableDictionary<string, object> meta,
+            ImmutableDictionary<string, string> meta,
 
             string name,
 

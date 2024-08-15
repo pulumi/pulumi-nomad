@@ -16,10 +16,10 @@ namespace Pulumi.Nomad.Inputs
         public Input<int>? Count { get; set; }
 
         [Input("meta")]
-        private InputMap<object>? _meta;
-        public InputMap<object> Meta
+        private InputMap<string>? _meta;
+        public InputMap<string> Meta
         {
-            get => _meta ?? (_meta = new InputMap<object>());
+            get => _meta ?? (_meta = new InputMap<string>());
             set => _meta = value;
         }
 

@@ -59,7 +59,7 @@ type LookupVariableResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// `(map[string]string)` - Map of items in the variable.
-	Items map[string]interface{} `pulumi:"items"`
+	Items map[string]string `pulumi:"items"`
 	// `(string)` - The namespace in which the variable exists.
 	Namespace *string `pulumi:"namespace"`
 	// `(string)` - The path at which the variable exists.
@@ -112,8 +112,8 @@ func (o LookupVariableResultOutput) Id() pulumi.StringOutput {
 }
 
 // `(map[string]string)` - Map of items in the variable.
-func (o LookupVariableResultOutput) Items() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupVariableResult) map[string]interface{} { return v.Items }).(pulumi.MapOutput)
+func (o LookupVariableResultOutput) Items() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupVariableResult) map[string]string { return v.Items }).(pulumi.StringMapOutput)
 }
 
 // `(string)` - The namespace in which the variable exists.

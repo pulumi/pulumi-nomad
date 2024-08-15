@@ -3746,7 +3746,7 @@ type JobHcl2 struct {
 	// Deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
 	Enabled *bool `pulumi:"enabled"`
 	// Additional variables to use when templating the job with HCL2
-	Vars map[string]interface{} `pulumi:"vars"`
+	Vars map[string]string `pulumi:"vars"`
 }
 
 // JobHcl2Input is an input type that accepts JobHcl2Args and JobHcl2Output values.
@@ -3770,7 +3770,7 @@ type JobHcl2Args struct {
 	// Deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Additional variables to use when templating the job with HCL2
-	Vars pulumi.MapInput `pulumi:"vars"`
+	Vars pulumi.StringMapInput `pulumi:"vars"`
 }
 
 func (JobHcl2Args) ElementType() reflect.Type {
@@ -3865,8 +3865,8 @@ func (o JobHcl2Output) Enabled() pulumi.BoolPtrOutput {
 }
 
 // Additional variables to use when templating the job with HCL2
-func (o JobHcl2Output) Vars() pulumi.MapOutput {
-	return o.ApplyT(func(v JobHcl2) map[string]interface{} { return v.Vars }).(pulumi.MapOutput)
+func (o JobHcl2Output) Vars() pulumi.StringMapOutput {
+	return o.ApplyT(func(v JobHcl2) map[string]string { return v.Vars }).(pulumi.StringMapOutput)
 }
 
 type JobHcl2PtrOutput struct{ *pulumi.OutputState }
@@ -3918,21 +3918,21 @@ func (o JobHcl2PtrOutput) Enabled() pulumi.BoolPtrOutput {
 }
 
 // Additional variables to use when templating the job with HCL2
-func (o JobHcl2PtrOutput) Vars() pulumi.MapOutput {
-	return o.ApplyT(func(v *JobHcl2) map[string]interface{} {
+func (o JobHcl2PtrOutput) Vars() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *JobHcl2) map[string]string {
 		if v == nil {
 			return nil
 		}
 		return v.Vars
-	}).(pulumi.MapOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 type JobTaskGroup struct {
-	Count   *int                   `pulumi:"count"`
-	Meta    map[string]interface{} `pulumi:"meta"`
-	Name    *string                `pulumi:"name"`
-	Tasks   []JobTaskGroupTask     `pulumi:"tasks"`
-	Volumes []JobTaskGroupVolume   `pulumi:"volumes"`
+	Count   *int                 `pulumi:"count"`
+	Meta    map[string]string    `pulumi:"meta"`
+	Name    *string              `pulumi:"name"`
+	Tasks   []JobTaskGroupTask   `pulumi:"tasks"`
+	Volumes []JobTaskGroupVolume `pulumi:"volumes"`
 }
 
 // JobTaskGroupInput is an input type that accepts JobTaskGroupArgs and JobTaskGroupOutput values.
@@ -3948,7 +3948,7 @@ type JobTaskGroupInput interface {
 
 type JobTaskGroupArgs struct {
 	Count   pulumi.IntPtrInput           `pulumi:"count"`
-	Meta    pulumi.MapInput              `pulumi:"meta"`
+	Meta    pulumi.StringMapInput        `pulumi:"meta"`
 	Name    pulumi.StringPtrInput        `pulumi:"name"`
 	Tasks   JobTaskGroupTaskArrayInput   `pulumi:"tasks"`
 	Volumes JobTaskGroupVolumeArrayInput `pulumi:"volumes"`
@@ -4009,8 +4009,8 @@ func (o JobTaskGroupOutput) Count() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v JobTaskGroup) *int { return v.Count }).(pulumi.IntPtrOutput)
 }
 
-func (o JobTaskGroupOutput) Meta() pulumi.MapOutput {
-	return o.ApplyT(func(v JobTaskGroup) map[string]interface{} { return v.Meta }).(pulumi.MapOutput)
+func (o JobTaskGroupOutput) Meta() pulumi.StringMapOutput {
+	return o.ApplyT(func(v JobTaskGroup) map[string]string { return v.Meta }).(pulumi.StringMapOutput)
 }
 
 func (o JobTaskGroupOutput) Name() pulumi.StringPtrOutput {
@@ -4047,7 +4047,7 @@ func (o JobTaskGroupArrayOutput) Index(i pulumi.IntInput) JobTaskGroupOutput {
 
 type JobTaskGroupTask struct {
 	Driver       *string                       `pulumi:"driver"`
-	Meta         map[string]interface{}        `pulumi:"meta"`
+	Meta         map[string]string             `pulumi:"meta"`
 	Name         *string                       `pulumi:"name"`
 	VolumeMounts []JobTaskGroupTaskVolumeMount `pulumi:"volumeMounts"`
 }
@@ -4065,7 +4065,7 @@ type JobTaskGroupTaskInput interface {
 
 type JobTaskGroupTaskArgs struct {
 	Driver       pulumi.StringPtrInput                 `pulumi:"driver"`
-	Meta         pulumi.MapInput                       `pulumi:"meta"`
+	Meta         pulumi.StringMapInput                 `pulumi:"meta"`
 	Name         pulumi.StringPtrInput                 `pulumi:"name"`
 	VolumeMounts JobTaskGroupTaskVolumeMountArrayInput `pulumi:"volumeMounts"`
 }
@@ -4125,8 +4125,8 @@ func (o JobTaskGroupTaskOutput) Driver() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobTaskGroupTask) *string { return v.Driver }).(pulumi.StringPtrOutput)
 }
 
-func (o JobTaskGroupTaskOutput) Meta() pulumi.MapOutput {
-	return o.ApplyT(func(v JobTaskGroupTask) map[string]interface{} { return v.Meta }).(pulumi.MapOutput)
+func (o JobTaskGroupTaskOutput) Meta() pulumi.StringMapOutput {
+	return o.ApplyT(func(v JobTaskGroupTask) map[string]string { return v.Meta }).(pulumi.StringMapOutput)
 }
 
 func (o JobTaskGroupTaskOutput) Name() pulumi.StringPtrOutput {
@@ -7259,8 +7259,8 @@ func (o GetJobPeriodicConfigArrayOutput) Index(i pulumi.IntInput) GetJobPeriodic
 }
 
 type GetJobTaskGroup struct {
-	Count int                    `pulumi:"count"`
-	Meta  map[string]interface{} `pulumi:"meta"`
+	Count int               `pulumi:"count"`
+	Meta  map[string]string `pulumi:"meta"`
 	// `(string)` Name of the job.
 	Name    string                  `pulumi:"name"`
 	Tasks   []GetJobTaskGroupTask   `pulumi:"tasks"`
@@ -7279,8 +7279,8 @@ type GetJobTaskGroupInput interface {
 }
 
 type GetJobTaskGroupArgs struct {
-	Count pulumi.IntInput `pulumi:"count"`
-	Meta  pulumi.MapInput `pulumi:"meta"`
+	Count pulumi.IntInput       `pulumi:"count"`
+	Meta  pulumi.StringMapInput `pulumi:"meta"`
 	// `(string)` Name of the job.
 	Name    pulumi.StringInput              `pulumi:"name"`
 	Tasks   GetJobTaskGroupTaskArrayInput   `pulumi:"tasks"`
@@ -7342,8 +7342,8 @@ func (o GetJobTaskGroupOutput) Count() pulumi.IntOutput {
 	return o.ApplyT(func(v GetJobTaskGroup) int { return v.Count }).(pulumi.IntOutput)
 }
 
-func (o GetJobTaskGroupOutput) Meta() pulumi.MapOutput {
-	return o.ApplyT(func(v GetJobTaskGroup) map[string]interface{} { return v.Meta }).(pulumi.MapOutput)
+func (o GetJobTaskGroupOutput) Meta() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetJobTaskGroup) map[string]string { return v.Meta }).(pulumi.StringMapOutput)
 }
 
 // `(string)` Name of the job.
@@ -7380,8 +7380,8 @@ func (o GetJobTaskGroupArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupOutp
 }
 
 type GetJobTaskGroupTask struct {
-	Driver string                 `pulumi:"driver"`
-	Meta   map[string]interface{} `pulumi:"meta"`
+	Driver string            `pulumi:"driver"`
+	Meta   map[string]string `pulumi:"meta"`
 	// `(string)` Name of the job.
 	Name         string                           `pulumi:"name"`
 	VolumeMounts []GetJobTaskGroupTaskVolumeMount `pulumi:"volumeMounts"`
@@ -7399,8 +7399,8 @@ type GetJobTaskGroupTaskInput interface {
 }
 
 type GetJobTaskGroupTaskArgs struct {
-	Driver pulumi.StringInput `pulumi:"driver"`
-	Meta   pulumi.MapInput    `pulumi:"meta"`
+	Driver pulumi.StringInput    `pulumi:"driver"`
+	Meta   pulumi.StringMapInput `pulumi:"meta"`
 	// `(string)` Name of the job.
 	Name         pulumi.StringInput                       `pulumi:"name"`
 	VolumeMounts GetJobTaskGroupTaskVolumeMountArrayInput `pulumi:"volumeMounts"`
@@ -7461,8 +7461,8 @@ func (o GetJobTaskGroupTaskOutput) Driver() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupTask) string { return v.Driver }).(pulumi.StringOutput)
 }
 
-func (o GetJobTaskGroupTaskOutput) Meta() pulumi.MapOutput {
-	return o.ApplyT(func(v GetJobTaskGroupTask) map[string]interface{} { return v.Meta }).(pulumi.MapOutput)
+func (o GetJobTaskGroupTaskOutput) Meta() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetJobTaskGroupTask) map[string]string { return v.Meta }).(pulumi.StringMapOutput)
 }
 
 // `(string)` Name of the job.
@@ -8541,7 +8541,7 @@ type GetScalingPoliciesPolicy struct {
 	// `(string)` - The scaling policy ID.
 	Id string `pulumi:"id"`
 	// `(map[string]string)` - The scaling policy target.
-	Target map[string]interface{} `pulumi:"target"`
+	Target map[string]string `pulumi:"target"`
 	// `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
 	Type string `pulumi:"type"`
 }
@@ -8563,7 +8563,7 @@ type GetScalingPoliciesPolicyArgs struct {
 	// `(string)` - The scaling policy ID.
 	Id pulumi.StringInput `pulumi:"id"`
 	// `(map[string]string)` - The scaling policy target.
-	Target pulumi.MapInput `pulumi:"target"`
+	Target pulumi.StringMapInput `pulumi:"target"`
 	// `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
 	Type pulumi.StringInput `pulumi:"type"`
 }
@@ -8630,8 +8630,8 @@ func (o GetScalingPoliciesPolicyOutput) Id() pulumi.StringOutput {
 }
 
 // `(map[string]string)` - The scaling policy target.
-func (o GetScalingPoliciesPolicyOutput) Target() pulumi.MapOutput {
-	return o.ApplyT(func(v GetScalingPoliciesPolicy) map[string]interface{} { return v.Target }).(pulumi.MapOutput)
+func (o GetScalingPoliciesPolicyOutput) Target() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetScalingPoliciesPolicy) map[string]string { return v.Target }).(pulumi.StringMapOutput)
 }
 
 // `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.

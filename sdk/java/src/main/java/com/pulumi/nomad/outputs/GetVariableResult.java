@@ -5,7 +5,6 @@ package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -23,7 +22,7 @@ public final class GetVariableResult {
      * @return `(map[string]string)` - Map of items in the variable.
      * 
      */
-    private Map<String,Object> items;
+    private Map<String,String> items;
     /**
      * @return `(string)` - The namespace in which the variable exists.
      * 
@@ -47,7 +46,7 @@ public final class GetVariableResult {
      * @return `(map[string]string)` - Map of items in the variable.
      * 
      */
-    public Map<String,Object> items() {
+    public Map<String,String> items() {
         return this.items;
     }
     /**
@@ -75,7 +74,7 @@ public final class GetVariableResult {
     @CustomType.Builder
     public static final class Builder {
         private String id;
-        private Map<String,Object> items;
+        private Map<String,String> items;
         private @Nullable String namespace;
         private String path;
         public Builder() {}
@@ -96,7 +95,7 @@ public final class GetVariableResult {
             return this;
         }
         @CustomType.Setter
-        public Builder items(Map<String,Object> items) {
+        public Builder items(Map<String,String> items) {
             if (items == null) {
               throw new MissingRequiredPropertyException("GetVariableResult", "items");
             }

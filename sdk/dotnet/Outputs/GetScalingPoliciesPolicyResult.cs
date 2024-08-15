@@ -24,7 +24,7 @@ namespace Pulumi.Nomad.Outputs
         /// <summary>
         /// `(map[string]string)` - The scaling policy target.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Target;
+        public readonly ImmutableDictionary<string, string> Target;
         /// <summary>
         /// `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
         /// </summary>
@@ -36,7 +36,7 @@ namespace Pulumi.Nomad.Outputs
 
             string id,
 
-            ImmutableDictionary<string, object> target,
+            ImmutableDictionary<string, string> target,
 
             string type)
         {
