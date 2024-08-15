@@ -685,7 +685,7 @@
                 "vars": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "pulumi.json#/Any"
+                        "type": "string"
                     },
                     "description": "Additional variables to use when templating the job with HCL2\n"
                 }
@@ -700,7 +700,7 @@
                 "meta": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "pulumi.json#/Any"
+                        "type": "string"
                     }
                 },
                 "name": {
@@ -740,7 +740,7 @@
                 "meta": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "pulumi.json#/Any"
+                        "type": "string"
                     }
                 },
                 "name": {
@@ -1395,7 +1395,7 @@
                 "meta": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "pulumi.json#/Any"
+                        "type": "string"
                     }
                 },
                 "name": {
@@ -1437,7 +1437,7 @@
                 "meta": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "pulumi.json#/Any"
+                        "type": "string"
                     }
                 },
                 "name": {
@@ -1728,7 +1728,7 @@
                 "target": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "pulumi.json#/Any"
+                        "type": "string"
                     },
                     "description": "`(map[string]string)` - The scaling policy target.\n"
                 },
@@ -4026,12 +4026,12 @@
             }
         },
         "nomad:index/variable:Variable": {
-            "description": "## Example Usage\n\nCreating a variable in the default namespace:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = new nomad.Variable(\"example\", {\n    path: \"some/path/of/your/choosing\",\n    items: {\n        example_key: \"example_value\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.Variable(\"example\",\n    path=\"some/path/of/your/choosing\",\n    items={\n        \"example_key\": \"example_value\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Nomad.Variable(\"example\", new()\n    {\n        Path = \"some/path/of/your/choosing\",\n        Items = \n        {\n            { \"example_key\", \"example_value\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewVariable(ctx, \"example\", \u0026nomad.VariableArgs{\n\t\t\tPath: pulumi.String(\"some/path/of/your/choosing\"),\n\t\t\tItems: pulumi.Map{\n\t\t\t\t\"example_key\": pulumi.Any(\"example_value\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.Variable;\nimport com.pulumi.nomad.VariableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Variable(\"example\", VariableArgs.builder()\n            .path(\"some/path/of/your/choosing\")\n            .items(Map.of(\"example_key\", \"example_value\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: nomad:Variable\n    properties:\n      path: some/path/of/your/choosing\n      items:\n        example_key: example_value\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nCreating a variable in a custom namespace:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = new nomad.Namespace(\"example\", {\n    name: \"example\",\n    description: \"Example namespace.\",\n});\nconst exampleVariable = new nomad.Variable(\"example\", {\n    path: \"some/path/of/your/choosing\",\n    namespace: example.name,\n    items: {\n        example_key: \"example_value\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.Namespace(\"example\",\n    name=\"example\",\n    description=\"Example namespace.\")\nexample_variable = nomad.Variable(\"example\",\n    path=\"some/path/of/your/choosing\",\n    namespace=example.name,\n    items={\n        \"example_key\": \"example_value\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Nomad.Namespace(\"example\", new()\n    {\n        Name = \"example\",\n        Description = \"Example namespace.\",\n    });\n\n    var exampleVariable = new Nomad.Variable(\"example\", new()\n    {\n        Path = \"some/path/of/your/choosing\",\n        Namespace = example.Name,\n        Items = \n        {\n            { \"example_key\", \"example_value\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := nomad.NewNamespace(ctx, \"example\", \u0026nomad.NamespaceArgs{\n\t\t\tName:        pulumi.String(\"example\"),\n\t\t\tDescription: pulumi.String(\"Example namespace.\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewVariable(ctx, \"example\", \u0026nomad.VariableArgs{\n\t\t\tPath:      pulumi.String(\"some/path/of/your/choosing\"),\n\t\t\tNamespace: example.Name,\n\t\t\tItems: pulumi.Map{\n\t\t\t\t\"example_key\": pulumi.Any(\"example_value\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.Namespace;\nimport com.pulumi.nomad.NamespaceArgs;\nimport com.pulumi.nomad.Variable;\nimport com.pulumi.nomad.VariableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Namespace(\"example\", NamespaceArgs.builder()\n            .name(\"example\")\n            .description(\"Example namespace.\")\n            .build());\n\n        var exampleVariable = new Variable(\"exampleVariable\", VariableArgs.builder()\n            .path(\"some/path/of/your/choosing\")\n            .namespace(example.name())\n            .items(Map.of(\"example_key\", \"example_value\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: nomad:Namespace\n    properties:\n      name: example\n      description: Example namespace.\n  exampleVariable:\n    type: nomad:Variable\n    name: example\n    properties:\n      path: some/path/of/your/choosing\n      namespace: ${example.name}\n      items:\n        example_key: example_value\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "## Example Usage\n\nCreating a variable in the default namespace:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = new nomad.Variable(\"example\", {\n    path: \"some/path/of/your/choosing\",\n    items: {\n        example_key: \"example_value\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.Variable(\"example\",\n    path=\"some/path/of/your/choosing\",\n    items={\n        \"example_key\": \"example_value\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Nomad.Variable(\"example\", new()\n    {\n        Path = \"some/path/of/your/choosing\",\n        Items = \n        {\n            { \"example_key\", \"example_value\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewVariable(ctx, \"example\", \u0026nomad.VariableArgs{\n\t\t\tPath: pulumi.String(\"some/path/of/your/choosing\"),\n\t\t\tItems: pulumi.StringMap{\n\t\t\t\t\"example_key\": pulumi.String(\"example_value\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.Variable;\nimport com.pulumi.nomad.VariableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Variable(\"example\", VariableArgs.builder()\n            .path(\"some/path/of/your/choosing\")\n            .items(Map.of(\"example_key\", \"example_value\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: nomad:Variable\n    properties:\n      path: some/path/of/your/choosing\n      items:\n        example_key: example_value\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nCreating a variable in a custom namespace:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = new nomad.Namespace(\"example\", {\n    name: \"example\",\n    description: \"Example namespace.\",\n});\nconst exampleVariable = new nomad.Variable(\"example\", {\n    path: \"some/path/of/your/choosing\",\n    namespace: example.name,\n    items: {\n        example_key: \"example_value\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.Namespace(\"example\",\n    name=\"example\",\n    description=\"Example namespace.\")\nexample_variable = nomad.Variable(\"example\",\n    path=\"some/path/of/your/choosing\",\n    namespace=example.name,\n    items={\n        \"example_key\": \"example_value\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Nomad.Namespace(\"example\", new()\n    {\n        Name = \"example\",\n        Description = \"Example namespace.\",\n    });\n\n    var exampleVariable = new Nomad.Variable(\"example\", new()\n    {\n        Path = \"some/path/of/your/choosing\",\n        Namespace = example.Name,\n        Items = \n        {\n            { \"example_key\", \"example_value\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := nomad.NewNamespace(ctx, \"example\", \u0026nomad.NamespaceArgs{\n\t\t\tName:        pulumi.String(\"example\"),\n\t\t\tDescription: pulumi.String(\"Example namespace.\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewVariable(ctx, \"example\", \u0026nomad.VariableArgs{\n\t\t\tPath:      pulumi.String(\"some/path/of/your/choosing\"),\n\t\t\tNamespace: example.Name,\n\t\t\tItems: pulumi.StringMap{\n\t\t\t\t\"example_key\": pulumi.String(\"example_value\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.Namespace;\nimport com.pulumi.nomad.NamespaceArgs;\nimport com.pulumi.nomad.Variable;\nimport com.pulumi.nomad.VariableArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Namespace(\"example\", NamespaceArgs.builder()\n            .name(\"example\")\n            .description(\"Example namespace.\")\n            .build());\n\n        var exampleVariable = new Variable(\"exampleVariable\", VariableArgs.builder()\n            .path(\"some/path/of/your/choosing\")\n            .namespace(example.name())\n            .items(Map.of(\"example_key\", \"example_value\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: nomad:Namespace\n    properties:\n      name: example\n      description: Example namespace.\n  exampleVariable:\n    type: nomad:Variable\n    name: example\n    properties:\n      path: some/path/of/your/choosing\n      namespace: ${example.name}\n      items:\n        example_key: example_value\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "items": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "pulumi.json#/Any"
+                        "type": "string"
                     },
                     "description": "`(map[string]string: \u003crequired\u003e)` - An arbitrary map of items to create in the variable.\n",
                     "secret": true
@@ -4053,7 +4053,7 @@
                 "items": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "pulumi.json#/Any"
+                        "type": "string"
                     },
                     "description": "`(map[string]string: \u003crequired\u003e)` - An arbitrary map of items to create in the variable.\n",
                     "secret": true
@@ -4079,7 +4079,7 @@
                     "items": {
                         "type": "object",
                         "additionalProperties": {
-                            "$ref": "pulumi.json#/Any"
+                            "type": "string"
                         },
                         "description": "`(map[string]string: \u003crequired\u003e)` - An arbitrary map of items to create in the variable.\n",
                         "secret": true
@@ -4822,7 +4822,7 @@
                         "description": "`list of maps` a list of deployments in the cluster.\n* `ID`: `string` Deployment ID.\n* `JobID`: `string` Job ID associated with the deployment.\n* `JobVersion`: `string` Job version.\n* `Status`: `string` Deployment status.\n* `StatusDescription`: `string` Detailed description of the deployment's status.\n",
                         "items": {
                             "additionalProperties": {
-                                "$ref": "pulumi.json#/Any"
+                                "type": "string"
                             },
                             "type": "object"
                         },
@@ -5365,7 +5365,7 @@
                         "description": "`(list of maps)` a list of dynamic plugins registered in the cluster.\n",
                         "items": {
                             "additionalProperties": {
-                                "$ref": "pulumi.json#/Any"
+                                "type": "string"
                             },
                             "type": "object"
                         },
@@ -5490,7 +5490,7 @@
                     },
                     "target": {
                         "additionalProperties": {
-                            "$ref": "pulumi.json#/Any"
+                            "type": "string"
                         },
                         "description": "`(map[string]string)` - The scaling policy target.\n",
                         "type": "object"
@@ -5574,7 +5574,7 @@
                     },
                     "items": {
                         "additionalProperties": {
-                            "$ref": "pulumi.json#/Any"
+                            "type": "string"
                         },
                         "description": "`(map[string]string)` - Map of items in the variable.\n",
                         "secret": true,
@@ -5645,7 +5645,7 @@
                         "description": "`list of maps` a list of volumes in the cluster.\n",
                         "items": {
                             "additionalProperties": {
-                                "$ref": "pulumi.json#/Any"
+                                "type": "string"
                             },
                             "type": "object"
                         },
