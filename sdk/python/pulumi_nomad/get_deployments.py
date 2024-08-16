@@ -31,7 +31,7 @@ class GetDeploymentsResult:
 
     @property
     @pulumi.getter
-    def deployments(self) -> Sequence[Mapping[str, Any]]:
+    def deployments(self) -> Sequence[Mapping[str, str]]:
         """
         `list of maps` a list of deployments in the cluster.
         * `ID`: `string` Deployment ID.

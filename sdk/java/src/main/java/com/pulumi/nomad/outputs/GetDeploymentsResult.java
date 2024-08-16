@@ -5,7 +5,6 @@ package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +21,7 @@ public final class GetDeploymentsResult {
      * * `StatusDescription`: `string` Detailed description of the deployment&#39;s status.
      * 
      */
-    private List<Map<String,Object>> deployments;
+    private List<Map<String,String>> deployments;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -39,7 +38,7 @@ public final class GetDeploymentsResult {
      * * `StatusDescription`: `string` Detailed description of the deployment&#39;s status.
      * 
      */
-    public List<Map<String,Object>> deployments() {
+    public List<Map<String,String>> deployments() {
         return this.deployments;
     }
     /**
@@ -59,7 +58,7 @@ public final class GetDeploymentsResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<Map<String,Object>> deployments;
+        private List<Map<String,String>> deployments;
         private String id;
         public Builder() {}
         public Builder(GetDeploymentsResult defaults) {
@@ -69,7 +68,7 @@ public final class GetDeploymentsResult {
         }
 
         @CustomType.Setter
-        public Builder deployments(List<Map<String,Object>> deployments) {
+        public Builder deployments(List<Map<String,String>> deployments) {
             if (deployments == null) {
               throw new MissingRequiredPropertyException("GetDeploymentsResult", "deployments");
             }

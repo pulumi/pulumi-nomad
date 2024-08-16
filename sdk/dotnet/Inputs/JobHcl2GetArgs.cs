@@ -27,14 +27,14 @@ namespace Pulumi.Nomad.Inputs
         public Input<bool>? Enabled { get; set; }
 
         [Input("vars")]
-        private InputMap<object>? _vars;
+        private InputMap<string>? _vars;
 
         /// <summary>
         /// Additional variables to use when templating the job with HCL2
         /// </summary>
-        public InputMap<object> Vars
+        public InputMap<string> Vars
         {
-            get => _vars ?? (_vars = new InputMap<object>());
+            get => _vars ?? (_vars = new InputMap<string>());
             set => _vars = value;
         }
 

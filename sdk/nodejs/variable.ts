@@ -71,7 +71,7 @@ export class Variable extends pulumi.CustomResource {
     /**
      * `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
      */
-    public readonly items!: pulumi.Output<{[key: string]: any}>;
+    public readonly items!: pulumi.Output<{[key: string]: string}>;
     /**
      * `(string: "default")` - The namepsace to create the variable in.
      */
@@ -123,7 +123,7 @@ export interface VariableState {
     /**
      * `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
      */
-    items?: pulumi.Input<{[key: string]: any}>;
+    items?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * `(string: "default")` - The namepsace to create the variable in.
      */
@@ -141,7 +141,7 @@ export interface VariableArgs {
     /**
      * `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
      */
-    items: pulumi.Input<{[key: string]: any}>;
+    items: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * `(string: "default")` - The namepsace to create the variable in.
      */

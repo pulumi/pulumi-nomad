@@ -6,7 +6,6 @@ package com.pulumi.nomad.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -65,13 +64,13 @@ public final class JobHcl2Args extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="vars")
-    private @Nullable Output<Map<String,Object>> vars;
+    private @Nullable Output<Map<String,String>> vars;
 
     /**
      * @return Additional variables to use when templating the job with HCL2
      * 
      */
-    public Optional<Output<Map<String,Object>>> vars() {
+    public Optional<Output<Map<String,String>>> vars() {
         return Optional.ofNullable(this.vars);
     }
 
@@ -161,7 +160,7 @@ public final class JobHcl2Args extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder vars(@Nullable Output<Map<String,Object>> vars) {
+        public Builder vars(@Nullable Output<Map<String,String>> vars) {
             $.vars = vars;
             return this;
         }
@@ -172,7 +171,7 @@ public final class JobHcl2Args extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder vars(Map<String,Object> vars) {
+        public Builder vars(Map<String,String> vars) {
             return vars(Output.of(vars));
         }
 

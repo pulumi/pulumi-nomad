@@ -35,7 +35,7 @@ export interface GetDeploymentsResult {
      * * `Status`: `string` Deployment status.
      * * `StatusDescription`: `string` Detailed description of the deployment's status.
      */
-    readonly deployments: {[key: string]: any}[];
+    readonly deployments: {[key: string]: string}[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */

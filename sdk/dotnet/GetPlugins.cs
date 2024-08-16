@@ -88,14 +88,14 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(list of maps)` a list of dynamic plugins registered in the cluster.
         /// </summary>
-        public readonly ImmutableArray<ImmutableDictionary<string, object>> Plugins;
+        public readonly ImmutableArray<ImmutableDictionary<string, string>> Plugins;
         public readonly string? Type;
 
         [OutputConstructor]
         private GetPluginsResult(
             string id,
 
-            ImmutableArray<ImmutableDictionary<string, object>> plugins,
+            ImmutableArray<ImmutableDictionary<string, string>> plugins,
 
             string? type)
         {

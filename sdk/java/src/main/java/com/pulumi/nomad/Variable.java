@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.nomad.Utilities;
 import com.pulumi.nomad.VariableArgs;
 import com.pulumi.nomad.inputs.VariableState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -107,14 +106,14 @@ public class Variable extends com.pulumi.resources.CustomResource {
      * `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
      * 
      */
-    @Export(name="items", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> items;
+    @Export(name="items", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> items;
 
     /**
      * @return `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
      * 
      */
-    public Output<Map<String,Object>> items() {
+    public Output<Map<String,String>> items() {
         return this.items;
     }
     /**

@@ -70,7 +70,7 @@ namespace Pulumi.Nomad
         /// `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
         /// </summary>
         [Output("items")]
-        public Output<ImmutableDictionary<string, object>> Items { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Items { get; private set; } = null!;
 
         /// <summary>
         /// `(string: "default")` - The namepsace to create the variable in.
@@ -135,17 +135,17 @@ namespace Pulumi.Nomad
     public sealed class VariableArgs : global::Pulumi.ResourceArgs
     {
         [Input("items", required: true)]
-        private InputMap<object>? _items;
+        private InputMap<string>? _items;
 
         /// <summary>
         /// `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
         /// </summary>
-        public InputMap<object> Items
+        public InputMap<string> Items
         {
-            get => _items ?? (_items = new InputMap<object>());
+            get => _items ?? (_items = new InputMap<string>());
             set
             {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, object>());
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
                 _items = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
@@ -171,17 +171,17 @@ namespace Pulumi.Nomad
     public sealed class VariableState : global::Pulumi.ResourceArgs
     {
         [Input("items")]
-        private InputMap<object>? _items;
+        private InputMap<string>? _items;
 
         /// <summary>
         /// `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
         /// </summary>
-        public InputMap<object> Items
+        public InputMap<string> Items
         {
-            get => _items ?? (_items = new InputMap<object>());
+            get => _items ?? (_items = new InputMap<string>());
             set
             {
-                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, object>());
+                var emptySecret = Output.CreateSecret(ImmutableDictionary.Create<string, string>());
                 _items = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }

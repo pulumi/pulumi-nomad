@@ -43,7 +43,7 @@ export interface GetPluginsResult {
     /**
      * `(list of maps)` a list of dynamic plugins registered in the cluster.
      */
-    readonly plugins: {[key: string]: any}[];
+    readonly plugins: {[key: string]: string}[];
     readonly type?: string;
 }
 /**

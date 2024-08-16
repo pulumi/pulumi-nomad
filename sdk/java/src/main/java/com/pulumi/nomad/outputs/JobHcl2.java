@@ -5,7 +5,6 @@ package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -34,7 +33,7 @@ public final class JobHcl2 {
      * @return Additional variables to use when templating the job with HCL2
      * 
      */
-    private @Nullable Map<String,Object> vars;
+    private @Nullable Map<String,String> vars;
 
     private JobHcl2() {}
     /**
@@ -61,7 +60,7 @@ public final class JobHcl2 {
      * @return Additional variables to use when templating the job with HCL2
      * 
      */
-    public Map<String,Object> vars() {
+    public Map<String,String> vars() {
         return this.vars == null ? Map.of() : this.vars;
     }
 
@@ -76,7 +75,7 @@ public final class JobHcl2 {
     public static final class Builder {
         private @Nullable Boolean allowFs;
         private @Nullable Boolean enabled;
-        private @Nullable Map<String,Object> vars;
+        private @Nullable Map<String,String> vars;
         public Builder() {}
         public Builder(JobHcl2 defaults) {
     	      Objects.requireNonNull(defaults);
@@ -98,7 +97,7 @@ public final class JobHcl2 {
             return this;
         }
         @CustomType.Setter
-        public Builder vars(@Nullable Map<String,Object> vars) {
+        public Builder vars(@Nullable Map<String,String> vars) {
 
             this.vars = vars;
             return this;

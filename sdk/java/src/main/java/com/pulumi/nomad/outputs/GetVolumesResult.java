@@ -5,7 +5,6 @@ package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +31,7 @@ public final class GetVolumesResult {
      * @return `list of maps` a list of volumes in the cluster.
      * 
      */
-    private List<Map<String,Object>> volumes;
+    private List<Map<String,String>> volumes;
 
     private GetVolumesResult() {}
     /**
@@ -62,7 +61,7 @@ public final class GetVolumesResult {
      * @return `list of maps` a list of volumes in the cluster.
      * 
      */
-    public List<Map<String,Object>> volumes() {
+    public List<Map<String,String>> volumes() {
         return this.volumes;
     }
 
@@ -80,7 +79,7 @@ public final class GetVolumesResult {
         private @Nullable String nodeId;
         private @Nullable String pluginId;
         private @Nullable String type;
-        private List<Map<String,Object>> volumes;
+        private List<Map<String,String>> volumes;
         public Builder() {}
         public Builder(GetVolumesResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -125,7 +124,7 @@ public final class GetVolumesResult {
             return this;
         }
         @CustomType.Setter
-        public Builder volumes(List<Map<String,Object>> volumes) {
+        public Builder volumes(List<Map<String,String>> volumes) {
             if (volumes == null) {
               throw new MissingRequiredPropertyException("GetVolumesResult", "volumes");
             }

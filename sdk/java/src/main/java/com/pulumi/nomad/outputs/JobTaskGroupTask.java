@@ -5,7 +5,6 @@ package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.nomad.outputs.JobTaskGroupTaskVolumeMount;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class JobTaskGroupTask {
     private @Nullable String driver;
-    private @Nullable Map<String,Object> meta;
+    private @Nullable Map<String,String> meta;
     private @Nullable String name;
     private @Nullable List<JobTaskGroupTaskVolumeMount> volumeMounts;
 
@@ -24,7 +23,7 @@ public final class JobTaskGroupTask {
     public Optional<String> driver() {
         return Optional.ofNullable(this.driver);
     }
-    public Map<String,Object> meta() {
+    public Map<String,String> meta() {
         return this.meta == null ? Map.of() : this.meta;
     }
     public Optional<String> name() {
@@ -44,7 +43,7 @@ public final class JobTaskGroupTask {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String driver;
-        private @Nullable Map<String,Object> meta;
+        private @Nullable Map<String,String> meta;
         private @Nullable String name;
         private @Nullable List<JobTaskGroupTaskVolumeMount> volumeMounts;
         public Builder() {}
@@ -63,7 +62,7 @@ public final class JobTaskGroupTask {
             return this;
         }
         @CustomType.Setter
-        public Builder meta(@Nullable Map<String,Object> meta) {
+        public Builder meta(@Nullable Map<String,String> meta) {
 
             this.meta = meta;
             return this;

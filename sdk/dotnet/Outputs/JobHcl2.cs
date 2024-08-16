@@ -26,7 +26,7 @@ namespace Pulumi.Nomad.Outputs
         /// <summary>
         /// Additional variables to use when templating the job with HCL2
         /// </summary>
-        public readonly ImmutableDictionary<string, object>? Vars;
+        public readonly ImmutableDictionary<string, string>? Vars;
 
         [OutputConstructor]
         private JobHcl2(
@@ -34,7 +34,7 @@ namespace Pulumi.Nomad.Outputs
 
             bool? enabled,
 
-            ImmutableDictionary<string, object>? vars)
+            ImmutableDictionary<string, string>? vars)
         {
             AllowFs = allowFs;
             Enabled = enabled;
