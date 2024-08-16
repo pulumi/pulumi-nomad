@@ -54,7 +54,7 @@ type GetDeploymentsResult struct {
 	// * `JobVersion`: `string` Job version.
 	// * `Status`: `string` Deployment status.
 	// * `StatusDescription`: `string` Detailed description of the deployment's status.
-	Deployments []map[string]interface{} `pulumi:"deployments"`
+	Deployments []map[string]string `pulumi:"deployments"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 }
@@ -91,8 +91,8 @@ func (o GetDeploymentsResultOutput) ToGetDeploymentsResultOutputWithContext(ctx 
 // * `JobVersion`: `string` Job version.
 // * `Status`: `string` Deployment status.
 // * `StatusDescription`: `string` Detailed description of the deployment's status.
-func (o GetDeploymentsResultOutput) Deployments() pulumi.MapArrayOutput {
-	return o.ApplyT(func(v GetDeploymentsResult) []map[string]interface{} { return v.Deployments }).(pulumi.MapArrayOutput)
+func (o GetDeploymentsResultOutput) Deployments() pulumi.StringMapArrayOutput {
+	return o.ApplyT(func(v GetDeploymentsResult) []map[string]string { return v.Deployments }).(pulumi.StringMapArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

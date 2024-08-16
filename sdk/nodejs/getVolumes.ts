@@ -68,7 +68,7 @@ export interface GetVolumesResult {
     /**
      * `list of maps` a list of volumes in the cluster.
      */
-    readonly volumes: {[key: string]: any}[];
+    readonly volumes: {[key: string]: string}[];
 }
 /**
  * Retrieve a list of volumes in Nomad.

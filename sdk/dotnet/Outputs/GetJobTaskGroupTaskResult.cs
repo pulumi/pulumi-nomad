@@ -14,7 +14,7 @@ namespace Pulumi.Nomad.Outputs
     public sealed class GetJobTaskGroupTaskResult
     {
         public readonly string Driver;
-        public readonly ImmutableDictionary<string, object> Meta;
+        public readonly ImmutableDictionary<string, string> Meta;
         /// <summary>
         /// `(string)` Name of the job.
         /// </summary>
@@ -25,7 +25,7 @@ namespace Pulumi.Nomad.Outputs
         private GetJobTaskGroupTaskResult(
             string driver,
 
-            ImmutableDictionary<string, object> meta,
+            ImmutableDictionary<string, string> meta,
 
             string name,
 

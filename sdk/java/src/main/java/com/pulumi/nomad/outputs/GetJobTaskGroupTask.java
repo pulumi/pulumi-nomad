@@ -6,7 +6,6 @@ package com.pulumi.nomad.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetJobTaskGroupTaskVolumeMount;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,7 @@ import java.util.Objects;
 @CustomType
 public final class GetJobTaskGroupTask {
     private String driver;
-    private Map<String,Object> meta;
+    private Map<String,String> meta;
     /**
      * @return `(string)` Name of the job.
      * 
@@ -27,7 +26,7 @@ public final class GetJobTaskGroupTask {
     public String driver() {
         return this.driver;
     }
-    public Map<String,Object> meta() {
+    public Map<String,String> meta() {
         return this.meta;
     }
     /**
@@ -51,7 +50,7 @@ public final class GetJobTaskGroupTask {
     @CustomType.Builder
     public static final class Builder {
         private String driver;
-        private Map<String,Object> meta;
+        private Map<String,String> meta;
         private String name;
         private List<GetJobTaskGroupTaskVolumeMount> volumeMounts;
         public Builder() {}
@@ -72,7 +71,7 @@ public final class GetJobTaskGroupTask {
             return this;
         }
         @CustomType.Setter
-        public Builder meta(Map<String,Object> meta) {
+        public Builder meta(Map<String,String> meta) {
             if (meta == null) {
               throw new MissingRequiredPropertyException("GetJobTaskGroupTask", "meta");
             }

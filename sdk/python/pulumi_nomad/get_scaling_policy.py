@@ -83,7 +83,7 @@ class GetScalingPolicyResult:
 
     @property
     @pulumi.getter
-    def target(self) -> Mapping[str, Any]:
+    def target(self) -> Mapping[str, str]:
         """
         `(map[string]string)` - The scaling policy target.
         """

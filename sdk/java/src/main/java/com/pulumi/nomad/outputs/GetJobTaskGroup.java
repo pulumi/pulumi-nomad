@@ -8,7 +8,6 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetJobTaskGroupTask;
 import com.pulumi.nomad.outputs.GetJobTaskGroupVolume;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +16,7 @@ import java.util.Objects;
 @CustomType
 public final class GetJobTaskGroup {
     private Integer count;
-    private Map<String,Object> meta;
+    private Map<String,String> meta;
     /**
      * @return `(string)` Name of the job.
      * 
@@ -30,7 +29,7 @@ public final class GetJobTaskGroup {
     public Integer count() {
         return this.count;
     }
-    public Map<String,Object> meta() {
+    public Map<String,String> meta() {
         return this.meta;
     }
     /**
@@ -57,7 +56,7 @@ public final class GetJobTaskGroup {
     @CustomType.Builder
     public static final class Builder {
         private Integer count;
-        private Map<String,Object> meta;
+        private Map<String,String> meta;
         private String name;
         private List<GetJobTaskGroupTask> tasks;
         private List<GetJobTaskGroupVolume> volumes;
@@ -80,7 +79,7 @@ public final class GetJobTaskGroup {
             return this;
         }
         @CustomType.Setter
-        public Builder meta(Map<String,Object> meta) {
+        public Builder meta(Map<String,String> meta) {
             if (meta == null) {
               throw new MissingRequiredPropertyException("GetJobTaskGroup", "meta");
             }

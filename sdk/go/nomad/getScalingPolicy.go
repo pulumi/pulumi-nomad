@@ -66,7 +66,7 @@ type GetScalingPolicyResult struct {
 	// `(string)` - The policy inside the scaling policy.
 	Policy string `pulumi:"policy"`
 	// `(map[string]string)` - The scaling policy target.
-	Target map[string]interface{} `pulumi:"target"`
+	Target map[string]string `pulumi:"target"`
 	// `(string)` - The scaling policy type.
 	Type string `pulumi:"type"`
 }
@@ -134,8 +134,8 @@ func (o GetScalingPolicyResultOutput) Policy() pulumi.StringOutput {
 }
 
 // `(map[string]string)` - The scaling policy target.
-func (o GetScalingPolicyResultOutput) Target() pulumi.MapOutput {
-	return o.ApplyT(func(v GetScalingPolicyResult) map[string]interface{} { return v.Target }).(pulumi.MapOutput)
+func (o GetScalingPolicyResultOutput) Target() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetScalingPolicyResult) map[string]string { return v.Target }).(pulumi.StringMapOutput)
 }
 
 // `(string)` - The scaling policy type.

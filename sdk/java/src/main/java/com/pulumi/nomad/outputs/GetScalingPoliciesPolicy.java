@@ -6,7 +6,6 @@ package com.pulumi.nomad.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -27,7 +26,7 @@ public final class GetScalingPoliciesPolicy {
      * @return `(map[string]string)` - The scaling policy target.
      * 
      */
-    private Map<String,Object> target;
+    private Map<String,String> target;
     /**
      * @return `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
      * 
@@ -53,7 +52,7 @@ public final class GetScalingPoliciesPolicy {
      * @return `(map[string]string)` - The scaling policy target.
      * 
      */
-    public Map<String,Object> target() {
+    public Map<String,String> target() {
         return this.target;
     }
     /**
@@ -75,7 +74,7 @@ public final class GetScalingPoliciesPolicy {
     public static final class Builder {
         private Boolean enabled;
         private String id;
-        private Map<String,Object> target;
+        private Map<String,String> target;
         private String type;
         public Builder() {}
         public Builder(GetScalingPoliciesPolicy defaults) {
@@ -103,7 +102,7 @@ public final class GetScalingPoliciesPolicy {
             return this;
         }
         @CustomType.Setter
-        public Builder target(Map<String,Object> target) {
+        public Builder target(Map<String,String> target) {
             if (target == null) {
               throw new MissingRequiredPropertyException("GetScalingPoliciesPolicy", "target");
             }

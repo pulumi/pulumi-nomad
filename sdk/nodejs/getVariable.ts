@@ -48,7 +48,7 @@ export interface GetVariableResult {
     /**
      * `(map[string]string)` - Map of items in the variable.
      */
-    readonly items: {[key: string]: any};
+    readonly items: {[key: string]: string};
     /**
      * `(string)` - The namespace in which the variable exists.
      */

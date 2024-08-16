@@ -1197,13 +1197,13 @@ class JobHcl2Args:
     def __init__(__self__, *,
                  allow_fs: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 vars: Optional[pulumi.Input[Mapping[str, Any]]] = None):
+                 vars: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[bool] allow_fs: `(boolean: false)` - Set this to `true` to be able to use
                HCL2 filesystem functions
         :param pulumi.Input[bool] enabled: `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
                HCL2 by default.
-        :param pulumi.Input[Mapping[str, Any]] vars: Additional variables to use when templating the job with HCL2
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] vars: Additional variables to use when templating the job with HCL2
         """
         if allow_fs is not None:
             pulumi.set(__self__, "allow_fs", allow_fs)
@@ -1244,14 +1244,14 @@ class JobHcl2Args:
 
     @property
     @pulumi.getter
-    def vars(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def vars(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Additional variables to use when templating the job with HCL2
         """
         return pulumi.get(self, "vars")
 
     @vars.setter
-    def vars(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def vars(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "vars", value)
 
 
@@ -1259,7 +1259,7 @@ class JobHcl2Args:
 class JobTaskGroupArgs:
     def __init__(__self__, *,
                  count: Optional[pulumi.Input[int]] = None,
-                 meta: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  tasks: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskArgs']]]] = None,
                  volumes: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupVolumeArgs']]]] = None):
@@ -1285,11 +1285,11 @@ class JobTaskGroupArgs:
 
     @property
     @pulumi.getter
-    def meta(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def meta(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "meta")
 
     @meta.setter
-    def meta(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def meta(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "meta", value)
 
     @property
@@ -1324,7 +1324,7 @@ class JobTaskGroupArgs:
 class JobTaskGroupTaskArgs:
     def __init__(__self__, *,
                  driver: Optional[pulumi.Input[str]] = None,
-                 meta: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  volume_mounts: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskVolumeMountArgs']]]] = None):
         if driver is not None:
@@ -1347,11 +1347,11 @@ class JobTaskGroupTaskArgs:
 
     @property
     @pulumi.getter
-    def meta(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def meta(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "meta")
 
     @meta.setter
-    def meta(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def meta(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "meta", value)
 
     @property

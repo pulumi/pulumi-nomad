@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.nomad.outputs.JobTaskGroupTask;
 import com.pulumi.nomad.outputs.JobTaskGroupVolume;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +17,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class JobTaskGroup {
     private @Nullable Integer count;
-    private @Nullable Map<String,Object> meta;
+    private @Nullable Map<String,String> meta;
     private @Nullable String name;
     private @Nullable List<JobTaskGroupTask> tasks;
     private @Nullable List<JobTaskGroupVolume> volumes;
@@ -27,7 +26,7 @@ public final class JobTaskGroup {
     public Optional<Integer> count() {
         return Optional.ofNullable(this.count);
     }
-    public Map<String,Object> meta() {
+    public Map<String,String> meta() {
         return this.meta == null ? Map.of() : this.meta;
     }
     public Optional<String> name() {
@@ -50,7 +49,7 @@ public final class JobTaskGroup {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Integer count;
-        private @Nullable Map<String,Object> meta;
+        private @Nullable Map<String,String> meta;
         private @Nullable String name;
         private @Nullable List<JobTaskGroupTask> tasks;
         private @Nullable List<JobTaskGroupVolume> volumes;
@@ -71,7 +70,7 @@ public final class JobTaskGroup {
             return this;
         }
         @CustomType.Setter
-        public Builder meta(@Nullable Map<String,Object> meta) {
+        public Builder meta(@Nullable Map<String,String> meta) {
 
             this.meta = meta;
             return this;

@@ -60,7 +60,7 @@ export interface GetScalingPolicyResult {
     /**
      * `(map[string]string)` - The scaling policy target.
      */
-    readonly target: {[key: string]: any};
+    readonly target: {[key: string]: string};
     /**
      * `(string)` - The scaling policy type.
      */

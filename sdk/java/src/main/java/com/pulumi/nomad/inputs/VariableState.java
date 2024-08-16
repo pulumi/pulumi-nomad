@@ -5,7 +5,6 @@ package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -22,13 +21,13 @@ public final class VariableState extends com.pulumi.resources.ResourceArgs {
      * 
      */
     @Import(name="items")
-    private @Nullable Output<Map<String,Object>> items;
+    private @Nullable Output<Map<String,String>> items;
 
     /**
      * @return `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
      * 
      */
-    public Optional<Output<Map<String,Object>>> items() {
+    public Optional<Output<Map<String,String>>> items() {
         return Optional.ofNullable(this.items);
     }
 
@@ -94,7 +93,7 @@ public final class VariableState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder items(@Nullable Output<Map<String,Object>> items) {
+        public Builder items(@Nullable Output<Map<String,String>> items) {
             $.items = items;
             return this;
         }
@@ -105,7 +104,7 @@ public final class VariableState extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder items(Map<String,Object> items) {
+        public Builder items(Map<String,String> items) {
             return items(Output.of(items));
         }
 
