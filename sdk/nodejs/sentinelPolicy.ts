@@ -8,7 +8,7 @@ import * as utilities from "./utilities";
  * Manages a Sentinel policy registered in Nomad.
  *
  * > **Enterprise Only!** This API endpoint and functionality only exists in
- *    Nomad Enterprise. This is not present in the open source version of Nomad.
+ * Nomad Enterprise. This is not present in the open source version of Nomad.
  *
  * ## Example Usage
  *
@@ -65,13 +65,10 @@ export class SentinelPolicy extends pulumi.CustomResource {
 
     /**
      * `(string: "")` - A description of the policy.
-     *
-     * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-     * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * `(strings: <required>)` - The [enforcement level][enforcement-level]
+     * `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
      * for this policy.
      */
     public readonly enforcementLevel!: pulumi.Output<string>;
@@ -84,7 +81,7 @@ export class SentinelPolicy extends pulumi.CustomResource {
      */
     public readonly policy!: pulumi.Output<string>;
     /**
-     * `(strings: <required>)` - The [scope][scope] for this policy.
+     * `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
      */
     public readonly scope!: pulumi.Output<string>;
 
@@ -134,13 +131,10 @@ export class SentinelPolicy extends pulumi.CustomResource {
 export interface SentinelPolicyState {
     /**
      * `(string: "")` - A description of the policy.
-     *
-     * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-     * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
      */
     description?: pulumi.Input<string>;
     /**
-     * `(strings: <required>)` - The [enforcement level][enforcement-level]
+     * `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
      * for this policy.
      */
     enforcementLevel?: pulumi.Input<string>;
@@ -153,7 +147,7 @@ export interface SentinelPolicyState {
      */
     policy?: pulumi.Input<string>;
     /**
-     * `(strings: <required>)` - The [scope][scope] for this policy.
+     * `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
      */
     scope?: pulumi.Input<string>;
 }
@@ -164,13 +158,10 @@ export interface SentinelPolicyState {
 export interface SentinelPolicyArgs {
     /**
      * `(string: "")` - A description of the policy.
-     *
-     * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-     * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
      */
     description?: pulumi.Input<string>;
     /**
-     * `(strings: <required>)` - The [enforcement level][enforcement-level]
+     * `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
      * for this policy.
      */
     enforcementLevel: pulumi.Input<string>;
@@ -183,7 +174,7 @@ export interface SentinelPolicyArgs {
      */
     policy: pulumi.Input<string>;
     /**
-     * `(strings: <required>)` - The [scope][scope] for this policy.
+     * `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
      */
     scope: pulumi.Input<string>;
 }

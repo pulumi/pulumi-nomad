@@ -17,6 +17,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * layout: &#34;nomad&#34;
+ * page_title: &#34;Nomad: nomad.AclAuthMethod&#34;
+ * sidebar_current: &#34;docs-nomad-resource-acl-auth-method&#34;
+ * description: |-
+ * Manages an ACL Auth Method in Nomad.
+ * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+ * 
+ * # nomad.AclAuthMethod
+ * 
  * Manages an ACL Auth Method in Nomad.
  * 
  * ## Example Usage

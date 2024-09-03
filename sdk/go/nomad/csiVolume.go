@@ -12,6 +12,77 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// Creating a volume:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// It can sometimes be helpful to wait for a particular plugin to be available
+//			ebs, err := nomad.GetPlugin(ctx, &nomad.GetPluginArgs{
+//				PluginId:       "aws-ebs0",
+//				WaitForHealthy: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nomad.NewCsiVolume(ctx, "mysql_volume", &nomad.CsiVolumeArgs{
+//				PluginId:    pulumi.String("aws-ebs0"),
+//				VolumeId:    pulumi.String("mysql_volume"),
+//				Name:        pulumi.String("mysql_volume"),
+//				CapacityMin: pulumi.String("10GiB"),
+//				CapacityMax: pulumi.String("20GiB"),
+//				Capabilities: nomad.CsiVolumeCapabilityArray{
+//					&nomad.CsiVolumeCapabilityArgs{
+//						AccessMode:     pulumi.String("single-node-writer"),
+//						AttachmentMode: pulumi.String("file-system"),
+//					},
+//				},
+//				MountOptions: &nomad.CsiVolumeMountOptionsArgs{
+//					FsType: pulumi.String("ext4"),
+//				},
+//				TopologyRequest: &nomad.CsiVolumeTopologyRequestArgs{
+//					Required: &nomad.CsiVolumeTopologyRequestRequiredArgs{
+//						Topologies: nomad.CsiVolumeTopologyRequestRequiredTopologyArray{
+//							&nomad.CsiVolumeTopologyRequestRequiredTopologyArgs{
+//								Segments: pulumi.StringMap{
+//									"rack": pulumi.String("R1"),
+//									"zone": pulumi.String("us-east-1a"),
+//								},
+//							},
+//							&nomad.CsiVolumeTopologyRequestRequiredTopologyArgs{
+//								Segments: pulumi.StringMap{
+//									"rack": pulumi.String("R2"),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				ebs,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Importing CSI Volumes
+//
+// CSI volumes are imported using the pattern `<volume ID>@<namespace>` .
 type CsiVolume struct {
 	pulumi.CustomResourceState
 

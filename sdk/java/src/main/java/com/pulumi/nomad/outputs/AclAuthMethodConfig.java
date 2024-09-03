@@ -33,13 +33,13 @@ public final class AclAuthMethodConfig {
      */
     private @Nullable List<String> boundIssuers;
     /**
-     * @return Mappings of claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      * 
      */
     private @Nullable Map<String,String> claimMappings;
     /**
-     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
-     * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * @return Duration of leeway when validating all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
      * 
      */
     private @Nullable String clockSkewLeeway;
@@ -74,13 +74,13 @@ public final class AclAuthMethodConfig {
      */
     private @Nullable List<String> jwtValidationPubKeys;
     /**
-     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      * 
      */
     private @Nullable Map<String,String> listClaimMappings;
     /**
-     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
-     * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * @return Duration of leeway when validating not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
      * 
      */
     private @Nullable String notBeforeLeeway;
@@ -148,15 +148,15 @@ public final class AclAuthMethodConfig {
         return this.boundIssuers == null ? List.of() : this.boundIssuers;
     }
     /**
-     * @return Mappings of claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      * 
      */
     public Map<String,String> claimMappings() {
         return this.claimMappings == null ? Map.of() : this.claimMappings;
     }
     /**
-     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
-     * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * @return Duration of leeway when validating all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
      * 
      */
     public Optional<String> clockSkewLeeway() {
@@ -203,15 +203,15 @@ public final class AclAuthMethodConfig {
         return this.jwtValidationPubKeys == null ? List.of() : this.jwtValidationPubKeys;
     }
     /**
-     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      * 
      */
     public Map<String,String> listClaimMappings() {
         return this.listClaimMappings == null ? Map.of() : this.listClaimMappings;
     }
     /**
-     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
-     * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * @return Duration of leeway when validating not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
      * 
      */
     public Optional<String> notBeforeLeeway() {

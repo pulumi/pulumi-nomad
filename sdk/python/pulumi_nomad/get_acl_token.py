@@ -94,7 +94,7 @@ class GetAclTokenResult:
     @pulumi.getter(name="global")
     def global_(self) -> bool:
         """
-        `(bool)` Whether the token is replicated to all regions, or if it 
+        `(bool)` Whether the token is replicated to all regions, or if it
         will only be used in the region it was created.
         """
         return pulumi.get(self, "global_")

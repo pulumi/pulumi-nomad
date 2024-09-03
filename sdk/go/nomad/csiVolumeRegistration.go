@@ -12,6 +12,77 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// Registering a volume:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// It can sometimes be helpful to wait for a particular plugin to be available
+//			ebs, err := nomad.GetPlugin(ctx, &nomad.GetPluginArgs{
+//				PluginId:       "aws-ebs0",
+//				WaitForHealthy: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nomad.NewCsiVolumeRegistration(ctx, "mysql_volume", &nomad.CsiVolumeRegistrationArgs{
+//				PluginId:   pulumi.String("aws-ebs0"),
+//				VolumeId:   pulumi.String("mysql_volume"),
+//				Name:       pulumi.String("mysql_volume"),
+//				ExternalId: pulumi.Any(hashistack.EbsTestVolumeId),
+//				Capabilities: nomad.CsiVolumeRegistrationCapabilityArray{
+//					&nomad.CsiVolumeRegistrationCapabilityArgs{
+//						AccessMode:     pulumi.String("single-node-writer"),
+//						AttachmentMode: pulumi.String("file-system"),
+//					},
+//				},
+//				MountOptions: &nomad.CsiVolumeRegistrationMountOptionsArgs{
+//					FsType: pulumi.String("ext4"),
+//				},
+//				TopologyRequest: &nomad.CsiVolumeRegistrationTopologyRequestArgs{
+//					Required: &nomad.CsiVolumeRegistrationTopologyRequestRequiredArgs{
+//						Topologies: nomad.CsiVolumeRegistrationTopologyRequestRequiredTopologyArray{
+//							&nomad.CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs{
+//								Segments: pulumi.StringMap{
+//									"rack": pulumi.String("R1"),
+//									"zone": pulumi.String("us-east-1a"),
+//								},
+//							},
+//							&nomad.CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs{
+//								Segments: pulumi.StringMap{
+//									"rack": pulumi.String("R2"),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				ebs,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Importing CSI Volume Registrations
+//
+// CSI volume registrations are imported using the pattern
+// `<volume ID>@<namespace>`.
 type CsiVolumeRegistration struct {
 	pulumi.CustomResourceState
 

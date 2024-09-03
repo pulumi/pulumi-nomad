@@ -50,8 +50,6 @@ func GetNodePools(ctx *pulumi.Context, args *GetNodePoolsArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getNodePools.
 type GetNodePoolsArgs struct {
-	// `(string)` - Specifies the [expression][nomadApiFilter] used to
-	// filter the results.
 	Filter *string `pulumi:"filter"`
 	// `(string)` - Specifies a string to filter node pools based on a name
 	// prefix.
@@ -84,8 +82,6 @@ func GetNodePoolsOutput(ctx *pulumi.Context, args GetNodePoolsOutputArgs, opts .
 
 // A collection of arguments for invoking getNodePools.
 type GetNodePoolsOutputArgs struct {
-	// `(string)` - Specifies the [expression][nomadApiFilter] used to
-	// filter the results.
 	Filter pulumi.StringPtrInput `pulumi:"filter"`
 	// `(string)` - Specifies a string to filter node pools based on a name
 	// prefix.

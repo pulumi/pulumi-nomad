@@ -21,14 +21,11 @@ class SentinelPolicyArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SentinelPolicy resource.
-        :param pulumi.Input[str] enforcement_level: `(strings: <required>)` - The [enforcement level][enforcement-level]
+        :param pulumi.Input[str] enforcement_level: `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
                for this policy.
         :param pulumi.Input[str] policy: `(string: <required>)` - The contents of the policy to register.
-        :param pulumi.Input[str] scope: `(strings: <required>)` - The [scope][scope] for this policy.
+        :param pulumi.Input[str] scope: `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
         :param pulumi.Input[str] description: `(string: "")` - A description of the policy.
-               
-               [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-               [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the policy.
         """
         pulumi.set(__self__, "enforcement_level", enforcement_level)
@@ -43,7 +40,7 @@ class SentinelPolicyArgs:
     @pulumi.getter(name="enforcementLevel")
     def enforcement_level(self) -> pulumi.Input[str]:
         """
-        `(strings: <required>)` - The [enforcement level][enforcement-level]
+        `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
         for this policy.
         """
         return pulumi.get(self, "enforcement_level")
@@ -68,7 +65,7 @@ class SentinelPolicyArgs:
     @pulumi.getter
     def scope(self) -> pulumi.Input[str]:
         """
-        `(strings: <required>)` - The [scope][scope] for this policy.
+        `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
         """
         return pulumi.get(self, "scope")
 
@@ -81,9 +78,6 @@ class SentinelPolicyArgs:
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         `(string: "")` - A description of the policy.
-
-        [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-        [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
         """
         return pulumi.get(self, "description")
 
@@ -115,14 +109,11 @@ class _SentinelPolicyState:
         """
         Input properties used for looking up and filtering SentinelPolicy resources.
         :param pulumi.Input[str] description: `(string: "")` - A description of the policy.
-               
-               [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-               [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
-        :param pulumi.Input[str] enforcement_level: `(strings: <required>)` - The [enforcement level][enforcement-level]
+        :param pulumi.Input[str] enforcement_level: `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
                for this policy.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the policy.
         :param pulumi.Input[str] policy: `(string: <required>)` - The contents of the policy to register.
-        :param pulumi.Input[str] scope: `(strings: <required>)` - The [scope][scope] for this policy.
+        :param pulumi.Input[str] scope: `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -140,9 +131,6 @@ class _SentinelPolicyState:
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         `(string: "")` - A description of the policy.
-
-        [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-        [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
         """
         return pulumi.get(self, "description")
 
@@ -154,7 +142,7 @@ class _SentinelPolicyState:
     @pulumi.getter(name="enforcementLevel")
     def enforcement_level(self) -> Optional[pulumi.Input[str]]:
         """
-        `(strings: <required>)` - The [enforcement level][enforcement-level]
+        `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
         for this policy.
         """
         return pulumi.get(self, "enforcement_level")
@@ -191,7 +179,7 @@ class _SentinelPolicyState:
     @pulumi.getter
     def scope(self) -> Optional[pulumi.Input[str]]:
         """
-        `(strings: <required>)` - The [scope][scope] for this policy.
+        `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
         """
         return pulumi.get(self, "scope")
 
@@ -215,7 +203,7 @@ class SentinelPolicy(pulumi.CustomResource):
         Manages a Sentinel policy registered in Nomad.
 
         > **Enterprise Only!** This API endpoint and functionality only exists in
-           Nomad Enterprise. This is not present in the open source version of Nomad.
+        Nomad Enterprise. This is not present in the open source version of Nomad.
 
         ## Example Usage
 
@@ -244,14 +232,11 @@ class SentinelPolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: `(string: "")` - A description of the policy.
-               
-               [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-               [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
-        :param pulumi.Input[str] enforcement_level: `(strings: <required>)` - The [enforcement level][enforcement-level]
+        :param pulumi.Input[str] enforcement_level: `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
                for this policy.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the policy.
         :param pulumi.Input[str] policy: `(string: <required>)` - The contents of the policy to register.
-        :param pulumi.Input[str] scope: `(strings: <required>)` - The [scope][scope] for this policy.
+        :param pulumi.Input[str] scope: `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
         """
         ...
     @overload
@@ -263,7 +248,7 @@ class SentinelPolicy(pulumi.CustomResource):
         Manages a Sentinel policy registered in Nomad.
 
         > **Enterprise Only!** This API endpoint and functionality only exists in
-           Nomad Enterprise. This is not present in the open source version of Nomad.
+        Nomad Enterprise. This is not present in the open source version of Nomad.
 
         ## Example Usage
 
@@ -352,14 +337,11 @@ class SentinelPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: `(string: "")` - A description of the policy.
-               
-               [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-               [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
-        :param pulumi.Input[str] enforcement_level: `(strings: <required>)` - The [enforcement level][enforcement-level]
+        :param pulumi.Input[str] enforcement_level: `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
                for this policy.
         :param pulumi.Input[str] name: `(string: <required>)` - A unique name for the policy.
         :param pulumi.Input[str] policy: `(string: <required>)` - The contents of the policy to register.
-        :param pulumi.Input[str] scope: `(strings: <required>)` - The [scope][scope] for this policy.
+        :param pulumi.Input[str] scope: `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -377,9 +359,6 @@ class SentinelPolicy(pulumi.CustomResource):
     def description(self) -> pulumi.Output[Optional[str]]:
         """
         `(string: "")` - A description of the policy.
-
-        [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-        [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
         """
         return pulumi.get(self, "description")
 
@@ -387,7 +366,7 @@ class SentinelPolicy(pulumi.CustomResource):
     @pulumi.getter(name="enforcementLevel")
     def enforcement_level(self) -> pulumi.Output[str]:
         """
-        `(strings: <required>)` - The [enforcement level][enforcement-level]
+        `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
         for this policy.
         """
         return pulumi.get(self, "enforcement_level")
@@ -412,7 +391,7 @@ class SentinelPolicy(pulumi.CustomResource):
     @pulumi.getter
     def scope(self) -> pulumi.Output[str]:
         """
-        `(strings: <required>)` - The [scope][scope] for this policy.
+        `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
         """
         return pulumi.get(self, "scope")
 

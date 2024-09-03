@@ -22,12 +22,12 @@ export interface AclAuthMethodConfig {
      */
     boundIssuers?: string[];
     /**
-     * Mappings of claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: <optional>)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      */
     claimMappings?: {[key: string]: string};
     /**
-     * `(string: <optional>)` - Duration of leeway when validating
-     * all claims in the form of a time duration such as "5m" or "1h".
+     * Duration of leeway when validating all claims in the form of a time duration such as "5m" or "1h".
      */
     clockSkewLeeway?: string;
     /**
@@ -41,7 +41,7 @@ export interface AclAuthMethodConfig {
      */
     expirationLeeway?: string;
     /**
-     * `(string: <optional>)` - PEM encoded CA cert for use by the 
+     * `(string: <optional>)` - PEM encoded CA cert for use by the
      * TLS client used to talk with the JWKS server.
      */
     jwksCaCert?: string;
@@ -51,17 +51,17 @@ export interface AclAuthMethodConfig {
      */
     jwksUrl?: string;
     /**
-     * `([]string: <optional>)` - List of PEM-encoded 
+     * `([]string: <optional>)` - List of PEM-encoded
      * public keys to use to authenticate signatures locally.
      */
     jwtValidationPubKeys?: string[];
     /**
-     * Mappings of list claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: <optional>)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      */
     listClaimMappings?: {[key: string]: string};
     /**
-     * `(string: <optional>)` - Duration of leeway when validating
-     * not before values of a token in the form of a time duration such as "5m" or "1h".
+     * Duration of leeway when validating not before values of a token in the form of a time duration such as "5m" or "1h".
      */
     notBeforeLeeway?: string;
     /**

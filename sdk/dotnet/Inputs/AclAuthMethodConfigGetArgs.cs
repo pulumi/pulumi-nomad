@@ -55,7 +55,8 @@ namespace Pulumi.Nomad.Inputs
         private InputMap<string>? _claimMappings;
 
         /// <summary>
-        /// Mappings of claims (key) that will be copied to a metadata field (value).
+        /// `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+        /// that will be copied to a metadata field (value).
         /// </summary>
         public InputMap<string> ClaimMappings
         {
@@ -64,8 +65,7 @@ namespace Pulumi.Nomad.Inputs
         }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - Duration of leeway when validating
-        /// all claims in the form of a time duration such as "5m" or "1h".
+        /// Duration of leeway when validating all claims in the form of a time duration such as "5m" or "1h".
         /// </summary>
         [Input("clockSkewLeeway")]
         public Input<string>? ClockSkewLeeway { get; set; }
@@ -91,7 +91,7 @@ namespace Pulumi.Nomad.Inputs
         public Input<string>? ExpirationLeeway { get; set; }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the 
+        /// `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the
         /// TLS client used to talk with the JWKS server.
         /// </summary>
         [Input("jwksCaCert")]
@@ -108,7 +108,7 @@ namespace Pulumi.Nomad.Inputs
         private InputList<string>? _jwtValidationPubKeys;
 
         /// <summary>
-        /// `([]string: &lt;optional&gt;)` - List of PEM-encoded 
+        /// `([]string: &lt;optional&gt;)` - List of PEM-encoded
         /// public keys to use to authenticate signatures locally.
         /// </summary>
         public InputList<string> JwtValidationPubKeys
@@ -121,7 +121,8 @@ namespace Pulumi.Nomad.Inputs
         private InputMap<string>? _listClaimMappings;
 
         /// <summary>
-        /// Mappings of list claims (key) that will be copied to a metadata field (value).
+        /// `(map[string]string: &lt;optional&gt;)` - Mappings of list
+        /// claims (key) that will be copied to a metadata field (value).
         /// </summary>
         public InputMap<string> ListClaimMappings
         {
@@ -130,8 +131,7 @@ namespace Pulumi.Nomad.Inputs
         }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - Duration of leeway when validating
-        /// not before values of a token in the form of a time duration such as "5m" or "1h".
+        /// Duration of leeway when validating not before values of a token in the form of a time duration such as "5m" or "1h".
         /// </summary>
         [Input("notBeforeLeeway")]
         public Input<string>? NotBeforeLeeway { get; set; }

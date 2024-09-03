@@ -12,6 +12,15 @@ namespace Pulumi.Nomad
     public static class GetAclRole
     {
         /// <summary>
+        /// layout: "nomad"
+        /// page_title: "Nomad: nomad.AclRole"
+        /// sidebar_current: "docs-nomad-datasource-acl-role"
+        /// description: |-
+        /// Get information on an ACL Role.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # nomad.AclRole
+        /// 
         /// Get information on an ACL Role.
         /// 
         /// ## Example Usage
@@ -36,6 +45,15 @@ namespace Pulumi.Nomad
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAclRoleResult>("nomad:index/getAclRole:getAclRole", args ?? new GetAclRoleArgs(), options.WithDefaults());
 
         /// <summary>
+        /// layout: "nomad"
+        /// page_title: "Nomad: nomad.AclRole"
+        /// sidebar_current: "docs-nomad-datasource-acl-role"
+        /// description: |-
+        /// Get information on an ACL Role.
+        /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+        /// 
+        /// # nomad.AclRole
+        /// 
         /// Get information on an ACL Role.
         /// 
         /// ## Example Usage

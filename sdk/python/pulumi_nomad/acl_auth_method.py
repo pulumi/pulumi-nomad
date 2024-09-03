@@ -295,6 +295,15 @@ class AclAuthMethod(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        layout: "nomad"
+        page_title: "Nomad: AclAuthMethod"
+        sidebar_current: "docs-nomad-resource-acl-auth-method"
+        description: |-
+        Manages an ACL Auth Method in Nomad.
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # AclAuthMethod
+
         Manages an ACL Auth Method in Nomad.
 
         ## Example Usage
@@ -352,6 +361,15 @@ class AclAuthMethod(pulumi.CustomResource):
                  args: AclAuthMethodArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        layout: "nomad"
+        page_title: "Nomad: AclAuthMethod"
+        sidebar_current: "docs-nomad-resource-acl-auth-method"
+        description: |-
+        Manages an ACL Auth Method in Nomad.
+        <!-- yaml: line 6: could not find expected ':' -->
+
+        # AclAuthMethod
+
         Manages an ACL Auth Method in Nomad.
 
         ## Example Usage

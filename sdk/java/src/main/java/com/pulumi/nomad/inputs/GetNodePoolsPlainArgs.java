@@ -14,19 +14,9 @@ public final class GetNodePoolsPlainArgs extends com.pulumi.resources.InvokeArgs
 
     public static final GetNodePoolsPlainArgs Empty = new GetNodePoolsPlainArgs();
 
-    /**
-     * `(string)` - Specifies the [expression][nomad_api_filter] used to
-     * filter the results.
-     * 
-     */
     @Import(name="filter")
     private @Nullable String filter;
 
-    /**
-     * @return `(string)` - Specifies the [expression][nomad_api_filter] used to
-     * filter the results.
-     * 
-     */
     public Optional<String> filter() {
         return Optional.ofNullable(this.filter);
     }
@@ -73,13 +63,6 @@ public final class GetNodePoolsPlainArgs extends com.pulumi.resources.InvokeArgs
             $ = new GetNodePoolsPlainArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param filter `(string)` - Specifies the [expression][nomad_api_filter] used to
-         * filter the results.
-         * 
-         * @return builder
-         * 
-         */
         public Builder filter(@Nullable String filter) {
             $.filter = filter;
             return this;

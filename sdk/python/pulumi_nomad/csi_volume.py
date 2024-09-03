@@ -622,7 +622,54 @@ class CsiVolume(pulumi.CustomResource):
                  volume_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a CsiVolume resource with the given unique name, props, and options.
+        ## Example Usage
+
+        Creating a volume:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        # It can sometimes be helpful to wait for a particular plugin to be available
+        ebs = nomad.get_plugin(plugin_id="aws-ebs0",
+            wait_for_healthy=True)
+        mysql_volume = nomad.CsiVolume("mysql_volume",
+            plugin_id="aws-ebs0",
+            volume_id="mysql_volume",
+            name="mysql_volume",
+            capacity_min="10GiB",
+            capacity_max="20GiB",
+            capabilities=[{
+                "access_mode": "single-node-writer",
+                "attachment_mode": "file-system",
+            }],
+            mount_options={
+                "fs_type": "ext4",
+            },
+            topology_request={
+                "required": {
+                    "topologies": [
+                        {
+                            "segments": {
+                                "rack": "R1",
+                                "zone": "us-east-1a",
+                            },
+                        },
+                        {
+                            "segments": {
+                                "rack": "R2",
+                            },
+                        },
+                    ],
+                },
+            },
+            opts = pulumi.ResourceOptions(depends_on=[ebs]))
+        ```
+
+        ## Importing CSI Volumes
+
+        CSI volumes are imported using the pattern `<volume ID>@<namespace>` .
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeCapabilityArgs', 'CsiVolumeCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
@@ -646,7 +693,54 @@ class CsiVolume(pulumi.CustomResource):
                  args: CsiVolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a CsiVolume resource with the given unique name, props, and options.
+        ## Example Usage
+
+        Creating a volume:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        # It can sometimes be helpful to wait for a particular plugin to be available
+        ebs = nomad.get_plugin(plugin_id="aws-ebs0",
+            wait_for_healthy=True)
+        mysql_volume = nomad.CsiVolume("mysql_volume",
+            plugin_id="aws-ebs0",
+            volume_id="mysql_volume",
+            name="mysql_volume",
+            capacity_min="10GiB",
+            capacity_max="20GiB",
+            capabilities=[{
+                "access_mode": "single-node-writer",
+                "attachment_mode": "file-system",
+            }],
+            mount_options={
+                "fs_type": "ext4",
+            },
+            topology_request={
+                "required": {
+                    "topologies": [
+                        {
+                            "segments": {
+                                "rack": "R1",
+                                "zone": "us-east-1a",
+                            },
+                        },
+                        {
+                            "segments": {
+                                "rack": "R2",
+                            },
+                        },
+                    ],
+                },
+            },
+            opts = pulumi.ResourceOptions(depends_on=[ebs]))
+        ```
+
+        ## Importing CSI Volumes
+
+        CSI volumes are imported using the pattern `<volume ID>@<namespace>` .
+
         :param str resource_name: The name of the resource.
         :param CsiVolumeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

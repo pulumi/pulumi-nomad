@@ -58,7 +58,7 @@ export interface GetAclTokenResult {
      */
     readonly expirationTtl: string;
     /**
-     * `(bool)` Whether the token is replicated to all regions, or if it 
+     * `(bool)` Whether the token is replicated to all regions, or if it
      * will only be used in the region it was created.
      */
     readonly global: boolean;

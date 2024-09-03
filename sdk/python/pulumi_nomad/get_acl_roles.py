@@ -66,6 +66,15 @@ class AwaitableGetAclRolesResult(GetAclRolesResult):
 def get_acl_roles(prefix: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAclRolesResult:
     """
+    layout: "nomad"
+    page_title: "Nomad: get_acl_roles"
+    sidebar_current: "docs-nomad-datasource-acl_roles"
+    description: |-
+    Retrieve a list of ACL Roles.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_acl_roles
+
     Retrieve a list of ACL Roles.
 
     ## Example Usage
@@ -96,6 +105,15 @@ def get_acl_roles(prefix: Optional[str] = None,
 def get_acl_roles_output(prefix: Optional[pulumi.Input[Optional[str]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclRolesResult]:
     """
+    layout: "nomad"
+    page_title: "Nomad: get_acl_roles"
+    sidebar_current: "docs-nomad-datasource-acl_roles"
+    description: |-
+    Retrieve a list of ACL Roles.
+    <!-- yaml: line 6: could not find expected ':' -->
+
+    # get_acl_roles
+
     Retrieve a list of ACL Roles.
 
     ## Example Usage

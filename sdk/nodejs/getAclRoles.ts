@@ -7,6 +7,15 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * layout: "nomad"
+ * page_title: "Nomad: nomad.getAclRoles"
+ * sidebar_current: "docs-nomad-datasource-acl_roles"
+ * description: |-
+ * Retrieve a list of ACL Roles.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # nomad.getAclRoles
+ *
  * Retrieve a list of ACL Roles.
  *
  * ## Example Usage
@@ -52,6 +61,15 @@ export interface GetAclRolesResult {
     readonly prefix?: string;
 }
 /**
+ * layout: "nomad"
+ * page_title: "Nomad: nomad.getAclRoles"
+ * sidebar_current: "docs-nomad-datasource-acl_roles"
+ * description: |-
+ * Retrieve a list of ACL Roles.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # nomad.getAclRoles
+ *
  * Retrieve a list of ACL Roles.
  *
  * ## Example Usage

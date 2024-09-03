@@ -107,7 +107,7 @@ namespace Pulumi.Nomad
         /// </summary>
         public readonly string ExpirationTtl;
         /// <summary>
-        /// `(bool)` Whether the token is replicated to all regions, or if it 
+        /// `(bool)` Whether the token is replicated to all regions, or if it
         /// will only be used in the region it was created.
         /// </summary>
         public readonly bool Global;
