@@ -50,8 +50,6 @@ func GetAllocations(ctx *pulumi.Context, args *GetAllocationsArgs, opts ...pulum
 
 // A collection of arguments for invoking getAllocations.
 type GetAllocationsArgs struct {
-	// `(string: <optional>)` - Specifies the
-	// [expression][nomadApiFilter] used to filter the results.
 	Filter *string `pulumi:"filter"`
 	// `(string: <optional>)` - Specifies the namespace to search for
 	// allocations in.
@@ -89,8 +87,6 @@ func GetAllocationsOutput(ctx *pulumi.Context, args GetAllocationsOutputArgs, op
 
 // A collection of arguments for invoking getAllocations.
 type GetAllocationsOutputArgs struct {
-	// `(string: <optional>)` - Specifies the
-	// [expression][nomadApiFilter] used to filter the results.
 	Filter pulumi.StringPtrInput `pulumi:"filter"`
 	// `(string: <optional>)` - Specifies the namespace to search for
 	// allocations in.

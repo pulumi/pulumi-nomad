@@ -22,6 +22,89 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * ## Example Usage
+ * 
+ * Registering a volume:
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.nomad.NomadFunctions;
+ * import com.pulumi.nomad.inputs.GetPluginArgs;
+ * import com.pulumi.nomad.CsiVolumeRegistration;
+ * import com.pulumi.nomad.CsiVolumeRegistrationArgs;
+ * import com.pulumi.nomad.inputs.CsiVolumeRegistrationCapabilityArgs;
+ * import com.pulumi.nomad.inputs.CsiVolumeRegistrationMountOptionsArgs;
+ * import com.pulumi.nomad.inputs.CsiVolumeRegistrationTopologyRequestArgs;
+ * import com.pulumi.nomad.inputs.CsiVolumeRegistrationTopologyRequestRequiredArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // It can sometimes be helpful to wait for a particular plugin to be available
+ *         final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()
+ *             .pluginId("aws-ebs0")
+ *             .waitForHealthy(true)
+ *             .build());
+ * 
+ *         var mysqlVolume = new CsiVolumeRegistration("mysqlVolume", CsiVolumeRegistrationArgs.builder()
+ *             .pluginId("aws-ebs0")
+ *             .volumeId("mysql_volume")
+ *             .name("mysql_volume")
+ *             .externalId(hashistack.ebsTestVolumeId())
+ *             .capabilities(CsiVolumeRegistrationCapabilityArgs.builder()
+ *                 .accessMode("single-node-writer")
+ *                 .attachmentMode("file-system")
+ *                 .build())
+ *             .mountOptions(CsiVolumeRegistrationMountOptionsArgs.builder()
+ *                 .fsType("ext4")
+ *                 .build())
+ *             .topologyRequest(CsiVolumeRegistrationTopologyRequestArgs.builder()
+ *                 .required(CsiVolumeRegistrationTopologyRequestRequiredArgs.builder()
+ *                     .topologies(                    
+ *                         CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs.builder()
+ *                             .segments(Map.ofEntries(
+ *                                 Map.entry("rack", "R1"),
+ *                                 Map.entry("zone", "us-east-1a")
+ *                             ))
+ *                             .build(),
+ *                         CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs.builder()
+ *                             .segments(Map.of("rack", "R2"))
+ *                             .build())
+ *                     .build())
+ *                 .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(ebs.applyValue(getPluginResult -> getPluginResult))
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Importing CSI Volume Registrations
+ * 
+ * CSI volume registrations are imported using the pattern
+ * `&lt;volume ID&gt;{@literal @}&lt;namespace&gt;`.
+ * 
+ */
 @ResourceType(type="nomad:index/csiVolumeRegistration:CsiVolumeRegistration")
 public class CsiVolumeRegistration extends com.pulumi.resources.CustomResource {
     /**

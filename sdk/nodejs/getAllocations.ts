@@ -35,10 +35,6 @@ export function getAllocations(args?: GetAllocationsArgs, opts?: pulumi.InvokeOp
  * A collection of arguments for invoking getAllocations.
  */
 export interface GetAllocationsArgs {
-    /**
-     * `(string: <optional>)` - Specifies the
-     * [expression][nomadApiFilter] used to filter the results.
-     */
     filter?: string;
     /**
      * `(string: <optional>)` - Specifies the namespace to search for
@@ -94,10 +90,6 @@ export function getAllocationsOutput(args?: GetAllocationsOutputArgs, opts?: pul
  * A collection of arguments for invoking getAllocations.
  */
 export interface GetAllocationsOutputArgs {
-    /**
-     * `(string: <optional>)` - Specifies the
-     * [expression][nomadApiFilter] used to filter the results.
-     */
     filter?: pulumi.Input<string>;
     /**
      * `(string: <optional>)` - Specifies the namespace to search for

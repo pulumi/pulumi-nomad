@@ -14,19 +14,9 @@ public final class GetAllocationsPlainArgs extends com.pulumi.resources.InvokeAr
 
     public static final GetAllocationsPlainArgs Empty = new GetAllocationsPlainArgs();
 
-    /**
-     * `(string: &lt;optional&gt;)` - Specifies the
-     * [expression][nomad_api_filter] used to filter the results.
-     * 
-     */
     @Import(name="filter")
     private @Nullable String filter;
 
-    /**
-     * @return `(string: &lt;optional&gt;)` - Specifies the
-     * [expression][nomad_api_filter] used to filter the results.
-     * 
-     */
     public Optional<String> filter() {
         return Optional.ofNullable(this.filter);
     }
@@ -91,13 +81,6 @@ public final class GetAllocationsPlainArgs extends com.pulumi.resources.InvokeAr
             $ = new GetAllocationsPlainArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param filter `(string: &lt;optional&gt;)` - Specifies the
-         * [expression][nomad_api_filter] used to filter the results.
-         * 
-         * @return builder
-         * 
-         */
         public Builder filter(@Nullable String filter) {
             $.filter = filter;
             return this;

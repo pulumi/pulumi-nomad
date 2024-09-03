@@ -11,6 +11,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "nomad"
+// page_title: "Nomad: AclRole"
+// sidebar_current: "docs-nomad-datasource-acl-role"
+// description: |-
+// Get information on an ACL Role.
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # AclRole
+//
 // Get information on an ACL Role.
 //
 // ## Example Usage

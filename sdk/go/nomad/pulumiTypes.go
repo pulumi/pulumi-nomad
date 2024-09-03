@@ -23,10 +23,10 @@ type AclAuthMethodConfig struct {
 	// `([]string: <optional>)` - The value against which to match
 	// the iss claim in a JWT.
 	BoundIssuers []string `pulumi:"boundIssuers"`
-	// Mappings of claims (key) that will be copied to a metadata field (value).
+	// `(map[string]string: <optional>)` - Mappings of claims (key)
+	// that will be copied to a metadata field (value).
 	ClaimMappings map[string]string `pulumi:"claimMappings"`
-	// `(string: <optional>)` - Duration of leeway when validating
-	// all claims in the form of a time duration such as "5m" or "1h".
+	// Duration of leeway when validating all claims in the form of a time duration such as "5m" or "1h".
 	ClockSkewLeeway *string `pulumi:"clockSkewLeeway"`
 	// `([]string: <optional>)` - PEM encoded CA certs for use
 	// by the TLS client used to talk with the OIDC Discovery URL.
@@ -43,10 +43,10 @@ type AclAuthMethodConfig struct {
 	// `([]string: <optional>)` - List of PEM-encoded
 	// public keys to use to authenticate signatures locally.
 	JwtValidationPubKeys []string `pulumi:"jwtValidationPubKeys"`
-	// Mappings of list claims (key) that will be copied to a metadata field (value).
+	// `(map[string]string: <optional>)` - Mappings of list
+	// claims (key) that will be copied to a metadata field (value).
 	ListClaimMappings map[string]string `pulumi:"listClaimMappings"`
-	// `(string: <optional>)` - Duration of leeway when validating
-	// not before values of a token in the form of a time duration such as "5m" or "1h".
+	// Duration of leeway when validating not before values of a token in the form of a time duration such as "5m" or "1h".
 	NotBeforeLeeway *string `pulumi:"notBeforeLeeway"`
 	// `(string: <optional>)` - The OAuth Client ID configured
 	// with the OIDC provider.
@@ -90,10 +90,10 @@ type AclAuthMethodConfigArgs struct {
 	// `([]string: <optional>)` - The value against which to match
 	// the iss claim in a JWT.
 	BoundIssuers pulumi.StringArrayInput `pulumi:"boundIssuers"`
-	// Mappings of claims (key) that will be copied to a metadata field (value).
+	// `(map[string]string: <optional>)` - Mappings of claims (key)
+	// that will be copied to a metadata field (value).
 	ClaimMappings pulumi.StringMapInput `pulumi:"claimMappings"`
-	// `(string: <optional>)` - Duration of leeway when validating
-	// all claims in the form of a time duration such as "5m" or "1h".
+	// Duration of leeway when validating all claims in the form of a time duration such as "5m" or "1h".
 	ClockSkewLeeway pulumi.StringPtrInput `pulumi:"clockSkewLeeway"`
 	// `([]string: <optional>)` - PEM encoded CA certs for use
 	// by the TLS client used to talk with the OIDC Discovery URL.
@@ -110,10 +110,10 @@ type AclAuthMethodConfigArgs struct {
 	// `([]string: <optional>)` - List of PEM-encoded
 	// public keys to use to authenticate signatures locally.
 	JwtValidationPubKeys pulumi.StringArrayInput `pulumi:"jwtValidationPubKeys"`
-	// Mappings of list claims (key) that will be copied to a metadata field (value).
+	// `(map[string]string: <optional>)` - Mappings of list
+	// claims (key) that will be copied to a metadata field (value).
 	ListClaimMappings pulumi.StringMapInput `pulumi:"listClaimMappings"`
-	// `(string: <optional>)` - Duration of leeway when validating
-	// not before values of a token in the form of a time duration such as "5m" or "1h".
+	// Duration of leeway when validating not before values of a token in the form of a time duration such as "5m" or "1h".
 	NotBeforeLeeway pulumi.StringPtrInput `pulumi:"notBeforeLeeway"`
 	// `(string: <optional>)` - The OAuth Client ID configured
 	// with the OIDC provider.
@@ -231,13 +231,13 @@ func (o AclAuthMethodConfigOutput) BoundIssuers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.BoundIssuers }).(pulumi.StringArrayOutput)
 }
 
-// Mappings of claims (key) that will be copied to a metadata field (value).
+// `(map[string]string: <optional>)` - Mappings of claims (key)
+// that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigOutput) ClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) map[string]string { return v.ClaimMappings }).(pulumi.StringMapOutput)
 }
 
-// `(string: <optional>)` - Duration of leeway when validating
-// all claims in the form of a time duration such as "5m" or "1h".
+// Duration of leeway when validating all claims in the form of a time duration such as "5m" or "1h".
 func (o AclAuthMethodConfigOutput) ClockSkewLeeway() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.ClockSkewLeeway }).(pulumi.StringPtrOutput)
 }
@@ -272,13 +272,13 @@ func (o AclAuthMethodConfigOutput) JwtValidationPubKeys() pulumi.StringArrayOutp
 	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.JwtValidationPubKeys }).(pulumi.StringArrayOutput)
 }
 
-// Mappings of list claims (key) that will be copied to a metadata field (value).
+// `(map[string]string: <optional>)` - Mappings of list
+// claims (key) that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigOutput) ListClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) map[string]string { return v.ListClaimMappings }).(pulumi.StringMapOutput)
 }
 
-// `(string: <optional>)` - Duration of leeway when validating
-// not before values of a token in the form of a time duration such as "5m" or "1h".
+// Duration of leeway when validating not before values of a token in the form of a time duration such as "5m" or "1h".
 func (o AclAuthMethodConfigOutput) NotBeforeLeeway() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.NotBeforeLeeway }).(pulumi.StringPtrOutput)
 }
@@ -377,7 +377,8 @@ func (o AclAuthMethodConfigPtrOutput) BoundIssuers() pulumi.StringArrayOutput {
 	}).(pulumi.StringArrayOutput)
 }
 
-// Mappings of claims (key) that will be copied to a metadata field (value).
+// `(map[string]string: <optional>)` - Mappings of claims (key)
+// that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigPtrOutput) ClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) map[string]string {
 		if v == nil {
@@ -387,8 +388,7 @@ func (o AclAuthMethodConfigPtrOutput) ClaimMappings() pulumi.StringMapOutput {
 	}).(pulumi.StringMapOutput)
 }
 
-// `(string: <optional>)` - Duration of leeway when validating
-// all claims in the form of a time duration such as "5m" or "1h".
+// Duration of leeway when validating all claims in the form of a time duration such as "5m" or "1h".
 func (o AclAuthMethodConfigPtrOutput) ClockSkewLeeway() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
 		if v == nil {
@@ -453,7 +453,8 @@ func (o AclAuthMethodConfigPtrOutput) JwtValidationPubKeys() pulumi.StringArrayO
 	}).(pulumi.StringArrayOutput)
 }
 
-// Mappings of list claims (key) that will be copied to a metadata field (value).
+// `(map[string]string: <optional>)` - Mappings of list
+// claims (key) that will be copied to a metadata field (value).
 func (o AclAuthMethodConfigPtrOutput) ListClaimMappings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) map[string]string {
 		if v == nil {
@@ -463,8 +464,7 @@ func (o AclAuthMethodConfigPtrOutput) ListClaimMappings() pulumi.StringMapOutput
 	}).(pulumi.StringMapOutput)
 }
 
-// `(string: <optional>)` - Duration of leeway when validating
-// not before values of a token in the form of a time duration such as "5m" or "1h".
+// Duration of leeway when validating not before values of a token in the form of a time duration such as "5m" or "1h".
 func (o AclAuthMethodConfigPtrOutput) NotBeforeLeeway() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) *string {
 		if v == nil {

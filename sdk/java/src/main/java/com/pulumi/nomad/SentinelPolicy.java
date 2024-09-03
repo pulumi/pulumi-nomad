@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
  * Manages a Sentinel policy registered in Nomad.
  * 
  * &gt; **Enterprise Only!** This API endpoint and functionality only exists in
- *    Nomad Enterprise. This is not present in the open source version of Nomad.
+ * Nomad Enterprise. This is not present in the open source version of Nomad.
  * 
  * ## Example Usage
  * 
@@ -76,9 +76,6 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
     /**
      * `(string: &#34;&#34;)` - A description of the policy.
      * 
-     * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-     * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
-     * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
@@ -86,15 +83,12 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
     /**
      * @return `(string: &#34;&#34;)` - A description of the policy.
      * 
-     * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-     * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
-     * 
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
     /**
-     * `(strings: &lt;required&gt;)` - The [enforcement level][enforcement-level]
+     * `(strings: &lt;required&gt;)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
      * for this policy.
      * 
      */
@@ -102,7 +96,7 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
     private Output<String> enforcementLevel;
 
     /**
-     * @return `(strings: &lt;required&gt;)` - The [enforcement level][enforcement-level]
+     * @return `(strings: &lt;required&gt;)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
      * for this policy.
      * 
      */
@@ -138,14 +132,14 @@ public class SentinelPolicy extends com.pulumi.resources.CustomResource {
         return this.policy;
     }
     /**
-     * `(strings: &lt;required&gt;)` - The [scope][scope] for this policy.
+     * `(strings: &lt;required&gt;)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
      * 
      */
     @Export(name="scope", refs={String.class}, tree="[0]")
     private Output<String> scope;
 
     /**
-     * @return `(strings: &lt;required&gt;)` - The [scope][scope] for this policy.
+     * @return `(strings: &lt;required&gt;)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
      * 
      */
     public Output<String> scope() {

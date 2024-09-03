@@ -10,6 +10,15 @@ using Pulumi.Serialization;
 namespace Pulumi.Nomad
 {
     /// <summary>
+    /// layout: "nomad"
+    /// page_title: "Nomad: nomad.AclAuthMethod"
+    /// sidebar_current: "docs-nomad-resource-acl-auth-method"
+    /// description: |-
+    /// Manages an ACL Auth Method in Nomad.
+    /// &lt;!-- yaml: line 6: could not find expected ':' --&gt;
+    /// 
+    /// # nomad.AclAuthMethod
+    /// 
     /// Manages an ACL Auth Method in Nomad.
     /// 
     /// ## Example Usage

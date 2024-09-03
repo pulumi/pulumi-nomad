@@ -6,6 +6,59 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * ## Example Usage
+ *
+ * Registering a volume:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * // It can sometimes be helpful to wait for a particular plugin to be available
+ * const ebs = nomad.getPlugin({
+ *     pluginId: "aws-ebs0",
+ *     waitForHealthy: true,
+ * });
+ * const mysqlVolume = new nomad.CsiVolumeRegistration("mysql_volume", {
+ *     pluginId: "aws-ebs0",
+ *     volumeId: "mysql_volume",
+ *     name: "mysql_volume",
+ *     externalId: hashistack.ebsTestVolumeId,
+ *     capabilities: [{
+ *         accessMode: "single-node-writer",
+ *         attachmentMode: "file-system",
+ *     }],
+ *     mountOptions: {
+ *         fsType: "ext4",
+ *     },
+ *     topologyRequest: {
+ *         required: {
+ *             topologies: [
+ *                 {
+ *                     segments: {
+ *                         rack: "R1",
+ *                         zone: "us-east-1a",
+ *                     },
+ *                 },
+ *                 {
+ *                     segments: {
+ *                         rack: "R2",
+ *                     },
+ *                 },
+ *             ],
+ *         },
+ *     },
+ * }, {
+ *     dependsOn: [ebs],
+ * });
+ * ```
+ *
+ * ## Importing CSI Volume Registrations
+ *
+ * CSI volume registrations are imported using the pattern
+ * `<volume ID>@<namespace>`.
+ */
 export class CsiVolumeRegistration extends pulumi.CustomResource {
     /**
      * Get an existing CsiVolumeRegistration resource's state with the given name, ID, and optional extra

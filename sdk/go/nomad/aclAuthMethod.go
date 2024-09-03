@@ -12,6 +12,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// layout: "nomad"
+// page_title: "Nomad: AclAuthMethod"
+// sidebar_current: "docs-nomad-resource-acl-auth-method"
+// description: |-
+// Manages an ACL Auth Method in Nomad.
+// <!-- yaml: line 6: could not find expected ':' -->
+//
+// # AclAuthMethod
+//
 // Manages an ACL Auth Method in Nomad.
 //
 // ## Example Usage

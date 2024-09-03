@@ -15,8 +15,7 @@ import (
 // Manages a Sentinel policy registered in Nomad.
 //
 // > **Enterprise Only!** This API endpoint and functionality only exists in
-//
-//	Nomad Enterprise. This is not present in the open source version of Nomad.
+// Nomad Enterprise. This is not present in the open source version of Nomad.
 //
 // ## Example Usage
 //
@@ -64,18 +63,15 @@ type SentinelPolicy struct {
 	pulumi.CustomResourceState
 
 	// `(string: "")` - A description of the policy.
-	//
-	// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-	// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// `(strings: <required>)` - The [enforcement level][enforcement-level]
+	// `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
 	// for this policy.
 	EnforcementLevel pulumi.StringOutput `pulumi:"enforcementLevel"`
 	// `(string: <required>)` - A unique name for the policy.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `(string: <required>)` - The contents of the policy to register.
 	Policy pulumi.StringOutput `pulumi:"policy"`
-	// `(strings: <required>)` - The [scope][scope] for this policy.
+	// `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
 	Scope pulumi.StringOutput `pulumi:"scope"`
 }
 
@@ -119,35 +115,29 @@ func GetSentinelPolicy(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SentinelPolicy resources.
 type sentinelPolicyState struct {
 	// `(string: "")` - A description of the policy.
-	//
-	// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-	// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 	Description *string `pulumi:"description"`
-	// `(strings: <required>)` - The [enforcement level][enforcement-level]
+	// `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
 	// for this policy.
 	EnforcementLevel *string `pulumi:"enforcementLevel"`
 	// `(string: <required>)` - A unique name for the policy.
 	Name *string `pulumi:"name"`
 	// `(string: <required>)` - The contents of the policy to register.
 	Policy *string `pulumi:"policy"`
-	// `(strings: <required>)` - The [scope][scope] for this policy.
+	// `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
 	Scope *string `pulumi:"scope"`
 }
 
 type SentinelPolicyState struct {
 	// `(string: "")` - A description of the policy.
-	//
-	// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-	// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 	Description pulumi.StringPtrInput
-	// `(strings: <required>)` - The [enforcement level][enforcement-level]
+	// `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
 	// for this policy.
 	EnforcementLevel pulumi.StringPtrInput
 	// `(string: <required>)` - A unique name for the policy.
 	Name pulumi.StringPtrInput
 	// `(string: <required>)` - The contents of the policy to register.
 	Policy pulumi.StringPtrInput
-	// `(strings: <required>)` - The [scope][scope] for this policy.
+	// `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
 	Scope pulumi.StringPtrInput
 }
 
@@ -157,36 +147,30 @@ func (SentinelPolicyState) ElementType() reflect.Type {
 
 type sentinelPolicyArgs struct {
 	// `(string: "")` - A description of the policy.
-	//
-	// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-	// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 	Description *string `pulumi:"description"`
-	// `(strings: <required>)` - The [enforcement level][enforcement-level]
+	// `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
 	// for this policy.
 	EnforcementLevel string `pulumi:"enforcementLevel"`
 	// `(string: <required>)` - A unique name for the policy.
 	Name *string `pulumi:"name"`
 	// `(string: <required>)` - The contents of the policy to register.
 	Policy string `pulumi:"policy"`
-	// `(strings: <required>)` - The [scope][scope] for this policy.
+	// `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
 	Scope string `pulumi:"scope"`
 }
 
 // The set of arguments for constructing a SentinelPolicy resource.
 type SentinelPolicyArgs struct {
 	// `(string: "")` - A description of the policy.
-	//
-	// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-	// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 	Description pulumi.StringPtrInput
-	// `(strings: <required>)` - The [enforcement level][enforcement-level]
+	// `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
 	// for this policy.
 	EnforcementLevel pulumi.StringInput
 	// `(string: <required>)` - A unique name for the policy.
 	Name pulumi.StringPtrInput
 	// `(string: <required>)` - The contents of the policy to register.
 	Policy pulumi.StringInput
-	// `(strings: <required>)` - The [scope][scope] for this policy.
+	// `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
 	Scope pulumi.StringInput
 }
 
@@ -278,14 +262,11 @@ func (o SentinelPolicyOutput) ToSentinelPolicyOutputWithContext(ctx context.Cont
 }
 
 // `(string: "")` - A description of the policy.
-//
-// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
 func (o SentinelPolicyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SentinelPolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// `(strings: <required>)` - The [enforcement level][enforcement-level]
+// `(strings: <required>)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
 // for this policy.
 func (o SentinelPolicyOutput) EnforcementLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v *SentinelPolicy) pulumi.StringOutput { return v.EnforcementLevel }).(pulumi.StringOutput)
@@ -301,7 +282,7 @@ func (o SentinelPolicyOutput) Policy() pulumi.StringOutput {
 	return o.ApplyT(func(v *SentinelPolicy) pulumi.StringOutput { return v.Policy }).(pulumi.StringOutput)
 }
 
-// `(strings: <required>)` - The [scope][scope] for this policy.
+// `(strings: <required>)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
 func (o SentinelPolicyOutput) Scope() pulumi.StringOutput {
 	return o.ApplyT(func(v *SentinelPolicy) pulumi.StringOutput { return v.Scope }).(pulumi.StringOutput)
 }

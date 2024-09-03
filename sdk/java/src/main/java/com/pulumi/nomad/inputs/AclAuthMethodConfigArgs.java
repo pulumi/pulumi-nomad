@@ -70,14 +70,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Mappings of claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      * 
      */
     @Import(name="claimMappings")
     private @Nullable Output<Map<String,String>> claimMappings;
 
     /**
-     * @return Mappings of claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      * 
      */
     public Optional<Output<Map<String,String>>> claimMappings() {
@@ -85,16 +87,14 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * `(string: &lt;optional&gt;)` - Duration of leeway when validating
-     * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * Duration of leeway when validating all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
      * 
      */
     @Import(name="clockSkewLeeway")
     private @Nullable Output<String> clockSkewLeeway;
 
     /**
-     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
-     * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * @return Duration of leeway when validating all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
      * 
      */
     public Optional<Output<String>> clockSkewLeeway() {
@@ -187,14 +187,16 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Mappings of list claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: &lt;optional&gt;)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      * 
      */
     @Import(name="listClaimMappings")
     private @Nullable Output<Map<String,String>> listClaimMappings;
 
     /**
-     * @return Mappings of list claims (key) that will be copied to a metadata field (value).
+     * @return `(map[string]string: &lt;optional&gt;)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      * 
      */
     public Optional<Output<Map<String,String>>> listClaimMappings() {
@@ -202,16 +204,14 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * `(string: &lt;optional&gt;)` - Duration of leeway when validating
-     * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * Duration of leeway when validating not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
      * 
      */
     @Import(name="notBeforeLeeway")
     private @Nullable Output<String> notBeforeLeeway;
 
     /**
-     * @return `(string: &lt;optional&gt;)` - Duration of leeway when validating
-     * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+     * @return Duration of leeway when validating not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
      * 
      */
     public Optional<Output<String>> notBeforeLeeway() {
@@ -466,7 +466,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param claimMappings Mappings of claims (key) that will be copied to a metadata field (value).
+         * @param claimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+         * that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
@@ -477,7 +478,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param claimMappings Mappings of claims (key) that will be copied to a metadata field (value).
+         * @param claimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+         * that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
@@ -487,8 +489,7 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param clockSkewLeeway `(string: &lt;optional&gt;)` - Duration of leeway when validating
-         * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+         * @param clockSkewLeeway Duration of leeway when validating all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
          * 
          * @return builder
          * 
@@ -499,8 +500,7 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param clockSkewLeeway `(string: &lt;optional&gt;)` - Duration of leeway when validating
-         * all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+         * @param clockSkewLeeway Duration of leeway when validating all claims in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
          * 
          * @return builder
          * 
@@ -647,7 +647,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param listClaimMappings Mappings of list claims (key) that will be copied to a metadata field (value).
+         * @param listClaimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of list
+         * claims (key) that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
@@ -658,7 +659,8 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param listClaimMappings Mappings of list claims (key) that will be copied to a metadata field (value).
+         * @param listClaimMappings `(map[string]string: &lt;optional&gt;)` - Mappings of list
+         * claims (key) that will be copied to a metadata field (value).
          * 
          * @return builder
          * 
@@ -668,8 +670,7 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param notBeforeLeeway `(string: &lt;optional&gt;)` - Duration of leeway when validating
-         * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+         * @param notBeforeLeeway Duration of leeway when validating not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
          * 
          * @return builder
          * 
@@ -680,8 +681,7 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param notBeforeLeeway `(string: &lt;optional&gt;)` - Duration of leeway when validating
-         * not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
+         * @param notBeforeLeeway Duration of leeway when validating not before values of a token in the form of a time duration such as &#34;5m&#34; or &#34;1h&#34;.
          * 
          * @return builder
          * 

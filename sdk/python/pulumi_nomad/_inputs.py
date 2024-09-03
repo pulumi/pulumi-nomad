@@ -83,22 +83,22 @@ class AclAuthMethodConfigArgs:
                valid for login.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] bound_issuers: `([]string: <optional>)` - The value against which to match
                the iss claim in a JWT.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] claim_mappings: Mappings of claims (key) that will be copied to a metadata field (value).
-        :param pulumi.Input[str] clock_skew_leeway: `(string: <optional>)` - Duration of leeway when validating
-               all claims in the form of a time duration such as "5m" or "1h".
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] claim_mappings: `(map[string]string: <optional>)` - Mappings of claims (key)
+               that will be copied to a metadata field (value).
+        :param pulumi.Input[str] clock_skew_leeway: Duration of leeway when validating all claims in the form of a time duration such as "5m" or "1h".
         :param pulumi.Input[Sequence[pulumi.Input[str]]] discovery_ca_pems: `([]string: <optional>)` - PEM encoded CA certs for use
                by the TLS client used to talk with the OIDC Discovery URL.
         :param pulumi.Input[str] expiration_leeway: `(string: <optional>)` - Duration of leeway when validating
                expiration of a JWT in the form of a time duration such as "5m" or "1h".
-        :param pulumi.Input[str] jwks_ca_cert: `(string: <optional>)` - PEM encoded CA cert for use by the 
+        :param pulumi.Input[str] jwks_ca_cert: `(string: <optional>)` - PEM encoded CA cert for use by the
                TLS client used to talk with the JWKS server.
         :param pulumi.Input[str] jwks_url: `(string: <optional>)` - JSON Web Key Sets url for authenticating
                signatures.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pub_keys: `([]string: <optional>)` - List of PEM-encoded 
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] jwt_validation_pub_keys: `([]string: <optional>)` - List of PEM-encoded
                public keys to use to authenticate signatures locally.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] list_claim_mappings: Mappings of list claims (key) that will be copied to a metadata field (value).
-        :param pulumi.Input[str] not_before_leeway: `(string: <optional>)` - Duration of leeway when validating
-               not before values of a token in the form of a time duration such as "5m" or "1h".
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] list_claim_mappings: `(map[string]string: <optional>)` - Mappings of list
+               claims (key) that will be copied to a metadata field (value).
+        :param pulumi.Input[str] not_before_leeway: Duration of leeway when validating not before values of a token in the form of a time duration such as "5m" or "1h".
         :param pulumi.Input[str] oidc_client_id: `(string: <optional>)` - The OAuth Client ID configured
                with the OIDC provider.
         :param pulumi.Input[str] oidc_client_secret: `(string: <optional>)` - The OAuth Client Secret
@@ -193,7 +193,8 @@ class AclAuthMethodConfigArgs:
     @pulumi.getter(name="claimMappings")
     def claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Mappings of claims (key) that will be copied to a metadata field (value).
+        `(map[string]string: <optional>)` - Mappings of claims (key)
+        that will be copied to a metadata field (value).
         """
         return pulumi.get(self, "claim_mappings")
 
@@ -205,8 +206,7 @@ class AclAuthMethodConfigArgs:
     @pulumi.getter(name="clockSkewLeeway")
     def clock_skew_leeway(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <optional>)` - Duration of leeway when validating
-        all claims in the form of a time duration such as "5m" or "1h".
+        Duration of leeway when validating all claims in the form of a time duration such as "5m" or "1h".
         """
         return pulumi.get(self, "clock_skew_leeway")
 
@@ -244,7 +244,7 @@ class AclAuthMethodConfigArgs:
     @pulumi.getter(name="jwksCaCert")
     def jwks_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <optional>)` - PEM encoded CA cert for use by the 
+        `(string: <optional>)` - PEM encoded CA cert for use by the
         TLS client used to talk with the JWKS server.
         """
         return pulumi.get(self, "jwks_ca_cert")
@@ -270,7 +270,7 @@ class AclAuthMethodConfigArgs:
     @pulumi.getter(name="jwtValidationPubKeys")
     def jwt_validation_pub_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        `([]string: <optional>)` - List of PEM-encoded 
+        `([]string: <optional>)` - List of PEM-encoded
         public keys to use to authenticate signatures locally.
         """
         return pulumi.get(self, "jwt_validation_pub_keys")
@@ -283,7 +283,8 @@ class AclAuthMethodConfigArgs:
     @pulumi.getter(name="listClaimMappings")
     def list_claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        Mappings of list claims (key) that will be copied to a metadata field (value).
+        `(map[string]string: <optional>)` - Mappings of list
+        claims (key) that will be copied to a metadata field (value).
         """
         return pulumi.get(self, "list_claim_mappings")
 
@@ -295,8 +296,7 @@ class AclAuthMethodConfigArgs:
     @pulumi.getter(name="notBeforeLeeway")
     def not_before_leeway(self) -> Optional[pulumi.Input[str]]:
         """
-        `(string: <optional>)` - Duration of leeway when validating
-        not before values of a token in the form of a time duration such as "5m" or "1h".
+        Duration of leeway when validating not before values of a token in the form of a time duration such as "5m" or "1h".
         """
         return pulumi.get(self, "not_before_leeway")
 

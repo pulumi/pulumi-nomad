@@ -495,6 +495,15 @@ public final class NomadFunctions {
         return Deployment.getInstance().invokeAsync("nomad:index/getAclPolicy:getAclPolicy", TypeShape.of(GetAclPolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;nomad&#34;
+     * page_title: &#34;Nomad: nomad.AclRole&#34;
+     * sidebar_current: &#34;docs-nomad-datasource-acl-role&#34;
+     * description: |-
+     * Get information on an ACL Role.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # nomad.AclRole
+     * 
      * Get information on an ACL Role.
      * 
      * ## Example Usage
@@ -537,6 +546,15 @@ public final class NomadFunctions {
         return getAclRole(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;nomad&#34;
+     * page_title: &#34;Nomad: nomad.AclRole&#34;
+     * sidebar_current: &#34;docs-nomad-datasource-acl-role&#34;
+     * description: |-
+     * Get information on an ACL Role.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # nomad.AclRole
+     * 
      * Get information on an ACL Role.
      * 
      * ## Example Usage
@@ -579,6 +597,15 @@ public final class NomadFunctions {
         return getAclRolePlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;nomad&#34;
+     * page_title: &#34;Nomad: nomad.AclRole&#34;
+     * sidebar_current: &#34;docs-nomad-datasource-acl-role&#34;
+     * description: |-
+     * Get information on an ACL Role.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # nomad.AclRole
+     * 
      * Get information on an ACL Role.
      * 
      * ## Example Usage
@@ -621,6 +648,15 @@ public final class NomadFunctions {
         return Deployment.getInstance().invoke("nomad:index/getAclRole:getAclRole", TypeShape.of(GetAclRoleResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;nomad&#34;
+     * page_title: &#34;Nomad: nomad.AclRole&#34;
+     * sidebar_current: &#34;docs-nomad-datasource-acl-role&#34;
+     * description: |-
+     * Get information on an ACL Role.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # nomad.AclRole
+     * 
      * Get information on an ACL Role.
      * 
      * ## Example Usage
@@ -663,6 +699,15 @@ public final class NomadFunctions {
         return Deployment.getInstance().invokeAsync("nomad:index/getAclRole:getAclRole", TypeShape.of(GetAclRoleResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;nomad&#34;
+     * page_title: &#34;Nomad: nomad.getAclRoles&#34;
+     * sidebar_current: &#34;docs-nomad-datasource-acl_roles&#34;
+     * description: |-
+     * Retrieve a list of ACL Roles.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # nomad.getAclRoles
+     * 
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage
@@ -705,6 +750,15 @@ public final class NomadFunctions {
         return getAclRoles(GetAclRolesArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;nomad&#34;
+     * page_title: &#34;Nomad: nomad.getAclRoles&#34;
+     * sidebar_current: &#34;docs-nomad-datasource-acl_roles&#34;
+     * description: |-
+     * Retrieve a list of ACL Roles.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # nomad.getAclRoles
+     * 
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage
@@ -747,6 +801,15 @@ public final class NomadFunctions {
         return getAclRolesPlain(GetAclRolesPlainArgs.Empty, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;nomad&#34;
+     * page_title: &#34;Nomad: nomad.getAclRoles&#34;
+     * sidebar_current: &#34;docs-nomad-datasource-acl_roles&#34;
+     * description: |-
+     * Retrieve a list of ACL Roles.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # nomad.getAclRoles
+     * 
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage
@@ -789,6 +852,15 @@ public final class NomadFunctions {
         return getAclRoles(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;nomad&#34;
+     * page_title: &#34;Nomad: nomad.getAclRoles&#34;
+     * sidebar_current: &#34;docs-nomad-datasource-acl_roles&#34;
+     * description: |-
+     * Retrieve a list of ACL Roles.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # nomad.getAclRoles
+     * 
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage
@@ -831,6 +903,15 @@ public final class NomadFunctions {
         return getAclRolesPlain(args, InvokeOptions.Empty);
     }
     /**
+     * layout: &#34;nomad&#34;
+     * page_title: &#34;Nomad: nomad.getAclRoles&#34;
+     * sidebar_current: &#34;docs-nomad-datasource-acl_roles&#34;
+     * description: |-
+     * Retrieve a list of ACL Roles.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # nomad.getAclRoles
+     * 
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage
@@ -873,6 +954,15 @@ public final class NomadFunctions {
         return Deployment.getInstance().invoke("nomad:index/getAclRoles:getAclRoles", TypeShape.of(GetAclRolesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * layout: &#34;nomad&#34;
+     * page_title: &#34;Nomad: nomad.getAclRoles&#34;
+     * sidebar_current: &#34;docs-nomad-datasource-acl_roles&#34;
+     * description: |-
+     * Retrieve a list of ACL Roles.
+     * &lt;!-- yaml: line 6: could not find expected &#39;:&#39; --&gt;
+     * 
+     * # nomad.getAclRoles
+     * 
      * Retrieve a list of ACL Roles.
      * 
      * ## Example Usage

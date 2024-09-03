@@ -105,8 +105,6 @@ def get_allocations(filter: Optional[str] = None,
     ```
 
 
-    :param str filter: `(string: <optional>)` - Specifies the
-           [expression][nomad_api_filter] used to filter the results.
     :param str namespace: `(string: <optional>)` - Specifies the namespace to search for
            allocations in.
     :param str prefix: `(string: <optional>)` - Specifies a string to filter allocations
@@ -145,8 +143,6 @@ def get_allocations_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str filter: `(string: <optional>)` - Specifies the
-           [expression][nomad_api_filter] used to filter the results.
     :param str namespace: `(string: <optional>)` - Specifies the namespace to search for
            allocations in.
     :param str prefix: `(string: <optional>)` - Specifies a string to filter allocations

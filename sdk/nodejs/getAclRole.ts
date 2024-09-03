@@ -7,6 +7,15 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * layout: "nomad"
+ * page_title: "Nomad: nomad.AclRole"
+ * sidebar_current: "docs-nomad-datasource-acl-role"
+ * description: |-
+ * Get information on an ACL Role.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # nomad.AclRole
+ *
  * Get information on an ACL Role.
  *
  * ## Example Usage
@@ -60,6 +69,15 @@ export interface GetAclRoleResult {
     readonly policies: outputs.GetAclRolePolicy[];
 }
 /**
+ * layout: "nomad"
+ * page_title: "Nomad: nomad.AclRole"
+ * sidebar_current: "docs-nomad-datasource-acl-role"
+ * description: |-
+ * Get information on an ACL Role.
+ * <!-- yaml: line 6: could not find expected ':' -->
+ *
+ * # nomad.AclRole
+ *
  * Get information on an ACL Role.
  *
  * ## Example Usage

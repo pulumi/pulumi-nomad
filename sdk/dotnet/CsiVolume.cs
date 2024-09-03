@@ -9,6 +9,84 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// Creating a volume:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Nomad = Pulumi.Nomad;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // It can sometimes be helpful to wait for a particular plugin to be available
+    ///     var ebs = Nomad.GetPlugin.Invoke(new()
+    ///     {
+    ///         PluginId = "aws-ebs0",
+    ///         WaitForHealthy = true,
+    ///     });
+    /// 
+    ///     var mysqlVolume = new Nomad.CsiVolume("mysql_volume", new()
+    ///     {
+    ///         PluginId = "aws-ebs0",
+    ///         VolumeId = "mysql_volume",
+    ///         Name = "mysql_volume",
+    ///         CapacityMin = "10GiB",
+    ///         CapacityMax = "20GiB",
+    ///         Capabilities = new[]
+    ///         {
+    ///             new Nomad.Inputs.CsiVolumeCapabilityArgs
+    ///             {
+    ///                 AccessMode = "single-node-writer",
+    ///                 AttachmentMode = "file-system",
+    ///             },
+    ///         },
+    ///         MountOptions = new Nomad.Inputs.CsiVolumeMountOptionsArgs
+    ///         {
+    ///             FsType = "ext4",
+    ///         },
+    ///         TopologyRequest = new Nomad.Inputs.CsiVolumeTopologyRequestArgs
+    ///         {
+    ///             Required = new Nomad.Inputs.CsiVolumeTopologyRequestRequiredArgs
+    ///             {
+    ///                 Topologies = new[]
+    ///                 {
+    ///                     new Nomad.Inputs.CsiVolumeTopologyRequestRequiredTopologyArgs
+    ///                     {
+    ///                         Segments = 
+    ///                         {
+    ///                             { "rack", "R1" },
+    ///                             { "zone", "us-east-1a" },
+    ///                         },
+    ///                     },
+    ///                     new Nomad.Inputs.CsiVolumeTopologyRequestRequiredTopologyArgs
+    ///                     {
+    ///                         Segments = 
+    ///                         {
+    ///                             { "rack", "R2" },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             ebs,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Importing CSI Volumes
+    /// 
+    /// CSI volumes are imported using the pattern `&lt;volume ID&gt;@&lt;namespace&gt;` .
+    /// </summary>
     [NomadResourceType("nomad:index/csiVolume:CsiVolume")]
     public partial class CsiVolume : global::Pulumi.CustomResource
     {

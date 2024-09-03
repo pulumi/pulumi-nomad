@@ -34,10 +34,6 @@ export function getNodePools(args?: GetNodePoolsArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking getNodePools.
  */
 export interface GetNodePoolsArgs {
-    /**
-     * `(string)` - Specifies the [expression][nomadApiFilter] used to
-     * filter the results.
-     */
     filter?: string;
     /**
      * `(string)` - Specifies a string to filter node pools based on a name
@@ -84,10 +80,6 @@ export function getNodePoolsOutput(args?: GetNodePoolsOutputArgs, opts?: pulumi.
  * A collection of arguments for invoking getNodePools.
  */
 export interface GetNodePoolsOutputArgs {
-    /**
-     * `(string)` - Specifies the [expression][nomadApiFilter] used to
-     * filter the results.
-     */
     filter?: pulumi.Input<string>;
     /**
      * `(string)` - Specifies a string to filter node pools based on a name

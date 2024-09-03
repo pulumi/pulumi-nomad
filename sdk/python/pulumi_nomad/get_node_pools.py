@@ -92,8 +92,6 @@ def get_node_pools(filter: Optional[str] = None,
     ```
 
 
-    :param str filter: `(string)` - Specifies the [expression][nomad_api_filter] used to
-           filter the results.
     :param str prefix: `(string)` - Specifies a string to filter node pools based on a name
            prefix.
     """
@@ -127,8 +125,6 @@ def get_node_pools_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
     ```
 
 
-    :param str filter: `(string)` - Specifies the [expression][nomad_api_filter] used to
-           filter the results.
     :param str prefix: `(string)` - Specifies a string to filter node pools based on a name
            prefix.
     """

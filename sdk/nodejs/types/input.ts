@@ -22,12 +22,12 @@ export interface AclAuthMethodConfig {
      */
     boundIssuers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Mappings of claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: <optional>)` - Mappings of claims (key)
+     * that will be copied to a metadata field (value).
      */
     claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * `(string: <optional>)` - Duration of leeway when validating
-     * all claims in the form of a time duration such as "5m" or "1h".
+     * Duration of leeway when validating all claims in the form of a time duration such as "5m" or "1h".
      */
     clockSkewLeeway?: pulumi.Input<string>;
     /**
@@ -41,7 +41,7 @@ export interface AclAuthMethodConfig {
      */
     expirationLeeway?: pulumi.Input<string>;
     /**
-     * `(string: <optional>)` - PEM encoded CA cert for use by the 
+     * `(string: <optional>)` - PEM encoded CA cert for use by the
      * TLS client used to talk with the JWKS server.
      */
     jwksCaCert?: pulumi.Input<string>;
@@ -51,17 +51,17 @@ export interface AclAuthMethodConfig {
      */
     jwksUrl?: pulumi.Input<string>;
     /**
-     * `([]string: <optional>)` - List of PEM-encoded 
+     * `([]string: <optional>)` - List of PEM-encoded
      * public keys to use to authenticate signatures locally.
      */
     jwtValidationPubKeys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Mappings of list claims (key) that will be copied to a metadata field (value).
+     * `(map[string]string: <optional>)` - Mappings of list
+     * claims (key) that will be copied to a metadata field (value).
      */
     listClaimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * `(string: <optional>)` - Duration of leeway when validating
-     * not before values of a token in the form of a time duration such as "5m" or "1h".
+     * Duration of leeway when validating not before values of a token in the form of a time duration such as "5m" or "1h".
      */
     notBeforeLeeway?: pulumi.Input<string>;
     /**

@@ -29,12 +29,12 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly ImmutableArray<string> BoundIssuers;
         /// <summary>
-        /// Mappings of claims (key) that will be copied to a metadata field (value).
+        /// `(map[string]string: &lt;optional&gt;)` - Mappings of claims (key)
+        /// that will be copied to a metadata field (value).
         /// </summary>
         public readonly ImmutableDictionary<string, string>? ClaimMappings;
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - Duration of leeway when validating
-        /// all claims in the form of a time duration such as "5m" or "1h".
+        /// Duration of leeway when validating all claims in the form of a time duration such as "5m" or "1h".
         /// </summary>
         public readonly string? ClockSkewLeeway;
         /// <summary>
@@ -48,7 +48,7 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string? ExpirationLeeway;
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the 
+        /// `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the
         /// TLS client used to talk with the JWKS server.
         /// </summary>
         public readonly string? JwksCaCert;
@@ -58,17 +58,17 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string? JwksUrl;
         /// <summary>
-        /// `([]string: &lt;optional&gt;)` - List of PEM-encoded 
+        /// `([]string: &lt;optional&gt;)` - List of PEM-encoded
         /// public keys to use to authenticate signatures locally.
         /// </summary>
         public readonly ImmutableArray<string> JwtValidationPubKeys;
         /// <summary>
-        /// Mappings of list claims (key) that will be copied to a metadata field (value).
+        /// `(map[string]string: &lt;optional&gt;)` - Mappings of list
+        /// claims (key) that will be copied to a metadata field (value).
         /// </summary>
         public readonly ImmutableDictionary<string, string>? ListClaimMappings;
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - Duration of leeway when validating
-        /// not before values of a token in the form of a time duration such as "5m" or "1h".
+        /// Duration of leeway when validating not before values of a token in the form of a time duration such as "5m" or "1h".
         /// </summary>
         public readonly string? NotBeforeLeeway;
         /// <summary>

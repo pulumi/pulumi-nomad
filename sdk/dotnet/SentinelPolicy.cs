@@ -13,7 +13,7 @@ namespace Pulumi.Nomad
     /// Manages a Sentinel policy registered in Nomad.
     /// 
     /// &gt; **Enterprise Only!** This API endpoint and functionality only exists in
-    ///    Nomad Enterprise. This is not present in the open source version of Nomad.
+    /// Nomad Enterprise. This is not present in the open source version of Nomad.
     /// 
     /// ## Example Usage
     /// 
@@ -52,15 +52,12 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
-        /// 
-        /// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-        /// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// `(strings: &lt;required&gt;)` - The [enforcement level][enforcement-level]
+        /// `(strings: &lt;required&gt;)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
         /// for this policy.
         /// </summary>
         [Output("enforcementLevel")]
@@ -79,7 +76,7 @@ namespace Pulumi.Nomad
         public Output<string> Policy { get; private set; } = null!;
 
         /// <summary>
-        /// `(strings: &lt;required&gt;)` - The [scope][scope] for this policy.
+        /// `(strings: &lt;required&gt;)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
         /// </summary>
         [Output("scope")]
         public Output<string> Scope { get; private set; } = null!;
@@ -132,15 +129,12 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
-        /// 
-        /// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-        /// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// `(strings: &lt;required&gt;)` - The [enforcement level][enforcement-level]
+        /// `(strings: &lt;required&gt;)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
         /// for this policy.
         /// </summary>
         [Input("enforcementLevel", required: true)]
@@ -159,7 +153,7 @@ namespace Pulumi.Nomad
         public Input<string> Policy { get; set; } = null!;
 
         /// <summary>
-        /// `(strings: &lt;required&gt;)` - The [scope][scope] for this policy.
+        /// `(strings: &lt;required&gt;)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
         /// </summary>
         [Input("scope", required: true)]
         public Input<string> Scope { get; set; } = null!;
@@ -174,15 +168,12 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `(string: "")` - A description of the policy.
-        /// 
-        /// [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
-        /// [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// `(strings: &lt;required&gt;)` - The [enforcement level][enforcement-level]
+        /// `(strings: &lt;required&gt;)` - The [enforcement level](https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level)
         /// for this policy.
         /// </summary>
         [Input("enforcementLevel")]
@@ -201,7 +192,7 @@ namespace Pulumi.Nomad
         public Input<string>? Policy { get; set; }
 
         /// <summary>
-        /// `(strings: &lt;required&gt;)` - The [scope][scope] for this policy.
+        /// `(strings: &lt;required&gt;)` - The [scope](https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope) for this policy.
         /// </summary>
         [Input("scope")]
         public Input<string>? Scope { get; set; }
