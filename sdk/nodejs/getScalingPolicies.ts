@@ -23,7 +23,6 @@ import * as utilities from "./utilities";
  */
 export function getScalingPolicies(args?: GetScalingPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<GetScalingPoliciesResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getScalingPolicies:getScalingPolicies", {
         "jobId": args.jobId,
@@ -79,7 +78,12 @@ export interface GetScalingPoliciesResult {
  * ```
  */
 export function getScalingPoliciesOutput(args?: GetScalingPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetScalingPoliciesResult> {
-    return pulumi.output(args).apply((a: any) => getScalingPolicies(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getScalingPolicies:getScalingPolicies", {
+        "jobId": args.jobId,
+        "type": args.type,
+    }, opts);
 }
 
 /**

@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  */
 export function getAllocations(args?: GetAllocationsArgs, opts?: pulumi.InvokeOptions): Promise<GetAllocationsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getAllocations:getAllocations", {
         "filter": args.filter,
@@ -87,7 +86,13 @@ export interface GetAllocationsResult {
  * ```
  */
 export function getAllocationsOutput(args?: GetAllocationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAllocationsResult> {
-    return pulumi.output(args).apply((a: any) => getAllocations(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getAllocations:getAllocations", {
+        "filter": args.filter,
+        "namespace": args.namespace,
+        "prefix": args.prefix,
+    }, opts);
 }
 
 /**

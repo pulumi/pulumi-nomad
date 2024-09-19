@@ -8,7 +8,6 @@ import * as utilities from "./utilities";
  * Parse a HCL jobspec and produce the equivalent JSON encoded job.
  */
 export function getJobParser(args: GetJobParserArgs, opts?: pulumi.InvokeOptions): Promise<GetJobParserResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getJobParser:getJobParser", {
         "canonicalize": args.canonicalize,
@@ -55,7 +54,11 @@ export interface GetJobParserResult {
  * Parse a HCL jobspec and produce the equivalent JSON encoded job.
  */
 export function getJobParserOutput(args: GetJobParserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJobParserResult> {
-    return pulumi.output(args).apply((a: any) => getJobParser(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getJobParser:getJobParser", {
+        "canonicalize": args.canonicalize,
+        "hcl": args.hcl,
+    }, opts);
 }
 
 /**

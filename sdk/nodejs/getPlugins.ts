@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  */
 export function getPlugins(args?: GetPluginsArgs, opts?: pulumi.InvokeOptions): Promise<GetPluginsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getPlugins:getPlugins", {
         "type": args.type,
@@ -59,7 +58,11 @@ export interface GetPluginsResult {
  * ```
  */
 export function getPluginsOutput(args?: GetPluginsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginsResult> {
-    return pulumi.output(args).apply((a: any) => getPlugins(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getPlugins:getPlugins", {
+        "type": args.type,
+    }, opts);
 }
 
 /**

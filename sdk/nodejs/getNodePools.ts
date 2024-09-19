@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  */
 export function getNodePools(args?: GetNodePoolsArgs, opts?: pulumi.InvokeOptions): Promise<GetNodePoolsResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getNodePools:getNodePools", {
         "filter": args.filter,
@@ -77,7 +76,12 @@ export interface GetNodePoolsResult {
  * ```
  */
 export function getNodePoolsOutput(args?: GetNodePoolsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNodePoolsResult> {
-    return pulumi.output(args).apply((a: any) => getNodePools(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getNodePools:getNodePools", {
+        "filter": args.filter,
+        "prefix": args.prefix,
+    }, opts);
 }
 
 /**

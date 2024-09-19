@@ -21,7 +21,6 @@ import * as utilities from "./utilities";
  */
 export function getDatacenters(args?: GetDatacentersArgs, opts?: pulumi.InvokeOptions): Promise<GetDatacentersResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getDatacenters:getDatacenters", {
         "ignoreDownNodes": args.ignoreDownNodes,
@@ -74,7 +73,12 @@ export interface GetDatacentersResult {
  * ```
  */
 export function getDatacentersOutput(args?: GetDatacentersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatacentersResult> {
-    return pulumi.output(args).apply((a: any) => getDatacenters(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getDatacenters:getDatacenters", {
+        "ignoreDownNodes": args.ignoreDownNodes,
+        "prefix": args.prefix,
+    }, opts);
 }
 
 /**
