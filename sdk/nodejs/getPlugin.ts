@@ -34,7 +34,6 @@ import * as utilities from "./utilities";
  * is healthy before returning.
  */
 export function getPlugin(args: GetPluginArgs, opts?: pulumi.InvokeOptions): Promise<GetPluginResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getPlugin:getPlugin", {
         "pluginId": args.pluginId,
@@ -133,7 +132,12 @@ export interface GetPluginResult {
  * is healthy before returning.
  */
 export function getPluginOutput(args: GetPluginOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginResult> {
-    return pulumi.output(args).apply((a: any) => getPlugin(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getPlugin:getPlugin", {
+        "pluginId": args.pluginId,
+        "waitForHealthy": args.waitForHealthy,
+        "waitForRegistration": args.waitForRegistration,
+    }, opts);
 }
 
 /**

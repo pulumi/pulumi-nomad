@@ -68,14 +68,20 @@ type LookupAclPolicyResult struct {
 
 func LookupAclPolicyOutput(ctx *pulumi.Context, args LookupAclPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupAclPolicyResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupAclPolicyResult, error) {
+		ApplyT(func(v interface{}) (LookupAclPolicyResultOutput, error) {
 			args := v.(LookupAclPolicyArgs)
-			r, err := LookupAclPolicy(ctx, &args, opts...)
-			var s LookupAclPolicyResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupAclPolicyResult
+			secret, err := ctx.InvokePackageRaw("nomad:index/getAclPolicy:getAclPolicy", args, &rv, "", opts...)
+			if err != nil {
+				return LookupAclPolicyResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupAclPolicyResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupAclPolicyResultOutput), nil
+			}
+			return output, nil
 		}).(LookupAclPolicyResultOutput)
 }
 

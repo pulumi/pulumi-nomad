@@ -30,7 +30,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getNamespaces(opts?: pulumi.InvokeOptions): Promise<GetNamespacesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getNamespaces:getNamespaces", {
     }, opts);
@@ -75,5 +74,7 @@ export interface GetNamespacesResult {
  * ```
  */
 export function getNamespacesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetNamespacesResult> {
-    return pulumi.output(getNamespaces(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getNamespaces:getNamespaces", {
+    }, opts);
 }

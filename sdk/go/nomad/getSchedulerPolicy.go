@@ -59,13 +59,19 @@ type GetSchedulerPolicyResult struct {
 }
 
 func GetSchedulerPolicyOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetSchedulerPolicyResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetSchedulerPolicyResult, error) {
-		r, err := GetSchedulerPolicy(ctx, opts...)
-		var s GetSchedulerPolicyResult
-		if r != nil {
-			s = *r
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetSchedulerPolicyResultOutput, error) {
+		opts = internal.PkgInvokeDefaultOpts(opts)
+		var rv GetSchedulerPolicyResult
+		secret, err := ctx.InvokePackageRaw("nomad:index/getSchedulerPolicy:getSchedulerPolicy", nil, &rv, "", opts...)
+		if err != nil {
+			return GetSchedulerPolicyResultOutput{}, err
 		}
-		return s, err
+
+		output := pulumi.ToOutput(rv).(GetSchedulerPolicyResultOutput)
+		if secret {
+			return pulumi.ToSecret(output).(GetSchedulerPolicyResultOutput), nil
+		}
+		return output, nil
 	}).(GetSchedulerPolicyResultOutput)
 }
 

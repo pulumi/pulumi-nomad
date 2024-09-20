@@ -70,14 +70,20 @@ type GetScalingPoliciesResult struct {
 
 func GetScalingPoliciesOutput(ctx *pulumi.Context, args GetScalingPoliciesOutputArgs, opts ...pulumi.InvokeOption) GetScalingPoliciesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetScalingPoliciesResult, error) {
+		ApplyT(func(v interface{}) (GetScalingPoliciesResultOutput, error) {
 			args := v.(GetScalingPoliciesArgs)
-			r, err := GetScalingPolicies(ctx, &args, opts...)
-			var s GetScalingPoliciesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetScalingPoliciesResult
+			secret, err := ctx.InvokePackageRaw("nomad:index/getScalingPolicies:getScalingPolicies", args, &rv, "", opts...)
+			if err != nil {
+				return GetScalingPoliciesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetScalingPoliciesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetScalingPoliciesResultOutput), nil
+			}
+			return output, nil
 		}).(GetScalingPoliciesResultOutput)
 }
 

@@ -17,7 +17,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getDeployments(opts?: pulumi.InvokeOptions): Promise<GetDeploymentsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getDeployments:getDeployments", {
     }, opts);
@@ -54,5 +53,7 @@ export interface GetDeploymentsResult {
  * ```
  */
 export function getDeploymentsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentsResult> {
-    return pulumi.output(getDeployments(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getDeployments:getDeployments", {
+    }, opts);
 }
