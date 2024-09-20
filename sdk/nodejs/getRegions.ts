@@ -28,7 +28,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getRegions(opts?: pulumi.InvokeOptions): Promise<GetRegionsResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getRegions:getRegions", {
     }, opts);
@@ -71,5 +70,7 @@ export interface GetRegionsResult {
  * ```
  */
 export function getRegionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetRegionsResult> {
-    return pulumi.output(getRegions(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getRegions:getRegions", {
+    }, opts);
 }

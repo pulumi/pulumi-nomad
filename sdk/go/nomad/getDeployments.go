@@ -60,13 +60,19 @@ type GetDeploymentsResult struct {
 }
 
 func GetDeploymentsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetDeploymentsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetDeploymentsResult, error) {
-		r, err := GetDeployments(ctx, opts...)
-		var s GetDeploymentsResult
-		if r != nil {
-			s = *r
+	return pulumi.ToOutput(0).ApplyT(func(int) (GetDeploymentsResultOutput, error) {
+		opts = internal.PkgInvokeDefaultOpts(opts)
+		var rv GetDeploymentsResult
+		secret, err := ctx.InvokePackageRaw("nomad:index/getDeployments:getDeployments", nil, &rv, "", opts...)
+		if err != nil {
+			return GetDeploymentsResultOutput{}, err
 		}
-		return s, err
+
+		output := pulumi.ToOutput(rv).(GetDeploymentsResultOutput)
+		if secret {
+			return pulumi.ToSecret(output).(GetDeploymentsResultOutput), nil
+		}
+		return output, nil
 	}).(GetDeploymentsResultOutput)
 }
 

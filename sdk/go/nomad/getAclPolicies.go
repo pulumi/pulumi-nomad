@@ -65,14 +65,20 @@ type GetAclPoliciesResult struct {
 
 func GetAclPoliciesOutput(ctx *pulumi.Context, args GetAclPoliciesOutputArgs, opts ...pulumi.InvokeOption) GetAclPoliciesResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetAclPoliciesResult, error) {
+		ApplyT(func(v interface{}) (GetAclPoliciesResultOutput, error) {
 			args := v.(GetAclPoliciesArgs)
-			r, err := GetAclPolicies(ctx, &args, opts...)
-			var s GetAclPoliciesResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetAclPoliciesResult
+			secret, err := ctx.InvokePackageRaw("nomad:index/getAclPolicies:getAclPolicies", args, &rv, "", opts...)
+			if err != nil {
+				return GetAclPoliciesResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetAclPoliciesResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetAclPoliciesResultOutput), nil
+			}
+			return output, nil
 		}).(GetAclPoliciesResultOutput)
 }
 

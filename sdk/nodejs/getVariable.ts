@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getVariable(args: GetVariableArgs, opts?: pulumi.InvokeOptions): Promise<GetVariableResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getVariable:getVariable", {
         "namespace": args.namespace,
@@ -69,7 +68,11 @@ export interface GetVariableResult {
  * ```
  */
 export function getVariableOutput(args: GetVariableOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVariableResult> {
-    return pulumi.output(args).apply((a: any) => getVariable(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getVariable:getVariable", {
+        "namespace": args.namespace,
+        "path": args.path,
+    }, opts);
 }
 
 /**

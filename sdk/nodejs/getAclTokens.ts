@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  */
 export function getAclTokens(args?: GetAclTokensArgs, opts?: pulumi.InvokeOptions): Promise<GetAclTokensResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getAclTokens:getAclTokens", {
         "prefix": args.prefix,
@@ -68,7 +67,11 @@ export interface GetAclTokensResult {
  * ```
  */
 export function getAclTokensOutput(args?: GetAclTokensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclTokensResult> {
-    return pulumi.output(args).apply((a: any) => getAclTokens(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getAclTokens:getAclTokens", {
+        "prefix": args.prefix,
+    }, opts);
 }
 
 /**

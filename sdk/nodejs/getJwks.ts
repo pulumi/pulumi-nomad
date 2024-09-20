@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getJwks(opts?: pulumi.InvokeOptions): Promise<GetJwksResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("nomad:index/getJwks:getJwks", {
     }, opts);
@@ -62,5 +61,7 @@ export interface GetJwksResult {
  * ```
  */
 export function getJwksOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetJwksResult> {
-    return pulumi.output(getJwks(opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("nomad:index/getJwks:getJwks", {
+    }, opts);
 }
