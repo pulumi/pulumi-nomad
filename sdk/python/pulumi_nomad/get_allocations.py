@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -125,9 +130,6 @@ def get_allocations(filter: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         namespace=pulumi.get(__ret__, 'namespace'),
         prefix=pulumi.get(__ret__, 'prefix'))
-
-
-@_utilities.lift_output_func(get_allocations)
 def get_allocations_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
                            namespace: Optional[pulumi.Input[Optional[str]]] = None,
                            prefix: Optional[pulumi.Input[Optional[str]]] = None,
@@ -152,4 +154,15 @@ def get_allocations_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
     :param str prefix: `(string: <optional>)` - Specifies a string to filter allocations
            based on an ID prefix.
     """
-    ...
+    __args__ = dict()
+    __args__['filter'] = filter
+    __args__['namespace'] = namespace
+    __args__['prefix'] = prefix
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getAllocations:getAllocations', __args__, opts=opts, typ=GetAllocationsResult)
+    return __ret__.apply(lambda __response__: GetAllocationsResult(
+        allocations=pulumi.get(__response__, 'allocations'),
+        filter=pulumi.get(__response__, 'filter'),
+        id=pulumi.get(__response__, 'id'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        prefix=pulumi.get(__response__, 'prefix')))

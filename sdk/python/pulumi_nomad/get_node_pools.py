@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -108,9 +113,6 @@ def get_node_pools(filter: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         node_pools=pulumi.get(__ret__, 'node_pools'),
         prefix=pulumi.get(__ret__, 'prefix'))
-
-
-@_utilities.lift_output_func(get_node_pools)
 def get_node_pools_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
                           prefix: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodePoolsResult]:
@@ -132,4 +134,13 @@ def get_node_pools_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
     :param str prefix: `(string)` - Specifies a string to filter node pools based on a name
            prefix.
     """
-    ...
+    __args__ = dict()
+    __args__['filter'] = filter
+    __args__['prefix'] = prefix
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getNodePools:getNodePools', __args__, opts=opts, typ=GetNodePoolsResult)
+    return __ret__.apply(lambda __response__: GetNodePoolsResult(
+        filter=pulumi.get(__response__, 'filter'),
+        id=pulumi.get(__response__, 'id'),
+        node_pools=pulumi.get(__response__, 'node_pools'),
+        prefix=pulumi.get(__response__, 'prefix')))

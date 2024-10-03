@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -105,9 +110,6 @@ def get_datacenters(ignore_down_nodes: Optional[bool] = None,
         id=pulumi.get(__ret__, 'id'),
         ignore_down_nodes=pulumi.get(__ret__, 'ignore_down_nodes'),
         prefix=pulumi.get(__ret__, 'prefix'))
-
-
-@_utilities.lift_output_func(get_datacenters)
 def get_datacenters_output(ignore_down_nodes: Optional[pulumi.Input[Optional[bool]]] = None,
                            prefix: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatacentersResult]:
@@ -128,4 +130,13 @@ def get_datacenters_output(ignore_down_nodes: Optional[pulumi.Input[Optional[boo
     :param bool ignore_down_nodes: `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.
     :param str prefix: `(string)`: An optional string to filter datacenters based on name prefix. If not provided, all datacenters are returned.
     """
-    ...
+    __args__ = dict()
+    __args__['ignoreDownNodes'] = ignore_down_nodes
+    __args__['prefix'] = prefix
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getDatacenters:getDatacenters', __args__, opts=opts, typ=GetDatacentersResult)
+    return __ret__.apply(lambda __response__: GetDatacentersResult(
+        datacenters=pulumi.get(__response__, 'datacenters'),
+        id=pulumi.get(__response__, 'id'),
+        ignore_down_nodes=pulumi.get(__response__, 'ignore_down_nodes'),
+        prefix=pulumi.get(__response__, 'prefix')))
