@@ -15,8 +15,11 @@
 package nomad
 
 import (
+	"bytes"
 	"fmt"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 	"path/filepath"
+	"strings"
 	"unicode"
 
 	// embed is used to store bridge-metadata.json in the compiled binary
@@ -83,6 +86,7 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:   "hashicorp",
 		Repository:  "https://github.com/pulumi/pulumi-nomad",
 		Config:      map[string]*tfbridge.SchemaInfo{},
+		DocRules:    &tfbridge.DocRuleInfo{EditRules: docEditRules},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"nomad_acl_policy":          {Tok: makeResource(mainMod, "AclPolicy")},
 			"nomad_acl_role":            {Tok: makeResource(mainMod, "AclRole")},
@@ -156,6 +160,61 @@ func Provider() tfbridge.ProviderInfo {
 	prov.SetAutonaming(255, "-")
 
 	return prov
+}
+
+func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
+	edits := append(defaults, skipSections()...)
+	return append(
+		edits,
+		fixUpEnvVarsDoc,
+	)
+}
+
+// Removes sections with TF specific instructions.
+func skipSections() []tfbridge.DocsEdit {
+	edits := []tfbridge.DocsEdit{}
+	titles := []string{
+		"Configuring Multiple Tokens",
+		"Multi-Region Deployments",
+	}
+	for _, title := range titles {
+		edits = append(edits, tfbridge.DocsEdit{
+			Path: "index.html.markdown",
+			Edit: func(_ string, content []byte) ([]byte, error) {
+				return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
+					return headerText == title
+				})
+			},
+		})
+	}
+	return edits
+}
+
+var fixUpEnvVarsDoc = tfbridge.DocsEdit{
+	Path: "index.html.markdown",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		contentStr := string(content)
+		before, _, _ := strings.Cut(contentStr, "- `ignore_env_vars")
+		_, after, _ := strings.Cut(contentStr, "## Multi-Region")
+
+		replace := "- `ignore_env_vars` `(map[string]bool: {})` - A map of environment variables\n  " +
+			"that are ignored by the provider when configuring the Nomad API client.\n  " +
+			"Supported keys are: `NOMAD_NAMESPACE` and `NOMAD_REGION`.\n\n" +
+			"The `headers` nested type accepts the following arguments:\n" +
+			"* `name` - (Required) The name of the header.\n" +
+			"* `value` - (Required) The value of the header.\n\n"
+		retStr := before + replace + after
+		return []byte(retStr), nil
+	},
+}
+
+func targetedReplace(filePath string, from, to []byte) tfbridge.DocsEdit {
+	return tfbridge.DocsEdit{
+		Path: filePath,
+		Edit: func(_ string, content []byte) ([]byte, error) {
+			return bytes.ReplaceAll(content, from, to), nil
+		},
+	}
 }
 
 //go:embed cmd/pulumi-resource-nomad/bridge-metadata.json
