@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.GetPlugins(ctx, nil, nil)
+//			_, err := nomad.GetPlugins(ctx, &nomad.GetPluginsArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}

@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myRegions, err := nomad.GetRegions(ctx, nil, nil)
+//			myRegions, err := nomad.GetRegions(ctx, map[string]interface{}{}, nil)
 //			if err != nil {
 //				return err
 //			}

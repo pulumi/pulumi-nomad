@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -81,9 +86,6 @@ def get_deployments(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet
     return AwaitableGetDeploymentsResult(
         deployments=pulumi.get(__ret__, 'deployments'),
         id=pulumi.get(__ret__, 'id'))
-
-
-@_utilities.lift_output_func(get_deployments)
 def get_deployments_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeploymentsResult]:
     """
     Retrieve a list of deployments in Nomad.
@@ -97,4 +99,9 @@ def get_deployments_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulum
     example = nomad.get_deployments()
     ```
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getDeployments:getDeployments', __args__, opts=opts, typ=GetDeploymentsResult)
+    return __ret__.apply(lambda __response__: GetDeploymentsResult(
+        deployments=pulumi.get(__response__, 'deployments'),
+        id=pulumi.get(__response__, 'id')))

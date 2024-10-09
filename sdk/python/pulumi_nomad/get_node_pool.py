@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -119,9 +124,6 @@ def get_node_pool(name: Optional[str] = None,
         meta=pulumi.get(__ret__, 'meta'),
         name=pulumi.get(__ret__, 'name'),
         scheduler_configs=pulumi.get(__ret__, 'scheduler_configs'))
-
-
-@_utilities.lift_output_func(get_node_pool)
 def get_node_pool_output(name: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodePoolResult]:
     """
@@ -139,4 +141,13 @@ def get_node_pool_output(name: Optional[pulumi.Input[str]] = None,
 
     :param str name: `(string)` - The name of the node pool to fetch.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getNodePool:getNodePool', __args__, opts=opts, typ=GetNodePoolResult)
+    return __ret__.apply(lambda __response__: GetNodePoolResult(
+        description=pulumi.get(__response__, 'description'),
+        id=pulumi.get(__response__, 'id'),
+        meta=pulumi.get(__response__, 'meta'),
+        name=pulumi.get(__response__, 'name'),
+        scheduler_configs=pulumi.get(__response__, 'scheduler_configs')))

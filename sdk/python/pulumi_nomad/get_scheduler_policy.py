@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -102,9 +107,6 @@ def get_scheduler_policy(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitab
         memory_oversubscription_enabled=pulumi.get(__ret__, 'memory_oversubscription_enabled'),
         preemption_config=pulumi.get(__ret__, 'preemption_config'),
         scheduler_algorithm=pulumi.get(__ret__, 'scheduler_algorithm'))
-
-
-@_utilities.lift_output_func(get_scheduler_policy)
 def get_scheduler_policy_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSchedulerPolicyResult]:
     """
     Retrieve the cluster's [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
@@ -118,4 +120,11 @@ def get_scheduler_policy_output(opts: Optional[pulumi.InvokeOptions] = None) -> 
     global_ = nomad.get_scheduler_policy()
     ```
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getSchedulerPolicy:getSchedulerPolicy', __args__, opts=opts, typ=GetSchedulerPolicyResult)
+    return __ret__.apply(lambda __response__: GetSchedulerPolicyResult(
+        id=pulumi.get(__response__, 'id'),
+        memory_oversubscription_enabled=pulumi.get(__response__, 'memory_oversubscription_enabled'),
+        preemption_config=pulumi.get(__response__, 'preemption_config'),
+        scheduler_algorithm=pulumi.get(__response__, 'scheduler_algorithm')))
