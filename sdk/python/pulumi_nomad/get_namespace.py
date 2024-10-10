@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -141,9 +146,6 @@ def get_namespace(name: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         node_pool_configs=pulumi.get(__ret__, 'node_pool_configs'),
         quota=pulumi.get(__ret__, 'quota'))
-
-
-@_utilities.lift_output_func(get_namespace)
 def get_namespace_output(name: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNamespaceResult]:
     """
@@ -161,4 +163,15 @@ def get_namespace_output(name: Optional[pulumi.Input[str]] = None,
 
     :param str name: `(string)` - The name of the namespace.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getNamespace:getNamespace', __args__, opts=opts, typ=GetNamespaceResult)
+    return __ret__.apply(lambda __response__: GetNamespaceResult(
+        capabilities=pulumi.get(__response__, 'capabilities'),
+        description=pulumi.get(__response__, 'description'),
+        id=pulumi.get(__response__, 'id'),
+        meta=pulumi.get(__response__, 'meta'),
+        name=pulumi.get(__response__, 'name'),
+        node_pool_configs=pulumi.get(__response__, 'node_pool_configs'),
+        quota=pulumi.get(__response__, 'quota')))

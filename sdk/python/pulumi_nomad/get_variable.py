@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -108,9 +113,6 @@ def get_variable(namespace: Optional[str] = None,
         items=pulumi.get(__ret__, 'items'),
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'))
-
-
-@_utilities.lift_output_func(get_variable)
 def get_variable_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                         path: Optional[pulumi.Input[str]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVariableResult]:
@@ -128,4 +130,13 @@ def get_variable_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
     :param str namespace: `(string: "default")` - The namepsace in which the variable exists.
     :param str path: `(string)` - Path to the existing variable.
     """
-    ...
+    __args__ = dict()
+    __args__['namespace'] = namespace
+    __args__['path'] = path
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getVariable:getVariable', __args__, opts=opts, typ=GetVariableResult)
+    return __ret__.apply(lambda __response__: GetVariableResult(
+        id=pulumi.get(__response__, 'id'),
+        items=pulumi.get(__response__, 'items'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        path=pulumi.get(__response__, 'path')))

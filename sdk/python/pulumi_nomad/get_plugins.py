@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -88,9 +93,6 @@ def get_plugins(type: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         plugins=pulumi.get(__ret__, 'plugins'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_plugins)
 def get_plugins_output(type: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginsResult]:
     """
@@ -105,4 +107,11 @@ def get_plugins_output(type: Optional[pulumi.Input[Optional[str]]] = None,
     example = nomad.get_plugins()
     ```
     """
-    ...
+    __args__ = dict()
+    __args__['type'] = type
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getPlugins:getPlugins', __args__, opts=opts, typ=GetPluginsResult)
+    return __ret__.apply(lambda __response__: GetPluginsResult(
+        id=pulumi.get(__response__, 'id'),
+        plugins=pulumi.get(__response__, 'plugins'),
+        type=pulumi.get(__response__, 'type')))

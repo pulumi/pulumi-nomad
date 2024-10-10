@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -101,9 +106,6 @@ def get_job_parser(canonicalize: Optional[bool] = None,
         hcl=pulumi.get(__ret__, 'hcl'),
         id=pulumi.get(__ret__, 'id'),
         json=pulumi.get(__ret__, 'json'))
-
-
-@_utilities.lift_output_func(get_job_parser)
 def get_job_parser_output(canonicalize: Optional[pulumi.Input[Optional[bool]]] = None,
                           hcl: Optional[pulumi.Input[str]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobParserResult]:
@@ -114,4 +116,13 @@ def get_job_parser_output(canonicalize: Optional[pulumi.Input[Optional[bool]]] =
     :param bool canonicalize: `(boolean: true)` - flag to enable setting any unset fields to their default values.
     :param str hcl: `(string)` - the HCL definition of the job.
     """
-    ...
+    __args__ = dict()
+    __args__['canonicalize'] = canonicalize
+    __args__['hcl'] = hcl
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getJobParser:getJobParser', __args__, opts=opts, typ=GetJobParserResult)
+    return __ret__.apply(lambda __response__: GetJobParserResult(
+        canonicalize=pulumi.get(__response__, 'canonicalize'),
+        hcl=pulumi.get(__response__, 'hcl'),
+        id=pulumi.get(__response__, 'id'),
+        json=pulumi.get(__response__, 'json')))

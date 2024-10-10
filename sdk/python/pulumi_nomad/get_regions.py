@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -84,9 +89,6 @@ def get_regions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegi
     return AwaitableGetRegionsResult(
         id=pulumi.get(__ret__, 'id'),
         regions=pulumi.get(__ret__, 'regions'))
-
-
-@_utilities.lift_output_func(get_regions)
 def get_regions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegionsResult]:
     """
     Retrieve a list of regions available in Nomad.
@@ -108,4 +110,9 @@ def get_regions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Ou
         app.append(nomad.Job(f"app-{range['value']}", jobspec=jobs[range["value"]]["rendered"]))
     ```
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getRegions:getRegions', __args__, opts=opts, typ=GetRegionsResult)
+    return __ret__.apply(lambda __response__: GetRegionsResult(
+        id=pulumi.get(__response__, 'id'),
+        regions=pulumi.get(__response__, 'regions')))

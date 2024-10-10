@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -109,9 +114,6 @@ def get_scaling_policies(job_id: Optional[str] = None,
         job_id=pulumi.get(__ret__, 'job_id'),
         policies=pulumi.get(__ret__, 'policies'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_scaling_policies)
 def get_scaling_policies_output(job_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 type: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetScalingPoliciesResult]:
@@ -132,4 +134,13 @@ def get_scaling_policies_output(job_id: Optional[pulumi.Input[Optional[str]]] = 
     :param str job_id: `(string)` - An optional string to filter scaling policies based on the target job. If not provided, policies for all jobs are returned.
     :param str type: `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
     """
-    ...
+    __args__ = dict()
+    __args__['jobId'] = job_id
+    __args__['type'] = type
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getScalingPolicies:getScalingPolicies', __args__, opts=opts, typ=GetScalingPoliciesResult)
+    return __ret__.apply(lambda __response__: GetScalingPoliciesResult(
+        id=pulumi.get(__response__, 'id'),
+        job_id=pulumi.get(__response__, 'job_id'),
+        policies=pulumi.get(__response__, 'policies'),
+        type=pulumi.get(__response__, 'type')))

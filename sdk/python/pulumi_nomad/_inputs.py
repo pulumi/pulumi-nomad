@@ -4,56 +4,200 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'AclAuthMethodConfigArgs',
+    'AclAuthMethodConfigArgsDict',
     'AclPolicyJobAclArgs',
+    'AclPolicyJobAclArgsDict',
     'AclRolePolicyArgs',
+    'AclRolePolicyArgsDict',
     'AclTokenRoleArgs',
+    'AclTokenRoleArgsDict',
     'CsiVolumeCapabilityArgs',
+    'CsiVolumeCapabilityArgsDict',
     'CsiVolumeMountOptionsArgs',
+    'CsiVolumeMountOptionsArgsDict',
     'CsiVolumeRegistrationCapabilityArgs',
+    'CsiVolumeRegistrationCapabilityArgsDict',
     'CsiVolumeRegistrationMountOptionsArgs',
+    'CsiVolumeRegistrationMountOptionsArgsDict',
     'CsiVolumeRegistrationTopologyArgs',
+    'CsiVolumeRegistrationTopologyArgsDict',
     'CsiVolumeRegistrationTopologyRequestArgs',
+    'CsiVolumeRegistrationTopologyRequestArgsDict',
     'CsiVolumeRegistrationTopologyRequestRequiredArgs',
+    'CsiVolumeRegistrationTopologyRequestRequiredArgsDict',
     'CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs',
+    'CsiVolumeRegistrationTopologyRequestRequiredTopologyArgsDict',
     'CsiVolumeTopologyArgs',
+    'CsiVolumeTopologyArgsDict',
     'CsiVolumeTopologyRequestArgs',
+    'CsiVolumeTopologyRequestArgsDict',
     'CsiVolumeTopologyRequestPreferredArgs',
+    'CsiVolumeTopologyRequestPreferredArgsDict',
     'CsiVolumeTopologyRequestPreferredTopologyArgs',
+    'CsiVolumeTopologyRequestPreferredTopologyArgsDict',
     'CsiVolumeTopologyRequestRequiredArgs',
+    'CsiVolumeTopologyRequestRequiredArgsDict',
     'CsiVolumeTopologyRequestRequiredTopologyArgs',
+    'CsiVolumeTopologyRequestRequiredTopologyArgsDict',
     'ExternalVolumeCapabilityArgs',
+    'ExternalVolumeCapabilityArgsDict',
     'ExternalVolumeMountOptionsArgs',
+    'ExternalVolumeMountOptionsArgsDict',
     'ExternalVolumeTopologyArgs',
+    'ExternalVolumeTopologyArgsDict',
     'ExternalVolumeTopologyRequestArgs',
+    'ExternalVolumeTopologyRequestArgsDict',
     'ExternalVolumeTopologyRequestPreferredArgs',
+    'ExternalVolumeTopologyRequestPreferredArgsDict',
     'ExternalVolumeTopologyRequestPreferredTopologyArgs',
+    'ExternalVolumeTopologyRequestPreferredTopologyArgsDict',
     'ExternalVolumeTopologyRequestRequiredArgs',
+    'ExternalVolumeTopologyRequestRequiredArgsDict',
     'ExternalVolumeTopologyRequestRequiredTopologyArgs',
+    'ExternalVolumeTopologyRequestRequiredTopologyArgsDict',
     'JobHcl2Args',
+    'JobHcl2ArgsDict',
     'JobTaskGroupArgs',
+    'JobTaskGroupArgsDict',
     'JobTaskGroupTaskArgs',
+    'JobTaskGroupTaskArgsDict',
     'JobTaskGroupTaskVolumeMountArgs',
+    'JobTaskGroupTaskVolumeMountArgsDict',
     'JobTaskGroupVolumeArgs',
+    'JobTaskGroupVolumeArgsDict',
     'NamespaceCapabilitiesArgs',
+    'NamespaceCapabilitiesArgsDict',
     'NamespaceNodePoolConfigArgs',
+    'NamespaceNodePoolConfigArgsDict',
     'NodePoolSchedulerConfigArgs',
+    'NodePoolSchedulerConfigArgsDict',
     'ProviderHeaderArgs',
+    'ProviderHeaderArgsDict',
     'QuoteSpecificationLimitArgs',
+    'QuoteSpecificationLimitArgsDict',
     'QuoteSpecificationLimitRegionLimitArgs',
+    'QuoteSpecificationLimitRegionLimitArgsDict',
     'VolumeCapabilityArgs',
+    'VolumeCapabilityArgsDict',
     'VolumeMountOptionsArgs',
+    'VolumeMountOptionsArgsDict',
     'VolumeTopologyArgs',
+    'VolumeTopologyArgsDict',
     'VolumeTopologyRequestArgs',
+    'VolumeTopologyRequestArgsDict',
     'VolumeTopologyRequestRequiredArgs',
+    'VolumeTopologyRequestRequiredArgsDict',
     'VolumeTopologyRequestRequiredTopologyArgs',
+    'VolumeTopologyRequestRequiredTopologyArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class AclAuthMethodConfigArgsDict(TypedDict):
+        allowed_redirect_uris: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - A list of allowed values
+        that can be used for the redirect URI.
+        """
+        bound_audiences: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - List of auth claims that are
+        valid for login.
+        """
+        bound_issuers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - The value against which to match
+        the iss claim in a JWT.
+        """
+        claim_mappings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Mappings of claims (key) that will be copied to a metadata field (value).
+        """
+        clock_skew_leeway: NotRequired[pulumi.Input[str]]
+        """
+        `(string: <optional>)` - Duration of leeway when validating
+        all claims in the form of a time duration such as "5m" or "1h".
+        """
+        discovery_ca_pems: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - PEM encoded CA certs for use
+        by the TLS client used to talk with the OIDC Discovery URL.
+        """
+        expiration_leeway: NotRequired[pulumi.Input[str]]
+        """
+        `(string: <optional>)` - Duration of leeway when validating
+        expiration of a JWT in the form of a time duration such as "5m" or "1h".
+        """
+        jwks_ca_cert: NotRequired[pulumi.Input[str]]
+        """
+        `(string: <optional>)` - PEM encoded CA cert for use by the 
+        TLS client used to talk with the JWKS server.
+        """
+        jwks_url: NotRequired[pulumi.Input[str]]
+        """
+        `(string: <optional>)` - JSON Web Key Sets url for authenticating
+        signatures.
+        """
+        jwt_validation_pub_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - List of PEM-encoded 
+        public keys to use to authenticate signatures locally.
+        """
+        list_claim_mappings: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Mappings of list claims (key) that will be copied to a metadata field (value).
+        """
+        not_before_leeway: NotRequired[pulumi.Input[str]]
+        """
+        `(string: <optional>)` - Duration of leeway when validating
+        not before values of a token in the form of a time duration such as "5m" or "1h".
+        """
+        oidc_client_id: NotRequired[pulumi.Input[str]]
+        """
+        `(string: <optional>)` - The OAuth Client ID configured
+        with the OIDC provider.
+        """
+        oidc_client_secret: NotRequired[pulumi.Input[str]]
+        """
+        `(string: <optional>)` - The OAuth Client Secret
+        configured with the OIDC provider.
+        """
+        oidc_disable_userinfo: NotRequired[pulumi.Input[bool]]
+        """
+        `(bool: false)` - When set to `true`, Nomad will
+        not make a request to the identity provider to get OIDC `UserInfo`.
+        You may wish to set this if your identity provider doesn't send any
+        additional claims from the `UserInfo` endpoint.
+        """
+        oidc_discovery_url: NotRequired[pulumi.Input[str]]
+        """
+        `(string: <optional>)` - The OIDC Discovery URL,
+        without any .well-known component (base path).
+        """
+        oidc_scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - List of OIDC scopes.
+        """
+        signing_algs: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - A list of supported signing
+        algorithms.
+        """
+elif False:
+    AclAuthMethodConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AclAuthMethodConfigArgs:
@@ -384,6 +528,27 @@ class AclAuthMethodConfigArgs:
         pulumi.set(self, "signing_algs", value)
 
 
+if not MYPY:
+    class AclPolicyJobAclArgsDict(TypedDict):
+        job_id: pulumi.Input[str]
+        """
+        Job
+        """
+        group: NotRequired[pulumi.Input[str]]
+        """
+        Group
+        """
+        namespace: NotRequired[pulumi.Input[str]]
+        """
+        Namespace
+        """
+        task: NotRequired[pulumi.Input[str]]
+        """
+        Task
+        """
+elif False:
+    AclPolicyJobAclArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class AclPolicyJobAclArgs:
     def __init__(__self__, *,
@@ -454,6 +619,15 @@ class AclPolicyJobAclArgs:
         pulumi.set(self, "task", value)
 
 
+if not MYPY:
+    class AclRolePolicyArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        `(string: <required>)` - A human-friendly name for this ACL Role.
+        """
+elif False:
+    AclRolePolicyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class AclRolePolicyArgs:
     def __init__(__self__, *,
@@ -475,6 +649,19 @@ class AclRolePolicyArgs:
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
 
+
+if not MYPY:
+    class AclTokenRoleArgsDict(TypedDict):
+        id: pulumi.Input[str]
+        """
+        The ID of the ACL role to link.
+        """
+        name: NotRequired[pulumi.Input[str]]
+        """
+        `(string: "")` - A human-friendly name for this token.
+        """
+elif False:
+    AclTokenRoleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class AclTokenRoleArgs:
@@ -513,6 +700,26 @@ class AclTokenRoleArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+
+if not MYPY:
+    class CsiVolumeCapabilityArgsDict(TypedDict):
+        access_mode: pulumi.Input[str]
+        """
+        `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
+        """
+        attachment_mode: pulumi.Input[str]
+        """
+        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+        - `block-device`
+        - `file-system`
+        """
+elif False:
+    CsiVolumeCapabilityArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CsiVolumeCapabilityArgs:
@@ -565,6 +772,19 @@ class CsiVolumeCapabilityArgs:
         pulumi.set(self, "attachment_mode", value)
 
 
+if not MYPY:
+    class CsiVolumeMountOptionsArgsDict(TypedDict):
+        fs_type: NotRequired[pulumi.Input[str]]
+        """
+        `(string: optional)` - The file system type.
+        """
+        mount_flags: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `[]string: optional` - The flags passed to `mount`.
+        """
+elif False:
+    CsiVolumeMountOptionsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CsiVolumeMountOptionsArgs:
     def __init__(__self__, *,
@@ -603,6 +823,26 @@ class CsiVolumeMountOptionsArgs:
     def mount_flags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "mount_flags", value)
 
+
+if not MYPY:
+    class CsiVolumeRegistrationCapabilityArgsDict(TypedDict):
+        access_mode: pulumi.Input[str]
+        """
+        `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
+        """
+        attachment_mode: pulumi.Input[str]
+        """
+        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+        - `block-device`
+        - `file-system`
+        """
+elif False:
+    CsiVolumeRegistrationCapabilityArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CsiVolumeRegistrationCapabilityArgs:
@@ -655,6 +895,19 @@ class CsiVolumeRegistrationCapabilityArgs:
         pulumi.set(self, "attachment_mode", value)
 
 
+if not MYPY:
+    class CsiVolumeRegistrationMountOptionsArgsDict(TypedDict):
+        fs_type: NotRequired[pulumi.Input[str]]
+        """
+        `(string: <optional>)` - The file system type.
+        """
+        mount_flags: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - The flags passed to `mount`.
+        """
+elif False:
+    CsiVolumeRegistrationMountOptionsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CsiVolumeRegistrationMountOptionsArgs:
     def __init__(__self__, *,
@@ -694,6 +947,18 @@ class CsiVolumeRegistrationMountOptionsArgs:
         pulumi.set(self, "mount_flags", value)
 
 
+if not MYPY:
+    class CsiVolumeRegistrationTopologyArgsDict(TypedDict):
+        segments: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+elif False:
+    CsiVolumeRegistrationTopologyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CsiVolumeRegistrationTopologyArgs:
     def __init__(__self__, *,
@@ -723,6 +988,15 @@ class CsiVolumeRegistrationTopologyArgs:
         pulumi.set(self, "segments", value)
 
 
+if not MYPY:
+    class CsiVolumeRegistrationTopologyRequestArgsDict(TypedDict):
+        required: NotRequired[pulumi.Input['CsiVolumeRegistrationTopologyRequestRequiredArgsDict']]
+        """
+        `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+elif False:
+    CsiVolumeRegistrationTopologyRequestArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CsiVolumeRegistrationTopologyRequestArgs:
     def __init__(__self__, *,
@@ -746,6 +1020,15 @@ class CsiVolumeRegistrationTopologyRequestArgs:
         pulumi.set(self, "required", value)
 
 
+if not MYPY:
+    class CsiVolumeRegistrationTopologyRequestRequiredArgsDict(TypedDict):
+        topologies: pulumi.Input[Sequence[pulumi.Input['CsiVolumeRegistrationTopologyRequestRequiredTopologyArgsDict']]]
+        """
+        Defines the location for the volume.
+        """
+elif False:
+    CsiVolumeRegistrationTopologyRequestRequiredArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CsiVolumeRegistrationTopologyRequestRequiredArgs:
     def __init__(__self__, *,
@@ -768,6 +1051,15 @@ class CsiVolumeRegistrationTopologyRequestRequiredArgs:
         pulumi.set(self, "topologies", value)
 
 
+if not MYPY:
+    class CsiVolumeRegistrationTopologyRequestRequiredTopologyArgsDict(TypedDict):
+        segments: pulumi.Input[Mapping[str, pulumi.Input[str]]]
+        """
+        Define attributes for the topology request.
+        """
+elif False:
+    CsiVolumeRegistrationTopologyRequestRequiredTopologyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs:
     def __init__(__self__, *,
@@ -789,6 +1081,18 @@ class CsiVolumeRegistrationTopologyRequestRequiredTopologyArgs:
     def segments(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "segments", value)
 
+
+if not MYPY:
+    class CsiVolumeTopologyArgsDict(TypedDict):
+        segments: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+elif False:
+    CsiVolumeTopologyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CsiVolumeTopologyArgs:
@@ -818,6 +1122,19 @@ class CsiVolumeTopologyArgs:
     def segments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "segments", value)
 
+
+if not MYPY:
+    class CsiVolumeTopologyRequestArgsDict(TypedDict):
+        preferred: NotRequired[pulumi.Input['CsiVolumeTopologyRequestPreferredArgsDict']]
+        """
+        `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+        """
+        required: NotRequired[pulumi.Input['CsiVolumeTopologyRequestRequiredArgsDict']]
+        """
+        `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+elif False:
+    CsiVolumeTopologyRequestArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CsiVolumeTopologyRequestArgs:
@@ -858,6 +1175,15 @@ class CsiVolumeTopologyRequestArgs:
         pulumi.set(self, "required", value)
 
 
+if not MYPY:
+    class CsiVolumeTopologyRequestPreferredArgsDict(TypedDict):
+        topologies: pulumi.Input[Sequence[pulumi.Input['CsiVolumeTopologyRequestPreferredTopologyArgsDict']]]
+        """
+        Defines the location for the volume.
+        """
+elif False:
+    CsiVolumeTopologyRequestPreferredArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CsiVolumeTopologyRequestPreferredArgs:
     def __init__(__self__, *,
@@ -879,6 +1205,15 @@ class CsiVolumeTopologyRequestPreferredArgs:
     def topologies(self, value: pulumi.Input[Sequence[pulumi.Input['CsiVolumeTopologyRequestPreferredTopologyArgs']]]):
         pulumi.set(self, "topologies", value)
 
+
+if not MYPY:
+    class CsiVolumeTopologyRequestPreferredTopologyArgsDict(TypedDict):
+        segments: pulumi.Input[Mapping[str, pulumi.Input[str]]]
+        """
+        Define the attributes for the topology request.
+        """
+elif False:
+    CsiVolumeTopologyRequestPreferredTopologyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class CsiVolumeTopologyRequestPreferredTopologyArgs:
@@ -902,6 +1237,15 @@ class CsiVolumeTopologyRequestPreferredTopologyArgs:
         pulumi.set(self, "segments", value)
 
 
+if not MYPY:
+    class CsiVolumeTopologyRequestRequiredArgsDict(TypedDict):
+        topologies: pulumi.Input[Sequence[pulumi.Input['CsiVolumeTopologyRequestRequiredTopologyArgsDict']]]
+        """
+        Defines the location for the volume.
+        """
+elif False:
+    CsiVolumeTopologyRequestRequiredArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CsiVolumeTopologyRequestRequiredArgs:
     def __init__(__self__, *,
@@ -924,6 +1268,15 @@ class CsiVolumeTopologyRequestRequiredArgs:
         pulumi.set(self, "topologies", value)
 
 
+if not MYPY:
+    class CsiVolumeTopologyRequestRequiredTopologyArgsDict(TypedDict):
+        segments: pulumi.Input[Mapping[str, pulumi.Input[str]]]
+        """
+        Define the attributes for the topology request.
+        """
+elif False:
+    CsiVolumeTopologyRequestRequiredTopologyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class CsiVolumeTopologyRequestRequiredTopologyArgs:
     def __init__(__self__, *,
@@ -945,6 +1298,26 @@ class CsiVolumeTopologyRequestRequiredTopologyArgs:
     def segments(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "segments", value)
 
+
+if not MYPY:
+    class ExternalVolumeCapabilityArgsDict(TypedDict):
+        access_mode: pulumi.Input[str]
+        """
+        `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
+        """
+        attachment_mode: pulumi.Input[str]
+        """
+        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+        - `block-device`
+        - `file-system`
+        """
+elif False:
+    ExternalVolumeCapabilityArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ExternalVolumeCapabilityArgs:
@@ -997,6 +1370,19 @@ class ExternalVolumeCapabilityArgs:
         pulumi.set(self, "attachment_mode", value)
 
 
+if not MYPY:
+    class ExternalVolumeMountOptionsArgsDict(TypedDict):
+        fs_type: NotRequired[pulumi.Input[str]]
+        """
+        `(string: optional)` - The file system type.
+        """
+        mount_flags: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `[]string: optional` - The flags passed to `mount`.
+        """
+elif False:
+    ExternalVolumeMountOptionsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ExternalVolumeMountOptionsArgs:
     def __init__(__self__, *,
@@ -1036,6 +1422,18 @@ class ExternalVolumeMountOptionsArgs:
         pulumi.set(self, "mount_flags", value)
 
 
+if not MYPY:
+    class ExternalVolumeTopologyArgsDict(TypedDict):
+        segments: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+elif False:
+    ExternalVolumeTopologyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ExternalVolumeTopologyArgs:
     def __init__(__self__, *,
@@ -1064,6 +1462,19 @@ class ExternalVolumeTopologyArgs:
     def segments(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "segments", value)
 
+
+if not MYPY:
+    class ExternalVolumeTopologyRequestArgsDict(TypedDict):
+        preferred: NotRequired[pulumi.Input['ExternalVolumeTopologyRequestPreferredArgsDict']]
+        """
+        `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
+        """
+        required: NotRequired[pulumi.Input['ExternalVolumeTopologyRequestRequiredArgsDict']]
+        """
+        `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+elif False:
+    ExternalVolumeTopologyRequestArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ExternalVolumeTopologyRequestArgs:
@@ -1104,6 +1515,15 @@ class ExternalVolumeTopologyRequestArgs:
         pulumi.set(self, "required", value)
 
 
+if not MYPY:
+    class ExternalVolumeTopologyRequestPreferredArgsDict(TypedDict):
+        topologies: pulumi.Input[Sequence[pulumi.Input['ExternalVolumeTopologyRequestPreferredTopologyArgsDict']]]
+        """
+        Defines the location for the volume.
+        """
+elif False:
+    ExternalVolumeTopologyRequestPreferredArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ExternalVolumeTopologyRequestPreferredArgs:
     def __init__(__self__, *,
@@ -1125,6 +1545,15 @@ class ExternalVolumeTopologyRequestPreferredArgs:
     def topologies(self, value: pulumi.Input[Sequence[pulumi.Input['ExternalVolumeTopologyRequestPreferredTopologyArgs']]]):
         pulumi.set(self, "topologies", value)
 
+
+if not MYPY:
+    class ExternalVolumeTopologyRequestPreferredTopologyArgsDict(TypedDict):
+        segments: pulumi.Input[Mapping[str, pulumi.Input[str]]]
+        """
+        Define the attributes for the topology request.
+        """
+elif False:
+    ExternalVolumeTopologyRequestPreferredTopologyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ExternalVolumeTopologyRequestPreferredTopologyArgs:
@@ -1148,6 +1577,15 @@ class ExternalVolumeTopologyRequestPreferredTopologyArgs:
         pulumi.set(self, "segments", value)
 
 
+if not MYPY:
+    class ExternalVolumeTopologyRequestRequiredArgsDict(TypedDict):
+        topologies: pulumi.Input[Sequence[pulumi.Input['ExternalVolumeTopologyRequestRequiredTopologyArgsDict']]]
+        """
+        Defines the location for the volume.
+        """
+elif False:
+    ExternalVolumeTopologyRequestRequiredArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ExternalVolumeTopologyRequestRequiredArgs:
     def __init__(__self__, *,
@@ -1170,6 +1608,15 @@ class ExternalVolumeTopologyRequestRequiredArgs:
         pulumi.set(self, "topologies", value)
 
 
+if not MYPY:
+    class ExternalVolumeTopologyRequestRequiredTopologyArgsDict(TypedDict):
+        segments: pulumi.Input[Mapping[str, pulumi.Input[str]]]
+        """
+        Define the attributes for the topology request.
+        """
+elif False:
+    ExternalVolumeTopologyRequestRequiredTopologyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ExternalVolumeTopologyRequestRequiredTopologyArgs:
     def __init__(__self__, *,
@@ -1191,6 +1638,25 @@ class ExternalVolumeTopologyRequestRequiredTopologyArgs:
     def segments(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "segments", value)
 
+
+if not MYPY:
+    class JobHcl2ArgsDict(TypedDict):
+        allow_fs: NotRequired[pulumi.Input[bool]]
+        """
+        `(boolean: false)` - Set this to `true` to be able to use
+        HCL2 filesystem functions
+        """
+        enabled: NotRequired[pulumi.Input[bool]]
+        """
+        `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
+        HCL2 by default.
+        """
+        vars: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        Additional variables to use when templating the job with HCL2
+        """
+elif False:
+    JobHcl2ArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class JobHcl2Args:
@@ -1254,6 +1720,16 @@ class JobHcl2Args:
     def vars(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "vars", value)
 
+
+if not MYPY:
+    class JobTaskGroupArgsDict(TypedDict):
+        count: NotRequired[pulumi.Input[int]]
+        meta: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        name: NotRequired[pulumi.Input[str]]
+        tasks: NotRequired[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskArgsDict']]]]
+        volumes: NotRequired[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupVolumeArgsDict']]]]
+elif False:
+    JobTaskGroupArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class JobTaskGroupArgs:
@@ -1320,6 +1796,15 @@ class JobTaskGroupArgs:
         pulumi.set(self, "volumes", value)
 
 
+if not MYPY:
+    class JobTaskGroupTaskArgsDict(TypedDict):
+        driver: NotRequired[pulumi.Input[str]]
+        meta: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        name: NotRequired[pulumi.Input[str]]
+        volume_mounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskVolumeMountArgsDict']]]]
+elif False:
+    JobTaskGroupTaskArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class JobTaskGroupTaskArgs:
     def __init__(__self__, *,
@@ -1373,6 +1858,14 @@ class JobTaskGroupTaskArgs:
         pulumi.set(self, "volume_mounts", value)
 
 
+if not MYPY:
+    class JobTaskGroupTaskVolumeMountArgsDict(TypedDict):
+        destination: NotRequired[pulumi.Input[str]]
+        read_only: NotRequired[pulumi.Input[bool]]
+        volume: NotRequired[pulumi.Input[str]]
+elif False:
+    JobTaskGroupTaskVolumeMountArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class JobTaskGroupTaskVolumeMountArgs:
     def __init__(__self__, *,
@@ -1413,6 +1906,15 @@ class JobTaskGroupTaskVolumeMountArgs:
     def volume(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "volume", value)
 
+
+if not MYPY:
+    class JobTaskGroupVolumeArgsDict(TypedDict):
+        name: NotRequired[pulumi.Input[str]]
+        read_only: NotRequired[pulumi.Input[bool]]
+        source: NotRequired[pulumi.Input[str]]
+        type: NotRequired[pulumi.Input[str]]
+elif False:
+    JobTaskGroupVolumeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class JobTaskGroupVolumeArgs:
@@ -1467,6 +1969,19 @@ class JobTaskGroupVolumeArgs:
         pulumi.set(self, "type", value)
 
 
+if not MYPY:
+    class NamespaceCapabilitiesArgsDict(TypedDict):
+        disabled_task_drivers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - Task drivers disabled for the namespace.
+        """
+        enabled_task_drivers: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - Task drivers enabled for the namespace.
+        """
+elif False:
+    NamespaceCapabilitiesArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class NamespaceCapabilitiesArgs:
     def __init__(__self__, *,
@@ -1505,6 +2020,23 @@ class NamespaceCapabilitiesArgs:
     def enabled_task_drivers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "enabled_task_drivers", value)
 
+
+if not MYPY:
+    class NamespaceNodePoolConfigArgsDict(TypedDict):
+        alloweds: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
+        """
+        default: NotRequired[pulumi.Input[str]]
+        """
+        `(string: <optional>)` - The default node pool for jobs that don't define one.
+        """
+        denieds: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+        """
+elif False:
+    NamespaceNodePoolConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NamespaceNodePoolConfigArgs:
@@ -1560,6 +2092,28 @@ class NamespaceNodePoolConfigArgs:
     def denieds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "denieds", value)
 
+
+if not MYPY:
+    class NodePoolSchedulerConfigArgsDict(TypedDict):
+        memory_oversubscription: NotRequired[pulumi.Input[str]]
+        """
+        `(string)` - Whether or not memory
+        oversubscription is enabled in the node pool. Possible values are
+        `"enabled"` or `"disabled"`. If not defined the global cluster
+        configuration is used.
+
+        > This option differs from Nomad, where it's represented as a boolean, to
+        allow distinguishing between memory oversubscription being disabled in the
+        node pool and this property not being set.
+        """
+        scheduler_algorithm: NotRequired[pulumi.Input[str]]
+        """
+        `(string)` - The scheduler algorithm used in the node
+        pool. Possible values are `binpack` or `spread`. If not defined the global
+        cluster configuration is used.
+        """
+elif False:
+    NodePoolSchedulerConfigArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class NodePoolSchedulerConfigArgs:
@@ -1618,6 +2172,19 @@ class NodePoolSchedulerConfigArgs:
         pulumi.set(self, "scheduler_algorithm", value)
 
 
+if not MYPY:
+    class ProviderHeaderArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        """
+        The header name
+        """
+        value: pulumi.Input[str]
+        """
+        The header value
+        """
+elif False:
+    ProviderHeaderArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ProviderHeaderArgs:
     def __init__(__self__, *,
@@ -1654,6 +2221,21 @@ class ProviderHeaderArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class QuoteSpecificationLimitArgsDict(TypedDict):
+        region: pulumi.Input[str]
+        """
+        `(string: <required>)` - The region these limits should apply to.
+        """
+        region_limit: pulumi.Input['QuoteSpecificationLimitRegionLimitArgsDict']
+        """
+        `(block: <required>)` - The limits to enforce. This block
+        may only be specified once in the `limits` block. Its structure is
+        documented below.
+        """
+elif False:
+    QuoteSpecificationLimitArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class QuoteSpecificationLimitArgs:
@@ -1695,6 +2277,22 @@ class QuoteSpecificationLimitArgs:
     def region_limit(self, value: pulumi.Input['QuoteSpecificationLimitRegionLimitArgs']):
         pulumi.set(self, "region_limit", value)
 
+
+if not MYPY:
+    class QuoteSpecificationLimitRegionLimitArgsDict(TypedDict):
+        cpu: NotRequired[pulumi.Input[int]]
+        """
+        `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
+        is treated as unlimited, and a negative value is treated as fully disallowed.
+        """
+        memory_mb: NotRequired[pulumi.Input[int]]
+        """
+        `(int: 0)` - The amount of memory (in megabytes) to limit
+        allocations to. A value of zero is treated as unlimited, and a negative value
+        is treated as fully disallowed.
+        """
+elif False:
+    QuoteSpecificationLimitRegionLimitArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class QuoteSpecificationLimitRegionLimitArgs:
@@ -1740,6 +2338,26 @@ class QuoteSpecificationLimitRegionLimitArgs:
     def memory_mb(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "memory_mb", value)
 
+
+if not MYPY:
+    class VolumeCapabilityArgsDict(TypedDict):
+        access_mode: pulumi.Input[str]
+        """
+        `(string: <required>)` - Defines whether a volume should be available concurrently. Possible values are:
+        - `single-node-reader-only`
+        - `single-node-writer`
+        - `multi-node-reader-only`
+        - `multi-node-single-writer`
+        - `multi-node-multi-writer`
+        """
+        attachment_mode: pulumi.Input[str]
+        """
+        `(string: <required>)` - The storage API that will be used by the volume. Possible values are:
+        - `block-device`
+        - `file-system`
+        """
+elif False:
+    VolumeCapabilityArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class VolumeCapabilityArgs:
@@ -1792,6 +2410,19 @@ class VolumeCapabilityArgs:
         pulumi.set(self, "attachment_mode", value)
 
 
+if not MYPY:
+    class VolumeMountOptionsArgsDict(TypedDict):
+        fs_type: NotRequired[pulumi.Input[str]]
+        """
+        `(string: <optional>)` - The file system type.
+        """
+        mount_flags: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        `([]string: <optional>)` - The flags passed to `mount`.
+        """
+elif False:
+    VolumeMountOptionsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class VolumeMountOptionsArgs:
     def __init__(__self__, *,
@@ -1831,6 +2462,18 @@ class VolumeMountOptionsArgs:
         pulumi.set(self, "mount_flags", value)
 
 
+if not MYPY:
+    class VolumeTopologyArgsDict(TypedDict):
+        segments: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        `(map[string]string)` - Define the attributes for the topology request.
+
+        In addition to the above arguments, the following attributes are exported and
+        can be referenced:
+        """
+elif False:
+    VolumeTopologyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class VolumeTopologyArgs:
     def __init__(__self__, *,
@@ -1860,6 +2503,15 @@ class VolumeTopologyArgs:
         pulumi.set(self, "segments", value)
 
 
+if not MYPY:
+    class VolumeTopologyRequestArgsDict(TypedDict):
+        required: NotRequired[pulumi.Input['VolumeTopologyRequestRequiredArgsDict']]
+        """
+        `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
+        """
+elif False:
+    VolumeTopologyRequestArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class VolumeTopologyRequestArgs:
     def __init__(__self__, *,
@@ -1883,6 +2535,15 @@ class VolumeTopologyRequestArgs:
         pulumi.set(self, "required", value)
 
 
+if not MYPY:
+    class VolumeTopologyRequestRequiredArgsDict(TypedDict):
+        topologies: pulumi.Input[Sequence[pulumi.Input['VolumeTopologyRequestRequiredTopologyArgsDict']]]
+        """
+        Defines the location for the volume.
+        """
+elif False:
+    VolumeTopologyRequestRequiredArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class VolumeTopologyRequestRequiredArgs:
     def __init__(__self__, *,
@@ -1904,6 +2565,15 @@ class VolumeTopologyRequestRequiredArgs:
     def topologies(self, value: pulumi.Input[Sequence[pulumi.Input['VolumeTopologyRequestRequiredTopologyArgs']]]):
         pulumi.set(self, "topologies", value)
 
+
+if not MYPY:
+    class VolumeTopologyRequestRequiredTopologyArgsDict(TypedDict):
+        segments: pulumi.Input[Mapping[str, pulumi.Input[str]]]
+        """
+        Define attributes for the topology request.
+        """
+elif False:
+    VolumeTopologyRequestRequiredTopologyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class VolumeTopologyRequestRequiredTopologyArgs:
