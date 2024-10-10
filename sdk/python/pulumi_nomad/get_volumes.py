@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -133,9 +138,6 @@ def get_volumes(namespace: Optional[str] = None,
         plugin_id=pulumi.get(__ret__, 'plugin_id'),
         type=pulumi.get(__ret__, 'type'),
         volumes=pulumi.get(__ret__, 'volumes'))
-
-
-@_utilities.lift_output_func(get_volumes)
 def get_volumes_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                        node_id: Optional[pulumi.Input[Optional[str]]] = None,
                        plugin_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -159,4 +161,17 @@ def get_volumes_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
     :param str plugin_id: `(string: optional)` Plugin ID filter.
     :param str type: `(string: "csi")` Volume type (currently only supports `csi`)
     """
-    ...
+    __args__ = dict()
+    __args__['namespace'] = namespace
+    __args__['nodeId'] = node_id
+    __args__['pluginId'] = plugin_id
+    __args__['type'] = type
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getVolumes:getVolumes', __args__, opts=opts, typ=GetVolumesResult)
+    return __ret__.apply(lambda __response__: GetVolumesResult(
+        id=pulumi.get(__response__, 'id'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        node_id=pulumi.get(__response__, 'node_id'),
+        plugin_id=pulumi.get(__response__, 'plugin_id'),
+        type=pulumi.get(__response__, 'type'),
+        volumes=pulumi.get(__response__, 'volumes')))

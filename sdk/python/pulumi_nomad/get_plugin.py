@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -222,9 +227,6 @@ def get_plugin(plugin_id: Optional[str] = None,
         plugin_provider_version=pulumi.get(__ret__, 'plugin_provider_version'),
         wait_for_healthy=pulumi.get(__ret__, 'wait_for_healthy'),
         wait_for_registration=pulumi.get(__ret__, 'wait_for_registration'))
-
-
-@_utilities.lift_output_func(get_plugin)
 def get_plugin_output(plugin_id: Optional[pulumi.Input[str]] = None,
                       wait_for_healthy: Optional[pulumi.Input[Optional[bool]]] = None,
                       wait_for_registration: Optional[pulumi.Input[Optional[bool]]] = None,
@@ -259,4 +261,22 @@ def get_plugin_output(plugin_id: Optional[pulumi.Input[str]] = None,
     :param bool wait_for_healthy: `(boolean)` retry until the plugin exists and all controllers are healthy
     :param bool wait_for_registration: `(boolean)` if the plugin doesn't exist, retry until it does
     """
-    ...
+    __args__ = dict()
+    __args__['pluginId'] = plugin_id
+    __args__['waitForHealthy'] = wait_for_healthy
+    __args__['waitForRegistration'] = wait_for_registration
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getPlugin:getPlugin', __args__, opts=opts, typ=GetPluginResult)
+    return __ret__.apply(lambda __response__: GetPluginResult(
+        controller_required=pulumi.get(__response__, 'controller_required'),
+        controllers_expected=pulumi.get(__response__, 'controllers_expected'),
+        controllers_healthy=pulumi.get(__response__, 'controllers_healthy'),
+        id=pulumi.get(__response__, 'id'),
+        nodes=pulumi.get(__response__, 'nodes'),
+        nodes_expected=pulumi.get(__response__, 'nodes_expected'),
+        nodes_healthy=pulumi.get(__response__, 'nodes_healthy'),
+        plugin_id=pulumi.get(__response__, 'plugin_id'),
+        plugin_provider=pulumi.get(__response__, 'plugin_provider'),
+        plugin_provider_version=pulumi.get(__response__, 'plugin_provider_version'),
+        wait_for_healthy=pulumi.get(__response__, 'wait_for_healthy'),
+        wait_for_registration=pulumi.get(__response__, 'wait_for_registration')))

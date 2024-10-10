@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -200,9 +205,6 @@ def get_acl_token(accessor_id: Optional[str] = None,
         roles=pulumi.get(__ret__, 'roles'),
         secret_id=pulumi.get(__ret__, 'secret_id'),
         type=pulumi.get(__ret__, 'type'))
-
-
-@_utilities.lift_output_func(get_acl_token)
 def get_acl_token_output(accessor_id: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclTokenResult]:
     """
@@ -218,4 +220,19 @@ def get_acl_token_output(accessor_id: Optional[pulumi.Input[str]] = None,
 
     :param str accessor_id: `(string)` Non-sensitive identifier for this token.
     """
-    ...
+    __args__ = dict()
+    __args__['accessorId'] = accessor_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getAclToken:getAclToken', __args__, opts=opts, typ=GetAclTokenResult)
+    return __ret__.apply(lambda __response__: GetAclTokenResult(
+        accessor_id=pulumi.get(__response__, 'accessor_id'),
+        create_time=pulumi.get(__response__, 'create_time'),
+        expiration_time=pulumi.get(__response__, 'expiration_time'),
+        expiration_ttl=pulumi.get(__response__, 'expiration_ttl'),
+        global_=pulumi.get(__response__, 'global_'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        policies=pulumi.get(__response__, 'policies'),
+        roles=pulumi.get(__response__, 'roles'),
+        secret_id=pulumi.get(__response__, 'secret_id'),
+        type=pulumi.get(__response__, 'type')))

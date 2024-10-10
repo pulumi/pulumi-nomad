@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -94,9 +99,6 @@ def get_jwks(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJwksRes
         id=pulumi.get(__ret__, 'id'),
         keys=pulumi.get(__ret__, 'keys'),
         pem_keys=pulumi.get(__ret__, 'pem_keys'))
-
-
-@_utilities.lift_output_func(get_jwks)
 def get_jwks_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJwksResult]:
     """
     Retrieve the cluster JWKS public keys.
@@ -113,4 +115,10 @@ def get_jwks_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Outpu
     example = nomad.get_jwks()
     ```
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getJwks:getJwks', __args__, opts=opts, typ=GetJwksResult)
+    return __ret__.apply(lambda __response__: GetJwksResult(
+        id=pulumi.get(__response__, 'id'),
+        keys=pulumi.get(__response__, 'keys'),
+        pem_keys=pulumi.get(__response__, 'pem_keys')))

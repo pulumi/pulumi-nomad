@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -342,9 +347,6 @@ def get_job(job_id: Optional[str] = None,
         task_groups=pulumi.get(__ret__, 'task_groups'),
         type=pulumi.get(__ret__, 'type'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_job)
 def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
                    namespace: Optional[pulumi.Input[Optional[str]]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobResult]:
@@ -370,4 +372,31 @@ def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
     :param str job_id: `(string)` ID of the job.
     :param str namespace: `(string)` Namespace of the specified job.
     """
-    ...
+    __args__ = dict()
+    __args__['jobId'] = job_id
+    __args__['namespace'] = namespace
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getJob:getJob', __args__, opts=opts, typ=GetJobResult)
+    return __ret__.apply(lambda __response__: GetJobResult(
+        all_at_once=pulumi.get(__response__, 'all_at_once'),
+        constraints=pulumi.get(__response__, 'constraints'),
+        create_index=pulumi.get(__response__, 'create_index'),
+        datacenters=pulumi.get(__response__, 'datacenters'),
+        id=pulumi.get(__response__, 'id'),
+        job_id=pulumi.get(__response__, 'job_id'),
+        job_modify_index=pulumi.get(__response__, 'job_modify_index'),
+        modify_index=pulumi.get(__response__, 'modify_index'),
+        name=pulumi.get(__response__, 'name'),
+        namespace=pulumi.get(__response__, 'namespace'),
+        parent_id=pulumi.get(__response__, 'parent_id'),
+        periodic_configs=pulumi.get(__response__, 'periodic_configs'),
+        priority=pulumi.get(__response__, 'priority'),
+        region=pulumi.get(__response__, 'region'),
+        stable=pulumi.get(__response__, 'stable'),
+        status=pulumi.get(__response__, 'status'),
+        status_description=pulumi.get(__response__, 'status_description'),
+        stop=pulumi.get(__response__, 'stop'),
+        submit_time=pulumi.get(__response__, 'submit_time'),
+        task_groups=pulumi.get(__response__, 'task_groups'),
+        type=pulumi.get(__response__, 'type'),
+        version=pulumi.get(__response__, 'version')))

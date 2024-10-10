@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -85,9 +90,6 @@ def get_namespaces(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetN
     return AwaitableGetNamespacesResult(
         id=pulumi.get(__ret__, 'id'),
         namespaces=pulumi.get(__ret__, 'namespaces'))
-
-
-@_utilities.lift_output_func(get_namespaces)
 def get_namespaces_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNamespacesResult]:
     """
     Retrieve a list of namespaces available in Nomad.
@@ -110,4 +112,9 @@ def get_namespaces_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi
     \"\"\"))
     ```
     """
-    ...
+    __args__ = dict()
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('nomad:index/getNamespaces:getNamespaces', __args__, opts=opts, typ=GetNamespacesResult)
+    return __ret__.apply(lambda __response__: GetNamespacesResult(
+        id=pulumi.get(__response__, 'id'),
+        namespaces=pulumi.get(__response__, 'namespaces')))

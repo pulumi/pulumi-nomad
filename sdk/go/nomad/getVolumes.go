@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.GetVolumes(ctx, nil, nil)
+//			_, err := nomad.GetVolumes(ctx, &nomad.GetVolumesArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
