@@ -1646,11 +1646,6 @@ if not MYPY:
         `(boolean: false)` - Set this to `true` to be able to use
         HCL2 filesystem functions
         """
-        enabled: NotRequired[pulumi.Input[bool]]
-        """
-        `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-        HCL2 by default.
-        """
         vars: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
         """
         Additional variables to use when templating the job with HCL2
@@ -1662,22 +1657,14 @@ elif False:
 class JobHcl2Args:
     def __init__(__self__, *,
                  allow_fs: Optional[pulumi.Input[bool]] = None,
-                 enabled: Optional[pulumi.Input[bool]] = None,
                  vars: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[bool] allow_fs: `(boolean: false)` - Set this to `true` to be able to use
                HCL2 filesystem functions
-        :param pulumi.Input[bool] enabled: `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-               HCL2 by default.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] vars: Additional variables to use when templating the job with HCL2
         """
         if allow_fs is not None:
             pulumi.set(__self__, "allow_fs", allow_fs)
-        if enabled is not None:
-            warnings.warn("""Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""", DeprecationWarning)
-            pulumi.log.warn("""enabled is deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""")
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
         if vars is not None:
             pulumi.set(__self__, "vars", vars)
 
@@ -1693,20 +1680,6 @@ class JobHcl2Args:
     @allow_fs.setter
     def allow_fs(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "allow_fs", value)
-
-    @property
-    @pulumi.getter
-    @_utilities.deprecated("""Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""")
-    def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-        HCL2 by default.
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "enabled", value)
 
     @property
     @pulumi.getter

@@ -26,7 +26,6 @@ class JobArgs:
                  deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
                  deregister_on_id_change: Optional[pulumi.Input[bool]] = None,
                  detach: Optional[pulumi.Input[bool]] = None,
-                 hcl1: Optional[pulumi.Input[bool]] = None,
                  hcl2: Optional[pulumi.Input['JobHcl2Args']] = None,
                  json: Optional[pulumi.Input[bool]] = None,
                  policy_override: Optional[pulumi.Input[bool]] = None,
@@ -44,9 +43,6 @@ class JobArgs:
                deregistered if the ID of the job in the jobspec changes.
         :param pulumi.Input[bool] detach: `(boolean: true)` - If true, the provider will return immediately
                after creating or updating, instead of monitoring.
-        :param pulumi.Input[bool] hcl1: `(boolean: false)` - Set this to `true` to use the previous HCL1
-               parser. This option is provided for backwards compatibility only and should
-               not be used unless absolutely necessary.
         :param pulumi.Input['JobHcl2Args'] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
         :param pulumi.Input[bool] json: `(boolean: false)` - Set this to `true` if your jobspec is structured with
                JSON instead of the default HCL.
@@ -68,8 +64,6 @@ class JobArgs:
             pulumi.set(__self__, "deregister_on_id_change", deregister_on_id_change)
         if detach is not None:
             pulumi.set(__self__, "detach", detach)
-        if hcl1 is not None:
-            pulumi.set(__self__, "hcl1", hcl1)
         if hcl2 is not None:
             pulumi.set(__self__, "hcl2", hcl2)
         if json is not None:
@@ -150,20 +144,6 @@ class JobArgs:
     @detach.setter
     def detach(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "detach", value)
-
-    @property
-    @pulumi.getter
-    def hcl1(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `(boolean: false)` - Set this to `true` to use the previous HCL1
-        parser. This option is provided for backwards compatibility only and should
-        not be used unless absolutely necessary.
-        """
-        return pulumi.get(self, "hcl1")
-
-    @hcl1.setter
-    def hcl1(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "hcl1", value)
 
     @property
     @pulumi.getter
@@ -264,7 +244,6 @@ class _JobState:
                  deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
                  deregister_on_id_change: Optional[pulumi.Input[bool]] = None,
                  detach: Optional[pulumi.Input[bool]] = None,
-                 hcl1: Optional[pulumi.Input[bool]] = None,
                  hcl2: Optional[pulumi.Input['JobHcl2Args']] = None,
                  jobspec: Optional[pulumi.Input[str]] = None,
                  json: Optional[pulumi.Input[bool]] = None,
@@ -293,9 +272,6 @@ class _JobState:
                deregistered if the ID of the job in the jobspec changes.
         :param pulumi.Input[bool] detach: `(boolean: true)` - If true, the provider will return immediately
                after creating or updating, instead of monitoring.
-        :param pulumi.Input[bool] hcl1: `(boolean: false)` - Set this to `true` to use the previous HCL1
-               parser. This option is provided for backwards compatibility only and should
-               not be used unless absolutely necessary.
         :param pulumi.Input['JobHcl2Args'] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
         :param pulumi.Input[str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
         :param pulumi.Input[bool] json: `(boolean: false)` - Set this to `true` if your jobspec is structured with
@@ -334,8 +310,6 @@ class _JobState:
             pulumi.set(__self__, "deregister_on_id_change", deregister_on_id_change)
         if detach is not None:
             pulumi.set(__self__, "detach", detach)
-        if hcl1 is not None:
-            pulumi.set(__self__, "hcl1", hcl1)
         if hcl2 is not None:
             pulumi.set(__self__, "hcl2", hcl2)
         if jobspec is not None:
@@ -469,20 +443,6 @@ class _JobState:
     @detach.setter
     def detach(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "detach", value)
-
-    @property
-    @pulumi.getter
-    def hcl1(self) -> Optional[pulumi.Input[bool]]:
-        """
-        `(boolean: false)` - Set this to `true` to use the previous HCL1
-        parser. This option is provided for backwards compatibility only and should
-        not be used unless absolutely necessary.
-        """
-        return pulumi.get(self, "hcl1")
-
-    @hcl1.setter
-    def hcl1(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "hcl1", value)
 
     @property
     @pulumi.getter
@@ -674,7 +634,6 @@ class Job(pulumi.CustomResource):
                  deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
                  deregister_on_id_change: Optional[pulumi.Input[bool]] = None,
                  detach: Optional[pulumi.Input[bool]] = None,
-                 hcl1: Optional[pulumi.Input[bool]] = None,
                  hcl2: Optional[pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']]] = None,
                  jobspec: Optional[pulumi.Input[str]] = None,
                  json: Optional[pulumi.Input[bool]] = None,
@@ -695,9 +654,6 @@ class Job(pulumi.CustomResource):
                deregistered if the ID of the job in the jobspec changes.
         :param pulumi.Input[bool] detach: `(boolean: true)` - If true, the provider will return immediately
                after creating or updating, instead of monitoring.
-        :param pulumi.Input[bool] hcl1: `(boolean: false)` - Set this to `true` to use the previous HCL1
-               parser. This option is provided for backwards compatibility only and should
-               not be used unless absolutely necessary.
         :param pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
         :param pulumi.Input[str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
         :param pulumi.Input[bool] json: `(boolean: false)` - Set this to `true` if your jobspec is structured with
@@ -738,7 +694,6 @@ class Job(pulumi.CustomResource):
                  deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
                  deregister_on_id_change: Optional[pulumi.Input[bool]] = None,
                  detach: Optional[pulumi.Input[bool]] = None,
-                 hcl1: Optional[pulumi.Input[bool]] = None,
                  hcl2: Optional[pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']]] = None,
                  jobspec: Optional[pulumi.Input[str]] = None,
                  json: Optional[pulumi.Input[bool]] = None,
@@ -760,7 +715,6 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["deregister_on_destroy"] = deregister_on_destroy
             __props__.__dict__["deregister_on_id_change"] = deregister_on_id_change
             __props__.__dict__["detach"] = detach
-            __props__.__dict__["hcl1"] = hcl1
             __props__.__dict__["hcl2"] = hcl2
             if jobspec is None and not opts.urn:
                 raise TypeError("Missing required property 'jobspec'")
@@ -802,7 +756,6 @@ class Job(pulumi.CustomResource):
             deregister_on_destroy: Optional[pulumi.Input[bool]] = None,
             deregister_on_id_change: Optional[pulumi.Input[bool]] = None,
             detach: Optional[pulumi.Input[bool]] = None,
-            hcl1: Optional[pulumi.Input[bool]] = None,
             hcl2: Optional[pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']]] = None,
             jobspec: Optional[pulumi.Input[str]] = None,
             json: Optional[pulumi.Input[bool]] = None,
@@ -836,9 +789,6 @@ class Job(pulumi.CustomResource):
                deregistered if the ID of the job in the jobspec changes.
         :param pulumi.Input[bool] detach: `(boolean: true)` - If true, the provider will return immediately
                after creating or updating, instead of monitoring.
-        :param pulumi.Input[bool] hcl1: `(boolean: false)` - Set this to `true` to use the previous HCL1
-               parser. This option is provided for backwards compatibility only and should
-               not be used unless absolutely necessary.
         :param pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
         :param pulumi.Input[str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
         :param pulumi.Input[bool] json: `(boolean: false)` - Set this to `true` if your jobspec is structured with
@@ -870,7 +820,6 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["deregister_on_destroy"] = deregister_on_destroy
         __props__.__dict__["deregister_on_id_change"] = deregister_on_id_change
         __props__.__dict__["detach"] = detach
-        __props__.__dict__["hcl1"] = hcl1
         __props__.__dict__["hcl2"] = hcl2
         __props__.__dict__["jobspec"] = jobspec
         __props__.__dict__["json"] = json
@@ -955,16 +904,6 @@ class Job(pulumi.CustomResource):
         after creating or updating, instead of monitoring.
         """
         return pulumi.get(self, "detach")
-
-    @property
-    @pulumi.getter
-    def hcl1(self) -> pulumi.Output[Optional[bool]]:
-        """
-        `(boolean: false)` - Set this to `true` to use the previous HCL1
-        parser. This option is provided for backwards compatibility only and should
-        not be used unless absolutely necessary.
-        """
-        return pulumi.get(self, "hcl1")
 
     @property
     @pulumi.getter

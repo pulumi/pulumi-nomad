@@ -19,11 +19,6 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly bool? AllowFs;
         /// <summary>
-        /// `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-        /// HCL2 by default.
-        /// </summary>
-        public readonly bool? Enabled;
-        /// <summary>
         /// Additional variables to use when templating the job with HCL2
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Vars;
@@ -32,12 +27,9 @@ namespace Pulumi.Nomad.Outputs
         private JobHcl2(
             bool? allowFs,
 
-            bool? enabled,
-
             ImmutableDictionary<string, string>? vars)
         {
             AllowFs = allowFs;
-            Enabled = enabled;
             Vars = vars;
         }
     }

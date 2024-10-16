@@ -735,13 +735,6 @@ export interface JobHcl2 {
      */
     allowFs?: boolean;
     /**
-     * `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-     * HCL2 by default.
-     *
-     * @deprecated Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
-     */
-    enabled?: boolean;
-    /**
      * Additional variables to use when templating the job with HCL2
      */
     vars?: {[key: string]: string};
