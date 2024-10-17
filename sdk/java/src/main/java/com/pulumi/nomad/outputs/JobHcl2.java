@@ -20,16 +20,6 @@ public final class JobHcl2 {
      */
     private @Nullable Boolean allowFs;
     /**
-     * @return `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-     * HCL2 by default.
-     * 
-     * @deprecated
-     * Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set &#39;hcl1 = true&#39; if you must use HCL1 job parsing.
-     * 
-     */
-    @Deprecated /* Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing. */
-    private @Nullable Boolean enabled;
-    /**
      * @return Additional variables to use when templating the job with HCL2
      * 
      */
@@ -43,18 +33,6 @@ public final class JobHcl2 {
      */
     public Optional<Boolean> allowFs() {
         return Optional.ofNullable(this.allowFs);
-    }
-    /**
-     * @return `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-     * HCL2 by default.
-     * 
-     * @deprecated
-     * Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set &#39;hcl1 = true&#39; if you must use HCL1 job parsing.
-     * 
-     */
-    @Deprecated /* Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing. */
-    public Optional<Boolean> enabled() {
-        return Optional.ofNullable(this.enabled);
     }
     /**
      * @return Additional variables to use when templating the job with HCL2
@@ -74,13 +52,11 @@ public final class JobHcl2 {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean allowFs;
-        private @Nullable Boolean enabled;
         private @Nullable Map<String,String> vars;
         public Builder() {}
         public Builder(JobHcl2 defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowFs = defaults.allowFs;
-    	      this.enabled = defaults.enabled;
     	      this.vars = defaults.vars;
         }
 
@@ -88,12 +64,6 @@ public final class JobHcl2 {
         public Builder allowFs(@Nullable Boolean allowFs) {
 
             this.allowFs = allowFs;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder enabled(@Nullable Boolean enabled) {
-
-            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
@@ -105,7 +75,6 @@ public final class JobHcl2 {
         public JobHcl2 build() {
             final var _resultValue = new JobHcl2();
             _resultValue.allowFs = allowFs;
-            _resultValue.enabled = enabled;
             _resultValue.vars = vars;
             return _resultValue;
         }

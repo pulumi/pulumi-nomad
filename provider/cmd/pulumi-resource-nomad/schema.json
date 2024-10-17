@@ -671,11 +671,6 @@
                     "type": "boolean",
                     "description": "`(boolean: false)` - Set this to `true` to be able to use\nHCL2 filesystem functions\n"
                 },
-                "enabled": {
-                    "type": "boolean",
-                    "description": "`(boolean: false)` - **Deprecated** All HCL jobs are parsed as\nHCL2 by default.\n",
-                    "deprecationMessage": "Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing."
-                },
                 "vars": {
                     "type": "object",
                     "additionalProperties": {
@@ -3378,10 +3373,6 @@
                     "type": "boolean",
                     "description": "`(boolean: true)` - If true, the provider will return immediately\nafter creating or updating, instead of monitoring.\n"
                 },
-                "hcl1": {
-                    "type": "boolean",
-                    "description": "`(boolean: false)` - Set this to `true` to use the previous HCL1\nparser. This option is provided for backwards compatibility only and should\nnot be used unless absolutely necessary.\n"
-                },
                 "hcl2": {
                     "$ref": "#/types/nomad:index/JobHcl2:JobHcl2",
                     "description": "`(block: optional)` - Options for the HCL2 jobspec parser.\n"
@@ -3478,10 +3469,6 @@
                     "type": "boolean",
                     "description": "`(boolean: true)` - If true, the provider will return immediately\nafter creating or updating, instead of monitoring.\n"
                 },
-                "hcl1": {
-                    "type": "boolean",
-                    "description": "`(boolean: false)` - Set this to `true` to use the previous HCL1\nparser. This option is provided for backwards compatibility only and should\nnot be used unless absolutely necessary.\n"
-                },
                 "hcl2": {
                     "$ref": "#/types/nomad:index/JobHcl2:JobHcl2",
                     "description": "`(block: optional)` - Options for the HCL2 jobspec parser.\n"
@@ -3561,10 +3548,6 @@
                     "detach": {
                         "type": "boolean",
                         "description": "`(boolean: true)` - If true, the provider will return immediately\nafter creating or updating, instead of monitoring.\n"
-                    },
-                    "hcl1": {
-                        "type": "boolean",
-                        "description": "`(boolean: false)` - Set this to `true` to use the previous HCL1\nparser. This option is provided for backwards compatibility only and should\nnot be used unless absolutely necessary.\n"
                     },
                     "hcl2": {
                         "$ref": "#/types/nomad:index/JobHcl2:JobHcl2",

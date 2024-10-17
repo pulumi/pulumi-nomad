@@ -36,10 +36,6 @@ type Job struct {
 	// `(boolean: true)` - If true, the provider will return immediately
 	// after creating or updating, instead of monitoring.
 	Detach pulumi.BoolPtrOutput `pulumi:"detach"`
-	// `(boolean: false)` - Set this to `true` to use the previous HCL1
-	// parser. This option is provided for backwards compatibility only and should
-	// not be used unless absolutely necessary.
-	Hcl1 pulumi.BoolPtrOutput `pulumi:"hcl1"`
 	// `(block: optional)` - Options for the HCL2 jobspec parser.
 	Hcl2 JobHcl2PtrOutput `pulumi:"hcl2"`
 	// `(string: <required>)` - The contents of the jobspec to register.
@@ -141,10 +137,6 @@ type jobState struct {
 	// `(boolean: true)` - If true, the provider will return immediately
 	// after creating or updating, instead of monitoring.
 	Detach *bool `pulumi:"detach"`
-	// `(boolean: false)` - Set this to `true` to use the previous HCL1
-	// parser. This option is provided for backwards compatibility only and should
-	// not be used unless absolutely necessary.
-	Hcl1 *bool `pulumi:"hcl1"`
 	// `(block: optional)` - Options for the HCL2 jobspec parser.
 	Hcl2 *JobHcl2 `pulumi:"hcl2"`
 	// `(string: <required>)` - The contents of the jobspec to register.
@@ -203,10 +195,6 @@ type JobState struct {
 	// `(boolean: true)` - If true, the provider will return immediately
 	// after creating or updating, instead of monitoring.
 	Detach pulumi.BoolPtrInput
-	// `(boolean: false)` - Set this to `true` to use the previous HCL1
-	// parser. This option is provided for backwards compatibility only and should
-	// not be used unless absolutely necessary.
-	Hcl1 pulumi.BoolPtrInput
 	// `(block: optional)` - Options for the HCL2 jobspec parser.
 	Hcl2 JobHcl2PtrInput
 	// `(string: <required>)` - The contents of the jobspec to register.
@@ -259,10 +247,6 @@ type jobArgs struct {
 	// `(boolean: true)` - If true, the provider will return immediately
 	// after creating or updating, instead of monitoring.
 	Detach *bool `pulumi:"detach"`
-	// `(boolean: false)` - Set this to `true` to use the previous HCL1
-	// parser. This option is provided for backwards compatibility only and should
-	// not be used unless absolutely necessary.
-	Hcl1 *bool `pulumi:"hcl1"`
 	// `(block: optional)` - Options for the HCL2 jobspec parser.
 	Hcl2 *JobHcl2 `pulumi:"hcl2"`
 	// `(string: <required>)` - The contents of the jobspec to register.
@@ -299,10 +283,6 @@ type JobArgs struct {
 	// `(boolean: true)` - If true, the provider will return immediately
 	// after creating or updating, instead of monitoring.
 	Detach pulumi.BoolPtrInput
-	// `(boolean: false)` - Set this to `true` to use the previous HCL1
-	// parser. This option is provided for backwards compatibility only and should
-	// not be used unless absolutely necessary.
-	Hcl1 pulumi.BoolPtrInput
 	// `(block: optional)` - Options for the HCL2 jobspec parser.
 	Hcl2 JobHcl2PtrInput
 	// `(string: <required>)` - The contents of the jobspec to register.
@@ -456,13 +436,6 @@ func (o JobOutput) DeregisterOnIdChange() pulumi.BoolPtrOutput {
 // after creating or updating, instead of monitoring.
 func (o JobOutput) Detach() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.Detach }).(pulumi.BoolPtrOutput)
-}
-
-// `(boolean: false)` - Set this to `true` to use the previous HCL1
-// parser. This option is provided for backwards compatibility only and should
-// not be used unless absolutely necessary.
-func (o JobOutput) Hcl1() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.Hcl1 }).(pulumi.BoolPtrOutput)
 }
 
 // `(block: optional)` - Options for the HCL2 jobspec parser.

@@ -35,31 +35,6 @@ public final class JobHcl2Args extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-     * HCL2 by default.
-     * 
-     * @deprecated
-     * Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set &#39;hcl1 = true&#39; if you must use HCL1 job parsing.
-     * 
-     */
-    @Deprecated /* Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing. */
-    @Import(name="enabled")
-    private @Nullable Output<Boolean> enabled;
-
-    /**
-     * @return `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-     * HCL2 by default.
-     * 
-     * @deprecated
-     * Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set &#39;hcl1 = true&#39; if you must use HCL1 job parsing.
-     * 
-     */
-    @Deprecated /* Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing. */
-    public Optional<Output<Boolean>> enabled() {
-        return Optional.ofNullable(this.enabled);
-    }
-
-    /**
      * Additional variables to use when templating the job with HCL2
      * 
      */
@@ -78,7 +53,6 @@ public final class JobHcl2Args extends com.pulumi.resources.ResourceArgs {
 
     private JobHcl2Args(JobHcl2Args $) {
         this.allowFs = $.allowFs;
-        this.enabled = $.enabled;
         this.vars = $.vars;
     }
 
@@ -121,37 +95,6 @@ public final class JobHcl2Args extends com.pulumi.resources.ResourceArgs {
          */
         public Builder allowFs(Boolean allowFs) {
             return allowFs(Output.of(allowFs));
-        }
-
-        /**
-         * @param enabled `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-         * HCL2 by default.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set &#39;hcl1 = true&#39; if you must use HCL1 job parsing.
-         * 
-         */
-        @Deprecated /* Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing. */
-        public Builder enabled(@Nullable Output<Boolean> enabled) {
-            $.enabled = enabled;
-            return this;
-        }
-
-        /**
-         * @param enabled `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-         * HCL2 by default.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set &#39;hcl1 = true&#39; if you must use HCL1 job parsing.
-         * 
-         */
-        @Deprecated /* Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing. */
-        public Builder enabled(Boolean enabled) {
-            return enabled(Output.of(enabled));
         }
 
         /**

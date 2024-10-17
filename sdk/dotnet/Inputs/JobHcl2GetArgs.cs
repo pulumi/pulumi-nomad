@@ -19,13 +19,6 @@ namespace Pulumi.Nomad.Inputs
         [Input("allowFs")]
         public Input<bool>? AllowFs { get; set; }
 
-        /// <summary>
-        /// `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-        /// HCL2 by default.
-        /// </summary>
-        [Input("enabled")]
-        public Input<bool>? Enabled { get; set; }
-
         [Input("vars")]
         private InputMap<string>? _vars;
 

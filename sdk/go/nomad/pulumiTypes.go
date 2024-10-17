@@ -3740,11 +3740,6 @@ type JobHcl2 struct {
 	// `(boolean: false)` - Set this to `true` to be able to use
 	// HCL2 filesystem functions
 	AllowFs *bool `pulumi:"allowFs"`
-	// `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-	// HCL2 by default.
-	//
-	// Deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
-	Enabled *bool `pulumi:"enabled"`
 	// Additional variables to use when templating the job with HCL2
 	Vars map[string]string `pulumi:"vars"`
 }
@@ -3764,11 +3759,6 @@ type JobHcl2Args struct {
 	// `(boolean: false)` - Set this to `true` to be able to use
 	// HCL2 filesystem functions
 	AllowFs pulumi.BoolPtrInput `pulumi:"allowFs"`
-	// `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-	// HCL2 by default.
-	//
-	// Deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
-	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Additional variables to use when templating the job with HCL2
 	Vars pulumi.StringMapInput `pulumi:"vars"`
 }
@@ -3856,14 +3846,6 @@ func (o JobHcl2Output) AllowFs() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v JobHcl2) *bool { return v.AllowFs }).(pulumi.BoolPtrOutput)
 }
 
-// `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-// HCL2 by default.
-//
-// Deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
-func (o JobHcl2Output) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v JobHcl2) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
-}
-
 // Additional variables to use when templating the job with HCL2
 func (o JobHcl2Output) Vars() pulumi.StringMapOutput {
 	return o.ApplyT(func(v JobHcl2) map[string]string { return v.Vars }).(pulumi.StringMapOutput)
@@ -3901,19 +3883,6 @@ func (o JobHcl2PtrOutput) AllowFs() pulumi.BoolPtrOutput {
 			return nil
 		}
 		return v.AllowFs
-	}).(pulumi.BoolPtrOutput)
-}
-
-// `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-// HCL2 by default.
-//
-// Deprecated: Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.
-func (o JobHcl2PtrOutput) Enabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *JobHcl2) *bool {
-		if v == nil {
-			return nil
-		}
-		return v.Enabled
 	}).(pulumi.BoolPtrOutput)
 }
 
