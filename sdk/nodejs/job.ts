@@ -72,12 +72,6 @@ export class Job extends pulumi.CustomResource {
      */
     public readonly detach!: pulumi.Output<boolean | undefined>;
     /**
-     * `(boolean: false)` - Set this to `true` to use the previous HCL1
-     * parser. This option is provided for backwards compatibility only and should
-     * not be used unless absolutely necessary.
-     */
-    public readonly hcl1!: pulumi.Output<boolean | undefined>;
-    /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      */
     public readonly hcl2!: pulumi.Output<outputs.JobHcl2 | undefined>;
@@ -161,7 +155,6 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["deregisterOnDestroy"] = state ? state.deregisterOnDestroy : undefined;
             resourceInputs["deregisterOnIdChange"] = state ? state.deregisterOnIdChange : undefined;
             resourceInputs["detach"] = state ? state.detach : undefined;
-            resourceInputs["hcl1"] = state ? state.hcl1 : undefined;
             resourceInputs["hcl2"] = state ? state.hcl2 : undefined;
             resourceInputs["jobspec"] = state ? state.jobspec : undefined;
             resourceInputs["json"] = state ? state.json : undefined;
@@ -186,7 +179,6 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["deregisterOnDestroy"] = args ? args.deregisterOnDestroy : undefined;
             resourceInputs["deregisterOnIdChange"] = args ? args.deregisterOnIdChange : undefined;
             resourceInputs["detach"] = args ? args.detach : undefined;
-            resourceInputs["hcl1"] = args ? args.hcl1 : undefined;
             resourceInputs["hcl2"] = args ? args.hcl2 : undefined;
             resourceInputs["jobspec"] = args ? args.jobspec : undefined;
             resourceInputs["json"] = args ? args.json : undefined;
@@ -255,12 +247,6 @@ export interface JobState {
      * after creating or updating, instead of monitoring.
      */
     detach?: pulumi.Input<boolean>;
-    /**
-     * `(boolean: false)` - Set this to `true` to use the previous HCL1
-     * parser. This option is provided for backwards compatibility only and should
-     * not be used unless absolutely necessary.
-     */
-    hcl1?: pulumi.Input<boolean>;
     /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      */
@@ -348,12 +334,6 @@ export interface JobArgs {
      * after creating or updating, instead of monitoring.
      */
     detach?: pulumi.Input<boolean>;
-    /**
-     * `(boolean: false)` - Set this to `true` to use the previous HCL1
-     * parser. This option is provided for backwards compatibility only and should
-     * not be used unless absolutely necessary.
-     */
-    hcl1?: pulumi.Input<boolean>;
     /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      */

@@ -1202,19 +1202,14 @@ class JobHcl2(dict):
 
     def __init__(__self__, *,
                  allow_fs: Optional[bool] = None,
-                 enabled: Optional[bool] = None,
                  vars: Optional[Mapping[str, str]] = None):
         """
         :param bool allow_fs: `(boolean: false)` - Set this to `true` to be able to use
                HCL2 filesystem functions
-        :param bool enabled: `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-               HCL2 by default.
         :param Mapping[str, str] vars: Additional variables to use when templating the job with HCL2
         """
         if allow_fs is not None:
             pulumi.set(__self__, "allow_fs", allow_fs)
-        if enabled is not None:
-            pulumi.set(__self__, "enabled", enabled)
         if vars is not None:
             pulumi.set(__self__, "vars", vars)
 
@@ -1226,16 +1221,6 @@ class JobHcl2(dict):
         HCL2 filesystem functions
         """
         return pulumi.get(self, "allow_fs")
-
-    @property
-    @pulumi.getter
-    @_utilities.deprecated("""Starting with version 2.0.0 of the Nomad provider, jobs are parsed using HCL2 by default, so this field is no longer used and may be safely removed from your configuration files. Set 'hcl1 = true' if you must use HCL1 job parsing.""")
-    def enabled(self) -> Optional[bool]:
-        """
-        `(boolean: false)` - **Deprecated** All HCL jobs are parsed as
-        HCL2 by default.
-        """
-        return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter

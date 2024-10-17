@@ -64,14 +64,6 @@ namespace Pulumi.Nomad
         public Output<bool?> Detach { get; private set; } = null!;
 
         /// <summary>
-        /// `(boolean: false)` - Set this to `true` to use the previous HCL1
-        /// parser. This option is provided for backwards compatibility only and should
-        /// not be used unless absolutely necessary.
-        /// </summary>
-        [Output("hcl1")]
-        public Output<bool?> Hcl1 { get; private set; } = null!;
-
-        /// <summary>
         /// `(block: optional)` - Options for the HCL2 jobspec parser.
         /// </summary>
         [Output("hcl2")]
@@ -249,14 +241,6 @@ namespace Pulumi.Nomad
         public Input<bool>? Detach { get; set; }
 
         /// <summary>
-        /// `(boolean: false)` - Set this to `true` to use the previous HCL1
-        /// parser. This option is provided for backwards compatibility only and should
-        /// not be used unless absolutely necessary.
-        /// </summary>
-        [Input("hcl1")]
-        public Input<bool>? Hcl1 { get; set; }
-
-        /// <summary>
         /// `(block: optional)` - Options for the HCL2 jobspec parser.
         /// </summary>
         [Input("hcl2")]
@@ -397,14 +381,6 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("detach")]
         public Input<bool>? Detach { get; set; }
-
-        /// <summary>
-        /// `(boolean: false)` - Set this to `true` to use the previous HCL1
-        /// parser. This option is provided for backwards compatibility only and should
-        /// not be used unless absolutely necessary.
-        /// </summary>
-        [Input("hcl1")]
-        public Input<bool>? Hcl1 { get; set; }
 
         /// <summary>
         /// `(block: optional)` - Options for the HCL2 jobspec parser.

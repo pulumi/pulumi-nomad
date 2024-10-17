@@ -154,25 +154,6 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `(boolean: false)` - Set this to `true` to use the previous HCL1
-     * parser. This option is provided for backwards compatibility only and should
-     * not be used unless absolutely necessary.
-     * 
-     */
-    @Import(name="hcl1")
-    private @Nullable Output<Boolean> hcl1;
-
-    /**
-     * @return `(boolean: false)` - Set this to `true` to use the previous HCL1
-     * parser. This option is provided for backwards compatibility only and should
-     * not be used unless absolutely necessary.
-     * 
-     */
-    public Optional<Output<Boolean>> hcl1() {
-        return Optional.ofNullable(this.hcl1);
-    }
-
-    /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      * 
      */
@@ -414,7 +395,6 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         this.deregisterOnDestroy = $.deregisterOnDestroy;
         this.deregisterOnIdChange = $.deregisterOnIdChange;
         this.detach = $.detach;
-        this.hcl1 = $.hcl1;
         this.hcl2 = $.hcl2;
         this.jobspec = $.jobspec;
         this.json = $.json;
@@ -654,31 +634,6 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder detach(Boolean detach) {
             return detach(Output.of(detach));
-        }
-
-        /**
-         * @param hcl1 `(boolean: false)` - Set this to `true` to use the previous HCL1
-         * parser. This option is provided for backwards compatibility only and should
-         * not be used unless absolutely necessary.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder hcl1(@Nullable Output<Boolean> hcl1) {
-            $.hcl1 = hcl1;
-            return this;
-        }
-
-        /**
-         * @param hcl1 `(boolean: false)` - Set this to `true` to use the previous HCL1
-         * parser. This option is provided for backwards compatibility only and should
-         * not be used unless absolutely necessary.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder hcl1(Boolean hcl1) {
-            return hcl1(Output.of(hcl1));
         }
 
         /**

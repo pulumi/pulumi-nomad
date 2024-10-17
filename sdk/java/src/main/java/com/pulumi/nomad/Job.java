@@ -143,24 +143,6 @@ public class Job extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.detach);
     }
     /**
-     * `(boolean: false)` - Set this to `true` to use the previous HCL1
-     * parser. This option is provided for backwards compatibility only and should
-     * not be used unless absolutely necessary.
-     * 
-     */
-    @Export(name="hcl1", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> hcl1;
-
-    /**
-     * @return `(boolean: false)` - Set this to `true` to use the previous HCL1
-     * parser. This option is provided for backwards compatibility only and should
-     * not be used unless absolutely necessary.
-     * 
-     */
-    public Output<Optional<Boolean>> hcl1() {
-        return Codegen.optional(this.hcl1);
-    }
-    /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      * 
      */
