@@ -24,7 +24,7 @@ replace (
 
 require (
 	github.com/hashicorp/terraform-provider-nomad v1.4.21-0.20240813185622-c4cd3bb61873
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.93.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.93.1
 	github.com/pulumi/pulumi/sdk/v3 v3.136.1
 )
 
