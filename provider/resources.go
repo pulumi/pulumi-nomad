@@ -15,7 +15,9 @@
 package nomad
 
 import (
+	"bytes"
 	"fmt"
+	"os"
 	"path/filepath"
 	"unicode"
 
@@ -26,6 +28,7 @@ import (
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
@@ -83,6 +86,7 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:   "hashicorp",
 		Repository:  "https://github.com/pulumi/pulumi-nomad",
 		Config:      map[string]*tfbridge.SchemaInfo{},
+		DocRules:    &tfbridge.DocRuleInfo{EditRules: docEditRules},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"nomad_acl_policy":          {Tok: makeResource(mainMod, "AclPolicy")},
 			"nomad_acl_role":            {Tok: makeResource(mainMod, "AclRole")},
@@ -156,6 +160,64 @@ func Provider() tfbridge.ProviderInfo {
 	prov.SetAutonaming(255, "-")
 
 	return prov
+}
+
+func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
+	edits := []tfbridge.DocsEdit{
+		cleanUpEnvVars,
+	}
+	edits = append(edits, defaults...)
+	return append(
+		edits,
+		skipSections()...,
+	)
+}
+
+// Removes sections with TF specific instructions.
+func skipSections() []tfbridge.DocsEdit {
+	edits := []tfbridge.DocsEdit{}
+	titles := []string{
+		"Configuring Multiple Tokens",
+		"Multi-Region Deployments",
+	}
+	for _, title := range titles {
+		edits = append(edits, tfbridge.DocsEdit{
+			Path: "index.html.markdown",
+			Edit: func(_ string, content []byte) ([]byte, error) {
+				return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
+					return headerText == title
+				})
+			},
+		})
+	}
+	return edits
+}
+
+// Cleans up TF Cloud specific references from env var documentation.
+var cleanUpEnvVars = tfbridge.DocsEdit{
+	Path: "index.html.markdown",
+	Edit: func(_ string, content []byte) ([]byte, error) {
+		replacesDir := "docs/index-md-replaces/"
+		input, err := os.ReadFile(replacesDir + "env-vars-input.md")
+		if err != nil {
+			return nil, err
+		}
+		desired, err := os.ReadFile(replacesDir + "env-vars-desired.md")
+		if err != nil {
+			return nil, err
+		}
+		if bytes.Contains(content, input) {
+			content = bytes.ReplaceAll(
+				content,
+				input,
+				desired)
+		} else {
+			// Hard error to ensure we keep this content up to date
+			return nil, fmt.Errorf("could not find text in upstream index.html.markdown, "+
+				"please verify file content at %s\n*****\n%s\n*****\n", replacesDir+"overview-input.md", string(input))
+		}
+		return content, nil
+	},
 }
 
 //go:embed cmd/pulumi-resource-nomad/bridge-metadata.json
