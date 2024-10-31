@@ -327,7 +327,7 @@ class AclAuthMethod(pulumi.CustomResource):
                     "http://localhost:4646/ui/settings/tokens",
                 ],
                 "list_claim_mappings": {
-                    "http___nomad_internal_roles": "roles",
+                    "http://nomad.internal/roles": "roles",
                 },
             })
         ```
@@ -384,7 +384,7 @@ class AclAuthMethod(pulumi.CustomResource):
                     "http://localhost:4646/ui/settings/tokens",
                 ],
                 "list_claim_mappings": {
-                    "http___nomad_internal_roles": "roles",
+                    "http://nomad.internal/roles": "roles",
                 },
             })
         ```
