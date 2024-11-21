@@ -6,7 +6,7 @@ layout: package
 ---
 ## Installation
 
-The nomad provider is available as a package in all Pulumi languages:
+The Nomad provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumi/nomad`](https://www.npmjs.com/package/@pulumi/nomad)
 * Python: [`pulumi-nomad`](https://pypi.org/project/pulumi-nomad/)
