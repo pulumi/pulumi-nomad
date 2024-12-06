@@ -349,7 +349,7 @@ def get_job(job_id: Optional[str] = None,
         version=pulumi.get(__ret__, 'version'))
 def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
                    namespace: Optional[pulumi.Input[Optional[str]]] = None,
-                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobResult]:
+                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJobResult]:
     """
     Get information on a job ID. The aim of this datasource is to enable
     you to act on various settings and states of a particular job.
@@ -375,7 +375,7 @@ def get_job_output(job_id: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['jobId'] = job_id
     __args__['namespace'] = namespace
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getJob:getJob', __args__, opts=opts, typ=GetJobResult)
     return __ret__.apply(lambda __response__: GetJobResult(
         all_at_once=pulumi.get(__response__, 'all_at_once'),

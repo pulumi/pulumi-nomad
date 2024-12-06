@@ -79,7 +79,7 @@ export interface GetScalingPolicyResult {
  * });
  * ```
  */
-export function getScalingPolicyOutput(args: GetScalingPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetScalingPolicyResult> {
+export function getScalingPolicyOutput(args: GetScalingPolicyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetScalingPolicyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getScalingPolicy:getScalingPolicy", {
         "id": args.id,

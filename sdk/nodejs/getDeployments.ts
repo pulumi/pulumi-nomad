@@ -52,7 +52,7 @@ export interface GetDeploymentsResult {
  * const example = nomad.getDeployments({});
  * ```
  */
-export function getDeploymentsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetDeploymentsResult> {
+export function getDeploymentsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDeploymentsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getDeployments:getDeployments", {
     }, opts);

@@ -90,7 +90,7 @@ def get_namespaces(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetN
     return AwaitableGetNamespacesResult(
         id=pulumi.get(__ret__, 'id'),
         namespaces=pulumi.get(__ret__, 'namespaces'))
-def get_namespaces_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNamespacesResult]:
+def get_namespaces_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNamespacesResult]:
     """
     Retrieve a list of namespaces available in Nomad.
 
@@ -113,7 +113,7 @@ def get_namespaces_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getNamespaces:getNamespaces', __args__, opts=opts, typ=GetNamespacesResult)
     return __ret__.apply(lambda __response__: GetNamespacesResult(
         id=pulumi.get(__response__, 'id'),

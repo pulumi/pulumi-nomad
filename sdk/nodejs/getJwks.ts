@@ -60,7 +60,7 @@ export interface GetJwksResult {
  * const example = nomad.getJwks({});
  * ```
  */
-export function getJwksOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetJwksResult> {
+export function getJwksOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetJwksResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getJwks:getJwks", {
     }, opts);

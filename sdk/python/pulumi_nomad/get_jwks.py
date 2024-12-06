@@ -99,7 +99,7 @@ def get_jwks(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJwksRes
         id=pulumi.get(__ret__, 'id'),
         keys=pulumi.get(__ret__, 'keys'),
         pem_keys=pulumi.get(__ret__, 'pem_keys'))
-def get_jwks_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJwksResult]:
+def get_jwks_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJwksResult]:
     """
     Retrieve the cluster JWKS public keys.
 
@@ -116,7 +116,7 @@ def get_jwks_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Outpu
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getJwks:getJwks', __args__, opts=opts, typ=GetJwksResult)
     return __ret__.apply(lambda __response__: GetJwksResult(
         id=pulumi.get(__response__, 'id'),

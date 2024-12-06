@@ -67,7 +67,7 @@ export interface GetVariableResult {
  * const example = new nomad.Variable("example", {path: "path/of/existing/variable"});
  * ```
  */
-export function getVariableOutput(args: GetVariableOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVariableResult> {
+export function getVariableOutput(args: GetVariableOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVariableResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getVariable:getVariable", {
         "namespace": args.namespace,

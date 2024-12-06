@@ -86,7 +86,7 @@ def get_deployments(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGet
     return AwaitableGetDeploymentsResult(
         deployments=pulumi.get(__ret__, 'deployments'),
         id=pulumi.get(__ret__, 'id'))
-def get_deployments_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDeploymentsResult]:
+def get_deployments_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDeploymentsResult]:
     """
     Retrieve a list of deployments in Nomad.
 
@@ -100,7 +100,7 @@ def get_deployments_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulum
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getDeployments:getDeployments', __args__, opts=opts, typ=GetDeploymentsResult)
     return __ret__.apply(lambda __response__: GetDeploymentsResult(
         deployments=pulumi.get(__response__, 'deployments'),

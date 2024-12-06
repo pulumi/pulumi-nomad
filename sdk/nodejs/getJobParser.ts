@@ -53,7 +53,7 @@ export interface GetJobParserResult {
 /**
  * Parse a HCL jobspec and produce the equivalent JSON encoded job.
  */
-export function getJobParserOutput(args: GetJobParserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJobParserResult> {
+export function getJobParserOutput(args: GetJobParserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetJobParserResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getJobParser:getJobParser", {
         "canonicalize": args.canonicalize,

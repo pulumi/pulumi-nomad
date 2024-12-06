@@ -112,7 +112,7 @@ def get_datacenters(ignore_down_nodes: Optional[bool] = None,
         prefix=pulumi.get(__ret__, 'prefix'))
 def get_datacenters_output(ignore_down_nodes: Optional[pulumi.Input[Optional[bool]]] = None,
                            prefix: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatacentersResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatacentersResult]:
     """
     Retrieve a list of datacenters.
 
@@ -133,7 +133,7 @@ def get_datacenters_output(ignore_down_nodes: Optional[pulumi.Input[Optional[boo
     __args__ = dict()
     __args__['ignoreDownNodes'] = ignore_down_nodes
     __args__['prefix'] = prefix
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getDatacenters:getDatacenters', __args__, opts=opts, typ=GetDatacentersResult)
     return __ret__.apply(lambda __response__: GetDatacentersResult(
         datacenters=pulumi.get(__response__, 'datacenters'),
