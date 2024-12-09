@@ -147,7 +147,7 @@ def get_namespace(name: Optional[str] = None,
         node_pool_configs=pulumi.get(__ret__, 'node_pool_configs'),
         quota=pulumi.get(__ret__, 'quota'))
 def get_namespace_output(name: Optional[pulumi.Input[str]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNamespaceResult]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNamespaceResult]:
     """
     Get information about a namespace in Nomad.
 
@@ -165,7 +165,7 @@ def get_namespace_output(name: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getNamespace:getNamespace', __args__, opts=opts, typ=GetNamespaceResult)
     return __ret__.apply(lambda __response__: GetNamespaceResult(
         capabilities=pulumi.get(__response__, 'capabilities'),

@@ -115,7 +115,7 @@ def get_variable(namespace: Optional[str] = None,
         path=pulumi.get(__ret__, 'path'))
 def get_variable_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                         path: Optional[pulumi.Input[str]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVariableResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVariableResult]:
     """
     ## Example Usage
 
@@ -133,7 +133,7 @@ def get_variable_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['namespace'] = namespace
     __args__['path'] = path
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getVariable:getVariable', __args__, opts=opts, typ=GetVariableResult)
     return __ret__.apply(lambda __response__: GetVariableResult(
         id=pulumi.get(__response__, 'id'),

@@ -66,7 +66,7 @@ export interface GetAclTokensResult {
  * });
  * ```
  */
-export function getAclTokensOutput(args?: GetAclTokensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclTokensResult> {
+export function getAclTokensOutput(args?: GetAclTokensOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAclTokensResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getAclTokens:getAclTokens", {

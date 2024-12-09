@@ -85,7 +85,7 @@ export interface GetAllocationsResult {
  * });
  * ```
  */
-export function getAllocationsOutput(args?: GetAllocationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAllocationsResult> {
+export function getAllocationsOutput(args?: GetAllocationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAllocationsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getAllocations:getAllocations", {

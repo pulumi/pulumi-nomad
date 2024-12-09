@@ -206,7 +206,7 @@ def get_acl_token(accessor_id: Optional[str] = None,
         secret_id=pulumi.get(__ret__, 'secret_id'),
         type=pulumi.get(__ret__, 'type'))
 def get_acl_token_output(accessor_id: Optional[pulumi.Input[str]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclTokenResult]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclTokenResult]:
     """
     ## Example Usage
 
@@ -222,7 +222,7 @@ def get_acl_token_output(accessor_id: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['accessorId'] = accessor_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getAclToken:getAclToken', __args__, opts=opts, typ=GetAclTokenResult)
     return __ret__.apply(lambda __response__: GetAclTokenResult(
         accessor_id=pulumi.get(__response__, 'accessor_id'),

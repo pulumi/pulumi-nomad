@@ -131,7 +131,7 @@ export interface GetPluginResult {
  * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
  * is healthy before returning.
  */
-export function getPluginOutput(args: GetPluginOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginResult> {
+export function getPluginOutput(args: GetPluginOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPluginResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getPlugin:getPlugin", {
         "pluginId": args.pluginId,

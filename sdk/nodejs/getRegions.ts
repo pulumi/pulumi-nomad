@@ -69,7 +69,7 @@ export interface GetRegionsResult {
  * }
  * ```
  */
-export function getRegionsOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetRegionsResult> {
+export function getRegionsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRegionsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getRegions:getRegions", {
     }, opts);
