@@ -57,7 +57,7 @@ export interface GetPluginsResult {
  * const example = nomad.getPlugins({});
  * ```
  */
-export function getPluginsOutput(args?: GetPluginsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPluginsResult> {
+export function getPluginsOutput(args?: GetPluginsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPluginsResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getPlugins:getPlugins", {

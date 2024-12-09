@@ -66,7 +66,7 @@ export interface GetAclPoliciesResult {
  * });
  * ```
  */
-export function getAclPoliciesOutput(args?: GetAclPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclPoliciesResult> {
+export function getAclPoliciesOutput(args?: GetAclPoliciesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAclPoliciesResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getAclPolicies:getAclPolicies", {

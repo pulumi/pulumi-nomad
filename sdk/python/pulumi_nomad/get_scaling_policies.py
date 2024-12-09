@@ -116,7 +116,7 @@ def get_scaling_policies(job_id: Optional[str] = None,
         type=pulumi.get(__ret__, 'type'))
 def get_scaling_policies_output(job_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 type: Optional[pulumi.Input[Optional[str]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetScalingPoliciesResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetScalingPoliciesResult]:
     """
     Retrieve a list of Scaling Policies.
 
@@ -137,7 +137,7 @@ def get_scaling_policies_output(job_id: Optional[pulumi.Input[Optional[str]]] = 
     __args__ = dict()
     __args__['jobId'] = job_id
     __args__['type'] = type
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getScalingPolicies:getScalingPolicies', __args__, opts=opts, typ=GetScalingPoliciesResult)
     return __ret__.apply(lambda __response__: GetScalingPoliciesResult(
         id=pulumi.get(__response__, 'id'),
