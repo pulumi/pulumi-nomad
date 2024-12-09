@@ -89,7 +89,7 @@ def get_regions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegi
     return AwaitableGetRegionsResult(
         id=pulumi.get(__ret__, 'id'),
         regions=pulumi.get(__ret__, 'regions'))
-def get_regions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegionsResult]:
+def get_regions_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegionsResult]:
     """
     Retrieve a list of regions available in Nomad.
 
@@ -111,7 +111,7 @@ def get_regions_output(opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Ou
     ```
     """
     __args__ = dict()
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getRegions:getRegions', __args__, opts=opts, typ=GetRegionsResult)
     return __ret__.apply(lambda __response__: GetRegionsResult(
         id=pulumi.get(__response__, 'id'),

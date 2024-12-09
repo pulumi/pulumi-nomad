@@ -72,7 +72,7 @@ export interface GetDatacentersResult {
  * });
  * ```
  */
-export function getDatacentersOutput(args?: GetDatacentersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatacentersResult> {
+export function getDatacentersOutput(args?: GetDatacentersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatacentersResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getDatacenters:getDatacenters", {

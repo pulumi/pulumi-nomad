@@ -108,7 +108,7 @@ def get_job_parser(canonicalize: Optional[bool] = None,
         json=pulumi.get(__ret__, 'json'))
 def get_job_parser_output(canonicalize: Optional[pulumi.Input[Optional[bool]]] = None,
                           hcl: Optional[pulumi.Input[str]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJobParserResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJobParserResult]:
     """
     Parse a HCL jobspec and produce the equivalent JSON encoded job.
 
@@ -119,7 +119,7 @@ def get_job_parser_output(canonicalize: Optional[pulumi.Input[Optional[bool]]] =
     __args__ = dict()
     __args__['canonicalize'] = canonicalize
     __args__['hcl'] = hcl
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getJobParser:getJobParser', __args__, opts=opts, typ=GetJobParserResult)
     return __ret__.apply(lambda __response__: GetJobParserResult(
         canonicalize=pulumi.get(__response__, 'canonicalize'),
