@@ -142,7 +142,7 @@ def get_volumes_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
                        node_id: Optional[pulumi.Input[Optional[str]]] = None,
                        plugin_id: Optional[pulumi.Input[Optional[str]]] = None,
                        type: Optional[pulumi.Input[Optional[str]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVolumesResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVolumesResult]:
     """
     Retrieve a list of volumes in Nomad.
 
@@ -166,7 +166,7 @@ def get_volumes_output(namespace: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['nodeId'] = node_id
     __args__['pluginId'] = plugin_id
     __args__['type'] = type
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getVolumes:getVolumes', __args__, opts=opts, typ=GetVolumesResult)
     return __ret__.apply(lambda __response__: GetVolumesResult(
         id=pulumi.get(__response__, 'id'),

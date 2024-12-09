@@ -70,7 +70,7 @@ export interface GetAclPolicyResult {
  * });
  * ```
  */
-export function getAclPolicyOutput(args: GetAclPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclPolicyResult> {
+export function getAclPolicyOutput(args: GetAclPolicyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAclPolicyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getAclPolicy:getAclPolicy", {
         "name": args.name,

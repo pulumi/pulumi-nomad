@@ -94,7 +94,7 @@ def get_plugins(type: Optional[str] = None,
         plugins=pulumi.get(__ret__, 'plugins'),
         type=pulumi.get(__ret__, 'type'))
 def get_plugins_output(type: Optional[pulumi.Input[Optional[str]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginsResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPluginsResult]:
     """
     Retrieve a list of dynamic plugins in Nomad.
 
@@ -109,7 +109,7 @@ def get_plugins_output(type: Optional[pulumi.Input[Optional[str]]] = None,
     """
     __args__ = dict()
     __args__['type'] = type
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getPlugins:getPlugins', __args__, opts=opts, typ=GetPluginsResult)
     return __ret__.apply(lambda __response__: GetPluginsResult(
         id=pulumi.get(__response__, 'id'),

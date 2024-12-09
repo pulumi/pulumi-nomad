@@ -230,7 +230,7 @@ def get_plugin(plugin_id: Optional[str] = None,
 def get_plugin_output(plugin_id: Optional[pulumi.Input[str]] = None,
                       wait_for_healthy: Optional[pulumi.Input[Optional[bool]]] = None,
                       wait_for_registration: Optional[pulumi.Input[Optional[bool]]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetPluginResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPluginResult]:
     """
     Lookup a plugin by ID. The aim of this datasource is to determine whether
     a particular plugin exists on the cluster, to find information on the health
@@ -265,7 +265,7 @@ def get_plugin_output(plugin_id: Optional[pulumi.Input[str]] = None,
     __args__['pluginId'] = plugin_id
     __args__['waitForHealthy'] = wait_for_healthy
     __args__['waitForRegistration'] = wait_for_registration
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getPlugin:getPlugin', __args__, opts=opts, typ=GetPluginResult)
     return __ret__.apply(lambda __response__: GetPluginResult(
         controller_required=pulumi.get(__response__, 'controller_required'),
