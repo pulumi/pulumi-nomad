@@ -113,7 +113,7 @@ def get_acl_policy(name: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         rules=pulumi.get(__ret__, 'rules'))
 def get_acl_policy_output(name: Optional[pulumi.Input[str]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclPolicyResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclPolicyResult]:
     """
     Retrieve information on an ACL Policy.
 
@@ -131,7 +131,7 @@ def get_acl_policy_output(name: Optional[pulumi.Input[str]] = None,
     """
     __args__ = dict()
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getAclPolicy:getAclPolicy', __args__, opts=opts, typ=GetAclPolicyResult)
     return __ret__.apply(lambda __response__: GetAclPolicyResult(
         description=pulumi.get(__response__, 'description'),

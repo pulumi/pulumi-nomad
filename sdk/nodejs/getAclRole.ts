@@ -72,7 +72,7 @@ export interface GetAclRoleResult {
  * });
  * ```
  */
-export function getAclRoleOutput(args: GetAclRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAclRoleResult> {
+export function getAclRoleOutput(args: GetAclRoleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAclRoleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getAclRole:getAclRole", {
         "id": args.id,

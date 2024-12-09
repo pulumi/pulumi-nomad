@@ -115,7 +115,7 @@ def get_node_pools(filter: Optional[str] = None,
         prefix=pulumi.get(__ret__, 'prefix'))
 def get_node_pools_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
                           prefix: Optional[pulumi.Input[Optional[str]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetNodePoolsResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodePoolsResult]:
     """
     Retrieve a list of node pools available in Nomad.
 
@@ -137,7 +137,7 @@ def get_node_pools_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['filter'] = filter
     __args__['prefix'] = prefix
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getNodePools:getNodePools', __args__, opts=opts, typ=GetNodePoolsResult)
     return __ret__.apply(lambda __response__: GetNodePoolsResult(
         filter=pulumi.get(__response__, 'filter'),

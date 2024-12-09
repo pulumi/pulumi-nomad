@@ -55,7 +55,7 @@ export interface GetSchedulerPolicyResult {
  * const global = nomad.getSchedulerPolicy({});
  * ```
  */
-export function getSchedulerPolicyOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetSchedulerPolicyResult> {
+export function getSchedulerPolicyOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSchedulerPolicyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getSchedulerPolicy:getSchedulerPolicy", {
     }, opts);

@@ -73,7 +73,7 @@ export interface GetNamespacesResult {
  * }
  * ```
  */
-export function getNamespacesOutput(opts?: pulumi.InvokeOptions): pulumi.Output<GetNamespacesResult> {
+export function getNamespacesOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNamespacesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("nomad:index/getNamespaces:getNamespaces", {
     }, opts);

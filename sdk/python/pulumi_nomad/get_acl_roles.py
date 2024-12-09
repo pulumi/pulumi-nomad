@@ -96,7 +96,7 @@ def get_acl_roles(prefix: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         prefix=pulumi.get(__ret__, 'prefix'))
 def get_acl_roles_output(prefix: Optional[pulumi.Input[Optional[str]]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAclRolesResult]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclRolesResult]:
     """
     Retrieve a list of ACL Roles.
 
@@ -115,7 +115,7 @@ def get_acl_roles_output(prefix: Optional[pulumi.Input[Optional[str]]] = None,
     """
     __args__ = dict()
     __args__['prefix'] = prefix
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getAclRoles:getAclRoles', __args__, opts=opts, typ=GetAclRolesResult)
     return __ret__.apply(lambda __response__: GetAclRolesResult(
         acl_roles=pulumi.get(__response__, 'acl_roles'),
