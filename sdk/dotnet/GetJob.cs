@@ -70,6 +70,36 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetJobResult> Invoke(GetJobInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetJobResult>("nomad:index/getJob:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get information on a job ID. The aim of this datasource is to enable
+        /// you to act on various settings and states of a particular job.
+        /// 
+        /// An error is triggered if zero or more than one result is returned by the query.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// Get the data about a snapshot:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Nomad.GetJob.Invoke(new()
+        ///     {
+        ///         JobId = "example",
+        ///         Namespace = "dev",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetJobResult> Invoke(GetJobInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetJobResult>("nomad:index/getJob:getJob", args ?? new GetJobInvokeArgs(), options.WithDefaults());
     }
 
 

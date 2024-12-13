@@ -72,18 +72,8 @@ type GetNamespacesResult struct {
 
 func GetNamespacesOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetNamespacesResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetNamespacesResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetNamespacesResult
-		secret, err := ctx.InvokePackageRaw("nomad:index/getNamespaces:getNamespaces", nil, &rv, "", opts...)
-		if err != nil {
-			return GetNamespacesResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetNamespacesResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetNamespacesResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("nomad:index/getNamespaces:getNamespaces", nil, GetNamespacesResultOutput{}, options).(GetNamespacesResultOutput), nil
 	}).(GetNamespacesResultOutput)
 }
 

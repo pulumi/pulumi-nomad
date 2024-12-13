@@ -52,6 +52,27 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetPluginsResult> Invoke(GetPluginsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve a list of dynamic plugins in Nomad.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Nomad.GetPlugins.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetPluginsResult> Invoke(GetPluginsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPluginsResult>("nomad:index/getPlugins:getPlugins", args ?? new GetPluginsInvokeArgs(), options.WithDefaults());
     }
 
 

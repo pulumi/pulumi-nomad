@@ -68,21 +68,11 @@ type GetDatacentersResult struct {
 }
 
 func GetDatacentersOutput(ctx *pulumi.Context, args GetDatacentersOutputArgs, opts ...pulumi.InvokeOption) GetDatacentersResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetDatacentersResultOutput, error) {
 			args := v.(GetDatacentersArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetDatacentersResult
-			secret, err := ctx.InvokePackageRaw("nomad:index/getDatacenters:getDatacenters", args, &rv, "", opts...)
-			if err != nil {
-				return GetDatacentersResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetDatacentersResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetDatacentersResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("nomad:index/getDatacenters:getDatacenters", args, GetDatacentersResultOutput{}, options).(GetDatacentersResultOutput), nil
 		}).(GetDatacentersResultOutput)
 }
 

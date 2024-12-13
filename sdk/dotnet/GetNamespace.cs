@@ -58,6 +58,30 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetNamespaceResult> Invoke(GetNamespaceInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNamespaceResult>("nomad:index/getNamespace:getNamespace", args ?? new GetNamespaceInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get information about a namespace in Nomad.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var namespaces = Nomad.GetNamespace.Invoke(new()
+        ///     {
+        ///         Name = "default",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNamespaceResult> Invoke(GetNamespaceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNamespaceResult>("nomad:index/getNamespace:getNamespace", args ?? new GetNamespaceInvokeArgs(), options.WithDefaults());
     }
 
 

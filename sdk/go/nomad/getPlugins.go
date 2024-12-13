@@ -61,21 +61,11 @@ type GetPluginsResult struct {
 }
 
 func GetPluginsOutput(ctx *pulumi.Context, args GetPluginsOutputArgs, opts ...pulumi.InvokeOption) GetPluginsResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetPluginsResultOutput, error) {
 			args := v.(GetPluginsArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetPluginsResult
-			secret, err := ctx.InvokePackageRaw("nomad:index/getPlugins:getPlugins", args, &rv, "", opts...)
-			if err != nil {
-				return GetPluginsResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetPluginsResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetPluginsResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("nomad:index/getPlugins:getPlugins", args, GetPluginsResultOutput{}, options).(GetPluginsResultOutput), nil
 		}).(GetPluginsResultOutput)
 }
 

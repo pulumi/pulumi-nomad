@@ -58,6 +58,30 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetAclPoliciesResult> Invoke(GetAclPoliciesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAclPoliciesResult>("nomad:index/getAclPolicies:getAclPolicies", args ?? new GetAclPoliciesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve a list of ACL Policies.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Nomad.GetAclPolicies.Invoke(new()
+        ///     {
+        ///         Prefix = "prod",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAclPoliciesResult> Invoke(GetAclPoliciesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAclPoliciesResult>("nomad:index/getAclPolicies:getAclPolicies", args ?? new GetAclPoliciesInvokeArgs(), options.WithDefaults());
     }
 
 

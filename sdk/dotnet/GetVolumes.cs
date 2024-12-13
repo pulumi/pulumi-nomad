@@ -52,6 +52,27 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetVolumesResult> Invoke(GetVolumesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve a list of volumes in Nomad.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Nomad.GetVolumes.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetVolumesResult> Invoke(GetVolumesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVolumesResult>("nomad:index/getVolumes:getVolumes", args ?? new GetVolumesInvokeArgs(), options.WithDefaults());
     }
 
 

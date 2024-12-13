@@ -84,6 +84,43 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetPluginResult> Invoke(GetPluginInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Lookup a plugin by ID. The aim of this datasource is to determine whether
+        /// a particular plugin exists on the cluster, to find information on the health
+        /// and availability of the plugin, and to optionally wait for the plugin
+        /// before performing actions the require an available plugin controller.
+        /// 
+        /// If a plugin with the specified ID does not exist and the datasource is not
+        /// configured to wait, it will result in an error. For simple existence checks,
+        /// use the `nomad.getPlugins` listing datasource.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// Check for the existence of a plugin:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var ebs = Nomad.GetPlugin.Invoke(new()
+        ///     {
+        ///         PluginId = "aws-ebs0",
+        ///         WaitForHealthy = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
+        /// is healthy before returning.
+        /// </summary>
+        public static Output<GetPluginResult> Invoke(GetPluginInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetPluginResult>("nomad:index/getPlugin:getPlugin", args ?? new GetPluginInvokeArgs(), options.WithDefaults());
     }
 
 

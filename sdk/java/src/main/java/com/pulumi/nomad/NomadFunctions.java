@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.nomad.Utilities;
 import com.pulumi.nomad.inputs.GetAclPoliciesArgs;
 import com.pulumi.nomad.inputs.GetAclPoliciesPlainArgs;
@@ -323,6 +324,48 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetAclPoliciesResult> getAclPolicies(GetAclPoliciesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getAclPolicies:getAclPolicies", TypeShape.of(GetAclPoliciesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of ACL Policies.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclPoliciesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclPolicies(GetAclPoliciesArgs.builder()
+     *             .prefix("prod")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetAclPoliciesResult> getAclPoliciesPlain(GetAclPoliciesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getAclPolicies:getAclPolicies", TypeShape.of(GetAclPoliciesResult.class), args, Utilities.withVersion(options));
     }
@@ -491,6 +534,48 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetAclPolicyResult> getAclPolicy(GetAclPolicyArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getAclPolicy:getAclPolicy", TypeShape.of(GetAclPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve information on an ACL Policy.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myPolicy = NomadFunctions.getAclPolicy(GetAclPolicyArgs.builder()
+     *             .name("my-policy")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetAclPolicyResult> getAclPolicyPlain(GetAclPolicyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getAclPolicy:getAclPolicy", TypeShape.of(GetAclPolicyResult.class), args, Utilities.withVersion(options));
     }
@@ -618,6 +703,48 @@ public final class NomadFunctions {
      * 
      */
     public static Output<GetAclRoleResult> getAclRole(GetAclRoleArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getAclRole:getAclRole", TypeShape.of(GetAclRoleResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on an ACL Role.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRole(GetAclRoleArgs.builder()
+     *             .id("aa534e09-6a07-0a45-2295-a7f77063d429")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAclRoleResult> getAclRole(GetAclRoleArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getAclRole:getAclRole", TypeShape.of(GetAclRoleResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -911,6 +1038,48 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetAclRolesResult> getAclRoles(GetAclRolesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getAclRoles:getAclRoles", TypeShape.of(GetAclRolesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of ACL Roles.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclRolesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAclRoles(GetAclRolesArgs.builder()
+     *             .prefix("a242")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetAclRolesResult> getAclRolesPlain(GetAclRolesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getAclRoles:getAclRoles", TypeShape.of(GetAclRolesResult.class), args, Utilities.withVersion(options));
     }
@@ -1032,6 +1201,46 @@ public final class NomadFunctions {
      * 
      */
     public static Output<GetAclTokenResult> getAclToken(GetAclTokenArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getAclToken:getAclToken", TypeShape.of(GetAclTokenResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclTokenArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myToken = NomadFunctions.getAclToken(GetAclTokenArgs.builder()
+     *             .accessorId("aa534e09-6a07-0a45-2295-a7f77063d429")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAclTokenResult> getAclToken(GetAclTokenArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getAclToken:getAclToken", TypeShape.of(GetAclTokenResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1323,6 +1532,48 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetAclTokensResult> getAclTokens(GetAclTokensArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getAclTokens:getAclTokens", TypeShape.of(GetAclTokensResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get a list of ACL tokens.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAclTokensArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var tokens = NomadFunctions.getAclTokens(GetAclTokensArgs.builder()
+     *             .prefix("a242")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetAclTokensResult> getAclTokensPlain(GetAclTokensPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getAclTokens:getAclTokens", TypeShape.of(GetAclTokensResult.class), args, Utilities.withVersion(options));
     }
@@ -1534,6 +1785,48 @@ public final class NomadFunctions {
      * 
      */
     public static Output<GetAllocationsResult> getAllocations(GetAllocationsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getAllocations:getAllocations", TypeShape.of(GetAllocationsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of allocations from Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetAllocationsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
+     *             .filter("JobID == \"example\"")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetAllocationsResult> getAllocations(GetAllocationsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getAllocations:getAllocations", TypeShape.of(GetAllocationsResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1833,6 +2126,49 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetDatacentersResult> getDatacenters(GetDatacentersArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getDatacenters:getDatacenters", TypeShape.of(GetDatacentersResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of datacenters.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetDatacentersArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var datacenters = NomadFunctions.getDatacenters(GetDatacentersArgs.builder()
+     *             .prefix("prod")
+     *             .ignoreDownNodes(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetDatacentersResult> getDatacentersPlain(GetDatacentersPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getDatacenters:getDatacenters", TypeShape.of(GetDatacentersResult.class), args, Utilities.withVersion(options));
     }
@@ -2067,6 +2403,45 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetDeploymentsResult> getDeployments(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getDeployments:getDeployments", TypeShape.of(GetDeploymentsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of deployments in Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getDeployments();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetDeploymentsResult> getDeploymentsPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getDeployments:getDeployments", TypeShape.of(GetDeploymentsResult.class), args, Utilities.withVersion(options));
     }
@@ -2259,6 +2634,54 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetJobResult> getJob(GetJobArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getJob:getJob", TypeShape.of(GetJobResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on a job ID. The aim of this datasource is to enable
+     * you to act on various settings and states of a particular job.
+     * 
+     * An error is triggered if zero or more than one result is returned by the query.
+     * 
+     * ## Example Usage
+     * 
+     * Get the data about a snapshot:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetJobArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getJob(GetJobArgs.builder()
+     *             .jobId("example")
+     *             .namespace("dev")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetJobResult> getJobPlain(GetJobPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getJob:getJob", TypeShape.of(GetJobResult.class), args, Utilities.withVersion(options));
     }
@@ -2281,6 +2704,13 @@ public final class NomadFunctions {
      * 
      */
     public static Output<GetJobParserResult> getJobParser(GetJobParserArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getJobParser:getJobParser", TypeShape.of(GetJobParserResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Parse a HCL jobspec and produce the equivalent JSON encoded job.
+     * 
+     */
+    public static Output<GetJobParserResult> getJobParser(GetJobParserArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getJobParser:getJobParser", TypeShape.of(GetJobParserResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -2539,6 +2969,48 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetJwksResult> getJwks(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getJwks:getJwks", TypeShape.of(GetJwksResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve the cluster JWKS public keys.
+     * 
+     * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
+     * (`pem_keys`), which may be more convenient for use.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getJwks();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetJwksResult> getJwksPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getJwks:getJwks", TypeShape.of(GetJwksResult.class), args, Utilities.withVersion(options));
     }
@@ -2666,6 +3138,48 @@ public final class NomadFunctions {
      * 
      */
     public static Output<GetNamespaceResult> getNamespace(GetNamespaceArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getNamespace:getNamespace", TypeShape.of(GetNamespaceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information about a namespace in Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNamespaceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var namespaces = NomadFunctions.getNamespace(GetNamespaceArgs.builder()
+     *             .name("default")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNamespaceResult> getNamespace(GetNamespaceArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getNamespace:getNamespace", TypeShape.of(GetNamespaceResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -3037,6 +3551,61 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetNamespacesResult> getNamespaces(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getNamespaces:getNamespaces", TypeShape.of(GetNamespacesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of namespaces available in Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.AclPolicy;
+     * import com.pulumi.nomad.AclPolicyArgs;
+     * import com.pulumi.codegen.internal.KeyedValue;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var namespaces = NomadFunctions.getNamespaces();
+     * 
+     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
+     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .rulesHcl("""
+     * namespace "%s" {
+     *   policy = "write"
+     * }
+     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .build());
+     * 
+     *         
+     * }
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetNamespacesResult> getNamespacesPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getNamespaces:getNamespaces", TypeShape.of(GetNamespacesResult.class), args, Utilities.withVersion(options));
     }
@@ -3164,6 +3733,48 @@ public final class NomadFunctions {
      * 
      */
     public static Output<GetNodePoolResult> getNodePool(GetNodePoolArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getNodePool:getNodePool", TypeShape.of(GetNodePoolResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information about a node pool in Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodePoolArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var dev = NomadFunctions.getNodePool(GetNodePoolArgs.builder()
+     *             .name("dev")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetNodePoolResult> getNodePool(GetNodePoolArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getNodePool:getNodePool", TypeShape.of(GetNodePoolResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -3457,6 +4068,48 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetNodePoolsResult> getNodePools(GetNodePoolsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getNodePools:getNodePools", TypeShape.of(GetNodePoolsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of node pools available in Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodePoolsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
+     *             .filter("Meta.env == \"prod\"")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetNodePoolsResult> getNodePoolsPlain(GetNodePoolsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getNodePools:getNodePools", TypeShape.of(GetNodePoolsResult.class), args, Utilities.withVersion(options));
     }
@@ -3623,6 +4276,61 @@ public final class NomadFunctions {
      * 
      */
     public static Output<GetPluginResult> getPlugin(GetPluginArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getPlugin:getPlugin", TypeShape.of(GetPluginResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Lookup a plugin by ID. The aim of this datasource is to determine whether
+     * a particular plugin exists on the cluster, to find information on the health
+     * and availability of the plugin, and to optionally wait for the plugin
+     * before performing actions the require an available plugin controller.
+     * 
+     * If a plugin with the specified ID does not exist and the datasource is not
+     * configured to wait, it will result in an error. For simple existence checks,
+     * use the `nomad.getPlugins` listing datasource.
+     * 
+     * ## Example Usage
+     * 
+     * Check for the existence of a plugin:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetPluginArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()
+     *             .pluginId("aws-ebs0")
+     *             .waitForHealthy(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * This will check for a plugin with the ID `aws-ebs0`, waiting until the plugin
+     * is healthy before returning.
+     * 
+     */
+    public static Output<GetPluginResult> getPlugin(GetPluginArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getPlugin:getPlugin", TypeShape.of(GetPluginResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -3917,6 +4625,46 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetPluginsResult> getPlugins(GetPluginsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getPlugins:getPlugins", TypeShape.of(GetPluginsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of dynamic plugins in Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetPluginsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getPlugins();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetPluginsResult> getPluginsPlain(GetPluginsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getPlugins:getPlugins", TypeShape.of(GetPluginsResult.class), args, Utilities.withVersion(options));
     }
@@ -3978,6 +4726,18 @@ public final class NomadFunctions {
      * 
      */
     public static Output<GetRegionsResult> getRegions(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getRegions:getRegions", TypeShape.of(GetRegionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of regions available in Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetRegionsResult> getRegions(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getRegions:getRegions", TypeShape.of(GetRegionsResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -4247,6 +5007,49 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetScalingPoliciesResult> getScalingPolicies(GetScalingPoliciesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getScalingPolicies:getScalingPolicies", TypeShape.of(GetScalingPoliciesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of Scaling Policies.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetScalingPoliciesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getScalingPolicies(GetScalingPoliciesArgs.builder()
+     *             .jobId("webapp")
+     *             .type("horizontal")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetScalingPoliciesResult> getScalingPoliciesPlain(GetScalingPoliciesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getScalingPolicies:getScalingPolicies", TypeShape.of(GetScalingPoliciesResult.class), args, Utilities.withVersion(options));
     }
@@ -4374,6 +5177,48 @@ public final class NomadFunctions {
      * 
      */
     public static Output<GetScalingPolicyResult> getScalingPolicy(GetScalingPolicyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getScalingPolicy:getScalingPolicy", TypeShape.of(GetScalingPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a Scaling Policy.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetScalingPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getScalingPolicy(GetScalingPolicyArgs.builder()
+     *             .id("ad19848d-1921-179c-affa-244a3543be88")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetScalingPolicyResult> getScalingPolicy(GetScalingPolicyArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getScalingPolicy:getScalingPolicy", TypeShape.of(GetScalingPolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -4649,6 +5494,45 @@ public final class NomadFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetSchedulerPolicyResult> getSchedulerPolicy(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getSchedulerPolicy:getSchedulerPolicy", TypeShape.of(GetSchedulerPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve the cluster&#39;s [scheduler configuration](https://www.nomadproject.io/api-docs/operator#sample-response-3).
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var global = NomadFunctions.getSchedulerPolicy();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetSchedulerPolicyResult> getSchedulerPolicyPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getSchedulerPolicy:getSchedulerPolicy", TypeShape.of(GetSchedulerPolicyResult.class), args, Utilities.withVersion(options));
     }
@@ -4770,6 +5654,46 @@ public final class NomadFunctions {
      * 
      */
     public static Output<GetVariableResult> getVariable(GetVariableArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getVariable:getVariable", TypeShape.of(GetVariableResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.Variable;
+     * import com.pulumi.nomad.VariableArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var example = new Variable("example", VariableArgs.builder()
+     *             .path("path/of/existing/variable")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetVariableResult> getVariable(GetVariableArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getVariable:getVariable", TypeShape.of(GetVariableResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -5010,6 +5934,46 @@ public final class NomadFunctions {
      * 
      */
     public static Output<GetVolumesResult> getVolumes(GetVolumesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getVolumes:getVolumes", TypeShape.of(GetVolumesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of volumes in Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetVolumesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getVolumes();
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetVolumesResult> getVolumes(GetVolumesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getVolumes:getVolumes", TypeShape.of(GetVolumesResult.class), args, Utilities.withVersion(options));
     }
     /**

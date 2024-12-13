@@ -58,6 +58,30 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetAclTokensResult> Invoke(GetAclTokensInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get a list of ACL tokens.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var tokens = Nomad.GetAclTokens.Invoke(new()
+        ///     {
+        ///         Prefix = "a242",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAclTokensResult> Invoke(GetAclTokensInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAclTokensResult>("nomad:index/getAclTokens:getAclTokens", args ?? new GetAclTokensInvokeArgs(), options.WithDefaults());
     }
 
 

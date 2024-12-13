@@ -64,21 +64,11 @@ type GetAclTokensResult struct {
 }
 
 func GetAclTokensOutput(ctx *pulumi.Context, args GetAclTokensOutputArgs, opts ...pulumi.InvokeOption) GetAclTokensResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetAclTokensResultOutput, error) {
 			args := v.(GetAclTokensArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetAclTokensResult
-			secret, err := ctx.InvokePackageRaw("nomad:index/getAclTokens:getAclTokens", args, &rv, "", opts...)
-			if err != nil {
-				return GetAclTokensResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetAclTokensResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetAclTokensResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("nomad:index/getAclTokens:getAclTokens", args, GetAclTokensResultOutput{}, options).(GetAclTokensResultOutput), nil
 		}).(GetAclTokensResultOutput)
 }
 

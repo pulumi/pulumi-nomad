@@ -60,6 +60,31 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetDatacentersResult> Invoke(GetDatacentersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve a list of datacenters.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var datacenters = Nomad.GetDatacenters.Invoke(new()
+        ///     {
+        ///         Prefix = "prod",
+        ///         IgnoreDownNodes = true,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDatacentersResult> Invoke(GetDatacentersInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatacentersResult>("nomad:index/getDatacenters:getDatacenters", args ?? new GetDatacentersInvokeArgs(), options.WithDefaults());
     }
 
 
