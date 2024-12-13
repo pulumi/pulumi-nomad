@@ -58,6 +58,30 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetNodePoolsResult> Invoke(GetNodePoolsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNodePoolsResult>("nomad:index/getNodePools:getNodePools", args ?? new GetNodePoolsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve a list of node pools available in Nomad.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var prod = Nomad.GetNodePools.Invoke(new()
+        ///     {
+        ///         Filter = "Meta.env == \"prod\"",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNodePoolsResult> Invoke(GetNodePoolsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNodePoolsResult>("nomad:index/getNodePools:getNodePools", args ?? new GetNodePoolsInvokeArgs(), options.WithDefaults());
     }
 
 

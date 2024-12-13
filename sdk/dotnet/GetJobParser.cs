@@ -22,6 +22,12 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetJobParserResult> Invoke(GetJobParserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Parse a HCL jobspec and produce the equivalent JSON encoded job.
+        /// </summary>
+        public static Output<GetJobParserResult> Invoke(GetJobParserInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetJobParserResult>("nomad:index/getJobParser:getJobParser", args ?? new GetJobParserInvokeArgs(), options.WithDefaults());
     }
 
 

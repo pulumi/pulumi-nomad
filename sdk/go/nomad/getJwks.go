@@ -62,18 +62,8 @@ type GetJwksResult struct {
 
 func GetJwksOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetJwksResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetJwksResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetJwksResult
-		secret, err := ctx.InvokePackageRaw("nomad:index/getJwks:getJwks", nil, &rv, "", opts...)
-		if err != nil {
-			return GetJwksResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetJwksResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetJwksResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("nomad:index/getJwks:getJwks", nil, GetJwksResultOutput{}, options).(GetJwksResultOutput), nil
 	}).(GetJwksResultOutput)
 }
 

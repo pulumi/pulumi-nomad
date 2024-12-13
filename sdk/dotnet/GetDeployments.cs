@@ -52,6 +52,27 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetDeploymentsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentsResult>("nomad:index/getDeployments:getDeployments", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve a list of deployments in Nomad.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Nomad.GetDeployments.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetDeploymentsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDeploymentsResult>("nomad:index/getDeployments:getDeployments", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

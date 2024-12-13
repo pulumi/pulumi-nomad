@@ -58,6 +58,30 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetAllocationsResult> Invoke(GetAllocationsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAllocationsResult>("nomad:index/getAllocations:getAllocations", args ?? new GetAllocationsInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve a list of allocations from Nomad.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Nomad.GetAllocations.Invoke(new()
+        ///     {
+        ///         Filter = "JobID == \"example\"",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAllocationsResult> Invoke(GetAllocationsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAllocationsResult>("nomad:index/getAllocations:getAllocations", args ?? new GetAllocationsInvokeArgs(), options.WithDefaults());
     }
 
 

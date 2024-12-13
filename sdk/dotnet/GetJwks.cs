@@ -58,6 +58,30 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetJwksResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetJwksResult>("nomad:index/getJwks:getJwks", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve the cluster JWKS public keys.
+        /// 
+        /// The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
+        /// (`pem_keys`), which may be more convenient for use.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Nomad.GetJwks.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetJwksResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetJwksResult>("nomad:index/getJwks:getJwks", InvokeArgs.Empty, options.WithDefaults());
     }
 
 
