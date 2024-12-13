@@ -73,18 +73,8 @@ type GetRegionsResult struct {
 
 func GetRegionsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetRegionsResultOutput {
 	return pulumi.ToOutput(0).ApplyT(func(int) (GetRegionsResultOutput, error) {
-		opts = internal.PkgInvokeDefaultOpts(opts)
-		var rv GetRegionsResult
-		secret, err := ctx.InvokePackageRaw("nomad:index/getRegions:getRegions", nil, &rv, "", opts...)
-		if err != nil {
-			return GetRegionsResultOutput{}, err
-		}
-
-		output := pulumi.ToOutput(rv).(GetRegionsResultOutput)
-		if secret {
-			return pulumi.ToSecret(output).(GetRegionsResultOutput), nil
-		}
-		return output, nil
+		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+		return ctx.InvokeOutput("nomad:index/getRegions:getRegions", nil, GetRegionsResultOutput{}, options).(GetRegionsResultOutput), nil
 	}).(GetRegionsResultOutput)
 }
 

@@ -88,6 +88,45 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetRegionsResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRegionsResult>("nomad:index/getRegions:getRegions", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve a list of regions available in Nomad.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Threading.Tasks;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// 	
+        /// object NotImplemented(string errorMessage) 
+        /// {
+        ///     throw new System.NotImplementedException(errorMessage);
+        /// }
+        /// 
+        /// return await Deployment.RunAsync(async() =&gt; 
+        /// {
+        ///     var myRegions = await Nomad.GetRegions.InvokeAsync();
+        /// 
+        ///     var jobs = NotImplemented("The template_file data resource is not yet supported.");
+        /// 
+        ///     var app = new List&lt;Nomad.Job&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; myRegions.Regions.Length; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         app.Add(new Nomad.Job($"app-{range.Value}", new()
+        ///         {
+        ///             Jobspec = jobs[range.Value].Rendered,
+        ///         }));
+        ///     }
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetRegionsResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegionsResult>("nomad:index/getRegions:getRegions", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

@@ -82,6 +82,42 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetNamespacesResult> Invoke(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNamespacesResult>("nomad:index/getNamespaces:getNamespaces", InvokeArgs.Empty, options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve a list of namespaces available in Nomad.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using System.Threading.Tasks;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(async() =&gt; 
+        /// {
+        ///     var namespaces = await Nomad.GetNamespaces.InvokeAsync();
+        /// 
+        ///     var @namespace = new List&lt;Nomad.AclPolicy&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; namespaces.Namespaces.Length; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         @namespace.Add(new Nomad.AclPolicy($"namespace-{range.Value}", new()
+        ///         {
+        ///             Name = $"namespace-{namespaces[range.Value]}",
+        ///             Description = $"Write to the namespace {namespaces[range.Value]}",
+        ///             RulesHcl = @$"namespace ""{namespaces[range.Value]}"" {{
+        ///   policy = ""write""
+        /// }}
+        /// ",
+        ///         }));
+        ///     }
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetNamespacesResult> Invoke(InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNamespacesResult>("nomad:index/getNamespaces:getNamespaces", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

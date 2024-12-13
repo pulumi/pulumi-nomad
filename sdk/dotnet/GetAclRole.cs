@@ -58,6 +58,30 @@ namespace Pulumi.Nomad
         /// </summary>
         public static Output<GetAclRoleResult> Invoke(GetAclRoleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAclRoleResult>("nomad:index/getAclRole:getAclRole", args ?? new GetAclRoleInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get information on an ACL Role.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Nomad = Pulumi.Nomad;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Nomad.GetAclRole.Invoke(new()
+        ///     {
+        ///         Id = "aa534e09-6a07-0a45-2295-a7f77063d429",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetAclRoleResult> Invoke(GetAclRoleInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetAclRoleResult>("nomad:index/getAclRole:getAclRole", args ?? new GetAclRoleInvokeArgs(), options.WithDefaults());
     }
 
 
