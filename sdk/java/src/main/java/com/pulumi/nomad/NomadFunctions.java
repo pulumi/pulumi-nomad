@@ -2199,7 +2199,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getDeployments();
+     *         final var example = NomadFunctions.getDeployments(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2238,7 +2238,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getDeployments();
+     *         final var example = NomadFunctions.getDeployments(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2277,7 +2277,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getDeployments();
+     *         final var example = NomadFunctions.getDeployments(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2316,7 +2316,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getDeployments();
+     *         final var example = NomadFunctions.getDeployments(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2355,7 +2355,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getDeployments();
+     *         final var example = NomadFunctions.getDeployments(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2394,7 +2394,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getDeployments();
+     *         final var example = NomadFunctions.getDeployments(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2433,7 +2433,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getDeployments();
+     *         final var example = NomadFunctions.getDeployments(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2750,7 +2750,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getJwks();
+     *         final var example = NomadFunctions.getJwks(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2792,7 +2792,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getJwks();
+     *         final var example = NomadFunctions.getJwks(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2834,7 +2834,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getJwks();
+     *         final var example = NomadFunctions.getJwks(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2876,7 +2876,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getJwks();
+     *         final var example = NomadFunctions.getJwks(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2918,7 +2918,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getJwks();
+     *         final var example = NomadFunctions.getJwks(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -2960,7 +2960,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getJwks();
+     *         final var example = NomadFunctions.getJwks(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -3002,7 +3002,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getJwks();
+     *         final var example = NomadFunctions.getJwks(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -3254,17 +3254,17 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var namespaces = NomadFunctions.getNamespaces();
+     *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
-     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
-     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .name(String.format("namespace-%s", namespaces[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
      * namespace "%s" {
      *   policy = "write"
      * }
-     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
@@ -3309,17 +3309,17 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var namespaces = NomadFunctions.getNamespaces();
+     *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
-     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
-     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .name(String.format("namespace-%s", namespaces[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
      * namespace "%s" {
      *   policy = "write"
      * }
-     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
@@ -3364,17 +3364,17 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var namespaces = NomadFunctions.getNamespaces();
+     *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
-     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
-     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .name(String.format("namespace-%s", namespaces[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
      * namespace "%s" {
      *   policy = "write"
      * }
-     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
@@ -3419,17 +3419,17 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var namespaces = NomadFunctions.getNamespaces();
+     *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
-     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
-     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .name(String.format("namespace-%s", namespaces[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
      * namespace "%s" {
      *   policy = "write"
      * }
-     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
@@ -3474,17 +3474,17 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var namespaces = NomadFunctions.getNamespaces();
+     *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
-     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
-     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .name(String.format("namespace-%s", namespaces[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
      * namespace "%s" {
      *   policy = "write"
      * }
-     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
@@ -3529,17 +3529,17 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var namespaces = NomadFunctions.getNamespaces();
+     *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
-     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
-     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .name(String.format("namespace-%s", namespaces[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
      * namespace "%s" {
      *   policy = "write"
      * }
-     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
@@ -3584,17 +3584,17 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var namespaces = NomadFunctions.getNamespaces();
+     *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.applyValue(getNamespacesResult -> getNamespacesResult.namespaces()).length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
-     *                 .name(String.format("namespace-%s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
-     *                 .description(String.format("Write to the namespace %s", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     *                 .name(String.format("namespace-%s", namespaces[range.value()]))
+     *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
      * namespace "%s" {
      *   policy = "write"
      * }
-     * ", namespaces.applyValue(getNamespacesResult -> getNamespacesResult)[range.value()]))
+     * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
@@ -4416,7 +4416,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getPlugins();
+     *         final var example = NomadFunctions.getPlugins(GetPluginsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -4456,7 +4457,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getPlugins();
+     *         final var example = NomadFunctions.getPlugins(GetPluginsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -4496,7 +4498,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getPlugins();
+     *         final var example = NomadFunctions.getPlugins(GetPluginsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -4536,7 +4539,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getPlugins();
+     *         final var example = NomadFunctions.getPlugins(GetPluginsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -4576,7 +4580,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getPlugins();
+     *         final var example = NomadFunctions.getPlugins(GetPluginsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -4616,7 +4621,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getPlugins();
+     *         final var example = NomadFunctions.getPlugins(GetPluginsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -4656,7 +4662,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getPlugins();
+     *         final var example = NomadFunctions.getPlugins(GetPluginsArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5290,7 +5297,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var global = NomadFunctions.getSchedulerPolicy();
+     *         final var global = NomadFunctions.getSchedulerPolicy(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -5329,7 +5336,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var global = NomadFunctions.getSchedulerPolicy();
+     *         final var global = NomadFunctions.getSchedulerPolicy(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -5368,7 +5375,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var global = NomadFunctions.getSchedulerPolicy();
+     *         final var global = NomadFunctions.getSchedulerPolicy(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -5407,7 +5414,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var global = NomadFunctions.getSchedulerPolicy();
+     *         final var global = NomadFunctions.getSchedulerPolicy(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -5446,7 +5453,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var global = NomadFunctions.getSchedulerPolicy();
+     *         final var global = NomadFunctions.getSchedulerPolicy(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -5485,7 +5492,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var global = NomadFunctions.getSchedulerPolicy();
+     *         final var global = NomadFunctions.getSchedulerPolicy(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -5524,7 +5531,7 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var global = NomadFunctions.getSchedulerPolicy();
+     *         final var global = NomadFunctions.getSchedulerPolicy(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
      *     }
      * }
@@ -5764,7 +5771,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getVolumes();
+     *         final var example = NomadFunctions.getVolumes(GetVolumesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5804,7 +5812,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getVolumes();
+     *         final var example = NomadFunctions.getVolumes(GetVolumesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5844,7 +5853,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getVolumes();
+     *         final var example = NomadFunctions.getVolumes(GetVolumesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5884,7 +5894,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getVolumes();
+     *         final var example = NomadFunctions.getVolumes(GetVolumesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5924,7 +5935,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getVolumes();
+     *         final var example = NomadFunctions.getVolumes(GetVolumesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -5964,7 +5976,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getVolumes();
+     *         final var example = NomadFunctions.getVolumes(GetVolumesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
@@ -6004,7 +6017,8 @@ public final class NomadFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var example = NomadFunctions.getVolumes();
+     *         final var example = NomadFunctions.getVolumes(GetVolumesArgs.builder()
+     *             .build());
      * 
      *     }
      * }
