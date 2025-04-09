@@ -92,7 +92,7 @@ import javax.annotation.Nullable;
  *                     .build())
  *                 .build())
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(ebs.applyValue(getPluginResult -> getPluginResult))
+ *                 .dependsOn(ebs)
  *                 .build());
  * 
  *     }
