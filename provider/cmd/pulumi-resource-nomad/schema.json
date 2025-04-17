@@ -68,11 +68,6 @@
                 "type": "string",
                 "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
             },
-            "consulToken": {
-                "type": "string",
-                "description": "Consul token to validate Consul Connect Service Identity policies specified in the job file.\n",
-                "secret": true
-            },
             "headers": {
                 "type": "array",
                 "items": {
@@ -111,11 +106,6 @@
             "skipVerify": {
                 "type": "boolean",
                 "description": "Skip TLS verification on client side.\n"
-            },
-            "vaultToken": {
-                "type": "string",
-                "description": "Vault token if policies are specified in the job file.\n",
-                "secret": true
             }
         },
         "defaults": [
@@ -216,6 +206,10 @@
                     "type": "string",
                     "description": "`(string: \u003coptional\u003e)` - Duration of leeway when validating\nnot before values of a token in the form of a time duration such as \"5m\" or \"1h\".\n"
                 },
+                "oidcClientAssertion": {
+                    "$ref": "#/types/nomad:index/AclAuthMethodConfigOidcClientAssertion:AclAuthMethodConfigOidcClientAssertion",
+                    "description": "`(OIDCClientAssertion: \u003coptional\u003e)` - Optionally\nsend a signed JWT (\"[private key jwt][]\") as a client assertion to the OIDC\nprovider. Browse to the [OIDC concepts][concepts-assertions] page to learn\nmore.\n"
+                },
                 "oidcClientId": {
                     "type": "string",
                     "description": "`(string: \u003coptional\u003e)` - The OAuth Client ID configured\nwith the OIDC provider.\n"
@@ -233,6 +227,10 @@
                     "type": "string",
                     "description": "`(string: \u003coptional\u003e)` - The OIDC Discovery URL,\nwithout any .well-known component (base path).\n"
                 },
+                "oidcEnablePkce": {
+                    "type": "boolean",
+                    "description": "`(bool: false)` - When set to `true`, Nomad will include\n[PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,\nyou may still need to enable it in your OIDC provider.\n"
+                },
                 "oidcScopes": {
                     "type": "array",
                     "items": {
@@ -246,6 +244,83 @@
                         "type": "string"
                     },
                     "description": "`([]string: \u003coptional\u003e)` - A list of supported signing\nalgorithms.\n"
+                },
+                "verboseLogging": {
+                    "type": "boolean",
+                    "description": "Enable OIDC verbose logging on the Nomad server.\n"
+                }
+            },
+            "type": "object"
+        },
+        "nomad:index/AclAuthMethodConfigOidcClientAssertion:AclAuthMethodConfigOidcClientAssertion": {
+            "properties": {
+                "audiences": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "`([]string: optional)` - Who processes the assertion.\nDefaults to the auth method's `oidc_discovery_url`.\n"
+                },
+                "extraHeaders": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "`(map[string]string: optional)` - Add to the JWT headers,\nalongside \"kid\" and \"type\". Setting the \"kid\" header here is not allowed;\nuse `private_key.key_id`.\n"
+                },
+                "keyAlgorithm": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` is the key's algorithm.\nIts default values are based on the `key_source`:\n- \"nomad\": \"RS256\"; this is from Nomad's keyring and must not be changed\n- \"private_key\": \"RS256\"; must be RS256, RS384, or RS512\n- \"client_secret\": \"HS256\"; must be HS256, HS384, or HS512\n"
+                },
+                "keySource": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - Specifies where to get the private\nkey to sign the JWT.\nAvailable sources:\n- \"nomad\": Use current active key in Nomad's keyring\n- \"private_key\": Use key material in the `private_key` field\n- \"client_secret\": Use the `oidc_client_secret` as an HMAC key\n"
+                },
+                "privateKey": {
+                    "$ref": "#/types/nomad:index/AclAuthMethodConfigOidcClientAssertionPrivateKey:AclAuthMethodConfigOidcClientAssertionPrivateKey",
+                    "description": "`(OIDCClientAssertionKey: \u003coptional\u003e)` - External key\nto sign the JWT. `key_source` must be \"private_key\" to enable this.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "keySource"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "audiences",
+                        "keyAlgorithm",
+                        "keySource"
+                    ]
+                }
+            }
+        },
+        "nomad:index/AclAuthMethodConfigOidcClientAssertionPrivateKey:AclAuthMethodConfigOidcClientAssertionPrivateKey": {
+            "properties": {
+                "keyId": {
+                    "type": "string",
+                    "description": "`(string: optional)` - Becomes the JWT's \"kid\" header.\nMutually exclusive with `pem_cert` and `pem_cert_file`.\nAllowed `key_id_header` values: \"kid\" (the default)\n"
+                },
+                "keyIdHeader": {
+                    "type": "string",
+                    "description": "`(string: optional)` - Which header the provider uses\nto find the public key to verify the signed JWT.\nThe default and allowed values depend on whether you set `key_id`,\n`pem_cert`, or `pem_cert_file`. You must set exactly one of those\noptions, so refer to them for their requirements.\n"
+                },
+                "pemCert": {
+                    "type": "string",
+                    "description": "`(string: optional)` - An x509 certificate, signed by the\nprivate key or a CA, in pem format. Nomad uses this certificate to\nderive an [x5t#S256][] (or [x5t][]) key_id.\nMutually exclusive with `pem_cert_file` and `key_id`.\nAllowed `key_id_header` values: \"x5t\", \"x5t#S256\" (default \"x5t#S256\")\n"
+                },
+                "pemCertFile": {
+                    "type": "string",
+                    "description": "`(string: optional)` - An absolute path to an x509\ncertificate on Nomad servers' disk, signed by the private key or a CA,\nin pem format.\nNomad uses this certificate to derive an [x5t#S256][] (or [x5t][])\nheader. Mutually exclusive with `pem_cert` and key_id.\nAllowed `key_id_header` values: \"x5t\", \"x5t#S256\" (default \"x5t#S256\")\n"
+                },
+                "pemKey": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - An RSA private key, in pem format.\nIt is used to sign the JWT. Mutually exclusive with `pem_key`.\n",
+                    "secret": true
+                },
+                "pemKeyFile": {
+                    "type": "string",
+                    "description": "`(string: optional)` - An absolute path to a private key\non Nomad servers' disk, in pem format. It is used to sign the JWT.\nMutually exclusive with `pem_key_file`.\n"
                 }
             },
             "type": "object"
@@ -532,6 +607,80 @@
             "type": "object",
             "required": [
                 "segments"
+            ]
+        },
+        "nomad:index/DynamicHostVolumeCapability:DynamicHostVolumeCapability": {
+            "properties": {
+                "accessMode": {
+                    "type": "string",
+                    "description": "`(string)` - How the volume can be mounted by\nallocations. Refer to the [`access_mode`][] documentation for details.\n"
+                },
+                "attachmentMode": {
+                    "type": "string",
+                    "description": "`(string)` - The storage API that will be used by the\nvolume. Refer to the [`attachment_mode`][] documentation.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessMode",
+                "attachmentMode"
+            ]
+        },
+        "nomad:index/DynamicHostVolumeConstraint:DynamicHostVolumeConstraint": {
+            "properties": {
+                "attribute": {
+                    "type": "string",
+                    "description": "`(string)` - The [node attribute][] to check for the constraint.\n"
+                },
+                "operator": {
+                    "type": "string",
+                    "description": "`(string)`- The operator to use in the comparison.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "`(string)` - The value of the attribute to compare against.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "attribute"
+            ]
+        },
+        "nomad:index/DynamicHostVolumeRegistrationCapability:DynamicHostVolumeRegistrationCapability": {
+            "properties": {
+                "accessMode": {
+                    "type": "string",
+                    "description": "`(string)` - How the volume can be mounted by\nallocations. Refer to the [`access_mode`][] documentation for details.\n"
+                },
+                "attachmentMode": {
+                    "type": "string",
+                    "description": "`(string)` - The storage API that will be used by the\nvolume. Refer to the [`attachment_mode`][] documentation.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessMode",
+                "attachmentMode"
+            ]
+        },
+        "nomad:index/DynamicHostVolumeRegistrationConstraint:DynamicHostVolumeRegistrationConstraint": {
+            "properties": {
+                "attribute": {
+                    "type": "string",
+                    "description": "An attribute to check to constrain volume placement\n"
+                },
+                "operator": {
+                    "type": "string",
+                    "description": "The operator to use for comparison\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The requested value of the attribute\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "attribute"
             ]
         },
         "nomad:index/ExternalVolumeCapability:ExternalVolumeCapability": {
@@ -1312,6 +1461,55 @@
                 }
             }
         },
+        "nomad:index/getDynamicHostVolumeCapability:getDynamicHostVolumeCapability": {
+            "properties": {
+                "accessMode": {
+                    "type": "string",
+                    "description": "`(string)` - How the volume can be mounted by\nallocations. Refer to the [`access_mode`][] documentation for details.\n"
+                },
+                "attachmentMode": {
+                    "type": "string",
+                    "description": "`(string)` - The storage API that will be used by the\nvolume. Refer to the [`attachment_mode`][] documentation.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessMode",
+                "attachmentMode"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "nomad:index/getDynamicHostVolumeConstraint:getDynamicHostVolumeConstraint": {
+            "properties": {
+                "attribute": {
+                    "type": "string",
+                    "description": "`(string)` - The [node attribute][] to check for the constraint.\n"
+                },
+                "operator": {
+                    "type": "string",
+                    "description": "`(string)`- The operator to use in the comparison.\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "`(string)` - The value of the attribute to compare against.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "attribute",
+                "operator",
+                "value"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "nomad:index/getJobConstraint:getJobConstraint": {
             "properties": {
                 "ltarget": {
@@ -1763,11 +1961,6 @@
                 "type": "string",
                 "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
             },
-            "consulToken": {
-                "type": "string",
-                "description": "Consul token to validate Consul Connect Service Identity policies specified in the job file.\n",
-                "secret": true
-            },
             "headers": {
                 "type": "array",
                 "items": {
@@ -1806,11 +1999,6 @@
             "skipVerify": {
                 "type": "boolean",
                 "description": "Skip TLS verification on client side.\n"
-            },
-            "vaultToken": {
-                "type": "string",
-                "description": "Vault token if policies are specified in the job file.\n",
-                "secret": true
             }
         },
         "required": [
@@ -1837,11 +2025,6 @@
                 "type": "string",
                 "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
             },
-            "consulToken": {
-                "type": "string",
-                "description": "Consul token to validate Consul Connect Service Identity policies specified in the job file.\n",
-                "secret": true
-            },
             "headers": {
                 "type": "array",
                 "items": {
@@ -1880,11 +2063,6 @@
             "skipVerify": {
                 "type": "boolean",
                 "description": "Skip TLS verification on client side.\n"
-            },
-            "vaultToken": {
-                "type": "string",
-                "description": "Vault token if policies are specified in the job file.\n",
-                "secret": true
             }
         },
         "requiredInputs": [
@@ -2091,7 +2269,7 @@
                 },
                 "jobAcl": {
                     "$ref": "#/types/nomad:index/AclPolicyJobAcl:AclPolicyJobAcl",
-                    "description": "`(``JobACL``: \u003coptional\u003e)` - Options for assigning the ACL rules to a job, group, or task.\n"
+                    "description": "`(``JobACL``: \u003coptional\u003e)` - Options for assigning the\nACL rules to a job, group, or task.\n"
                 },
                 "name": {
                     "type": "string",
@@ -2113,7 +2291,7 @@
                 },
                 "jobAcl": {
                     "$ref": "#/types/nomad:index/AclPolicyJobAcl:AclPolicyJobAcl",
-                    "description": "`(``JobACL``: \u003coptional\u003e)` - Options for assigning the ACL rules to a job, group, or task.\n"
+                    "description": "`(``JobACL``: \u003coptional\u003e)` - Options for assigning the\nACL rules to a job, group, or task.\n"
                 },
                 "name": {
                     "type": "string",
@@ -2137,7 +2315,7 @@
                     },
                     "jobAcl": {
                         "$ref": "#/types/nomad:index/AclPolicyJobAcl:AclPolicyJobAcl",
-                        "description": "`(``JobACL``: \u003coptional\u003e)` - Options for assigning the ACL rules to a job, group, or task.\n"
+                        "description": "`(``JobACL``: \u003coptional\u003e)` - Options for assigning the\nACL rules to a job, group, or task.\n"
                     },
                     "name": {
                         "type": "string",
@@ -2398,6 +2576,13 @@
                     "type": "string",
                     "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.\n"
                 },
+                "context": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The volume context provided by the storage provider\n"
+                },
                 "controllerRequired": {
                     "type": "boolean"
                 },
@@ -2481,6 +2666,7 @@
                 "capacity",
                 "capacityMaxBytes",
                 "capacityMinBytes",
+                "context",
                 "controllerRequired",
                 "controllersExpected",
                 "controllersHealthy",
@@ -2603,6 +2789,13 @@
                         "type": "string",
                         "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "context": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The volume context provided by the storage provider\n"
                     },
                     "controllerRequired": {
                         "type": "boolean"
@@ -3020,6 +3213,416 @@
                 "type": "object"
             }
         },
+        "nomad:index/dynamicHostVolume:DynamicHostVolume": {
+            "description": "layout: \"nomad\"\npage_title: \"Nomad: nomad.DynamicHostVolume\"\nsidebar_current: \"docs-nomad-resource-dynamic-host-volume\"\ndescription: |-\n  Manages the lifecycle of creating and deleting dynamic host volumes.\n---\n\nCreates and registers a dynamic host volume in Nomad. Note that Nomad supports\ntwo workflows for dynamic host volumes: create and register. Both resources\nresult in the same data source with the same outputs.\n\n\u003e **Warning:** Destroying this resource **will result in data loss**. Use the\n  [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental\n  deletions.\n\n\n## Example Usage\n\nCreating a dynamic host volume:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = new nomad.DynamicHostVolume(\"example\", {\n    name: \"example\",\n    namespace: \"prod\",\n    pluginId: \"mkdir\",\n    capacityMax: \"12 GiB\",\n    capacityMin: \"1.0 GiB\",\n    capabilities: [{\n        accessMode: \"single-node-writer\",\n        attachmentMode: \"file-system\",\n    }],\n    constraints: [{\n        attribute: `${attr.kernel.name}`,\n        value: \"linux\",\n    }],\n    parameters: {\n        some_key: \"some_value\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.DynamicHostVolume(\"example\",\n    name=\"example\",\n    namespace=\"prod\",\n    plugin_id=\"mkdir\",\n    capacity_max=\"12 GiB\",\n    capacity_min=\"1.0 GiB\",\n    capabilities=[{\n        \"access_mode\": \"single-node-writer\",\n        \"attachment_mode\": \"file-system\",\n    }],\n    constraints=[{\n        \"attribute\": \"${attr.kernel.name}\",\n        \"value\": \"linux\",\n    }],\n    parameters={\n        \"some_key\": \"some_value\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Nomad.DynamicHostVolume(\"example\", new()\n    {\n        Name = \"example\",\n        Namespace = \"prod\",\n        PluginId = \"mkdir\",\n        CapacityMax = \"12 GiB\",\n        CapacityMin = \"1.0 GiB\",\n        Capabilities = new[]\n        {\n            new Nomad.Inputs.DynamicHostVolumeCapabilityArgs\n            {\n                AccessMode = \"single-node-writer\",\n                AttachmentMode = \"file-system\",\n            },\n        },\n        Constraints = new[]\n        {\n            new Nomad.Inputs.DynamicHostVolumeConstraintArgs\n            {\n                Attribute = \"${attr.kernel.name}\",\n                Value = \"linux\",\n            },\n        },\n        Parameters = \n        {\n            { \"some_key\", \"some_value\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewDynamicHostVolume(ctx, \"example\", \u0026nomad.DynamicHostVolumeArgs{\n\t\t\tName:        pulumi.String(\"example\"),\n\t\t\tNamespace:   pulumi.String(\"prod\"),\n\t\t\tPluginId:    pulumi.String(\"mkdir\"),\n\t\t\tCapacityMax: pulumi.String(\"12 GiB\"),\n\t\t\tCapacityMin: pulumi.String(\"1.0 GiB\"),\n\t\t\tCapabilities: nomad.DynamicHostVolumeCapabilityArray{\n\t\t\t\t\u0026nomad.DynamicHostVolumeCapabilityArgs{\n\t\t\t\t\tAccessMode:     pulumi.String(\"single-node-writer\"),\n\t\t\t\t\tAttachmentMode: pulumi.String(\"file-system\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tConstraints: nomad.DynamicHostVolumeConstraintArray{\n\t\t\t\t\u0026nomad.DynamicHostVolumeConstraintArgs{\n\t\t\t\t\tAttribute: pulumi.Sprintf(\"${attr.kernel.name}\"),\n\t\t\t\t\tValue:     pulumi.String(\"linux\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tParameters: pulumi.StringMap{\n\t\t\t\t\"some_key\": pulumi.String(\"some_value\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.DynamicHostVolume;\nimport com.pulumi.nomad.DynamicHostVolumeArgs;\nimport com.pulumi.nomad.inputs.DynamicHostVolumeCapabilityArgs;\nimport com.pulumi.nomad.inputs.DynamicHostVolumeConstraintArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new DynamicHostVolume(\"example\", DynamicHostVolumeArgs.builder()\n            .name(\"example\")\n            .namespace(\"prod\")\n            .pluginId(\"mkdir\")\n            .capacityMax(\"12 GiB\")\n            .capacityMin(\"1.0 GiB\")\n            .capabilities(DynamicHostVolumeCapabilityArgs.builder()\n                .accessMode(\"single-node-writer\")\n                .attachmentMode(\"file-system\")\n                .build())\n            .constraints(DynamicHostVolumeConstraintArgs.builder()\n                .attribute(\"${attr.kernel.name}\")\n                .value(\"linux\")\n                .build())\n            .parameters(Map.of(\"some_key\", \"some_value\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: nomad:DynamicHostVolume\n    properties:\n      name: example\n      namespace: prod\n      pluginId: mkdir\n      capacityMax: 12 GiB\n      capacityMin: 1.0 GiB\n      capabilities:\n        - accessMode: single-node-writer\n          attachmentMode: file-system\n      constraints:\n        - attribute: $${attr.kernel.name}\n          value: linux\n      parameters:\n        some_key: some_value\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "capabilities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/DynamicHostVolumeCapability:DynamicHostVolumeCapability"
+                    },
+                    "description": "`(block: \u003coptional\u003e)` - Option for validating the capability of a\nvolume. Each capability block has the following attributes:\n"
+                },
+                "capacity": {
+                    "type": "string",
+                    "description": "Provisioned capacity\n"
+                },
+                "capacityBytes": {
+                    "type": "integer"
+                },
+                "capacityMax": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a maximum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                },
+                "capacityMaxBytes": {
+                    "type": "integer"
+                },
+                "capacityMin": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a minimum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                },
+                "capacityMinBytes": {
+                    "type": "integer"
+                },
+                "constraints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/DynamicHostVolumeConstraint:DynamicHostVolumeConstraint"
+                    },
+                    "description": "`(block: \u003coptional\u003e)` - A restriction on the eligible nodes where\na volume can be created, similar to the [`constraint`][] block on a Nomad job\nspecification.. You can provide multiple `constraint` blocks to add more\nconstraints. Each constraint block has the following attributes.\n"
+                },
+                "hostPath": {
+                    "type": "string",
+                    "description": "Host path\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - The namespace of the volume. This field\noverrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`\nenvironment variable. Defaults to `\"default\"` if unset.\n"
+                },
+                "nodeId": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - A specific node where you would like the\nvolume to be created.\n"
+                },
+                "nodePool": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - A specific node pool where you would like\nthe volume to be created. If you also provide `node_id`, the node must be in the\nprovided `node_pool`.\n"
+                },
+                "parameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n"
+                },
+                "pluginId": {
+                    "type": "string",
+                    "description": "Plugin ID\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "State\n"
+                }
+            },
+            "required": [
+                "capabilities",
+                "capacity",
+                "capacityBytes",
+                "capacityMaxBytes",
+                "capacityMinBytes",
+                "hostPath",
+                "name",
+                "nodeId",
+                "nodePool",
+                "pluginId",
+                "state"
+            ],
+            "inputProperties": {
+                "capabilities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/DynamicHostVolumeCapability:DynamicHostVolumeCapability"
+                    },
+                    "description": "`(block: \u003coptional\u003e)` - Option for validating the capability of a\nvolume. Each capability block has the following attributes:\n"
+                },
+                "capacityMax": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a maximum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                },
+                "capacityMin": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a minimum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                },
+                "constraints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/DynamicHostVolumeConstraint:DynamicHostVolumeConstraint"
+                    },
+                    "description": "`(block: \u003coptional\u003e)` - A restriction on the eligible nodes where\na volume can be created, similar to the [`constraint`][] block on a Nomad job\nspecification.. You can provide multiple `constraint` blocks to add more\nconstraints. Each constraint block has the following attributes.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - The namespace of the volume. This field\noverrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`\nenvironment variable. Defaults to `\"default\"` if unset.\n"
+                },
+                "nodeId": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - A specific node where you would like the\nvolume to be created.\n",
+                    "willReplaceOnChanges": true
+                },
+                "nodePool": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - A specific node pool where you would like\nthe volume to be created. If you also provide `node_id`, the node must be in the\nprovided `node_pool`.\n"
+                },
+                "parameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n"
+                },
+                "pluginId": {
+                    "type": "string",
+                    "description": "Plugin ID\n"
+                }
+            },
+            "requiredInputs": [
+                "capabilities",
+                "pluginId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DynamicHostVolume resources.\n",
+                "properties": {
+                    "capabilities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/DynamicHostVolumeCapability:DynamicHostVolumeCapability"
+                        },
+                        "description": "`(block: \u003coptional\u003e)` - Option for validating the capability of a\nvolume. Each capability block has the following attributes:\n"
+                    },
+                    "capacity": {
+                        "type": "string",
+                        "description": "Provisioned capacity\n"
+                    },
+                    "capacityBytes": {
+                        "type": "integer"
+                    },
+                    "capacityMax": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - Option for requesting a maximum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                    },
+                    "capacityMaxBytes": {
+                        "type": "integer"
+                    },
+                    "capacityMin": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - Option for requesting a minimum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                    },
+                    "capacityMinBytes": {
+                        "type": "integer"
+                    },
+                    "constraints": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/DynamicHostVolumeConstraint:DynamicHostVolumeConstraint"
+                        },
+                        "description": "`(block: \u003coptional\u003e)` - A restriction on the eligible nodes where\na volume can be created, similar to the [`constraint`][] block on a Nomad job\nspecification.. You can provide multiple `constraint` blocks to add more\nconstraints. Each constraint block has the following attributes.\n"
+                    },
+                    "hostPath": {
+                        "type": "string",
+                        "description": "Host path\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - The namespace of the volume. This field\noverrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`\nenvironment variable. Defaults to `\"default\"` if unset.\n"
+                    },
+                    "nodeId": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - A specific node where you would like the\nvolume to be created.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "nodePool": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - A specific node pool where you would like\nthe volume to be created. If you also provide `node_id`, the node must be in the\nprovided `node_pool`.\n"
+                    },
+                    "parameters": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n"
+                    },
+                    "pluginId": {
+                        "type": "string",
+                        "description": "Plugin ID\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "State\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "nomad:index/dynamicHostVolumeRegistration:DynamicHostVolumeRegistration": {
+            "description": "Registers a dynamic host volume in Nomad that has already been created. Note\nthat Nomad supports two workflows for dynamic host volumes: create and\nregister. Both resources result in the same data source with the same outputs.\n",
+            "properties": {
+                "capabilities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/DynamicHostVolumeRegistrationCapability:DynamicHostVolumeRegistrationCapability"
+                    },
+                    "description": "`(block: \u003coptional\u003e)` - Option for validating the capability of a\nvolume. Each capability block has the following attributes:\n"
+                },
+                "capacity": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - The size of a volume in bytes. Either the\nphysical size of a disk or a quota, depending on the plugin. This field must\nbe between the `capacity_min` and `capacity_max` values unless they are\nomitted. Accepts human-friendly suffixes such as `\"100GiB\"`.\n"
+                },
+                "capacityBytes": {
+                    "type": "integer"
+                },
+                "capacityMaxBytes": {
+                    "type": "integer"
+                },
+                "capacityMinBytes": {
+                    "type": "integer"
+                },
+                "constraints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/DynamicHostVolumeRegistrationConstraint:DynamicHostVolumeRegistrationConstraint"
+                    },
+                    "description": "Constraints\n"
+                },
+                "hostPath": {
+                    "type": "string",
+                    "description": "`(string)` - The path on disk where the volume exists.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - The namespace of the volume. This field\noverrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`\nenvironment variable. Defaults to `\"default\"` if unset.\n"
+                },
+                "nodeId": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - A specific node where the volume is\nmounted.\n"
+                },
+                "nodePool": {
+                    "type": "string",
+                    "description": "Node pool\n"
+                },
+                "parameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n\n\n[`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode\n[`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode\n[volume_source]: /nomad/docs/job-specification/volume#source\n"
+                },
+                "pluginId": {
+                    "type": "string",
+                    "description": "Plugin ID\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "State\n"
+                }
+            },
+            "required": [
+                "capabilities",
+                "capacityBytes",
+                "capacityMaxBytes",
+                "capacityMinBytes",
+                "constraints",
+                "hostPath",
+                "name",
+                "nodeId",
+                "nodePool",
+                "pluginId",
+                "state"
+            ],
+            "inputProperties": {
+                "capabilities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/nomad:index/DynamicHostVolumeRegistrationCapability:DynamicHostVolumeRegistrationCapability"
+                    },
+                    "description": "`(block: \u003coptional\u003e)` - Option for validating the capability of a\nvolume. Each capability block has the following attributes:\n"
+                },
+                "capacity": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - The size of a volume in bytes. Either the\nphysical size of a disk or a quota, depending on the plugin. This field must\nbe between the `capacity_min` and `capacity_max` values unless they are\nomitted. Accepts human-friendly suffixes such as `\"100GiB\"`.\n"
+                },
+                "hostPath": {
+                    "type": "string",
+                    "description": "`(string)` - The path on disk where the volume exists.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                },
+                "namespace": {
+                    "type": "string",
+                    "description": "`(string: \u003coptional\u003e)` - The namespace of the volume. This field\noverrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`\nenvironment variable. Defaults to `\"default\"` if unset.\n"
+                },
+                "nodeId": {
+                    "type": "string",
+                    "description": "`(string: \u003crequired\u003e)` - A specific node where the volume is\nmounted.\n"
+                },
+                "parameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n\n\n[`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode\n[`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode\n[volume_source]: /nomad/docs/job-specification/volume#source\n"
+                }
+            },
+            "requiredInputs": [
+                "capabilities",
+                "hostPath",
+                "nodeId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DynamicHostVolumeRegistration resources.\n",
+                "properties": {
+                    "capabilities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/DynamicHostVolumeRegistrationCapability:DynamicHostVolumeRegistrationCapability"
+                        },
+                        "description": "`(block: \u003coptional\u003e)` - Option for validating the capability of a\nvolume. Each capability block has the following attributes:\n"
+                    },
+                    "capacity": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - The size of a volume in bytes. Either the\nphysical size of a disk or a quota, depending on the plugin. This field must\nbe between the `capacity_min` and `capacity_max` values unless they are\nomitted. Accepts human-friendly suffixes such as `\"100GiB\"`.\n"
+                    },
+                    "capacityBytes": {
+                        "type": "integer"
+                    },
+                    "capacityMaxBytes": {
+                        "type": "integer"
+                    },
+                    "capacityMinBytes": {
+                        "type": "integer"
+                    },
+                    "constraints": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/nomad:index/DynamicHostVolumeRegistrationConstraint:DynamicHostVolumeRegistrationConstraint"
+                        },
+                        "description": "Constraints\n"
+                    },
+                    "hostPath": {
+                        "type": "string",
+                        "description": "`(string)` - The path on disk where the volume exists.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "`(string: \u003coptional\u003e)` - The namespace of the volume. This field\noverrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`\nenvironment variable. Defaults to `\"default\"` if unset.\n"
+                    },
+                    "nodeId": {
+                        "type": "string",
+                        "description": "`(string: \u003crequired\u003e)` - A specific node where the volume is\nmounted.\n"
+                    },
+                    "nodePool": {
+                        "type": "string",
+                        "description": "Node pool\n"
+                    },
+                    "parameters": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n\n\n[`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode\n[`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode\n[volume_source]: /nomad/docs/job-specification/volume#source\n"
+                    },
+                    "pluginId": {
+                        "type": "string",
+                        "description": "Plugin ID\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "State\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "nomad:index/externalVolume:ExternalVolume": {
             "description": "## Example Usage\n\nCreating a volume:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\n// It can sometimes be helpful to wait for a particular plugin to be available\nconst ebs = nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n});\nconst mysqlVolume = new nomad.ExternalVolume(\"mysql_volume\", {\n    type: \"csi\",\n    pluginId: \"aws-ebs0\",\n    volumeId: \"mysql_volume\",\n    name: \"mysql_volume\",\n    capacityMin: \"10GiB\",\n    capacityMax: \"20GiB\",\n    capabilities: [{\n        accessMode: \"single-node-writer\",\n        attachmentMode: \"file-system\",\n    }],\n    mountOptions: {\n        fsType: \"ext4\",\n    },\n    topologyRequest: {\n        required: {\n            topologies: [\n                {\n                    segments: {\n                        rack: \"R1\",\n                        zone: \"us-east-1a\",\n                    },\n                },\n                {\n                    segments: {\n                        rack: \"R2\",\n                    },\n                },\n            ],\n        },\n    },\n}, {\n    dependsOn: [ebs],\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\n# It can sometimes be helpful to wait for a particular plugin to be available\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\nmysql_volume = nomad.ExternalVolume(\"mysql_volume\",\n    type=\"csi\",\n    plugin_id=\"aws-ebs0\",\n    volume_id=\"mysql_volume\",\n    name=\"mysql_volume\",\n    capacity_min=\"10GiB\",\n    capacity_max=\"20GiB\",\n    capabilities=[{\n        \"access_mode\": \"single-node-writer\",\n        \"attachment_mode\": \"file-system\",\n    }],\n    mount_options={\n        \"fs_type\": \"ext4\",\n    },\n    topology_request={\n        \"required\": {\n            \"topologies\": [\n                {\n                    \"segments\": {\n                        \"rack\": \"R1\",\n                        \"zone\": \"us-east-1a\",\n                    },\n                },\n                {\n                    \"segments\": {\n                        \"rack\": \"R2\",\n                    },\n                },\n            ],\n        },\n    },\n    opts = pulumi.ResourceOptions(depends_on=[ebs]))\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    // It can sometimes be helpful to wait for a particular plugin to be available\n    var ebs = Nomad.GetPlugin.Invoke(new()\n    {\n        PluginId = \"aws-ebs0\",\n        WaitForHealthy = true,\n    });\n\n    var mysqlVolume = new Nomad.ExternalVolume(\"mysql_volume\", new()\n    {\n        Type = \"csi\",\n        PluginId = \"aws-ebs0\",\n        VolumeId = \"mysql_volume\",\n        Name = \"mysql_volume\",\n        CapacityMin = \"10GiB\",\n        CapacityMax = \"20GiB\",\n        Capabilities = new[]\n        {\n            new Nomad.Inputs.ExternalVolumeCapabilityArgs\n            {\n                AccessMode = \"single-node-writer\",\n                AttachmentMode = \"file-system\",\n            },\n        },\n        MountOptions = new Nomad.Inputs.ExternalVolumeMountOptionsArgs\n        {\n            FsType = \"ext4\",\n        },\n        TopologyRequest = new Nomad.Inputs.ExternalVolumeTopologyRequestArgs\n        {\n            Required = new Nomad.Inputs.ExternalVolumeTopologyRequestRequiredArgs\n            {\n                Topologies = new[]\n                {\n                    new Nomad.Inputs.ExternalVolumeTopologyRequestRequiredTopologyArgs\n                    {\n                        Segments = \n                        {\n                            { \"rack\", \"R1\" },\n                            { \"zone\", \"us-east-1a\" },\n                        },\n                    },\n                    new Nomad.Inputs.ExternalVolumeTopologyRequestRequiredTopologyArgs\n                    {\n                        Segments = \n                        {\n                            { \"rack\", \"R2\" },\n                        },\n                    },\n                },\n            },\n        },\n    }, new CustomResourceOptions\n    {\n        DependsOn =\n        {\n            ebs,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t// It can sometimes be helpful to wait for a particular plugin to be available\n\t\tebs, err := nomad.GetPlugin(ctx, \u0026nomad.GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewExternalVolume(ctx, \"mysql_volume\", \u0026nomad.ExternalVolumeArgs{\n\t\t\tType:        pulumi.String(\"csi\"),\n\t\t\tPluginId:    pulumi.String(\"aws-ebs0\"),\n\t\t\tVolumeId:    pulumi.String(\"mysql_volume\"),\n\t\t\tName:        pulumi.String(\"mysql_volume\"),\n\t\t\tCapacityMin: pulumi.String(\"10GiB\"),\n\t\t\tCapacityMax: pulumi.String(\"20GiB\"),\n\t\t\tCapabilities: nomad.ExternalVolumeCapabilityArray{\n\t\t\t\t\u0026nomad.ExternalVolumeCapabilityArgs{\n\t\t\t\t\tAccessMode:     pulumi.String(\"single-node-writer\"),\n\t\t\t\t\tAttachmentMode: pulumi.String(\"file-system\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tMountOptions: \u0026nomad.ExternalVolumeMountOptionsArgs{\n\t\t\t\tFsType: pulumi.String(\"ext4\"),\n\t\t\t},\n\t\t\tTopologyRequest: \u0026nomad.ExternalVolumeTopologyRequestArgs{\n\t\t\t\tRequired: \u0026nomad.ExternalVolumeTopologyRequestRequiredArgs{\n\t\t\t\t\tTopologies: nomad.ExternalVolumeTopologyRequestRequiredTopologyArray{\n\t\t\t\t\t\t\u0026nomad.ExternalVolumeTopologyRequestRequiredTopologyArgs{\n\t\t\t\t\t\t\tSegments: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"rack\": pulumi.String(\"R1\"),\n\t\t\t\t\t\t\t\t\"zone\": pulumi.String(\"us-east-1a\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\u0026nomad.ExternalVolumeTopologyRequestRequiredTopologyArgs{\n\t\t\t\t\t\t\tSegments: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"rack\": pulumi.String(\"R2\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tebs,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetPluginArgs;\nimport com.pulumi.nomad.ExternalVolume;\nimport com.pulumi.nomad.ExternalVolumeArgs;\nimport com.pulumi.nomad.inputs.ExternalVolumeCapabilityArgs;\nimport com.pulumi.nomad.inputs.ExternalVolumeMountOptionsArgs;\nimport com.pulumi.nomad.inputs.ExternalVolumeTopologyRequestArgs;\nimport com.pulumi.nomad.inputs.ExternalVolumeTopologyRequestRequiredArgs;\nimport com.pulumi.resources.CustomResourceOptions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        // It can sometimes be helpful to wait for a particular plugin to be available\n        final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()\n            .pluginId(\"aws-ebs0\")\n            .waitForHealthy(true)\n            .build());\n\n        var mysqlVolume = new ExternalVolume(\"mysqlVolume\", ExternalVolumeArgs.builder()\n            .type(\"csi\")\n            .pluginId(\"aws-ebs0\")\n            .volumeId(\"mysql_volume\")\n            .name(\"mysql_volume\")\n            .capacityMin(\"10GiB\")\n            .capacityMax(\"20GiB\")\n            .capabilities(ExternalVolumeCapabilityArgs.builder()\n                .accessMode(\"single-node-writer\")\n                .attachmentMode(\"file-system\")\n                .build())\n            .mountOptions(ExternalVolumeMountOptionsArgs.builder()\n                .fsType(\"ext4\")\n                .build())\n            .topologyRequest(ExternalVolumeTopologyRequestArgs.builder()\n                .required(ExternalVolumeTopologyRequestRequiredArgs.builder()\n                    .topologies(                    \n                        ExternalVolumeTopologyRequestRequiredTopologyArgs.builder()\n                            .segments(Map.ofEntries(\n                                Map.entry(\"rack\", \"R1\"),\n                                Map.entry(\"zone\", \"us-east-1a\")\n                            ))\n                            .build(),\n                        ExternalVolumeTopologyRequestRequiredTopologyArgs.builder()\n                            .segments(Map.of(\"rack\", \"R2\"))\n                            .build())\n                    .build())\n                .build())\n            .build(), CustomResourceOptions.builder()\n                .dependsOn(ebs)\n                .build());\n\n    }\n}\n```\n```yaml\nresources:\n  mysqlVolume:\n    type: nomad:ExternalVolume\n    name: mysql_volume\n    properties:\n      type: csi\n      pluginId: aws-ebs0\n      volumeId: mysql_volume\n      name: mysql_volume\n      capacityMin: 10GiB\n      capacityMax: 20GiB\n      capabilities:\n        - accessMode: single-node-writer\n          attachmentMode: file-system\n      mountOptions:\n        fsType: ext4\n      topologyRequest:\n        required:\n          topologies:\n            - segments:\n                rack: R1\n                zone: us-east-1a\n            - segments:\n                rack: R2\n    options:\n      dependsOn:\n        - ${ebs}\nvariables:\n  # It can sometimes be helpful to wait for a particular plugin to be available\n  ebs:\n    fn::invoke:\n      function: nomad:getPlugin\n      arguments:\n        pluginId: aws-ebs0\n        waitForHealthy: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -3341,11 +3944,6 @@
                     "description": "The IDs for allocations associated with this job.\n",
                     "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
                 },
-                "consulToken": {
-                    "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Consul token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n",
-                    "secret": true
-                },
                 "datacenters": {
                     "type": "array",
                     "items": {
@@ -3430,11 +4028,6 @@
                 "type": {
                     "type": "string",
                     "description": "The type of the job, as derived from the jobspec.\n"
-                },
-                "vaultToken": {
-                    "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Vault token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n",
-                    "secret": true
                 }
             },
             "required": [
@@ -3452,11 +4045,6 @@
                 "type"
             ],
             "inputProperties": {
-                "consulToken": {
-                    "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Consul token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n",
-                    "secret": true
-                },
                 "deregisterOnDestroy": {
                     "type": "boolean",
                     "description": "If true, the job will be deregistered on destroy.\n"
@@ -3496,11 +4084,6 @@
                 "rerunIfDead": {
                     "type": "boolean",
                     "description": "`(boolean: false)` - Set this to true to force the job to run\nagain if its status is `dead`.\n"
-                },
-                "vaultToken": {
-                    "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Vault token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n",
-                    "secret": true
                 }
             },
             "requiredInputs": [
@@ -3516,11 +4099,6 @@
                         },
                         "description": "The IDs for allocations associated with this job.\n",
                         "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
-                    },
-                    "consulToken": {
-                        "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - Consul token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n",
-                        "secret": true
                     },
                     "datacenters": {
                         "type": "array",
@@ -3606,11 +4184,6 @@
                     "type": {
                         "type": "string",
                         "description": "The type of the job, as derived from the jobspec.\n"
-                    },
-                    "vaultToken": {
-                        "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - Vault token used when registering this job.\nWill fallback to the value declared in Nomad provider configuration, if any.\n",
-                        "secret": true
                     }
                 },
                 "type": "object"
@@ -4817,6 +5390,125 @@
                 "type": "object"
             }
         },
+        "nomad:index/getDynamicHostVolume:getDynamicHostVolume": {
+            "description": "Get information on a dynamic host volume from Nomad.\n\n## Example Usage\n\nCheck for the existing of a host volume:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = nomad.getDynamicHostVolume({\n    namespace: \"prod\",\n    id: \"d688ff7a-d299-11ef-ae3c-6f2400953c18\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_dynamic_host_volume(namespace=\"prod\",\n    id=\"d688ff7a-d299-11ef-ae3c-6f2400953c18\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetDynamicHostVolume.Invoke(new()\n    {\n        Namespace = \"prod\",\n        Id = \"d688ff7a-d299-11ef-ae3c-6f2400953c18\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupDynamicHostVolume(ctx, \u0026nomad.LookupDynamicHostVolumeArgs{\n\t\t\tNamespace: pulumi.StringRef(\"prod\"),\n\t\t\tId:        \"d688ff7a-d299-11ef-ae3c-6f2400953c18\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getDynamicHostVolume(GetDynamicHostVolumeArgs.builder()\n            .namespace(\"prod\")\n            .id(\"d688ff7a-d299-11ef-ae3c-6f2400953c18\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: nomad:getDynamicHostVolume\n      arguments:\n        namespace: prod\n        id: d688ff7a-d299-11ef-ae3c-6f2400953c18\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nThis will check for a dynamic host volume with the ID\n`d688ff7a-d299-11ef-ae3c-6f2400953c18`.\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDynamicHostVolume.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "`(string)` - the ID of the volume\n"
+                    },
+                    "namespace": {
+                        "type": "string",
+                        "description": "`(string)` - the namespace of the volume. Defaults to `\"default\"`\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDynamicHostVolume.\n",
+                "properties": {
+                    "capabilities": {
+                        "description": "`(block)` - Option for validating the capability of a\nvolume. Each capability block has the following attributes:\n",
+                        "items": {
+                            "$ref": "#/types/nomad:index/getDynamicHostVolumeCapability:getDynamicHostVolumeCapability"
+                        },
+                        "type": "array"
+                    },
+                    "capacity": {
+                        "description": "`(string)` - The size of the volume, in human-friendly format\n(ex. 10 GiB)\n",
+                        "type": "string"
+                    },
+                    "capacityBytes": {
+                        "description": "`(int)` - The size of the volume, in bytes.\n",
+                        "type": "integer"
+                    },
+                    "capacityMax": {
+                        "description": "`(string)` - The requested maximum capacity of the volume, in\nhuman-friendly format (ex. 10 GiB).\n",
+                        "type": "string"
+                    },
+                    "capacityMaxBytes": {
+                        "description": "`(string)` - The requested maximum capacity of the\nvolume, in bytes.\n",
+                        "type": "integer"
+                    },
+                    "capacityMin": {
+                        "description": "`(string)` - The requested minimum capacity of the volume, in\nhuman-friendly format (ex. 10 GiB).\n",
+                        "type": "string"
+                    },
+                    "capacityMinBytes": {
+                        "description": "`(string)` - The requested minimum capacity of the\nvolume, in bytes.\n",
+                        "type": "integer"
+                    },
+                    "constraints": {
+                        "description": "`(block)` - The restrictions used to place the volume on a node,\nsimilar to the [`constraint`][] block on a Nomad job specification. A volume\nmay have multiple `constraint` blocks. Each constraint block has the following\nattributes.\n",
+                        "items": {
+                            "$ref": "#/types/nomad:index/getDynamicHostVolumeConstraint:getDynamicHostVolumeConstraint"
+                        },
+                        "type": "array"
+                    },
+                    "hostPath": {
+                        "description": "`(string)` - The path on disk where the volume exists.\n",
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "`(string)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names are be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n",
+                        "type": "string"
+                    },
+                    "namespace": {
+                        "description": "`(string)` - The namespace of the volume.\n",
+                        "type": "string"
+                    },
+                    "nodeId": {
+                        "description": "`(string)` - A specific node where the volume is mounted.\n",
+                        "type": "string"
+                    },
+                    "nodePool": {
+                        "description": "`(string: \u003coptional\u003e)` - The node pool of the node where the\nvolume is mounted.\n",
+                        "type": "string"
+                    },
+                    "parameters": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "`(map\u003cstring|string\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n",
+                        "type": "object"
+                    },
+                    "pluginId": {
+                        "description": "`(string: \u003crequired\u003e)` - The ID of the [dynamic host volume\nplugin][dhv_plugin] that manages this volume.\n",
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "capabilities",
+                    "capacity",
+                    "capacityBytes",
+                    "capacityMax",
+                    "capacityMaxBytes",
+                    "capacityMin",
+                    "capacityMinBytes",
+                    "constraints",
+                    "hostPath",
+                    "id",
+                    "name",
+                    "nodeId",
+                    "nodePool",
+                    "parameters",
+                    "pluginId",
+                    "state"
+                ],
+                "type": "object"
+            }
+        },
         "nomad:index/getJob:getJob": {
             "description": "Get information on a job ID. The aim of this datasource is to enable\nyou to act on various settings and states of a particular job.\n\nAn error is triggered if zero or more than one result is returned by the query.\n\n## Example Usage\n\nGet the data about a snapshot:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = nomad.getJob({\n    jobId: \"example\",\n    namespace: \"dev\",\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_job(job_id=\"example\",\n    namespace=\"dev\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetJob.Invoke(new()\n    {\n        JobId = \"example\",\n        Namespace = \"dev\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.LookupJob(ctx, \u0026nomad.LookupJobArgs{\n\t\t\tJobId:     \"example\",\n\t\t\tNamespace: pulumi.StringRef(\"dev\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetJobArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getJob(GetJobArgs.builder()\n            .jobId(\"example\")\n            .namespace(\"dev\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: nomad:getJob\n      arguments:\n        jobId: example\n        namespace: dev\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
@@ -5593,7 +6285,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "`(string: \"csi\")` Volume type (currently only supports `csi`)\n"
+                        "description": "`(string: \"csi\")` Volume type (one of `csi` or `host`)\n"
                     }
                 },
                 "type": "object"
