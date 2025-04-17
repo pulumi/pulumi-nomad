@@ -49,12 +49,6 @@ namespace Pulumi.Nomad
         public Output<string?> CertPem { get; private set; } = null!;
 
         /// <summary>
-        /// Consul token to validate Consul Connect Service Identity policies specified in the job file.
-        /// </summary>
-        [Output("consulToken")]
-        public Output<string?> ConsulToken { get; private set; } = null!;
-
-        /// <summary>
         /// HTTP basic auth configuration.
         /// </summary>
         [Output("httpAuth")]
@@ -84,12 +78,6 @@ namespace Pulumi.Nomad
         [Output("secretId")]
         public Output<string?> SecretId { get; private set; } = null!;
 
-        /// <summary>
-        /// Vault token if policies are specified in the job file.
-        /// </summary>
-        [Output("vaultToken")]
-        public Output<string?> VaultToken { get; private set; } = null!;
-
 
         /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
@@ -108,11 +96,6 @@ namespace Pulumi.Nomad
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                AdditionalSecretOutputs =
-                {
-                    "consulToken",
-                    "vaultToken",
-                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -152,22 +135,6 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("certPem")]
         public Input<string>? CertPem { get; set; }
-
-        [Input("consulToken")]
-        private Input<string>? _consulToken;
-
-        /// <summary>
-        /// Consul token to validate Consul Connect Service Identity policies specified in the job file.
-        /// </summary>
-        public Input<string>? ConsulToken
-        {
-            get => _consulToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _consulToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
 
         [Input("headers", json: true)]
         private InputList<Inputs.ProviderHeaderArgs>? _headers;
@@ -232,22 +199,6 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("skipVerify", json: true)]
         public Input<bool>? SkipVerify { get; set; }
-
-        [Input("vaultToken")]
-        private Input<string>? _vaultToken;
-
-        /// <summary>
-        /// Vault token if policies are specified in the job file.
-        /// </summary>
-        public Input<string>? VaultToken
-        {
-            get => _vaultToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _vaultToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
 
         public ProviderArgs()
         {

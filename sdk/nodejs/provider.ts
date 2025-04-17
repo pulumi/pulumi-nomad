@@ -48,10 +48,6 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly certPem!: pulumi.Output<string | undefined>;
     /**
-     * Consul token to validate Consul Connect Service Identity policies specified in the job file.
-     */
-    public readonly consulToken!: pulumi.Output<string | undefined>;
-    /**
      * HTTP basic auth configuration.
      */
     public readonly httpAuth!: pulumi.Output<string | undefined>;
@@ -71,10 +67,6 @@ export class Provider extends pulumi.ProviderResource {
      * ACL token secret for API requests.
      */
     public readonly secretId!: pulumi.Output<string | undefined>;
-    /**
-     * Vault token if policies are specified in the job file.
-     */
-    public readonly vaultToken!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -95,7 +87,6 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["caPem"] = args ? args.caPem : undefined;
             resourceInputs["certFile"] = args ? args.certFile : undefined;
             resourceInputs["certPem"] = args ? args.certPem : undefined;
-            resourceInputs["consulToken"] = args?.consulToken ? pulumi.secret(args.consulToken) : undefined;
             resourceInputs["headers"] = pulumi.output(args?.headers ? pulumi.secret(args.headers) : undefined).apply(JSON.stringify);
             resourceInputs["httpAuth"] = args ? args.httpAuth : undefined;
             resourceInputs["ignoreEnvVars"] = pulumi.output(args ? args.ignoreEnvVars : undefined).apply(JSON.stringify);
@@ -104,11 +95,8 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["secretId"] = args ? args.secretId : undefined;
             resourceInputs["skipVerify"] = pulumi.output(args ? args.skipVerify : undefined).apply(JSON.stringify);
-            resourceInputs["vaultToken"] = args?.vaultToken ? pulumi.secret(args.vaultToken) : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["consulToken", "vaultToken"] };
-        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -137,10 +125,6 @@ export interface ProviderArgs {
      * PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      */
     certPem?: pulumi.Input<string>;
-    /**
-     * Consul token to validate Consul Connect Service Identity policies specified in the job file.
-     */
-    consulToken?: pulumi.Input<string>;
     /**
      * The headers to send with each Nomad request.
      */
@@ -173,8 +157,4 @@ export interface ProviderArgs {
      * Skip TLS verification on client side.
      */
     skipVerify?: pulumi.Input<boolean>;
-    /**
-     * Vault token if policies are specified in the job file.
-     */
-    vaultToken?: pulumi.Input<string>;
 }

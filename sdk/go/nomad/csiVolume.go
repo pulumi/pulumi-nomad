@@ -25,7 +25,9 @@ type CsiVolume struct {
 	CapacityMin      pulumi.StringPtrOutput `pulumi:"capacityMin"`
 	CapacityMinBytes pulumi.IntOutput       `pulumi:"capacityMinBytes"`
 	// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
-	CloneId             pulumi.StringPtrOutput `pulumi:"cloneId"`
+	CloneId pulumi.StringPtrOutput `pulumi:"cloneId"`
+	// The volume context provided by the storage provider
+	Context             pulumi.StringMapOutput `pulumi:"context"`
 	ControllerRequired  pulumi.BoolOutput      `pulumi:"controllerRequired"`
 	ControllersExpected pulumi.IntOutput       `pulumi:"controllersExpected"`
 	ControllersHealthy  pulumi.IntOutput       `pulumi:"controllersHealthy"`
@@ -113,10 +115,12 @@ type csiVolumeState struct {
 	CapacityMin      *string `pulumi:"capacityMin"`
 	CapacityMinBytes *int    `pulumi:"capacityMinBytes"`
 	// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
-	CloneId             *string `pulumi:"cloneId"`
-	ControllerRequired  *bool   `pulumi:"controllerRequired"`
-	ControllersExpected *int    `pulumi:"controllersExpected"`
-	ControllersHealthy  *int    `pulumi:"controllersHealthy"`
+	CloneId *string `pulumi:"cloneId"`
+	// The volume context provided by the storage provider
+	Context             map[string]string `pulumi:"context"`
+	ControllerRequired  *bool             `pulumi:"controllerRequired"`
+	ControllersExpected *int              `pulumi:"controllersExpected"`
+	ControllersHealthy  *int              `pulumi:"controllersHealthy"`
 	// The ID of the physical volume from the storage provider.
 	ExternalId *string `pulumi:"externalId"`
 	// `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
@@ -156,7 +160,9 @@ type CsiVolumeState struct {
 	CapacityMin      pulumi.StringPtrInput
 	CapacityMinBytes pulumi.IntPtrInput
 	// `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
-	CloneId             pulumi.StringPtrInput
+	CloneId pulumi.StringPtrInput
+	// The volume context provided by the storage provider
+	Context             pulumi.StringMapInput
 	ControllerRequired  pulumi.BoolPtrInput
 	ControllersExpected pulumi.IntPtrInput
 	ControllersHealthy  pulumi.IntPtrInput
@@ -368,6 +374,11 @@ func (o CsiVolumeOutput) CapacityMinBytes() pulumi.IntOutput {
 // `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
 func (o CsiVolumeOutput) CloneId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CsiVolume) pulumi.StringPtrOutput { return v.CloneId }).(pulumi.StringPtrOutput)
+}
+
+// The volume context provided by the storage provider
+func (o CsiVolumeOutput) Context() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CsiVolume) pulumi.StringMapOutput { return v.Context }).(pulumi.StringMapOutput)
 }
 
 func (o CsiVolumeOutput) ControllerRequired() pulumi.BoolOutput {

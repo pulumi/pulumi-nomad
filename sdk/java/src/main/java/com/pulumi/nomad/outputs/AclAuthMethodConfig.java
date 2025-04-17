@@ -4,6 +4,7 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.nomad.outputs.AclAuthMethodConfigOidcClientAssertion;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -85,6 +86,14 @@ public final class AclAuthMethodConfig {
      */
     private @Nullable String notBeforeLeeway;
     /**
+     * @return `(OIDCClientAssertion: &lt;optional&gt;)` - Optionally
+     * send a signed JWT (&#34;[private key jwt][]&#34;) as a client assertion to the OIDC
+     * provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+     * more.
+     * 
+     */
+    private @Nullable AclAuthMethodConfigOidcClientAssertion oidcClientAssertion;
+    /**
      * @return `(string: &lt;optional&gt;)` - The OAuth Client ID configured
      * with the OIDC provider.
      * 
@@ -111,6 +120,13 @@ public final class AclAuthMethodConfig {
      */
     private @Nullable String oidcDiscoveryUrl;
     /**
+     * @return `(bool: false)` - When set to `true`, Nomad will include
+     * [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+     * you may still need to enable it in your OIDC provider.
+     * 
+     */
+    private @Nullable Boolean oidcEnablePkce;
+    /**
      * @return `([]string: &lt;optional&gt;)` - List of OIDC scopes.
      * 
      */
@@ -121,6 +137,11 @@ public final class AclAuthMethodConfig {
      * 
      */
     private @Nullable List<String> signingAlgs;
+    /**
+     * @return Enable OIDC verbose logging on the Nomad server.
+     * 
+     */
+    private @Nullable Boolean verboseLogging;
 
     private AclAuthMethodConfig() {}
     /**
@@ -218,6 +239,16 @@ public final class AclAuthMethodConfig {
         return Optional.ofNullable(this.notBeforeLeeway);
     }
     /**
+     * @return `(OIDCClientAssertion: &lt;optional&gt;)` - Optionally
+     * send a signed JWT (&#34;[private key jwt][]&#34;) as a client assertion to the OIDC
+     * provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+     * more.
+     * 
+     */
+    public Optional<AclAuthMethodConfigOidcClientAssertion> oidcClientAssertion() {
+        return Optional.ofNullable(this.oidcClientAssertion);
+    }
+    /**
      * @return `(string: &lt;optional&gt;)` - The OAuth Client ID configured
      * with the OIDC provider.
      * 
@@ -252,6 +283,15 @@ public final class AclAuthMethodConfig {
         return Optional.ofNullable(this.oidcDiscoveryUrl);
     }
     /**
+     * @return `(bool: false)` - When set to `true`, Nomad will include
+     * [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+     * you may still need to enable it in your OIDC provider.
+     * 
+     */
+    public Optional<Boolean> oidcEnablePkce() {
+        return Optional.ofNullable(this.oidcEnablePkce);
+    }
+    /**
      * @return `([]string: &lt;optional&gt;)` - List of OIDC scopes.
      * 
      */
@@ -265,6 +305,13 @@ public final class AclAuthMethodConfig {
      */
     public List<String> signingAlgs() {
         return this.signingAlgs == null ? List.of() : this.signingAlgs;
+    }
+    /**
+     * @return Enable OIDC verbose logging on the Nomad server.
+     * 
+     */
+    public Optional<Boolean> verboseLogging() {
+        return Optional.ofNullable(this.verboseLogging);
     }
 
     public static Builder builder() {
@@ -288,12 +335,15 @@ public final class AclAuthMethodConfig {
         private @Nullable List<String> jwtValidationPubKeys;
         private @Nullable Map<String,String> listClaimMappings;
         private @Nullable String notBeforeLeeway;
+        private @Nullable AclAuthMethodConfigOidcClientAssertion oidcClientAssertion;
         private @Nullable String oidcClientId;
         private @Nullable String oidcClientSecret;
         private @Nullable Boolean oidcDisableUserinfo;
         private @Nullable String oidcDiscoveryUrl;
+        private @Nullable Boolean oidcEnablePkce;
         private @Nullable List<String> oidcScopes;
         private @Nullable List<String> signingAlgs;
+        private @Nullable Boolean verboseLogging;
         public Builder() {}
         public Builder(AclAuthMethodConfig defaults) {
     	      Objects.requireNonNull(defaults);
@@ -309,12 +359,15 @@ public final class AclAuthMethodConfig {
     	      this.jwtValidationPubKeys = defaults.jwtValidationPubKeys;
     	      this.listClaimMappings = defaults.listClaimMappings;
     	      this.notBeforeLeeway = defaults.notBeforeLeeway;
+    	      this.oidcClientAssertion = defaults.oidcClientAssertion;
     	      this.oidcClientId = defaults.oidcClientId;
     	      this.oidcClientSecret = defaults.oidcClientSecret;
     	      this.oidcDisableUserinfo = defaults.oidcDisableUserinfo;
     	      this.oidcDiscoveryUrl = defaults.oidcDiscoveryUrl;
+    	      this.oidcEnablePkce = defaults.oidcEnablePkce;
     	      this.oidcScopes = defaults.oidcScopes;
     	      this.signingAlgs = defaults.signingAlgs;
+    	      this.verboseLogging = defaults.verboseLogging;
         }
 
         @CustomType.Setter
@@ -405,6 +458,12 @@ public final class AclAuthMethodConfig {
             return this;
         }
         @CustomType.Setter
+        public Builder oidcClientAssertion(@Nullable AclAuthMethodConfigOidcClientAssertion oidcClientAssertion) {
+
+            this.oidcClientAssertion = oidcClientAssertion;
+            return this;
+        }
+        @CustomType.Setter
         public Builder oidcClientId(@Nullable String oidcClientId) {
 
             this.oidcClientId = oidcClientId;
@@ -429,6 +488,12 @@ public final class AclAuthMethodConfig {
             return this;
         }
         @CustomType.Setter
+        public Builder oidcEnablePkce(@Nullable Boolean oidcEnablePkce) {
+
+            this.oidcEnablePkce = oidcEnablePkce;
+            return this;
+        }
+        @CustomType.Setter
         public Builder oidcScopes(@Nullable List<String> oidcScopes) {
 
             this.oidcScopes = oidcScopes;
@@ -446,6 +511,12 @@ public final class AclAuthMethodConfig {
         public Builder signingAlgs(String... signingAlgs) {
             return signingAlgs(List.of(signingAlgs));
         }
+        @CustomType.Setter
+        public Builder verboseLogging(@Nullable Boolean verboseLogging) {
+
+            this.verboseLogging = verboseLogging;
+            return this;
+        }
         public AclAuthMethodConfig build() {
             final var _resultValue = new AclAuthMethodConfig();
             _resultValue.allowedRedirectUris = allowedRedirectUris;
@@ -460,12 +531,15 @@ public final class AclAuthMethodConfig {
             _resultValue.jwtValidationPubKeys = jwtValidationPubKeys;
             _resultValue.listClaimMappings = listClaimMappings;
             _resultValue.notBeforeLeeway = notBeforeLeeway;
+            _resultValue.oidcClientAssertion = oidcClientAssertion;
             _resultValue.oidcClientId = oidcClientId;
             _resultValue.oidcClientSecret = oidcClientSecret;
             _resultValue.oidcDisableUserinfo = oidcDisableUserinfo;
             _resultValue.oidcDiscoveryUrl = oidcDiscoveryUrl;
+            _resultValue.oidcEnablePkce = oidcEnablePkce;
             _resultValue.oidcScopes = oidcScopes;
             _resultValue.signingAlgs = signingAlgs;
+            _resultValue.verboseLogging = verboseLogging;
             return _resultValue;
         }
     }

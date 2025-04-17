@@ -65,17 +65,6 @@ Object.defineProperty(exports, "certPem", {
 });
 
 /**
- * Consul token to validate Consul Connect Service Identity policies specified in the job file.
- */
-export declare const consulToken: string | undefined;
-Object.defineProperty(exports, "consulToken", {
-    get() {
-        return __config.get("consulToken");
-    },
-    enumerable: true,
-});
-
-/**
  * The headers to send with each Nomad request.
  */
 export declare const headers: outputs.config.Headers[] | undefined;
@@ -159,17 +148,6 @@ export declare const skipVerify: boolean | undefined;
 Object.defineProperty(exports, "skipVerify", {
     get() {
         return __config.getObject<boolean>("skipVerify");
-    },
-    enumerable: true,
-});
-
-/**
- * Vault token if policies are specified in the job file.
- */
-export declare const vaultToken: string | undefined;
-Object.defineProperty(exports, "vaultToken", {
-    get() {
-        return __config.get("vaultToken");
     },
     enumerable: true,
 });

@@ -44,7 +44,7 @@ export interface GetVolumesArgs {
      */
     pluginId?: string;
     /**
-     * `(string: "csi")` Volume type (currently only supports `csi`)
+     * `(string: "csi")` Volume type (one of `csi` or `host`)
      */
     type?: string;
 }
@@ -109,7 +109,7 @@ export interface GetVolumesOutputArgs {
      */
     pluginId?: pulumi.Input<string>;
     /**
-     * `(string: "csi")` Volume type (currently only supports `csi`)
+     * `(string: "csi")` Volume type (one of `csi` or `host`)
      */
     type?: pulumi.Input<string>;
 }

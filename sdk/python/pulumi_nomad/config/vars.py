@@ -58,13 +58,6 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('certPem')
 
     @property
-    def consul_token(self) -> Optional[str]:
-        """
-        Consul token to validate Consul Connect Service Identity policies specified in the job file.
-        """
-        return __config__.get('consulToken')
-
-    @property
     def headers(self) -> Optional[str]:
         """
         The headers to send with each Nomad request.
@@ -119,11 +112,4 @@ class _ExportableConfig(types.ModuleType):
         Skip TLS verification on client side.
         """
         return __config__.get_bool('skipVerify')
-
-    @property
-    def vault_token(self) -> Optional[str]:
-        """
-        Vault token if policies are specified in the job file.
-        """
-        return __config__.get('vaultToken')
 

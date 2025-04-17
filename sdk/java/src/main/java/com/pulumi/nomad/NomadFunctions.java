@@ -25,6 +25,8 @@ import com.pulumi.nomad.inputs.GetAllocationsArgs;
 import com.pulumi.nomad.inputs.GetAllocationsPlainArgs;
 import com.pulumi.nomad.inputs.GetDatacentersArgs;
 import com.pulumi.nomad.inputs.GetDatacentersPlainArgs;
+import com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;
+import com.pulumi.nomad.inputs.GetDynamicHostVolumePlainArgs;
 import com.pulumi.nomad.inputs.GetJobArgs;
 import com.pulumi.nomad.inputs.GetJobParserArgs;
 import com.pulumi.nomad.inputs.GetJobParserPlainArgs;
@@ -56,6 +58,7 @@ import com.pulumi.nomad.outputs.GetAclTokensResult;
 import com.pulumi.nomad.outputs.GetAllocationsResult;
 import com.pulumi.nomad.outputs.GetDatacentersResult;
 import com.pulumi.nomad.outputs.GetDeploymentsResult;
+import com.pulumi.nomad.outputs.GetDynamicHostVolumeResult;
 import com.pulumi.nomad.outputs.GetJobParserResult;
 import com.pulumi.nomad.outputs.GetJobResult;
 import com.pulumi.nomad.outputs.GetJwksResult;
@@ -2444,6 +2447,246 @@ public final class NomadFunctions {
      */
     public static CompletableFuture<GetDeploymentsResult> getDeploymentsPlain(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getDeployments:getDeployments", TypeShape.of(GetDeploymentsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on a dynamic host volume from Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * Check for the existing of a host volume:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getDynamicHostVolume(GetDynamicHostVolumeArgs.builder()
+     *             .namespace("prod")
+     *             .id("d688ff7a-d299-11ef-ae3c-6f2400953c18")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * This will check for a dynamic host volume with the ID
+     * `d688ff7a-d299-11ef-ae3c-6f2400953c18`.
+     * 
+     */
+    public static Output<GetDynamicHostVolumeResult> getDynamicHostVolume(GetDynamicHostVolumeArgs args) {
+        return getDynamicHostVolume(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information on a dynamic host volume from Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * Check for the existing of a host volume:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getDynamicHostVolume(GetDynamicHostVolumeArgs.builder()
+     *             .namespace("prod")
+     *             .id("d688ff7a-d299-11ef-ae3c-6f2400953c18")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * This will check for a dynamic host volume with the ID
+     * `d688ff7a-d299-11ef-ae3c-6f2400953c18`.
+     * 
+     */
+    public static CompletableFuture<GetDynamicHostVolumeResult> getDynamicHostVolumePlain(GetDynamicHostVolumePlainArgs args) {
+        return getDynamicHostVolumePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information on a dynamic host volume from Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * Check for the existing of a host volume:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getDynamicHostVolume(GetDynamicHostVolumeArgs.builder()
+     *             .namespace("prod")
+     *             .id("d688ff7a-d299-11ef-ae3c-6f2400953c18")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * This will check for a dynamic host volume with the ID
+     * `d688ff7a-d299-11ef-ae3c-6f2400953c18`.
+     * 
+     */
+    public static Output<GetDynamicHostVolumeResult> getDynamicHostVolume(GetDynamicHostVolumeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getDynamicHostVolume:getDynamicHostVolume", TypeShape.of(GetDynamicHostVolumeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on a dynamic host volume from Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * Check for the existing of a host volume:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getDynamicHostVolume(GetDynamicHostVolumeArgs.builder()
+     *             .namespace("prod")
+     *             .id("d688ff7a-d299-11ef-ae3c-6f2400953c18")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * This will check for a dynamic host volume with the ID
+     * `d688ff7a-d299-11ef-ae3c-6f2400953c18`.
+     * 
+     */
+    public static Output<GetDynamicHostVolumeResult> getDynamicHostVolume(GetDynamicHostVolumeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getDynamicHostVolume:getDynamicHostVolume", TypeShape.of(GetDynamicHostVolumeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on a dynamic host volume from Nomad.
+     * 
+     * ## Example Usage
+     * 
+     * Check for the existing of a host volume:
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = NomadFunctions.getDynamicHostVolume(GetDynamicHostVolumeArgs.builder()
+     *             .namespace("prod")
+     *             .id("d688ff7a-d299-11ef-ae3c-6f2400953c18")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * This will check for a dynamic host volume with the ID
+     * `d688ff7a-d299-11ef-ae3c-6f2400953c18`.
+     * 
+     */
+    public static CompletableFuture<GetDynamicHostVolumeResult> getDynamicHostVolumePlain(GetDynamicHostVolumePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("nomad:index/getDynamicHostVolume:getDynamicHostVolume", TypeShape.of(GetDynamicHostVolumeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Get information on a job ID. The aim of this datasource is to enable

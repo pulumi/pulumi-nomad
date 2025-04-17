@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.nomad.ProviderArgs;
 import com.pulumi.nomad.Utilities;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -94,20 +93,6 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.certPem);
     }
     /**
-     * Consul token to validate Consul Connect Service Identity policies specified in the job file.
-     * 
-     */
-    @Export(name="consulToken", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> consulToken;
-
-    /**
-     * @return Consul token to validate Consul Connect Service Identity policies specified in the job file.
-     * 
-     */
-    public Output<Optional<String>> consulToken() {
-        return Codegen.optional(this.consulToken);
-    }
-    /**
      * HTTP basic auth configuration.
      * 
      */
@@ -177,20 +162,6 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     public Output<Optional<String>> secretId() {
         return Codegen.optional(this.secretId);
     }
-    /**
-     * Vault token if policies are specified in the job file.
-     * 
-     */
-    @Export(name="vaultToken", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> vaultToken;
-
-    /**
-     * @return Vault token if policies are specified in the job file.
-     * 
-     */
-    public Output<Optional<String>> vaultToken() {
-        return Codegen.optional(this.vaultToken);
-    }
 
     /**
      *
@@ -227,10 +198,6 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .additionalSecretOutputs(List.of(
-                "consulToken",
-                "vaultToken"
-            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

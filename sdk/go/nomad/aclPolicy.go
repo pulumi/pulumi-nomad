@@ -18,7 +18,8 @@ type AclPolicy struct {
 
 	// `(string: "")` - A description of the policy.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+	// `(``JobACL``: <optional>)` - Options for assigning the
+	// ACL rules to a job, group, or task.
 	JobAcl AclPolicyJobAclPtrOutput `pulumi:"jobAcl"`
 	// `(string: <required>)` - A unique name for the policy.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -62,7 +63,8 @@ func GetAclPolicy(ctx *pulumi.Context,
 type aclPolicyState struct {
 	// `(string: "")` - A description of the policy.
 	Description *string `pulumi:"description"`
-	// `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+	// `(``JobACL``: <optional>)` - Options for assigning the
+	// ACL rules to a job, group, or task.
 	JobAcl *AclPolicyJobAcl `pulumi:"jobAcl"`
 	// `(string: <required>)` - A unique name for the policy.
 	Name *string `pulumi:"name"`
@@ -74,7 +76,8 @@ type aclPolicyState struct {
 type AclPolicyState struct {
 	// `(string: "")` - A description of the policy.
 	Description pulumi.StringPtrInput
-	// `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+	// `(``JobACL``: <optional>)` - Options for assigning the
+	// ACL rules to a job, group, or task.
 	JobAcl AclPolicyJobAclPtrInput
 	// `(string: <required>)` - A unique name for the policy.
 	Name pulumi.StringPtrInput
@@ -90,7 +93,8 @@ func (AclPolicyState) ElementType() reflect.Type {
 type aclPolicyArgs struct {
 	// `(string: "")` - A description of the policy.
 	Description *string `pulumi:"description"`
-	// `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+	// `(``JobACL``: <optional>)` - Options for assigning the
+	// ACL rules to a job, group, or task.
 	JobAcl *AclPolicyJobAcl `pulumi:"jobAcl"`
 	// `(string: <required>)` - A unique name for the policy.
 	Name *string `pulumi:"name"`
@@ -103,7 +107,8 @@ type aclPolicyArgs struct {
 type AclPolicyArgs struct {
 	// `(string: "")` - A description of the policy.
 	Description pulumi.StringPtrInput
-	// `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+	// `(``JobACL``: <optional>)` - Options for assigning the
+	// ACL rules to a job, group, or task.
 	JobAcl AclPolicyJobAclPtrInput
 	// `(string: <required>)` - A unique name for the policy.
 	Name pulumi.StringPtrInput
@@ -204,7 +209,8 @@ func (o AclPolicyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclPolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// `(“JobACL“: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+// `(“JobACL“: <optional>)` - Options for assigning the
+// ACL rules to a job, group, or task.
 func (o AclPolicyOutput) JobAcl() AclPolicyJobAclPtrOutput {
 	return o.ApplyT(func(v *AclPolicy) AclPolicyJobAclPtrOutput { return v.JobAcl }).(AclPolicyJobAclPtrOutput)
 }

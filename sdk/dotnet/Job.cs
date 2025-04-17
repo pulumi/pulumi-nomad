@@ -19,13 +19,6 @@ namespace Pulumi.Nomad
         public Output<ImmutableArray<string>> AllocationIds { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-        /// Will fallback to the value declared in Nomad provider configuration, if any.
-        /// </summary>
-        [Output("consulToken")]
-        public Output<string?> ConsulToken { get; private set; } = null!;
-
-        /// <summary>
         /// The target datacenters for the job, as derived from the jobspec.
         /// </summary>
         [Output("datacenters")]
@@ -145,13 +138,6 @@ namespace Pulumi.Nomad
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
-        /// <summary>
-        /// `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-        /// Will fallback to the value declared in Nomad provider configuration, if any.
-        /// </summary>
-        [Output("vaultToken")]
-        public Output<string?> VaultToken { get; private set; } = null!;
-
 
         /// <summary>
         /// Create a Job resource with the given unique name, arguments, and options.
@@ -175,11 +161,6 @@ namespace Pulumi.Nomad
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                AdditionalSecretOutputs =
-                {
-                    "consulToken",
-                    "vaultToken",
-                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -203,23 +184,6 @@ namespace Pulumi.Nomad
 
     public sealed class JobArgs : global::Pulumi.ResourceArgs
     {
-        [Input("consulToken")]
-        private Input<string>? _consulToken;
-
-        /// <summary>
-        /// `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-        /// Will fallback to the value declared in Nomad provider configuration, if any.
-        /// </summary>
-        public Input<string>? ConsulToken
-        {
-            get => _consulToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _consulToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
         /// <summary>
         /// If true, the job will be deregistered on destroy.
         /// </summary>
@@ -283,23 +247,6 @@ namespace Pulumi.Nomad
         [Input("rerunIfDead")]
         public Input<bool>? RerunIfDead { get; set; }
 
-        [Input("vaultToken")]
-        private Input<string>? _vaultToken;
-
-        /// <summary>
-        /// `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-        /// Will fallback to the value declared in Nomad provider configuration, if any.
-        /// </summary>
-        public Input<string>? VaultToken
-        {
-            get => _vaultToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _vaultToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
-
         public JobArgs()
         {
         }
@@ -319,23 +266,6 @@ namespace Pulumi.Nomad
         {
             get => _allocationIds ?? (_allocationIds = new InputList<string>());
             set => _allocationIds = value;
-        }
-
-        [Input("consulToken")]
-        private Input<string>? _consulToken;
-
-        /// <summary>
-        /// `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-        /// Will fallback to the value declared in Nomad provider configuration, if any.
-        /// </summary>
-        public Input<string>? ConsulToken
-        {
-            get => _consulToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _consulToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
         }
 
         [Input("datacenters")]
@@ -468,23 +398,6 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
-
-        [Input("vaultToken")]
-        private Input<string>? _vaultToken;
-
-        /// <summary>
-        /// `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-        /// Will fallback to the value declared in Nomad provider configuration, if any.
-        /// </summary>
-        public Input<string>? VaultToken
-        {
-            get => _vaultToken;
-            set
-            {
-                var emptySecret = Output.CreateSecret(0);
-                _vaultToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
-            }
-        }
 
         public JobState()
         {

@@ -29,8 +29,6 @@ type Provider struct {
 	CertFile pulumi.StringPtrOutput `pulumi:"certFile"`
 	// PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 	CertPem pulumi.StringPtrOutput `pulumi:"certPem"`
-	// Consul token to validate Consul Connect Service Identity policies specified in the job file.
-	ConsulToken pulumi.StringPtrOutput `pulumi:"consulToken"`
 	// HTTP basic auth configuration.
 	HttpAuth pulumi.StringPtrOutput `pulumi:"httpAuth"`
 	// A path to a PEM-encoded private key, required if certFile or certPem is specified.
@@ -41,8 +39,6 @@ type Provider struct {
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// ACL token secret for API requests.
 	SecretId pulumi.StringPtrOutput `pulumi:"secretId"`
-	// Vault token if policies are specified in the job file.
-	VaultToken pulumi.StringPtrOutput `pulumi:"vaultToken"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
@@ -55,20 +51,9 @@ func NewProvider(ctx *pulumi.Context,
 	if args.Address == nil {
 		return nil, errors.New("invalid value for required argument 'Address'")
 	}
-	if args.ConsulToken != nil {
-		args.ConsulToken = pulumi.ToSecret(args.ConsulToken).(pulumi.StringPtrInput)
-	}
 	if args.Headers != nil {
 		args.Headers = pulumi.ToSecret(args.Headers).(ProviderHeaderArrayInput)
 	}
-	if args.VaultToken != nil {
-		args.VaultToken = pulumi.ToSecret(args.VaultToken).(pulumi.StringPtrInput)
-	}
-	secrets := pulumi.AdditionalSecretOutputs([]string{
-		"consulToken",
-		"vaultToken",
-	})
-	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:nomad", name, args, &resource, opts...)
@@ -89,8 +74,6 @@ type providerArgs struct {
 	CertFile *string `pulumi:"certFile"`
 	// PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 	CertPem *string `pulumi:"certPem"`
-	// Consul token to validate Consul Connect Service Identity policies specified in the job file.
-	ConsulToken *string `pulumi:"consulToken"`
 	// The headers to send with each Nomad request.
 	Headers []ProviderHeader `pulumi:"headers"`
 	// HTTP basic auth configuration.
@@ -107,8 +90,6 @@ type providerArgs struct {
 	SecretId *string `pulumi:"secretId"`
 	// Skip TLS verification on client side.
 	SkipVerify *bool `pulumi:"skipVerify"`
-	// Vault token if policies are specified in the job file.
-	VaultToken *string `pulumi:"vaultToken"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -123,8 +104,6 @@ type ProviderArgs struct {
 	CertFile pulumi.StringPtrInput
 	// PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
 	CertPem pulumi.StringPtrInput
-	// Consul token to validate Consul Connect Service Identity policies specified in the job file.
-	ConsulToken pulumi.StringPtrInput
 	// The headers to send with each Nomad request.
 	Headers ProviderHeaderArrayInput
 	// HTTP basic auth configuration.
@@ -141,8 +120,6 @@ type ProviderArgs struct {
 	SecretId pulumi.StringPtrInput
 	// Skip TLS verification on client side.
 	SkipVerify pulumi.BoolPtrInput
-	// Vault token if policies are specified in the job file.
-	VaultToken pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -207,11 +184,6 @@ func (o ProviderOutput) CertPem() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CertPem }).(pulumi.StringPtrOutput)
 }
 
-// Consul token to validate Consul Connect Service Identity policies specified in the job file.
-func (o ProviderOutput) ConsulToken() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ConsulToken }).(pulumi.StringPtrOutput)
-}
-
 // HTTP basic auth configuration.
 func (o ProviderOutput) HttpAuth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.HttpAuth }).(pulumi.StringPtrOutput)
@@ -235,11 +207,6 @@ func (o ProviderOutput) Region() pulumi.StringPtrOutput {
 // ACL token secret for API requests.
 func (o ProviderOutput) SecretId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.SecretId }).(pulumi.StringPtrOutput)
-}
-
-// Vault token if policies are specified in the job file.
-func (o ProviderOutput) VaultToken() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.VaultToken }).(pulumi.StringPtrOutput)
 }
 
 func init() {

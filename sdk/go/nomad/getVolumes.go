@@ -54,7 +54,7 @@ type GetVolumesArgs struct {
 	NodeId *string `pulumi:"nodeId"`
 	// `(string: optional)` Plugin ID filter.
 	PluginId *string `pulumi:"pluginId"`
-	// `(string: "csi")` Volume type (currently only supports `csi`)
+	// `(string: "csi")` Volume type (one of `csi` or `host`)
 	Type *string `pulumi:"type"`
 }
 
@@ -88,7 +88,7 @@ type GetVolumesOutputArgs struct {
 	NodeId pulumi.StringPtrInput `pulumi:"nodeId"`
 	// `(string: optional)` Plugin ID filter.
 	PluginId pulumi.StringPtrInput `pulumi:"pluginId"`
-	// `(string: "csi")` Volume type (currently only supports `csi`)
+	// `(string: "csi")` Volume type (one of `csi` or `host`)
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 

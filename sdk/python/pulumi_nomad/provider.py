@@ -26,7 +26,6 @@ class ProviderArgs:
                  ca_pem: Optional[pulumi.Input[builtins.str]] = None,
                  cert_file: Optional[pulumi.Input[builtins.str]] = None,
                  cert_pem: Optional[pulumi.Input[builtins.str]] = None,
-                 consul_token: Optional[pulumi.Input[builtins.str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderHeaderArgs']]]] = None,
                  http_auth: Optional[pulumi.Input[builtins.str]] = None,
                  ignore_env_vars: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.bool]]]] = None,
@@ -34,8 +33,7 @@ class ProviderArgs:
                  key_pem: Optional[pulumi.Input[builtins.str]] = None,
                  region: Optional[pulumi.Input[builtins.str]] = None,
                  secret_id: Optional[pulumi.Input[builtins.str]] = None,
-                 skip_verify: Optional[pulumi.Input[builtins.bool]] = None,
-                 vault_token: Optional[pulumi.Input[builtins.str]] = None):
+                 skip_verify: Optional[pulumi.Input[builtins.bool]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[builtins.str] address: URL of the root of the target Nomad agent.
@@ -43,7 +41,6 @@ class ProviderArgs:
         :param pulumi.Input[builtins.str] ca_pem: PEM-encoded certificate authority used to verify the remote agent's certificate.
         :param pulumi.Input[builtins.str] cert_file: A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
         :param pulumi.Input[builtins.str] cert_pem: PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
-        :param pulumi.Input[builtins.str] consul_token: Consul token to validate Consul Connect Service Identity policies specified in the job file.
         :param pulumi.Input[Sequence[pulumi.Input['ProviderHeaderArgs']]] headers: The headers to send with each Nomad request.
         :param pulumi.Input[builtins.str] http_auth: HTTP basic auth configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.bool]]] ignore_env_vars: A set of environment variables that are ignored by the provider when configuring the Nomad API client.
@@ -52,7 +49,6 @@ class ProviderArgs:
         :param pulumi.Input[builtins.str] region: Region of the target Nomad agent.
         :param pulumi.Input[builtins.str] secret_id: ACL token secret for API requests.
         :param pulumi.Input[builtins.bool] skip_verify: Skip TLS verification on client side.
-        :param pulumi.Input[builtins.str] vault_token: Vault token if policies are specified in the job file.
         """
         pulumi.set(__self__, "address", address)
         if ca_file is not None:
@@ -63,8 +59,6 @@ class ProviderArgs:
             pulumi.set(__self__, "cert_file", cert_file)
         if cert_pem is not None:
             pulumi.set(__self__, "cert_pem", cert_pem)
-        if consul_token is not None:
-            pulumi.set(__self__, "consul_token", consul_token)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if http_auth is not None:
@@ -81,8 +75,6 @@ class ProviderArgs:
             pulumi.set(__self__, "secret_id", secret_id)
         if skip_verify is not None:
             pulumi.set(__self__, "skip_verify", skip_verify)
-        if vault_token is not None:
-            pulumi.set(__self__, "vault_token", vault_token)
 
     @property
     @pulumi.getter
@@ -143,18 +135,6 @@ class ProviderArgs:
     @cert_pem.setter
     def cert_pem(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "cert_pem", value)
-
-    @property
-    @pulumi.getter(name="consulToken")
-    def consul_token(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        Consul token to validate Consul Connect Service Identity policies specified in the job file.
-        """
-        return pulumi.get(self, "consul_token")
-
-    @consul_token.setter
-    def consul_token(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "consul_token", value)
 
     @property
     @pulumi.getter
@@ -252,18 +232,6 @@ class ProviderArgs:
     def skip_verify(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "skip_verify", value)
 
-    @property
-    @pulumi.getter(name="vaultToken")
-    def vault_token(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        Vault token if policies are specified in the job file.
-        """
-        return pulumi.get(self, "vault_token")
-
-    @vault_token.setter
-    def vault_token(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "vault_token", value)
-
 
 class Provider(pulumi.ProviderResource):
     @overload
@@ -275,7 +243,6 @@ class Provider(pulumi.ProviderResource):
                  ca_pem: Optional[pulumi.Input[builtins.str]] = None,
                  cert_file: Optional[pulumi.Input[builtins.str]] = None,
                  cert_pem: Optional[pulumi.Input[builtins.str]] = None,
-                 consul_token: Optional[pulumi.Input[builtins.str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]]] = None,
                  http_auth: Optional[pulumi.Input[builtins.str]] = None,
                  ignore_env_vars: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.bool]]]] = None,
@@ -284,7 +251,6 @@ class Provider(pulumi.ProviderResource):
                  region: Optional[pulumi.Input[builtins.str]] = None,
                  secret_id: Optional[pulumi.Input[builtins.str]] = None,
                  skip_verify: Optional[pulumi.Input[builtins.bool]] = None,
-                 vault_token: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         """
         The provider type for the nomad package. By default, resources use package-wide configuration
@@ -299,7 +265,6 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[builtins.str] ca_pem: PEM-encoded certificate authority used to verify the remote agent's certificate.
         :param pulumi.Input[builtins.str] cert_file: A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
         :param pulumi.Input[builtins.str] cert_pem: PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
-        :param pulumi.Input[builtins.str] consul_token: Consul token to validate Consul Connect Service Identity policies specified in the job file.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]] headers: The headers to send with each Nomad request.
         :param pulumi.Input[builtins.str] http_auth: HTTP basic auth configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.bool]]] ignore_env_vars: A set of environment variables that are ignored by the provider when configuring the Nomad API client.
@@ -308,7 +273,6 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[builtins.str] region: Region of the target Nomad agent.
         :param pulumi.Input[builtins.str] secret_id: ACL token secret for API requests.
         :param pulumi.Input[builtins.bool] skip_verify: Skip TLS verification on client side.
-        :param pulumi.Input[builtins.str] vault_token: Vault token if policies are specified in the job file.
         """
         ...
     @overload
@@ -342,7 +306,6 @@ class Provider(pulumi.ProviderResource):
                  ca_pem: Optional[pulumi.Input[builtins.str]] = None,
                  cert_file: Optional[pulumi.Input[builtins.str]] = None,
                  cert_pem: Optional[pulumi.Input[builtins.str]] = None,
-                 consul_token: Optional[pulumi.Input[builtins.str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]]] = None,
                  http_auth: Optional[pulumi.Input[builtins.str]] = None,
                  ignore_env_vars: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.bool]]]] = None,
@@ -351,7 +314,6 @@ class Provider(pulumi.ProviderResource):
                  region: Optional[pulumi.Input[builtins.str]] = None,
                  secret_id: Optional[pulumi.Input[builtins.str]] = None,
                  skip_verify: Optional[pulumi.Input[builtins.bool]] = None,
-                 vault_token: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -368,7 +330,6 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["ca_pem"] = ca_pem
             __props__.__dict__["cert_file"] = cert_file
             __props__.__dict__["cert_pem"] = cert_pem
-            __props__.__dict__["consul_token"] = None if consul_token is None else pulumi.Output.secret(consul_token)
             __props__.__dict__["headers"] = pulumi.Output.secret(headers).apply(pulumi.runtime.to_json) if headers is not None else None
             __props__.__dict__["http_auth"] = http_auth
             __props__.__dict__["ignore_env_vars"] = pulumi.Output.from_input(ignore_env_vars).apply(pulumi.runtime.to_json) if ignore_env_vars is not None else None
@@ -377,9 +338,6 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["secret_id"] = secret_id
             __props__.__dict__["skip_verify"] = pulumi.Output.from_input(skip_verify).apply(pulumi.runtime.to_json) if skip_verify is not None else None
-            __props__.__dict__["vault_token"] = None if vault_token is None else pulumi.Output.secret(vault_token)
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["consulToken", "vaultToken"])
-        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'nomad',
             resource_name,
@@ -427,14 +385,6 @@ class Provider(pulumi.ProviderResource):
         return pulumi.get(self, "cert_pem")
 
     @property
-    @pulumi.getter(name="consulToken")
-    def consul_token(self) -> pulumi.Output[Optional[builtins.str]]:
-        """
-        Consul token to validate Consul Connect Service Identity policies specified in the job file.
-        """
-        return pulumi.get(self, "consul_token")
-
-    @property
     @pulumi.getter(name="httpAuth")
     def http_auth(self) -> pulumi.Output[Optional[builtins.str]]:
         """
@@ -473,12 +423,4 @@ class Provider(pulumi.ProviderResource):
         ACL token secret for API requests.
         """
         return pulumi.get(self, "secret_id")
-
-    @property
-    @pulumi.getter(name="vaultToken")
-    def vault_token(self) -> pulumi.Output[Optional[builtins.str]]:
-        """
-        Vault token if policies are specified in the job file.
-        """
-        return pulumi.get(self, "vault_token")
 

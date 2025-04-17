@@ -104,6 +104,21 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.cloneId);
     }
 
+    /**
+     * The volume context provided by the storage provider
+     * 
+     */
+    @Import(name="context")
+    private @Nullable Output<Map<String,String>> context;
+
+    /**
+     * @return The volume context provided by the storage provider
+     * 
+     */
+    public Optional<Output<Map<String,String>>> context() {
+        return Optional.ofNullable(this.context);
+    }
+
     @Import(name="controllerRequired")
     private @Nullable Output<Boolean> controllerRequired;
 
@@ -327,6 +342,7 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
         this.capacityMin = $.capacityMin;
         this.capacityMinBytes = $.capacityMinBytes;
         this.cloneId = $.cloneId;
+        this.context = $.context;
         this.controllerRequired = $.controllerRequired;
         this.controllersExpected = $.controllersExpected;
         this.controllersHealthy = $.controllersHealthy;
@@ -485,6 +501,27 @@ public final class CsiVolumeState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder cloneId(String cloneId) {
             return cloneId(Output.of(cloneId));
+        }
+
+        /**
+         * @param context The volume context provided by the storage provider
+         * 
+         * @return builder
+         * 
+         */
+        public Builder context(@Nullable Output<Map<String,String>> context) {
+            $.context = context;
+            return this;
+        }
+
+        /**
+         * @param context The volume context provided by the storage provider
+         * 
+         * @return builder
+         * 
+         */
+        public Builder context(Map<String,String> context) {
+            return context(Output.of(context));
         }
 
         public Builder controllerRequired(@Nullable Output<Boolean> controllerRequired) {

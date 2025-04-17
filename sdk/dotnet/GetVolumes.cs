@@ -97,7 +97,7 @@ namespace Pulumi.Nomad
         public string? PluginId { get; set; }
 
         /// <summary>
-        /// `(string: "csi")` Volume type (currently only supports `csi`)
+        /// `(string: "csi")` Volume type (one of `csi` or `host`)
         /// </summary>
         [Input("type")]
         public string? Type { get; set; }
@@ -129,7 +129,7 @@ namespace Pulumi.Nomad
         public Input<string>? PluginId { get; set; }
 
         /// <summary>
-        /// `(string: "csi")` Volume type (currently only supports `csi`)
+        /// `(string: "csi")` Volume type (one of `csi` or `host`)
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

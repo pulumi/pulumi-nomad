@@ -18,6 +18,8 @@ from . import outputs
 
 __all__ = [
     'AclAuthMethodConfig',
+    'AclAuthMethodConfigOidcClientAssertion',
+    'AclAuthMethodConfigOidcClientAssertionPrivateKey',
     'AclPolicyJobAcl',
     'AclRolePolicy',
     'AclTokenRole',
@@ -35,6 +37,10 @@ __all__ = [
     'CsiVolumeTopologyRequestPreferredTopology',
     'CsiVolumeTopologyRequestRequired',
     'CsiVolumeTopologyRequestRequiredTopology',
+    'DynamicHostVolumeCapability',
+    'DynamicHostVolumeConstraint',
+    'DynamicHostVolumeRegistrationCapability',
+    'DynamicHostVolumeRegistrationConstraint',
     'ExternalVolumeCapability',
     'ExternalVolumeMountOptions',
     'ExternalVolumeTopology',
@@ -67,6 +73,8 @@ __all__ = [
     'GetAclTokensAclTokenResult',
     'GetAclTokensAclTokenRoleResult',
     'GetAllocationsAllocationResult',
+    'GetDynamicHostVolumeCapabilityResult',
+    'GetDynamicHostVolumeConstraintResult',
     'GetJobConstraintResult',
     'GetJobPeriodicConfigResult',
     'GetJobTaskGroupResult',
@@ -112,6 +120,8 @@ class AclAuthMethodConfig(dict):
             suggest = "list_claim_mappings"
         elif key == "notBeforeLeeway":
             suggest = "not_before_leeway"
+        elif key == "oidcClientAssertion":
+            suggest = "oidc_client_assertion"
         elif key == "oidcClientId":
             suggest = "oidc_client_id"
         elif key == "oidcClientSecret":
@@ -120,10 +130,14 @@ class AclAuthMethodConfig(dict):
             suggest = "oidc_disable_userinfo"
         elif key == "oidcDiscoveryUrl":
             suggest = "oidc_discovery_url"
+        elif key == "oidcEnablePkce":
+            suggest = "oidc_enable_pkce"
         elif key == "oidcScopes":
             suggest = "oidc_scopes"
         elif key == "signingAlgs":
             suggest = "signing_algs"
+        elif key == "verboseLogging":
+            suggest = "verbose_logging"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AclAuthMethodConfig. Access the value via the '{suggest}' property getter instead.")
@@ -149,12 +163,15 @@ class AclAuthMethodConfig(dict):
                  jwt_validation_pub_keys: Optional[Sequence[builtins.str]] = None,
                  list_claim_mappings: Optional[Mapping[str, builtins.str]] = None,
                  not_before_leeway: Optional[builtins.str] = None,
+                 oidc_client_assertion: Optional['outputs.AclAuthMethodConfigOidcClientAssertion'] = None,
                  oidc_client_id: Optional[builtins.str] = None,
                  oidc_client_secret: Optional[builtins.str] = None,
                  oidc_disable_userinfo: Optional[builtins.bool] = None,
                  oidc_discovery_url: Optional[builtins.str] = None,
+                 oidc_enable_pkce: Optional[builtins.bool] = None,
                  oidc_scopes: Optional[Sequence[builtins.str]] = None,
-                 signing_algs: Optional[Sequence[builtins.str]] = None):
+                 signing_algs: Optional[Sequence[builtins.str]] = None,
+                 verbose_logging: Optional[builtins.bool] = None):
         """
         :param Sequence[builtins.str] allowed_redirect_uris: `([]string: <optional>)` - A list of allowed values
                that can be used for the redirect URI.
@@ -178,6 +195,10 @@ class AclAuthMethodConfig(dict):
         :param Mapping[str, builtins.str] list_claim_mappings: Mappings of list claims (key) that will be copied to a metadata field (value).
         :param builtins.str not_before_leeway: `(string: <optional>)` - Duration of leeway when validating
                not before values of a token in the form of a time duration such as "5m" or "1h".
+        :param 'AclAuthMethodConfigOidcClientAssertionArgs' oidc_client_assertion: `(OIDCClientAssertion: <optional>)` - Optionally
+               send a signed JWT ("[private key jwt][]") as a client assertion to the OIDC
+               provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+               more.
         :param builtins.str oidc_client_id: `(string: <optional>)` - The OAuth Client ID configured
                with the OIDC provider.
         :param builtins.str oidc_client_secret: `(string: <optional>)` - The OAuth Client Secret
@@ -188,9 +209,13 @@ class AclAuthMethodConfig(dict):
                additional claims from the `UserInfo` endpoint.
         :param builtins.str oidc_discovery_url: `(string: <optional>)` - The OIDC Discovery URL,
                without any .well-known component (base path).
+        :param builtins.bool oidc_enable_pkce: `(bool: false)` - When set to `true`, Nomad will include
+               [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+               you may still need to enable it in your OIDC provider.
         :param Sequence[builtins.str] oidc_scopes: `([]string: <optional>)` - List of OIDC scopes.
         :param Sequence[builtins.str] signing_algs: `([]string: <optional>)` - A list of supported signing
                algorithms.
+        :param builtins.bool verbose_logging: Enable OIDC verbose logging on the Nomad server.
         """
         if allowed_redirect_uris is not None:
             pulumi.set(__self__, "allowed_redirect_uris", allowed_redirect_uris)
@@ -216,6 +241,8 @@ class AclAuthMethodConfig(dict):
             pulumi.set(__self__, "list_claim_mappings", list_claim_mappings)
         if not_before_leeway is not None:
             pulumi.set(__self__, "not_before_leeway", not_before_leeway)
+        if oidc_client_assertion is not None:
+            pulumi.set(__self__, "oidc_client_assertion", oidc_client_assertion)
         if oidc_client_id is not None:
             pulumi.set(__self__, "oidc_client_id", oidc_client_id)
         if oidc_client_secret is not None:
@@ -224,10 +251,14 @@ class AclAuthMethodConfig(dict):
             pulumi.set(__self__, "oidc_disable_userinfo", oidc_disable_userinfo)
         if oidc_discovery_url is not None:
             pulumi.set(__self__, "oidc_discovery_url", oidc_discovery_url)
+        if oidc_enable_pkce is not None:
+            pulumi.set(__self__, "oidc_enable_pkce", oidc_enable_pkce)
         if oidc_scopes is not None:
             pulumi.set(__self__, "oidc_scopes", oidc_scopes)
         if signing_algs is not None:
             pulumi.set(__self__, "signing_algs", signing_algs)
+        if verbose_logging is not None:
+            pulumi.set(__self__, "verbose_logging", verbose_logging)
 
     @property
     @pulumi.getter(name="allowedRedirectUris")
@@ -336,6 +367,17 @@ class AclAuthMethodConfig(dict):
         return pulumi.get(self, "not_before_leeway")
 
     @property
+    @pulumi.getter(name="oidcClientAssertion")
+    def oidc_client_assertion(self) -> Optional['outputs.AclAuthMethodConfigOidcClientAssertion']:
+        """
+        `(OIDCClientAssertion: <optional>)` - Optionally
+        send a signed JWT ("[private key jwt][]") as a client assertion to the OIDC
+        provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+        more.
+        """
+        return pulumi.get(self, "oidc_client_assertion")
+
+    @property
     @pulumi.getter(name="oidcClientId")
     def oidc_client_id(self) -> Optional[builtins.str]:
         """
@@ -374,6 +416,16 @@ class AclAuthMethodConfig(dict):
         return pulumi.get(self, "oidc_discovery_url")
 
     @property
+    @pulumi.getter(name="oidcEnablePkce")
+    def oidc_enable_pkce(self) -> Optional[builtins.bool]:
+        """
+        `(bool: false)` - When set to `true`, Nomad will include
+        [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+        you may still need to enable it in your OIDC provider.
+        """
+        return pulumi.get(self, "oidc_enable_pkce")
+
+    @property
     @pulumi.getter(name="oidcScopes")
     def oidc_scopes(self) -> Optional[Sequence[builtins.str]]:
         """
@@ -389,6 +441,271 @@ class AclAuthMethodConfig(dict):
         algorithms.
         """
         return pulumi.get(self, "signing_algs")
+
+    @property
+    @pulumi.getter(name="verboseLogging")
+    def verbose_logging(self) -> Optional[builtins.bool]:
+        """
+        Enable OIDC verbose logging on the Nomad server.
+        """
+        return pulumi.get(self, "verbose_logging")
+
+
+@pulumi.output_type
+class AclAuthMethodConfigOidcClientAssertion(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keySource":
+            suggest = "key_source"
+        elif key == "extraHeaders":
+            suggest = "extra_headers"
+        elif key == "keyAlgorithm":
+            suggest = "key_algorithm"
+        elif key == "privateKey":
+            suggest = "private_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AclAuthMethodConfigOidcClientAssertion. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AclAuthMethodConfigOidcClientAssertion.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AclAuthMethodConfigOidcClientAssertion.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 key_source: builtins.str,
+                 audiences: Optional[Sequence[builtins.str]] = None,
+                 extra_headers: Optional[Mapping[str, builtins.str]] = None,
+                 key_algorithm: Optional[builtins.str] = None,
+                 private_key: Optional['outputs.AclAuthMethodConfigOidcClientAssertionPrivateKey'] = None):
+        """
+        :param builtins.str key_source: `(string: <required>)` - Specifies where to get the private
+               key to sign the JWT.
+               Available sources:
+               - "nomad": Use current active key in Nomad's keyring
+               - "private_key": Use key material in the `private_key` field
+               - "client_secret": Use the `oidc_client_secret` as an HMAC key
+        :param Sequence[builtins.str] audiences: `([]string: optional)` - Who processes the assertion.
+               Defaults to the auth method's `oidc_discovery_url`.
+        :param Mapping[str, builtins.str] extra_headers: `(map[string]string: optional)` - Add to the JWT headers,
+               alongside "kid" and "type". Setting the "kid" header here is not allowed;
+               use `private_key.key_id`.
+        :param builtins.str key_algorithm: `(string: <optional>)` is the key's algorithm.
+               Its default values are based on the `key_source`:
+               - "nomad": "RS256"; this is from Nomad's keyring and must not be changed
+               - "private_key": "RS256"; must be RS256, RS384, or RS512
+               - "client_secret": "HS256"; must be HS256, HS384, or HS512
+        :param 'AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs' private_key: `(OIDCClientAssertionKey: <optional>)` - External key
+               to sign the JWT. `key_source` must be "private_key" to enable this.
+        """
+        pulumi.set(__self__, "key_source", key_source)
+        if audiences is not None:
+            pulumi.set(__self__, "audiences", audiences)
+        if extra_headers is not None:
+            pulumi.set(__self__, "extra_headers", extra_headers)
+        if key_algorithm is not None:
+            pulumi.set(__self__, "key_algorithm", key_algorithm)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+
+    @property
+    @pulumi.getter(name="keySource")
+    def key_source(self) -> builtins.str:
+        """
+        `(string: <required>)` - Specifies where to get the private
+        key to sign the JWT.
+        Available sources:
+        - "nomad": Use current active key in Nomad's keyring
+        - "private_key": Use key material in the `private_key` field
+        - "client_secret": Use the `oidc_client_secret` as an HMAC key
+        """
+        return pulumi.get(self, "key_source")
+
+    @property
+    @pulumi.getter
+    def audiences(self) -> Optional[Sequence[builtins.str]]:
+        """
+        `([]string: optional)` - Who processes the assertion.
+        Defaults to the auth method's `oidc_discovery_url`.
+        """
+        return pulumi.get(self, "audiences")
+
+    @property
+    @pulumi.getter(name="extraHeaders")
+    def extra_headers(self) -> Optional[Mapping[str, builtins.str]]:
+        """
+        `(map[string]string: optional)` - Add to the JWT headers,
+        alongside "kid" and "type". Setting the "kid" header here is not allowed;
+        use `private_key.key_id`.
+        """
+        return pulumi.get(self, "extra_headers")
+
+    @property
+    @pulumi.getter(name="keyAlgorithm")
+    def key_algorithm(self) -> Optional[builtins.str]:
+        """
+        `(string: <optional>)` is the key's algorithm.
+        Its default values are based on the `key_source`:
+        - "nomad": "RS256"; this is from Nomad's keyring and must not be changed
+        - "private_key": "RS256"; must be RS256, RS384, or RS512
+        - "client_secret": "HS256"; must be HS256, HS384, or HS512
+        """
+        return pulumi.get(self, "key_algorithm")
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional['outputs.AclAuthMethodConfigOidcClientAssertionPrivateKey']:
+        """
+        `(OIDCClientAssertionKey: <optional>)` - External key
+        to sign the JWT. `key_source` must be "private_key" to enable this.
+        """
+        return pulumi.get(self, "private_key")
+
+
+@pulumi.output_type
+class AclAuthMethodConfigOidcClientAssertionPrivateKey(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keyId":
+            suggest = "key_id"
+        elif key == "keyIdHeader":
+            suggest = "key_id_header"
+        elif key == "pemCert":
+            suggest = "pem_cert"
+        elif key == "pemCertFile":
+            suggest = "pem_cert_file"
+        elif key == "pemKey":
+            suggest = "pem_key"
+        elif key == "pemKeyFile":
+            suggest = "pem_key_file"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AclAuthMethodConfigOidcClientAssertionPrivateKey. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AclAuthMethodConfigOidcClientAssertionPrivateKey.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AclAuthMethodConfigOidcClientAssertionPrivateKey.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 key_id: Optional[builtins.str] = None,
+                 key_id_header: Optional[builtins.str] = None,
+                 pem_cert: Optional[builtins.str] = None,
+                 pem_cert_file: Optional[builtins.str] = None,
+                 pem_key: Optional[builtins.str] = None,
+                 pem_key_file: Optional[builtins.str] = None):
+        """
+        :param builtins.str key_id: `(string: optional)` - Becomes the JWT's "kid" header.
+               Mutually exclusive with `pem_cert` and `pem_cert_file`.
+               Allowed `key_id_header` values: "kid" (the default)
+        :param builtins.str key_id_header: `(string: optional)` - Which header the provider uses
+               to find the public key to verify the signed JWT.
+               The default and allowed values depend on whether you set `key_id`,
+               `pem_cert`, or `pem_cert_file`. You must set exactly one of those
+               options, so refer to them for their requirements.
+        :param builtins.str pem_cert: `(string: optional)` - An x509 certificate, signed by the
+               private key or a CA, in pem format. Nomad uses this certificate to
+               derive an [x5t#S256][] (or [x5t][]) key_id.
+               Mutually exclusive with `pem_cert_file` and `key_id`.
+               Allowed `key_id_header` values: "x5t", "x5t#S256" (default "x5t#S256")
+        :param builtins.str pem_cert_file: `(string: optional)` - An absolute path to an x509
+               certificate on Nomad servers' disk, signed by the private key or a CA,
+               in pem format.
+               Nomad uses this certificate to derive an [x5t#S256][] (or [x5t][])
+               header. Mutually exclusive with `pem_cert` and key_id.
+               Allowed `key_id_header` values: "x5t", "x5t#S256" (default "x5t#S256")
+        :param builtins.str pem_key: `(string: <optional>)` - An RSA private key, in pem format.
+               It is used to sign the JWT. Mutually exclusive with `pem_key`.
+        :param builtins.str pem_key_file: `(string: optional)` - An absolute path to a private key
+               on Nomad servers' disk, in pem format. It is used to sign the JWT.
+               Mutually exclusive with `pem_key_file`.
+        """
+        if key_id is not None:
+            pulumi.set(__self__, "key_id", key_id)
+        if key_id_header is not None:
+            pulumi.set(__self__, "key_id_header", key_id_header)
+        if pem_cert is not None:
+            pulumi.set(__self__, "pem_cert", pem_cert)
+        if pem_cert_file is not None:
+            pulumi.set(__self__, "pem_cert_file", pem_cert_file)
+        if pem_key is not None:
+            pulumi.set(__self__, "pem_key", pem_key)
+        if pem_key_file is not None:
+            pulumi.set(__self__, "pem_key_file", pem_key_file)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> Optional[builtins.str]:
+        """
+        `(string: optional)` - Becomes the JWT's "kid" header.
+        Mutually exclusive with `pem_cert` and `pem_cert_file`.
+        Allowed `key_id_header` values: "kid" (the default)
+        """
+        return pulumi.get(self, "key_id")
+
+    @property
+    @pulumi.getter(name="keyIdHeader")
+    def key_id_header(self) -> Optional[builtins.str]:
+        """
+        `(string: optional)` - Which header the provider uses
+        to find the public key to verify the signed JWT.
+        The default and allowed values depend on whether you set `key_id`,
+        `pem_cert`, or `pem_cert_file`. You must set exactly one of those
+        options, so refer to them for their requirements.
+        """
+        return pulumi.get(self, "key_id_header")
+
+    @property
+    @pulumi.getter(name="pemCert")
+    def pem_cert(self) -> Optional[builtins.str]:
+        """
+        `(string: optional)` - An x509 certificate, signed by the
+        private key or a CA, in pem format. Nomad uses this certificate to
+        derive an [x5t#S256][] (or [x5t][]) key_id.
+        Mutually exclusive with `pem_cert_file` and `key_id`.
+        Allowed `key_id_header` values: "x5t", "x5t#S256" (default "x5t#S256")
+        """
+        return pulumi.get(self, "pem_cert")
+
+    @property
+    @pulumi.getter(name="pemCertFile")
+    def pem_cert_file(self) -> Optional[builtins.str]:
+        """
+        `(string: optional)` - An absolute path to an x509
+        certificate on Nomad servers' disk, signed by the private key or a CA,
+        in pem format.
+        Nomad uses this certificate to derive an [x5t#S256][] (or [x5t][])
+        header. Mutually exclusive with `pem_cert` and key_id.
+        Allowed `key_id_header` values: "x5t", "x5t#S256" (default "x5t#S256")
+        """
+        return pulumi.get(self, "pem_cert_file")
+
+    @property
+    @pulumi.getter(name="pemKey")
+    def pem_key(self) -> Optional[builtins.str]:
+        """
+        `(string: <optional>)` - An RSA private key, in pem format.
+        It is used to sign the JWT. Mutually exclusive with `pem_key`.
+        """
+        return pulumi.get(self, "pem_key")
+
+    @property
+    @pulumi.getter(name="pemKeyFile")
+    def pem_key_file(self) -> Optional[builtins.str]:
+        """
+        `(string: optional)` - An absolute path to a private key
+        on Nomad servers' disk, in pem format. It is used to sign the JWT.
+        Mutually exclusive with `pem_key_file`.
+        """
+        return pulumi.get(self, "pem_key_file")
 
 
 @pulumi.output_type
@@ -940,6 +1257,194 @@ class CsiVolumeTopologyRequestRequiredTopology(dict):
         Define the attributes for the topology request.
         """
         return pulumi.get(self, "segments")
+
+
+@pulumi.output_type
+class DynamicHostVolumeCapability(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessMode":
+            suggest = "access_mode"
+        elif key == "attachmentMode":
+            suggest = "attachment_mode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DynamicHostVolumeCapability. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DynamicHostVolumeCapability.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DynamicHostVolumeCapability.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 access_mode: builtins.str,
+                 attachment_mode: builtins.str):
+        """
+        :param builtins.str access_mode: `(string)` - How the volume can be mounted by
+               allocations. Refer to the [`access_mode`][] documentation for details.
+        :param builtins.str attachment_mode: `(string)` - The storage API that will be used by the
+               volume. Refer to the [`attachment_mode`][] documentation.
+        """
+        pulumi.set(__self__, "access_mode", access_mode)
+        pulumi.set(__self__, "attachment_mode", attachment_mode)
+
+    @property
+    @pulumi.getter(name="accessMode")
+    def access_mode(self) -> builtins.str:
+        """
+        `(string)` - How the volume can be mounted by
+        allocations. Refer to the [`access_mode`][] documentation for details.
+        """
+        return pulumi.get(self, "access_mode")
+
+    @property
+    @pulumi.getter(name="attachmentMode")
+    def attachment_mode(self) -> builtins.str:
+        """
+        `(string)` - The storage API that will be used by the
+        volume. Refer to the [`attachment_mode`][] documentation.
+        """
+        return pulumi.get(self, "attachment_mode")
+
+
+@pulumi.output_type
+class DynamicHostVolumeConstraint(dict):
+    def __init__(__self__, *,
+                 attribute: builtins.str,
+                 operator: Optional[builtins.str] = None,
+                 value: Optional[builtins.str] = None):
+        """
+        :param builtins.str attribute: `(string)` - The [node attribute][] to check for the constraint.
+        :param builtins.str operator: `(string)`- The operator to use in the comparison.
+        :param builtins.str value: `(string)` - The value of the attribute to compare against.
+        """
+        pulumi.set(__self__, "attribute", attribute)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def attribute(self) -> builtins.str:
+        """
+        `(string)` - The [node attribute][] to check for the constraint.
+        """
+        return pulumi.get(self, "attribute")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[builtins.str]:
+        """
+        `(string)`- The operator to use in the comparison.
+        """
+        return pulumi.get(self, "operator")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[builtins.str]:
+        """
+        `(string)` - The value of the attribute to compare against.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class DynamicHostVolumeRegistrationCapability(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessMode":
+            suggest = "access_mode"
+        elif key == "attachmentMode":
+            suggest = "attachment_mode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DynamicHostVolumeRegistrationCapability. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DynamicHostVolumeRegistrationCapability.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DynamicHostVolumeRegistrationCapability.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 access_mode: builtins.str,
+                 attachment_mode: builtins.str):
+        """
+        :param builtins.str access_mode: `(string)` - How the volume can be mounted by
+               allocations. Refer to the [`access_mode`][] documentation for details.
+        :param builtins.str attachment_mode: `(string)` - The storage API that will be used by the
+               volume. Refer to the [`attachment_mode`][] documentation.
+        """
+        pulumi.set(__self__, "access_mode", access_mode)
+        pulumi.set(__self__, "attachment_mode", attachment_mode)
+
+    @property
+    @pulumi.getter(name="accessMode")
+    def access_mode(self) -> builtins.str:
+        """
+        `(string)` - How the volume can be mounted by
+        allocations. Refer to the [`access_mode`][] documentation for details.
+        """
+        return pulumi.get(self, "access_mode")
+
+    @property
+    @pulumi.getter(name="attachmentMode")
+    def attachment_mode(self) -> builtins.str:
+        """
+        `(string)` - The storage API that will be used by the
+        volume. Refer to the [`attachment_mode`][] documentation.
+        """
+        return pulumi.get(self, "attachment_mode")
+
+
+@pulumi.output_type
+class DynamicHostVolumeRegistrationConstraint(dict):
+    def __init__(__self__, *,
+                 attribute: builtins.str,
+                 operator: Optional[builtins.str] = None,
+                 value: Optional[builtins.str] = None):
+        """
+        :param builtins.str attribute: An attribute to check to constrain volume placement
+        :param builtins.str operator: The operator to use for comparison
+        :param builtins.str value: The requested value of the attribute
+        """
+        pulumi.set(__self__, "attribute", attribute)
+        if operator is not None:
+            pulumi.set(__self__, "operator", operator)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def attribute(self) -> builtins.str:
+        """
+        An attribute to check to constrain volume placement
+        """
+        return pulumi.get(self, "attribute")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> Optional[builtins.str]:
+        """
+        The operator to use for comparison
+        """
+        return pulumi.get(self, "operator")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[builtins.str]:
+        """
+        The requested value of the attribute
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -2377,6 +2882,79 @@ class GetAllocationsAllocationResult(dict):
         `(string)` - The job task group related to the allocation.
         """
         return pulumi.get(self, "task_group")
+
+
+@pulumi.output_type
+class GetDynamicHostVolumeCapabilityResult(dict):
+    def __init__(__self__, *,
+                 access_mode: builtins.str,
+                 attachment_mode: builtins.str):
+        """
+        :param builtins.str access_mode: `(string)` - How the volume can be mounted by
+               allocations. Refer to the [`access_mode`][] documentation for details.
+        :param builtins.str attachment_mode: `(string)` - The storage API that will be used by the
+               volume. Refer to the [`attachment_mode`][] documentation.
+        """
+        pulumi.set(__self__, "access_mode", access_mode)
+        pulumi.set(__self__, "attachment_mode", attachment_mode)
+
+    @property
+    @pulumi.getter(name="accessMode")
+    def access_mode(self) -> builtins.str:
+        """
+        `(string)` - How the volume can be mounted by
+        allocations. Refer to the [`access_mode`][] documentation for details.
+        """
+        return pulumi.get(self, "access_mode")
+
+    @property
+    @pulumi.getter(name="attachmentMode")
+    def attachment_mode(self) -> builtins.str:
+        """
+        `(string)` - The storage API that will be used by the
+        volume. Refer to the [`attachment_mode`][] documentation.
+        """
+        return pulumi.get(self, "attachment_mode")
+
+
+@pulumi.output_type
+class GetDynamicHostVolumeConstraintResult(dict):
+    def __init__(__self__, *,
+                 attribute: builtins.str,
+                 operator: builtins.str,
+                 value: builtins.str):
+        """
+        :param builtins.str attribute: `(string)` - The [node attribute][] to check for the constraint.
+        :param builtins.str operator: `(string)`- The operator to use in the comparison.
+        :param builtins.str value: `(string)` - The value of the attribute to compare against.
+        """
+        pulumi.set(__self__, "attribute", attribute)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def attribute(self) -> builtins.str:
+        """
+        `(string)` - The [node attribute][] to check for the constraint.
+        """
+        return pulumi.get(self, "attribute")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> builtins.str:
+        """
+        `(string)`- The operator to use in the comparison.
+        """
+        return pulumi.get(self, "operator")
+
+    @property
+    @pulumi.getter
+    def value(self) -> builtins.str:
+        """
+        `(string)` - The value of the attribute to compare against.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

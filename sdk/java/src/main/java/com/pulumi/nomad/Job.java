@@ -39,22 +39,6 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.allocationIds;
     }
     /**
-     * `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    @Export(name="consulToken", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> consulToken;
-
-    /**
-     * @return `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    public Output<Optional<String>> consulToken() {
-        return Codegen.optional(this.consulToken);
-    }
-    /**
      * The target datacenters for the job, as derived from the jobspec.
      * 
      */
@@ -336,22 +320,6 @@ public class Job extends com.pulumi.resources.CustomResource {
     public Output<String> type() {
         return this.type;
     }
-    /**
-     * `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    @Export(name="vaultToken", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> vaultToken;
-
-    /**
-     * @return `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    public Output<Optional<String>> vaultToken() {
-        return Codegen.optional(this.vaultToken);
-    }
 
     /**
      *
@@ -392,10 +360,6 @@ public class Job extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
-            .additionalSecretOutputs(List.of(
-                "consulToken",
-                "vaultToken"
-            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

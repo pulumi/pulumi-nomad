@@ -242,6 +242,7 @@ class _CsiVolumeState:
                  capacity_min: Optional[pulumi.Input[builtins.str]] = None,
                  capacity_min_bytes: Optional[pulumi.Input[builtins.int]] = None,
                  clone_id: Optional[pulumi.Input[builtins.str]] = None,
+                 context: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  controller_required: Optional[pulumi.Input[builtins.bool]] = None,
                  controllers_expected: Optional[pulumi.Input[builtins.int]] = None,
                  controllers_healthy: Optional[pulumi.Input[builtins.int]] = None,
@@ -267,6 +268,7 @@ class _CsiVolumeState:
         :param pulumi.Input[builtins.str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[builtins.str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[builtins.str] clone_id: `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] context: The volume context provided by the storage provider
         :param pulumi.Input[builtins.str] external_id: The ID of the physical volume from the storage provider.
         :param pulumi.Input['CsiVolumeMountOptionsArgs'] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[builtins.str] name: `(string: <required>)` - The display name for the volume.
@@ -292,6 +294,8 @@ class _CsiVolumeState:
             pulumi.set(__self__, "capacity_min_bytes", capacity_min_bytes)
         if clone_id is not None:
             pulumi.set(__self__, "clone_id", clone_id)
+        if context is not None:
+            pulumi.set(__self__, "context", context)
         if controller_required is not None:
             pulumi.set(__self__, "controller_required", controller_required)
         if controllers_expected is not None:
@@ -405,6 +409,18 @@ class _CsiVolumeState:
     @clone_id.setter
     def clone_id(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "clone_id", value)
+
+    @property
+    @pulumi.getter
+    def context(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
+        """
+        The volume context provided by the storage provider
+        """
+        return pulumi.get(self, "context")
+
+    @context.setter
+    def context(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "context", value)
 
     @property
     @pulumi.getter(name="controllerRequired")
@@ -712,6 +728,7 @@ class CsiVolume(pulumi.CustomResource):
             __props__.__dict__["capacity"] = None
             __props__.__dict__["capacity_max_bytes"] = None
             __props__.__dict__["capacity_min_bytes"] = None
+            __props__.__dict__["context"] = None
             __props__.__dict__["controller_required"] = None
             __props__.__dict__["controllers_expected"] = None
             __props__.__dict__["controllers_healthy"] = None
@@ -741,6 +758,7 @@ class CsiVolume(pulumi.CustomResource):
             capacity_min: Optional[pulumi.Input[builtins.str]] = None,
             capacity_min_bytes: Optional[pulumi.Input[builtins.int]] = None,
             clone_id: Optional[pulumi.Input[builtins.str]] = None,
+            context: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
             controller_required: Optional[pulumi.Input[builtins.bool]] = None,
             controllers_expected: Optional[pulumi.Input[builtins.int]] = None,
             controllers_healthy: Optional[pulumi.Input[builtins.int]] = None,
@@ -771,6 +789,7 @@ class CsiVolume(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[builtins.str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[builtins.str] clone_id: `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] context: The volume context provided by the storage provider
         :param pulumi.Input[builtins.str] external_id: The ID of the physical volume from the storage provider.
         :param pulumi.Input[Union['CsiVolumeMountOptionsArgs', 'CsiVolumeMountOptionsArgsDict']] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[builtins.str] name: `(string: <required>)` - The display name for the volume.
@@ -793,6 +812,7 @@ class CsiVolume(pulumi.CustomResource):
         __props__.__dict__["capacity_min"] = capacity_min
         __props__.__dict__["capacity_min_bytes"] = capacity_min_bytes
         __props__.__dict__["clone_id"] = clone_id
+        __props__.__dict__["context"] = context
         __props__.__dict__["controller_required"] = controller_required
         __props__.__dict__["controllers_expected"] = controllers_expected
         __props__.__dict__["controllers_healthy"] = controllers_healthy
@@ -860,6 +880,14 @@ class CsiVolume(pulumi.CustomResource):
         `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
         """
         return pulumi.get(self, "clone_id")
+
+    @property
+    @pulumi.getter
+    def context(self) -> pulumi.Output[Mapping[str, builtins.str]]:
+        """
+        The volume context provided by the storage provider
+        """
+        return pulumi.get(self, "context")
 
     @property
     @pulumi.getter(name="controllerRequired")

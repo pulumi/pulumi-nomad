@@ -40,6 +40,16 @@ export type CsiVolumeRegistration = import("./csiVolumeRegistration").CsiVolumeR
 export const CsiVolumeRegistration: typeof import("./csiVolumeRegistration").CsiVolumeRegistration = null as any;
 utilities.lazyLoad(exports, ["CsiVolumeRegistration"], () => require("./csiVolumeRegistration"));
 
+export { DynamicHostVolumeArgs, DynamicHostVolumeState } from "./dynamicHostVolume";
+export type DynamicHostVolume = import("./dynamicHostVolume").DynamicHostVolume;
+export const DynamicHostVolume: typeof import("./dynamicHostVolume").DynamicHostVolume = null as any;
+utilities.lazyLoad(exports, ["DynamicHostVolume"], () => require("./dynamicHostVolume"));
+
+export { DynamicHostVolumeRegistrationArgs, DynamicHostVolumeRegistrationState } from "./dynamicHostVolumeRegistration";
+export type DynamicHostVolumeRegistration = import("./dynamicHostVolumeRegistration").DynamicHostVolumeRegistration;
+export const DynamicHostVolumeRegistration: typeof import("./dynamicHostVolumeRegistration").DynamicHostVolumeRegistration = null as any;
+utilities.lazyLoad(exports, ["DynamicHostVolumeRegistration"], () => require("./dynamicHostVolumeRegistration"));
+
 export { ExternalVolumeArgs, ExternalVolumeState } from "./externalVolume";
 export type ExternalVolume = import("./externalVolume").ExternalVolume;
 export const ExternalVolume: typeof import("./externalVolume").ExternalVolume = null as any;
@@ -89,6 +99,11 @@ export { GetDeploymentsResult } from "./getDeployments";
 export const getDeployments: typeof import("./getDeployments").getDeployments = null as any;
 export const getDeploymentsOutput: typeof import("./getDeployments").getDeploymentsOutput = null as any;
 utilities.lazyLoad(exports, ["getDeployments","getDeploymentsOutput"], () => require("./getDeployments"));
+
+export { GetDynamicHostVolumeArgs, GetDynamicHostVolumeResult, GetDynamicHostVolumeOutputArgs } from "./getDynamicHostVolume";
+export const getDynamicHostVolume: typeof import("./getDynamicHostVolume").getDynamicHostVolume = null as any;
+export const getDynamicHostVolumeOutput: typeof import("./getDynamicHostVolume").getDynamicHostVolumeOutput = null as any;
+utilities.lazyLoad(exports, ["getDynamicHostVolume","getDynamicHostVolumeOutput"], () => require("./getDynamicHostVolume"));
 
 export { GetJobArgs, GetJobResult, GetJobOutputArgs } from "./getJob";
 export const getJob: typeof import("./getJob").getJob = null as any;
@@ -238,6 +253,10 @@ const _module = {
                 return new CsiVolume(name, <any>undefined, { urn })
             case "nomad:index/csiVolumeRegistration:CsiVolumeRegistration":
                 return new CsiVolumeRegistration(name, <any>undefined, { urn })
+            case "nomad:index/dynamicHostVolume:DynamicHostVolume":
+                return new DynamicHostVolume(name, <any>undefined, { urn })
+            case "nomad:index/dynamicHostVolumeRegistration:DynamicHostVolumeRegistration":
+                return new DynamicHostVolumeRegistration(name, <any>undefined, { urn })
             case "nomad:index/externalVolume:ExternalVolume":
                 return new ExternalVolume(name, <any>undefined, { urn })
             case "nomad:index/job:Job":
@@ -268,6 +287,8 @@ pulumi.runtime.registerResourceModule("nomad", "index/aclRole", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/aclToken", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/csiVolume", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/csiVolumeRegistration", _module)
+pulumi.runtime.registerResourceModule("nomad", "index/dynamicHostVolume", _module)
+pulumi.runtime.registerResourceModule("nomad", "index/dynamicHostVolumeRegistration", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/externalVolume", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/job", _module)
 pulumi.runtime.registerResourceModule("nomad", "index/namespace", _module)

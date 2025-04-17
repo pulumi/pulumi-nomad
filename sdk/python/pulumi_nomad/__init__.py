@@ -13,6 +13,8 @@ from .acl_role import *
 from .acl_token import *
 from .csi_volume import *
 from .csi_volume_registration import *
+from .dynamic_host_volume import *
+from .dynamic_host_volume_registration import *
 from .external_volume import *
 from .get_acl_policies import *
 from .get_acl_policy import *
@@ -23,6 +25,7 @@ from .get_acl_tokens import *
 from .get_allocations import *
 from .get_datacenters import *
 from .get_deployments import *
+from .get_dynamic_host_volume import *
 from .get_job import *
 from .get_job_parser import *
 from .get_jwks import *
@@ -114,6 +117,22 @@ _utilities.register(
   "fqn": "pulumi_nomad",
   "classes": {
    "nomad:index/csiVolumeRegistration:CsiVolumeRegistration": "CsiVolumeRegistration"
+  }
+ },
+ {
+  "pkg": "nomad",
+  "mod": "index/dynamicHostVolume",
+  "fqn": "pulumi_nomad",
+  "classes": {
+   "nomad:index/dynamicHostVolume:DynamicHostVolume": "DynamicHostVolume"
+  }
+ },
+ {
+  "pkg": "nomad",
+  "mod": "index/dynamicHostVolumeRegistration",
+  "fqn": "pulumi_nomad",
+  "classes": {
+   "nomad:index/dynamicHostVolumeRegistration:DynamicHostVolumeRegistration": "DynamicHostVolumeRegistration"
   }
  },
  {

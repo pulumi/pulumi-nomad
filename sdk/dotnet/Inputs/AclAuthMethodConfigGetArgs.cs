@@ -137,6 +137,15 @@ namespace Pulumi.Nomad.Inputs
         public Input<string>? NotBeforeLeeway { get; set; }
 
         /// <summary>
+        /// `(OIDCClientAssertion: &lt;optional&gt;)` - Optionally
+        /// send a signed JWT ("[private key jwt][]") as a client assertion to the OIDC
+        /// provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+        /// more.
+        /// </summary>
+        [Input("oidcClientAssertion")]
+        public Input<Inputs.AclAuthMethodConfigOidcClientAssertionGetArgs>? OidcClientAssertion { get; set; }
+
+        /// <summary>
         /// `(string: &lt;optional&gt;)` - The OAuth Client ID configured
         /// with the OIDC provider.
         /// </summary>
@@ -176,6 +185,14 @@ namespace Pulumi.Nomad.Inputs
         [Input("oidcDiscoveryUrl")]
         public Input<string>? OidcDiscoveryUrl { get; set; }
 
+        /// <summary>
+        /// `(bool: false)` - When set to `true`, Nomad will include
+        /// [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+        /// you may still need to enable it in your OIDC provider.
+        /// </summary>
+        [Input("oidcEnablePkce")]
+        public Input<bool>? OidcEnablePkce { get; set; }
+
         [Input("oidcScopes")]
         private InputList<string>? _oidcScopes;
 
@@ -200,6 +217,12 @@ namespace Pulumi.Nomad.Inputs
             get => _signingAlgs ?? (_signingAlgs = new InputList<string>());
             set => _signingAlgs = value;
         }
+
+        /// <summary>
+        /// Enable OIDC verbose logging on the Nomad server.
+        /// </summary>
+        [Input("verboseLogging")]
+        public Input<bool>? VerboseLogging { get; set; }
 
         public AclAuthMethodConfigGetArgs()
         {

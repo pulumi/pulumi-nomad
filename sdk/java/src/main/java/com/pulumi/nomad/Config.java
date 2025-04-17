@@ -51,13 +51,6 @@ public final class Config {
         return Codegen.stringProp("certPem").config(config).get();
     }
 /**
- * Consul token to validate Consul Connect Service Identity policies specified in the job file.
- * 
- */
-    public Optional<String> consulToken() {
-        return Codegen.stringProp("consulToken").config(config).get();
-    }
-/**
  * The headers to send with each Nomad request.
  * 
  */
@@ -112,12 +105,5 @@ public final class Config {
  */
     public Optional<Boolean> skipVerify() {
         return Codegen.booleanProp("skipVerify").config(config).get();
-    }
-/**
- * Vault token if policies are specified in the job file.
- * 
- */
-    public Optional<String> vaultToken() {
-        return Codegen.stringProp("vaultToken").config(config).get();
     }
 }
