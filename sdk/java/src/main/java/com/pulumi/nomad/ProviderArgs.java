@@ -96,21 +96,6 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Consul token to validate Consul Connect Service Identity policies specified in the job file.
-     * 
-     */
-    @Import(name="consulToken")
-    private @Nullable Output<String> consulToken;
-
-    /**
-     * @return Consul token to validate Consul Connect Service Identity policies specified in the job file.
-     * 
-     */
-    public Optional<Output<String>> consulToken() {
-        return Optional.ofNullable(this.consulToken);
-    }
-
-    /**
      * The headers to send with each Nomad request.
      * 
      */
@@ -230,21 +215,6 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.skipVerify);
     }
 
-    /**
-     * Vault token if policies are specified in the job file.
-     * 
-     */
-    @Import(name="vaultToken")
-    private @Nullable Output<String> vaultToken;
-
-    /**
-     * @return Vault token if policies are specified in the job file.
-     * 
-     */
-    public Optional<Output<String>> vaultToken() {
-        return Optional.ofNullable(this.vaultToken);
-    }
-
     private ProviderArgs() {}
 
     private ProviderArgs(ProviderArgs $) {
@@ -253,7 +223,6 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.caPem = $.caPem;
         this.certFile = $.certFile;
         this.certPem = $.certPem;
-        this.consulToken = $.consulToken;
         this.headers = $.headers;
         this.httpAuth = $.httpAuth;
         this.ignoreEnvVars = $.ignoreEnvVars;
@@ -262,7 +231,6 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.region = $.region;
         this.secretId = $.secretId;
         this.skipVerify = $.skipVerify;
-        this.vaultToken = $.vaultToken;
     }
 
     public static Builder builder() {
@@ -386,27 +354,6 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder certPem(String certPem) {
             return certPem(Output.of(certPem));
-        }
-
-        /**
-         * @param consulToken Consul token to validate Consul Connect Service Identity policies specified in the job file.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder consulToken(@Nullable Output<String> consulToken) {
-            $.consulToken = consulToken;
-            return this;
-        }
-
-        /**
-         * @param consulToken Consul token to validate Consul Connect Service Identity policies specified in the job file.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder consulToken(String consulToken) {
-            return consulToken(Output.of(consulToken));
         }
 
         /**
@@ -585,27 +532,6 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder skipVerify(Boolean skipVerify) {
             return skipVerify(Output.of(skipVerify));
-        }
-
-        /**
-         * @param vaultToken Vault token if policies are specified in the job file.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder vaultToken(@Nullable Output<String> vaultToken) {
-            $.vaultToken = vaultToken;
-            return this;
-        }
-
-        /**
-         * @param vaultToken Vault token if policies are specified in the job file.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder vaultToken(String vaultToken) {
-            return vaultToken(Output.of(vaultToken));
         }
 
         public ProviderArgs build() {

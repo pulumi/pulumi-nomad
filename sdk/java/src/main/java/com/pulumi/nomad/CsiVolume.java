@@ -98,6 +98,20 @@ public class CsiVolume extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> cloneId() {
         return Codegen.optional(this.cloneId);
     }
+    /**
+     * The volume context provided by the storage provider
+     * 
+     */
+    @Export(name="context", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> context;
+
+    /**
+     * @return The volume context provided by the storage provider
+     * 
+     */
+    public Output<Map<String,String>> context() {
+        return this.context;
+    }
     @Export(name="controllerRequired", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> controllerRequired;
 

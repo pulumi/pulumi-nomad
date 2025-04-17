@@ -19,23 +19,6 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     public static final JobArgs Empty = new JobArgs();
 
     /**
-     * `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    @Import(name="consulToken")
-    private @Nullable Output<String> consulToken;
-
-    /**
-     * @return `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    public Optional<Output<String>> consulToken() {
-        return Optional.ofNullable(this.consulToken);
-    }
-
-    /**
      * If true, the job will be deregistered on destroy.
      * 
      */
@@ -201,27 +184,9 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.rerunIfDead);
     }
 
-    /**
-     * `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    @Import(name="vaultToken")
-    private @Nullable Output<String> vaultToken;
-
-    /**
-     * @return `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    public Optional<Output<String>> vaultToken() {
-        return Optional.ofNullable(this.vaultToken);
-    }
-
     private JobArgs() {}
 
     private JobArgs(JobArgs $) {
-        this.consulToken = $.consulToken;
         this.deregisterOnDestroy = $.deregisterOnDestroy;
         this.deregisterOnIdChange = $.deregisterOnIdChange;
         this.detach = $.detach;
@@ -232,7 +197,6 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         this.purgeOnDestroy = $.purgeOnDestroy;
         this.readAllocationIds = $.readAllocationIds;
         this.rerunIfDead = $.rerunIfDead;
-        this.vaultToken = $.vaultToken;
     }
 
     public static Builder builder() {
@@ -251,29 +215,6 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(JobArgs defaults) {
             $ = new JobArgs(Objects.requireNonNull(defaults));
-        }
-
-        /**
-         * @param consulToken `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-         * Will fallback to the value declared in Nomad provider configuration, if any.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder consulToken(@Nullable Output<String> consulToken) {
-            $.consulToken = consulToken;
-            return this;
-        }
-
-        /**
-         * @param consulToken `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-         * Will fallback to the value declared in Nomad provider configuration, if any.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder consulToken(String consulToken) {
-            return consulToken(Output.of(consulToken));
         }
 
         /**
@@ -500,29 +441,6 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder rerunIfDead(Boolean rerunIfDead) {
             return rerunIfDead(Output.of(rerunIfDead));
-        }
-
-        /**
-         * @param vaultToken `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-         * Will fallback to the value declared in Nomad provider configuration, if any.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder vaultToken(@Nullable Output<String> vaultToken) {
-            $.vaultToken = vaultToken;
-            return this;
-        }
-
-        /**
-         * @param vaultToken `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-         * Will fallback to the value declared in Nomad provider configuration, if any.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder vaultToken(String vaultToken) {
-            return vaultToken(Output.of(vaultToken));
         }
 
         public JobArgs build() {

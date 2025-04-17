@@ -36,14 +36,16 @@ public class AclPolicy extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
-     * `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+     * `(``JobACL``: &lt;optional&gt;)` - Options for assigning the
+     * ACL rules to a job, group, or task.
      * 
      */
     @Export(name="jobAcl", refs={AclPolicyJobAcl.class}, tree="[0]")
     private Output</* @Nullable */ AclPolicyJobAcl> jobAcl;
 
     /**
-     * @return `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+     * @return `(``JobACL``: &lt;optional&gt;)` - Options for assigning the
+     * ACL rules to a job, group, or task.
      * 
      */
     public Output<Optional<AclPolicyJobAcl>> jobAcl() {

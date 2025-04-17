@@ -35,6 +35,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CsiVolume{}
 	case "nomad:index/csiVolumeRegistration:CsiVolumeRegistration":
 		r = &CsiVolumeRegistration{}
+	case "nomad:index/dynamicHostVolume:DynamicHostVolume":
+		r = &DynamicHostVolume{}
+	case "nomad:index/dynamicHostVolumeRegistration:DynamicHostVolumeRegistration":
+		r = &DynamicHostVolumeRegistration{}
 	case "nomad:index/externalVolume:ExternalVolume":
 		r = &ExternalVolume{}
 	case "nomad:index/job:Job":
@@ -117,6 +121,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"nomad",
 		"index/csiVolumeRegistration",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"nomad",
+		"index/dynamicHostVolume",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"nomad",
+		"index/dynamicHostVolumeRegistration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

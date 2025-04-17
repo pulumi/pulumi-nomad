@@ -61,14 +61,14 @@ public final class GetVolumesArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * `(string: &#34;csi&#34;)` Volume type (currently only supports `csi`)
+     * `(string: &#34;csi&#34;)` Volume type (one of `csi` or `host`)
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return `(string: &#34;csi&#34;)` Volume type (currently only supports `csi`)
+     * @return `(string: &#34;csi&#34;)` Volume type (one of `csi` or `host`)
      * 
      */
     public Optional<Output<String>> type() {
@@ -166,7 +166,7 @@ public final class GetVolumesArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type `(string: &#34;csi&#34;)` Volume type (currently only supports `csi`)
+         * @param type `(string: &#34;csi&#34;)` Volume type (one of `csi` or `host`)
          * 
          * @return builder
          * 
@@ -177,7 +177,7 @@ public final class GetVolumesArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param type `(string: &#34;csi&#34;)` Volume type (currently only supports `csi`)
+         * @param type `(string: &#34;csi&#34;)` Volume type (one of `csi` or `host`)
          * 
          * @return builder
          * 

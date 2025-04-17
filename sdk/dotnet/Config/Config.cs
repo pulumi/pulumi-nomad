@@ -82,16 +82,6 @@ namespace Pulumi.Nomad
             set => _certPem.Set(value);
         }
 
-        private static readonly __Value<string?> _consulToken = new __Value<string?>(() => __config.Get("consulToken"));
-        /// <summary>
-        /// Consul token to validate Consul Connect Service Identity policies specified in the job file.
-        /// </summary>
-        public static string? ConsulToken
-        {
-            get => _consulToken.Get();
-            set => _consulToken.Set(value);
-        }
-
         private static readonly __Value<ImmutableArray<Pulumi.Nomad.Config.Types.Headers>> _headers = new __Value<ImmutableArray<Pulumi.Nomad.Config.Types.Headers>>(() => __config.GetObject<ImmutableArray<Pulumi.Nomad.Config.Types.Headers>>("headers"));
         /// <summary>
         /// The headers to send with each Nomad request.
@@ -170,16 +160,6 @@ namespace Pulumi.Nomad
         {
             get => _skipVerify.Get();
             set => _skipVerify.Set(value);
-        }
-
-        private static readonly __Value<string?> _vaultToken = new __Value<string?>(() => __config.Get("vaultToken"));
-        /// <summary>
-        /// Vault token if policies are specified in the job file.
-        /// </summary>
-        public static string? VaultToken
-        {
-            get => _vaultToken.Get();
-            set => _vaultToken.Set(value);
         }
 
         public static class Types

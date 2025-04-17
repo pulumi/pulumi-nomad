@@ -36,11 +36,6 @@ func GetCertPem(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:certPem")
 }
 
-// Consul token to validate Consul Connect Service Identity policies specified in the job file.
-func GetConsulToken(ctx *pulumi.Context) string {
-	return config.Get(ctx, "nomad:consulToken")
-}
-
 // The headers to send with each Nomad request.
 func GetHeaders(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:headers")
@@ -79,9 +74,4 @@ func GetSecretId(ctx *pulumi.Context) string {
 // Skip TLS verification on client side.
 func GetSkipVerify(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "nomad:skipVerify")
-}
-
-// Vault token if policies are specified in the job file.
-func GetVaultToken(ctx *pulumi.Context) string {
-	return config.Get(ctx, "nomad:vaultToken")
 }

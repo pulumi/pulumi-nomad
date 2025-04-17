@@ -41,11 +41,6 @@ certPem: Optional[str]
 PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
 """
 
-consulToken: Optional[str]
-"""
-Consul token to validate Consul Connect Service Identity policies specified in the job file.
-"""
-
 headers: Optional[str]
 """
 The headers to send with each Nomad request.
@@ -84,10 +79,5 @@ ACL token secret for API requests.
 skipVerify: Optional[bool]
 """
 Skip TLS verification on client side.
-"""
-
-vaultToken: Optional[str]
-"""
-Vault token if policies are specified in the job file.
 """
 

@@ -72,6 +72,13 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string? NotBeforeLeeway;
         /// <summary>
+        /// `(OIDCClientAssertion: &lt;optional&gt;)` - Optionally
+        /// send a signed JWT ("[private key jwt][]") as a client assertion to the OIDC
+        /// provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+        /// more.
+        /// </summary>
+        public readonly Outputs.AclAuthMethodConfigOidcClientAssertion? OidcClientAssertion;
+        /// <summary>
         /// `(string: &lt;optional&gt;)` - The OAuth Client ID configured
         /// with the OIDC provider.
         /// </summary>
@@ -94,6 +101,12 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string? OidcDiscoveryUrl;
         /// <summary>
+        /// `(bool: false)` - When set to `true`, Nomad will include
+        /// [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+        /// you may still need to enable it in your OIDC provider.
+        /// </summary>
+        public readonly bool? OidcEnablePkce;
+        /// <summary>
         /// `([]string: &lt;optional&gt;)` - List of OIDC scopes.
         /// </summary>
         public readonly ImmutableArray<string> OidcScopes;
@@ -102,6 +115,10 @@ namespace Pulumi.Nomad.Outputs
         /// algorithms.
         /// </summary>
         public readonly ImmutableArray<string> SigningAlgs;
+        /// <summary>
+        /// Enable OIDC verbose logging on the Nomad server.
+        /// </summary>
+        public readonly bool? VerboseLogging;
 
         [OutputConstructor]
         private AclAuthMethodConfig(
@@ -129,6 +146,8 @@ namespace Pulumi.Nomad.Outputs
 
             string? notBeforeLeeway,
 
+            Outputs.AclAuthMethodConfigOidcClientAssertion? oidcClientAssertion,
+
             string? oidcClientId,
 
             string? oidcClientSecret,
@@ -137,9 +156,13 @@ namespace Pulumi.Nomad.Outputs
 
             string? oidcDiscoveryUrl,
 
+            bool? oidcEnablePkce,
+
             ImmutableArray<string> oidcScopes,
 
-            ImmutableArray<string> signingAlgs)
+            ImmutableArray<string> signingAlgs,
+
+            bool? verboseLogging)
         {
             AllowedRedirectUris = allowedRedirectUris;
             BoundAudiences = boundAudiences;
@@ -153,12 +176,15 @@ namespace Pulumi.Nomad.Outputs
             JwtValidationPubKeys = jwtValidationPubKeys;
             ListClaimMappings = listClaimMappings;
             NotBeforeLeeway = notBeforeLeeway;
+            OidcClientAssertion = oidcClientAssertion;
             OidcClientId = oidcClientId;
             OidcClientSecret = oidcClientSecret;
             OidcDisableUserinfo = oidcDisableUserinfo;
             OidcDiscoveryUrl = oidcDiscoveryUrl;
+            OidcEnablePkce = oidcEnablePkce;
             OidcScopes = oidcScopes;
             SigningAlgs = signingAlgs;
+            VerboseLogging = verboseLogging;
         }
     }
 }

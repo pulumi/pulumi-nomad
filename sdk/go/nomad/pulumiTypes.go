@@ -48,6 +48,11 @@ type AclAuthMethodConfig struct {
 	// `(string: <optional>)` - Duration of leeway when validating
 	// not before values of a token in the form of a time duration such as "5m" or "1h".
 	NotBeforeLeeway *string `pulumi:"notBeforeLeeway"`
+	// `(OIDCClientAssertion: <optional>)` - Optionally
+	// send a signed JWT ("[private key jwt][]") as a client assertion to the OIDC
+	// provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+	// more.
+	OidcClientAssertion *AclAuthMethodConfigOidcClientAssertion `pulumi:"oidcClientAssertion"`
 	// `(string: <optional>)` - The OAuth Client ID configured
 	// with the OIDC provider.
 	OidcClientId *string `pulumi:"oidcClientId"`
@@ -62,11 +67,17 @@ type AclAuthMethodConfig struct {
 	// `(string: <optional>)` - The OIDC Discovery URL,
 	// without any .well-known component (base path).
 	OidcDiscoveryUrl *string `pulumi:"oidcDiscoveryUrl"`
+	// `(bool: false)` - When set to `true`, Nomad will include
+	// [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+	// you may still need to enable it in your OIDC provider.
+	OidcEnablePkce *bool `pulumi:"oidcEnablePkce"`
 	// `([]string: <optional>)` - List of OIDC scopes.
 	OidcScopes []string `pulumi:"oidcScopes"`
 	// `([]string: <optional>)` - A list of supported signing
 	// algorithms.
 	SigningAlgs []string `pulumi:"signingAlgs"`
+	// Enable OIDC verbose logging on the Nomad server.
+	VerboseLogging *bool `pulumi:"verboseLogging"`
 }
 
 // AclAuthMethodConfigInput is an input type that accepts AclAuthMethodConfigArgs and AclAuthMethodConfigOutput values.
@@ -115,6 +126,11 @@ type AclAuthMethodConfigArgs struct {
 	// `(string: <optional>)` - Duration of leeway when validating
 	// not before values of a token in the form of a time duration such as "5m" or "1h".
 	NotBeforeLeeway pulumi.StringPtrInput `pulumi:"notBeforeLeeway"`
+	// `(OIDCClientAssertion: <optional>)` - Optionally
+	// send a signed JWT ("[private key jwt][]") as a client assertion to the OIDC
+	// provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+	// more.
+	OidcClientAssertion AclAuthMethodConfigOidcClientAssertionPtrInput `pulumi:"oidcClientAssertion"`
 	// `(string: <optional>)` - The OAuth Client ID configured
 	// with the OIDC provider.
 	OidcClientId pulumi.StringPtrInput `pulumi:"oidcClientId"`
@@ -129,11 +145,17 @@ type AclAuthMethodConfigArgs struct {
 	// `(string: <optional>)` - The OIDC Discovery URL,
 	// without any .well-known component (base path).
 	OidcDiscoveryUrl pulumi.StringPtrInput `pulumi:"oidcDiscoveryUrl"`
+	// `(bool: false)` - When set to `true`, Nomad will include
+	// [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+	// you may still need to enable it in your OIDC provider.
+	OidcEnablePkce pulumi.BoolPtrInput `pulumi:"oidcEnablePkce"`
 	// `([]string: <optional>)` - List of OIDC scopes.
 	OidcScopes pulumi.StringArrayInput `pulumi:"oidcScopes"`
 	// `([]string: <optional>)` - A list of supported signing
 	// algorithms.
 	SigningAlgs pulumi.StringArrayInput `pulumi:"signingAlgs"`
+	// Enable OIDC verbose logging on the Nomad server.
+	VerboseLogging pulumi.BoolPtrInput `pulumi:"verboseLogging"`
 }
 
 func (AclAuthMethodConfigArgs) ElementType() reflect.Type {
@@ -283,6 +305,14 @@ func (o AclAuthMethodConfigOutput) NotBeforeLeeway() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.NotBeforeLeeway }).(pulumi.StringPtrOutput)
 }
 
+// `(OIDCClientAssertion: <optional>)` - Optionally
+// send a signed JWT ("[private key jwt][]") as a client assertion to the OIDC
+// provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+// more.
+func (o AclAuthMethodConfigOutput) OidcClientAssertion() AclAuthMethodConfigOidcClientAssertionPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *AclAuthMethodConfigOidcClientAssertion { return v.OidcClientAssertion }).(AclAuthMethodConfigOidcClientAssertionPtrOutput)
+}
+
 // `(string: <optional>)` - The OAuth Client ID configured
 // with the OIDC provider.
 func (o AclAuthMethodConfigOutput) OidcClientId() pulumi.StringPtrOutput {
@@ -309,6 +339,13 @@ func (o AclAuthMethodConfigOutput) OidcDiscoveryUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) *string { return v.OidcDiscoveryUrl }).(pulumi.StringPtrOutput)
 }
 
+// `(bool: false)` - When set to `true`, Nomad will include
+// [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+// you may still need to enable it in your OIDC provider.
+func (o AclAuthMethodConfigOutput) OidcEnablePkce() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *bool { return v.OidcEnablePkce }).(pulumi.BoolPtrOutput)
+}
+
 // `([]string: <optional>)` - List of OIDC scopes.
 func (o AclAuthMethodConfigOutput) OidcScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.OidcScopes }).(pulumi.StringArrayOutput)
@@ -318,6 +355,11 @@ func (o AclAuthMethodConfigOutput) OidcScopes() pulumi.StringArrayOutput {
 // algorithms.
 func (o AclAuthMethodConfigOutput) SigningAlgs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AclAuthMethodConfig) []string { return v.SigningAlgs }).(pulumi.StringArrayOutput)
+}
+
+// Enable OIDC verbose logging on the Nomad server.
+func (o AclAuthMethodConfigOutput) VerboseLogging() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfig) *bool { return v.VerboseLogging }).(pulumi.BoolPtrOutput)
 }
 
 type AclAuthMethodConfigPtrOutput struct{ *pulumi.OutputState }
@@ -474,6 +516,19 @@ func (o AclAuthMethodConfigPtrOutput) NotBeforeLeeway() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// `(OIDCClientAssertion: <optional>)` - Optionally
+// send a signed JWT ("[private key jwt][]") as a client assertion to the OIDC
+// provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+// more.
+func (o AclAuthMethodConfigPtrOutput) OidcClientAssertion() AclAuthMethodConfigOidcClientAssertionPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *AclAuthMethodConfigOidcClientAssertion {
+		if v == nil {
+			return nil
+		}
+		return v.OidcClientAssertion
+	}).(AclAuthMethodConfigOidcClientAssertionPtrOutput)
+}
+
 // `(string: <optional>)` - The OAuth Client ID configured
 // with the OIDC provider.
 func (o AclAuthMethodConfigPtrOutput) OidcClientId() pulumi.StringPtrOutput {
@@ -520,6 +575,18 @@ func (o AclAuthMethodConfigPtrOutput) OidcDiscoveryUrl() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+// `(bool: false)` - When set to `true`, Nomad will include
+// [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+// you may still need to enable it in your OIDC provider.
+func (o AclAuthMethodConfigPtrOutput) OidcEnablePkce() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.OidcEnablePkce
+	}).(pulumi.BoolPtrOutput)
+}
+
 // `([]string: <optional>)` - List of OIDC scopes.
 func (o AclAuthMethodConfigPtrOutput) OidcScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AclAuthMethodConfig) []string {
@@ -539,6 +606,587 @@ func (o AclAuthMethodConfigPtrOutput) SigningAlgs() pulumi.StringArrayOutput {
 		}
 		return v.SigningAlgs
 	}).(pulumi.StringArrayOutput)
+}
+
+// Enable OIDC verbose logging on the Nomad server.
+func (o AclAuthMethodConfigPtrOutput) VerboseLogging() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.VerboseLogging
+	}).(pulumi.BoolPtrOutput)
+}
+
+type AclAuthMethodConfigOidcClientAssertion struct {
+	// `([]string: optional)` - Who processes the assertion.
+	// Defaults to the auth method's `oidcDiscoveryUrl`.
+	Audiences []string `pulumi:"audiences"`
+	// `(map[string]string: optional)` - Add to the JWT headers,
+	// alongside "kid" and "type". Setting the "kid" header here is not allowed;
+	// use `private_key.key_id`.
+	ExtraHeaders map[string]string `pulumi:"extraHeaders"`
+	// `(string: <optional>)` is the key's algorithm.
+	// Its default values are based on the `keySource`:
+	// - "nomad": "RS256"; this is from Nomad's keyring and must not be changed
+	// - "privateKey": "RS256"; must be RS256, RS384, or RS512
+	// - "clientSecret": "HS256"; must be HS256, HS384, or HS512
+	KeyAlgorithm *string `pulumi:"keyAlgorithm"`
+	// `(string: <required>)` - Specifies where to get the private
+	// key to sign the JWT.
+	// Available sources:
+	// - "nomad": Use current active key in Nomad's keyring
+	// - "privateKey": Use key material in the `privateKey` field
+	// - "clientSecret": Use the `oidcClientSecret` as an HMAC key
+	KeySource string `pulumi:"keySource"`
+	// `(OIDCClientAssertionKey: <optional>)` - External key
+	// to sign the JWT. `keySource` must be "privateKey" to enable this.
+	PrivateKey *AclAuthMethodConfigOidcClientAssertionPrivateKey `pulumi:"privateKey"`
+}
+
+// AclAuthMethodConfigOidcClientAssertionInput is an input type that accepts AclAuthMethodConfigOidcClientAssertionArgs and AclAuthMethodConfigOidcClientAssertionOutput values.
+// You can construct a concrete instance of `AclAuthMethodConfigOidcClientAssertionInput` via:
+//
+//	AclAuthMethodConfigOidcClientAssertionArgs{...}
+type AclAuthMethodConfigOidcClientAssertionInput interface {
+	pulumi.Input
+
+	ToAclAuthMethodConfigOidcClientAssertionOutput() AclAuthMethodConfigOidcClientAssertionOutput
+	ToAclAuthMethodConfigOidcClientAssertionOutputWithContext(context.Context) AclAuthMethodConfigOidcClientAssertionOutput
+}
+
+type AclAuthMethodConfigOidcClientAssertionArgs struct {
+	// `([]string: optional)` - Who processes the assertion.
+	// Defaults to the auth method's `oidcDiscoveryUrl`.
+	Audiences pulumi.StringArrayInput `pulumi:"audiences"`
+	// `(map[string]string: optional)` - Add to the JWT headers,
+	// alongside "kid" and "type". Setting the "kid" header here is not allowed;
+	// use `private_key.key_id`.
+	ExtraHeaders pulumi.StringMapInput `pulumi:"extraHeaders"`
+	// `(string: <optional>)` is the key's algorithm.
+	// Its default values are based on the `keySource`:
+	// - "nomad": "RS256"; this is from Nomad's keyring and must not be changed
+	// - "privateKey": "RS256"; must be RS256, RS384, or RS512
+	// - "clientSecret": "HS256"; must be HS256, HS384, or HS512
+	KeyAlgorithm pulumi.StringPtrInput `pulumi:"keyAlgorithm"`
+	// `(string: <required>)` - Specifies where to get the private
+	// key to sign the JWT.
+	// Available sources:
+	// - "nomad": Use current active key in Nomad's keyring
+	// - "privateKey": Use key material in the `privateKey` field
+	// - "clientSecret": Use the `oidcClientSecret` as an HMAC key
+	KeySource pulumi.StringInput `pulumi:"keySource"`
+	// `(OIDCClientAssertionKey: <optional>)` - External key
+	// to sign the JWT. `keySource` must be "privateKey" to enable this.
+	PrivateKey AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrInput `pulumi:"privateKey"`
+}
+
+func (AclAuthMethodConfigOidcClientAssertionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclAuthMethodConfigOidcClientAssertion)(nil)).Elem()
+}
+
+func (i AclAuthMethodConfigOidcClientAssertionArgs) ToAclAuthMethodConfigOidcClientAssertionOutput() AclAuthMethodConfigOidcClientAssertionOutput {
+	return i.ToAclAuthMethodConfigOidcClientAssertionOutputWithContext(context.Background())
+}
+
+func (i AclAuthMethodConfigOidcClientAssertionArgs) ToAclAuthMethodConfigOidcClientAssertionOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigOidcClientAssertionOutput)
+}
+
+func (i AclAuthMethodConfigOidcClientAssertionArgs) ToAclAuthMethodConfigOidcClientAssertionPtrOutput() AclAuthMethodConfigOidcClientAssertionPtrOutput {
+	return i.ToAclAuthMethodConfigOidcClientAssertionPtrOutputWithContext(context.Background())
+}
+
+func (i AclAuthMethodConfigOidcClientAssertionArgs) ToAclAuthMethodConfigOidcClientAssertionPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigOidcClientAssertionOutput).ToAclAuthMethodConfigOidcClientAssertionPtrOutputWithContext(ctx)
+}
+
+// AclAuthMethodConfigOidcClientAssertionPtrInput is an input type that accepts AclAuthMethodConfigOidcClientAssertionArgs, AclAuthMethodConfigOidcClientAssertionPtr and AclAuthMethodConfigOidcClientAssertionPtrOutput values.
+// You can construct a concrete instance of `AclAuthMethodConfigOidcClientAssertionPtrInput` via:
+//
+//	        AclAuthMethodConfigOidcClientAssertionArgs{...}
+//
+//	or:
+//
+//	        nil
+type AclAuthMethodConfigOidcClientAssertionPtrInput interface {
+	pulumi.Input
+
+	ToAclAuthMethodConfigOidcClientAssertionPtrOutput() AclAuthMethodConfigOidcClientAssertionPtrOutput
+	ToAclAuthMethodConfigOidcClientAssertionPtrOutputWithContext(context.Context) AclAuthMethodConfigOidcClientAssertionPtrOutput
+}
+
+type aclAuthMethodConfigOidcClientAssertionPtrType AclAuthMethodConfigOidcClientAssertionArgs
+
+func AclAuthMethodConfigOidcClientAssertionPtr(v *AclAuthMethodConfigOidcClientAssertionArgs) AclAuthMethodConfigOidcClientAssertionPtrInput {
+	return (*aclAuthMethodConfigOidcClientAssertionPtrType)(v)
+}
+
+func (*aclAuthMethodConfigOidcClientAssertionPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AclAuthMethodConfigOidcClientAssertion)(nil)).Elem()
+}
+
+func (i *aclAuthMethodConfigOidcClientAssertionPtrType) ToAclAuthMethodConfigOidcClientAssertionPtrOutput() AclAuthMethodConfigOidcClientAssertionPtrOutput {
+	return i.ToAclAuthMethodConfigOidcClientAssertionPtrOutputWithContext(context.Background())
+}
+
+func (i *aclAuthMethodConfigOidcClientAssertionPtrType) ToAclAuthMethodConfigOidcClientAssertionPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigOidcClientAssertionPtrOutput)
+}
+
+type AclAuthMethodConfigOidcClientAssertionOutput struct{ *pulumi.OutputState }
+
+func (AclAuthMethodConfigOidcClientAssertionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclAuthMethodConfigOidcClientAssertion)(nil)).Elem()
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionOutput) ToAclAuthMethodConfigOidcClientAssertionOutput() AclAuthMethodConfigOidcClientAssertionOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionOutput) ToAclAuthMethodConfigOidcClientAssertionOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionOutput) ToAclAuthMethodConfigOidcClientAssertionPtrOutput() AclAuthMethodConfigOidcClientAssertionPtrOutput {
+	return o.ToAclAuthMethodConfigOidcClientAssertionPtrOutputWithContext(context.Background())
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionOutput) ToAclAuthMethodConfigOidcClientAssertionPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AclAuthMethodConfigOidcClientAssertion) *AclAuthMethodConfigOidcClientAssertion {
+		return &v
+	}).(AclAuthMethodConfigOidcClientAssertionPtrOutput)
+}
+
+// `([]string: optional)` - Who processes the assertion.
+// Defaults to the auth method's `oidcDiscoveryUrl`.
+func (o AclAuthMethodConfigOidcClientAssertionOutput) Audiences() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AclAuthMethodConfigOidcClientAssertion) []string { return v.Audiences }).(pulumi.StringArrayOutput)
+}
+
+// `(map[string]string: optional)` - Add to the JWT headers,
+// alongside "kid" and "type". Setting the "kid" header here is not allowed;
+// use `private_key.key_id`.
+func (o AclAuthMethodConfigOidcClientAssertionOutput) ExtraHeaders() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AclAuthMethodConfigOidcClientAssertion) map[string]string { return v.ExtraHeaders }).(pulumi.StringMapOutput)
+}
+
+// `(string: <optional>)` is the key's algorithm.
+// Its default values are based on the `keySource`:
+// - "nomad": "RS256"; this is from Nomad's keyring and must not be changed
+// - "privateKey": "RS256"; must be RS256, RS384, or RS512
+// - "clientSecret": "HS256"; must be HS256, HS384, or HS512
+func (o AclAuthMethodConfigOidcClientAssertionOutput) KeyAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfigOidcClientAssertion) *string { return v.KeyAlgorithm }).(pulumi.StringPtrOutput)
+}
+
+// `(string: <required>)` - Specifies where to get the private
+// key to sign the JWT.
+// Available sources:
+// - "nomad": Use current active key in Nomad's keyring
+// - "privateKey": Use key material in the `privateKey` field
+// - "clientSecret": Use the `oidcClientSecret` as an HMAC key
+func (o AclAuthMethodConfigOidcClientAssertionOutput) KeySource() pulumi.StringOutput {
+	return o.ApplyT(func(v AclAuthMethodConfigOidcClientAssertion) string { return v.KeySource }).(pulumi.StringOutput)
+}
+
+// `(OIDCClientAssertionKey: <optional>)` - External key
+// to sign the JWT. `keySource` must be "privateKey" to enable this.
+func (o AclAuthMethodConfigOidcClientAssertionOutput) PrivateKey() AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfigOidcClientAssertion) *AclAuthMethodConfigOidcClientAssertionPrivateKey {
+		return v.PrivateKey
+	}).(AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput)
+}
+
+type AclAuthMethodConfigOidcClientAssertionPtrOutput struct{ *pulumi.OutputState }
+
+func (AclAuthMethodConfigOidcClientAssertionPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AclAuthMethodConfigOidcClientAssertion)(nil)).Elem()
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionPtrOutput) ToAclAuthMethodConfigOidcClientAssertionPtrOutput() AclAuthMethodConfigOidcClientAssertionPtrOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionPtrOutput) ToAclAuthMethodConfigOidcClientAssertionPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionPtrOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionPtrOutput) Elem() AclAuthMethodConfigOidcClientAssertionOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertion) AclAuthMethodConfigOidcClientAssertion {
+		if v != nil {
+			return *v
+		}
+		var ret AclAuthMethodConfigOidcClientAssertion
+		return ret
+	}).(AclAuthMethodConfigOidcClientAssertionOutput)
+}
+
+// `([]string: optional)` - Who processes the assertion.
+// Defaults to the auth method's `oidcDiscoveryUrl`.
+func (o AclAuthMethodConfigOidcClientAssertionPtrOutput) Audiences() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertion) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Audiences
+	}).(pulumi.StringArrayOutput)
+}
+
+// `(map[string]string: optional)` - Add to the JWT headers,
+// alongside "kid" and "type". Setting the "kid" header here is not allowed;
+// use `private_key.key_id`.
+func (o AclAuthMethodConfigOidcClientAssertionPtrOutput) ExtraHeaders() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertion) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.ExtraHeaders
+	}).(pulumi.StringMapOutput)
+}
+
+// `(string: <optional>)` is the key's algorithm.
+// Its default values are based on the `keySource`:
+// - "nomad": "RS256"; this is from Nomad's keyring and must not be changed
+// - "privateKey": "RS256"; must be RS256, RS384, or RS512
+// - "clientSecret": "HS256"; must be HS256, HS384, or HS512
+func (o AclAuthMethodConfigOidcClientAssertionPtrOutput) KeyAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertion) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KeyAlgorithm
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: <required>)` - Specifies where to get the private
+// key to sign the JWT.
+// Available sources:
+// - "nomad": Use current active key in Nomad's keyring
+// - "privateKey": Use key material in the `privateKey` field
+// - "clientSecret": Use the `oidcClientSecret` as an HMAC key
+func (o AclAuthMethodConfigOidcClientAssertionPtrOutput) KeySource() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertion) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.KeySource
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(OIDCClientAssertionKey: <optional>)` - External key
+// to sign the JWT. `keySource` must be "privateKey" to enable this.
+func (o AclAuthMethodConfigOidcClientAssertionPtrOutput) PrivateKey() AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertion) *AclAuthMethodConfigOidcClientAssertionPrivateKey {
+		if v == nil {
+			return nil
+		}
+		return v.PrivateKey
+	}).(AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput)
+}
+
+type AclAuthMethodConfigOidcClientAssertionPrivateKey struct {
+	// `(string: optional)` - Becomes the JWT's "kid" header.
+	// Mutually exclusive with `pemCert` and `pemCertFile`.
+	// Allowed `keyIdHeader` values: "kid" (the default)
+	KeyId *string `pulumi:"keyId"`
+	// `(string: optional)` - Which header the provider uses
+	// to find the public key to verify the signed JWT.
+	// The default and allowed values depend on whether you set `keyId`,
+	// `pemCert`, or `pemCertFile`. You must set exactly one of those
+	// options, so refer to them for their requirements.
+	KeyIdHeader *string `pulumi:"keyIdHeader"`
+	// `(string: optional)` - An x509 certificate, signed by the
+	// private key or a CA, in pem format. Nomad uses this certificate to
+	// derive an [x5t#S256][] (or [x5t][]) key_id.
+	// Mutually exclusive with `pemCertFile` and `keyId`.
+	// Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
+	PemCert *string `pulumi:"pemCert"`
+	// `(string: optional)` - An absolute path to an x509
+	// certificate on Nomad servers' disk, signed by the private key or a CA,
+	// in pem format.
+	// Nomad uses this certificate to derive an [x5t#S256][] (or [x5t][])
+	// header. Mutually exclusive with `pemCert` and key_id.
+	// Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
+	PemCertFile *string `pulumi:"pemCertFile"`
+	// `(string: <optional>)` - An RSA private key, in pem format.
+	// It is used to sign the JWT. Mutually exclusive with `pemKey`.
+	PemKey *string `pulumi:"pemKey"`
+	// `(string: optional)` - An absolute path to a private key
+	// on Nomad servers' disk, in pem format. It is used to sign the JWT.
+	// Mutually exclusive with `pemKeyFile`.
+	PemKeyFile *string `pulumi:"pemKeyFile"`
+}
+
+// AclAuthMethodConfigOidcClientAssertionPrivateKeyInput is an input type that accepts AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs and AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput values.
+// You can construct a concrete instance of `AclAuthMethodConfigOidcClientAssertionPrivateKeyInput` via:
+//
+//	AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs{...}
+type AclAuthMethodConfigOidcClientAssertionPrivateKeyInput interface {
+	pulumi.Input
+
+	ToAclAuthMethodConfigOidcClientAssertionPrivateKeyOutput() AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput
+	ToAclAuthMethodConfigOidcClientAssertionPrivateKeyOutputWithContext(context.Context) AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput
+}
+
+type AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs struct {
+	// `(string: optional)` - Becomes the JWT's "kid" header.
+	// Mutually exclusive with `pemCert` and `pemCertFile`.
+	// Allowed `keyIdHeader` values: "kid" (the default)
+	KeyId pulumi.StringPtrInput `pulumi:"keyId"`
+	// `(string: optional)` - Which header the provider uses
+	// to find the public key to verify the signed JWT.
+	// The default and allowed values depend on whether you set `keyId`,
+	// `pemCert`, or `pemCertFile`. You must set exactly one of those
+	// options, so refer to them for their requirements.
+	KeyIdHeader pulumi.StringPtrInput `pulumi:"keyIdHeader"`
+	// `(string: optional)` - An x509 certificate, signed by the
+	// private key or a CA, in pem format. Nomad uses this certificate to
+	// derive an [x5t#S256][] (or [x5t][]) key_id.
+	// Mutually exclusive with `pemCertFile` and `keyId`.
+	// Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
+	PemCert pulumi.StringPtrInput `pulumi:"pemCert"`
+	// `(string: optional)` - An absolute path to an x509
+	// certificate on Nomad servers' disk, signed by the private key or a CA,
+	// in pem format.
+	// Nomad uses this certificate to derive an [x5t#S256][] (or [x5t][])
+	// header. Mutually exclusive with `pemCert` and key_id.
+	// Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
+	PemCertFile pulumi.StringPtrInput `pulumi:"pemCertFile"`
+	// `(string: <optional>)` - An RSA private key, in pem format.
+	// It is used to sign the JWT. Mutually exclusive with `pemKey`.
+	PemKey pulumi.StringPtrInput `pulumi:"pemKey"`
+	// `(string: optional)` - An absolute path to a private key
+	// on Nomad servers' disk, in pem format. It is used to sign the JWT.
+	// Mutually exclusive with `pemKeyFile`.
+	PemKeyFile pulumi.StringPtrInput `pulumi:"pemKeyFile"`
+}
+
+func (AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclAuthMethodConfigOidcClientAssertionPrivateKey)(nil)).Elem()
+}
+
+func (i AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyOutput() AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput {
+	return i.ToAclAuthMethodConfigOidcClientAssertionPrivateKeyOutputWithContext(context.Background())
+}
+
+func (i AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput)
+}
+
+func (i AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput() AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput {
+	return i.ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutputWithContext(context.Background())
+}
+
+func (i AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput).ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutputWithContext(ctx)
+}
+
+// AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrInput is an input type that accepts AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs, AclAuthMethodConfigOidcClientAssertionPrivateKeyPtr and AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput values.
+// You can construct a concrete instance of `AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrInput` via:
+//
+//	        AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs{...}
+//
+//	or:
+//
+//	        nil
+type AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrInput interface {
+	pulumi.Input
+
+	ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput() AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput
+	ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutputWithContext(context.Context) AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput
+}
+
+type aclAuthMethodConfigOidcClientAssertionPrivateKeyPtrType AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs
+
+func AclAuthMethodConfigOidcClientAssertionPrivateKeyPtr(v *AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs) AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrInput {
+	return (*aclAuthMethodConfigOidcClientAssertionPrivateKeyPtrType)(v)
+}
+
+func (*aclAuthMethodConfigOidcClientAssertionPrivateKeyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AclAuthMethodConfigOidcClientAssertionPrivateKey)(nil)).Elem()
+}
+
+func (i *aclAuthMethodConfigOidcClientAssertionPrivateKeyPtrType) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput() AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput {
+	return i.ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutputWithContext(context.Background())
+}
+
+func (i *aclAuthMethodConfigOidcClientAssertionPrivateKeyPtrType) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput)
+}
+
+type AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput struct{ *pulumi.OutputState }
+
+func (AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclAuthMethodConfigOidcClientAssertionPrivateKey)(nil)).Elem()
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyOutput() AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput() AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput {
+	return o.ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutputWithContext(context.Background())
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AclAuthMethodConfigOidcClientAssertionPrivateKey) *AclAuthMethodConfigOidcClientAssertionPrivateKey {
+		return &v
+	}).(AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput)
+}
+
+// `(string: optional)` - Becomes the JWT's "kid" header.
+// Mutually exclusive with `pemCert` and `pemCertFile`.
+// Allowed `keyIdHeader` values: "kid" (the default)
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput) KeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfigOidcClientAssertionPrivateKey) *string { return v.KeyId }).(pulumi.StringPtrOutput)
+}
+
+// `(string: optional)` - Which header the provider uses
+// to find the public key to verify the signed JWT.
+// The default and allowed values depend on whether you set `keyId`,
+// `pemCert`, or `pemCertFile`. You must set exactly one of those
+// options, so refer to them for their requirements.
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput) KeyIdHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfigOidcClientAssertionPrivateKey) *string { return v.KeyIdHeader }).(pulumi.StringPtrOutput)
+}
+
+// `(string: optional)` - An x509 certificate, signed by the
+// private key or a CA, in pem format. Nomad uses this certificate to
+// derive an [x5t#S256][] (or [x5t][]) key_id.
+// Mutually exclusive with `pemCertFile` and `keyId`.
+// Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput) PemCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfigOidcClientAssertionPrivateKey) *string { return v.PemCert }).(pulumi.StringPtrOutput)
+}
+
+// `(string: optional)` - An absolute path to an x509
+// certificate on Nomad servers' disk, signed by the private key or a CA,
+// in pem format.
+// Nomad uses this certificate to derive an [x5t#S256][] (or [x5t][])
+// header. Mutually exclusive with `pemCert` and key_id.
+// Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput) PemCertFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfigOidcClientAssertionPrivateKey) *string { return v.PemCertFile }).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>)` - An RSA private key, in pem format.
+// It is used to sign the JWT. Mutually exclusive with `pemKey`.
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput) PemKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfigOidcClientAssertionPrivateKey) *string { return v.PemKey }).(pulumi.StringPtrOutput)
+}
+
+// `(string: optional)` - An absolute path to a private key
+// on Nomad servers' disk, in pem format. It is used to sign the JWT.
+// Mutually exclusive with `pemKeyFile`.
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput) PemKeyFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAuthMethodConfigOidcClientAssertionPrivateKey) *string { return v.PemKeyFile }).(pulumi.StringPtrOutput)
+}
+
+type AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput struct{ *pulumi.OutputState }
+
+func (AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AclAuthMethodConfigOidcClientAssertionPrivateKey)(nil)).Elem()
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput() AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput) ToAclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutputWithContext(ctx context.Context) AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput {
+	return o
+}
+
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput) Elem() AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertionPrivateKey) AclAuthMethodConfigOidcClientAssertionPrivateKey {
+		if v != nil {
+			return *v
+		}
+		var ret AclAuthMethodConfigOidcClientAssertionPrivateKey
+		return ret
+	}).(AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput)
+}
+
+// `(string: optional)` - Becomes the JWT's "kid" header.
+// Mutually exclusive with `pemCert` and `pemCertFile`.
+// Allowed `keyIdHeader` values: "kid" (the default)
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput) KeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertionPrivateKey) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KeyId
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: optional)` - Which header the provider uses
+// to find the public key to verify the signed JWT.
+// The default and allowed values depend on whether you set `keyId`,
+// `pemCert`, or `pemCertFile`. You must set exactly one of those
+// options, so refer to them for their requirements.
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput) KeyIdHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertionPrivateKey) *string {
+		if v == nil {
+			return nil
+		}
+		return v.KeyIdHeader
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: optional)` - An x509 certificate, signed by the
+// private key or a CA, in pem format. Nomad uses this certificate to
+// derive an [x5t#S256][] (or [x5t][]) key_id.
+// Mutually exclusive with `pemCertFile` and `keyId`.
+// Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput) PemCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertionPrivateKey) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PemCert
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: optional)` - An absolute path to an x509
+// certificate on Nomad servers' disk, signed by the private key or a CA,
+// in pem format.
+// Nomad uses this certificate to derive an [x5t#S256][] (or [x5t][])
+// header. Mutually exclusive with `pemCert` and key_id.
+// Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput) PemCertFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertionPrivateKey) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PemCertFile
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: <optional>)` - An RSA private key, in pem format.
+// It is used to sign the JWT. Mutually exclusive with `pemKey`.
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput) PemKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertionPrivateKey) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PemKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// `(string: optional)` - An absolute path to a private key
+// on Nomad servers' disk, in pem format. It is used to sign the JWT.
+// Mutually exclusive with `pemKeyFile`.
+func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput) PemKeyFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AclAuthMethodConfigOidcClientAssertionPrivateKey) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PemKeyFile
+	}).(pulumi.StringPtrOutput)
 }
 
 type AclPolicyJobAcl struct {
@@ -2717,6 +3365,460 @@ func (o CsiVolumeTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi.IntI
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CsiVolumeTopologyRequestRequiredTopology {
 		return vs[0].([]CsiVolumeTopologyRequestRequiredTopology)[vs[1].(int)]
 	}).(CsiVolumeTopologyRequestRequiredTopologyOutput)
+}
+
+type DynamicHostVolumeCapability struct {
+	// `(string)` - How the volume can be mounted by
+	// allocations. Refer to the [`accessMode`][] documentation for details.
+	AccessMode string `pulumi:"accessMode"`
+	// `(string)` - The storage API that will be used by the
+	// volume. Refer to the [`attachmentMode`][] documentation.
+	AttachmentMode string `pulumi:"attachmentMode"`
+}
+
+// DynamicHostVolumeCapabilityInput is an input type that accepts DynamicHostVolumeCapabilityArgs and DynamicHostVolumeCapabilityOutput values.
+// You can construct a concrete instance of `DynamicHostVolumeCapabilityInput` via:
+//
+//	DynamicHostVolumeCapabilityArgs{...}
+type DynamicHostVolumeCapabilityInput interface {
+	pulumi.Input
+
+	ToDynamicHostVolumeCapabilityOutput() DynamicHostVolumeCapabilityOutput
+	ToDynamicHostVolumeCapabilityOutputWithContext(context.Context) DynamicHostVolumeCapabilityOutput
+}
+
+type DynamicHostVolumeCapabilityArgs struct {
+	// `(string)` - How the volume can be mounted by
+	// allocations. Refer to the [`accessMode`][] documentation for details.
+	AccessMode pulumi.StringInput `pulumi:"accessMode"`
+	// `(string)` - The storage API that will be used by the
+	// volume. Refer to the [`attachmentMode`][] documentation.
+	AttachmentMode pulumi.StringInput `pulumi:"attachmentMode"`
+}
+
+func (DynamicHostVolumeCapabilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DynamicHostVolumeCapability)(nil)).Elem()
+}
+
+func (i DynamicHostVolumeCapabilityArgs) ToDynamicHostVolumeCapabilityOutput() DynamicHostVolumeCapabilityOutput {
+	return i.ToDynamicHostVolumeCapabilityOutputWithContext(context.Background())
+}
+
+func (i DynamicHostVolumeCapabilityArgs) ToDynamicHostVolumeCapabilityOutputWithContext(ctx context.Context) DynamicHostVolumeCapabilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DynamicHostVolumeCapabilityOutput)
+}
+
+// DynamicHostVolumeCapabilityArrayInput is an input type that accepts DynamicHostVolumeCapabilityArray and DynamicHostVolumeCapabilityArrayOutput values.
+// You can construct a concrete instance of `DynamicHostVolumeCapabilityArrayInput` via:
+//
+//	DynamicHostVolumeCapabilityArray{ DynamicHostVolumeCapabilityArgs{...} }
+type DynamicHostVolumeCapabilityArrayInput interface {
+	pulumi.Input
+
+	ToDynamicHostVolumeCapabilityArrayOutput() DynamicHostVolumeCapabilityArrayOutput
+	ToDynamicHostVolumeCapabilityArrayOutputWithContext(context.Context) DynamicHostVolumeCapabilityArrayOutput
+}
+
+type DynamicHostVolumeCapabilityArray []DynamicHostVolumeCapabilityInput
+
+func (DynamicHostVolumeCapabilityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DynamicHostVolumeCapability)(nil)).Elem()
+}
+
+func (i DynamicHostVolumeCapabilityArray) ToDynamicHostVolumeCapabilityArrayOutput() DynamicHostVolumeCapabilityArrayOutput {
+	return i.ToDynamicHostVolumeCapabilityArrayOutputWithContext(context.Background())
+}
+
+func (i DynamicHostVolumeCapabilityArray) ToDynamicHostVolumeCapabilityArrayOutputWithContext(ctx context.Context) DynamicHostVolumeCapabilityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DynamicHostVolumeCapabilityArrayOutput)
+}
+
+type DynamicHostVolumeCapabilityOutput struct{ *pulumi.OutputState }
+
+func (DynamicHostVolumeCapabilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DynamicHostVolumeCapability)(nil)).Elem()
+}
+
+func (o DynamicHostVolumeCapabilityOutput) ToDynamicHostVolumeCapabilityOutput() DynamicHostVolumeCapabilityOutput {
+	return o
+}
+
+func (o DynamicHostVolumeCapabilityOutput) ToDynamicHostVolumeCapabilityOutputWithContext(ctx context.Context) DynamicHostVolumeCapabilityOutput {
+	return o
+}
+
+// `(string)` - How the volume can be mounted by
+// allocations. Refer to the [`accessMode`][] documentation for details.
+func (o DynamicHostVolumeCapabilityOutput) AccessMode() pulumi.StringOutput {
+	return o.ApplyT(func(v DynamicHostVolumeCapability) string { return v.AccessMode }).(pulumi.StringOutput)
+}
+
+// `(string)` - The storage API that will be used by the
+// volume. Refer to the [`attachmentMode`][] documentation.
+func (o DynamicHostVolumeCapabilityOutput) AttachmentMode() pulumi.StringOutput {
+	return o.ApplyT(func(v DynamicHostVolumeCapability) string { return v.AttachmentMode }).(pulumi.StringOutput)
+}
+
+type DynamicHostVolumeCapabilityArrayOutput struct{ *pulumi.OutputState }
+
+func (DynamicHostVolumeCapabilityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DynamicHostVolumeCapability)(nil)).Elem()
+}
+
+func (o DynamicHostVolumeCapabilityArrayOutput) ToDynamicHostVolumeCapabilityArrayOutput() DynamicHostVolumeCapabilityArrayOutput {
+	return o
+}
+
+func (o DynamicHostVolumeCapabilityArrayOutput) ToDynamicHostVolumeCapabilityArrayOutputWithContext(ctx context.Context) DynamicHostVolumeCapabilityArrayOutput {
+	return o
+}
+
+func (o DynamicHostVolumeCapabilityArrayOutput) Index(i pulumi.IntInput) DynamicHostVolumeCapabilityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DynamicHostVolumeCapability {
+		return vs[0].([]DynamicHostVolumeCapability)[vs[1].(int)]
+	}).(DynamicHostVolumeCapabilityOutput)
+}
+
+type DynamicHostVolumeConstraint struct {
+	// `(string)` - The [node attribute][] to check for the constraint.
+	Attribute string `pulumi:"attribute"`
+	// `(string)`- The operator to use in the comparison.
+	Operator *string `pulumi:"operator"`
+	// `(string)` - The value of the attribute to compare against.
+	Value *string `pulumi:"value"`
+}
+
+// DynamicHostVolumeConstraintInput is an input type that accepts DynamicHostVolumeConstraintArgs and DynamicHostVolumeConstraintOutput values.
+// You can construct a concrete instance of `DynamicHostVolumeConstraintInput` via:
+//
+//	DynamicHostVolumeConstraintArgs{...}
+type DynamicHostVolumeConstraintInput interface {
+	pulumi.Input
+
+	ToDynamicHostVolumeConstraintOutput() DynamicHostVolumeConstraintOutput
+	ToDynamicHostVolumeConstraintOutputWithContext(context.Context) DynamicHostVolumeConstraintOutput
+}
+
+type DynamicHostVolumeConstraintArgs struct {
+	// `(string)` - The [node attribute][] to check for the constraint.
+	Attribute pulumi.StringInput `pulumi:"attribute"`
+	// `(string)`- The operator to use in the comparison.
+	Operator pulumi.StringPtrInput `pulumi:"operator"`
+	// `(string)` - The value of the attribute to compare against.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (DynamicHostVolumeConstraintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DynamicHostVolumeConstraint)(nil)).Elem()
+}
+
+func (i DynamicHostVolumeConstraintArgs) ToDynamicHostVolumeConstraintOutput() DynamicHostVolumeConstraintOutput {
+	return i.ToDynamicHostVolumeConstraintOutputWithContext(context.Background())
+}
+
+func (i DynamicHostVolumeConstraintArgs) ToDynamicHostVolumeConstraintOutputWithContext(ctx context.Context) DynamicHostVolumeConstraintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DynamicHostVolumeConstraintOutput)
+}
+
+// DynamicHostVolumeConstraintArrayInput is an input type that accepts DynamicHostVolumeConstraintArray and DynamicHostVolumeConstraintArrayOutput values.
+// You can construct a concrete instance of `DynamicHostVolumeConstraintArrayInput` via:
+//
+//	DynamicHostVolumeConstraintArray{ DynamicHostVolumeConstraintArgs{...} }
+type DynamicHostVolumeConstraintArrayInput interface {
+	pulumi.Input
+
+	ToDynamicHostVolumeConstraintArrayOutput() DynamicHostVolumeConstraintArrayOutput
+	ToDynamicHostVolumeConstraintArrayOutputWithContext(context.Context) DynamicHostVolumeConstraintArrayOutput
+}
+
+type DynamicHostVolumeConstraintArray []DynamicHostVolumeConstraintInput
+
+func (DynamicHostVolumeConstraintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DynamicHostVolumeConstraint)(nil)).Elem()
+}
+
+func (i DynamicHostVolumeConstraintArray) ToDynamicHostVolumeConstraintArrayOutput() DynamicHostVolumeConstraintArrayOutput {
+	return i.ToDynamicHostVolumeConstraintArrayOutputWithContext(context.Background())
+}
+
+func (i DynamicHostVolumeConstraintArray) ToDynamicHostVolumeConstraintArrayOutputWithContext(ctx context.Context) DynamicHostVolumeConstraintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DynamicHostVolumeConstraintArrayOutput)
+}
+
+type DynamicHostVolumeConstraintOutput struct{ *pulumi.OutputState }
+
+func (DynamicHostVolumeConstraintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DynamicHostVolumeConstraint)(nil)).Elem()
+}
+
+func (o DynamicHostVolumeConstraintOutput) ToDynamicHostVolumeConstraintOutput() DynamicHostVolumeConstraintOutput {
+	return o
+}
+
+func (o DynamicHostVolumeConstraintOutput) ToDynamicHostVolumeConstraintOutputWithContext(ctx context.Context) DynamicHostVolumeConstraintOutput {
+	return o
+}
+
+// `(string)` - The [node attribute][] to check for the constraint.
+func (o DynamicHostVolumeConstraintOutput) Attribute() pulumi.StringOutput {
+	return o.ApplyT(func(v DynamicHostVolumeConstraint) string { return v.Attribute }).(pulumi.StringOutput)
+}
+
+// `(string)`- The operator to use in the comparison.
+func (o DynamicHostVolumeConstraintOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DynamicHostVolumeConstraint) *string { return v.Operator }).(pulumi.StringPtrOutput)
+}
+
+// `(string)` - The value of the attribute to compare against.
+func (o DynamicHostVolumeConstraintOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DynamicHostVolumeConstraint) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type DynamicHostVolumeConstraintArrayOutput struct{ *pulumi.OutputState }
+
+func (DynamicHostVolumeConstraintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DynamicHostVolumeConstraint)(nil)).Elem()
+}
+
+func (o DynamicHostVolumeConstraintArrayOutput) ToDynamicHostVolumeConstraintArrayOutput() DynamicHostVolumeConstraintArrayOutput {
+	return o
+}
+
+func (o DynamicHostVolumeConstraintArrayOutput) ToDynamicHostVolumeConstraintArrayOutputWithContext(ctx context.Context) DynamicHostVolumeConstraintArrayOutput {
+	return o
+}
+
+func (o DynamicHostVolumeConstraintArrayOutput) Index(i pulumi.IntInput) DynamicHostVolumeConstraintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DynamicHostVolumeConstraint {
+		return vs[0].([]DynamicHostVolumeConstraint)[vs[1].(int)]
+	}).(DynamicHostVolumeConstraintOutput)
+}
+
+type DynamicHostVolumeRegistrationCapability struct {
+	// `(string)` - How the volume can be mounted by
+	// allocations. Refer to the [`accessMode`][] documentation for details.
+	AccessMode string `pulumi:"accessMode"`
+	// `(string)` - The storage API that will be used by the
+	// volume. Refer to the [`attachmentMode`][] documentation.
+	AttachmentMode string `pulumi:"attachmentMode"`
+}
+
+// DynamicHostVolumeRegistrationCapabilityInput is an input type that accepts DynamicHostVolumeRegistrationCapabilityArgs and DynamicHostVolumeRegistrationCapabilityOutput values.
+// You can construct a concrete instance of `DynamicHostVolumeRegistrationCapabilityInput` via:
+//
+//	DynamicHostVolumeRegistrationCapabilityArgs{...}
+type DynamicHostVolumeRegistrationCapabilityInput interface {
+	pulumi.Input
+
+	ToDynamicHostVolumeRegistrationCapabilityOutput() DynamicHostVolumeRegistrationCapabilityOutput
+	ToDynamicHostVolumeRegistrationCapabilityOutputWithContext(context.Context) DynamicHostVolumeRegistrationCapabilityOutput
+}
+
+type DynamicHostVolumeRegistrationCapabilityArgs struct {
+	// `(string)` - How the volume can be mounted by
+	// allocations. Refer to the [`accessMode`][] documentation for details.
+	AccessMode pulumi.StringInput `pulumi:"accessMode"`
+	// `(string)` - The storage API that will be used by the
+	// volume. Refer to the [`attachmentMode`][] documentation.
+	AttachmentMode pulumi.StringInput `pulumi:"attachmentMode"`
+}
+
+func (DynamicHostVolumeRegistrationCapabilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DynamicHostVolumeRegistrationCapability)(nil)).Elem()
+}
+
+func (i DynamicHostVolumeRegistrationCapabilityArgs) ToDynamicHostVolumeRegistrationCapabilityOutput() DynamicHostVolumeRegistrationCapabilityOutput {
+	return i.ToDynamicHostVolumeRegistrationCapabilityOutputWithContext(context.Background())
+}
+
+func (i DynamicHostVolumeRegistrationCapabilityArgs) ToDynamicHostVolumeRegistrationCapabilityOutputWithContext(ctx context.Context) DynamicHostVolumeRegistrationCapabilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DynamicHostVolumeRegistrationCapabilityOutput)
+}
+
+// DynamicHostVolumeRegistrationCapabilityArrayInput is an input type that accepts DynamicHostVolumeRegistrationCapabilityArray and DynamicHostVolumeRegistrationCapabilityArrayOutput values.
+// You can construct a concrete instance of `DynamicHostVolumeRegistrationCapabilityArrayInput` via:
+//
+//	DynamicHostVolumeRegistrationCapabilityArray{ DynamicHostVolumeRegistrationCapabilityArgs{...} }
+type DynamicHostVolumeRegistrationCapabilityArrayInput interface {
+	pulumi.Input
+
+	ToDynamicHostVolumeRegistrationCapabilityArrayOutput() DynamicHostVolumeRegistrationCapabilityArrayOutput
+	ToDynamicHostVolumeRegistrationCapabilityArrayOutputWithContext(context.Context) DynamicHostVolumeRegistrationCapabilityArrayOutput
+}
+
+type DynamicHostVolumeRegistrationCapabilityArray []DynamicHostVolumeRegistrationCapabilityInput
+
+func (DynamicHostVolumeRegistrationCapabilityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DynamicHostVolumeRegistrationCapability)(nil)).Elem()
+}
+
+func (i DynamicHostVolumeRegistrationCapabilityArray) ToDynamicHostVolumeRegistrationCapabilityArrayOutput() DynamicHostVolumeRegistrationCapabilityArrayOutput {
+	return i.ToDynamicHostVolumeRegistrationCapabilityArrayOutputWithContext(context.Background())
+}
+
+func (i DynamicHostVolumeRegistrationCapabilityArray) ToDynamicHostVolumeRegistrationCapabilityArrayOutputWithContext(ctx context.Context) DynamicHostVolumeRegistrationCapabilityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DynamicHostVolumeRegistrationCapabilityArrayOutput)
+}
+
+type DynamicHostVolumeRegistrationCapabilityOutput struct{ *pulumi.OutputState }
+
+func (DynamicHostVolumeRegistrationCapabilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DynamicHostVolumeRegistrationCapability)(nil)).Elem()
+}
+
+func (o DynamicHostVolumeRegistrationCapabilityOutput) ToDynamicHostVolumeRegistrationCapabilityOutput() DynamicHostVolumeRegistrationCapabilityOutput {
+	return o
+}
+
+func (o DynamicHostVolumeRegistrationCapabilityOutput) ToDynamicHostVolumeRegistrationCapabilityOutputWithContext(ctx context.Context) DynamicHostVolumeRegistrationCapabilityOutput {
+	return o
+}
+
+// `(string)` - How the volume can be mounted by
+// allocations. Refer to the [`accessMode`][] documentation for details.
+func (o DynamicHostVolumeRegistrationCapabilityOutput) AccessMode() pulumi.StringOutput {
+	return o.ApplyT(func(v DynamicHostVolumeRegistrationCapability) string { return v.AccessMode }).(pulumi.StringOutput)
+}
+
+// `(string)` - The storage API that will be used by the
+// volume. Refer to the [`attachmentMode`][] documentation.
+func (o DynamicHostVolumeRegistrationCapabilityOutput) AttachmentMode() pulumi.StringOutput {
+	return o.ApplyT(func(v DynamicHostVolumeRegistrationCapability) string { return v.AttachmentMode }).(pulumi.StringOutput)
+}
+
+type DynamicHostVolumeRegistrationCapabilityArrayOutput struct{ *pulumi.OutputState }
+
+func (DynamicHostVolumeRegistrationCapabilityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DynamicHostVolumeRegistrationCapability)(nil)).Elem()
+}
+
+func (o DynamicHostVolumeRegistrationCapabilityArrayOutput) ToDynamicHostVolumeRegistrationCapabilityArrayOutput() DynamicHostVolumeRegistrationCapabilityArrayOutput {
+	return o
+}
+
+func (o DynamicHostVolumeRegistrationCapabilityArrayOutput) ToDynamicHostVolumeRegistrationCapabilityArrayOutputWithContext(ctx context.Context) DynamicHostVolumeRegistrationCapabilityArrayOutput {
+	return o
+}
+
+func (o DynamicHostVolumeRegistrationCapabilityArrayOutput) Index(i pulumi.IntInput) DynamicHostVolumeRegistrationCapabilityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DynamicHostVolumeRegistrationCapability {
+		return vs[0].([]DynamicHostVolumeRegistrationCapability)[vs[1].(int)]
+	}).(DynamicHostVolumeRegistrationCapabilityOutput)
+}
+
+type DynamicHostVolumeRegistrationConstraint struct {
+	// An attribute to check to constrain volume placement
+	Attribute string `pulumi:"attribute"`
+	// The operator to use for comparison
+	Operator *string `pulumi:"operator"`
+	// The requested value of the attribute
+	Value *string `pulumi:"value"`
+}
+
+// DynamicHostVolumeRegistrationConstraintInput is an input type that accepts DynamicHostVolumeRegistrationConstraintArgs and DynamicHostVolumeRegistrationConstraintOutput values.
+// You can construct a concrete instance of `DynamicHostVolumeRegistrationConstraintInput` via:
+//
+//	DynamicHostVolumeRegistrationConstraintArgs{...}
+type DynamicHostVolumeRegistrationConstraintInput interface {
+	pulumi.Input
+
+	ToDynamicHostVolumeRegistrationConstraintOutput() DynamicHostVolumeRegistrationConstraintOutput
+	ToDynamicHostVolumeRegistrationConstraintOutputWithContext(context.Context) DynamicHostVolumeRegistrationConstraintOutput
+}
+
+type DynamicHostVolumeRegistrationConstraintArgs struct {
+	// An attribute to check to constrain volume placement
+	Attribute pulumi.StringInput `pulumi:"attribute"`
+	// The operator to use for comparison
+	Operator pulumi.StringPtrInput `pulumi:"operator"`
+	// The requested value of the attribute
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (DynamicHostVolumeRegistrationConstraintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DynamicHostVolumeRegistrationConstraint)(nil)).Elem()
+}
+
+func (i DynamicHostVolumeRegistrationConstraintArgs) ToDynamicHostVolumeRegistrationConstraintOutput() DynamicHostVolumeRegistrationConstraintOutput {
+	return i.ToDynamicHostVolumeRegistrationConstraintOutputWithContext(context.Background())
+}
+
+func (i DynamicHostVolumeRegistrationConstraintArgs) ToDynamicHostVolumeRegistrationConstraintOutputWithContext(ctx context.Context) DynamicHostVolumeRegistrationConstraintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DynamicHostVolumeRegistrationConstraintOutput)
+}
+
+// DynamicHostVolumeRegistrationConstraintArrayInput is an input type that accepts DynamicHostVolumeRegistrationConstraintArray and DynamicHostVolumeRegistrationConstraintArrayOutput values.
+// You can construct a concrete instance of `DynamicHostVolumeRegistrationConstraintArrayInput` via:
+//
+//	DynamicHostVolumeRegistrationConstraintArray{ DynamicHostVolumeRegistrationConstraintArgs{...} }
+type DynamicHostVolumeRegistrationConstraintArrayInput interface {
+	pulumi.Input
+
+	ToDynamicHostVolumeRegistrationConstraintArrayOutput() DynamicHostVolumeRegistrationConstraintArrayOutput
+	ToDynamicHostVolumeRegistrationConstraintArrayOutputWithContext(context.Context) DynamicHostVolumeRegistrationConstraintArrayOutput
+}
+
+type DynamicHostVolumeRegistrationConstraintArray []DynamicHostVolumeRegistrationConstraintInput
+
+func (DynamicHostVolumeRegistrationConstraintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DynamicHostVolumeRegistrationConstraint)(nil)).Elem()
+}
+
+func (i DynamicHostVolumeRegistrationConstraintArray) ToDynamicHostVolumeRegistrationConstraintArrayOutput() DynamicHostVolumeRegistrationConstraintArrayOutput {
+	return i.ToDynamicHostVolumeRegistrationConstraintArrayOutputWithContext(context.Background())
+}
+
+func (i DynamicHostVolumeRegistrationConstraintArray) ToDynamicHostVolumeRegistrationConstraintArrayOutputWithContext(ctx context.Context) DynamicHostVolumeRegistrationConstraintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DynamicHostVolumeRegistrationConstraintArrayOutput)
+}
+
+type DynamicHostVolumeRegistrationConstraintOutput struct{ *pulumi.OutputState }
+
+func (DynamicHostVolumeRegistrationConstraintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DynamicHostVolumeRegistrationConstraint)(nil)).Elem()
+}
+
+func (o DynamicHostVolumeRegistrationConstraintOutput) ToDynamicHostVolumeRegistrationConstraintOutput() DynamicHostVolumeRegistrationConstraintOutput {
+	return o
+}
+
+func (o DynamicHostVolumeRegistrationConstraintOutput) ToDynamicHostVolumeRegistrationConstraintOutputWithContext(ctx context.Context) DynamicHostVolumeRegistrationConstraintOutput {
+	return o
+}
+
+// An attribute to check to constrain volume placement
+func (o DynamicHostVolumeRegistrationConstraintOutput) Attribute() pulumi.StringOutput {
+	return o.ApplyT(func(v DynamicHostVolumeRegistrationConstraint) string { return v.Attribute }).(pulumi.StringOutput)
+}
+
+// The operator to use for comparison
+func (o DynamicHostVolumeRegistrationConstraintOutput) Operator() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DynamicHostVolumeRegistrationConstraint) *string { return v.Operator }).(pulumi.StringPtrOutput)
+}
+
+// The requested value of the attribute
+func (o DynamicHostVolumeRegistrationConstraintOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DynamicHostVolumeRegistrationConstraint) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type DynamicHostVolumeRegistrationConstraintArrayOutput struct{ *pulumi.OutputState }
+
+func (DynamicHostVolumeRegistrationConstraintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DynamicHostVolumeRegistrationConstraint)(nil)).Elem()
+}
+
+func (o DynamicHostVolumeRegistrationConstraintArrayOutput) ToDynamicHostVolumeRegistrationConstraintArrayOutput() DynamicHostVolumeRegistrationConstraintArrayOutput {
+	return o
+}
+
+func (o DynamicHostVolumeRegistrationConstraintArrayOutput) ToDynamicHostVolumeRegistrationConstraintArrayOutputWithContext(ctx context.Context) DynamicHostVolumeRegistrationConstraintArrayOutput {
+	return o
+}
+
+func (o DynamicHostVolumeRegistrationConstraintArrayOutput) Index(i pulumi.IntInput) DynamicHostVolumeRegistrationConstraintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DynamicHostVolumeRegistrationConstraint {
+		return vs[0].([]DynamicHostVolumeRegistrationConstraint)[vs[1].(int)]
+	}).(DynamicHostVolumeRegistrationConstraintOutput)
 }
 
 type ExternalVolumeCapability struct {
@@ -6979,6 +8081,233 @@ func (o GetAllocationsAllocationArrayOutput) Index(i pulumi.IntInput) GetAllocat
 	}).(GetAllocationsAllocationOutput)
 }
 
+type GetDynamicHostVolumeCapability struct {
+	// `(string)` - How the volume can be mounted by
+	// allocations. Refer to the [`accessMode`][] documentation for details.
+	AccessMode string `pulumi:"accessMode"`
+	// `(string)` - The storage API that will be used by the
+	// volume. Refer to the [`attachmentMode`][] documentation.
+	AttachmentMode string `pulumi:"attachmentMode"`
+}
+
+// GetDynamicHostVolumeCapabilityInput is an input type that accepts GetDynamicHostVolumeCapabilityArgs and GetDynamicHostVolumeCapabilityOutput values.
+// You can construct a concrete instance of `GetDynamicHostVolumeCapabilityInput` via:
+//
+//	GetDynamicHostVolumeCapabilityArgs{...}
+type GetDynamicHostVolumeCapabilityInput interface {
+	pulumi.Input
+
+	ToGetDynamicHostVolumeCapabilityOutput() GetDynamicHostVolumeCapabilityOutput
+	ToGetDynamicHostVolumeCapabilityOutputWithContext(context.Context) GetDynamicHostVolumeCapabilityOutput
+}
+
+type GetDynamicHostVolumeCapabilityArgs struct {
+	// `(string)` - How the volume can be mounted by
+	// allocations. Refer to the [`accessMode`][] documentation for details.
+	AccessMode pulumi.StringInput `pulumi:"accessMode"`
+	// `(string)` - The storage API that will be used by the
+	// volume. Refer to the [`attachmentMode`][] documentation.
+	AttachmentMode pulumi.StringInput `pulumi:"attachmentMode"`
+}
+
+func (GetDynamicHostVolumeCapabilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDynamicHostVolumeCapability)(nil)).Elem()
+}
+
+func (i GetDynamicHostVolumeCapabilityArgs) ToGetDynamicHostVolumeCapabilityOutput() GetDynamicHostVolumeCapabilityOutput {
+	return i.ToGetDynamicHostVolumeCapabilityOutputWithContext(context.Background())
+}
+
+func (i GetDynamicHostVolumeCapabilityArgs) ToGetDynamicHostVolumeCapabilityOutputWithContext(ctx context.Context) GetDynamicHostVolumeCapabilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDynamicHostVolumeCapabilityOutput)
+}
+
+// GetDynamicHostVolumeCapabilityArrayInput is an input type that accepts GetDynamicHostVolumeCapabilityArray and GetDynamicHostVolumeCapabilityArrayOutput values.
+// You can construct a concrete instance of `GetDynamicHostVolumeCapabilityArrayInput` via:
+//
+//	GetDynamicHostVolumeCapabilityArray{ GetDynamicHostVolumeCapabilityArgs{...} }
+type GetDynamicHostVolumeCapabilityArrayInput interface {
+	pulumi.Input
+
+	ToGetDynamicHostVolumeCapabilityArrayOutput() GetDynamicHostVolumeCapabilityArrayOutput
+	ToGetDynamicHostVolumeCapabilityArrayOutputWithContext(context.Context) GetDynamicHostVolumeCapabilityArrayOutput
+}
+
+type GetDynamicHostVolumeCapabilityArray []GetDynamicHostVolumeCapabilityInput
+
+func (GetDynamicHostVolumeCapabilityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDynamicHostVolumeCapability)(nil)).Elem()
+}
+
+func (i GetDynamicHostVolumeCapabilityArray) ToGetDynamicHostVolumeCapabilityArrayOutput() GetDynamicHostVolumeCapabilityArrayOutput {
+	return i.ToGetDynamicHostVolumeCapabilityArrayOutputWithContext(context.Background())
+}
+
+func (i GetDynamicHostVolumeCapabilityArray) ToGetDynamicHostVolumeCapabilityArrayOutputWithContext(ctx context.Context) GetDynamicHostVolumeCapabilityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDynamicHostVolumeCapabilityArrayOutput)
+}
+
+type GetDynamicHostVolumeCapabilityOutput struct{ *pulumi.OutputState }
+
+func (GetDynamicHostVolumeCapabilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDynamicHostVolumeCapability)(nil)).Elem()
+}
+
+func (o GetDynamicHostVolumeCapabilityOutput) ToGetDynamicHostVolumeCapabilityOutput() GetDynamicHostVolumeCapabilityOutput {
+	return o
+}
+
+func (o GetDynamicHostVolumeCapabilityOutput) ToGetDynamicHostVolumeCapabilityOutputWithContext(ctx context.Context) GetDynamicHostVolumeCapabilityOutput {
+	return o
+}
+
+// `(string)` - How the volume can be mounted by
+// allocations. Refer to the [`accessMode`][] documentation for details.
+func (o GetDynamicHostVolumeCapabilityOutput) AccessMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDynamicHostVolumeCapability) string { return v.AccessMode }).(pulumi.StringOutput)
+}
+
+// `(string)` - The storage API that will be used by the
+// volume. Refer to the [`attachmentMode`][] documentation.
+func (o GetDynamicHostVolumeCapabilityOutput) AttachmentMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDynamicHostVolumeCapability) string { return v.AttachmentMode }).(pulumi.StringOutput)
+}
+
+type GetDynamicHostVolumeCapabilityArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDynamicHostVolumeCapabilityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDynamicHostVolumeCapability)(nil)).Elem()
+}
+
+func (o GetDynamicHostVolumeCapabilityArrayOutput) ToGetDynamicHostVolumeCapabilityArrayOutput() GetDynamicHostVolumeCapabilityArrayOutput {
+	return o
+}
+
+func (o GetDynamicHostVolumeCapabilityArrayOutput) ToGetDynamicHostVolumeCapabilityArrayOutputWithContext(ctx context.Context) GetDynamicHostVolumeCapabilityArrayOutput {
+	return o
+}
+
+func (o GetDynamicHostVolumeCapabilityArrayOutput) Index(i pulumi.IntInput) GetDynamicHostVolumeCapabilityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDynamicHostVolumeCapability {
+		return vs[0].([]GetDynamicHostVolumeCapability)[vs[1].(int)]
+	}).(GetDynamicHostVolumeCapabilityOutput)
+}
+
+type GetDynamicHostVolumeConstraint struct {
+	// `(string)` - The [node attribute][] to check for the constraint.
+	Attribute string `pulumi:"attribute"`
+	// `(string)`- The operator to use in the comparison.
+	Operator string `pulumi:"operator"`
+	// `(string)` - The value of the attribute to compare against.
+	Value string `pulumi:"value"`
+}
+
+// GetDynamicHostVolumeConstraintInput is an input type that accepts GetDynamicHostVolumeConstraintArgs and GetDynamicHostVolumeConstraintOutput values.
+// You can construct a concrete instance of `GetDynamicHostVolumeConstraintInput` via:
+//
+//	GetDynamicHostVolumeConstraintArgs{...}
+type GetDynamicHostVolumeConstraintInput interface {
+	pulumi.Input
+
+	ToGetDynamicHostVolumeConstraintOutput() GetDynamicHostVolumeConstraintOutput
+	ToGetDynamicHostVolumeConstraintOutputWithContext(context.Context) GetDynamicHostVolumeConstraintOutput
+}
+
+type GetDynamicHostVolumeConstraintArgs struct {
+	// `(string)` - The [node attribute][] to check for the constraint.
+	Attribute pulumi.StringInput `pulumi:"attribute"`
+	// `(string)`- The operator to use in the comparison.
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// `(string)` - The value of the attribute to compare against.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetDynamicHostVolumeConstraintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDynamicHostVolumeConstraint)(nil)).Elem()
+}
+
+func (i GetDynamicHostVolumeConstraintArgs) ToGetDynamicHostVolumeConstraintOutput() GetDynamicHostVolumeConstraintOutput {
+	return i.ToGetDynamicHostVolumeConstraintOutputWithContext(context.Background())
+}
+
+func (i GetDynamicHostVolumeConstraintArgs) ToGetDynamicHostVolumeConstraintOutputWithContext(ctx context.Context) GetDynamicHostVolumeConstraintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDynamicHostVolumeConstraintOutput)
+}
+
+// GetDynamicHostVolumeConstraintArrayInput is an input type that accepts GetDynamicHostVolumeConstraintArray and GetDynamicHostVolumeConstraintArrayOutput values.
+// You can construct a concrete instance of `GetDynamicHostVolumeConstraintArrayInput` via:
+//
+//	GetDynamicHostVolumeConstraintArray{ GetDynamicHostVolumeConstraintArgs{...} }
+type GetDynamicHostVolumeConstraintArrayInput interface {
+	pulumi.Input
+
+	ToGetDynamicHostVolumeConstraintArrayOutput() GetDynamicHostVolumeConstraintArrayOutput
+	ToGetDynamicHostVolumeConstraintArrayOutputWithContext(context.Context) GetDynamicHostVolumeConstraintArrayOutput
+}
+
+type GetDynamicHostVolumeConstraintArray []GetDynamicHostVolumeConstraintInput
+
+func (GetDynamicHostVolumeConstraintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDynamicHostVolumeConstraint)(nil)).Elem()
+}
+
+func (i GetDynamicHostVolumeConstraintArray) ToGetDynamicHostVolumeConstraintArrayOutput() GetDynamicHostVolumeConstraintArrayOutput {
+	return i.ToGetDynamicHostVolumeConstraintArrayOutputWithContext(context.Background())
+}
+
+func (i GetDynamicHostVolumeConstraintArray) ToGetDynamicHostVolumeConstraintArrayOutputWithContext(ctx context.Context) GetDynamicHostVolumeConstraintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDynamicHostVolumeConstraintArrayOutput)
+}
+
+type GetDynamicHostVolumeConstraintOutput struct{ *pulumi.OutputState }
+
+func (GetDynamicHostVolumeConstraintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDynamicHostVolumeConstraint)(nil)).Elem()
+}
+
+func (o GetDynamicHostVolumeConstraintOutput) ToGetDynamicHostVolumeConstraintOutput() GetDynamicHostVolumeConstraintOutput {
+	return o
+}
+
+func (o GetDynamicHostVolumeConstraintOutput) ToGetDynamicHostVolumeConstraintOutputWithContext(ctx context.Context) GetDynamicHostVolumeConstraintOutput {
+	return o
+}
+
+// `(string)` - The [node attribute][] to check for the constraint.
+func (o GetDynamicHostVolumeConstraintOutput) Attribute() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDynamicHostVolumeConstraint) string { return v.Attribute }).(pulumi.StringOutput)
+}
+
+// `(string)`- The operator to use in the comparison.
+func (o GetDynamicHostVolumeConstraintOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDynamicHostVolumeConstraint) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// `(string)` - The value of the attribute to compare against.
+func (o GetDynamicHostVolumeConstraintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDynamicHostVolumeConstraint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetDynamicHostVolumeConstraintArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDynamicHostVolumeConstraintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDynamicHostVolumeConstraint)(nil)).Elem()
+}
+
+func (o GetDynamicHostVolumeConstraintArrayOutput) ToGetDynamicHostVolumeConstraintArrayOutput() GetDynamicHostVolumeConstraintArrayOutput {
+	return o
+}
+
+func (o GetDynamicHostVolumeConstraintArrayOutput) ToGetDynamicHostVolumeConstraintArrayOutputWithContext(ctx context.Context) GetDynamicHostVolumeConstraintArrayOutput {
+	return o
+}
+
+func (o GetDynamicHostVolumeConstraintArrayOutput) Index(i pulumi.IntInput) GetDynamicHostVolumeConstraintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDynamicHostVolumeConstraint {
+		return vs[0].([]GetDynamicHostVolumeConstraint)[vs[1].(int)]
+	}).(GetDynamicHostVolumeConstraintOutput)
+}
+
 type GetJobConstraint struct {
 	// `(string)` Attribute being constrained.
 	Ltarget string `pulumi:"ltarget"`
@@ -8631,6 +9960,10 @@ func (o GetScalingPoliciesPolicyArrayOutput) Index(i pulumi.IntInput) GetScaling
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAuthMethodConfigInput)(nil)).Elem(), AclAuthMethodConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAuthMethodConfigPtrInput)(nil)).Elem(), AclAuthMethodConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclAuthMethodConfigOidcClientAssertionInput)(nil)).Elem(), AclAuthMethodConfigOidcClientAssertionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclAuthMethodConfigOidcClientAssertionPtrInput)(nil)).Elem(), AclAuthMethodConfigOidcClientAssertionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclAuthMethodConfigOidcClientAssertionPrivateKeyInput)(nil)).Elem(), AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrInput)(nil)).Elem(), AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyJobAclInput)(nil)).Elem(), AclPolicyJobAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclPolicyJobAclPtrInput)(nil)).Elem(), AclPolicyJobAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclRolePolicyInput)(nil)).Elem(), AclRolePolicyArgs{})
@@ -8665,6 +9998,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestRequiredPtrInput)(nil)).Elem(), CsiVolumeTopologyRequestRequiredArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestRequiredTopologyInput)(nil)).Elem(), CsiVolumeTopologyRequestRequiredTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CsiVolumeTopologyRequestRequiredTopologyArrayInput)(nil)).Elem(), CsiVolumeTopologyRequestRequiredTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DynamicHostVolumeCapabilityInput)(nil)).Elem(), DynamicHostVolumeCapabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DynamicHostVolumeCapabilityArrayInput)(nil)).Elem(), DynamicHostVolumeCapabilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DynamicHostVolumeConstraintInput)(nil)).Elem(), DynamicHostVolumeConstraintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DynamicHostVolumeConstraintArrayInput)(nil)).Elem(), DynamicHostVolumeConstraintArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DynamicHostVolumeRegistrationCapabilityInput)(nil)).Elem(), DynamicHostVolumeRegistrationCapabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DynamicHostVolumeRegistrationCapabilityArrayInput)(nil)).Elem(), DynamicHostVolumeRegistrationCapabilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DynamicHostVolumeRegistrationConstraintInput)(nil)).Elem(), DynamicHostVolumeRegistrationConstraintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DynamicHostVolumeRegistrationConstraintArrayInput)(nil)).Elem(), DynamicHostVolumeRegistrationConstraintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeCapabilityInput)(nil)).Elem(), ExternalVolumeCapabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeCapabilityArrayInput)(nil)).Elem(), ExternalVolumeCapabilityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeMountOptionsInput)(nil)).Elem(), ExternalVolumeMountOptionsArgs{})
@@ -8730,6 +10071,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclTokensAclTokenRoleArrayInput)(nil)).Elem(), GetAclTokensAclTokenRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAllocationsAllocationInput)(nil)).Elem(), GetAllocationsAllocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAllocationsAllocationArrayInput)(nil)).Elem(), GetAllocationsAllocationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDynamicHostVolumeCapabilityInput)(nil)).Elem(), GetDynamicHostVolumeCapabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDynamicHostVolumeCapabilityArrayInput)(nil)).Elem(), GetDynamicHostVolumeCapabilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDynamicHostVolumeConstraintInput)(nil)).Elem(), GetDynamicHostVolumeConstraintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDynamicHostVolumeConstraintArrayInput)(nil)).Elem(), GetDynamicHostVolumeConstraintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobConstraintInput)(nil)).Elem(), GetJobConstraintArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobConstraintArrayInput)(nil)).Elem(), GetJobConstraintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobPeriodicConfigInput)(nil)).Elem(), GetJobPeriodicConfigArgs{})
@@ -8760,6 +10105,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesPolicyArrayInput)(nil)).Elem(), GetScalingPoliciesPolicyArray{})
 	pulumi.RegisterOutputType(AclAuthMethodConfigOutput{})
 	pulumi.RegisterOutputType(AclAuthMethodConfigPtrOutput{})
+	pulumi.RegisterOutputType(AclAuthMethodConfigOidcClientAssertionOutput{})
+	pulumi.RegisterOutputType(AclAuthMethodConfigOidcClientAssertionPtrOutput{})
+	pulumi.RegisterOutputType(AclAuthMethodConfigOidcClientAssertionPrivateKeyOutput{})
+	pulumi.RegisterOutputType(AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput{})
 	pulumi.RegisterOutputType(AclPolicyJobAclOutput{})
 	pulumi.RegisterOutputType(AclPolicyJobAclPtrOutput{})
 	pulumi.RegisterOutputType(AclRolePolicyOutput{})
@@ -8794,6 +10143,14 @@ func init() {
 	pulumi.RegisterOutputType(CsiVolumeTopologyRequestRequiredPtrOutput{})
 	pulumi.RegisterOutputType(CsiVolumeTopologyRequestRequiredTopologyOutput{})
 	pulumi.RegisterOutputType(CsiVolumeTopologyRequestRequiredTopologyArrayOutput{})
+	pulumi.RegisterOutputType(DynamicHostVolumeCapabilityOutput{})
+	pulumi.RegisterOutputType(DynamicHostVolumeCapabilityArrayOutput{})
+	pulumi.RegisterOutputType(DynamicHostVolumeConstraintOutput{})
+	pulumi.RegisterOutputType(DynamicHostVolumeConstraintArrayOutput{})
+	pulumi.RegisterOutputType(DynamicHostVolumeRegistrationCapabilityOutput{})
+	pulumi.RegisterOutputType(DynamicHostVolumeRegistrationCapabilityArrayOutput{})
+	pulumi.RegisterOutputType(DynamicHostVolumeRegistrationConstraintOutput{})
+	pulumi.RegisterOutputType(DynamicHostVolumeRegistrationConstraintArrayOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeCapabilityOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeCapabilityArrayOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeMountOptionsOutput{})
@@ -8859,6 +10216,10 @@ func init() {
 	pulumi.RegisterOutputType(GetAclTokensAclTokenRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetAllocationsAllocationOutput{})
 	pulumi.RegisterOutputType(GetAllocationsAllocationArrayOutput{})
+	pulumi.RegisterOutputType(GetDynamicHostVolumeCapabilityOutput{})
+	pulumi.RegisterOutputType(GetDynamicHostVolumeCapabilityArrayOutput{})
+	pulumi.RegisterOutputType(GetDynamicHostVolumeConstraintOutput{})
+	pulumi.RegisterOutputType(GetDynamicHostVolumeConstraintArrayOutput{})
 	pulumi.RegisterOutputType(GetJobConstraintOutput{})
 	pulumi.RegisterOutputType(GetJobConstraintArrayOutput{})
 	pulumi.RegisterOutputType(GetJobPeriodicConfigOutput{})

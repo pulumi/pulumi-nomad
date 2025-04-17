@@ -19,9 +19,6 @@ type Job struct {
 	//
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	AllocationIds pulumi.StringArrayOutput `pulumi:"allocationIds"`
-	// `(string: <optional>)` - Consul token used when registering this job.
-	// Will fallback to the value declared in Nomad provider configuration, if any.
-	ConsulToken pulumi.StringPtrOutput `pulumi:"consulToken"`
 	// The target datacenters for the job, as derived from the jobspec.
 	Datacenters pulumi.StringArrayOutput `pulumi:"datacenters"`
 	// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
@@ -67,9 +64,6 @@ type Job struct {
 	TaskGroups JobTaskGroupArrayOutput `pulumi:"taskGroups"`
 	// The type of the job, as derived from the jobspec.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// `(string: <optional>)` - Vault token used when registering this job.
-	// Will fallback to the value declared in Nomad provider configuration, if any.
-	VaultToken pulumi.StringPtrOutput `pulumi:"vaultToken"`
 }
 
 // NewJob registers a new resource with the given unique name, arguments, and options.
@@ -82,17 +76,6 @@ func NewJob(ctx *pulumi.Context,
 	if args.Jobspec == nil {
 		return nil, errors.New("invalid value for required argument 'Jobspec'")
 	}
-	if args.ConsulToken != nil {
-		args.ConsulToken = pulumi.ToSecret(args.ConsulToken).(pulumi.StringPtrInput)
-	}
-	if args.VaultToken != nil {
-		args.VaultToken = pulumi.ToSecret(args.VaultToken).(pulumi.StringPtrInput)
-	}
-	secrets := pulumi.AdditionalSecretOutputs([]string{
-		"consulToken",
-		"vaultToken",
-	})
-	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Job
 	err := ctx.RegisterResource("nomad:index/job:Job", name, args, &resource, opts...)
@@ -120,9 +103,6 @@ type jobState struct {
 	//
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	AllocationIds []string `pulumi:"allocationIds"`
-	// `(string: <optional>)` - Consul token used when registering this job.
-	// Will fallback to the value declared in Nomad provider configuration, if any.
-	ConsulToken *string `pulumi:"consulToken"`
 	// The target datacenters for the job, as derived from the jobspec.
 	Datacenters []string `pulumi:"datacenters"`
 	// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
@@ -168,9 +148,6 @@ type jobState struct {
 	TaskGroups []JobTaskGroup `pulumi:"taskGroups"`
 	// The type of the job, as derived from the jobspec.
 	Type *string `pulumi:"type"`
-	// `(string: <optional>)` - Vault token used when registering this job.
-	// Will fallback to the value declared in Nomad provider configuration, if any.
-	VaultToken *string `pulumi:"vaultToken"`
 }
 
 type JobState struct {
@@ -178,9 +155,6 @@ type JobState struct {
 	//
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	AllocationIds pulumi.StringArrayInput
-	// `(string: <optional>)` - Consul token used when registering this job.
-	// Will fallback to the value declared in Nomad provider configuration, if any.
-	ConsulToken pulumi.StringPtrInput
 	// The target datacenters for the job, as derived from the jobspec.
 	Datacenters pulumi.StringArrayInput
 	// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
@@ -226,9 +200,6 @@ type JobState struct {
 	TaskGroups JobTaskGroupArrayInput
 	// The type of the job, as derived from the jobspec.
 	Type pulumi.StringPtrInput
-	// `(string: <optional>)` - Vault token used when registering this job.
-	// Will fallback to the value declared in Nomad provider configuration, if any.
-	VaultToken pulumi.StringPtrInput
 }
 
 func (JobState) ElementType() reflect.Type {
@@ -236,9 +207,6 @@ func (JobState) ElementType() reflect.Type {
 }
 
 type jobArgs struct {
-	// `(string: <optional>)` - Consul token used when registering this job.
-	// Will fallback to the value declared in Nomad provider configuration, if any.
-	ConsulToken *string `pulumi:"consulToken"`
 	// If true, the job will be deregistered on destroy.
 	DeregisterOnDestroy *bool `pulumi:"deregisterOnDestroy"`
 	// `(boolean: true)` - Determines if the job will be
@@ -265,16 +233,10 @@ type jobArgs struct {
 	// `(boolean: false)` - Set this to true to force the job to run
 	// again if its status is `dead`.
 	RerunIfDead *bool `pulumi:"rerunIfDead"`
-	// `(string: <optional>)` - Vault token used when registering this job.
-	// Will fallback to the value declared in Nomad provider configuration, if any.
-	VaultToken *string `pulumi:"vaultToken"`
 }
 
 // The set of arguments for constructing a Job resource.
 type JobArgs struct {
-	// `(string: <optional>)` - Consul token used when registering this job.
-	// Will fallback to the value declared in Nomad provider configuration, if any.
-	ConsulToken pulumi.StringPtrInput
 	// If true, the job will be deregistered on destroy.
 	DeregisterOnDestroy pulumi.BoolPtrInput
 	// `(boolean: true)` - Determines if the job will be
@@ -301,9 +263,6 @@ type JobArgs struct {
 	// `(boolean: false)` - Set this to true to force the job to run
 	// again if its status is `dead`.
 	RerunIfDead pulumi.BoolPtrInput
-	// `(string: <optional>)` - Vault token used when registering this job.
-	// Will fallback to the value declared in Nomad provider configuration, if any.
-	VaultToken pulumi.StringPtrInput
 }
 
 func (JobArgs) ElementType() reflect.Type {
@@ -398,12 +357,6 @@ func (o JobOutput) ToJobOutputWithContext(ctx context.Context) JobOutput {
 // Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 func (o JobOutput) AllocationIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.AllocationIds }).(pulumi.StringArrayOutput)
-}
-
-// `(string: <optional>)` - Consul token used when registering this job.
-// Will fallback to the value declared in Nomad provider configuration, if any.
-func (o JobOutput) ConsulToken() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.ConsulToken }).(pulumi.StringPtrOutput)
 }
 
 // The target datacenters for the job, as derived from the jobspec.
@@ -509,12 +462,6 @@ func (o JobOutput) TaskGroups() JobTaskGroupArrayOutput {
 // The type of the job, as derived from the jobspec.
 func (o JobOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
-}
-
-// `(string: <optional>)` - Vault token used when registering this job.
-// Will fallback to the value declared in Nomad provider configuration, if any.
-func (o JobOutput) VaultToken() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Job) pulumi.StringPtrOutput { return v.VaultToken }).(pulumi.StringPtrOutput)
 }
 
 type JobArrayOutput struct{ *pulumi.OutputState }

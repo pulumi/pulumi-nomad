@@ -23,6 +23,19 @@
                                 "jwt_validation_pub_keys": {
                                     "maxItemsOne": false
                                 },
+                                "oidc_client_assertion": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "audience": {
+                                                "maxItemsOne": false
+                                            },
+                                            "private_key": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                },
                                 "oidc_scopes": {
                                     "maxItemsOne": false
                                 },
@@ -147,6 +160,28 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "nomad_dynamic_host_volume": {
+                "current": "nomad:index/dynamicHostVolume:DynamicHostVolume",
+                "fields": {
+                    "capability": {
+                        "maxItemsOne": false
+                    },
+                    "constraint": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "nomad_dynamic_host_volume_registration": {
+                "current": "nomad:index/dynamicHostVolumeRegistration:DynamicHostVolumeRegistration",
+                "fields": {
+                    "capability": {
+                        "maxItemsOne": false
+                    },
+                    "constraint": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -418,6 +453,17 @@
                 "current": "nomad:index/getDeployments:getDeployments",
                 "fields": {
                     "deployments": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "nomad_dynamic_host_volume": {
+                "current": "nomad:index/getDynamicHostVolume:getDynamicHostVolume",
+                "fields": {
+                    "capability": {
+                        "maxItemsOne": false
+                    },
+                    "constraint": {
                         "maxItemsOne": false
                     }
                 }

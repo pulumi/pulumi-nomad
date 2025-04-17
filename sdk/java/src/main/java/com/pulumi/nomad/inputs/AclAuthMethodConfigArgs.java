@@ -5,6 +5,7 @@ package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.nomad.inputs.AclAuthMethodConfigOidcClientAssertionArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -219,6 +220,27 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * `(OIDCClientAssertion: &lt;optional&gt;)` - Optionally
+     * send a signed JWT (&#34;[private key jwt][]&#34;) as a client assertion to the OIDC
+     * provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+     * more.
+     * 
+     */
+    @Import(name="oidcClientAssertion")
+    private @Nullable Output<AclAuthMethodConfigOidcClientAssertionArgs> oidcClientAssertion;
+
+    /**
+     * @return `(OIDCClientAssertion: &lt;optional&gt;)` - Optionally
+     * send a signed JWT (&#34;[private key jwt][]&#34;) as a client assertion to the OIDC
+     * provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+     * more.
+     * 
+     */
+    public Optional<Output<AclAuthMethodConfigOidcClientAssertionArgs>> oidcClientAssertion() {
+        return Optional.ofNullable(this.oidcClientAssertion);
+    }
+
+    /**
      * `(string: &lt;optional&gt;)` - The OAuth Client ID configured
      * with the OIDC provider.
      * 
@@ -291,6 +313,25 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * `(bool: false)` - When set to `true`, Nomad will include
+     * [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+     * you may still need to enable it in your OIDC provider.
+     * 
+     */
+    @Import(name="oidcEnablePkce")
+    private @Nullable Output<Boolean> oidcEnablePkce;
+
+    /**
+     * @return `(bool: false)` - When set to `true`, Nomad will include
+     * [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+     * you may still need to enable it in your OIDC provider.
+     * 
+     */
+    public Optional<Output<Boolean>> oidcEnablePkce() {
+        return Optional.ofNullable(this.oidcEnablePkce);
+    }
+
+    /**
      * `([]string: &lt;optional&gt;)` - List of OIDC scopes.
      * 
      */
@@ -322,6 +363,21 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.signingAlgs);
     }
 
+    /**
+     * Enable OIDC verbose logging on the Nomad server.
+     * 
+     */
+    @Import(name="verboseLogging")
+    private @Nullable Output<Boolean> verboseLogging;
+
+    /**
+     * @return Enable OIDC verbose logging on the Nomad server.
+     * 
+     */
+    public Optional<Output<Boolean>> verboseLogging() {
+        return Optional.ofNullable(this.verboseLogging);
+    }
+
     private AclAuthMethodConfigArgs() {}
 
     private AclAuthMethodConfigArgs(AclAuthMethodConfigArgs $) {
@@ -337,12 +393,15 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         this.jwtValidationPubKeys = $.jwtValidationPubKeys;
         this.listClaimMappings = $.listClaimMappings;
         this.notBeforeLeeway = $.notBeforeLeeway;
+        this.oidcClientAssertion = $.oidcClientAssertion;
         this.oidcClientId = $.oidcClientId;
         this.oidcClientSecret = $.oidcClientSecret;
         this.oidcDisableUserinfo = $.oidcDisableUserinfo;
         this.oidcDiscoveryUrl = $.oidcDiscoveryUrl;
+        this.oidcEnablePkce = $.oidcEnablePkce;
         this.oidcScopes = $.oidcScopes;
         this.signingAlgs = $.signingAlgs;
+        this.verboseLogging = $.verboseLogging;
     }
 
     public static Builder builder() {
@@ -691,6 +750,33 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param oidcClientAssertion `(OIDCClientAssertion: &lt;optional&gt;)` - Optionally
+         * send a signed JWT (&#34;[private key jwt][]&#34;) as a client assertion to the OIDC
+         * provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+         * more.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcClientAssertion(@Nullable Output<AclAuthMethodConfigOidcClientAssertionArgs> oidcClientAssertion) {
+            $.oidcClientAssertion = oidcClientAssertion;
+            return this;
+        }
+
+        /**
+         * @param oidcClientAssertion `(OIDCClientAssertion: &lt;optional&gt;)` - Optionally
+         * send a signed JWT (&#34;[private key jwt][]&#34;) as a client assertion to the OIDC
+         * provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+         * more.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcClientAssertion(AclAuthMethodConfigOidcClientAssertionArgs oidcClientAssertion) {
+            return oidcClientAssertion(Output.of(oidcClientAssertion));
+        }
+
+        /**
          * @param oidcClientId `(string: &lt;optional&gt;)` - The OAuth Client ID configured
          * with the OIDC provider.
          * 
@@ -787,6 +873,31 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
+         * @param oidcEnablePkce `(bool: false)` - When set to `true`, Nomad will include
+         * [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+         * you may still need to enable it in your OIDC provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcEnablePkce(@Nullable Output<Boolean> oidcEnablePkce) {
+            $.oidcEnablePkce = oidcEnablePkce;
+            return this;
+        }
+
+        /**
+         * @param oidcEnablePkce `(bool: false)` - When set to `true`, Nomad will include
+         * [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+         * you may still need to enable it in your OIDC provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcEnablePkce(Boolean oidcEnablePkce) {
+            return oidcEnablePkce(Output.of(oidcEnablePkce));
+        }
+
+        /**
          * @param oidcScopes `([]string: &lt;optional&gt;)` - List of OIDC scopes.
          * 
          * @return builder
@@ -849,6 +960,27 @@ public final class AclAuthMethodConfigArgs extends com.pulumi.resources.Resource
          */
         public Builder signingAlgs(String... signingAlgs) {
             return signingAlgs(List.of(signingAlgs));
+        }
+
+        /**
+         * @param verboseLogging Enable OIDC verbose logging on the Nomad server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder verboseLogging(@Nullable Output<Boolean> verboseLogging) {
+            $.verboseLogging = verboseLogging;
+            return this;
+        }
+
+        /**
+         * @param verboseLogging Enable OIDC verbose logging on the Nomad server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder verboseLogging(Boolean verboseLogging) {
+            return verboseLogging(Output.of(verboseLogging));
         }
 
         public AclAuthMethodConfigArgs build() {

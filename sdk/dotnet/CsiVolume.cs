@@ -45,6 +45,12 @@ namespace Pulumi.Nomad
         [Output("cloneId")]
         public Output<string?> CloneId { get; private set; } = null!;
 
+        /// <summary>
+        /// The volume context provided by the storage provider
+        /// </summary>
+        [Output("context")]
+        public Output<ImmutableDictionary<string, string>> Context { get; private set; } = null!;
+
         [Output("controllerRequired")]
         public Output<bool> ControllerRequired { get; private set; } = null!;
 
@@ -328,6 +334,18 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("cloneId")]
         public Input<string>? CloneId { get; set; }
+
+        [Input("context")]
+        private InputMap<string>? _context;
+
+        /// <summary>
+        /// The volume context provided by the storage provider
+        /// </summary>
+        public InputMap<string> Context
+        {
+            get => _context ?? (_context = new InputMap<string>());
+            set => _context = value;
+        }
 
         [Input("controllerRequired")]
         public Input<bool>? ControllerRequired { get; set; }

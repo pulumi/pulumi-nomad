@@ -53,6 +53,10 @@ export class CsiVolume extends pulumi.CustomResource {
      * `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      */
     public readonly cloneId!: pulumi.Output<string | undefined>;
+    /**
+     * The volume context provided by the storage provider
+     */
+    public /*out*/ readonly context!: pulumi.Output<{[key: string]: string}>;
     public /*out*/ readonly controllerRequired!: pulumi.Output<boolean>;
     public /*out*/ readonly controllersExpected!: pulumi.Output<number>;
     public /*out*/ readonly controllersHealthy!: pulumi.Output<number>;
@@ -123,6 +127,7 @@ export class CsiVolume extends pulumi.CustomResource {
             resourceInputs["capacityMin"] = state ? state.capacityMin : undefined;
             resourceInputs["capacityMinBytes"] = state ? state.capacityMinBytes : undefined;
             resourceInputs["cloneId"] = state ? state.cloneId : undefined;
+            resourceInputs["context"] = state ? state.context : undefined;
             resourceInputs["controllerRequired"] = state ? state.controllerRequired : undefined;
             resourceInputs["controllersExpected"] = state ? state.controllersExpected : undefined;
             resourceInputs["controllersHealthy"] = state ? state.controllersHealthy : undefined;
@@ -169,6 +174,7 @@ export class CsiVolume extends pulumi.CustomResource {
             resourceInputs["capacity"] = undefined /*out*/;
             resourceInputs["capacityMaxBytes"] = undefined /*out*/;
             resourceInputs["capacityMinBytes"] = undefined /*out*/;
+            resourceInputs["context"] = undefined /*out*/;
             resourceInputs["controllerRequired"] = undefined /*out*/;
             resourceInputs["controllersExpected"] = undefined /*out*/;
             resourceInputs["controllersHealthy"] = undefined /*out*/;
@@ -210,6 +216,10 @@ export interface CsiVolumeState {
      * `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      */
     cloneId?: pulumi.Input<string>;
+    /**
+     * The volume context provided by the storage provider
+     */
+    context?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     controllerRequired?: pulumi.Input<boolean>;
     controllersExpected?: pulumi.Input<number>;
     controllersHealthy?: pulumi.Input<number>;

@@ -33,14 +33,16 @@ public final class AclPolicyArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+     * `(``JobACL``: &lt;optional&gt;)` - Options for assigning the
+     * ACL rules to a job, group, or task.
      * 
      */
     @Import(name="jobAcl")
     private @Nullable Output<AclPolicyJobAclArgs> jobAcl;
 
     /**
-     * @return `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+     * @return `(``JobACL``: &lt;optional&gt;)` - Options for assigning the
+     * ACL rules to a job, group, or task.
      * 
      */
     public Optional<Output<AclPolicyJobAclArgs>> jobAcl() {
@@ -128,7 +130,8 @@ public final class AclPolicyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jobAcl `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+         * @param jobAcl `(``JobACL``: &lt;optional&gt;)` - Options for assigning the
+         * ACL rules to a job, group, or task.
          * 
          * @return builder
          * 
@@ -139,7 +142,8 @@ public final class AclPolicyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param jobAcl `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+         * @param jobAcl `(``JobACL``: &lt;optional&gt;)` - Options for assigning the
+         * ACL rules to a job, group, or task.
          * 
          * @return builder
          * 

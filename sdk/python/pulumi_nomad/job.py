@@ -23,7 +23,6 @@ __all__ = ['JobArgs', 'Job']
 class JobArgs:
     def __init__(__self__, *,
                  jobspec: pulumi.Input[builtins.str],
-                 consul_token: Optional[pulumi.Input[builtins.str]] = None,
                  deregister_on_destroy: Optional[pulumi.Input[builtins.bool]] = None,
                  deregister_on_id_change: Optional[pulumi.Input[builtins.bool]] = None,
                  detach: Optional[pulumi.Input[builtins.bool]] = None,
@@ -32,13 +31,10 @@ class JobArgs:
                  policy_override: Optional[pulumi.Input[builtins.bool]] = None,
                  purge_on_destroy: Optional[pulumi.Input[builtins.bool]] = None,
                  read_allocation_ids: Optional[pulumi.Input[builtins.bool]] = None,
-                 rerun_if_dead: Optional[pulumi.Input[builtins.bool]] = None,
-                 vault_token: Optional[pulumi.Input[builtins.str]] = None):
+                 rerun_if_dead: Optional[pulumi.Input[builtins.bool]] = None):
         """
         The set of arguments for constructing a Job resource.
         :param pulumi.Input[builtins.str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
-        :param pulumi.Input[builtins.str] consul_token: `(string: <optional>)` - Consul token used when registering this job.
-               Will fallback to the value declared in Nomad provider configuration, if any.
         :param pulumi.Input[builtins.bool] deregister_on_destroy: If true, the job will be deregistered on destroy.
         :param pulumi.Input[builtins.bool] deregister_on_id_change: `(boolean: true)` - Determines if the job will be
                deregistered if the ID of the job in the jobspec changes.
@@ -53,12 +49,8 @@ class JobArgs:
                be purged when the resource is destroyed.
         :param pulumi.Input[builtins.bool] rerun_if_dead: `(boolean: false)` - Set this to true to force the job to run
                again if its status is `dead`.
-        :param pulumi.Input[builtins.str] vault_token: `(string: <optional>)` - Vault token used when registering this job.
-               Will fallback to the value declared in Nomad provider configuration, if any.
         """
         pulumi.set(__self__, "jobspec", jobspec)
-        if consul_token is not None:
-            pulumi.set(__self__, "consul_token", consul_token)
         if deregister_on_destroy is not None:
             pulumi.set(__self__, "deregister_on_destroy", deregister_on_destroy)
         if deregister_on_id_change is not None:
@@ -80,8 +72,6 @@ class JobArgs:
             pulumi.set(__self__, "read_allocation_ids", read_allocation_ids)
         if rerun_if_dead is not None:
             pulumi.set(__self__, "rerun_if_dead", rerun_if_dead)
-        if vault_token is not None:
-            pulumi.set(__self__, "vault_token", vault_token)
 
     @property
     @pulumi.getter
@@ -94,19 +84,6 @@ class JobArgs:
     @jobspec.setter
     def jobspec(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "jobspec", value)
-
-    @property
-    @pulumi.getter(name="consulToken")
-    def consul_token(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        `(string: <optional>)` - Consul token used when registering this job.
-        Will fallback to the value declared in Nomad provider configuration, if any.
-        """
-        return pulumi.get(self, "consul_token")
-
-    @consul_token.setter
-    def consul_token(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "consul_token", value)
 
     @property
     @pulumi.getter(name="deregisterOnDestroy")
@@ -220,25 +197,11 @@ class JobArgs:
     def rerun_if_dead(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "rerun_if_dead", value)
 
-    @property
-    @pulumi.getter(name="vaultToken")
-    def vault_token(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        `(string: <optional>)` - Vault token used when registering this job.
-        Will fallback to the value declared in Nomad provider configuration, if any.
-        """
-        return pulumi.get(self, "vault_token")
-
-    @vault_token.setter
-    def vault_token(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "vault_token", value)
-
 
 @pulumi.input_type
 class _JobState:
     def __init__(__self__, *,
                  allocation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
-                 consul_token: Optional[pulumi.Input[builtins.str]] = None,
                  datacenters: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  deployment_id: Optional[pulumi.Input[builtins.str]] = None,
                  deployment_status: Optional[pulumi.Input[builtins.str]] = None,
@@ -258,13 +221,10 @@ class _JobState:
                  rerun_if_dead: Optional[pulumi.Input[builtins.bool]] = None,
                  status: Optional[pulumi.Input[builtins.str]] = None,
                  task_groups: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupArgs']]]] = None,
-                 type: Optional[pulumi.Input[builtins.str]] = None,
-                 vault_token: Optional[pulumi.Input[builtins.str]] = None):
+                 type: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering Job resources.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] allocation_ids: The IDs for allocations associated with this job.
-        :param pulumi.Input[builtins.str] consul_token: `(string: <optional>)` - Consul token used when registering this job.
-               Will fallback to the value declared in Nomad provider configuration, if any.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] datacenters: The target datacenters for the job, as derived from the jobspec.
         :param pulumi.Input[builtins.str] deployment_id: If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
         :param pulumi.Input[builtins.str] deployment_status: If detach = false, the status for the deployment associated with the last job create/update, if one exists.
@@ -289,16 +249,12 @@ class _JobState:
                again if its status is `dead`.
         :param pulumi.Input[builtins.str] status: The status of the job.
         :param pulumi.Input[builtins.str] type: The type of the job, as derived from the jobspec.
-        :param pulumi.Input[builtins.str] vault_token: `(string: <optional>)` - Vault token used when registering this job.
-               Will fallback to the value declared in Nomad provider configuration, if any.
         """
         if allocation_ids is not None:
             warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""", DeprecationWarning)
             pulumi.log.warn("""allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
         if allocation_ids is not None:
             pulumi.set(__self__, "allocation_ids", allocation_ids)
-        if consul_token is not None:
-            pulumi.set(__self__, "consul_token", consul_token)
         if datacenters is not None:
             pulumi.set(__self__, "datacenters", datacenters)
         if deployment_id is not None:
@@ -342,8 +298,6 @@ class _JobState:
             pulumi.set(__self__, "task_groups", task_groups)
         if type is not None:
             pulumi.set(__self__, "type", type)
-        if vault_token is not None:
-            pulumi.set(__self__, "vault_token", vault_token)
 
     @property
     @pulumi.getter(name="allocationIds")
@@ -357,19 +311,6 @@ class _JobState:
     @allocation_ids.setter
     def allocation_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "allocation_ids", value)
-
-    @property
-    @pulumi.getter(name="consulToken")
-    def consul_token(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        `(string: <optional>)` - Consul token used when registering this job.
-        Will fallback to the value declared in Nomad provider configuration, if any.
-        """
-        return pulumi.get(self, "consul_token")
-
-    @consul_token.setter
-    def consul_token(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "consul_token", value)
 
     @property
     @pulumi.getter
@@ -612,26 +553,12 @@ class _JobState:
     def type(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "type", value)
 
-    @property
-    @pulumi.getter(name="vaultToken")
-    def vault_token(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        `(string: <optional>)` - Vault token used when registering this job.
-        Will fallback to the value declared in Nomad provider configuration, if any.
-        """
-        return pulumi.get(self, "vault_token")
-
-    @vault_token.setter
-    def vault_token(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "vault_token", value)
-
 
 class Job(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 consul_token: Optional[pulumi.Input[builtins.str]] = None,
                  deregister_on_destroy: Optional[pulumi.Input[builtins.bool]] = None,
                  deregister_on_id_change: Optional[pulumi.Input[builtins.bool]] = None,
                  detach: Optional[pulumi.Input[builtins.bool]] = None,
@@ -642,14 +569,11 @@ class Job(pulumi.CustomResource):
                  purge_on_destroy: Optional[pulumi.Input[builtins.bool]] = None,
                  read_allocation_ids: Optional[pulumi.Input[builtins.bool]] = None,
                  rerun_if_dead: Optional[pulumi.Input[builtins.bool]] = None,
-                 vault_token: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         """
         Create a Job resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.str] consul_token: `(string: <optional>)` - Consul token used when registering this job.
-               Will fallback to the value declared in Nomad provider configuration, if any.
         :param pulumi.Input[builtins.bool] deregister_on_destroy: If true, the job will be deregistered on destroy.
         :param pulumi.Input[builtins.bool] deregister_on_id_change: `(boolean: true)` - Determines if the job will be
                deregistered if the ID of the job in the jobspec changes.
@@ -665,8 +589,6 @@ class Job(pulumi.CustomResource):
                be purged when the resource is destroyed.
         :param pulumi.Input[builtins.bool] rerun_if_dead: `(boolean: false)` - Set this to true to force the job to run
                again if its status is `dead`.
-        :param pulumi.Input[builtins.str] vault_token: `(string: <optional>)` - Vault token used when registering this job.
-               Will fallback to the value declared in Nomad provider configuration, if any.
         """
         ...
     @overload
@@ -691,7 +613,6 @@ class Job(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 consul_token: Optional[pulumi.Input[builtins.str]] = None,
                  deregister_on_destroy: Optional[pulumi.Input[builtins.bool]] = None,
                  deregister_on_id_change: Optional[pulumi.Input[builtins.bool]] = None,
                  detach: Optional[pulumi.Input[builtins.bool]] = None,
@@ -702,7 +623,6 @@ class Job(pulumi.CustomResource):
                  purge_on_destroy: Optional[pulumi.Input[builtins.bool]] = None,
                  read_allocation_ids: Optional[pulumi.Input[builtins.bool]] = None,
                  rerun_if_dead: Optional[pulumi.Input[builtins.bool]] = None,
-                 vault_token: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -712,7 +632,6 @@ class Job(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = JobArgs.__new__(JobArgs)
 
-            __props__.__dict__["consul_token"] = None if consul_token is None else pulumi.Output.secret(consul_token)
             __props__.__dict__["deregister_on_destroy"] = deregister_on_destroy
             __props__.__dict__["deregister_on_id_change"] = deregister_on_id_change
             __props__.__dict__["detach"] = detach
@@ -725,7 +644,6 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["purge_on_destroy"] = purge_on_destroy
             __props__.__dict__["read_allocation_ids"] = read_allocation_ids
             __props__.__dict__["rerun_if_dead"] = rerun_if_dead
-            __props__.__dict__["vault_token"] = None if vault_token is None else pulumi.Output.secret(vault_token)
             __props__.__dict__["allocation_ids"] = None
             __props__.__dict__["datacenters"] = None
             __props__.__dict__["deployment_id"] = None
@@ -737,8 +655,6 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["task_groups"] = None
             __props__.__dict__["type"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["consulToken", "vaultToken"])
-        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Job, __self__).__init__(
             'nomad:index/job:Job',
             resource_name,
@@ -750,7 +666,6 @@ class Job(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             allocation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
-            consul_token: Optional[pulumi.Input[builtins.str]] = None,
             datacenters: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
             deployment_id: Optional[pulumi.Input[builtins.str]] = None,
             deployment_status: Optional[pulumi.Input[builtins.str]] = None,
@@ -770,8 +685,7 @@ class Job(pulumi.CustomResource):
             rerun_if_dead: Optional[pulumi.Input[builtins.bool]] = None,
             status: Optional[pulumi.Input[builtins.str]] = None,
             task_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobTaskGroupArgs', 'JobTaskGroupArgsDict']]]]] = None,
-            type: Optional[pulumi.Input[builtins.str]] = None,
-            vault_token: Optional[pulumi.Input[builtins.str]] = None) -> 'Job':
+            type: Optional[pulumi.Input[builtins.str]] = None) -> 'Job':
         """
         Get an existing Job resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -780,8 +694,6 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] allocation_ids: The IDs for allocations associated with this job.
-        :param pulumi.Input[builtins.str] consul_token: `(string: <optional>)` - Consul token used when registering this job.
-               Will fallback to the value declared in Nomad provider configuration, if any.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] datacenters: The target datacenters for the job, as derived from the jobspec.
         :param pulumi.Input[builtins.str] deployment_id: If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
         :param pulumi.Input[builtins.str] deployment_status: If detach = false, the status for the deployment associated with the last job create/update, if one exists.
@@ -806,15 +718,12 @@ class Job(pulumi.CustomResource):
                again if its status is `dead`.
         :param pulumi.Input[builtins.str] status: The status of the job.
         :param pulumi.Input[builtins.str] type: The type of the job, as derived from the jobspec.
-        :param pulumi.Input[builtins.str] vault_token: `(string: <optional>)` - Vault token used when registering this job.
-               Will fallback to the value declared in Nomad provider configuration, if any.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _JobState.__new__(_JobState)
 
         __props__.__dict__["allocation_ids"] = allocation_ids
-        __props__.__dict__["consul_token"] = consul_token
         __props__.__dict__["datacenters"] = datacenters
         __props__.__dict__["deployment_id"] = deployment_id
         __props__.__dict__["deployment_status"] = deployment_status
@@ -835,7 +744,6 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["task_groups"] = task_groups
         __props__.__dict__["type"] = type
-        __props__.__dict__["vault_token"] = vault_token
         return Job(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -846,15 +754,6 @@ class Job(pulumi.CustomResource):
         The IDs for allocations associated with this job.
         """
         return pulumi.get(self, "allocation_ids")
-
-    @property
-    @pulumi.getter(name="consulToken")
-    def consul_token(self) -> pulumi.Output[Optional[builtins.str]]:
-        """
-        `(string: <optional>)` - Consul token used when registering this job.
-        Will fallback to the value declared in Nomad provider configuration, if any.
-        """
-        return pulumi.get(self, "consul_token")
 
     @property
     @pulumi.getter
@@ -1016,13 +915,4 @@ class Job(pulumi.CustomResource):
         The type of the job, as derived from the jobspec.
         """
         return pulumi.get(self, "type")
-
-    @property
-    @pulumi.getter(name="vaultToken")
-    def vault_token(self) -> pulumi.Output[Optional[builtins.str]]:
-        """
-        `(string: <optional>)` - Vault token used when registering this job.
-        Will fallback to the value declared in Nomad provider configuration, if any.
-        """
-        return pulumi.get(self, "vault_token")
 

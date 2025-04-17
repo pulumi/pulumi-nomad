@@ -65,6 +65,13 @@ export interface AclAuthMethodConfig {
      */
     notBeforeLeeway?: string;
     /**
+     * `(OIDCClientAssertion: <optional>)` - Optionally
+     * send a signed JWT ("[private key jwt][]") as a client assertion to the OIDC
+     * provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
+     * more.
+     */
+    oidcClientAssertion?: outputs.AclAuthMethodConfigOidcClientAssertion;
+    /**
      * `(string: <optional>)` - The OAuth Client ID configured
      * with the OIDC provider.
      */
@@ -87,6 +94,12 @@ export interface AclAuthMethodConfig {
      */
     oidcDiscoveryUrl?: string;
     /**
+     * `(bool: false)` - When set to `true`, Nomad will include
+     * [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
+     * you may still need to enable it in your OIDC provider.
+     */
+    oidcEnablePkce?: boolean;
+    /**
      * `([]string: <optional>)` - List of OIDC scopes.
      */
     oidcScopes?: string[];
@@ -95,6 +108,91 @@ export interface AclAuthMethodConfig {
      * algorithms.
      */
     signingAlgs?: string[];
+    /**
+     * Enable OIDC verbose logging on the Nomad server.
+     */
+    verboseLogging?: boolean;
+}
+
+export interface AclAuthMethodConfigOidcClientAssertion {
+    /**
+     * `([]string: optional)` - Who processes the assertion.
+     * Defaults to the auth method's `oidcDiscoveryUrl`.
+     */
+    audiences: string[];
+    /**
+     * `(map[string]string: optional)` - Add to the JWT headers,
+     * alongside "kid" and "type". Setting the "kid" header here is not allowed;
+     * use `private_key.key_id`.
+     */
+    extraHeaders?: {[key: string]: string};
+    /**
+     * `(string: <optional>)` is the key's algorithm.
+     * Its default values are based on the `keySource`:
+     * - "nomad": "RS256"; this is from Nomad's keyring and must not be changed
+     * - "privateKey": "RS256"; must be RS256, RS384, or RS512
+     * - "clientSecret": "HS256"; must be HS256, HS384, or HS512
+     */
+    keyAlgorithm: string;
+    /**
+     * `(string: <required>)` - Specifies where to get the private
+     * key to sign the JWT.
+     * Available sources:
+     * - "nomad": Use current active key in Nomad's keyring
+     * - "privateKey": Use key material in the `privateKey` field
+     * - "clientSecret": Use the `oidcClientSecret` as an HMAC key
+     */
+    keySource: string;
+    /**
+     * `(OIDCClientAssertionKey: <optional>)` - External key
+     * to sign the JWT. `keySource` must be "privateKey" to enable this.
+     */
+    privateKey?: outputs.AclAuthMethodConfigOidcClientAssertionPrivateKey;
+}
+
+export interface AclAuthMethodConfigOidcClientAssertionPrivateKey {
+    /**
+     * `(string: optional)` - Becomes the JWT's "kid" header.
+     * Mutually exclusive with `pemCert` and `pemCertFile`.
+     * Allowed `keyIdHeader` values: "kid" (the default)
+     */
+    keyId?: string;
+    /**
+     * `(string: optional)` - Which header the provider uses
+     * to find the public key to verify the signed JWT.
+     * The default and allowed values depend on whether you set `keyId`,
+     * `pemCert`, or `pemCertFile`. You must set exactly one of those
+     * options, so refer to them for their requirements.
+     */
+    keyIdHeader?: string;
+    /**
+     * `(string: optional)` - An x509 certificate, signed by the
+     * private key or a CA, in pem format. Nomad uses this certificate to
+     * derive an [x5t#S256][] (or [x5t][]) key_id.
+     * Mutually exclusive with `pemCertFile` and `keyId`.
+     * Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
+     */
+    pemCert?: string;
+    /**
+     * `(string: optional)` - An absolute path to an x509
+     * certificate on Nomad servers' disk, signed by the private key or a CA,
+     * in pem format.
+     * Nomad uses this certificate to derive an [x5t#S256][] (or [x5t][])
+     * header. Mutually exclusive with `pemCert` and key_id.
+     * Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
+     */
+    pemCertFile?: string;
+    /**
+     * `(string: <optional>)` - An RSA private key, in pem format.
+     * It is used to sign the JWT. Mutually exclusive with `pemKey`.
+     */
+    pemKey?: string;
+    /**
+     * `(string: optional)` - An absolute path to a private key
+     * on Nomad servers' disk, in pem format. It is used to sign the JWT.
+     * Mutually exclusive with `pemKeyFile`.
+     */
+    pemKeyFile?: string;
 }
 
 export interface AclPolicyJobAcl {
@@ -270,6 +368,62 @@ export interface CsiVolumeTopologyRequestRequiredTopology {
      * Define the attributes for the topology request.
      */
     segments: {[key: string]: string};
+}
+
+export interface DynamicHostVolumeCapability {
+    /**
+     * `(string)` - How the volume can be mounted by
+     * allocations. Refer to the [`accessMode`][] documentation for details.
+     */
+    accessMode: string;
+    /**
+     * `(string)` - The storage API that will be used by the
+     * volume. Refer to the [`attachmentMode`][] documentation.
+     */
+    attachmentMode: string;
+}
+
+export interface DynamicHostVolumeConstraint {
+    /**
+     * `(string)` - The [node attribute][] to check for the constraint.
+     */
+    attribute: string;
+    /**
+     * `(string)`- The operator to use in the comparison.
+     */
+    operator?: string;
+    /**
+     * `(string)` - The value of the attribute to compare against.
+     */
+    value?: string;
+}
+
+export interface DynamicHostVolumeRegistrationCapability {
+    /**
+     * `(string)` - How the volume can be mounted by
+     * allocations. Refer to the [`accessMode`][] documentation for details.
+     */
+    accessMode: string;
+    /**
+     * `(string)` - The storage API that will be used by the
+     * volume. Refer to the [`attachmentMode`][] documentation.
+     */
+    attachmentMode: string;
+}
+
+export interface DynamicHostVolumeRegistrationConstraint {
+    /**
+     * An attribute to check to constrain volume placement
+     */
+    attribute: string;
+    /**
+     * The operator to use for comparison
+     */
+    operator?: string;
+    /**
+     * The requested value of the attribute
+     */
+    value?: string;
 }
 
 export interface ExternalVolumeCapability {
@@ -531,6 +685,34 @@ export interface GetAllocationsAllocation {
      * `(string)` - The job task group related to the allocation.
      */
     taskGroup: string;
+}
+
+export interface GetDynamicHostVolumeCapability {
+    /**
+     * `(string)` - How the volume can be mounted by
+     * allocations. Refer to the [`accessMode`][] documentation for details.
+     */
+    accessMode: string;
+    /**
+     * `(string)` - The storage API that will be used by the
+     * volume. Refer to the [`attachmentMode`][] documentation.
+     */
+    attachmentMode: string;
+}
+
+export interface GetDynamicHostVolumeConstraint {
+    /**
+     * `(string)` - The [node attribute][] to check for the constraint.
+     */
+    attribute: string;
+    /**
+     * `(string)`- The operator to use in the comparison.
+     */
+    operator: string;
+    /**
+     * `(string)` - The value of the attribute to compare against.
+     */
+    value: string;
 }
 
 export interface GetJobConstraint {

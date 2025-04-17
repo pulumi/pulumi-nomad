@@ -122,7 +122,7 @@ def get_volumes(namespace: Optional[builtins.str] = None,
     :param builtins.str namespace: `(string: "default")` Nomad namespace.
     :param builtins.str node_id: `(string: optional)` Volume node filter.
     :param builtins.str plugin_id: `(string: optional)` Plugin ID filter.
-    :param builtins.str type: `(string: "csi")` Volume type (currently only supports `csi`)
+    :param builtins.str type: `(string: "csi")` Volume type (one of `csi` or `host`)
     """
     __args__ = dict()
     __args__['namespace'] = namespace
@@ -160,7 +160,7 @@ def get_volumes_output(namespace: Optional[pulumi.Input[Optional[builtins.str]]]
     :param builtins.str namespace: `(string: "default")` Nomad namespace.
     :param builtins.str node_id: `(string: optional)` Volume node filter.
     :param builtins.str plugin_id: `(string: optional)` Plugin ID filter.
-    :param builtins.str type: `(string: "csi")` Volume type (currently only supports `csi`)
+    :param builtins.str type: `(string: "csi")` Volume type (one of `csi` or `host`)
     """
     __args__ = dict()
     __args__['namespace'] = namespace

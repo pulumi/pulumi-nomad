@@ -43,23 +43,6 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    @Import(name="consulToken")
-    private @Nullable Output<String> consulToken;
-
-    /**
-     * @return `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    public Optional<Output<String>> consulToken() {
-        return Optional.ofNullable(this.consulToken);
-    }
-
-    /**
      * The target datacenters for the job, as derived from the jobspec.
      * 
      */
@@ -367,28 +350,10 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.type);
     }
 
-    /**
-     * `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    @Import(name="vaultToken")
-    private @Nullable Output<String> vaultToken;
-
-    /**
-     * @return `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-     * Will fallback to the value declared in Nomad provider configuration, if any.
-     * 
-     */
-    public Optional<Output<String>> vaultToken() {
-        return Optional.ofNullable(this.vaultToken);
-    }
-
     private JobState() {}
 
     private JobState(JobState $) {
         this.allocationIds = $.allocationIds;
-        this.consulToken = $.consulToken;
         this.datacenters = $.datacenters;
         this.deploymentId = $.deploymentId;
         this.deploymentStatus = $.deploymentStatus;
@@ -409,7 +374,6 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         this.status = $.status;
         this.taskGroups = $.taskGroups;
         this.type = $.type;
-        this.vaultToken = $.vaultToken;
     }
 
     public static Builder builder() {
@@ -471,29 +435,6 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead. */
         public Builder allocationIds(String... allocationIds) {
             return allocationIds(List.of(allocationIds));
-        }
-
-        /**
-         * @param consulToken `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-         * Will fallback to the value declared in Nomad provider configuration, if any.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder consulToken(@Nullable Output<String> consulToken) {
-            $.consulToken = consulToken;
-            return this;
-        }
-
-        /**
-         * @param consulToken `(string: &lt;optional&gt;)` - Consul token used when registering this job.
-         * Will fallback to the value declared in Nomad provider configuration, if any.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder consulToken(String consulToken) {
-            return consulToken(Output.of(consulToken));
         }
 
         /**
@@ -932,29 +873,6 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder type(String type) {
             return type(Output.of(type));
-        }
-
-        /**
-         * @param vaultToken `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-         * Will fallback to the value declared in Nomad provider configuration, if any.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder vaultToken(@Nullable Output<String> vaultToken) {
-            $.vaultToken = vaultToken;
-            return this;
-        }
-
-        /**
-         * @param vaultToken `(string: &lt;optional&gt;)` - Vault token used when registering this job.
-         * Will fallback to the value declared in Nomad provider configuration, if any.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder vaultToken(String vaultToken) {
-            return vaultToken(Output.of(vaultToken));
         }
 
         public JobState build() {

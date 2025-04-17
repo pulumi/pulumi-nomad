@@ -22,7 +22,8 @@ namespace Pulumi.Nomad
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+        /// `(``JobACL``: &lt;optional&gt;)` - Options for assigning the
+        /// ACL rules to a job, group, or task.
         /// </summary>
         [Output("jobAcl")]
         public Output<Outputs.AclPolicyJobAcl?> JobAcl { get; private set; } = null!;
@@ -93,7 +94,8 @@ namespace Pulumi.Nomad
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+        /// `(``JobACL``: &lt;optional&gt;)` - Options for assigning the
+        /// ACL rules to a job, group, or task.
         /// </summary>
         [Input("jobAcl")]
         public Input<Inputs.AclPolicyJobAclArgs>? JobAcl { get; set; }
@@ -126,7 +128,8 @@ namespace Pulumi.Nomad
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// `(``JobACL``: &lt;optional&gt;)` - Options for assigning the ACL rules to a job, group, or task.
+        /// `(``JobACL``: &lt;optional&gt;)` - Options for assigning the
+        /// ACL rules to a job, group, or task.
         /// </summary>
         [Input("jobAcl")]
         public Input<Inputs.AclPolicyJobAclGetArgs>? JobAcl { get; set; }

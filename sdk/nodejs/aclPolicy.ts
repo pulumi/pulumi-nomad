@@ -42,7 +42,8 @@ export class AclPolicy extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+     * `(``JobACL``: <optional>)` - Options for assigning the
+     * ACL rules to a job, group, or task.
      */
     public readonly jobAcl!: pulumi.Output<outputs.AclPolicyJobAcl | undefined>;
     /**
@@ -96,7 +97,8 @@ export interface AclPolicyState {
      */
     description?: pulumi.Input<string>;
     /**
-     * `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+     * `(``JobACL``: <optional>)` - Options for assigning the
+     * ACL rules to a job, group, or task.
      */
     jobAcl?: pulumi.Input<inputs.AclPolicyJobAcl>;
     /**
@@ -119,7 +121,8 @@ export interface AclPolicyArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * `(``JobACL``: <optional>)` - Options for assigning the ACL rules to a job, group, or task.
+     * `(``JobACL``: <optional>)` - Options for assigning the
+     * ACL rules to a job, group, or task.
      */
     jobAcl?: pulumi.Input<inputs.AclPolicyJobAcl>;
     /**
