@@ -74,14 +74,17 @@ def get_namespaces(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetN
 
     namespaces = nomad.get_namespaces()
     namespace = []
-    for range in [{"value": i} for i in range(0, len(namespaces.namespaces))]:
-        namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",
-            name=f"namespace-{namespaces[range['value']]}",
-            description=f"Write to the namespace {namespaces[range['value']]}",
-            rules_hcl=f\"\"\"namespace "{namespaces[range["value"]]}" {{
+    def create_namespace(range_body):
+        for range in [{"value": i} for i in range(0, range_body)]:
+            namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",
+                name=f"namespace-{namespaces[range['value']]}",
+                description=f"Write to the namespace {namespaces[range['value']]}",
+                rules_hcl=f\"\"\"namespace "{namespaces[range["value"]]}" {{
       policy = "write"
     }}
     \"\"\"))
+
+    (len(namespaces.namespaces)).apply(create_namespace)
     ```
     """
     __args__ = dict()
@@ -103,14 +106,17 @@ def get_namespaces_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.Invo
 
     namespaces = nomad.get_namespaces()
     namespace = []
-    for range in [{"value": i} for i in range(0, len(namespaces.namespaces))]:
-        namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",
-            name=f"namespace-{namespaces[range['value']]}",
-            description=f"Write to the namespace {namespaces[range['value']]}",
-            rules_hcl=f\"\"\"namespace "{namespaces[range["value"]]}" {{
+    def create_namespace(range_body):
+        for range in [{"value": i} for i in range(0, range_body)]:
+            namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",
+                name=f"namespace-{namespaces[range['value']]}",
+                description=f"Write to the namespace {namespaces[range['value']]}",
+                rules_hcl=f\"\"\"namespace "{namespaces[range["value"]]}" {{
       policy = "write"
     }}
     \"\"\"))
+
+    (len(namespaces.namespaces)).apply(create_namespace)
     ```
     """
     __args__ = dict()

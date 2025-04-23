@@ -135,6 +135,9 @@ class _QuoteSpecificationState:
 
 
 class QuoteSpecification(pulumi.CustomResource):
+
+    pulumi_type = "nomad:index/quoteSpecification:QuoteSpecification"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

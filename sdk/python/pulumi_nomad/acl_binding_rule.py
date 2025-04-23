@@ -212,6 +212,9 @@ class _AclBindingRuleState:
 
 
 class AclBindingRule(pulumi.CustomResource):
+
+    pulumi_type = "nomad:index/aclBindingRule:AclBindingRule"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -429,6 +429,9 @@ class _DynamicHostVolumeRegistrationState:
 
 
 class DynamicHostVolumeRegistration(pulumi.CustomResource):
+
+    pulumi_type = "nomad:index/dynamicHostVolumeRegistration:DynamicHostVolumeRegistration"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
