@@ -135,6 +135,9 @@ class _AclRoleState:
 
 
 class AclRole(pulumi.CustomResource):
+
+    pulumi_type = "nomad:index/aclRole:AclRole"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

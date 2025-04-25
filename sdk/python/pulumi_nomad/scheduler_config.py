@@ -130,6 +130,9 @@ class _SchedulerConfigState:
 
 
 class SchedulerConfig(pulumi.CustomResource):
+
+    pulumi_type = "nomad:index/schedulerConfig:SchedulerConfig"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

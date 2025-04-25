@@ -341,6 +341,9 @@ class _AclTokenState:
 
 
 class AclToken(pulumi.CustomResource):
+
+    pulumi_type = "nomad:index/aclToken:AclToken"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

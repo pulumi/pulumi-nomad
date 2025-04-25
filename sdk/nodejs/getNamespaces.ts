@@ -13,20 +13,20 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * export = async () => {
- *     const namespaces = await nomad.getNamespaces({});
- *     const namespace: nomad.AclPolicy[] = [];
- *     for (const range = {value: 0}; range.value < namespaces.namespaces.length; range.value++) {
+ * const namespaces = nomad.getNamespaces({});
+ * const namespace: nomad.AclPolicy[] = [];
+ * namespaces.then(namespaces => namespaces.namespaces).length.apply(rangeBody => {
+ *     for (const range = {value: 0}; range.value < rangeBody; range.value++) {
  *         namespace.push(new nomad.AclPolicy(`namespace-${range.value}`, {
- *             name: `namespace-${namespaces[range.value]}`,
- *             description: `Write to the namespace ${namespaces[range.value]}`,
- *             rulesHcl: `namespace "${namespaces[range.value]}" {
+ *             name: namespaces.then(namespaces => `namespace-${namespaces[range.value]}`),
+ *             description: namespaces.then(namespaces => `Write to the namespace ${namespaces[range.value]}`),
+ *             rulesHcl: namespaces.then(namespaces => `namespace "${namespaces[range.value]}" {
  *   policy = "write"
  * }
- * `,
+ * `),
  *         }));
  *     }
- * }
+ * });
  * ```
  */
 export function getNamespaces(opts?: pulumi.InvokeOptions): Promise<GetNamespacesResult> {
@@ -57,20 +57,20 @@ export interface GetNamespacesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as nomad from "@pulumi/nomad";
  *
- * export = async () => {
- *     const namespaces = await nomad.getNamespaces({});
- *     const namespace: nomad.AclPolicy[] = [];
- *     for (const range = {value: 0}; range.value < namespaces.namespaces.length; range.value++) {
+ * const namespaces = nomad.getNamespaces({});
+ * const namespace: nomad.AclPolicy[] = [];
+ * namespaces.then(namespaces => namespaces.namespaces).length.apply(rangeBody => {
+ *     for (const range = {value: 0}; range.value < rangeBody; range.value++) {
  *         namespace.push(new nomad.AclPolicy(`namespace-${range.value}`, {
- *             name: `namespace-${namespaces[range.value]}`,
- *             description: `Write to the namespace ${namespaces[range.value]}`,
- *             rulesHcl: `namespace "${namespaces[range.value]}" {
+ *             name: namespaces.then(namespaces => `namespace-${namespaces[range.value]}`),
+ *             description: namespaces.then(namespaces => `Write to the namespace ${namespaces[range.value]}`),
+ *             rulesHcl: namespaces.then(namespaces => `namespace "${namespaces[range.value]}" {
  *   policy = "write"
  * }
- * `,
+ * `),
  *         }));
  *     }
- * }
+ * });
  * ```
  */
 export function getNamespacesOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNamespacesResult> {

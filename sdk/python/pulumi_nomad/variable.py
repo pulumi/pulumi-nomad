@@ -128,6 +128,9 @@ class _VariableState:
 
 
 class Variable(pulumi.CustomResource):
+
+    pulumi_type = "nomad:index/variable:Variable"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

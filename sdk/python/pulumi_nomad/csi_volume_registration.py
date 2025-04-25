@@ -625,6 +625,9 @@ class _CsiVolumeRegistrationState:
 
 
 class CsiVolumeRegistration(pulumi.CustomResource):
+
+    pulumi_type = "nomad:index/csiVolumeRegistration:CsiVolumeRegistration"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
