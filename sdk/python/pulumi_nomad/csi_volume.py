@@ -625,6 +625,9 @@ class _CsiVolumeState:
 
 
 class CsiVolume(pulumi.CustomResource):
+
+    pulumi_type = "nomad:index/csiVolume:CsiVolume"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

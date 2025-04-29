@@ -171,6 +171,9 @@ class _AclPolicyState:
 
 
 class AclPolicy(pulumi.CustomResource):
+
+    pulumi_type = "nomad:index/aclPolicy:AclPolicy"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

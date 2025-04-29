@@ -19,16 +19,15 @@ namespace Pulumi.Nomad
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
-        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// return await Deployment.RunAsync(async() =&gt; 
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var namespaces = await Nomad.GetNamespaces.InvokeAsync();
+        ///     var namespaces = Nomad.GetNamespaces.Invoke();
         /// 
         ///     var @namespace = new List&lt;Nomad.AclPolicy&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; namespaces.Namespaces.Length; rangeIndex++)
+        ///     for (var rangeIndex = 0; rangeIndex &lt; namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length; rangeIndex++)
         ///     {
         ///         var range = new { Value = rangeIndex };
         ///         @namespace.Add(new Nomad.AclPolicy($"namespace-{range.Value}", new()
@@ -55,16 +54,15 @@ namespace Pulumi.Nomad
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
-        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// return await Deployment.RunAsync(async() =&gt; 
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var namespaces = await Nomad.GetNamespaces.InvokeAsync();
+        ///     var namespaces = Nomad.GetNamespaces.Invoke();
         /// 
         ///     var @namespace = new List&lt;Nomad.AclPolicy&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; namespaces.Namespaces.Length; rangeIndex++)
+        ///     for (var rangeIndex = 0; rangeIndex &lt; namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length; rangeIndex++)
         ///     {
         ///         var range = new { Value = rangeIndex };
         ///         @namespace.Add(new Nomad.AclPolicy($"namespace-{range.Value}", new()
@@ -91,16 +89,15 @@ namespace Pulumi.Nomad
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
-        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// return await Deployment.RunAsync(async() =&gt; 
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var namespaces = await Nomad.GetNamespaces.InvokeAsync();
+        ///     var namespaces = Nomad.GetNamespaces.Invoke();
         /// 
         ///     var @namespace = new List&lt;Nomad.AclPolicy&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; namespaces.Namespaces.Length; rangeIndex++)
+        ///     for (var rangeIndex = 0; rangeIndex &lt; namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length; rangeIndex++)
         ///     {
         ///         var range = new { Value = rangeIndex };
         ///         @namespace.Add(new Nomad.AclPolicy($"namespace-{range.Value}", new()

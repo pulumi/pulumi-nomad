@@ -79,8 +79,11 @@ def get_regions(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegi
     my_regions = nomad.get_regions()
     jobs = not_implemented("The template_file data resource is not yet supported.")
     app = []
-    for range in [{"value": i} for i in range(0, len(my_regions.regions))]:
-        app.append(nomad.Job(f"app-{range['value']}", jobspec=jobs[range["value"]]["rendered"]))
+    def create_app(range_body):
+        for range in [{"value": i} for i in range(0, range_body)]:
+            app.append(nomad.Job(f"app-{range['value']}", jobspec=jobs[range["value"]]["rendered"]))
+
+    (len(my_regions.regions)).apply(create_app)
     ```
     """
     __args__ = dict()
@@ -107,8 +110,11 @@ def get_regions_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeO
     my_regions = nomad.get_regions()
     jobs = not_implemented("The template_file data resource is not yet supported.")
     app = []
-    for range in [{"value": i} for i in range(0, len(my_regions.regions))]:
-        app.append(nomad.Job(f"app-{range['value']}", jobspec=jobs[range["value"]]["rendered"]))
+    def create_app(range_body):
+        for range in [{"value": i} for i in range(0, range_body)]:
+            app.append(nomad.Job(f"app-{range['value']}", jobspec=jobs[range["value"]]["rendered"]))
+
+    (len(my_regions.regions)).apply(create_app)
     ```
     """
     __args__ = dict()
