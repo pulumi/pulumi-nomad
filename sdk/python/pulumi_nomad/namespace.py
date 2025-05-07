@@ -231,10 +231,8 @@ class _NamespaceState:
         pulumi.set(self, "quota", value)
 
 
+@pulumi.type_token("nomad:index/namespace:Namespace")
 class Namespace(pulumi.CustomResource):
-
-    pulumi_type = "nomad:index/namespace:Namespace"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

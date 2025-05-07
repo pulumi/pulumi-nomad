@@ -134,10 +134,8 @@ class _QuoteSpecificationState:
         pulumi.set(self, "name", value)
 
 
+@pulumi.type_token("nomad:index/quoteSpecification:QuoteSpecification")
 class QuoteSpecification(pulumi.CustomResource):
-
-    pulumi_type = "nomad:index/quoteSpecification:QuoteSpecification"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

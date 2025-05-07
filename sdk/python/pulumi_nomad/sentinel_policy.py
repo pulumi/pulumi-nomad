@@ -206,10 +206,8 @@ class _SentinelPolicyState:
         pulumi.set(self, "scope", value)
 
 
+@pulumi.type_token("nomad:index/sentinelPolicy:SentinelPolicy")
 class SentinelPolicy(pulumi.CustomResource):
-
-    pulumi_type = "nomad:index/sentinelPolicy:SentinelPolicy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

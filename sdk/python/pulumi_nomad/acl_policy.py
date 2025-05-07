@@ -170,10 +170,8 @@ class _AclPolicyState:
         pulumi.set(self, "rules_hcl", value)
 
 
+@pulumi.type_token("nomad:index/aclPolicy:AclPolicy")
 class AclPolicy(pulumi.CustomResource):
-
-    pulumi_type = "nomad:index/aclPolicy:AclPolicy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
