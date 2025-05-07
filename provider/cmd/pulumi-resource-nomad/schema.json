@@ -2001,9 +2001,6 @@
                 "description": "Skip TLS verification on client side.\n"
             }
         },
-        "required": [
-            "address"
-        ],
         "inputProperties": {
             "address": {
                 "type": "string",
@@ -2065,9 +2062,9 @@
                 "description": "Skip TLS verification on client side.\n"
             }
         },
-        "requiredInputs": [
-            "address"
-        ]
+        "methods": {
+            "terraformConfig": "pulumi:providers:nomad/terraformConfig"
+        }
     },
     "resources": {
         "nomad:index/aclAuthMethod:AclAuthMethod": {
@@ -6324,6 +6321,35 @@
                 "required": [
                     "volumes",
                     "id"
+                ],
+                "type": "object"
+            }
+        },
+        "pulumi:providers:nomad/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/resources/pulumi:providers:nomad"
+                    }
+                },
+                "type": "pulumi:providers:nomad/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
                 ],
                 "type": "object"
             }
