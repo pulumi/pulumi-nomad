@@ -554,10 +554,8 @@ class _JobState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("nomad:index/job:Job")
 class Job(pulumi.CustomResource):
-
-    pulumi_type = "nomad:index/job:Job"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

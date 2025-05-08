@@ -167,10 +167,8 @@ class _NodePoolState:
         pulumi.set(self, "scheduler_config", value)
 
 
+@pulumi.type_token("nomad:index/nodePool:NodePool")
 class NodePool(pulumi.CustomResource):
-
-    pulumi_type = "nomad:index/nodePool:NodePool"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
