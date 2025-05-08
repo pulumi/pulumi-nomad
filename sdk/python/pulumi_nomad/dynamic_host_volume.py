@@ -553,10 +553,8 @@ class _DynamicHostVolumeState:
         pulumi.set(self, "state", value)
 
 
+@pulumi.type_token("nomad:index/dynamicHostVolume:DynamicHostVolume")
 class DynamicHostVolume(pulumi.CustomResource):
-
-    pulumi_type = "nomad:index/dynamicHostVolume:DynamicHostVolume"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

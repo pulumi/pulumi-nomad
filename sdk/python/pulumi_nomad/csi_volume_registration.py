@@ -624,10 +624,8 @@ class _CsiVolumeRegistrationState:
         pulumi.set(self, "volume_id", value)
 
 
+@pulumi.type_token("nomad:index/csiVolumeRegistration:CsiVolumeRegistration")
 class CsiVolumeRegistration(pulumi.CustomResource):
-
-    pulumi_type = "nomad:index/csiVolumeRegistration:CsiVolumeRegistration"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

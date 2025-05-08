@@ -656,10 +656,8 @@ class _VolumeState:
         pulumi.set(self, "volume_id", value)
 
 
+@pulumi.type_token("nomad:index/volume:Volume")
 class Volume(pulumi.CustomResource):
-
-    pulumi_type = "nomad:index/volume:Volume"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

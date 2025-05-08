@@ -588,10 +588,8 @@ class _ExternalVolumeState:
         pulumi.set(self, "volume_id", value)
 
 
+@pulumi.type_token("nomad:index/externalVolume:ExternalVolume")
 class ExternalVolume(pulumi.CustomResource):
-
-    pulumi_type = "nomad:index/externalVolume:ExternalVolume"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
