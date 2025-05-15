@@ -21,7 +21,7 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 address: pulumi.Input[builtins.str],
+                 address: Optional[pulumi.Input[builtins.str]] = None,
                  ca_file: Optional[pulumi.Input[builtins.str]] = None,
                  ca_pem: Optional[pulumi.Input[builtins.str]] = None,
                  cert_file: Optional[pulumi.Input[builtins.str]] = None,
@@ -50,7 +50,8 @@ class ProviderArgs:
         :param pulumi.Input[builtins.str] secret_id: ACL token secret for API requests.
         :param pulumi.Input[builtins.bool] skip_verify: Skip TLS verification on client side.
         """
-        pulumi.set(__self__, "address", address)
+        if address is not None:
+            pulumi.set(__self__, "address", address)
         if ca_file is not None:
             pulumi.set(__self__, "ca_file", ca_file)
         if ca_pem is not None:
@@ -78,14 +79,14 @@ class ProviderArgs:
 
     @property
     @pulumi.getter
-    def address(self) -> pulumi.Input[builtins.str]:
+    def address(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         URL of the root of the target Nomad agent.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: pulumi.Input[builtins.str]):
+    def address(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "address", value)
 
     @property
@@ -279,7 +280,7 @@ class Provider(pulumi.ProviderResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProviderArgs,
+                 args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The provider type for the nomad package. By default, resources use package-wide configuration
@@ -324,8 +325,6 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
-            if address is None and not opts.urn:
-                raise TypeError("Missing required property 'address'")
             __props__.__dict__["address"] = address
             __props__.__dict__["ca_file"] = ca_file
             __props__.__dict__["ca_pem"] = ca_pem
@@ -347,7 +346,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter
-    def address(self) -> pulumi.Output[builtins.str]:
+    def address(self) -> pulumi.Output[Optional[builtins.str]]:
         """
         URL of the root of the target Nomad agent.
         """
