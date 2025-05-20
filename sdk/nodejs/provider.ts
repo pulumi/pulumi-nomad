@@ -30,7 +30,7 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * URL of the root of the target Nomad agent.
      */
-    public readonly address!: pulumi.Output<string>;
+    public readonly address!: pulumi.Output<string | undefined>;
     /**
      * A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
      */
@@ -75,13 +75,10 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            if ((!args || args.address === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'address'");
-            }
             resourceInputs["address"] = args ? args.address : undefined;
             resourceInputs["caFile"] = args ? args.caFile : undefined;
             resourceInputs["caPem"] = args ? args.caPem : undefined;
@@ -117,7 +114,7 @@ export interface ProviderArgs {
     /**
      * URL of the root of the target Nomad agent.
      */
-    address: pulumi.Input<string>;
+    address?: pulumi.Input<string>;
     /**
      * A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
      */
