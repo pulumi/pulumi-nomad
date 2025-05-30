@@ -5,7 +5,6 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.inputs.ProviderHeaderArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -24,15 +23,15 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      * URL of the root of the target Nomad agent.
      * 
      */
-    @Import(name="address", required=true)
-    private Output<String> address;
+    @Import(name="address")
+    private @Nullable Output<String> address;
 
     /**
      * @return URL of the root of the target Nomad agent.
      * 
      */
-    public Output<String> address() {
-        return this.address;
+    public Optional<Output<String>> address() {
+        return Optional.ofNullable(this.address);
     }
 
     /**
@@ -257,7 +256,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder address(Output<String> address) {
+        public Builder address(@Nullable Output<String> address) {
             $.address = address;
             return this;
         }
@@ -535,9 +534,6 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ProviderArgs build() {
-            if ($.address == null) {
-                throw new MissingRequiredPropertyException("ProviderArgs", "address");
-            }
             return $;
         }
     }
