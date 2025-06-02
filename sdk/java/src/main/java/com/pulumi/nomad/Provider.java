@@ -27,14 +27,14 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * 
      */
     @Export(name="address", refs={String.class}, tree="[0]")
-    private Output<String> address;
+    private Output</* @Nullable */ String> address;
 
     /**
      * @return URL of the root of the target Nomad agent.
      * 
      */
-    public Output<String> address() {
-        return this.address;
+    public Output<Optional<String>> address() {
+        return Codegen.optional(this.address);
     }
     /**
      * A path to a PEM-encoded certificate authority used to verify the remote agent&#39;s certificate.
@@ -175,7 +175,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Provider(java.lang.String name, ProviderArgs args) {
+    public Provider(java.lang.String name, @Nullable ProviderArgs args) {
         this(name, args, null);
     }
     /**
@@ -184,11 +184,11 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Provider(java.lang.String name, ProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public Provider(java.lang.String name, @Nullable ProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("nomad", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private static ProviderArgs makeArgs(ProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static ProviderArgs makeArgs(@Nullable ProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }
