@@ -6331,7 +6331,7 @@
                 "properties": {
                     "__self__": {
                         "type": "ref",
-                        "$ref": "#/resources/pulumi:providers:nomad"
+                        "$ref": "#/provider"
                     }
                 },
                 "type": "pulumi:providers:nomad/terraformConfig",
