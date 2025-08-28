@@ -50,62 +50,62 @@
         "variables": {
             "address": {
                 "type": "string",
-                "description": "URL of the root of the target Nomad agent.\n"
+                "description": "URL of the root of the target Nomad agent."
             },
             "caFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+                "description": "A path to a PEM-encoded certificate authority used to verify the remote agent's certificate."
             },
             "caPem": {
                 "type": "string",
-                "description": "PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+                "description": "PEM-encoded certificate authority used to verify the remote agent's certificate."
             },
             "certFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
             },
             "certPem": {
                 "type": "string",
-                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
             },
             "headers": {
                 "type": "array",
                 "items": {
                     "$ref": "#/types/nomad:config/headers:headers"
                 },
-                "description": "The headers to send with each Nomad request.\n",
+                "description": "The headers to send with each Nomad request.",
                 "secret": true
             },
             "httpAuth": {
                 "type": "string",
-                "description": "HTTP basic auth configuration.\n"
+                "description": "HTTP basic auth configuration."
             },
             "ignoreEnvVars": {
                 "type": "object",
                 "additionalProperties": {
                     "type": "boolean"
                 },
-                "description": "A set of environment variables that are ignored by the provider when configuring the Nomad API client.\n"
+                "description": "A set of environment variables that are ignored by the provider when configuring the Nomad API client."
             },
             "keyFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified."
             },
             "keyPem": {
                 "type": "string",
-                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified."
             },
             "region": {
                 "type": "string",
-                "description": "Region of the target Nomad agent.\n"
+                "description": "Region of the target Nomad agent."
             },
             "secretId": {
                 "type": "string",
-                "description": "ACL token secret for API requests.\n"
+                "description": "ACL token secret for API requests."
             },
             "skipVerify": {
                 "type": "boolean",
-                "description": "Skip TLS verification on client side.\n"
+                "description": "Skip TLS verification on client side."
             }
         },
         "defaults": [
@@ -1943,123 +1943,123 @@
         "properties": {
             "address": {
                 "type": "string",
-                "description": "URL of the root of the target Nomad agent.\n"
+                "description": "URL of the root of the target Nomad agent."
             },
             "caFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+                "description": "A path to a PEM-encoded certificate authority used to verify the remote agent's certificate."
             },
             "caPem": {
                 "type": "string",
-                "description": "PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+                "description": "PEM-encoded certificate authority used to verify the remote agent's certificate."
             },
             "certFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
             },
             "certPem": {
                 "type": "string",
-                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
             },
             "headers": {
                 "type": "array",
                 "items": {
                     "$ref": "#/types/nomad:index/ProviderHeader:ProviderHeader"
                 },
-                "description": "The headers to send with each Nomad request.\n",
+                "description": "The headers to send with each Nomad request.",
                 "secret": true
             },
             "httpAuth": {
                 "type": "string",
-                "description": "HTTP basic auth configuration.\n"
+                "description": "HTTP basic auth configuration."
             },
             "ignoreEnvVars": {
                 "type": "object",
                 "additionalProperties": {
                     "type": "boolean"
                 },
-                "description": "A set of environment variables that are ignored by the provider when configuring the Nomad API client.\n"
+                "description": "A set of environment variables that are ignored by the provider when configuring the Nomad API client."
             },
             "keyFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified."
             },
             "keyPem": {
                 "type": "string",
-                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified."
             },
             "region": {
                 "type": "string",
-                "description": "Region of the target Nomad agent.\n"
+                "description": "Region of the target Nomad agent."
             },
             "secretId": {
                 "type": "string",
-                "description": "ACL token secret for API requests.\n"
+                "description": "ACL token secret for API requests."
             },
             "skipVerify": {
                 "type": "boolean",
-                "description": "Skip TLS verification on client side.\n"
+                "description": "Skip TLS verification on client side."
             }
         },
         "inputProperties": {
             "address": {
                 "type": "string",
-                "description": "URL of the root of the target Nomad agent.\n"
+                "description": "URL of the root of the target Nomad agent."
             },
             "caFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+                "description": "A path to a PEM-encoded certificate authority used to verify the remote agent's certificate."
             },
             "caPem": {
                 "type": "string",
-                "description": "PEM-encoded certificate authority used to verify the remote agent's certificate.\n"
+                "description": "PEM-encoded certificate authority used to verify the remote agent's certificate."
             },
             "certFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
             },
             "certPem": {
                 "type": "string",
-                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.\n"
+                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
             },
             "headers": {
                 "type": "array",
                 "items": {
                     "$ref": "#/types/nomad:index/ProviderHeader:ProviderHeader"
                 },
-                "description": "The headers to send with each Nomad request.\n",
+                "description": "The headers to send with each Nomad request.",
                 "secret": true
             },
             "httpAuth": {
                 "type": "string",
-                "description": "HTTP basic auth configuration.\n"
+                "description": "HTTP basic auth configuration."
             },
             "ignoreEnvVars": {
                 "type": "object",
                 "additionalProperties": {
                     "type": "boolean"
                 },
-                "description": "A set of environment variables that are ignored by the provider when configuring the Nomad API client.\n"
+                "description": "A set of environment variables that are ignored by the provider when configuring the Nomad API client."
             },
             "keyFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified."
             },
             "keyPem": {
                 "type": "string",
-                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified.\n"
+                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified."
             },
             "region": {
                 "type": "string",
-                "description": "Region of the target Nomad agent.\n"
+                "description": "Region of the target Nomad agent."
             },
             "secretId": {
                 "type": "string",
-                "description": "ACL token secret for API requests.\n"
+                "description": "ACL token secret for API requests."
             },
             "skipVerify": {
                 "type": "boolean",
-                "description": "Skip TLS verification on client side.\n"
+                "description": "Skip TLS verification on client side."
             }
         },
         "methods": {
@@ -2578,7 +2578,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "The volume context provided by the storage provider\n"
+                    "description": "The volume context provided by the storage provider"
                 },
                 "controllerRequired": {
                     "type": "boolean"
@@ -2591,7 +2591,7 @@
                 },
                 "externalId": {
                     "type": "string",
-                    "description": "The ID of the physical volume from the storage provider.\n"
+                    "description": "The ID of the physical volume from the storage provider."
                 },
                 "mountOptions": {
                     "$ref": "#/types/nomad:index/CsiVolumeMountOptions:CsiVolumeMountOptions",
@@ -2792,7 +2792,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "The volume context provided by the storage provider\n"
+                        "description": "The volume context provided by the storage provider"
                     },
                     "controllerRequired": {
                         "type": "boolean"
@@ -2805,7 +2805,7 @@
                     },
                     "externalId": {
                         "type": "string",
-                        "description": "The ID of the physical volume from the storage provider.\n"
+                        "description": "The ID of the physical volume from the storage provider."
                     },
                     "mountOptions": {
                         "$ref": "#/types/nomad:index/CsiVolumeMountOptions:CsiVolumeMountOptions",
@@ -3222,7 +3222,7 @@
                 },
                 "capacity": {
                     "type": "string",
-                    "description": "Provisioned capacity\n"
+                    "description": "Provisioned capacity"
                 },
                 "capacityBytes": {
                     "type": "integer"
@@ -3250,7 +3250,7 @@
                 },
                 "hostPath": {
                     "type": "string",
-                    "description": "Host path\n"
+                    "description": "Host path"
                 },
                 "name": {
                     "type": "string",
@@ -3277,11 +3277,11 @@
                 },
                 "pluginId": {
                     "type": "string",
-                    "description": "Plugin ID\n"
+                    "description": "Plugin ID"
                 },
                 "state": {
                     "type": "string",
-                    "description": "State\n"
+                    "description": "State"
                 }
             },
             "required": [
@@ -3346,7 +3346,7 @@
                 },
                 "pluginId": {
                     "type": "string",
-                    "description": "Plugin ID\n"
+                    "description": "Plugin ID"
                 }
             },
             "requiredInputs": [
@@ -3365,7 +3365,7 @@
                     },
                     "capacity": {
                         "type": "string",
-                        "description": "Provisioned capacity\n"
+                        "description": "Provisioned capacity"
                     },
                     "capacityBytes": {
                         "type": "integer"
@@ -3393,7 +3393,7 @@
                     },
                     "hostPath": {
                         "type": "string",
-                        "description": "Host path\n"
+                        "description": "Host path"
                     },
                     "name": {
                         "type": "string",
@@ -3421,11 +3421,11 @@
                     },
                     "pluginId": {
                         "type": "string",
-                        "description": "Plugin ID\n"
+                        "description": "Plugin ID"
                     },
                     "state": {
                         "type": "string",
-                        "description": "State\n"
+                        "description": "State"
                     }
                 },
                 "type": "object"
@@ -3459,7 +3459,7 @@
                     "items": {
                         "$ref": "#/types/nomad:index/DynamicHostVolumeRegistrationConstraint:DynamicHostVolumeRegistrationConstraint"
                     },
-                    "description": "Constraints\n"
+                    "description": "Constraints"
                 },
                 "hostPath": {
                     "type": "string",
@@ -3479,7 +3479,7 @@
                 },
                 "nodePool": {
                     "type": "string",
-                    "description": "Node pool\n"
+                    "description": "Node pool"
                 },
                 "parameters": {
                     "type": "object",
@@ -3490,11 +3490,11 @@
                 },
                 "pluginId": {
                     "type": "string",
-                    "description": "Plugin ID\n"
+                    "description": "Plugin ID"
                 },
                 "state": {
                     "type": "string",
-                    "description": "State\n"
+                    "description": "State"
                 }
             },
             "required": [
@@ -3579,7 +3579,7 @@
                         "items": {
                             "$ref": "#/types/nomad:index/DynamicHostVolumeRegistrationConstraint:DynamicHostVolumeRegistrationConstraint"
                         },
-                        "description": "Constraints\n"
+                        "description": "Constraints"
                     },
                     "hostPath": {
                         "type": "string",
@@ -3599,7 +3599,7 @@
                     },
                     "nodePool": {
                         "type": "string",
-                        "description": "Node pool\n"
+                        "description": "Node pool"
                     },
                     "parameters": {
                         "type": "object",
@@ -3610,11 +3610,11 @@
                     },
                     "pluginId": {
                         "type": "string",
-                        "description": "Plugin ID\n"
+                        "description": "Plugin ID"
                     },
                     "state": {
                         "type": "string",
-                        "description": "State\n"
+                        "description": "State"
                     }
                 },
                 "type": "object"
@@ -3938,7 +3938,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The IDs for allocations associated with this job.\n",
+                    "description": "The IDs for allocations associated with this job.",
                     "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
                 },
                 "datacenters": {
@@ -3946,19 +3946,19 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "The target datacenters for the job, as derived from the jobspec.\n"
+                    "description": "The target datacenters for the job, as derived from the jobspec."
                 },
                 "deploymentId": {
                     "type": "string",
-                    "description": "If detach = false, the ID for the deployment associated with the last job create/update, if one exists.\n"
+                    "description": "If detach = false, the ID for the deployment associated with the last job create/update, if one exists."
                 },
                 "deploymentStatus": {
                     "type": "string",
-                    "description": "If detach = false, the status for the deployment associated with the last job create/update, if one exists.\n"
+                    "description": "If detach = false, the status for the deployment associated with the last job create/update, if one exists."
                 },
                 "deregisterOnDestroy": {
                     "type": "boolean",
-                    "description": "If true, the job will be deregistered on destroy.\n"
+                    "description": "If true, the job will be deregistered on destroy."
                 },
                 "deregisterOnIdChange": {
                     "type": "boolean",
@@ -3982,15 +3982,15 @@
                 },
                 "modifyIndex": {
                     "type": "string",
-                    "description": "Integer that increments for each change. Used to detect any changes between plan and apply.\n"
+                    "description": "Integer that increments for each change. Used to detect any changes between plan and apply."
                 },
                 "name": {
                     "type": "string",
-                    "description": "The name of the job, as derived from the jobspec.\n"
+                    "description": "The name of the job, as derived from the jobspec."
                 },
                 "namespace": {
                     "type": "string",
-                    "description": "The namespace of the job, as derived from the jobspec.\n"
+                    "description": "The namespace of the job, as derived from the jobspec."
                 },
                 "policyOverride": {
                     "type": "boolean",
@@ -4006,7 +4006,7 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The target region for the job, as derived from the jobspec.\n"
+                    "description": "The target region for the job, as derived from the jobspec."
                 },
                 "rerunIfDead": {
                     "type": "boolean",
@@ -4014,7 +4014,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "description": "The status of the job.\n"
+                    "description": "The status of the job."
                 },
                 "taskGroups": {
                     "type": "array",
@@ -4024,7 +4024,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "The type of the job, as derived from the jobspec.\n"
+                    "description": "The type of the job, as derived from the jobspec."
                 }
             },
             "required": [
@@ -4044,7 +4044,7 @@
             "inputProperties": {
                 "deregisterOnDestroy": {
                     "type": "boolean",
-                    "description": "If true, the job will be deregistered on destroy.\n"
+                    "description": "If true, the job will be deregistered on destroy."
                 },
                 "deregisterOnIdChange": {
                     "type": "boolean",
@@ -4094,7 +4094,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The IDs for allocations associated with this job.\n",
+                        "description": "The IDs for allocations associated with this job.",
                         "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
                     },
                     "datacenters": {
@@ -4102,19 +4102,19 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "The target datacenters for the job, as derived from the jobspec.\n"
+                        "description": "The target datacenters for the job, as derived from the jobspec."
                     },
                     "deploymentId": {
                         "type": "string",
-                        "description": "If detach = false, the ID for the deployment associated with the last job create/update, if one exists.\n"
+                        "description": "If detach = false, the ID for the deployment associated with the last job create/update, if one exists."
                     },
                     "deploymentStatus": {
                         "type": "string",
-                        "description": "If detach = false, the status for the deployment associated with the last job create/update, if one exists.\n"
+                        "description": "If detach = false, the status for the deployment associated with the last job create/update, if one exists."
                     },
                     "deregisterOnDestroy": {
                         "type": "boolean",
-                        "description": "If true, the job will be deregistered on destroy.\n"
+                        "description": "If true, the job will be deregistered on destroy."
                     },
                     "deregisterOnIdChange": {
                         "type": "boolean",
@@ -4138,15 +4138,15 @@
                     },
                     "modifyIndex": {
                         "type": "string",
-                        "description": "Integer that increments for each change. Used to detect any changes between plan and apply.\n"
+                        "description": "Integer that increments for each change. Used to detect any changes between plan and apply."
                     },
                     "name": {
                         "type": "string",
-                        "description": "The name of the job, as derived from the jobspec.\n"
+                        "description": "The name of the job, as derived from the jobspec."
                     },
                     "namespace": {
                         "type": "string",
-                        "description": "The namespace of the job, as derived from the jobspec.\n"
+                        "description": "The namespace of the job, as derived from the jobspec."
                     },
                     "policyOverride": {
                         "type": "boolean",
@@ -4162,7 +4162,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "The target region for the job, as derived from the jobspec.\n"
+                        "description": "The target region for the job, as derived from the jobspec."
                     },
                     "rerunIfDead": {
                         "type": "boolean",
@@ -4170,7 +4170,7 @@
                     },
                     "status": {
                         "type": "string",
-                        "description": "The status of the job.\n"
+                        "description": "The status of the job."
                     },
                     "taskGroups": {
                         "type": "array",
@@ -4180,7 +4180,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "The type of the job, as derived from the jobspec.\n"
+                        "description": "The type of the job, as derived from the jobspec."
                     }
                 },
                 "type": "object"
@@ -4993,7 +4993,7 @@
                 "description": "A collection of values returned by getAclPolicies.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "policies": {
@@ -5037,7 +5037,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -5127,7 +5127,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "prefix": {
@@ -5180,7 +5180,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -5250,7 +5250,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "prefix": {
@@ -5298,7 +5298,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "namespace": {
@@ -5343,7 +5343,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "ignoreDownNodes": {
@@ -5376,7 +5376,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     }
                 },
@@ -5550,7 +5550,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "jobId": {
@@ -5683,7 +5683,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "json": {
@@ -5705,7 +5705,7 @@
                 "description": "A collection of values returned by getJwks.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "keys": {
@@ -5761,7 +5761,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "meta": {
@@ -5803,7 +5803,7 @@
                 "description": "A collection of values returned by getNamespaces.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "namespaces": {
@@ -5844,7 +5844,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "meta": {
@@ -5898,7 +5898,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "nodePools": {
@@ -5958,7 +5958,7 @@
                         "type": "integer"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "nodes": {
@@ -6024,7 +6024,7 @@
                 "description": "A collection of values returned by getPlugins.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "plugins": {
@@ -6054,7 +6054,7 @@
                 "description": "A collection of values returned by getRegions.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "regions": {
@@ -6092,7 +6092,7 @@
                 "description": "A collection of values returned by getScalingPolicies.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "jobId": {
@@ -6184,7 +6184,7 @@
                 "description": "A collection of values returned by getSchedulerPolicy.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "memoryOversubscriptionEnabled": {
@@ -6235,7 +6235,7 @@
                 "description": "A collection of values returned by getVariable.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "items": {
@@ -6291,7 +6291,7 @@
                 "description": "A collection of values returned by getVolumes.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "namespace": {
