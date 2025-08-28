@@ -30,43 +30,43 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * URL of the root of the target Nomad agent.
      */
-    public readonly address!: pulumi.Output<string | undefined>;
+    declare public readonly address: pulumi.Output<string | undefined>;
     /**
      * A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
      */
-    public readonly caFile!: pulumi.Output<string | undefined>;
+    declare public readonly caFile: pulumi.Output<string | undefined>;
     /**
      * PEM-encoded certificate authority used to verify the remote agent's certificate.
      */
-    public readonly caPem!: pulumi.Output<string | undefined>;
+    declare public readonly caPem: pulumi.Output<string | undefined>;
     /**
      * A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      */
-    public readonly certFile!: pulumi.Output<string | undefined>;
+    declare public readonly certFile: pulumi.Output<string | undefined>;
     /**
      * PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      */
-    public readonly certPem!: pulumi.Output<string | undefined>;
+    declare public readonly certPem: pulumi.Output<string | undefined>;
     /**
      * HTTP basic auth configuration.
      */
-    public readonly httpAuth!: pulumi.Output<string | undefined>;
+    declare public readonly httpAuth: pulumi.Output<string | undefined>;
     /**
      * A path to a PEM-encoded private key, required if certFile or certPem is specified.
      */
-    public readonly keyFile!: pulumi.Output<string | undefined>;
+    declare public readonly keyFile: pulumi.Output<string | undefined>;
     /**
      * PEM-encoded private key, required if certFile or certPem is specified.
      */
-    public readonly keyPem!: pulumi.Output<string | undefined>;
+    declare public readonly keyPem: pulumi.Output<string | undefined>;
     /**
      * Region of the target Nomad agent.
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * ACL token secret for API requests.
      */
-    public readonly secretId!: pulumi.Output<string | undefined>;
+    declare public readonly secretId: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -79,19 +79,19 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["address"] = args ? args.address : undefined;
-            resourceInputs["caFile"] = args ? args.caFile : undefined;
-            resourceInputs["caPem"] = args ? args.caPem : undefined;
-            resourceInputs["certFile"] = args ? args.certFile : undefined;
-            resourceInputs["certPem"] = args ? args.certPem : undefined;
+            resourceInputs["address"] = args?.address;
+            resourceInputs["caFile"] = args?.caFile;
+            resourceInputs["caPem"] = args?.caPem;
+            resourceInputs["certFile"] = args?.certFile;
+            resourceInputs["certPem"] = args?.certPem;
             resourceInputs["headers"] = pulumi.output(args?.headers ? pulumi.secret(args.headers) : undefined).apply(JSON.stringify);
-            resourceInputs["httpAuth"] = args ? args.httpAuth : undefined;
-            resourceInputs["ignoreEnvVars"] = pulumi.output(args ? args.ignoreEnvVars : undefined).apply(JSON.stringify);
-            resourceInputs["keyFile"] = args ? args.keyFile : undefined;
-            resourceInputs["keyPem"] = args ? args.keyPem : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["secretId"] = args ? args.secretId : undefined;
-            resourceInputs["skipVerify"] = pulumi.output(args ? args.skipVerify : undefined).apply(JSON.stringify);
+            resourceInputs["httpAuth"] = args?.httpAuth;
+            resourceInputs["ignoreEnvVars"] = pulumi.output(args?.ignoreEnvVars).apply(JSON.stringify);
+            resourceInputs["keyFile"] = args?.keyFile;
+            resourceInputs["keyPem"] = args?.keyPem;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["secretId"] = args?.secretId;
+            resourceInputs["skipVerify"] = pulumi.output(args?.skipVerify).apply(JSON.stringify);
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);

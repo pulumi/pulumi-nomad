@@ -99,16 +99,16 @@ export class AclToken extends pulumi.CustomResource {
      * `(string)` - A non-sensitive identifier for this token that
      * can be logged and shared safely without granting any access to the cluster.
      */
-    public /*out*/ readonly accessorId!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessorId: pulumi.Output<string>;
     /**
      * `(string)` - The timestamp the token was created.
      */
-    public /*out*/ readonly createTime!: pulumi.Output<string>;
+    declare public /*out*/ readonly createTime: pulumi.Output<string>;
     /**
      * `(string)` - The timestamp after which the token is
      * considered expired and eligible for destruction.
      */
-    public /*out*/ readonly expirationTime!: pulumi.Output<string>;
+    declare public /*out*/ readonly expirationTime: pulumi.Output<string>;
     /**
      * `(string: "")` - Provides a TTL for the token in the form of
      * a time duration such as `"5m"` or `"1h"`.
@@ -116,39 +116,39 @@ export class AclToken extends pulumi.CustomResource {
      * In addition to the above arguments, the following attributes are exported and
      * can be referenced:
      */
-    public readonly expirationTtl!: pulumi.Output<string | undefined>;
+    declare public readonly expirationTtl: pulumi.Output<string | undefined>;
     /**
      * `(bool: false)` - Whether the token should be replicated to all
      * regions, or if it will only be used in the region it was created in.
      */
-    public readonly global!: pulumi.Output<boolean | undefined>;
+    declare public readonly global: pulumi.Output<boolean | undefined>;
     /**
      * `(string: "")` - A human-friendly name for this token.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `(set: [])` - A set of policy names to associate with this
      * token. Must be set on `client`-type tokens, must not be set on
      * `management`-type tokens. Policies do not need to exist before being
      * used here.
      */
-    public readonly policies!: pulumi.Output<string[] | undefined>;
+    declare public readonly policies: pulumi.Output<string[] | undefined>;
     /**
      * `(set: [])` - The list of roles attached to the token. Each entry has
      * `name` and `id` attributes. It may be used multiple times.
      */
-    public readonly roles!: pulumi.Output<outputs.AclTokenRole[] | undefined>;
+    declare public readonly roles: pulumi.Output<outputs.AclTokenRole[] | undefined>;
     /**
      * `(string)` - The token value itself, which is presented for
      * access to the cluster.
      */
-    public /*out*/ readonly secretId!: pulumi.Output<string>;
+    declare public /*out*/ readonly secretId: pulumi.Output<string>;
     /**
      * `(string: <required>)` - The type of token this is. Use `client`
      * for tokens that will have policies associated with them. Use `management`
      * for tokens that can perform any action.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a AclToken resource with the given unique name, arguments, and options.
@@ -163,27 +163,27 @@ export class AclToken extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AclTokenState | undefined;
-            resourceInputs["accessorId"] = state ? state.accessorId : undefined;
-            resourceInputs["createTime"] = state ? state.createTime : undefined;
-            resourceInputs["expirationTime"] = state ? state.expirationTime : undefined;
-            resourceInputs["expirationTtl"] = state ? state.expirationTtl : undefined;
-            resourceInputs["global"] = state ? state.global : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
-            resourceInputs["roles"] = state ? state.roles : undefined;
-            resourceInputs["secretId"] = state ? state.secretId : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["accessorId"] = state?.accessorId;
+            resourceInputs["createTime"] = state?.createTime;
+            resourceInputs["expirationTime"] = state?.expirationTime;
+            resourceInputs["expirationTtl"] = state?.expirationTtl;
+            resourceInputs["global"] = state?.global;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["policies"] = state?.policies;
+            resourceInputs["roles"] = state?.roles;
+            resourceInputs["secretId"] = state?.secretId;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as AclTokenArgs | undefined;
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["expirationTtl"] = args ? args.expirationTtl : undefined;
-            resourceInputs["global"] = args ? args.global : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
-            resourceInputs["roles"] = args ? args.roles : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["expirationTtl"] = args?.expirationTtl;
+            resourceInputs["global"] = args?.global;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["policies"] = args?.policies;
+            resourceInputs["roles"] = args?.roles;
+            resourceInputs["type"] = args?.type;
             resourceInputs["accessorId"] = undefined /*out*/;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["expirationTime"] = undefined /*out*/;

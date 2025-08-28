@@ -89,27 +89,27 @@ export class Namespace extends pulumi.CustomResource {
      * `(block: <optional>)` - A block of capabilities for the namespace. Can't
      * be repeated. See below for the structure of this block.
      */
-    public readonly capabilities!: pulumi.Output<outputs.NamespaceCapabilities | undefined>;
+    declare public readonly capabilities: pulumi.Output<outputs.NamespaceCapabilities | undefined>;
     /**
      * `(string: "")` - A description of the namespace.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
      */
-    public readonly meta!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly meta: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * `(string: <required>)` - A unique name for the namespace.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
      */
-    public readonly nodePoolConfig!: pulumi.Output<outputs.NamespaceNodePoolConfig>;
+    declare public readonly nodePoolConfig: pulumi.Output<outputs.NamespaceNodePoolConfig>;
     /**
      * `(string: "")` - A resource quota to attach to the namespace.
      */
-    public readonly quota!: pulumi.Output<string | undefined>;
+    declare public readonly quota: pulumi.Output<string | undefined>;
 
     /**
      * Create a Namespace resource with the given unique name, arguments, and options.
@@ -124,20 +124,20 @@ export class Namespace extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NamespaceState | undefined;
-            resourceInputs["capabilities"] = state ? state.capabilities : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["meta"] = state ? state.meta : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nodePoolConfig"] = state ? state.nodePoolConfig : undefined;
-            resourceInputs["quota"] = state ? state.quota : undefined;
+            resourceInputs["capabilities"] = state?.capabilities;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["meta"] = state?.meta;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["nodePoolConfig"] = state?.nodePoolConfig;
+            resourceInputs["quota"] = state?.quota;
         } else {
             const args = argsOrState as NamespaceArgs | undefined;
-            resourceInputs["capabilities"] = args ? args.capabilities : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["meta"] = args ? args.meta : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["nodePoolConfig"] = args ? args.nodePoolConfig : undefined;
-            resourceInputs["quota"] = args ? args.quota : undefined;
+            resourceInputs["capabilities"] = args?.capabilities;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["meta"] = args?.meta;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["nodePoolConfig"] = args?.nodePoolConfig;
+            resourceInputs["quota"] = args?.quota;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Namespace.__pulumiType, name, resourceInputs, opts);

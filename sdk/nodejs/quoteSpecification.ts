@@ -61,16 +61,16 @@ export class QuoteSpecification extends pulumi.CustomResource {
     /**
      * `(string: "")` - A description of the quota specification.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * `(block: <required>)` - A block of quota limits to enforce. Can
      * be repeated. See below for the structure of this block.
      */
-    public readonly limits!: pulumi.Output<outputs.QuoteSpecificationLimit[]>;
+    declare public readonly limits: pulumi.Output<outputs.QuoteSpecificationLimit[]>;
     /**
      * `(string: <required>)` - A unique name for the quota specification.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
 
     /**
      * Create a QuoteSpecification resource with the given unique name, arguments, and options.
@@ -85,17 +85,17 @@ export class QuoteSpecification extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as QuoteSpecificationState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["limits"] = state ? state.limits : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["limits"] = state?.limits;
+            resourceInputs["name"] = state?.name;
         } else {
             const args = argsOrState as QuoteSpecificationArgs | undefined;
-            if ((!args || args.limits === undefined) && !opts.urn) {
+            if (args?.limits === undefined && !opts.urn) {
                 throw new Error("Missing required property 'limits'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["limits"] = args ? args.limits : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["limits"] = args?.limits;
+            resourceInputs["name"] = args?.name;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(QuoteSpecification.__pulumiType, name, resourceInputs, opts);

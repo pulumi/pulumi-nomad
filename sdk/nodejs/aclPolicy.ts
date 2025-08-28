@@ -40,21 +40,21 @@ export class AclPolicy extends pulumi.CustomResource {
     /**
      * `(string: "")` - A description of the policy.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * `(``JobACL``: <optional>)` - Options for assigning the
      * ACL rules to a job, group, or task.
      */
-    public readonly jobAcl!: pulumi.Output<outputs.AclPolicyJobAcl | undefined>;
+    declare public readonly jobAcl: pulumi.Output<outputs.AclPolicyJobAcl | undefined>;
     /**
      * `(string: <required>)` - A unique name for the policy.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `(string: <required>)` - The contents of the policy to register,
      * as HCL or JSON.
      */
-    public readonly rulesHcl!: pulumi.Output<string>;
+    declare public readonly rulesHcl: pulumi.Output<string>;
 
     /**
      * Create a AclPolicy resource with the given unique name, arguments, and options.
@@ -69,19 +69,19 @@ export class AclPolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AclPolicyState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["jobAcl"] = state ? state.jobAcl : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["rulesHcl"] = state ? state.rulesHcl : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["jobAcl"] = state?.jobAcl;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["rulesHcl"] = state?.rulesHcl;
         } else {
             const args = argsOrState as AclPolicyArgs | undefined;
-            if ((!args || args.rulesHcl === undefined) && !opts.urn) {
+            if (args?.rulesHcl === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rulesHcl'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["jobAcl"] = args ? args.jobAcl : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["rulesHcl"] = args ? args.rulesHcl : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["jobAcl"] = args?.jobAcl;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["rulesHcl"] = args?.rulesHcl;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AclPolicy.__pulumiType, name, resourceInputs, opts);

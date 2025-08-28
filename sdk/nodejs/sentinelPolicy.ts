@@ -69,24 +69,24 @@ export class SentinelPolicy extends pulumi.CustomResource {
      * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
      * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * `(strings: <required>)` - The [enforcement level][enforcement-level]
      * for this policy.
      */
-    public readonly enforcementLevel!: pulumi.Output<string>;
+    declare public readonly enforcementLevel: pulumi.Output<string>;
     /**
      * `(string: <required>)` - A unique name for the policy.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `(string: <required>)` - The contents of the policy to register.
      */
-    public readonly policy!: pulumi.Output<string>;
+    declare public readonly policy: pulumi.Output<string>;
     /**
      * `(strings: <required>)` - The [scope][scope] for this policy.
      */
-    public readonly scope!: pulumi.Output<string>;
+    declare public readonly scope: pulumi.Output<string>;
 
     /**
      * Create a SentinelPolicy resource with the given unique name, arguments, and options.
@@ -101,27 +101,27 @@ export class SentinelPolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SentinelPolicyState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["enforcementLevel"] = state ? state.enforcementLevel : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["policy"] = state ? state.policy : undefined;
-            resourceInputs["scope"] = state ? state.scope : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["enforcementLevel"] = state?.enforcementLevel;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["policy"] = state?.policy;
+            resourceInputs["scope"] = state?.scope;
         } else {
             const args = argsOrState as SentinelPolicyArgs | undefined;
-            if ((!args || args.enforcementLevel === undefined) && !opts.urn) {
+            if (args?.enforcementLevel === undefined && !opts.urn) {
                 throw new Error("Missing required property 'enforcementLevel'");
             }
-            if ((!args || args.policy === undefined) && !opts.urn) {
+            if (args?.policy === undefined && !opts.urn) {
                 throw new Error("Missing required property 'policy'");
             }
-            if ((!args || args.scope === undefined) && !opts.urn) {
+            if (args?.scope === undefined && !opts.urn) {
                 throw new Error("Missing required property 'scope'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["enforcementLevel"] = args ? args.enforcementLevel : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["policy"] = args ? args.policy : undefined;
-            resourceInputs["scope"] = args ? args.scope : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["enforcementLevel"] = args?.enforcementLevel;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["policy"] = args?.policy;
+            resourceInputs["scope"] = args?.scope;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SentinelPolicy.__pulumiType, name, resourceInputs, opts);
