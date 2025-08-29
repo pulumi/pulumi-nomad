@@ -72,38 +72,38 @@ export class AclAuthMethod extends pulumi.CustomResource {
      * `(block: <required>)` - Configuration specific to the auth method
      * provider.
      */
-    public readonly config!: pulumi.Output<outputs.AclAuthMethodConfig>;
+    declare public readonly config: pulumi.Output<outputs.AclAuthMethodConfig>;
     /**
      * `(bool: false)` - Defines whether this ACL Auth Method is to be set
      * as default.
      */
-    public readonly default!: pulumi.Output<boolean | undefined>;
+    declare public readonly default: pulumi.Output<boolean | undefined>;
     /**
      * `(string: <required>)` - Defines the maximum life of a token
      * created by this method and is specified as a time duration such as "15h".
      */
-    public readonly maxTokenTtl!: pulumi.Output<string>;
+    declare public readonly maxTokenTtl: pulumi.Output<string>;
     /**
      * `(string: <required>)` - The identifier of the ACL Auth Method.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `(string: <required>)` - Defines whether the ACL Auth Method
      * creates a local or global token when performing SSO login. This field must be
      * set to either `local` or `global`.
      */
-    public readonly tokenLocality!: pulumi.Output<string>;
+    declare public readonly tokenLocality: pulumi.Output<string>;
     /**
      * `(string: "${auth_method_type}-${auth_method_name}")` -
      * Defines the token name format for the generated tokens This can be lightly
      * templated using HIL '${foo}' syntax.
      */
-    public readonly tokenNameFormat!: pulumi.Output<string | undefined>;
+    declare public readonly tokenNameFormat: pulumi.Output<string | undefined>;
     /**
      * `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
      * are `OIDC` and `JWT`.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a AclAuthMethod resource with the given unique name, arguments, and options.
@@ -118,34 +118,34 @@ export class AclAuthMethod extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AclAuthMethodState | undefined;
-            resourceInputs["config"] = state ? state.config : undefined;
-            resourceInputs["default"] = state ? state.default : undefined;
-            resourceInputs["maxTokenTtl"] = state ? state.maxTokenTtl : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["tokenLocality"] = state ? state.tokenLocality : undefined;
-            resourceInputs["tokenNameFormat"] = state ? state.tokenNameFormat : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["config"] = state?.config;
+            resourceInputs["default"] = state?.default;
+            resourceInputs["maxTokenTtl"] = state?.maxTokenTtl;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["tokenLocality"] = state?.tokenLocality;
+            resourceInputs["tokenNameFormat"] = state?.tokenNameFormat;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as AclAuthMethodArgs | undefined;
-            if ((!args || args.config === undefined) && !opts.urn) {
+            if (args?.config === undefined && !opts.urn) {
                 throw new Error("Missing required property 'config'");
             }
-            if ((!args || args.maxTokenTtl === undefined) && !opts.urn) {
+            if (args?.maxTokenTtl === undefined && !opts.urn) {
                 throw new Error("Missing required property 'maxTokenTtl'");
             }
-            if ((!args || args.tokenLocality === undefined) && !opts.urn) {
+            if (args?.tokenLocality === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tokenLocality'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["config"] = args ? args.config : undefined;
-            resourceInputs["default"] = args ? args.default : undefined;
-            resourceInputs["maxTokenTtl"] = args ? args.maxTokenTtl : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["tokenLocality"] = args ? args.tokenLocality : undefined;
-            resourceInputs["tokenNameFormat"] = args ? args.tokenNameFormat : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["config"] = args?.config;
+            resourceInputs["default"] = args?.default;
+            resourceInputs["maxTokenTtl"] = args?.maxTokenTtl;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["tokenLocality"] = args?.tokenLocality;
+            resourceInputs["tokenNameFormat"] = args?.tokenNameFormat;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AclAuthMethod.__pulumiType, name, resourceInputs, opts);

@@ -58,20 +58,20 @@ export class NodePool extends pulumi.CustomResource {
     /**
      * `(string)` - The description of the node pool.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * `(map[string]string)` - Arbitrary KV metadata associated with the
      * node pool.
      */
-    public readonly meta!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly meta: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * `(string)` - The name of the node pool.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `(block)` - Scheduler configuration for the node pool.
      */
-    public readonly schedulerConfig!: pulumi.Output<outputs.NodePoolSchedulerConfig | undefined>;
+    declare public readonly schedulerConfig: pulumi.Output<outputs.NodePoolSchedulerConfig | undefined>;
 
     /**
      * Create a NodePool resource with the given unique name, arguments, and options.
@@ -86,16 +86,16 @@ export class NodePool extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NodePoolState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["meta"] = state ? state.meta : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["schedulerConfig"] = state ? state.schedulerConfig : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["meta"] = state?.meta;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["schedulerConfig"] = state?.schedulerConfig;
         } else {
             const args = argsOrState as NodePoolArgs | undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["meta"] = args ? args.meta : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["schedulerConfig"] = args ? args.schedulerConfig : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["meta"] = args?.meta;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["schedulerConfig"] = args?.schedulerConfig;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(NodePool.__pulumiType, name, resourceInputs, opts);

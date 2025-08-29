@@ -43,25 +43,25 @@ export class DynamicHostVolumeRegistration extends pulumi.CustomResource {
      * `(block: <optional>)` - Option for validating the capability of a
      * volume. Each capability block has the following attributes:
      */
-    public readonly capabilities!: pulumi.Output<outputs.DynamicHostVolumeRegistrationCapability[]>;
+    declare public readonly capabilities: pulumi.Output<outputs.DynamicHostVolumeRegistrationCapability[]>;
     /**
      * `(string: <optional>)` - The size of a volume in bytes. Either the
      * physical size of a disk or a quota, depending on the plugin. This field must
      * be between the `capacityMin` and `capacityMax` values unless they are
      * omitted. Accepts human-friendly suffixes such as `"100GiB"`.
      */
-    public readonly capacity!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly capacityBytes!: pulumi.Output<number>;
-    public /*out*/ readonly capacityMaxBytes!: pulumi.Output<number>;
-    public /*out*/ readonly capacityMinBytes!: pulumi.Output<number>;
+    declare public readonly capacity: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly capacityBytes: pulumi.Output<number>;
+    declare public /*out*/ readonly capacityMaxBytes: pulumi.Output<number>;
+    declare public /*out*/ readonly capacityMinBytes: pulumi.Output<number>;
     /**
      * Constraints
      */
-    public /*out*/ readonly constraints!: pulumi.Output<outputs.DynamicHostVolumeRegistrationConstraint[]>;
+    declare public /*out*/ readonly constraints: pulumi.Output<outputs.DynamicHostVolumeRegistrationConstraint[]>;
     /**
      * `(string)` - The path on disk where the volume exists.
      */
-    public readonly hostPath!: pulumi.Output<string>;
+    declare public readonly hostPath: pulumi.Output<string>;
     /**
      * `(string: <required>)` - The name of the volume, which is used as the
      * [`volume.source`][volumeSource] field in job specifications that claim this
@@ -69,22 +69,22 @@ export class DynamicHostVolumeRegistration extends pulumi.CustomResource {
      * user with `node:read` ACL, even across namespaces, so they should not be
      * treated as sensitive values.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `(string: <optional>)` - The namespace of the volume. This field
      * overrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`
      * environment variable. Defaults to `"default"` if unset.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * `(string: <required>)` - A specific node where the volume is
      * mounted.
      */
-    public readonly nodeId!: pulumi.Output<string>;
+    declare public readonly nodeId: pulumi.Output<string>;
     /**
      * Node pool
      */
-    public /*out*/ readonly nodePool!: pulumi.Output<string>;
+    declare public /*out*/ readonly nodePool: pulumi.Output<string>;
     /**
      * `(map<string|string>: <optional>)` - A key-value map of strings
      * passed directly to the plugin to configure the volume. The details of these
@@ -95,15 +95,15 @@ export class DynamicHostVolumeRegistration extends pulumi.CustomResource {
      * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
      * [volumeSource]: /nomad/docs/job-specification/volume#source
      */
-    public readonly parameters!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly parameters: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Plugin ID
      */
-    public /*out*/ readonly pluginId!: pulumi.Output<string>;
+    declare public /*out*/ readonly pluginId: pulumi.Output<string>;
     /**
      * State
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
 
     /**
      * Create a DynamicHostVolumeRegistration resource with the given unique name, arguments, and options.
@@ -118,38 +118,38 @@ export class DynamicHostVolumeRegistration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DynamicHostVolumeRegistrationState | undefined;
-            resourceInputs["capabilities"] = state ? state.capabilities : undefined;
-            resourceInputs["capacity"] = state ? state.capacity : undefined;
-            resourceInputs["capacityBytes"] = state ? state.capacityBytes : undefined;
-            resourceInputs["capacityMaxBytes"] = state ? state.capacityMaxBytes : undefined;
-            resourceInputs["capacityMinBytes"] = state ? state.capacityMinBytes : undefined;
-            resourceInputs["constraints"] = state ? state.constraints : undefined;
-            resourceInputs["hostPath"] = state ? state.hostPath : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["nodeId"] = state ? state.nodeId : undefined;
-            resourceInputs["nodePool"] = state ? state.nodePool : undefined;
-            resourceInputs["parameters"] = state ? state.parameters : undefined;
-            resourceInputs["pluginId"] = state ? state.pluginId : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["capabilities"] = state?.capabilities;
+            resourceInputs["capacity"] = state?.capacity;
+            resourceInputs["capacityBytes"] = state?.capacityBytes;
+            resourceInputs["capacityMaxBytes"] = state?.capacityMaxBytes;
+            resourceInputs["capacityMinBytes"] = state?.capacityMinBytes;
+            resourceInputs["constraints"] = state?.constraints;
+            resourceInputs["hostPath"] = state?.hostPath;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["nodeId"] = state?.nodeId;
+            resourceInputs["nodePool"] = state?.nodePool;
+            resourceInputs["parameters"] = state?.parameters;
+            resourceInputs["pluginId"] = state?.pluginId;
+            resourceInputs["state"] = state?.state;
         } else {
             const args = argsOrState as DynamicHostVolumeRegistrationArgs | undefined;
-            if ((!args || args.capabilities === undefined) && !opts.urn) {
+            if (args?.capabilities === undefined && !opts.urn) {
                 throw new Error("Missing required property 'capabilities'");
             }
-            if ((!args || args.hostPath === undefined) && !opts.urn) {
+            if (args?.hostPath === undefined && !opts.urn) {
                 throw new Error("Missing required property 'hostPath'");
             }
-            if ((!args || args.nodeId === undefined) && !opts.urn) {
+            if (args?.nodeId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nodeId'");
             }
-            resourceInputs["capabilities"] = args ? args.capabilities : undefined;
-            resourceInputs["capacity"] = args ? args.capacity : undefined;
-            resourceInputs["hostPath"] = args ? args.hostPath : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["nodeId"] = args ? args.nodeId : undefined;
-            resourceInputs["parameters"] = args ? args.parameters : undefined;
+            resourceInputs["capabilities"] = args?.capabilities;
+            resourceInputs["capacity"] = args?.capacity;
+            resourceInputs["hostPath"] = args?.hostPath;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["nodeId"] = args?.nodeId;
+            resourceInputs["parameters"] = args?.parameters;
             resourceInputs["capacityBytes"] = undefined /*out*/;
             resourceInputs["capacityMaxBytes"] = undefined /*out*/;
             resourceInputs["capacityMinBytes"] = undefined /*out*/;

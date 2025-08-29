@@ -37,16 +37,16 @@ export class AclRole extends pulumi.CustomResource {
     /**
      * `(string: "")` - A description of the ACL Role.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * `(string: <required>)` - A human-friendly name for this ACL Role.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `(set: <required>)` - A set of policy names to associate with this
      * ACL Role. It may be used multiple times.
      */
-    public readonly policies!: pulumi.Output<outputs.AclRolePolicy[]>;
+    declare public readonly policies: pulumi.Output<outputs.AclRolePolicy[]>;
 
     /**
      * Create a AclRole resource with the given unique name, arguments, and options.
@@ -61,17 +61,17 @@ export class AclRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AclRoleState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["policies"] = state ? state.policies : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["policies"] = state?.policies;
         } else {
             const args = argsOrState as AclRoleArgs | undefined;
-            if ((!args || args.policies === undefined) && !opts.urn) {
+            if (args?.policies === undefined && !opts.urn) {
                 throw new Error("Missing required property 'policies'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["policies"] = args ? args.policies : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["policies"] = args?.policies;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AclRole.__pulumiType, name, resourceInputs, opts);
