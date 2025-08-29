@@ -63,15 +63,15 @@ export class SchedulerConfig extends pulumi.CustomResource {
     /**
      * `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
      */
-    public readonly memoryOversubscriptionEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly memoryOversubscriptionEnabled: pulumi.Output<boolean | undefined>;
     /**
      * `(map[string]bool)` - Options to enable preemption for various schedulers.
      */
-    public readonly preemptionConfig!: pulumi.Output<{[key: string]: boolean} | undefined>;
+    declare public readonly preemptionConfig: pulumi.Output<{[key: string]: boolean} | undefined>;
     /**
      * `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
      */
-    public readonly schedulerAlgorithm!: pulumi.Output<string | undefined>;
+    declare public readonly schedulerAlgorithm: pulumi.Output<string | undefined>;
 
     /**
      * Create a SchedulerConfig resource with the given unique name, arguments, and options.
@@ -86,14 +86,14 @@ export class SchedulerConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SchedulerConfigState | undefined;
-            resourceInputs["memoryOversubscriptionEnabled"] = state ? state.memoryOversubscriptionEnabled : undefined;
-            resourceInputs["preemptionConfig"] = state ? state.preemptionConfig : undefined;
-            resourceInputs["schedulerAlgorithm"] = state ? state.schedulerAlgorithm : undefined;
+            resourceInputs["memoryOversubscriptionEnabled"] = state?.memoryOversubscriptionEnabled;
+            resourceInputs["preemptionConfig"] = state?.preemptionConfig;
+            resourceInputs["schedulerAlgorithm"] = state?.schedulerAlgorithm;
         } else {
             const args = argsOrState as SchedulerConfigArgs | undefined;
-            resourceInputs["memoryOversubscriptionEnabled"] = args ? args.memoryOversubscriptionEnabled : undefined;
-            resourceInputs["preemptionConfig"] = args ? args.preemptionConfig : undefined;
-            resourceInputs["schedulerAlgorithm"] = args ? args.schedulerAlgorithm : undefined;
+            resourceInputs["memoryOversubscriptionEnabled"] = args?.memoryOversubscriptionEnabled;
+            resourceInputs["preemptionConfig"] = args?.preemptionConfig;
+            resourceInputs["schedulerAlgorithm"] = args?.schedulerAlgorithm;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SchedulerConfig.__pulumiType, name, resourceInputs, opts);

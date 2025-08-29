@@ -71,15 +71,15 @@ export class Variable extends pulumi.CustomResource {
     /**
      * `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
      */
-    public readonly items!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly items: pulumi.Output<{[key: string]: string}>;
     /**
      * `(string: "default")` - The namepsace to create the variable in.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * `(string: <required>)` - A unique path to create the variable at.
      */
-    public readonly path!: pulumi.Output<string>;
+    declare public readonly path: pulumi.Output<string>;
 
     /**
      * Create a Variable resource with the given unique name, arguments, and options.
@@ -94,20 +94,20 @@ export class Variable extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VariableState | undefined;
-            resourceInputs["items"] = state ? state.items : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["items"] = state?.items;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["path"] = state?.path;
         } else {
             const args = argsOrState as VariableArgs | undefined;
-            if ((!args || args.items === undefined) && !opts.urn) {
+            if (args?.items === undefined && !opts.urn) {
                 throw new Error("Missing required property 'items'");
             }
-            if ((!args || args.path === undefined) && !opts.urn) {
+            if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
             resourceInputs["items"] = args?.items ? pulumi.secret(args.items) : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["path"] = args?.path;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["items"] };

@@ -37,71 +37,71 @@ export class CsiVolumeRegistration extends pulumi.CustomResource {
     /**
      * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
-    public readonly capabilities!: pulumi.Output<outputs.CsiVolumeRegistrationCapability[] | undefined>;
-    public /*out*/ readonly capacity!: pulumi.Output<number>;
+    declare public readonly capabilities: pulumi.Output<outputs.CsiVolumeRegistrationCapability[] | undefined>;
+    declare public /*out*/ readonly capacity: pulumi.Output<number>;
     /**
      * `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      */
-    public readonly capacityMax!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly capacityMaxBytes!: pulumi.Output<number>;
+    declare public readonly capacityMax: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly capacityMaxBytes: pulumi.Output<number>;
     /**
      * `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      */
-    public readonly capacityMin!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly capacityMinBytes!: pulumi.Output<number>;
+    declare public readonly capacityMin: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly capacityMinBytes: pulumi.Output<number>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      */
-    public readonly context!: pulumi.Output<{[key: string]: string} | undefined>;
-    public /*out*/ readonly controllerRequired!: pulumi.Output<boolean>;
-    public /*out*/ readonly controllersExpected!: pulumi.Output<number>;
-    public /*out*/ readonly controllersHealthy!: pulumi.Output<number>;
+    declare public readonly context: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public /*out*/ readonly controllerRequired: pulumi.Output<boolean>;
+    declare public /*out*/ readonly controllersExpected: pulumi.Output<number>;
+    declare public /*out*/ readonly controllersHealthy: pulumi.Output<number>;
     /**
      * `(boolean: true)` - If true, the volume will be deregistered on destroy.
      */
-    public readonly deregisterOnDestroy!: pulumi.Output<boolean | undefined>;
+    declare public readonly deregisterOnDestroy: pulumi.Output<boolean | undefined>;
     /**
      * `(string: <required>)` - The ID of the physical volume from the storage provider.
      */
-    public readonly externalId!: pulumi.Output<string>;
+    declare public readonly externalId: pulumi.Output<string>;
     /**
      * `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
      */
-    public readonly mountOptions!: pulumi.Output<outputs.CsiVolumeRegistrationMountOptions | undefined>;
+    declare public readonly mountOptions: pulumi.Output<outputs.CsiVolumeRegistrationMountOptions | undefined>;
     /**
      * `(string: <required>)` - The display name for the volume.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `(string: "default")` - The namespace in which to register the volume.
      */
-    public readonly namespace!: pulumi.Output<string | undefined>;
-    public /*out*/ readonly nodesExpected!: pulumi.Output<number>;
-    public /*out*/ readonly nodesHealthy!: pulumi.Output<number>;
+    declare public readonly namespace: pulumi.Output<string | undefined>;
+    declare public /*out*/ readonly nodesExpected: pulumi.Output<number>;
+    declare public /*out*/ readonly nodesHealthy: pulumi.Output<number>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      */
-    public readonly parameters!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly parameters: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
-    public readonly pluginId!: pulumi.Output<string>;
-    public /*out*/ readonly pluginProvider!: pulumi.Output<string>;
-    public /*out*/ readonly pluginProviderVersion!: pulumi.Output<string>;
-    public /*out*/ readonly schedulable!: pulumi.Output<boolean>;
+    declare public readonly pluginId: pulumi.Output<string>;
+    declare public /*out*/ readonly pluginProvider: pulumi.Output<string>;
+    declare public /*out*/ readonly pluginProviderVersion: pulumi.Output<string>;
+    declare public /*out*/ readonly schedulable: pulumi.Output<boolean>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
-    public readonly secrets!: pulumi.Output<{[key: string]: string} | undefined>;
-    public /*out*/ readonly topologies!: pulumi.Output<outputs.CsiVolumeRegistrationTopology[]>;
+    declare public readonly secrets: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public /*out*/ readonly topologies: pulumi.Output<outputs.CsiVolumeRegistrationTopology[]>;
     /**
      * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      */
-    public readonly topologyRequest!: pulumi.Output<outputs.CsiVolumeRegistrationTopologyRequest | undefined>;
+    declare public readonly topologyRequest: pulumi.Output<outputs.CsiVolumeRegistrationTopologyRequest | undefined>;
     /**
      * `(string: <required>)` - The unique ID of the volume.
      */
-    public readonly volumeId!: pulumi.Output<string>;
+    declare public readonly volumeId: pulumi.Output<string>;
 
     /**
      * Create a CsiVolumeRegistration resource with the given unique name, arguments, and options.
@@ -116,57 +116,57 @@ export class CsiVolumeRegistration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CsiVolumeRegistrationState | undefined;
-            resourceInputs["capabilities"] = state ? state.capabilities : undefined;
-            resourceInputs["capacity"] = state ? state.capacity : undefined;
-            resourceInputs["capacityMax"] = state ? state.capacityMax : undefined;
-            resourceInputs["capacityMaxBytes"] = state ? state.capacityMaxBytes : undefined;
-            resourceInputs["capacityMin"] = state ? state.capacityMin : undefined;
-            resourceInputs["capacityMinBytes"] = state ? state.capacityMinBytes : undefined;
-            resourceInputs["context"] = state ? state.context : undefined;
-            resourceInputs["controllerRequired"] = state ? state.controllerRequired : undefined;
-            resourceInputs["controllersExpected"] = state ? state.controllersExpected : undefined;
-            resourceInputs["controllersHealthy"] = state ? state.controllersHealthy : undefined;
-            resourceInputs["deregisterOnDestroy"] = state ? state.deregisterOnDestroy : undefined;
-            resourceInputs["externalId"] = state ? state.externalId : undefined;
-            resourceInputs["mountOptions"] = state ? state.mountOptions : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["nodesExpected"] = state ? state.nodesExpected : undefined;
-            resourceInputs["nodesHealthy"] = state ? state.nodesHealthy : undefined;
-            resourceInputs["parameters"] = state ? state.parameters : undefined;
-            resourceInputs["pluginId"] = state ? state.pluginId : undefined;
-            resourceInputs["pluginProvider"] = state ? state.pluginProvider : undefined;
-            resourceInputs["pluginProviderVersion"] = state ? state.pluginProviderVersion : undefined;
-            resourceInputs["schedulable"] = state ? state.schedulable : undefined;
-            resourceInputs["secrets"] = state ? state.secrets : undefined;
-            resourceInputs["topologies"] = state ? state.topologies : undefined;
-            resourceInputs["topologyRequest"] = state ? state.topologyRequest : undefined;
-            resourceInputs["volumeId"] = state ? state.volumeId : undefined;
+            resourceInputs["capabilities"] = state?.capabilities;
+            resourceInputs["capacity"] = state?.capacity;
+            resourceInputs["capacityMax"] = state?.capacityMax;
+            resourceInputs["capacityMaxBytes"] = state?.capacityMaxBytes;
+            resourceInputs["capacityMin"] = state?.capacityMin;
+            resourceInputs["capacityMinBytes"] = state?.capacityMinBytes;
+            resourceInputs["context"] = state?.context;
+            resourceInputs["controllerRequired"] = state?.controllerRequired;
+            resourceInputs["controllersExpected"] = state?.controllersExpected;
+            resourceInputs["controllersHealthy"] = state?.controllersHealthy;
+            resourceInputs["deregisterOnDestroy"] = state?.deregisterOnDestroy;
+            resourceInputs["externalId"] = state?.externalId;
+            resourceInputs["mountOptions"] = state?.mountOptions;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["nodesExpected"] = state?.nodesExpected;
+            resourceInputs["nodesHealthy"] = state?.nodesHealthy;
+            resourceInputs["parameters"] = state?.parameters;
+            resourceInputs["pluginId"] = state?.pluginId;
+            resourceInputs["pluginProvider"] = state?.pluginProvider;
+            resourceInputs["pluginProviderVersion"] = state?.pluginProviderVersion;
+            resourceInputs["schedulable"] = state?.schedulable;
+            resourceInputs["secrets"] = state?.secrets;
+            resourceInputs["topologies"] = state?.topologies;
+            resourceInputs["topologyRequest"] = state?.topologyRequest;
+            resourceInputs["volumeId"] = state?.volumeId;
         } else {
             const args = argsOrState as CsiVolumeRegistrationArgs | undefined;
-            if ((!args || args.externalId === undefined) && !opts.urn) {
+            if (args?.externalId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'externalId'");
             }
-            if ((!args || args.pluginId === undefined) && !opts.urn) {
+            if (args?.pluginId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pluginId'");
             }
-            if ((!args || args.volumeId === undefined) && !opts.urn) {
+            if (args?.volumeId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'volumeId'");
             }
-            resourceInputs["capabilities"] = args ? args.capabilities : undefined;
-            resourceInputs["capacityMax"] = args ? args.capacityMax : undefined;
-            resourceInputs["capacityMin"] = args ? args.capacityMin : undefined;
-            resourceInputs["context"] = args ? args.context : undefined;
-            resourceInputs["deregisterOnDestroy"] = args ? args.deregisterOnDestroy : undefined;
-            resourceInputs["externalId"] = args ? args.externalId : undefined;
-            resourceInputs["mountOptions"] = args ? args.mountOptions : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespace"] = args ? args.namespace : undefined;
-            resourceInputs["parameters"] = args ? args.parameters : undefined;
-            resourceInputs["pluginId"] = args ? args.pluginId : undefined;
+            resourceInputs["capabilities"] = args?.capabilities;
+            resourceInputs["capacityMax"] = args?.capacityMax;
+            resourceInputs["capacityMin"] = args?.capacityMin;
+            resourceInputs["context"] = args?.context;
+            resourceInputs["deregisterOnDestroy"] = args?.deregisterOnDestroy;
+            resourceInputs["externalId"] = args?.externalId;
+            resourceInputs["mountOptions"] = args?.mountOptions;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["parameters"] = args?.parameters;
+            resourceInputs["pluginId"] = args?.pluginId;
             resourceInputs["secrets"] = args?.secrets ? pulumi.secret(args.secrets) : undefined;
-            resourceInputs["topologyRequest"] = args ? args.topologyRequest : undefined;
-            resourceInputs["volumeId"] = args ? args.volumeId : undefined;
+            resourceInputs["topologyRequest"] = args?.topologyRequest;
+            resourceInputs["volumeId"] = args?.volumeId;
             resourceInputs["capacity"] = undefined /*out*/;
             resourceInputs["capacityMaxBytes"] = undefined /*out*/;
             resourceInputs["capacityMinBytes"] = undefined /*out*/;

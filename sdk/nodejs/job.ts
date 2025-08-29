@@ -39,90 +39,90 @@ export class Job extends pulumi.CustomResource {
      *
      * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
-    public /*out*/ readonly allocationIds!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly allocationIds: pulumi.Output<string[]>;
     /**
      * The target datacenters for the job, as derived from the jobspec.
      */
-    public /*out*/ readonly datacenters!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly datacenters: pulumi.Output<string[]>;
     /**
      * If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
      */
-    public /*out*/ readonly deploymentId!: pulumi.Output<string>;
+    declare public /*out*/ readonly deploymentId: pulumi.Output<string>;
     /**
      * If detach = false, the status for the deployment associated with the last job create/update, if one exists.
      */
-    public /*out*/ readonly deploymentStatus!: pulumi.Output<string>;
+    declare public /*out*/ readonly deploymentStatus: pulumi.Output<string>;
     /**
      * If true, the job will be deregistered on destroy.
      */
-    public readonly deregisterOnDestroy!: pulumi.Output<boolean | undefined>;
+    declare public readonly deregisterOnDestroy: pulumi.Output<boolean | undefined>;
     /**
      * `(boolean: true)` - Determines if the job will be
      * deregistered if the ID of the job in the jobspec changes.
      */
-    public readonly deregisterOnIdChange!: pulumi.Output<boolean | undefined>;
+    declare public readonly deregisterOnIdChange: pulumi.Output<boolean | undefined>;
     /**
      * `(boolean: true)` - If true, the provider will return immediately
      * after creating or updating, instead of monitoring.
      */
-    public readonly detach!: pulumi.Output<boolean | undefined>;
+    declare public readonly detach: pulumi.Output<boolean | undefined>;
     /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      */
-    public readonly hcl2!: pulumi.Output<outputs.JobHcl2 | undefined>;
+    declare public readonly hcl2: pulumi.Output<outputs.JobHcl2 | undefined>;
     /**
      * `(string: <required>)` - The contents of the jobspec to register.
      */
-    public readonly jobspec!: pulumi.Output<string>;
+    declare public readonly jobspec: pulumi.Output<string>;
     /**
      * `(boolean: false)` - Set this to `true` if your jobspec is structured with
      * JSON instead of the default HCL.
      */
-    public readonly json!: pulumi.Output<boolean | undefined>;
+    declare public readonly json: pulumi.Output<boolean | undefined>;
     /**
      * Integer that increments for each change. Used to detect any changes between plan and apply.
      */
-    public /*out*/ readonly modifyIndex!: pulumi.Output<string>;
+    declare public /*out*/ readonly modifyIndex: pulumi.Output<string>;
     /**
      * The name of the job, as derived from the jobspec.
      */
-    public /*out*/ readonly name!: pulumi.Output<string>;
+    declare public /*out*/ readonly name: pulumi.Output<string>;
     /**
      * The namespace of the job, as derived from the jobspec.
      */
-    public /*out*/ readonly namespace!: pulumi.Output<string>;
+    declare public /*out*/ readonly namespace: pulumi.Output<string>;
     /**
      * `(boolean: false)` - Determines if the job will override any
      * soft-mandatory Sentinel policies and register even if they fail.
      */
-    public readonly policyOverride!: pulumi.Output<boolean | undefined>;
+    declare public readonly policyOverride: pulumi.Output<boolean | undefined>;
     /**
      * `(boolean: false)` - Set this to true if you want the job to
      * be purged when the resource is destroyed.
      */
-    public readonly purgeOnDestroy!: pulumi.Output<boolean | undefined>;
+    declare public readonly purgeOnDestroy: pulumi.Output<boolean | undefined>;
     /**
      * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
-    public readonly readAllocationIds!: pulumi.Output<boolean | undefined>;
+    declare public readonly readAllocationIds: pulumi.Output<boolean | undefined>;
     /**
      * The target region for the job, as derived from the jobspec.
      */
-    public /*out*/ readonly region!: pulumi.Output<string>;
+    declare public /*out*/ readonly region: pulumi.Output<string>;
     /**
      * `(boolean: false)` - Set this to true to force the job to run
      * again if its status is `dead`.
      */
-    public readonly rerunIfDead!: pulumi.Output<boolean | undefined>;
+    declare public readonly rerunIfDead: pulumi.Output<boolean | undefined>;
     /**
      * The status of the job.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
-    public /*out*/ readonly taskGroups!: pulumi.Output<outputs.JobTaskGroup[]>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
+    declare public /*out*/ readonly taskGroups: pulumi.Output<outputs.JobTaskGroup[]>;
     /**
      * The type of the job, as derived from the jobspec.
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
 
     /**
      * Create a Job resource with the given unique name, arguments, and options.
@@ -137,42 +137,42 @@ export class Job extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as JobState | undefined;
-            resourceInputs["allocationIds"] = state ? state.allocationIds : undefined;
-            resourceInputs["datacenters"] = state ? state.datacenters : undefined;
-            resourceInputs["deploymentId"] = state ? state.deploymentId : undefined;
-            resourceInputs["deploymentStatus"] = state ? state.deploymentStatus : undefined;
-            resourceInputs["deregisterOnDestroy"] = state ? state.deregisterOnDestroy : undefined;
-            resourceInputs["deregisterOnIdChange"] = state ? state.deregisterOnIdChange : undefined;
-            resourceInputs["detach"] = state ? state.detach : undefined;
-            resourceInputs["hcl2"] = state ? state.hcl2 : undefined;
-            resourceInputs["jobspec"] = state ? state.jobspec : undefined;
-            resourceInputs["json"] = state ? state.json : undefined;
-            resourceInputs["modifyIndex"] = state ? state.modifyIndex : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespace"] = state ? state.namespace : undefined;
-            resourceInputs["policyOverride"] = state ? state.policyOverride : undefined;
-            resourceInputs["purgeOnDestroy"] = state ? state.purgeOnDestroy : undefined;
-            resourceInputs["readAllocationIds"] = state ? state.readAllocationIds : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["rerunIfDead"] = state ? state.rerunIfDead : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["taskGroups"] = state ? state.taskGroups : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["allocationIds"] = state?.allocationIds;
+            resourceInputs["datacenters"] = state?.datacenters;
+            resourceInputs["deploymentId"] = state?.deploymentId;
+            resourceInputs["deploymentStatus"] = state?.deploymentStatus;
+            resourceInputs["deregisterOnDestroy"] = state?.deregisterOnDestroy;
+            resourceInputs["deregisterOnIdChange"] = state?.deregisterOnIdChange;
+            resourceInputs["detach"] = state?.detach;
+            resourceInputs["hcl2"] = state?.hcl2;
+            resourceInputs["jobspec"] = state?.jobspec;
+            resourceInputs["json"] = state?.json;
+            resourceInputs["modifyIndex"] = state?.modifyIndex;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["policyOverride"] = state?.policyOverride;
+            resourceInputs["purgeOnDestroy"] = state?.purgeOnDestroy;
+            resourceInputs["readAllocationIds"] = state?.readAllocationIds;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["rerunIfDead"] = state?.rerunIfDead;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["taskGroups"] = state?.taskGroups;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as JobArgs | undefined;
-            if ((!args || args.jobspec === undefined) && !opts.urn) {
+            if (args?.jobspec === undefined && !opts.urn) {
                 throw new Error("Missing required property 'jobspec'");
             }
-            resourceInputs["deregisterOnDestroy"] = args ? args.deregisterOnDestroy : undefined;
-            resourceInputs["deregisterOnIdChange"] = args ? args.deregisterOnIdChange : undefined;
-            resourceInputs["detach"] = args ? args.detach : undefined;
-            resourceInputs["hcl2"] = args ? args.hcl2 : undefined;
-            resourceInputs["jobspec"] = args ? args.jobspec : undefined;
-            resourceInputs["json"] = args ? args.json : undefined;
-            resourceInputs["policyOverride"] = args ? args.policyOverride : undefined;
-            resourceInputs["purgeOnDestroy"] = args ? args.purgeOnDestroy : undefined;
-            resourceInputs["readAllocationIds"] = args ? args.readAllocationIds : undefined;
-            resourceInputs["rerunIfDead"] = args ? args.rerunIfDead : undefined;
+            resourceInputs["deregisterOnDestroy"] = args?.deregisterOnDestroy;
+            resourceInputs["deregisterOnIdChange"] = args?.deregisterOnIdChange;
+            resourceInputs["detach"] = args?.detach;
+            resourceInputs["hcl2"] = args?.hcl2;
+            resourceInputs["jobspec"] = args?.jobspec;
+            resourceInputs["json"] = args?.json;
+            resourceInputs["policyOverride"] = args?.policyOverride;
+            resourceInputs["purgeOnDestroy"] = args?.purgeOnDestroy;
+            resourceInputs["readAllocationIds"] = args?.readAllocationIds;
+            resourceInputs["rerunIfDead"] = args?.rerunIfDead;
             resourceInputs["allocationIds"] = undefined /*out*/;
             resourceInputs["datacenters"] = undefined /*out*/;
             resourceInputs["deploymentId"] = undefined /*out*/;
