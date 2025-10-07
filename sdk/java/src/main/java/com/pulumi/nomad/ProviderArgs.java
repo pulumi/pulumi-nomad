@@ -65,14 +65,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+     * A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      * 
      */
     @Import(name="certFile")
     private @Nullable Output<String> certFile;
 
     /**
-     * @return A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+     * @return A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      * 
      */
     public Optional<Output<String>> certFile() {
@@ -80,14 +80,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+     * PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      * 
      */
     @Import(name="certPem")
     private @Nullable Output<String> certPem;
 
     /**
-     * @return PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+     * @return PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      * 
      */
     public Optional<Output<String>> certPem() {
@@ -140,14 +140,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+     * A path to a PEM-encoded private key, required if certFile or certPem is specified.
      * 
      */
     @Import(name="keyFile")
     private @Nullable Output<String> keyFile;
 
     /**
-     * @return A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+     * @return A path to a PEM-encoded private key, required if certFile or certPem is specified.
      * 
      */
     public Optional<Output<String>> keyFile() {
@@ -155,14 +155,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * PEM-encoded private key, required if cert_file or cert_pem is specified.
+     * PEM-encoded private key, required if certFile or certPem is specified.
      * 
      */
     @Import(name="keyPem")
     private @Nullable Output<String> keyPem;
 
     /**
-     * @return PEM-encoded private key, required if cert_file or cert_pem is specified.
+     * @return PEM-encoded private key, required if certFile or certPem is specified.
      * 
      */
     public Optional<Output<String>> keyPem() {
@@ -314,7 +314,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param certFile A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+         * @param certFile A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
          * 
          * @return builder
          * 
@@ -325,7 +325,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param certFile A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+         * @param certFile A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
          * 
          * @return builder
          * 
@@ -335,7 +335,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param certPem PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+         * @param certPem PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
          * 
          * @return builder
          * 
@@ -346,7 +346,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param certPem PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+         * @param certPem PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
          * 
          * @return builder
          * 
@@ -429,7 +429,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyFile A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+         * @param keyFile A path to a PEM-encoded private key, required if certFile or certPem is specified.
          * 
          * @return builder
          * 
@@ -440,7 +440,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyFile A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+         * @param keyFile A path to a PEM-encoded private key, required if certFile or certPem is specified.
          * 
          * @return builder
          * 
@@ -450,7 +450,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyPem PEM-encoded private key, required if cert_file or cert_pem is specified.
+         * @param keyPem PEM-encoded private key, required if certFile or certPem is specified.
          * 
          * @return builder
          * 
@@ -461,7 +461,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param keyPem PEM-encoded private key, required if cert_file or cert_pem is specified.
+         * @param keyPem PEM-encoded private key, required if certFile or certPem is specified.
          * 
          * @return builder
          * 

@@ -87,7 +87,7 @@ namespace Pulumi.Nomad
     public partial class Volume : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `Capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
         /// - `single-node-reader-only`
         /// - `single-node-writer`
         /// - `multi-node-reader-only`
@@ -98,7 +98,7 @@ namespace Pulumi.Nomad
         public Output<string?> AccessMode { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `Capability` block instead. The storage API that will be used by the volume.
         /// </summary>
         [Output("attachmentMode")]
         public Output<string?> AttachmentMode { get; private set; } = null!;
@@ -197,7 +197,7 @@ namespace Pulumi.Nomad
         public Output<Outputs.VolumeTopologyRequest?> TopologyRequest { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `Csi` is supported.
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -259,7 +259,7 @@ namespace Pulumi.Nomad
     public sealed class VolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `Capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
         /// - `single-node-reader-only`
         /// - `single-node-writer`
         /// - `multi-node-reader-only`
@@ -270,7 +270,7 @@ namespace Pulumi.Nomad
         public Input<string>? AccessMode { get; set; }
 
         /// <summary>
-        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `Capability` block instead. The storage API that will be used by the volume.
         /// </summary>
         [Input("attachmentMode")]
         public Input<string>? AttachmentMode { get; set; }
@@ -370,7 +370,7 @@ namespace Pulumi.Nomad
         public Input<Inputs.VolumeTopologyRequestArgs>? TopologyRequest { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `Csi` is supported.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -390,7 +390,7 @@ namespace Pulumi.Nomad
     public sealed class VolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
+        /// `(string: &lt;optional&gt;)` - **Deprecated**. Use `Capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
         /// - `single-node-reader-only`
         /// - `single-node-writer`
         /// - `multi-node-reader-only`
@@ -401,7 +401,7 @@ namespace Pulumi.Nomad
         public Input<string>? AccessMode { get; set; }
 
         /// <summary>
-        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
+        /// `(string: &lt;otional&gt;)` - **Deprecated**. Use `Capability` block instead. The storage API that will be used by the volume.
         /// </summary>
         [Input("attachmentMode")]
         public Input<string>? AttachmentMode { get; set; }
@@ -533,7 +533,7 @@ namespace Pulumi.Nomad
         public Input<Inputs.VolumeTopologyRequestGetArgs>? TopologyRequest { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `Csi` is supported.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

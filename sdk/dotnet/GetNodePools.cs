@@ -88,7 +88,7 @@ namespace Pulumi.Nomad
     public sealed class GetNodePoolsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `(string)` - Specifies the [expression][nomad_api_filter] used to
+        /// `(string)` - Specifies the [expression][NomadApiFilter] used to
         /// filter the results.
         /// </summary>
         [Input("filter")]
@@ -110,7 +110,7 @@ namespace Pulumi.Nomad
     public sealed class GetNodePoolsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `(string)` - Specifies the [expression][nomad_api_filter] used to
+        /// `(string)` - Specifies the [expression][NomadApiFilter] used to
         /// filter the results.
         /// </summary>
         [Input("filter")]
