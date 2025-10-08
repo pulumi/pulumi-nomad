@@ -69,7 +69,7 @@ namespace Pulumi.Nomad
         public Output<string> Jobspec { get; private set; } = null!;
 
         /// <summary>
-        /// `(boolean: false)` - Set this to `true` if your jobspec is structured with
+        /// `(boolean: false)` - Set this to `True` if your jobspec is structured with
         /// JSON instead of the default HCL.
         /// </summary>
         [Output("json")]
@@ -118,7 +118,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(boolean: false)` - Set this to true to force the job to run
-        /// again if its status is `dead`.
+        /// again if its status is `Dead`.
         /// </summary>
         [Output("rerunIfDead")]
         public Output<bool?> RerunIfDead { get; private set; } = null!;
@@ -217,7 +217,7 @@ namespace Pulumi.Nomad
         public Input<string> Jobspec { get; set; } = null!;
 
         /// <summary>
-        /// `(boolean: false)` - Set this to `true` if your jobspec is structured with
+        /// `(boolean: false)` - Set this to `True` if your jobspec is structured with
         /// JSON instead of the default HCL.
         /// </summary>
         [Input("json")]
@@ -242,7 +242,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(boolean: false)` - Set this to true to force the job to run
-        /// again if its status is `dead`.
+        /// again if its status is `Dead`.
         /// </summary>
         [Input("rerunIfDead")]
         public Input<bool>? RerunIfDead { get; set; }
@@ -325,7 +325,7 @@ namespace Pulumi.Nomad
         public Input<string>? Jobspec { get; set; }
 
         /// <summary>
-        /// `(boolean: false)` - Set this to `true` if your jobspec is structured with
+        /// `(boolean: false)` - Set this to `True` if your jobspec is structured with
         /// JSON instead of the default HCL.
         /// </summary>
         [Input("json")]
@@ -374,7 +374,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(boolean: false)` - Set this to true to force the job to run
-        /// again if its status is `dead`.
+        /// again if its status is `Dead`.
         /// </summary>
         [Input("rerunIfDead")]
         public Input<bool>? RerunIfDead { get; set; }

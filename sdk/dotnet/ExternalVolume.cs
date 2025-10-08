@@ -106,7 +106,7 @@ namespace Pulumi.Nomad
         public Output<string?> CapacityMin { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
+        /// `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `SnapshotId`.
         /// </summary>
         [Output("cloneId")]
         public Output<string?> CloneId { get; private set; } = null!;
@@ -172,7 +172,7 @@ namespace Pulumi.Nomad
         public Output<ImmutableDictionary<string, string>?> Secrets { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
+        /// `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `CloneId`.
         /// </summary>
         [Output("snapshotId")]
         public Output<string?> SnapshotId { get; private set; } = null!;
@@ -187,7 +187,7 @@ namespace Pulumi.Nomad
         public Output<Outputs.ExternalVolumeTopologyRequest?> TopologyRequest { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `Csi` is supported.
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -273,7 +273,7 @@ namespace Pulumi.Nomad
         public Input<string>? CapacityMin { get; set; }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
+        /// `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `SnapshotId`.
         /// </summary>
         [Input("cloneId")]
         public Input<string>? CloneId { get; set; }
@@ -331,7 +331,7 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
+        /// `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `CloneId`.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
@@ -343,7 +343,7 @@ namespace Pulumi.Nomad
         public Input<Inputs.ExternalVolumeTopologyRequestArgs>? TopologyRequest { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `Csi` is supported.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -387,7 +387,7 @@ namespace Pulumi.Nomad
         public Input<string>? CapacityMin { get; set; }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
+        /// `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `SnapshotId`.
         /// </summary>
         [Input("cloneId")]
         public Input<string>? CloneId { get; set; }
@@ -469,7 +469,7 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
+        /// `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `CloneId`.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
@@ -489,7 +489,7 @@ namespace Pulumi.Nomad
         public Input<Inputs.ExternalVolumeTopologyRequestGetArgs>? TopologyRequest { get; set; }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `csi` is supported.
+        /// `(string: &lt;required&gt;)` - The type of the volume. Currently, only `Csi` is supported.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

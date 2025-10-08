@@ -12,7 +12,7 @@ namespace Pulumi.Nomad
     /// <summary>
     /// Provisions a namespace within a Nomad cluster.
     /// 
-    /// Nomad auto-generates a default namespace called `default`. This namespace
+    /// Nomad auto-generates a default namespace called `Default`. This namespace
     /// cannot be removed, so destroying a `nomad.Namespace` resource where
     /// `name = "default"` will cause the namespace to be reset to its default
     /// configuration.

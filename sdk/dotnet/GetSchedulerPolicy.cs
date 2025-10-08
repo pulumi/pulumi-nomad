@@ -84,7 +84,7 @@ namespace Pulumi.Nomad
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+        /// `(bool: false)` - When `True`, tasks may exceed their reserved memory limit.
         /// </summary>
         public readonly bool MemoryOversubscriptionEnabled;
         /// <summary>
