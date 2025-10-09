@@ -145,14 +145,14 @@ public class ExternalVolume extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.capacityMin);
     }
     /**
-     * `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
+     * `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      * 
      */
     @Export(name="cloneId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cloneId;
 
     /**
-     * @return `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
+     * @return `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      * 
      */
     public Output<Optional<String>> cloneId() {
@@ -291,14 +291,14 @@ public class ExternalVolume extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.secrets);
     }
     /**
-     * `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
+     * `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
      * 
      */
     @Export(name="snapshotId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> snapshotId;
 
     /**
-     * @return `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
+     * @return `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
      * 
      */
     public Output<Optional<String>> snapshotId() {

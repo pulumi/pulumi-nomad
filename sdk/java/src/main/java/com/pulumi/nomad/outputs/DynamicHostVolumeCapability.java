@@ -12,13 +12,13 @@ import java.util.Objects;
 public final class DynamicHostVolumeCapability {
     /**
      * @return `(string)` - How the volume can be mounted by
-     * allocations. Refer to the [`access_mode`][] documentation for details.
+     * allocations. Refer to the [`accessMode`][] documentation for details.
      * 
      */
     private String accessMode;
     /**
      * @return `(string)` - The storage API that will be used by the
-     * volume. Refer to the [`attachment_mode`][] documentation.
+     * volume. Refer to the [`attachmentMode`][] documentation.
      * 
      */
     private String attachmentMode;
@@ -26,7 +26,7 @@ public final class DynamicHostVolumeCapability {
     private DynamicHostVolumeCapability() {}
     /**
      * @return `(string)` - How the volume can be mounted by
-     * allocations. Refer to the [`access_mode`][] documentation for details.
+     * allocations. Refer to the [`accessMode`][] documentation for details.
      * 
      */
     public String accessMode() {
@@ -34,7 +34,7 @@ public final class DynamicHostVolumeCapability {
     }
     /**
      * @return `(string)` - The storage API that will be used by the
-     * volume. Refer to the [`attachment_mode`][] documentation.
+     * volume. Refer to the [`attachmentMode`][] documentation.
      * 
      */
     public String attachmentMode() {

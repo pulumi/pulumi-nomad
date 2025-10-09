@@ -18,7 +18,7 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string? FsType;
         /// <summary>
-        /// `([]string: &lt;optional&gt;)` - The flags passed to `mount`.
+        /// `([]string: &lt;optional&gt;)` - The flags passed to `Mount`.
         /// </summary>
         public readonly ImmutableArray<string> MountFlags;
 

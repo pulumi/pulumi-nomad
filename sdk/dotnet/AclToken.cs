@@ -154,8 +154,8 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(set: [])` - A set of policy names to associate with this
-        /// token. Must be set on `client`-type tokens, must not be set on
-        /// `management`-type tokens. Policies do not need to exist before being
+        /// token. Must be set on `Client`-type tokens, must not be set on
+        /// `Management`-type tokens. Policies do not need to exist before being
         /// used here.
         /// </summary>
         [Output("policies")]
@@ -163,7 +163,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(set: [])` - The list of roles attached to the token. Each entry has
-        /// `name` and `id` attributes. It may be used multiple times.
+        /// `Name` and `Id` attributes. It may be used multiple times.
         /// </summary>
         [Output("roles")]
         public Output<ImmutableArray<Outputs.AclTokenRole>> Roles { get; private set; } = null!;
@@ -176,8 +176,8 @@ namespace Pulumi.Nomad
         public Output<string> SecretId { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The type of token this is. Use `client`
-        /// for tokens that will have policies associated with them. Use `management`
+        /// `(string: &lt;required&gt;)` - The type of token this is. Use `Client`
+        /// for tokens that will have policies associated with them. Use `Management`
         /// for tokens that can perform any action.
         /// </summary>
         [Output("type")]
@@ -261,8 +261,8 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(set: [])` - A set of policy names to associate with this
-        /// token. Must be set on `client`-type tokens, must not be set on
-        /// `management`-type tokens. Policies do not need to exist before being
+        /// token. Must be set on `Client`-type tokens, must not be set on
+        /// `Management`-type tokens. Policies do not need to exist before being
         /// used here.
         /// </summary>
         public InputList<string> Policies
@@ -276,7 +276,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(set: [])` - The list of roles attached to the token. Each entry has
-        /// `name` and `id` attributes. It may be used multiple times.
+        /// `Name` and `Id` attributes. It may be used multiple times.
         /// </summary>
         public InputList<Inputs.AclTokenRoleArgs> Roles
         {
@@ -285,8 +285,8 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The type of token this is. Use `client`
-        /// for tokens that will have policies associated with them. Use `management`
+        /// `(string: &lt;required&gt;)` - The type of token this is. Use `Client`
+        /// for tokens that will have policies associated with them. Use `Management`
         /// for tokens that can perform any action.
         /// </summary>
         [Input("type", required: true)]
@@ -348,8 +348,8 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(set: [])` - A set of policy names to associate with this
-        /// token. Must be set on `client`-type tokens, must not be set on
-        /// `management`-type tokens. Policies do not need to exist before being
+        /// token. Must be set on `Client`-type tokens, must not be set on
+        /// `Management`-type tokens. Policies do not need to exist before being
         /// used here.
         /// </summary>
         public InputList<string> Policies
@@ -363,7 +363,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(set: [])` - The list of roles attached to the token. Each entry has
-        /// `name` and `id` attributes. It may be used multiple times.
+        /// `Name` and `Id` attributes. It may be used multiple times.
         /// </summary>
         public InputList<Inputs.AclTokenRoleGetArgs> Roles
         {
@@ -389,8 +389,8 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// `(string: &lt;required&gt;)` - The type of token this is. Use `client`
-        /// for tokens that will have policies associated with them. Use `management`
+        /// `(string: &lt;required&gt;)` - The type of token this is. Use `Client`
+        /// for tokens that will have policies associated with them. Use `Management`
         /// for tokens that can perform any action.
         /// </summary>
         [Input("type")]

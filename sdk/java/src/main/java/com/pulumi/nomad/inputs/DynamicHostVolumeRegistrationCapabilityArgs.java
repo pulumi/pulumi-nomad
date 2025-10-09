@@ -16,7 +16,7 @@ public final class DynamicHostVolumeRegistrationCapabilityArgs extends com.pulum
 
     /**
      * `(string)` - How the volume can be mounted by
-     * allocations. Refer to the [`access_mode`][] documentation for details.
+     * allocations. Refer to the [`accessMode`][] documentation for details.
      * 
      */
     @Import(name="accessMode", required=true)
@@ -24,7 +24,7 @@ public final class DynamicHostVolumeRegistrationCapabilityArgs extends com.pulum
 
     /**
      * @return `(string)` - How the volume can be mounted by
-     * allocations. Refer to the [`access_mode`][] documentation for details.
+     * allocations. Refer to the [`accessMode`][] documentation for details.
      * 
      */
     public Output<String> accessMode() {
@@ -33,7 +33,7 @@ public final class DynamicHostVolumeRegistrationCapabilityArgs extends com.pulum
 
     /**
      * `(string)` - The storage API that will be used by the
-     * volume. Refer to the [`attachment_mode`][] documentation.
+     * volume. Refer to the [`attachmentMode`][] documentation.
      * 
      */
     @Import(name="attachmentMode", required=true)
@@ -41,7 +41,7 @@ public final class DynamicHostVolumeRegistrationCapabilityArgs extends com.pulum
 
     /**
      * @return `(string)` - The storage API that will be used by the
-     * volume. Refer to the [`attachment_mode`][] documentation.
+     * volume. Refer to the [`attachmentMode`][] documentation.
      * 
      */
     public Output<String> attachmentMode() {
@@ -75,7 +75,7 @@ public final class DynamicHostVolumeRegistrationCapabilityArgs extends com.pulum
 
         /**
          * @param accessMode `(string)` - How the volume can be mounted by
-         * allocations. Refer to the [`access_mode`][] documentation for details.
+         * allocations. Refer to the [`accessMode`][] documentation for details.
          * 
          * @return builder
          * 
@@ -87,7 +87,7 @@ public final class DynamicHostVolumeRegistrationCapabilityArgs extends com.pulum
 
         /**
          * @param accessMode `(string)` - How the volume can be mounted by
-         * allocations. Refer to the [`access_mode`][] documentation for details.
+         * allocations. Refer to the [`accessMode`][] documentation for details.
          * 
          * @return builder
          * 
@@ -98,7 +98,7 @@ public final class DynamicHostVolumeRegistrationCapabilityArgs extends com.pulum
 
         /**
          * @param attachmentMode `(string)` - The storage API that will be used by the
-         * volume. Refer to the [`attachment_mode`][] documentation.
+         * volume. Refer to the [`attachmentMode`][] documentation.
          * 
          * @return builder
          * 
@@ -110,7 +110,7 @@ public final class DynamicHostVolumeRegistrationCapabilityArgs extends com.pulum
 
         /**
          * @param attachmentMode `(string)` - The storage API that will be used by the
-         * volume. Refer to the [`attachment_mode`][] documentation.
+         * volume. Refer to the [`attachmentMode`][] documentation.
          * 
          * @return builder
          * 

@@ -14,27 +14,27 @@ namespace Pulumi.Nomad.Outputs
     public sealed class GetJwksKeyResult
     {
         /// <summary>
-        /// `(string)` - JWK field `alg`
+        /// `(string)` - JWK field `Alg`
         /// </summary>
         public readonly string Algorithm;
         /// <summary>
-        /// `(string)` - JWK field `e`
+        /// `(string)` - JWK field `E`
         /// </summary>
         public readonly string Exponent;
         /// <summary>
-        /// `(string)` - JWK field `kid`
+        /// `(string)` - JWK field `Kid`
         /// </summary>
         public readonly string KeyId;
         /// <summary>
-        /// `(string)` - JWK field `kty`
+        /// `(string)` - JWK field `Kty`
         /// </summary>
         public readonly string KeyType;
         /// <summary>
-        /// `(string)` - JWK field `use`
+        /// `(string)` - JWK field `Use`
         /// </summary>
         public readonly string KeyUse;
         /// <summary>
-        /// `(string)` - JWK field `n`
+        /// `(string)` - JWK field `N`
         /// </summary>
         public readonly string Modulus;
 

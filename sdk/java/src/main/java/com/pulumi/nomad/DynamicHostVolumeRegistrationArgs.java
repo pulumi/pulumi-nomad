@@ -39,7 +39,7 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
     /**
      * `(string: &lt;optional&gt;)` - The size of a volume in bytes. Either the
      * physical size of a disk or a quota, depending on the plugin. This field must
-     * be between the `capacity_min` and `capacity_max` values unless they are
+     * be between the `capacityMin` and `capacityMax` values unless they are
      * omitted. Accepts human-friendly suffixes such as `&#34;100GiB&#34;`.
      * 
      */
@@ -49,7 +49,7 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
     /**
      * @return `(string: &lt;optional&gt;)` - The size of a volume in bytes. Either the
      * physical size of a disk or a quota, depending on the plugin. This field must
-     * be between the `capacity_min` and `capacity_max` values unless they are
+     * be between the `capacityMin` and `capacityMax` values unless they are
      * omitted. Accepts human-friendly suffixes such as `&#34;100GiB&#34;`.
      * 
      */
@@ -74,7 +74,7 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
 
     /**
      * `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-     * [`volume.source`][volume_source] field in job specifications that claim this
+     * [`volume.source`][volumeSource] field in job specifications that claim this
      * volume. Host volume names must be unique per node. Names are visible to any
      * user with `node:read` ACL, even across namespaces, so they should not be
      * treated as sensitive values.
@@ -85,7 +85,7 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
 
     /**
      * @return `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-     * [`volume.source`][volume_source] field in job specifications that claim this
+     * [`volume.source`][volumeSource] field in job specifications that claim this
      * volume. Host volume names must be unique per node. Names are visible to any
      * user with `node:read` ACL, even across namespaces, so they should not be
      * treated as sensitive values.
@@ -136,9 +136,9 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
      * 
-     * [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-     * [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-     * [volume_source]: /nomad/docs/job-specification/volume#source
+     * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+     * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+     * [volumeSource]: /nomad/docs/job-specification/volume#source
      * 
      */
     @Import(name="parameters")
@@ -149,9 +149,9 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
      * 
-     * [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-     * [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-     * [volume_source]: /nomad/docs/job-specification/volume#source
+     * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+     * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+     * [volumeSource]: /nomad/docs/job-specification/volume#source
      * 
      */
     public Optional<Output<Map<String,String>>> parameters() {
@@ -225,7 +225,7 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
         /**
          * @param capacity `(string: &lt;optional&gt;)` - The size of a volume in bytes. Either the
          * physical size of a disk or a quota, depending on the plugin. This field must
-         * be between the `capacity_min` and `capacity_max` values unless they are
+         * be between the `capacityMin` and `capacityMax` values unless they are
          * omitted. Accepts human-friendly suffixes such as `&#34;100GiB&#34;`.
          * 
          * @return builder
@@ -239,7 +239,7 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
         /**
          * @param capacity `(string: &lt;optional&gt;)` - The size of a volume in bytes. Either the
          * physical size of a disk or a quota, depending on the plugin. This field must
-         * be between the `capacity_min` and `capacity_max` values unless they are
+         * be between the `capacityMin` and `capacityMax` values unless they are
          * omitted. Accepts human-friendly suffixes such as `&#34;100GiB&#34;`.
          * 
          * @return builder
@@ -272,7 +272,7 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
 
         /**
          * @param name `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-         * [`volume.source`][volume_source] field in job specifications that claim this
+         * [`volume.source`][volumeSource] field in job specifications that claim this
          * volume. Host volume names must be unique per node. Names are visible to any
          * user with `node:read` ACL, even across namespaces, so they should not be
          * treated as sensitive values.
@@ -287,7 +287,7 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
 
         /**
          * @param name `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-         * [`volume.source`][volume_source] field in job specifications that claim this
+         * [`volume.source`][volumeSource] field in job specifications that claim this
          * volume. Host volume names must be unique per node. Names are visible to any
          * user with `node:read` ACL, even across namespaces, so they should not be
          * treated as sensitive values.
@@ -352,9 +352,9 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
          * passed directly to the plugin to configure the volume. The details of these
          * parameters are specific to the plugin.
          * 
-         * [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-         * [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-         * [volume_source]: /nomad/docs/job-specification/volume#source
+         * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+         * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+         * [volumeSource]: /nomad/docs/job-specification/volume#source
          * 
          * @return builder
          * 
@@ -369,9 +369,9 @@ public final class DynamicHostVolumeRegistrationArgs extends com.pulumi.resource
          * passed directly to the plugin to configure the volume. The details of these
          * parameters are specific to the plugin.
          * 
-         * [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-         * [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-         * [volume_source]: /nomad/docs/job-specification/volume#source
+         * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+         * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+         * [volumeSource]: /nomad/docs/job-specification/volume#source
          * 
          * @return builder
          * 
