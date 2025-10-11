@@ -64,7 +64,7 @@ namespace Pulumi.Nomad
 
         private static readonly __Value<string?> _certFile = new __Value<string?>(() => __config.Get("certFile"));
         /// <summary>
-        /// A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+        /// A path to a PEM-encoded certificate provided to the remote agent; requires use of KeyFile or key_pem.
         /// </summary>
         public static string? CertFile
         {
@@ -74,7 +74,7 @@ namespace Pulumi.Nomad
 
         private static readonly __Value<string?> _certPem = new __Value<string?>(() => __config.Get("certPem"));
         /// <summary>
-        /// PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+        /// PEM-encoded certificate provided to the remote agent; requires use of KeyFile or key_pem.
         /// </summary>
         public static string? CertPem
         {
@@ -114,7 +114,7 @@ namespace Pulumi.Nomad
 
         private static readonly __Value<string?> _keyFile = new __Value<string?>(() => __config.Get("keyFile"));
         /// <summary>
-        /// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+        /// A path to a PEM-encoded private key, required if CertFile or CertPem is specified.
         /// </summary>
         public static string? KeyFile
         {
@@ -124,7 +124,7 @@ namespace Pulumi.Nomad
 
         private static readonly __Value<string?> _keyPem = new __Value<string?>(() => __config.Get("keyPem"));
         /// <summary>
-        /// PEM-encoded private key, required if cert_file or cert_pem is specified.
+        /// PEM-encoded private key, required if CertFile or CertPem is specified.
         /// </summary>
         public static string? KeyPem
         {
