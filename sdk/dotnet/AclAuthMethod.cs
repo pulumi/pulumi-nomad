@@ -89,7 +89,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: &lt;required&gt;)` - Defines whether the ACL Auth Method
         /// creates a local or global token when performing SSO login. This field must be
-        /// set to either `local` or `global`.
+        /// set to either `Local` or `Global`.
         /// </summary>
         [Output("tokenLocality")]
         public Output<string> TokenLocality { get; private set; } = null!;
@@ -185,7 +185,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: &lt;required&gt;)` - Defines whether the ACL Auth Method
         /// creates a local or global token when performing SSO login. This field must be
-        /// set to either `local` or `global`.
+        /// set to either `Local` or `Global`.
         /// </summary>
         [Input("tokenLocality", required: true)]
         public Input<string> TokenLocality { get; set; } = null!;
@@ -243,7 +243,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: &lt;required&gt;)` - Defines whether the ACL Auth Method
         /// creates a local or global token when performing SSO login. This field must be
-        /// set to either `local` or `global`.
+        /// set to either `Local` or `Global`.
         /// </summary>
         [Input("tokenLocality")]
         public Input<string>? TokenLocality { get; set; }

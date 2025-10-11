@@ -147,7 +147,7 @@ namespace Pulumi.Nomad
         public readonly ImmutableArray<string> Policies;
         /// <summary>
         /// `(set: [])` - The list of roles attached to the token. Each entry has
-        /// `name` and `id` attributes.
+        /// `Name` and `Id` attributes.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAclTokenRoleResult> Roles;
         /// <summary>

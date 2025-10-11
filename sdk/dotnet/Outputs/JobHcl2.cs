@@ -14,7 +14,7 @@ namespace Pulumi.Nomad.Outputs
     public sealed class JobHcl2
     {
         /// <summary>
-        /// `(boolean: false)` - Set this to `true` to be able to use
+        /// `(boolean: false)` - Set this to `True` to be able to use
         /// HCL2 filesystem functions
         /// </summary>
         public readonly bool? AllowFs;

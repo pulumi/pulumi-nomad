@@ -15,12 +15,12 @@ namespace Pulumi.Nomad.Outputs
     {
         /// <summary>
         /// `(string)` - How the volume can be mounted by
-        /// allocations. Refer to the [`access_mode`][] documentation for details.
+        /// allocations. Refer to the [`AccessMode`][] documentation for details.
         /// </summary>
         public readonly string AccessMode;
         /// <summary>
         /// `(string)` - The storage API that will be used by the
-        /// volume. Refer to the [`attachment_mode`][] documentation.
+        /// volume. Refer to the [`AttachmentMode`][] documentation.
         /// </summary>
         public readonly string AttachmentMode;
 

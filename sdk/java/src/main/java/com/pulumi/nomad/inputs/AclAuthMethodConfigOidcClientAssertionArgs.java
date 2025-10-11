@@ -21,7 +21,7 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
     /**
      * `([]string: optional)` - Who processes the assertion.
-     * Defaults to the auth method&#39;s `oidc_discovery_url`.
+     * Defaults to the auth method&#39;s `oidcDiscoveryUrl`.
      * 
      */
     @Import(name="audiences")
@@ -29,7 +29,7 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
     /**
      * @return `([]string: optional)` - Who processes the assertion.
-     * Defaults to the auth method&#39;s `oidc_discovery_url`.
+     * Defaults to the auth method&#39;s `oidcDiscoveryUrl`.
      * 
      */
     public Optional<Output<List<String>>> audiences() {
@@ -57,10 +57,10 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
     /**
      * `(string: &lt;optional&gt;)` is the key&#39;s algorithm.
-     * Its default values are based on the `key_source`:
+     * Its default values are based on the `keySource`:
      * - &#34;nomad&#34;: &#34;RS256&#34;; this is from Nomad&#39;s keyring and must not be changed
-     * - &#34;private_key&#34;: &#34;RS256&#34;; must be RS256, RS384, or RS512
-     * - &#34;client_secret&#34;: &#34;HS256&#34;; must be HS256, HS384, or HS512
+     * - &#34;privateKey&#34;: &#34;RS256&#34;; must be RS256, RS384, or RS512
+     * - &#34;clientSecret&#34;: &#34;HS256&#34;; must be HS256, HS384, or HS512
      * 
      */
     @Import(name="keyAlgorithm")
@@ -68,10 +68,10 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
     /**
      * @return `(string: &lt;optional&gt;)` is the key&#39;s algorithm.
-     * Its default values are based on the `key_source`:
+     * Its default values are based on the `keySource`:
      * - &#34;nomad&#34;: &#34;RS256&#34;; this is from Nomad&#39;s keyring and must not be changed
-     * - &#34;private_key&#34;: &#34;RS256&#34;; must be RS256, RS384, or RS512
-     * - &#34;client_secret&#34;: &#34;HS256&#34;; must be HS256, HS384, or HS512
+     * - &#34;privateKey&#34;: &#34;RS256&#34;; must be RS256, RS384, or RS512
+     * - &#34;clientSecret&#34;: &#34;HS256&#34;; must be HS256, HS384, or HS512
      * 
      */
     public Optional<Output<String>> keyAlgorithm() {
@@ -83,8 +83,8 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
      * key to sign the JWT.
      * Available sources:
      * - &#34;nomad&#34;: Use current active key in Nomad&#39;s keyring
-     * - &#34;private_key&#34;: Use key material in the `private_key` field
-     * - &#34;client_secret&#34;: Use the `oidc_client_secret` as an HMAC key
+     * - &#34;privateKey&#34;: Use key material in the `privateKey` field
+     * - &#34;clientSecret&#34;: Use the `oidcClientSecret` as an HMAC key
      * 
      */
     @Import(name="keySource", required=true)
@@ -95,8 +95,8 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
      * key to sign the JWT.
      * Available sources:
      * - &#34;nomad&#34;: Use current active key in Nomad&#39;s keyring
-     * - &#34;private_key&#34;: Use key material in the `private_key` field
-     * - &#34;client_secret&#34;: Use the `oidc_client_secret` as an HMAC key
+     * - &#34;privateKey&#34;: Use key material in the `privateKey` field
+     * - &#34;clientSecret&#34;: Use the `oidcClientSecret` as an HMAC key
      * 
      */
     public Output<String> keySource() {
@@ -105,7 +105,7 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
     /**
      * `(OIDCClientAssertionKey: &lt;optional&gt;)` - External key
-     * to sign the JWT. `key_source` must be &#34;private_key&#34; to enable this.
+     * to sign the JWT. `keySource` must be &#34;privateKey&#34; to enable this.
      * 
      */
     @Import(name="privateKey")
@@ -113,7 +113,7 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
     /**
      * @return `(OIDCClientAssertionKey: &lt;optional&gt;)` - External key
-     * to sign the JWT. `key_source` must be &#34;private_key&#34; to enable this.
+     * to sign the JWT. `keySource` must be &#34;privateKey&#34; to enable this.
      * 
      */
     public Optional<Output<AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs>> privateKey() {
@@ -150,7 +150,7 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
         /**
          * @param audiences `([]string: optional)` - Who processes the assertion.
-         * Defaults to the auth method&#39;s `oidc_discovery_url`.
+         * Defaults to the auth method&#39;s `oidcDiscoveryUrl`.
          * 
          * @return builder
          * 
@@ -162,7 +162,7 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
         /**
          * @param audiences `([]string: optional)` - Who processes the assertion.
-         * Defaults to the auth method&#39;s `oidc_discovery_url`.
+         * Defaults to the auth method&#39;s `oidcDiscoveryUrl`.
          * 
          * @return builder
          * 
@@ -173,7 +173,7 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
         /**
          * @param audiences `([]string: optional)` - Who processes the assertion.
-         * Defaults to the auth method&#39;s `oidc_discovery_url`.
+         * Defaults to the auth method&#39;s `oidcDiscoveryUrl`.
          * 
          * @return builder
          * 
@@ -209,10 +209,10 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
         /**
          * @param keyAlgorithm `(string: &lt;optional&gt;)` is the key&#39;s algorithm.
-         * Its default values are based on the `key_source`:
+         * Its default values are based on the `keySource`:
          * - &#34;nomad&#34;: &#34;RS256&#34;; this is from Nomad&#39;s keyring and must not be changed
-         * - &#34;private_key&#34;: &#34;RS256&#34;; must be RS256, RS384, or RS512
-         * - &#34;client_secret&#34;: &#34;HS256&#34;; must be HS256, HS384, or HS512
+         * - &#34;privateKey&#34;: &#34;RS256&#34;; must be RS256, RS384, or RS512
+         * - &#34;clientSecret&#34;: &#34;HS256&#34;; must be HS256, HS384, or HS512
          * 
          * @return builder
          * 
@@ -224,10 +224,10 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
         /**
          * @param keyAlgorithm `(string: &lt;optional&gt;)` is the key&#39;s algorithm.
-         * Its default values are based on the `key_source`:
+         * Its default values are based on the `keySource`:
          * - &#34;nomad&#34;: &#34;RS256&#34;; this is from Nomad&#39;s keyring and must not be changed
-         * - &#34;private_key&#34;: &#34;RS256&#34;; must be RS256, RS384, or RS512
-         * - &#34;client_secret&#34;: &#34;HS256&#34;; must be HS256, HS384, or HS512
+         * - &#34;privateKey&#34;: &#34;RS256&#34;; must be RS256, RS384, or RS512
+         * - &#34;clientSecret&#34;: &#34;HS256&#34;; must be HS256, HS384, or HS512
          * 
          * @return builder
          * 
@@ -241,8 +241,8 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
          * key to sign the JWT.
          * Available sources:
          * - &#34;nomad&#34;: Use current active key in Nomad&#39;s keyring
-         * - &#34;private_key&#34;: Use key material in the `private_key` field
-         * - &#34;client_secret&#34;: Use the `oidc_client_secret` as an HMAC key
+         * - &#34;privateKey&#34;: Use key material in the `privateKey` field
+         * - &#34;clientSecret&#34;: Use the `oidcClientSecret` as an HMAC key
          * 
          * @return builder
          * 
@@ -257,8 +257,8 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
          * key to sign the JWT.
          * Available sources:
          * - &#34;nomad&#34;: Use current active key in Nomad&#39;s keyring
-         * - &#34;private_key&#34;: Use key material in the `private_key` field
-         * - &#34;client_secret&#34;: Use the `oidc_client_secret` as an HMAC key
+         * - &#34;privateKey&#34;: Use key material in the `privateKey` field
+         * - &#34;clientSecret&#34;: Use the `oidcClientSecret` as an HMAC key
          * 
          * @return builder
          * 
@@ -269,7 +269,7 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
         /**
          * @param privateKey `(OIDCClientAssertionKey: &lt;optional&gt;)` - External key
-         * to sign the JWT. `key_source` must be &#34;private_key&#34; to enable this.
+         * to sign the JWT. `keySource` must be &#34;privateKey&#34; to enable this.
          * 
          * @return builder
          * 
@@ -281,7 +281,7 @@ public final class AclAuthMethodConfigOidcClientAssertionArgs extends com.pulumi
 
         /**
          * @param privateKey `(OIDCClientAssertionKey: &lt;optional&gt;)` - External key
-         * to sign the JWT. `key_source` must be &#34;private_key&#34; to enable this.
+         * to sign the JWT. `keySource` must be &#34;privateKey&#34; to enable this.
          * 
          * @return builder
          * 

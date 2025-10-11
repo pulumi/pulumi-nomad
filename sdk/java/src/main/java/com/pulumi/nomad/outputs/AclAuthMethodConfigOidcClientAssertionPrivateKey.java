@@ -13,16 +13,16 @@ import javax.annotation.Nullable;
 public final class AclAuthMethodConfigOidcClientAssertionPrivateKey {
     /**
      * @return `(string: optional)` - Becomes the JWT&#39;s &#34;kid&#34; header.
-     * Mutually exclusive with `pem_cert` and `pem_cert_file`.
-     * Allowed `key_id_header` values: &#34;kid&#34; (the default)
+     * Mutually exclusive with `pemCert` and `pemCertFile`.
+     * Allowed `keyIdHeader` values: &#34;kid&#34; (the default)
      * 
      */
     private @Nullable String keyId;
     /**
      * @return `(string: optional)` - Which header the provider uses
      * to find the public key to verify the signed JWT.
-     * The default and allowed values depend on whether you set `key_id`,
-     * `pem_cert`, or `pem_cert_file`. You must set exactly one of those
+     * The default and allowed values depend on whether you set `keyId`,
+     * `pemCert`, or `pemCertFile`. You must set exactly one of those
      * options, so refer to them for their requirements.
      * 
      */
@@ -31,8 +31,8 @@ public final class AclAuthMethodConfigOidcClientAssertionPrivateKey {
      * @return `(string: optional)` - An x509 certificate, signed by the
      * private key or a CA, in pem format. Nomad uses this certificate to
      * derive an [x5t#S256][] (or [x5t][]) key_id.
-     * Mutually exclusive with `pem_cert_file` and `key_id`.
-     * Allowed `key_id_header` values: &#34;x5t&#34;, &#34;x5t#S256&#34; (default &#34;x5t#S256&#34;)
+     * Mutually exclusive with `pemCertFile` and `keyId`.
+     * Allowed `keyIdHeader` values: &#34;x5t&#34;, &#34;x5t#S256&#34; (default &#34;x5t#S256&#34;)
      * 
      */
     private @Nullable String pemCert;
@@ -41,21 +41,21 @@ public final class AclAuthMethodConfigOidcClientAssertionPrivateKey {
      * certificate on Nomad servers&#39; disk, signed by the private key or a CA,
      * in pem format.
      * Nomad uses this certificate to derive an [x5t#S256][] (or [x5t][])
-     * header. Mutually exclusive with `pem_cert` and key_id.
-     * Allowed `key_id_header` values: &#34;x5t&#34;, &#34;x5t#S256&#34; (default &#34;x5t#S256&#34;)
+     * header. Mutually exclusive with `pemCert` and key_id.
+     * Allowed `keyIdHeader` values: &#34;x5t&#34;, &#34;x5t#S256&#34; (default &#34;x5t#S256&#34;)
      * 
      */
     private @Nullable String pemCertFile;
     /**
      * @return `(string: &lt;optional&gt;)` - An RSA private key, in pem format.
-     * It is used to sign the JWT. Mutually exclusive with `pem_key`.
+     * It is used to sign the JWT. Mutually exclusive with `pemKey`.
      * 
      */
     private @Nullable String pemKey;
     /**
      * @return `(string: optional)` - An absolute path to a private key
      * on Nomad servers&#39; disk, in pem format. It is used to sign the JWT.
-     * Mutually exclusive with `pem_key_file`.
+     * Mutually exclusive with `pemKeyFile`.
      * 
      */
     private @Nullable String pemKeyFile;
@@ -63,8 +63,8 @@ public final class AclAuthMethodConfigOidcClientAssertionPrivateKey {
     private AclAuthMethodConfigOidcClientAssertionPrivateKey() {}
     /**
      * @return `(string: optional)` - Becomes the JWT&#39;s &#34;kid&#34; header.
-     * Mutually exclusive with `pem_cert` and `pem_cert_file`.
-     * Allowed `key_id_header` values: &#34;kid&#34; (the default)
+     * Mutually exclusive with `pemCert` and `pemCertFile`.
+     * Allowed `keyIdHeader` values: &#34;kid&#34; (the default)
      * 
      */
     public Optional<String> keyId() {
@@ -73,8 +73,8 @@ public final class AclAuthMethodConfigOidcClientAssertionPrivateKey {
     /**
      * @return `(string: optional)` - Which header the provider uses
      * to find the public key to verify the signed JWT.
-     * The default and allowed values depend on whether you set `key_id`,
-     * `pem_cert`, or `pem_cert_file`. You must set exactly one of those
+     * The default and allowed values depend on whether you set `keyId`,
+     * `pemCert`, or `pemCertFile`. You must set exactly one of those
      * options, so refer to them for their requirements.
      * 
      */
@@ -85,8 +85,8 @@ public final class AclAuthMethodConfigOidcClientAssertionPrivateKey {
      * @return `(string: optional)` - An x509 certificate, signed by the
      * private key or a CA, in pem format. Nomad uses this certificate to
      * derive an [x5t#S256][] (or [x5t][]) key_id.
-     * Mutually exclusive with `pem_cert_file` and `key_id`.
-     * Allowed `key_id_header` values: &#34;x5t&#34;, &#34;x5t#S256&#34; (default &#34;x5t#S256&#34;)
+     * Mutually exclusive with `pemCertFile` and `keyId`.
+     * Allowed `keyIdHeader` values: &#34;x5t&#34;, &#34;x5t#S256&#34; (default &#34;x5t#S256&#34;)
      * 
      */
     public Optional<String> pemCert() {
@@ -97,8 +97,8 @@ public final class AclAuthMethodConfigOidcClientAssertionPrivateKey {
      * certificate on Nomad servers&#39; disk, signed by the private key or a CA,
      * in pem format.
      * Nomad uses this certificate to derive an [x5t#S256][] (or [x5t][])
-     * header. Mutually exclusive with `pem_cert` and key_id.
-     * Allowed `key_id_header` values: &#34;x5t&#34;, &#34;x5t#S256&#34; (default &#34;x5t#S256&#34;)
+     * header. Mutually exclusive with `pemCert` and key_id.
+     * Allowed `keyIdHeader` values: &#34;x5t&#34;, &#34;x5t#S256&#34; (default &#34;x5t#S256&#34;)
      * 
      */
     public Optional<String> pemCertFile() {
@@ -106,7 +106,7 @@ public final class AclAuthMethodConfigOidcClientAssertionPrivateKey {
     }
     /**
      * @return `(string: &lt;optional&gt;)` - An RSA private key, in pem format.
-     * It is used to sign the JWT. Mutually exclusive with `pem_key`.
+     * It is used to sign the JWT. Mutually exclusive with `pemKey`.
      * 
      */
     public Optional<String> pemKey() {
@@ -115,7 +115,7 @@ public final class AclAuthMethodConfigOidcClientAssertionPrivateKey {
     /**
      * @return `(string: optional)` - An absolute path to a private key
      * on Nomad servers&#39; disk, in pem format. It is used to sign the JWT.
-     * Mutually exclusive with `pem_key_file`.
+     * Mutually exclusive with `pemKeyFile`.
      * 
      */
     public Optional<String> pemKeyFile() {

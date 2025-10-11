@@ -37,13 +37,13 @@ namespace Pulumi.Nomad
         public Output<string?> CaPem { get; private set; } = null!;
 
         /// <summary>
-        /// A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+        /// A path to a PEM-encoded certificate provided to the remote agent; requires use of KeyFile or key_pem.
         /// </summary>
         [Output("certFile")]
         public Output<string?> CertFile { get; private set; } = null!;
 
         /// <summary>
-        /// PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+        /// PEM-encoded certificate provided to the remote agent; requires use of KeyFile or key_pem.
         /// </summary>
         [Output("certPem")]
         public Output<string?> CertPem { get; private set; } = null!;
@@ -55,13 +55,13 @@ namespace Pulumi.Nomad
         public Output<string?> HttpAuth { get; private set; } = null!;
 
         /// <summary>
-        /// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+        /// A path to a PEM-encoded private key, required if CertFile or CertPem is specified.
         /// </summary>
         [Output("keyFile")]
         public Output<string?> KeyFile { get; private set; } = null!;
 
         /// <summary>
-        /// PEM-encoded private key, required if cert_file or cert_pem is specified.
+        /// PEM-encoded private key, required if CertFile or CertPem is specified.
         /// </summary>
         [Output("keyPem")]
         public Output<string?> KeyPem { get; private set; } = null!;
@@ -131,13 +131,13 @@ namespace Pulumi.Nomad
         public Input<string>? CaPem { get; set; }
 
         /// <summary>
-        /// A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+        /// A path to a PEM-encoded certificate provided to the remote agent; requires use of KeyFile or key_pem.
         /// </summary>
         [Input("certFile")]
         public Input<string>? CertFile { get; set; }
 
         /// <summary>
-        /// PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+        /// PEM-encoded certificate provided to the remote agent; requires use of KeyFile or key_pem.
         /// </summary>
         [Input("certPem")]
         public Input<string>? CertPem { get; set; }
@@ -177,13 +177,13 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+        /// A path to a PEM-encoded private key, required if CertFile or CertPem is specified.
         /// </summary>
         [Input("keyFile")]
         public Input<string>? KeyFile { get; set; }
 
         /// <summary>
-        /// PEM-encoded private key, required if cert_file or cert_pem is specified.
+        /// PEM-encoded private key, required if CertFile or CertPem is specified.
         /// </summary>
         [Input("keyPem")]
         public Input<string>? KeyPem { get; set; }

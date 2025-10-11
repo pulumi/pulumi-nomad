@@ -16,7 +16,7 @@ public final class GetNodePoolsArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetNodePoolsArgs Empty = new GetNodePoolsArgs();
 
     /**
-     * `(string)` - Specifies the [expression][nomad_api_filter] used to
+     * `(string)` - Specifies the [expression][nomadApiFilter] used to
      * filter the results.
      * 
      */
@@ -24,7 +24,7 @@ public final class GetNodePoolsArgs extends com.pulumi.resources.InvokeArgs {
     private @Nullable Output<String> filter;
 
     /**
-     * @return `(string)` - Specifies the [expression][nomad_api_filter] used to
+     * @return `(string)` - Specifies the [expression][nomadApiFilter] used to
      * filter the results.
      * 
      */
@@ -75,7 +75,7 @@ public final class GetNodePoolsArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param filter `(string)` - Specifies the [expression][nomad_api_filter] used to
+         * @param filter `(string)` - Specifies the [expression][nomadApiFilter] used to
          * filter the results.
          * 
          * @return builder
@@ -87,7 +87,7 @@ public final class GetNodePoolsArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param filter `(string)` - Specifies the [expression][nomad_api_filter] used to
+         * @param filter `(string)` - Specifies the [expression][nomadApiFilter] used to
          * filter the results.
          * 
          * @return builder

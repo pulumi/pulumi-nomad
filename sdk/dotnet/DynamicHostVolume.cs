@@ -22,7 +22,7 @@ namespace Pulumi.Nomad
     /// result in the same data source with the same outputs.
     /// 
     /// &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
-    ///   [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+    ///   [`PreventDestroy`][TfDocsPreventDestroy] directive to avoid accidental
     ///   deletions.
     /// 
     /// ## Example Usage
@@ -92,9 +92,9 @@ namespace Pulumi.Nomad
         /// `(string: &lt;optional&gt;)` - Option for requesting a maximum
         /// capacity, in bytes. The capacity of a volume may be the physical size of a
         /// disk, or a quota, depending on the plugin. The specific size of the resulting
-        /// volume is somewhere between `capacity_min` and `capacity_max`; the exact
+        /// volume is somewhere between `CapacityMin` and `CapacityMax`; the exact
         /// behavior is up to the plugin. If you want to specify an exact size, set
-        /// `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
+        /// `CapacityMin` and `CapacityMax` to the same value. Accepts human-friendly
         /// suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
         /// may ignore this field.
         /// </summary>
@@ -108,9 +108,9 @@ namespace Pulumi.Nomad
         /// `(string: &lt;optional&gt;)` - Option for requesting a minimum
         /// capacity, in bytes. The capacity of a volume may be the physical size of a
         /// disk, or a quota, depending on the plugin. The specific size of the resulting
-        /// volume is somewhere between `capacity_min` and `capacity_max`; the exact
+        /// volume is somewhere between `CapacityMin` and `CapacityMax`; the exact
         /// behavior is up to the plugin. If you want to specify an exact size, set
-        /// `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
+        /// `CapacityMin` and `CapacityMax` to the same value. Accepts human-friendly
         /// suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
         /// may ignore this field.
         /// </summary>
@@ -122,8 +122,8 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(block: &lt;optional&gt;)` - A restriction on the eligible nodes where
-        /// a volume can be created, similar to the [`constraint`][] block on a Nomad job
-        /// specification.. You can provide multiple `constraint` blocks to add more
+        /// a volume can be created, similar to the [`Constraint`][] block on a Nomad job
+        /// specification.. You can provide multiple `Constraint` blocks to add more
         /// constraints. Each constraint block has the following attributes.
         /// </summary>
         [Output("constraints")]
@@ -137,7 +137,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-        /// [`volume.source`][volume_source] field in job specifications that claim this
+        /// [`volume.source`][VolumeSource] field in job specifications that claim this
         /// volume. Host volume names must be unique per node. Names are visible to any
         /// user with `node:read` ACL, even across namespaces, so they should not be
         /// treated as sensitive values.
@@ -162,8 +162,8 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(string: &lt;optional&gt;)` - A specific node pool where you would like
-        /// the volume to be created. If you also provide `node_id`, the node must be in the
-        /// provided `node_pool`.
+        /// the volume to be created. If you also provide `NodeId`, the node must be in the
+        /// provided `NodePool`.
         /// </summary>
         [Output("nodePool")]
         public Output<string> NodePool { get; private set; } = null!;
@@ -251,9 +251,9 @@ namespace Pulumi.Nomad
         /// `(string: &lt;optional&gt;)` - Option for requesting a maximum
         /// capacity, in bytes. The capacity of a volume may be the physical size of a
         /// disk, or a quota, depending on the plugin. The specific size of the resulting
-        /// volume is somewhere between `capacity_min` and `capacity_max`; the exact
+        /// volume is somewhere between `CapacityMin` and `CapacityMax`; the exact
         /// behavior is up to the plugin. If you want to specify an exact size, set
-        /// `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
+        /// `CapacityMin` and `CapacityMax` to the same value. Accepts human-friendly
         /// suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
         /// may ignore this field.
         /// </summary>
@@ -264,9 +264,9 @@ namespace Pulumi.Nomad
         /// `(string: &lt;optional&gt;)` - Option for requesting a minimum
         /// capacity, in bytes. The capacity of a volume may be the physical size of a
         /// disk, or a quota, depending on the plugin. The specific size of the resulting
-        /// volume is somewhere between `capacity_min` and `capacity_max`; the exact
+        /// volume is somewhere between `CapacityMin` and `CapacityMax`; the exact
         /// behavior is up to the plugin. If you want to specify an exact size, set
-        /// `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
+        /// `CapacityMin` and `CapacityMax` to the same value. Accepts human-friendly
         /// suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
         /// may ignore this field.
         /// </summary>
@@ -278,8 +278,8 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(block: &lt;optional&gt;)` - A restriction on the eligible nodes where
-        /// a volume can be created, similar to the [`constraint`][] block on a Nomad job
-        /// specification.. You can provide multiple `constraint` blocks to add more
+        /// a volume can be created, similar to the [`Constraint`][] block on a Nomad job
+        /// specification.. You can provide multiple `Constraint` blocks to add more
         /// constraints. Each constraint block has the following attributes.
         /// </summary>
         public InputList<Inputs.DynamicHostVolumeConstraintArgs> Constraints
@@ -290,7 +290,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-        /// [`volume.source`][volume_source] field in job specifications that claim this
+        /// [`volume.source`][VolumeSource] field in job specifications that claim this
         /// volume. Host volume names must be unique per node. Names are visible to any
         /// user with `node:read` ACL, even across namespaces, so they should not be
         /// treated as sensitive values.
@@ -315,8 +315,8 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(string: &lt;optional&gt;)` - A specific node pool where you would like
-        /// the volume to be created. If you also provide `node_id`, the node must be in the
-        /// provided `node_pool`.
+        /// the volume to be created. If you also provide `NodeId`, the node must be in the
+        /// provided `NodePool`.
         /// </summary>
         [Input("nodePool")]
         public Input<string>? NodePool { get; set; }
@@ -375,9 +375,9 @@ namespace Pulumi.Nomad
         /// `(string: &lt;optional&gt;)` - Option for requesting a maximum
         /// capacity, in bytes. The capacity of a volume may be the physical size of a
         /// disk, or a quota, depending on the plugin. The specific size of the resulting
-        /// volume is somewhere between `capacity_min` and `capacity_max`; the exact
+        /// volume is somewhere between `CapacityMin` and `CapacityMax`; the exact
         /// behavior is up to the plugin. If you want to specify an exact size, set
-        /// `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
+        /// `CapacityMin` and `CapacityMax` to the same value. Accepts human-friendly
         /// suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
         /// may ignore this field.
         /// </summary>
@@ -391,9 +391,9 @@ namespace Pulumi.Nomad
         /// `(string: &lt;optional&gt;)` - Option for requesting a minimum
         /// capacity, in bytes. The capacity of a volume may be the physical size of a
         /// disk, or a quota, depending on the plugin. The specific size of the resulting
-        /// volume is somewhere between `capacity_min` and `capacity_max`; the exact
+        /// volume is somewhere between `CapacityMin` and `CapacityMax`; the exact
         /// behavior is up to the plugin. If you want to specify an exact size, set
-        /// `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
+        /// `CapacityMin` and `CapacityMax` to the same value. Accepts human-friendly
         /// suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
         /// may ignore this field.
         /// </summary>
@@ -408,8 +408,8 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(block: &lt;optional&gt;)` - A restriction on the eligible nodes where
-        /// a volume can be created, similar to the [`constraint`][] block on a Nomad job
-        /// specification.. You can provide multiple `constraint` blocks to add more
+        /// a volume can be created, similar to the [`Constraint`][] block on a Nomad job
+        /// specification.. You can provide multiple `Constraint` blocks to add more
         /// constraints. Each constraint block has the following attributes.
         /// </summary>
         public InputList<Inputs.DynamicHostVolumeConstraintGetArgs> Constraints
@@ -426,7 +426,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-        /// [`volume.source`][volume_source] field in job specifications that claim this
+        /// [`volume.source`][VolumeSource] field in job specifications that claim this
         /// volume. Host volume names must be unique per node. Names are visible to any
         /// user with `node:read` ACL, even across namespaces, so they should not be
         /// treated as sensitive values.
@@ -451,8 +451,8 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(string: &lt;optional&gt;)` - A specific node pool where you would like
-        /// the volume to be created. If you also provide `node_id`, the node must be in the
-        /// provided `node_pool`.
+        /// the volume to be created. If you also provide `NodeId`, the node must be in the
+        /// provided `NodePool`.
         /// </summary>
         [Input("nodePool")]
         public Input<string>? NodePool { get; set; }

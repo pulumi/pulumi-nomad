@@ -49,7 +49,7 @@ namespace Pulumi.Nomad
     public partial class SchedulerConfig : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+        /// `(bool: false)` - When `True`, tasks may exceed their reserved memory limit.
         /// </summary>
         [Output("memoryOversubscriptionEnabled")]
         public Output<bool?> MemoryOversubscriptionEnabled { get; private set; } = null!;
@@ -61,7 +61,7 @@ namespace Pulumi.Nomad
         public Output<ImmutableDictionary<string, bool>?> PreemptionConfig { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
+        /// `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `Binpack` and `Spread`.
         /// </summary>
         [Output("schedulerAlgorithm")]
         public Output<string?> SchedulerAlgorithm { get; private set; } = null!;
@@ -113,7 +113,7 @@ namespace Pulumi.Nomad
     public sealed class SchedulerConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+        /// `(bool: false)` - When `True`, tasks may exceed their reserved memory limit.
         /// </summary>
         [Input("memoryOversubscriptionEnabled")]
         public Input<bool>? MemoryOversubscriptionEnabled { get; set; }
@@ -131,7 +131,7 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
+        /// `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `Binpack` and `Spread`.
         /// </summary>
         [Input("schedulerAlgorithm")]
         public Input<string>? SchedulerAlgorithm { get; set; }
@@ -145,7 +145,7 @@ namespace Pulumi.Nomad
     public sealed class SchedulerConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
+        /// `(bool: false)` - When `True`, tasks may exceed their reserved memory limit.
         /// </summary>
         [Input("memoryOversubscriptionEnabled")]
         public Input<bool>? MemoryOversubscriptionEnabled { get; set; }
@@ -163,7 +163,7 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
+        /// `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `Binpack` and `Spread`.
         /// </summary>
         [Input("schedulerAlgorithm")]
         public Input<string>? SchedulerAlgorithm { get; set; }

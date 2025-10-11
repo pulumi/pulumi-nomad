@@ -26,7 +26,7 @@ namespace Pulumi.Nomad.Outputs
         public readonly string? MemoryOversubscription;
         /// <summary>
         /// `(string)` - The scheduler algorithm used in the node
-        /// pool. Possible values are `binpack` or `spread`. If not defined the global
+        /// pool. Possible values are `Binpack` or `Spread`. If not defined the global
         /// cluster configuration is used.
         /// </summary>
         public readonly string? SchedulerAlgorithm;

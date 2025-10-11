@@ -17,7 +17,7 @@ public final class GetAllocationsArgs extends com.pulumi.resources.InvokeArgs {
 
     /**
      * `(string: &lt;optional&gt;)` - Specifies the
-     * [expression][nomad_api_filter] used to filter the results.
+     * [expression][nomadApiFilter] used to filter the results.
      * 
      */
     @Import(name="filter")
@@ -25,7 +25,7 @@ public final class GetAllocationsArgs extends com.pulumi.resources.InvokeArgs {
 
     /**
      * @return `(string: &lt;optional&gt;)` - Specifies the
-     * [expression][nomad_api_filter] used to filter the results.
+     * [expression][nomadApiFilter] used to filter the results.
      * 
      */
     public Optional<Output<String>> filter() {
@@ -94,7 +94,7 @@ public final class GetAllocationsArgs extends com.pulumi.resources.InvokeArgs {
 
         /**
          * @param filter `(string: &lt;optional&gt;)` - Specifies the
-         * [expression][nomad_api_filter] used to filter the results.
+         * [expression][nomadApiFilter] used to filter the results.
          * 
          * @return builder
          * 
@@ -106,7 +106,7 @@ public final class GetAllocationsArgs extends com.pulumi.resources.InvokeArgs {
 
         /**
          * @param filter `(string: &lt;optional&gt;)` - Specifies the
-         * [expression][nomad_api_filter] used to filter the results.
+         * [expression][nomadApiFilter] used to filter the results.
          * 
          * @return builder
          * 

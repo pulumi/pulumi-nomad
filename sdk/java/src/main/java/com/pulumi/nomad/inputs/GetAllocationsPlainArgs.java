@@ -16,7 +16,7 @@ public final class GetAllocationsPlainArgs extends com.pulumi.resources.InvokeAr
 
     /**
      * `(string: &lt;optional&gt;)` - Specifies the
-     * [expression][nomad_api_filter] used to filter the results.
+     * [expression][nomadApiFilter] used to filter the results.
      * 
      */
     @Import(name="filter")
@@ -24,7 +24,7 @@ public final class GetAllocationsPlainArgs extends com.pulumi.resources.InvokeAr
 
     /**
      * @return `(string: &lt;optional&gt;)` - Specifies the
-     * [expression][nomad_api_filter] used to filter the results.
+     * [expression][nomadApiFilter] used to filter the results.
      * 
      */
     public Optional<String> filter() {
@@ -93,7 +93,7 @@ public final class GetAllocationsPlainArgs extends com.pulumi.resources.InvokeAr
 
         /**
          * @param filter `(string: &lt;optional&gt;)` - Specifies the
-         * [expression][nomad_api_filter] used to filter the results.
+         * [expression][nomadApiFilter] used to filter the results.
          * 
          * @return builder
          * 

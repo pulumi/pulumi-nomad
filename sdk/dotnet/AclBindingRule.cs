@@ -20,16 +20,16 @@ namespace Pulumi.Nomad
         public Output<string> AuthMethod { get; private set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
-        /// `role` or `policy` then `bind_name` is required. If `bind_type` is
-        /// `management` than `bind_name` must not be defined.
+        /// `(string: &lt;optional&gt;)` - Target of the binding. If `BindType` is
+        /// `Role` or `Policy` then `BindName` is required. If `BindType` is
+        /// `Management` than `BindName` must not be defined.
         /// </summary>
         [Output("bindName")]
         public Output<string?> BindName { get; private set; } = null!;
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - Adjusts how this binding rule is applied
-        /// at login time. Valid values are `role`, `policy`, and `management`.
+        /// at login time. Valid values are `Role`, `Policy`, and `Management`.
         /// </summary>
         [Output("bindType")]
         public Output<string> BindType { get; private set; } = null!;
@@ -101,16 +101,16 @@ namespace Pulumi.Nomad
         public Input<string> AuthMethod { get; set; } = null!;
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
-        /// `role` or `policy` then `bind_name` is required. If `bind_type` is
-        /// `management` than `bind_name` must not be defined.
+        /// `(string: &lt;optional&gt;)` - Target of the binding. If `BindType` is
+        /// `Role` or `Policy` then `BindName` is required. If `BindType` is
+        /// `Management` than `BindName` must not be defined.
         /// </summary>
         [Input("bindName")]
         public Input<string>? BindName { get; set; }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - Adjusts how this binding rule is applied
-        /// at login time. Valid values are `role`, `policy`, and `management`.
+        /// at login time. Valid values are `Role`, `Policy`, and `Management`.
         /// </summary>
         [Input("bindType", required: true)]
         public Input<string> BindType { get; set; } = null!;
@@ -144,16 +144,16 @@ namespace Pulumi.Nomad
         public Input<string>? AuthMethod { get; set; }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
-        /// `role` or `policy` then `bind_name` is required. If `bind_type` is
-        /// `management` than `bind_name` must not be defined.
+        /// `(string: &lt;optional&gt;)` - Target of the binding. If `BindType` is
+        /// `Role` or `Policy` then `BindName` is required. If `BindType` is
+        /// `Management` than `BindName` must not be defined.
         /// </summary>
         [Input("bindName")]
         public Input<string>? BindName { get; set; }
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - Adjusts how this binding rule is applied
-        /// at login time. Valid values are `role`, `policy`, and `management`.
+        /// at login time. Valid values are `Role`, `Policy`, and `Management`.
         /// </summary>
         [Input("bindType")]
         public Input<string>? BindType { get; set; }

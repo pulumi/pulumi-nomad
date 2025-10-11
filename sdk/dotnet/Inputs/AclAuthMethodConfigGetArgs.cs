@@ -170,7 +170,7 @@ namespace Pulumi.Nomad.Inputs
         }
 
         /// <summary>
-        /// `(bool: false)` - When set to `true`, Nomad will
+        /// `(bool: false)` - When set to `True`, Nomad will
         /// not make a request to the identity provider to get OIDC `UserInfo`.
         /// You may wish to set this if your identity provider doesn't send any
         /// additional claims from the `UserInfo` endpoint.
@@ -186,7 +186,7 @@ namespace Pulumi.Nomad.Inputs
         public Input<string>? OidcDiscoveryUrl { get; set; }
 
         /// <summary>
-        /// `(bool: false)` - When set to `true`, Nomad will include
+        /// `(bool: false)` - When set to `True`, Nomad will include
         /// [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
         /// you may still need to enable it in your OIDC provider.
         /// </summary>

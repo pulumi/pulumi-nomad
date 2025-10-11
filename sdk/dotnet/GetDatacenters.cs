@@ -91,7 +91,7 @@ namespace Pulumi.Nomad
     public sealed class GetDatacentersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.
+        /// `(bool: false)`: An optional flag that, if set to `True` will ignore down nodes when compiling the list of datacenters.
         /// </summary>
         [Input("ignoreDownNodes")]
         public bool? IgnoreDownNodes { get; set; }
@@ -111,7 +111,7 @@ namespace Pulumi.Nomad
     public sealed class GetDatacentersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.
+        /// `(bool: false)`: An optional flag that, if set to `True` will ignore down nodes when compiling the list of datacenters.
         /// </summary>
         [Input("ignoreDownNodes")]
         public Input<bool>? IgnoreDownNodes { get; set; }

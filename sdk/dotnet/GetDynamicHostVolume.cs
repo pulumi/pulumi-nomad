@@ -183,8 +183,8 @@ namespace Pulumi.Nomad
         public readonly int CapacityMinBytes;
         /// <summary>
         /// `(block)` - The restrictions used to place the volume on a node,
-        /// similar to the [`constraint`][] block on a Nomad job specification. A volume
-        /// may have multiple `constraint` blocks. Each constraint block has the following
+        /// similar to the [`Constraint`][] block on a Nomad job specification. A volume
+        /// may have multiple `Constraint` blocks. Each constraint block has the following
         /// attributes.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDynamicHostVolumeConstraintResult> Constraints;
@@ -195,7 +195,7 @@ namespace Pulumi.Nomad
         public readonly string Id;
         /// <summary>
         /// `(string)` - The name of the volume, which is used as the
-        /// [`volume.source`][volume_source] field in job specifications that claim this
+        /// [`volume.source`][VolumeSource] field in job specifications that claim this
         /// volume. Host volume names are be unique per node. Names are visible to any
         /// user with `node:read` ACL, even across namespaces, so they should not be
         /// treated as sensitive values.
@@ -222,7 +222,7 @@ namespace Pulumi.Nomad
         public readonly ImmutableDictionary<string, string> Parameters;
         /// <summary>
         /// `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
-        /// plugin][dhv_plugin] that manages this volume.
+        /// plugin][DhvPlugin] that manages this volume.
         /// </summary>
         public readonly string PluginId;
         public readonly string State;

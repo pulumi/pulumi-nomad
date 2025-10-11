@@ -32,7 +32,7 @@ import javax.annotation.Nullable;
  * result in the same data source with the same outputs.
  * 
  * &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
- *   [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+ *   [`preventDestroy`][tfDocsPreventDestroy] directive to avoid accidental
  *   deletions.
  * 
  * ## Example Usage
@@ -128,9 +128,9 @@ public class DynamicHostVolume extends com.pulumi.resources.CustomResource {
      * `(string: &lt;optional&gt;)` - Option for requesting a maximum
      * capacity, in bytes. The capacity of a volume may be the physical size of a
      * disk, or a quota, depending on the plugin. The specific size of the resulting
-     * volume is somewhere between `capacity_min` and `capacity_max`; the exact
+     * volume is somewhere between `capacityMin` and `capacityMax`; the exact
      * behavior is up to the plugin. If you want to specify an exact size, set
-     * `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
+     * `capacityMin` and `capacityMax` to the same value. Accepts human-friendly
      * suffixes such as `&#34;100GiB&#34;`. Plugins that cannot restrict the size of volumes
      * may ignore this field.
      * 
@@ -142,9 +142,9 @@ public class DynamicHostVolume extends com.pulumi.resources.CustomResource {
      * @return `(string: &lt;optional&gt;)` - Option for requesting a maximum
      * capacity, in bytes. The capacity of a volume may be the physical size of a
      * disk, or a quota, depending on the plugin. The specific size of the resulting
-     * volume is somewhere between `capacity_min` and `capacity_max`; the exact
+     * volume is somewhere between `capacityMin` and `capacityMax`; the exact
      * behavior is up to the plugin. If you want to specify an exact size, set
-     * `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
+     * `capacityMin` and `capacityMax` to the same value. Accepts human-friendly
      * suffixes such as `&#34;100GiB&#34;`. Plugins that cannot restrict the size of volumes
      * may ignore this field.
      * 
@@ -162,9 +162,9 @@ public class DynamicHostVolume extends com.pulumi.resources.CustomResource {
      * `(string: &lt;optional&gt;)` - Option for requesting a minimum
      * capacity, in bytes. The capacity of a volume may be the physical size of a
      * disk, or a quota, depending on the plugin. The specific size of the resulting
-     * volume is somewhere between `capacity_min` and `capacity_max`; the exact
+     * volume is somewhere between `capacityMin` and `capacityMax`; the exact
      * behavior is up to the plugin. If you want to specify an exact size, set
-     * `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
+     * `capacityMin` and `capacityMax` to the same value. Accepts human-friendly
      * suffixes such as `&#34;100GiB&#34;`. Plugins that cannot restrict the size of volumes
      * may ignore this field.
      * 
@@ -176,9 +176,9 @@ public class DynamicHostVolume extends com.pulumi.resources.CustomResource {
      * @return `(string: &lt;optional&gt;)` - Option for requesting a minimum
      * capacity, in bytes. The capacity of a volume may be the physical size of a
      * disk, or a quota, depending on the plugin. The specific size of the resulting
-     * volume is somewhere between `capacity_min` and `capacity_max`; the exact
+     * volume is somewhere between `capacityMin` and `capacityMax`; the exact
      * behavior is up to the plugin. If you want to specify an exact size, set
-     * `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
+     * `capacityMin` and `capacityMax` to the same value. Accepts human-friendly
      * suffixes such as `&#34;100GiB&#34;`. Plugins that cannot restrict the size of volumes
      * may ignore this field.
      * 
@@ -228,7 +228,7 @@ public class DynamicHostVolume extends com.pulumi.resources.CustomResource {
     }
     /**
      * `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-     * [`volume.source`][volume_source] field in job specifications that claim this
+     * [`volume.source`][volumeSource] field in job specifications that claim this
      * volume. Host volume names must be unique per node. Names are visible to any
      * user with `node:read` ACL, even across namespaces, so they should not be
      * treated as sensitive values.
@@ -239,7 +239,7 @@ public class DynamicHostVolume extends com.pulumi.resources.CustomResource {
 
     /**
      * @return `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-     * [`volume.source`][volume_source] field in job specifications that claim this
+     * [`volume.source`][volumeSource] field in job specifications that claim this
      * volume. Host volume names must be unique per node. Names are visible to any
      * user with `node:read` ACL, even across namespaces, so they should not be
      * treated as sensitive values.
@@ -284,8 +284,8 @@ public class DynamicHostVolume extends com.pulumi.resources.CustomResource {
     }
     /**
      * `(string: &lt;optional&gt;)` - A specific node pool where you would like
-     * the volume to be created. If you also provide `node_id`, the node must be in the
-     * provided `node_pool`.
+     * the volume to be created. If you also provide `nodeId`, the node must be in the
+     * provided `nodePool`.
      * 
      */
     @Export(name="nodePool", refs={String.class}, tree="[0]")
@@ -293,8 +293,8 @@ public class DynamicHostVolume extends com.pulumi.resources.CustomResource {
 
     /**
      * @return `(string: &lt;optional&gt;)` - A specific node pool where you would like
-     * the volume to be created. If you also provide `node_id`, the node must be in the
-     * provided `node_pool`.
+     * the volume to be created. If you also provide `nodeId`, the node must be in the
+     * provided `nodePool`.
      * 
      */
     public Output<String> nodePool() {

@@ -37,14 +37,14 @@ public final class Config {
         return Codegen.stringProp("caPem").config(config).get();
     }
 /**
- * A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+ * A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
  * 
  */
     public Optional<String> certFile() {
         return Codegen.stringProp("certFile").config(config).get();
     }
 /**
- * PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+ * PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
  * 
  */
     public Optional<String> certPem() {
@@ -72,14 +72,14 @@ public final class Config {
         return Codegen.objectProp("ignoreEnvVars", TypeShape.<Map<String,Boolean>>builder(Map.class).addParameter(String.class).addParameter(Boolean.class).build()).config(config).get();
     }
 /**
- * A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+ * A path to a PEM-encoded private key, required if certFile or certPem is specified.
  * 
  */
     public Optional<String> keyFile() {
         return Codegen.stringProp("keyFile").config(config).get();
     }
 /**
- * PEM-encoded private key, required if cert_file or cert_pem is specified.
+ * PEM-encoded private key, required if certFile or certPem is specified.
  * 
  */
     public Optional<String> keyPem() {

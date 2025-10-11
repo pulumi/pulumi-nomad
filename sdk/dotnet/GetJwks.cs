@@ -14,8 +14,8 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Retrieve the cluster JWKS public keys.
         /// 
-        /// The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
-        /// (`pem_keys`), which may be more convenient for use.
+        /// The keys are returned both as a list of maps (`Keys`), and as a list of PEM-encoded strings
+        /// (`PemKeys`), which may be more convenient for use.
         /// 
         /// ## Example Usage
         /// 
@@ -38,8 +38,8 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Retrieve the cluster JWKS public keys.
         /// 
-        /// The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
-        /// (`pem_keys`), which may be more convenient for use.
+        /// The keys are returned both as a list of maps (`Keys`), and as a list of PEM-encoded strings
+        /// (`PemKeys`), which may be more convenient for use.
         /// 
         /// ## Example Usage
         /// 
@@ -62,8 +62,8 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Retrieve the cluster JWKS public keys.
         /// 
-        /// The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
-        /// (`pem_keys`), which may be more convenient for use.
+        /// The keys are returned both as a list of maps (`Keys`), and as a list of PEM-encoded strings
+        /// (`PemKeys`), which may be more convenient for use.
         /// 
         /// ## Example Usage
         /// 

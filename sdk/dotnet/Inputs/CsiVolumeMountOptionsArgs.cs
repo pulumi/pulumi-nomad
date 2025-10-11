@@ -22,7 +22,7 @@ namespace Pulumi.Nomad.Inputs
         private InputList<string>? _mountFlags;
 
         /// <summary>
-        /// `[]string: optional` - The flags passed to `mount`.
+        /// `[]string: optional` - The flags passed to `Mount`.
         /// </summary>
         public InputList<string> MountFlags
         {
