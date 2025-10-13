@@ -74,7 +74,7 @@ public final class GetDynamicHostVolumeResult {
     private String id;
     /**
      * @return `(string)` - The name of the volume, which is used as the
-     * [`volume.source`][volume_source] field in job specifications that claim this
+     * [`volume.source`][volumeSource] field in job specifications that claim this
      * volume. Host volume names are be unique per node. Names are visible to any
      * user with `node:read` ACL, even across namespaces, so they should not be
      * treated as sensitive values.
@@ -106,7 +106,7 @@ public final class GetDynamicHostVolumeResult {
     private Map<String,String> parameters;
     /**
      * @return `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
-     * plugin][dhv_plugin] that manages this volume.
+     * plugin][dhvPlugin] that manages this volume.
      * 
      */
     private String pluginId;
@@ -190,7 +190,7 @@ public final class GetDynamicHostVolumeResult {
     }
     /**
      * @return `(string)` - The name of the volume, which is used as the
-     * [`volume.source`][volume_source] field in job specifications that claim this
+     * [`volume.source`][volumeSource] field in job specifications that claim this
      * volume. Host volume names are be unique per node. Names are visible to any
      * user with `node:read` ACL, even across namespaces, so they should not be
      * treated as sensitive values.
@@ -232,7 +232,7 @@ public final class GetDynamicHostVolumeResult {
     }
     /**
      * @return `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
-     * plugin][dhv_plugin] that manages this volume.
+     * plugin][dhvPlugin] that manages this volume.
      * 
      */
     public String pluginId() {

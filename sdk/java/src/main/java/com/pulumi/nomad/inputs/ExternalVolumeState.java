@@ -69,14 +69,14 @@ public final class ExternalVolumeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
+     * `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      * 
      */
     @Import(name="cloneId")
     private @Nullable Output<String> cloneId;
 
     /**
-     * @return `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
+     * @return `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
      * 
      */
     public Optional<Output<String>> cloneId() {
@@ -230,14 +230,14 @@ public final class ExternalVolumeState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
+     * `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
      * 
      */
     @Import(name="snapshotId")
     private @Nullable Output<String> snapshotId;
 
     /**
-     * @return `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
+     * @return `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
      * 
      */
     public Optional<Output<String>> snapshotId() {
@@ -416,7 +416,7 @@ public final class ExternalVolumeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param cloneId `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
+         * @param cloneId `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
          * 
          * @return builder
          * 
@@ -427,7 +427,7 @@ public final class ExternalVolumeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param cloneId `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
+         * @param cloneId `(string: &lt;optional&gt;)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshotId`.
          * 
          * @return builder
          * 
@@ -635,7 +635,7 @@ public final class ExternalVolumeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param snapshotId `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
+         * @param snapshotId `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
          * 
          * @return builder
          * 
@@ -646,7 +646,7 @@ public final class ExternalVolumeState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param snapshotId `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
+         * @param snapshotId `(string: &lt;optional&gt;)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `cloneId`.
          * 
          * @return builder
          * 

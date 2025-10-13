@@ -89,7 +89,7 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `(string: &lt;optional&gt;)` - Specifies the
-        /// [expression][nomad_api_filter] used to filter the results.
+        /// [expression][NomadApiFilter] used to filter the results.
         /// </summary>
         [Input("filter")]
         public string? Filter { get; set; }
@@ -118,7 +118,7 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `(string: &lt;optional&gt;)` - Specifies the
-        /// [expression][nomad_api_filter] used to filter the results.
+        /// [expression][NomadApiFilter] used to filter the results.
         /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
