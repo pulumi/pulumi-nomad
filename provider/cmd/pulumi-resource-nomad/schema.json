@@ -62,11 +62,11 @@
             },
             "certFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
+                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of\u003cspan pulumi-lang-nodejs=\" keyFile \" pulumi-lang-dotnet=\" KeyFile \" pulumi-lang-go=\" keyFile \" pulumi-lang-python=\" key_file \" pulumi-lang-yaml=\" keyFile \" pulumi-lang-java=\" keyFile \"\u003e key_file \u003c/span\u003eor key_pem."
             },
             "certPem": {
                 "type": "string",
-                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
+                "description": "PEM-encoded certificate provided to the remote agent; requires use of\u003cspan pulumi-lang-nodejs=\" keyFile \" pulumi-lang-dotnet=\" KeyFile \" pulumi-lang-go=\" keyFile \" pulumi-lang-python=\" key_file \" pulumi-lang-yaml=\" keyFile \" pulumi-lang-java=\" keyFile \"\u003e key_file \u003c/span\u003eor key_pem."
             },
             "headers": {
                 "type": "array",
@@ -89,11 +89,11 @@
             },
             "keyFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified."
+                "description": "A path to a PEM-encoded private key, required if\u003cspan pulumi-lang-nodejs=\" certFile \" pulumi-lang-dotnet=\" CertFile \" pulumi-lang-go=\" certFile \" pulumi-lang-python=\" cert_file \" pulumi-lang-yaml=\" certFile \" pulumi-lang-java=\" certFile \"\u003e cert_file \u003c/span\u003eor\u003cspan pulumi-lang-nodejs=\" certPem \" pulumi-lang-dotnet=\" CertPem \" pulumi-lang-go=\" certPem \" pulumi-lang-python=\" cert_pem \" pulumi-lang-yaml=\" certPem \" pulumi-lang-java=\" certPem \"\u003e cert_pem \u003c/span\u003eis specified."
             },
             "keyPem": {
                 "type": "string",
-                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified."
+                "description": "PEM-encoded private key, required if\u003cspan pulumi-lang-nodejs=\" certFile \" pulumi-lang-dotnet=\" CertFile \" pulumi-lang-go=\" certFile \" pulumi-lang-python=\" cert_file \" pulumi-lang-yaml=\" certFile \" pulumi-lang-java=\" certFile \"\u003e cert_file \u003c/span\u003eor\u003cspan pulumi-lang-nodejs=\" certPem \" pulumi-lang-dotnet=\" CertPem \" pulumi-lang-go=\" certPem \" pulumi-lang-python=\" cert_pem \" pulumi-lang-yaml=\" certPem \" pulumi-lang-java=\" certPem \"\u003e cert_pem \u003c/span\u003eis specified."
             },
             "region": {
                 "type": "string",
@@ -221,7 +221,7 @@
                 },
                 "oidcDisableUserinfo": {
                     "type": "boolean",
-                    "description": "`(bool: false)` - When set to `true`, Nomad will\nnot make a request to the identity provider to get OIDC `UserInfo`.\nYou may wish to set this if your identity provider doesn't send any\nadditional claims from the `UserInfo` endpoint.\n"
+                    "description": "`(bool: false)` - When set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e, Nomad will\nnot make a request to the identity provider to get OIDC `UserInfo`.\nYou may wish to set this if your identity provider doesn't send any\nadditional claims from the `UserInfo` endpoint.\n"
                 },
                 "oidcDiscoveryUrl": {
                     "type": "string",
@@ -229,7 +229,7 @@
                 },
                 "oidcEnablePkce": {
                     "type": "boolean",
-                    "description": "`(bool: false)` - When set to `true`, Nomad will include\n[PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,\nyou may still need to enable it in your OIDC provider.\n"
+                    "description": "`(bool: false)` - When set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e, Nomad will include\n[PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,\nyou may still need to enable it in your OIDC provider.\n"
                 },
                 "oidcScopes": {
                     "type": "array",
@@ -259,7 +259,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "`([]string: optional)` - Who processes the assertion.\nDefaults to the auth method's `oidc_discovery_url`.\n"
+                    "description": "`([]string: optional)` - Who processes the assertion.\nDefaults to the auth method's \u003cspan pulumi-lang-nodejs=\"`oidcDiscoveryUrl`\" pulumi-lang-dotnet=\"`OidcDiscoveryUrl`\" pulumi-lang-go=\"`oidcDiscoveryUrl`\" pulumi-lang-python=\"`oidc_discovery_url`\" pulumi-lang-yaml=\"`oidcDiscoveryUrl`\" pulumi-lang-java=\"`oidcDiscoveryUrl`\"\u003e`oidc_discovery_url`\u003c/span\u003e.\n"
                 },
                 "extraHeaders": {
                     "type": "object",
@@ -270,15 +270,15 @@
                 },
                 "keyAlgorithm": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` is the key's algorithm.\nIts default values are based on the `key_source`:\n- \"nomad\": \"RS256\"; this is from Nomad's keyring and must not be changed\n- \"private_key\": \"RS256\"; must be RS256, RS384, or RS512\n- \"client_secret\": \"HS256\"; must be HS256, HS384, or HS512\n"
+                    "description": "`(string: \u003coptional\u003e)` is the key's algorithm.\nIts default values are based on the \u003cspan pulumi-lang-nodejs=\"`keySource`\" pulumi-lang-dotnet=\"`KeySource`\" pulumi-lang-go=\"`keySource`\" pulumi-lang-python=\"`key_source`\" pulumi-lang-yaml=\"`keySource`\" pulumi-lang-java=\"`keySource`\"\u003e`key_source`\u003c/span\u003e:\n- \"nomad\": \"RS256\"; this is from Nomad's keyring and must not be changed\n- \u003cspan pulumi-lang-nodejs=\"\"privateKey\"\" pulumi-lang-dotnet=\"\"PrivateKey\"\" pulumi-lang-go=\"\"privateKey\"\" pulumi-lang-python=\"\"private_key\"\" pulumi-lang-yaml=\"\"privateKey\"\" pulumi-lang-java=\"\"privateKey\"\"\u003e\"private_key\"\u003c/span\u003e: \"RS256\"; must be RS256, RS384, or RS512\n- \u003cspan pulumi-lang-nodejs=\"\"clientSecret\"\" pulumi-lang-dotnet=\"\"ClientSecret\"\" pulumi-lang-go=\"\"clientSecret\"\" pulumi-lang-python=\"\"client_secret\"\" pulumi-lang-yaml=\"\"clientSecret\"\" pulumi-lang-java=\"\"clientSecret\"\"\u003e\"client_secret\"\u003c/span\u003e: \"HS256\"; must be HS256, HS384, or HS512\n"
                 },
                 "keySource": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - Specifies where to get the private\nkey to sign the JWT.\nAvailable sources:\n- \"nomad\": Use current active key in Nomad's keyring\n- \"private_key\": Use key material in the `private_key` field\n- \"client_secret\": Use the `oidc_client_secret` as an HMAC key\n"
+                    "description": "`(string: \u003crequired\u003e)` - Specifies where to get the private\nkey to sign the JWT.\nAvailable sources:\n- \"nomad\": Use current active key in Nomad's keyring\n- \u003cspan pulumi-lang-nodejs=\"\"privateKey\"\" pulumi-lang-dotnet=\"\"PrivateKey\"\" pulumi-lang-go=\"\"privateKey\"\" pulumi-lang-python=\"\"private_key\"\" pulumi-lang-yaml=\"\"privateKey\"\" pulumi-lang-java=\"\"privateKey\"\"\u003e\"private_key\"\u003c/span\u003e: Use key material in the \u003cspan pulumi-lang-nodejs=\"`privateKey`\" pulumi-lang-dotnet=\"`PrivateKey`\" pulumi-lang-go=\"`privateKey`\" pulumi-lang-python=\"`private_key`\" pulumi-lang-yaml=\"`privateKey`\" pulumi-lang-java=\"`privateKey`\"\u003e`private_key`\u003c/span\u003e field\n- \u003cspan pulumi-lang-nodejs=\"\"clientSecret\"\" pulumi-lang-dotnet=\"\"ClientSecret\"\" pulumi-lang-go=\"\"clientSecret\"\" pulumi-lang-python=\"\"client_secret\"\" pulumi-lang-yaml=\"\"clientSecret\"\" pulumi-lang-java=\"\"clientSecret\"\"\u003e\"client_secret\"\u003c/span\u003e: Use the \u003cspan pulumi-lang-nodejs=\"`oidcClientSecret`\" pulumi-lang-dotnet=\"`OidcClientSecret`\" pulumi-lang-go=\"`oidcClientSecret`\" pulumi-lang-python=\"`oidc_client_secret`\" pulumi-lang-yaml=\"`oidcClientSecret`\" pulumi-lang-java=\"`oidcClientSecret`\"\u003e`oidc_client_secret`\u003c/span\u003e as an HMAC key\n"
                 },
                 "privateKey": {
                     "$ref": "#/types/nomad:index/AclAuthMethodConfigOidcClientAssertionPrivateKey:AclAuthMethodConfigOidcClientAssertionPrivateKey",
-                    "description": "`(OIDCClientAssertionKey: \u003coptional\u003e)` - External key\nto sign the JWT. `key_source` must be \"private_key\" to enable this.\n"
+                    "description": "`(OIDCClientAssertionKey: \u003coptional\u003e)` - External key\nto sign the JWT. \u003cspan pulumi-lang-nodejs=\"`keySource`\" pulumi-lang-dotnet=\"`KeySource`\" pulumi-lang-go=\"`keySource`\" pulumi-lang-python=\"`key_source`\" pulumi-lang-yaml=\"`keySource`\" pulumi-lang-java=\"`keySource`\"\u003e`key_source`\u003c/span\u003e must be \u003cspan pulumi-lang-nodejs=\"\"privateKey\"\" pulumi-lang-dotnet=\"\"PrivateKey\"\" pulumi-lang-go=\"\"privateKey\"\" pulumi-lang-python=\"\"private_key\"\" pulumi-lang-yaml=\"\"privateKey\"\" pulumi-lang-java=\"\"privateKey\"\"\u003e\"private_key\"\u003c/span\u003e to enable this.\n"
                 }
             },
             "type": "object",
@@ -299,28 +299,28 @@
             "properties": {
                 "keyId": {
                     "type": "string",
-                    "description": "`(string: optional)` - Becomes the JWT's \"kid\" header.\nMutually exclusive with `pem_cert` and `pem_cert_file`.\nAllowed `key_id_header` values: \"kid\" (the default)\n"
+                    "description": "`(string: optional)` - Becomes the JWT's \"kid\" header.\nMutually exclusive with \u003cspan pulumi-lang-nodejs=\"`pemCert`\" pulumi-lang-dotnet=\"`PemCert`\" pulumi-lang-go=\"`pemCert`\" pulumi-lang-python=\"`pem_cert`\" pulumi-lang-yaml=\"`pemCert`\" pulumi-lang-java=\"`pemCert`\"\u003e`pem_cert`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`pemCertFile`\" pulumi-lang-dotnet=\"`PemCertFile`\" pulumi-lang-go=\"`pemCertFile`\" pulumi-lang-python=\"`pem_cert_file`\" pulumi-lang-yaml=\"`pemCertFile`\" pulumi-lang-java=\"`pemCertFile`\"\u003e`pem_cert_file`\u003c/span\u003e.\nAllowed \u003cspan pulumi-lang-nodejs=\"`keyIdHeader`\" pulumi-lang-dotnet=\"`KeyIdHeader`\" pulumi-lang-go=\"`keyIdHeader`\" pulumi-lang-python=\"`key_id_header`\" pulumi-lang-yaml=\"`keyIdHeader`\" pulumi-lang-java=\"`keyIdHeader`\"\u003e`key_id_header`\u003c/span\u003e values: \"kid\" (the default)\n"
                 },
                 "keyIdHeader": {
                     "type": "string",
-                    "description": "`(string: optional)` - Which header the provider uses\nto find the public key to verify the signed JWT.\nThe default and allowed values depend on whether you set `key_id`,\n`pem_cert`, or `pem_cert_file`. You must set exactly one of those\noptions, so refer to them for their requirements.\n"
+                    "description": "`(string: optional)` - Which header the provider uses\nto find the public key to verify the signed JWT.\nThe default and allowed values depend on whether you set \u003cspan pulumi-lang-nodejs=\"`keyId`\" pulumi-lang-dotnet=\"`KeyId`\" pulumi-lang-go=\"`keyId`\" pulumi-lang-python=\"`key_id`\" pulumi-lang-yaml=\"`keyId`\" pulumi-lang-java=\"`keyId`\"\u003e`key_id`\u003c/span\u003e,\n\u003cspan pulumi-lang-nodejs=\"`pemCert`\" pulumi-lang-dotnet=\"`PemCert`\" pulumi-lang-go=\"`pemCert`\" pulumi-lang-python=\"`pem_cert`\" pulumi-lang-yaml=\"`pemCert`\" pulumi-lang-java=\"`pemCert`\"\u003e`pem_cert`\u003c/span\u003e, or \u003cspan pulumi-lang-nodejs=\"`pemCertFile`\" pulumi-lang-dotnet=\"`PemCertFile`\" pulumi-lang-go=\"`pemCertFile`\" pulumi-lang-python=\"`pem_cert_file`\" pulumi-lang-yaml=\"`pemCertFile`\" pulumi-lang-java=\"`pemCertFile`\"\u003e`pem_cert_file`\u003c/span\u003e. You must set exactly one of those\noptions, so refer to them for their requirements.\n"
                 },
                 "pemCert": {
                     "type": "string",
-                    "description": "`(string: optional)` - An x509 certificate, signed by the\nprivate key or a CA, in pem format. Nomad uses this certificate to\nderive an [x5t#S256][] (or [x5t][]) key_id.\nMutually exclusive with `pem_cert_file` and `key_id`.\nAllowed `key_id_header` values: \"x5t\", \"x5t#S256\" (default \"x5t#S256\")\n"
+                    "description": "`(string: optional)` - An x509 certificate, signed by the\nprivate key or a CA, in pem format. Nomad uses this certificate to\nderive an [x5t#S256][] (or [x5t][]) key_id.\nMutually exclusive with \u003cspan pulumi-lang-nodejs=\"`pemCertFile`\" pulumi-lang-dotnet=\"`PemCertFile`\" pulumi-lang-go=\"`pemCertFile`\" pulumi-lang-python=\"`pem_cert_file`\" pulumi-lang-yaml=\"`pemCertFile`\" pulumi-lang-java=\"`pemCertFile`\"\u003e`pem_cert_file`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`keyId`\" pulumi-lang-dotnet=\"`KeyId`\" pulumi-lang-go=\"`keyId`\" pulumi-lang-python=\"`key_id`\" pulumi-lang-yaml=\"`keyId`\" pulumi-lang-java=\"`keyId`\"\u003e`key_id`\u003c/span\u003e.\nAllowed \u003cspan pulumi-lang-nodejs=\"`keyIdHeader`\" pulumi-lang-dotnet=\"`KeyIdHeader`\" pulumi-lang-go=\"`keyIdHeader`\" pulumi-lang-python=\"`key_id_header`\" pulumi-lang-yaml=\"`keyIdHeader`\" pulumi-lang-java=\"`keyIdHeader`\"\u003e`key_id_header`\u003c/span\u003e values: \"x5t\", \"x5t#S256\" (default \"x5t#S256\")\n"
                 },
                 "pemCertFile": {
                     "type": "string",
-                    "description": "`(string: optional)` - An absolute path to an x509\ncertificate on Nomad servers' disk, signed by the private key or a CA,\nin pem format.\nNomad uses this certificate to derive an [x5t#S256][] (or [x5t][])\nheader. Mutually exclusive with `pem_cert` and key_id.\nAllowed `key_id_header` values: \"x5t\", \"x5t#S256\" (default \"x5t#S256\")\n"
+                    "description": "`(string: optional)` - An absolute path to an x509\ncertificate on Nomad servers' disk, signed by the private key or a CA,\nin pem format.\nNomad uses this certificate to derive an [x5t#S256][] (or [x5t][])\nheader. Mutually exclusive with \u003cspan pulumi-lang-nodejs=\"`pemCert`\" pulumi-lang-dotnet=\"`PemCert`\" pulumi-lang-go=\"`pemCert`\" pulumi-lang-python=\"`pem_cert`\" pulumi-lang-yaml=\"`pemCert`\" pulumi-lang-java=\"`pemCert`\"\u003e`pem_cert`\u003c/span\u003e and key_id.\nAllowed \u003cspan pulumi-lang-nodejs=\"`keyIdHeader`\" pulumi-lang-dotnet=\"`KeyIdHeader`\" pulumi-lang-go=\"`keyIdHeader`\" pulumi-lang-python=\"`key_id_header`\" pulumi-lang-yaml=\"`keyIdHeader`\" pulumi-lang-java=\"`keyIdHeader`\"\u003e`key_id_header`\u003c/span\u003e values: \"x5t\", \"x5t#S256\" (default \"x5t#S256\")\n"
                 },
                 "pemKey": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - An RSA private key, in pem format.\nIt is used to sign the JWT. Mutually exclusive with `pem_key`.\n",
+                    "description": "`(string: \u003coptional\u003e)` - An RSA private key, in pem format.\nIt is used to sign the JWT. Mutually exclusive with \u003cspan pulumi-lang-nodejs=\"`pemKey`\" pulumi-lang-dotnet=\"`PemKey`\" pulumi-lang-go=\"`pemKey`\" pulumi-lang-python=\"`pem_key`\" pulumi-lang-yaml=\"`pemKey`\" pulumi-lang-java=\"`pemKey`\"\u003e`pem_key`\u003c/span\u003e.\n",
                     "secret": true
                 },
                 "pemKeyFile": {
                     "type": "string",
-                    "description": "`(string: optional)` - An absolute path to a private key\non Nomad servers' disk, in pem format. It is used to sign the JWT.\nMutually exclusive with `pem_key_file`.\n"
+                    "description": "`(string: optional)` - An absolute path to a private key\non Nomad servers' disk, in pem format. It is used to sign the JWT.\nMutually exclusive with \u003cspan pulumi-lang-nodejs=\"`pemKeyFile`\" pulumi-lang-dotnet=\"`PemKeyFile`\" pulumi-lang-go=\"`pemKeyFile`\" pulumi-lang-python=\"`pem_key_file`\" pulumi-lang-yaml=\"`pemKeyFile`\" pulumi-lang-java=\"`pemKeyFile`\"\u003e`pem_key_file`\u003c/span\u003e.\n"
                 }
             },
             "type": "object"
@@ -413,7 +413,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "`[]string: optional` - The flags passed to `mount`.\n"
+                    "description": "`[]string: optional` - The flags passed to \u003cspan pulumi-lang-nodejs=\"`mount`\" pulumi-lang-dotnet=\"`Mount`\" pulumi-lang-go=\"`mount`\" pulumi-lang-python=\"`mount`\" pulumi-lang-yaml=\"`mount`\" pulumi-lang-java=\"`mount`\"\u003e`mount`\u003c/span\u003e.\n"
                 }
             },
             "type": "object"
@@ -446,7 +446,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "`([]string: \u003coptional\u003e)` - The flags passed to `mount`.\n"
+                    "description": "`([]string: \u003coptional\u003e)` - The flags passed to \u003cspan pulumi-lang-nodejs=\"`mount`\" pulumi-lang-dotnet=\"`Mount`\" pulumi-lang-go=\"`mount`\" pulumi-lang-python=\"`mount`\" pulumi-lang-yaml=\"`mount`\" pulumi-lang-java=\"`mount`\"\u003e`mount`\u003c/span\u003e.\n"
                 }
             },
             "type": "object"
@@ -613,11 +613,11 @@
             "properties": {
                 "accessMode": {
                     "type": "string",
-                    "description": "`(string)` - How the volume can be mounted by\nallocations. Refer to the [`access_mode`][] documentation for details.\n"
+                    "description": "`(string)` - How the volume can be mounted by\nallocations. Refer to the [\u003cspan pulumi-lang-nodejs=\"`accessMode`\" pulumi-lang-dotnet=\"`AccessMode`\" pulumi-lang-go=\"`accessMode`\" pulumi-lang-python=\"`access_mode`\" pulumi-lang-yaml=\"`accessMode`\" pulumi-lang-java=\"`accessMode`\"\u003e`access_mode`\u003c/span\u003e][] documentation for details.\n"
                 },
                 "attachmentMode": {
                     "type": "string",
-                    "description": "`(string)` - The storage API that will be used by the\nvolume. Refer to the [`attachment_mode`][] documentation.\n"
+                    "description": "`(string)` - The storage API that will be used by the\nvolume. Refer to the [\u003cspan pulumi-lang-nodejs=\"`attachmentMode`\" pulumi-lang-dotnet=\"`AttachmentMode`\" pulumi-lang-go=\"`attachmentMode`\" pulumi-lang-python=\"`attachment_mode`\" pulumi-lang-yaml=\"`attachmentMode`\" pulumi-lang-java=\"`attachmentMode`\"\u003e`attachment_mode`\u003c/span\u003e][] documentation.\n"
                 }
             },
             "type": "object",
@@ -650,11 +650,11 @@
             "properties": {
                 "accessMode": {
                     "type": "string",
-                    "description": "`(string)` - How the volume can be mounted by\nallocations. Refer to the [`access_mode`][] documentation for details.\n"
+                    "description": "`(string)` - How the volume can be mounted by\nallocations. Refer to the [\u003cspan pulumi-lang-nodejs=\"`accessMode`\" pulumi-lang-dotnet=\"`AccessMode`\" pulumi-lang-go=\"`accessMode`\" pulumi-lang-python=\"`access_mode`\" pulumi-lang-yaml=\"`accessMode`\" pulumi-lang-java=\"`accessMode`\"\u003e`access_mode`\u003c/span\u003e][] documentation for details.\n"
                 },
                 "attachmentMode": {
                     "type": "string",
-                    "description": "`(string)` - The storage API that will be used by the\nvolume. Refer to the [`attachment_mode`][] documentation.\n"
+                    "description": "`(string)` - The storage API that will be used by the\nvolume. Refer to the [\u003cspan pulumi-lang-nodejs=\"`attachmentMode`\" pulumi-lang-dotnet=\"`AttachmentMode`\" pulumi-lang-go=\"`attachmentMode`\" pulumi-lang-python=\"`attachment_mode`\" pulumi-lang-yaml=\"`attachmentMode`\" pulumi-lang-java=\"`attachmentMode`\"\u003e`attachment_mode`\u003c/span\u003e][] documentation.\n"
                 }
             },
             "type": "object",
@@ -711,7 +711,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "`[]string: optional` - The flags passed to `mount`.\n"
+                    "description": "`[]string: optional` - The flags passed to \u003cspan pulumi-lang-nodejs=\"`mount`\" pulumi-lang-dotnet=\"`Mount`\" pulumi-lang-go=\"`mount`\" pulumi-lang-python=\"`mount`\" pulumi-lang-yaml=\"`mount`\" pulumi-lang-java=\"`mount`\"\u003e`mount`\u003c/span\u003e.\n"
                 }
             },
             "type": "object"
@@ -818,7 +818,7 @@
             "properties": {
                 "allowFs": {
                     "type": "boolean",
-                    "description": "`(boolean: false)` - Set this to `true` to be able to use\nHCL2 filesystem functions\n"
+                    "description": "`(boolean: false)` - Set this to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e to be able to use\nHCL2 filesystem functions\n"
                 },
                 "vars": {
                     "type": "object",
@@ -1010,7 +1010,7 @@
                 },
                 "schedulerAlgorithm": {
                     "type": "string",
-                    "description": "`(string)` - The scheduler algorithm used in the node\npool. Possible values are `binpack` or `spread`. If not defined the global\ncluster configuration is used.\n"
+                    "description": "`(string)` - The scheduler algorithm used in the node\npool. Possible values are \u003cspan pulumi-lang-nodejs=\"`binpack`\" pulumi-lang-dotnet=\"`Binpack`\" pulumi-lang-go=\"`binpack`\" pulumi-lang-python=\"`binpack`\" pulumi-lang-yaml=\"`binpack`\" pulumi-lang-java=\"`binpack`\"\u003e`binpack`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`spread`\" pulumi-lang-dotnet=\"`Spread`\" pulumi-lang-go=\"`spread`\" pulumi-lang-python=\"`spread`\" pulumi-lang-yaml=\"`spread`\" pulumi-lang-java=\"`spread`\"\u003e`spread`\u003c/span\u003e. If not defined the global\ncluster configuration is used.\n"
                 }
             },
             "type": "object"
@@ -1045,7 +1045,7 @@
                 },
                 "regionLimit": {
                     "$ref": "#/types/nomad:index/QuoteSpecificationLimitRegionLimit:QuoteSpecificationLimitRegionLimit",
-                    "description": "`(block: \u003crequired\u003e)` - The limits to enforce. This block\nmay only be specified once in the `limits` block. Its structure is\ndocumented below.\n"
+                    "description": "`(block: \u003crequired\u003e)` - The limits to enforce. This block\nmay only be specified once in the \u003cspan pulumi-lang-nodejs=\"`limits`\" pulumi-lang-dotnet=\"`Limits`\" pulumi-lang-go=\"`limits`\" pulumi-lang-python=\"`limits`\" pulumi-lang-yaml=\"`limits`\" pulumi-lang-java=\"`limits`\"\u003e`limits`\u003c/span\u003e block. Its structure is\ndocumented below.\n"
                 }
             },
             "type": "object",
@@ -1095,7 +1095,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "`([]string: \u003coptional\u003e)` - The flags passed to `mount`.\n"
+                    "description": "`([]string: \u003coptional\u003e)` - The flags passed to \u003cspan pulumi-lang-nodejs=\"`mount`\" pulumi-lang-dotnet=\"`Mount`\" pulumi-lang-go=\"`mount`\" pulumi-lang-python=\"`mount`\" pulumi-lang-yaml=\"`mount`\" pulumi-lang-java=\"`mount`\"\u003e`mount`\u003c/span\u003e.\n"
                 }
             },
             "type": "object"
@@ -1308,7 +1308,7 @@
                     "items": {
                         "$ref": "#/types/nomad:index/getAclTokensAclTokenRole:getAclTokensAclTokenRole"
                     },
-                    "description": "`(set: [])` - The list of roles attached to the token. Each entry has\n`name` and `id` attributes.\n"
+                    "description": "`(set: [])` - The list of roles attached to the token. Each entry has\n\u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e attributes.\n"
                 },
                 "type": {
                     "type": "string",
@@ -1465,11 +1465,11 @@
             "properties": {
                 "accessMode": {
                     "type": "string",
-                    "description": "`(string)` - How the volume can be mounted by\nallocations. Refer to the [`access_mode`][] documentation for details.\n"
+                    "description": "`(string)` - How the volume can be mounted by\nallocations. Refer to the [\u003cspan pulumi-lang-nodejs=\"`accessMode`\" pulumi-lang-dotnet=\"`AccessMode`\" pulumi-lang-go=\"`accessMode`\" pulumi-lang-python=\"`access_mode`\" pulumi-lang-yaml=\"`accessMode`\" pulumi-lang-java=\"`accessMode`\"\u003e`access_mode`\u003c/span\u003e][] documentation for details.\n"
                 },
                 "attachmentMode": {
                     "type": "string",
-                    "description": "`(string)` - The storage API that will be used by the\nvolume. Refer to the [`attachment_mode`][] documentation.\n"
+                    "description": "`(string)` - The storage API that will be used by the\nvolume. Refer to the [\u003cspan pulumi-lang-nodejs=\"`attachmentMode`\" pulumi-lang-dotnet=\"`AttachmentMode`\" pulumi-lang-go=\"`attachmentMode`\" pulumi-lang-python=\"`attachment_mode`\" pulumi-lang-yaml=\"`attachmentMode`\" pulumi-lang-java=\"`attachmentMode`\"\u003e`attachment_mode`\u003c/span\u003e][] documentation.\n"
                 }
             },
             "type": "object",
@@ -1709,27 +1709,27 @@
             "properties": {
                 "algorithm": {
                     "type": "string",
-                    "description": "`(string)` - JWK field `alg`\n"
+                    "description": "`(string)` - JWK field \u003cspan pulumi-lang-nodejs=\"`alg`\" pulumi-lang-dotnet=\"`Alg`\" pulumi-lang-go=\"`alg`\" pulumi-lang-python=\"`alg`\" pulumi-lang-yaml=\"`alg`\" pulumi-lang-java=\"`alg`\"\u003e`alg`\u003c/span\u003e\n"
                 },
                 "exponent": {
                     "type": "string",
-                    "description": "`(string)` - JWK field `e`\n"
+                    "description": "`(string)` - JWK field \u003cspan pulumi-lang-nodejs=\"`e`\" pulumi-lang-dotnet=\"`E`\" pulumi-lang-go=\"`e`\" pulumi-lang-python=\"`e`\" pulumi-lang-yaml=\"`e`\" pulumi-lang-java=\"`e`\"\u003e`e`\u003c/span\u003e\n"
                 },
                 "keyId": {
                     "type": "string",
-                    "description": "`(string)` - JWK field `kid`\n"
+                    "description": "`(string)` - JWK field \u003cspan pulumi-lang-nodejs=\"`kid`\" pulumi-lang-dotnet=\"`Kid`\" pulumi-lang-go=\"`kid`\" pulumi-lang-python=\"`kid`\" pulumi-lang-yaml=\"`kid`\" pulumi-lang-java=\"`kid`\"\u003e`kid`\u003c/span\u003e\n"
                 },
                 "keyType": {
                     "type": "string",
-                    "description": "`(string)` - JWK field `kty`\n"
+                    "description": "`(string)` - JWK field \u003cspan pulumi-lang-nodejs=\"`kty`\" pulumi-lang-dotnet=\"`Kty`\" pulumi-lang-go=\"`kty`\" pulumi-lang-python=\"`kty`\" pulumi-lang-yaml=\"`kty`\" pulumi-lang-java=\"`kty`\"\u003e`kty`\u003c/span\u003e\n"
                 },
                 "keyUse": {
                     "type": "string",
-                    "description": "`(string)` - JWK field `use`\n"
+                    "description": "`(string)` - JWK field \u003cspan pulumi-lang-nodejs=\"`use`\" pulumi-lang-dotnet=\"`Use`\" pulumi-lang-go=\"`use`\" pulumi-lang-python=\"`use`\" pulumi-lang-yaml=\"`use`\" pulumi-lang-java=\"`use`\"\u003e`use`\u003c/span\u003e\n"
                 },
                 "modulus": {
                     "type": "string",
-                    "description": "`(string)` - JWK field `n`\n"
+                    "description": "`(string)` - JWK field \u003cspan pulumi-lang-nodejs=\"`n`\" pulumi-lang-dotnet=\"`N`\" pulumi-lang-go=\"`n`\" pulumi-lang-python=\"`n`\" pulumi-lang-yaml=\"`n`\" pulumi-lang-java=\"`n`\"\u003e`n`\u003c/span\u003e\n"
                 }
             },
             "type": "object",
@@ -1955,11 +1955,11 @@
             },
             "certFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
+                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of\u003cspan pulumi-lang-nodejs=\" keyFile \" pulumi-lang-dotnet=\" KeyFile \" pulumi-lang-go=\" keyFile \" pulumi-lang-python=\" key_file \" pulumi-lang-yaml=\" keyFile \" pulumi-lang-java=\" keyFile \"\u003e key_file \u003c/span\u003eor key_pem."
             },
             "certPem": {
                 "type": "string",
-                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
+                "description": "PEM-encoded certificate provided to the remote agent; requires use of\u003cspan pulumi-lang-nodejs=\" keyFile \" pulumi-lang-dotnet=\" KeyFile \" pulumi-lang-go=\" keyFile \" pulumi-lang-python=\" key_file \" pulumi-lang-yaml=\" keyFile \" pulumi-lang-java=\" keyFile \"\u003e key_file \u003c/span\u003eor key_pem."
             },
             "headers": {
                 "type": "array",
@@ -1982,11 +1982,11 @@
             },
             "keyFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified."
+                "description": "A path to a PEM-encoded private key, required if\u003cspan pulumi-lang-nodejs=\" certFile \" pulumi-lang-dotnet=\" CertFile \" pulumi-lang-go=\" certFile \" pulumi-lang-python=\" cert_file \" pulumi-lang-yaml=\" certFile \" pulumi-lang-java=\" certFile \"\u003e cert_file \u003c/span\u003eor\u003cspan pulumi-lang-nodejs=\" certPem \" pulumi-lang-dotnet=\" CertPem \" pulumi-lang-go=\" certPem \" pulumi-lang-python=\" cert_pem \" pulumi-lang-yaml=\" certPem \" pulumi-lang-java=\" certPem \"\u003e cert_pem \u003c/span\u003eis specified."
             },
             "keyPem": {
                 "type": "string",
-                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified."
+                "description": "PEM-encoded private key, required if\u003cspan pulumi-lang-nodejs=\" certFile \" pulumi-lang-dotnet=\" CertFile \" pulumi-lang-go=\" certFile \" pulumi-lang-python=\" cert_file \" pulumi-lang-yaml=\" certFile \" pulumi-lang-java=\" certFile \"\u003e cert_file \u003c/span\u003eor\u003cspan pulumi-lang-nodejs=\" certPem \" pulumi-lang-dotnet=\" CertPem \" pulumi-lang-go=\" certPem \" pulumi-lang-python=\" cert_pem \" pulumi-lang-yaml=\" certPem \" pulumi-lang-java=\" certPem \"\u003e cert_pem \u003c/span\u003eis specified."
             },
             "region": {
                 "type": "string",
@@ -2016,11 +2016,11 @@
             },
             "certFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
+                "description": "A path to a PEM-encoded certificate provided to the remote agent; requires use of\u003cspan pulumi-lang-nodejs=\" keyFile \" pulumi-lang-dotnet=\" KeyFile \" pulumi-lang-go=\" keyFile \" pulumi-lang-python=\" key_file \" pulumi-lang-yaml=\" keyFile \" pulumi-lang-java=\" keyFile \"\u003e key_file \u003c/span\u003eor key_pem."
             },
             "certPem": {
                 "type": "string",
-                "description": "PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem."
+                "description": "PEM-encoded certificate provided to the remote agent; requires use of\u003cspan pulumi-lang-nodejs=\" keyFile \" pulumi-lang-dotnet=\" KeyFile \" pulumi-lang-go=\" keyFile \" pulumi-lang-python=\" key_file \" pulumi-lang-yaml=\" keyFile \" pulumi-lang-java=\" keyFile \"\u003e key_file \u003c/span\u003eor key_pem."
             },
             "headers": {
                 "type": "array",
@@ -2043,11 +2043,11 @@
             },
             "keyFile": {
                 "type": "string",
-                "description": "A path to a PEM-encoded private key, required if cert_file or cert_pem is specified."
+                "description": "A path to a PEM-encoded private key, required if\u003cspan pulumi-lang-nodejs=\" certFile \" pulumi-lang-dotnet=\" CertFile \" pulumi-lang-go=\" certFile \" pulumi-lang-python=\" cert_file \" pulumi-lang-yaml=\" certFile \" pulumi-lang-java=\" certFile \"\u003e cert_file \u003c/span\u003eor\u003cspan pulumi-lang-nodejs=\" certPem \" pulumi-lang-dotnet=\" CertPem \" pulumi-lang-go=\" certPem \" pulumi-lang-python=\" cert_pem \" pulumi-lang-yaml=\" certPem \" pulumi-lang-java=\" certPem \"\u003e cert_pem \u003c/span\u003eis specified."
             },
             "keyPem": {
                 "type": "string",
-                "description": "PEM-encoded private key, required if cert_file or cert_pem is specified."
+                "description": "PEM-encoded private key, required if\u003cspan pulumi-lang-nodejs=\" certFile \" pulumi-lang-dotnet=\" CertFile \" pulumi-lang-go=\" certFile \" pulumi-lang-python=\" cert_file \" pulumi-lang-yaml=\" certFile \" pulumi-lang-java=\" certFile \"\u003e cert_file \u003c/span\u003eor\u003cspan pulumi-lang-nodejs=\" certPem \" pulumi-lang-dotnet=\" CertPem \" pulumi-lang-go=\" certPem \" pulumi-lang-python=\" cert_pem \" pulumi-lang-yaml=\" certPem \" pulumi-lang-java=\" certPem \"\u003e cert_pem \u003c/span\u003eis specified."
             },
             "region": {
                 "type": "string",
@@ -2088,7 +2088,7 @@
                 },
                 "tokenLocality": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - Defines whether the ACL Auth Method\ncreates a local or global token when performing SSO login. This field must be\nset to either `local` or `global`.\n"
+                    "description": "`(string: \u003crequired\u003e)` - Defines whether the ACL Auth Method\ncreates a local or global token when performing SSO login. This field must be\nset to either \u003cspan pulumi-lang-nodejs=\"`local`\" pulumi-lang-dotnet=\"`Local`\" pulumi-lang-go=\"`local`\" pulumi-lang-python=\"`local`\" pulumi-lang-yaml=\"`local`\" pulumi-lang-java=\"`local`\"\u003e`local`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`global`\" pulumi-lang-dotnet=\"`Global`\" pulumi-lang-go=\"`global`\" pulumi-lang-python=\"`global`\" pulumi-lang-yaml=\"`global`\" pulumi-lang-java=\"`global`\"\u003e`global`\u003c/span\u003e.\n"
                 },
                 "tokenNameFormat": {
                     "type": "string",
@@ -2125,7 +2125,7 @@
                 },
                 "tokenLocality": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - Defines whether the ACL Auth Method\ncreates a local or global token when performing SSO login. This field must be\nset to either `local` or `global`.\n"
+                    "description": "`(string: \u003crequired\u003e)` - Defines whether the ACL Auth Method\ncreates a local or global token when performing SSO login. This field must be\nset to either \u003cspan pulumi-lang-nodejs=\"`local`\" pulumi-lang-dotnet=\"`Local`\" pulumi-lang-go=\"`local`\" pulumi-lang-python=\"`local`\" pulumi-lang-yaml=\"`local`\" pulumi-lang-java=\"`local`\"\u003e`local`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`global`\" pulumi-lang-dotnet=\"`Global`\" pulumi-lang-go=\"`global`\" pulumi-lang-python=\"`global`\" pulumi-lang-yaml=\"`global`\" pulumi-lang-java=\"`global`\"\u003e`global`\u003c/span\u003e.\n"
                 },
                 "tokenNameFormat": {
                     "type": "string",
@@ -2163,7 +2163,7 @@
                     },
                     "tokenLocality": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - Defines whether the ACL Auth Method\ncreates a local or global token when performing SSO login. This field must be\nset to either `local` or `global`.\n"
+                        "description": "`(string: \u003crequired\u003e)` - Defines whether the ACL Auth Method\ncreates a local or global token when performing SSO login. This field must be\nset to either \u003cspan pulumi-lang-nodejs=\"`local`\" pulumi-lang-dotnet=\"`Local`\" pulumi-lang-go=\"`local`\" pulumi-lang-python=\"`local`\" pulumi-lang-yaml=\"`local`\" pulumi-lang-java=\"`local`\"\u003e`local`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`global`\" pulumi-lang-dotnet=\"`Global`\" pulumi-lang-go=\"`global`\" pulumi-lang-python=\"`global`\" pulumi-lang-yaml=\"`global`\" pulumi-lang-java=\"`global`\"\u003e`global`\u003c/span\u003e.\n"
                     },
                     "tokenNameFormat": {
                         "type": "string",
@@ -2185,11 +2185,11 @@
                 },
                 "bindName": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Target of the binding. If `bind_type` is\n`role` or `policy` then `bind_name` is required. If `bind_type` is\n`management` than `bind_name` must not be defined.\n"
+                    "description": "`(string: \u003coptional\u003e)` - Target of the binding. If \u003cspan pulumi-lang-nodejs=\"`bindType`\" pulumi-lang-dotnet=\"`BindType`\" pulumi-lang-go=\"`bindType`\" pulumi-lang-python=\"`bind_type`\" pulumi-lang-yaml=\"`bindType`\" pulumi-lang-java=\"`bindType`\"\u003e`bind_type`\u003c/span\u003e is\n\u003cspan pulumi-lang-nodejs=\"`role`\" pulumi-lang-dotnet=\"`Role`\" pulumi-lang-go=\"`role`\" pulumi-lang-python=\"`role`\" pulumi-lang-yaml=\"`role`\" pulumi-lang-java=\"`role`\"\u003e`role`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`policy`\" pulumi-lang-dotnet=\"`Policy`\" pulumi-lang-go=\"`policy`\" pulumi-lang-python=\"`policy`\" pulumi-lang-yaml=\"`policy`\" pulumi-lang-java=\"`policy`\"\u003e`policy`\u003c/span\u003e then \u003cspan pulumi-lang-nodejs=\"`bindName`\" pulumi-lang-dotnet=\"`BindName`\" pulumi-lang-go=\"`bindName`\" pulumi-lang-python=\"`bind_name`\" pulumi-lang-yaml=\"`bindName`\" pulumi-lang-java=\"`bindName`\"\u003e`bind_name`\u003c/span\u003e is required. If \u003cspan pulumi-lang-nodejs=\"`bindType`\" pulumi-lang-dotnet=\"`BindType`\" pulumi-lang-go=\"`bindType`\" pulumi-lang-python=\"`bind_type`\" pulumi-lang-yaml=\"`bindType`\" pulumi-lang-java=\"`bindType`\"\u003e`bind_type`\u003c/span\u003e is\n\u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e than \u003cspan pulumi-lang-nodejs=\"`bindName`\" pulumi-lang-dotnet=\"`BindName`\" pulumi-lang-go=\"`bindName`\" pulumi-lang-python=\"`bind_name`\" pulumi-lang-yaml=\"`bindName`\" pulumi-lang-java=\"`bindName`\"\u003e`bind_name`\u003c/span\u003e must not be defined.\n"
                 },
                 "bindType": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - Adjusts how this binding rule is applied\nat login time. Valid values are `role`, `policy`, and `management`.\n"
+                    "description": "`(string: \u003crequired\u003e)` - Adjusts how this binding rule is applied\nat login time. Valid values are \u003cspan pulumi-lang-nodejs=\"`role`\" pulumi-lang-dotnet=\"`Role`\" pulumi-lang-go=\"`role`\" pulumi-lang-python=\"`role`\" pulumi-lang-yaml=\"`role`\" pulumi-lang-java=\"`role`\"\u003e`role`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`policy`\" pulumi-lang-dotnet=\"`Policy`\" pulumi-lang-go=\"`policy`\" pulumi-lang-python=\"`policy`\" pulumi-lang-yaml=\"`policy`\" pulumi-lang-java=\"`policy`\"\u003e`policy`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e.\n"
                 },
                 "description": {
                     "type": "string",
@@ -2211,11 +2211,11 @@
                 },
                 "bindName": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Target of the binding. If `bind_type` is\n`role` or `policy` then `bind_name` is required. If `bind_type` is\n`management` than `bind_name` must not be defined.\n"
+                    "description": "`(string: \u003coptional\u003e)` - Target of the binding. If \u003cspan pulumi-lang-nodejs=\"`bindType`\" pulumi-lang-dotnet=\"`BindType`\" pulumi-lang-go=\"`bindType`\" pulumi-lang-python=\"`bind_type`\" pulumi-lang-yaml=\"`bindType`\" pulumi-lang-java=\"`bindType`\"\u003e`bind_type`\u003c/span\u003e is\n\u003cspan pulumi-lang-nodejs=\"`role`\" pulumi-lang-dotnet=\"`Role`\" pulumi-lang-go=\"`role`\" pulumi-lang-python=\"`role`\" pulumi-lang-yaml=\"`role`\" pulumi-lang-java=\"`role`\"\u003e`role`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`policy`\" pulumi-lang-dotnet=\"`Policy`\" pulumi-lang-go=\"`policy`\" pulumi-lang-python=\"`policy`\" pulumi-lang-yaml=\"`policy`\" pulumi-lang-java=\"`policy`\"\u003e`policy`\u003c/span\u003e then \u003cspan pulumi-lang-nodejs=\"`bindName`\" pulumi-lang-dotnet=\"`BindName`\" pulumi-lang-go=\"`bindName`\" pulumi-lang-python=\"`bind_name`\" pulumi-lang-yaml=\"`bindName`\" pulumi-lang-java=\"`bindName`\"\u003e`bind_name`\u003c/span\u003e is required. If \u003cspan pulumi-lang-nodejs=\"`bindType`\" pulumi-lang-dotnet=\"`BindType`\" pulumi-lang-go=\"`bindType`\" pulumi-lang-python=\"`bind_type`\" pulumi-lang-yaml=\"`bindType`\" pulumi-lang-java=\"`bindType`\"\u003e`bind_type`\u003c/span\u003e is\n\u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e than \u003cspan pulumi-lang-nodejs=\"`bindName`\" pulumi-lang-dotnet=\"`BindName`\" pulumi-lang-go=\"`bindName`\" pulumi-lang-python=\"`bind_name`\" pulumi-lang-yaml=\"`bindName`\" pulumi-lang-java=\"`bindName`\"\u003e`bind_name`\u003c/span\u003e must not be defined.\n"
                 },
                 "bindType": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - Adjusts how this binding rule is applied\nat login time. Valid values are `role`, `policy`, and `management`.\n"
+                    "description": "`(string: \u003crequired\u003e)` - Adjusts how this binding rule is applied\nat login time. Valid values are \u003cspan pulumi-lang-nodejs=\"`role`\" pulumi-lang-dotnet=\"`Role`\" pulumi-lang-go=\"`role`\" pulumi-lang-python=\"`role`\" pulumi-lang-yaml=\"`role`\" pulumi-lang-java=\"`role`\"\u003e`role`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`policy`\" pulumi-lang-dotnet=\"`Policy`\" pulumi-lang-go=\"`policy`\" pulumi-lang-python=\"`policy`\" pulumi-lang-yaml=\"`policy`\" pulumi-lang-java=\"`policy`\"\u003e`policy`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e.\n"
                 },
                 "description": {
                     "type": "string",
@@ -2239,11 +2239,11 @@
                     },
                     "bindName": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - Target of the binding. If `bind_type` is\n`role` or `policy` then `bind_name` is required. If `bind_type` is\n`management` than `bind_name` must not be defined.\n"
+                        "description": "`(string: \u003coptional\u003e)` - Target of the binding. If \u003cspan pulumi-lang-nodejs=\"`bindType`\" pulumi-lang-dotnet=\"`BindType`\" pulumi-lang-go=\"`bindType`\" pulumi-lang-python=\"`bind_type`\" pulumi-lang-yaml=\"`bindType`\" pulumi-lang-java=\"`bindType`\"\u003e`bind_type`\u003c/span\u003e is\n\u003cspan pulumi-lang-nodejs=\"`role`\" pulumi-lang-dotnet=\"`Role`\" pulumi-lang-go=\"`role`\" pulumi-lang-python=\"`role`\" pulumi-lang-yaml=\"`role`\" pulumi-lang-java=\"`role`\"\u003e`role`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`policy`\" pulumi-lang-dotnet=\"`Policy`\" pulumi-lang-go=\"`policy`\" pulumi-lang-python=\"`policy`\" pulumi-lang-yaml=\"`policy`\" pulumi-lang-java=\"`policy`\"\u003e`policy`\u003c/span\u003e then \u003cspan pulumi-lang-nodejs=\"`bindName`\" pulumi-lang-dotnet=\"`BindName`\" pulumi-lang-go=\"`bindName`\" pulumi-lang-python=\"`bind_name`\" pulumi-lang-yaml=\"`bindName`\" pulumi-lang-java=\"`bindName`\"\u003e`bind_name`\u003c/span\u003e is required. If \u003cspan pulumi-lang-nodejs=\"`bindType`\" pulumi-lang-dotnet=\"`BindType`\" pulumi-lang-go=\"`bindType`\" pulumi-lang-python=\"`bind_type`\" pulumi-lang-yaml=\"`bindType`\" pulumi-lang-java=\"`bindType`\"\u003e`bind_type`\u003c/span\u003e is\n\u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e than \u003cspan pulumi-lang-nodejs=\"`bindName`\" pulumi-lang-dotnet=\"`BindName`\" pulumi-lang-go=\"`bindName`\" pulumi-lang-python=\"`bind_name`\" pulumi-lang-yaml=\"`bindName`\" pulumi-lang-java=\"`bindName`\"\u003e`bind_name`\u003c/span\u003e must not be defined.\n"
                     },
                     "bindType": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - Adjusts how this binding rule is applied\nat login time. Valid values are `role`, `policy`, and `management`.\n"
+                        "description": "`(string: \u003crequired\u003e)` - Adjusts how this binding rule is applied\nat login time. Valid values are \u003cspan pulumi-lang-nodejs=\"`role`\" pulumi-lang-dotnet=\"`Role`\" pulumi-lang-go=\"`role`\" pulumi-lang-python=\"`role`\" pulumi-lang-yaml=\"`role`\" pulumi-lang-java=\"`role`\"\u003e`role`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`policy`\" pulumi-lang-dotnet=\"`Policy`\" pulumi-lang-go=\"`policy`\" pulumi-lang-python=\"`policy`\" pulumi-lang-yaml=\"`policy`\" pulumi-lang-java=\"`policy`\"\u003e`policy`\u003c/span\u003e, and \u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e.\n"
                     },
                     "description": {
                         "type": "string",
@@ -2423,14 +2423,14 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "`(set: [])` - A set of policy names to associate with this\ntoken. Must be set on `client`-type tokens, must not be set on\n`management`-type tokens. Policies do not need to exist before being\nused here.\n"
+                    "description": "`(set: [])` - A set of policy names to associate with this\ntoken. Must be set on \u003cspan pulumi-lang-nodejs=\"`client`\" pulumi-lang-dotnet=\"`Client`\" pulumi-lang-go=\"`client`\" pulumi-lang-python=\"`client`\" pulumi-lang-yaml=\"`client`\" pulumi-lang-java=\"`client`\"\u003e`client`\u003c/span\u003e-type tokens, must not be set on\n\u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e-type tokens. Policies do not need to exist before being\nused here.\n"
                 },
                 "roles": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/nomad:index/AclTokenRole:AclTokenRole"
                     },
-                    "description": "`(set: [])` - The list of roles attached to the token. Each entry has\n`name` and `id` attributes. It may be used multiple times.\n"
+                    "description": "`(set: [])` - The list of roles attached to the token. Each entry has\n\u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e attributes. It may be used multiple times.\n"
                 },
                 "secretId": {
                     "type": "string",
@@ -2439,7 +2439,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The type of token this is. Use `client`\nfor tokens that will have policies associated with them. Use `management`\nfor tokens that can perform any action.\n"
+                    "description": "`(string: \u003crequired\u003e)` - The type of token this is. Use \u003cspan pulumi-lang-nodejs=\"`client`\" pulumi-lang-dotnet=\"`Client`\" pulumi-lang-go=\"`client`\" pulumi-lang-python=\"`client`\" pulumi-lang-yaml=\"`client`\" pulumi-lang-java=\"`client`\"\u003e`client`\u003c/span\u003e\nfor tokens that will have policies associated with them. Use \u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e\nfor tokens that can perform any action.\n"
                 }
             },
             "required": [
@@ -2470,18 +2470,18 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "`(set: [])` - A set of policy names to associate with this\ntoken. Must be set on `client`-type tokens, must not be set on\n`management`-type tokens. Policies do not need to exist before being\nused here.\n"
+                    "description": "`(set: [])` - A set of policy names to associate with this\ntoken. Must be set on \u003cspan pulumi-lang-nodejs=\"`client`\" pulumi-lang-dotnet=\"`Client`\" pulumi-lang-go=\"`client`\" pulumi-lang-python=\"`client`\" pulumi-lang-yaml=\"`client`\" pulumi-lang-java=\"`client`\"\u003e`client`\u003c/span\u003e-type tokens, must not be set on\n\u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e-type tokens. Policies do not need to exist before being\nused here.\n"
                 },
                 "roles": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/nomad:index/AclTokenRole:AclTokenRole"
                     },
-                    "description": "`(set: [])` - The list of roles attached to the token. Each entry has\n`name` and `id` attributes. It may be used multiple times.\n"
+                    "description": "`(set: [])` - The list of roles attached to the token. Each entry has\n\u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e attributes. It may be used multiple times.\n"
                 },
                 "type": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The type of token this is. Use `client`\nfor tokens that will have policies associated with them. Use `management`\nfor tokens that can perform any action.\n"
+                    "description": "`(string: \u003crequired\u003e)` - The type of token this is. Use \u003cspan pulumi-lang-nodejs=\"`client`\" pulumi-lang-dotnet=\"`Client`\" pulumi-lang-go=\"`client`\" pulumi-lang-python=\"`client`\" pulumi-lang-yaml=\"`client`\" pulumi-lang-java=\"`client`\"\u003e`client`\u003c/span\u003e\nfor tokens that will have policies associated with them. Use \u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e\nfor tokens that can perform any action.\n"
                 }
             },
             "requiredInputs": [
@@ -2521,14 +2521,14 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "`(set: [])` - A set of policy names to associate with this\ntoken. Must be set on `client`-type tokens, must not be set on\n`management`-type tokens. Policies do not need to exist before being\nused here.\n"
+                        "description": "`(set: [])` - A set of policy names to associate with this\ntoken. Must be set on \u003cspan pulumi-lang-nodejs=\"`client`\" pulumi-lang-dotnet=\"`Client`\" pulumi-lang-go=\"`client`\" pulumi-lang-python=\"`client`\" pulumi-lang-yaml=\"`client`\" pulumi-lang-java=\"`client`\"\u003e`client`\u003c/span\u003e-type tokens, must not be set on\n\u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e-type tokens. Policies do not need to exist before being\nused here.\n"
                     },
                     "roles": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/nomad:index/AclTokenRole:AclTokenRole"
                         },
-                        "description": "`(set: [])` - The list of roles attached to the token. Each entry has\n`name` and `id` attributes. It may be used multiple times.\n"
+                        "description": "`(set: [])` - The list of roles attached to the token. Each entry has\n\u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e attributes. It may be used multiple times.\n"
                     },
                     "secretId": {
                         "type": "string",
@@ -2537,7 +2537,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - The type of token this is. Use `client`\nfor tokens that will have policies associated with them. Use `management`\nfor tokens that can perform any action.\n"
+                        "description": "`(string: \u003crequired\u003e)` - The type of token this is. Use \u003cspan pulumi-lang-nodejs=\"`client`\" pulumi-lang-dotnet=\"`Client`\" pulumi-lang-go=\"`client`\" pulumi-lang-python=\"`client`\" pulumi-lang-yaml=\"`client`\" pulumi-lang-java=\"`client`\"\u003e`client`\u003c/span\u003e\nfor tokens that will have policies associated with them. Use \u003cspan pulumi-lang-nodejs=\"`management`\" pulumi-lang-dotnet=\"`Management`\" pulumi-lang-go=\"`management`\" pulumi-lang-python=\"`management`\" pulumi-lang-yaml=\"`management`\" pulumi-lang-java=\"`management`\"\u003e`management`\u003c/span\u003e\nfor tokens that can perform any action.\n"
                     }
                 },
                 "type": "object"
@@ -2571,7 +2571,7 @@
                 },
                 "cloneId": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.\n"
+                    "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\"\u003e`snapshot_id`\u003c/span\u003e.\n"
                 },
                 "context": {
                     "type": "object",
@@ -2641,7 +2641,7 @@
                 },
                 "snapshotId": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.\n"
+                    "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`cloneId`\" pulumi-lang-dotnet=\"`CloneId`\" pulumi-lang-go=\"`cloneId`\" pulumi-lang-python=\"`clone_id`\" pulumi-lang-yaml=\"`cloneId`\" pulumi-lang-java=\"`cloneId`\"\u003e`clone_id`\u003c/span\u003e.\n"
                 },
                 "topologies": {
                     "type": "array",
@@ -2697,7 +2697,7 @@
                 },
                 "cloneId": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.\n",
+                    "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\"\u003e`snapshot_id`\u003c/span\u003e.\n",
                     "willReplaceOnChanges": true
                 },
                 "mountOptions": {
@@ -2735,7 +2735,7 @@
                 },
                 "snapshotId": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.\n",
+                    "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`cloneId`\" pulumi-lang-dotnet=\"`CloneId`\" pulumi-lang-go=\"`cloneId`\" pulumi-lang-python=\"`clone_id`\" pulumi-lang-yaml=\"`cloneId`\" pulumi-lang-java=\"`cloneId`\"\u003e`clone_id`\u003c/span\u003e.\n",
                     "willReplaceOnChanges": true
                 },
                 "topologyRequest": {
@@ -2784,7 +2784,7 @@
                     },
                     "cloneId": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.\n",
+                        "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\"\u003e`snapshot_id`\u003c/span\u003e.\n",
                         "willReplaceOnChanges": true
                     },
                     "context": {
@@ -2857,7 +2857,7 @@
                     },
                     "snapshotId": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.\n",
+                        "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`cloneId`\" pulumi-lang-dotnet=\"`CloneId`\" pulumi-lang-go=\"`cloneId`\" pulumi-lang-python=\"`clone_id`\" pulumi-lang-yaml=\"`cloneId`\" pulumi-lang-java=\"`cloneId`\"\u003e`clone_id`\u003c/span\u003e.\n",
                         "willReplaceOnChanges": true
                     },
                     "topologies": {
@@ -3211,7 +3211,7 @@
             }
         },
         "nomad:index/dynamicHostVolume:DynamicHostVolume": {
-            "description": "layout: \"nomad\"\npage_title: \"Nomad: nomad.DynamicHostVolume\"\nsidebar_current: \"docs-nomad-resource-dynamic-host-volume\"\ndescription: |-\n  Manages the lifecycle of creating and deleting dynamic host volumes.\n---\n\nCreates and registers a dynamic host volume in Nomad. Note that Nomad supports\ntwo workflows for dynamic host volumes: create and register. Both resources\nresult in the same data source with the same outputs.\n\n\u003e **Warning:** Destroying this resource **will result in data loss**. Use the\n  [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental\n  deletions.\n\n\n## Example Usage\n\nCreating a dynamic host volume:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = new nomad.DynamicHostVolume(\"example\", {\n    name: \"example\",\n    namespace: \"prod\",\n    pluginId: \"mkdir\",\n    capacityMax: \"12 GiB\",\n    capacityMin: \"1.0 GiB\",\n    capabilities: [{\n        accessMode: \"single-node-writer\",\n        attachmentMode: \"file-system\",\n    }],\n    constraints: [{\n        attribute: `${attr.kernel.name}`,\n        value: \"linux\",\n    }],\n    parameters: {\n        some_key: \"some_value\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.DynamicHostVolume(\"example\",\n    name=\"example\",\n    namespace=\"prod\",\n    plugin_id=\"mkdir\",\n    capacity_max=\"12 GiB\",\n    capacity_min=\"1.0 GiB\",\n    capabilities=[{\n        \"access_mode\": \"single-node-writer\",\n        \"attachment_mode\": \"file-system\",\n    }],\n    constraints=[{\n        \"attribute\": \"${attr.kernel.name}\",\n        \"value\": \"linux\",\n    }],\n    parameters={\n        \"some_key\": \"some_value\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Nomad.DynamicHostVolume(\"example\", new()\n    {\n        Name = \"example\",\n        Namespace = \"prod\",\n        PluginId = \"mkdir\",\n        CapacityMax = \"12 GiB\",\n        CapacityMin = \"1.0 GiB\",\n        Capabilities = new[]\n        {\n            new Nomad.Inputs.DynamicHostVolumeCapabilityArgs\n            {\n                AccessMode = \"single-node-writer\",\n                AttachmentMode = \"file-system\",\n            },\n        },\n        Constraints = new[]\n        {\n            new Nomad.Inputs.DynamicHostVolumeConstraintArgs\n            {\n                Attribute = \"${attr.kernel.name}\",\n                Value = \"linux\",\n            },\n        },\n        Parameters = \n        {\n            { \"some_key\", \"some_value\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewDynamicHostVolume(ctx, \"example\", \u0026nomad.DynamicHostVolumeArgs{\n\t\t\tName:        pulumi.String(\"example\"),\n\t\t\tNamespace:   pulumi.String(\"prod\"),\n\t\t\tPluginId:    pulumi.String(\"mkdir\"),\n\t\t\tCapacityMax: pulumi.String(\"12 GiB\"),\n\t\t\tCapacityMin: pulumi.String(\"1.0 GiB\"),\n\t\t\tCapabilities: nomad.DynamicHostVolumeCapabilityArray{\n\t\t\t\t\u0026nomad.DynamicHostVolumeCapabilityArgs{\n\t\t\t\t\tAccessMode:     pulumi.String(\"single-node-writer\"),\n\t\t\t\t\tAttachmentMode: pulumi.String(\"file-system\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tConstraints: nomad.DynamicHostVolumeConstraintArray{\n\t\t\t\t\u0026nomad.DynamicHostVolumeConstraintArgs{\n\t\t\t\t\tAttribute: pulumi.Sprintf(\"${attr.kernel.name}\"),\n\t\t\t\t\tValue:     pulumi.String(\"linux\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tParameters: pulumi.StringMap{\n\t\t\t\t\"some_key\": pulumi.String(\"some_value\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.DynamicHostVolume;\nimport com.pulumi.nomad.DynamicHostVolumeArgs;\nimport com.pulumi.nomad.inputs.DynamicHostVolumeCapabilityArgs;\nimport com.pulumi.nomad.inputs.DynamicHostVolumeConstraintArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new DynamicHostVolume(\"example\", DynamicHostVolumeArgs.builder()\n            .name(\"example\")\n            .namespace(\"prod\")\n            .pluginId(\"mkdir\")\n            .capacityMax(\"12 GiB\")\n            .capacityMin(\"1.0 GiB\")\n            .capabilities(DynamicHostVolumeCapabilityArgs.builder()\n                .accessMode(\"single-node-writer\")\n                .attachmentMode(\"file-system\")\n                .build())\n            .constraints(DynamicHostVolumeConstraintArgs.builder()\n                .attribute(\"${attr.kernel.name}\")\n                .value(\"linux\")\n                .build())\n            .parameters(Map.of(\"some_key\", \"some_value\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: nomad:DynamicHostVolume\n    properties:\n      name: example\n      namespace: prod\n      pluginId: mkdir\n      capacityMax: 12 GiB\n      capacityMin: 1.0 GiB\n      capabilities:\n        - accessMode: single-node-writer\n          attachmentMode: file-system\n      constraints:\n        - attribute: $${attr.kernel.name}\n          value: linux\n      parameters:\n        some_key: some_value\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "layout: \"nomad\"\npage_title: \"Nomad:\u003cspan pulumi-lang-nodejs=\" nomad.DynamicHostVolume\"\" pulumi-lang-dotnet=\" nomad.DynamicHostVolume\"\" pulumi-lang-go=\" DynamicHostVolume\"\" pulumi-lang-python=\" DynamicHostVolume\"\" pulumi-lang-yaml=\" nomad.DynamicHostVolume\"\" pulumi-lang-java=\" nomad.DynamicHostVolume\"\"\u003e nomad.DynamicHostVolume\"\u003c/span\u003e\nsidebar_current: \"docs-nomad-resource-dynamic-host-volume\"\ndescription: |-\n  Manages the lifecycle of creating and deleting dynamic host volumes.\n---\n\nCreates and registers a dynamic host volume in Nomad. Note that Nomad supports\ntwo workflows for dynamic host volumes: create and register. Both resources\nresult in the same data source with the same outputs.\n\n\u003e **Warning:** Destroying this resource **will result in data loss**. Use the\n  [\u003cspan pulumi-lang-nodejs=\"`preventDestroy`\" pulumi-lang-dotnet=\"`PreventDestroy`\" pulumi-lang-go=\"`preventDestroy`\" pulumi-lang-python=\"`prevent_destroy`\" pulumi-lang-yaml=\"`preventDestroy`\" pulumi-lang-java=\"`preventDestroy`\"\u003e`prevent_destroy`\u003c/span\u003e]\u003cspan pulumi-lang-nodejs=\"[tfDocsPreventDestroy]\" pulumi-lang-dotnet=\"[TfDocsPreventDestroy]\" pulumi-lang-go=\"[tfDocsPreventDestroy]\" pulumi-lang-python=\"[tf_docs_prevent_destroy]\" pulumi-lang-yaml=\"[tfDocsPreventDestroy]\" pulumi-lang-java=\"[tfDocsPreventDestroy]\"\u003e[tf_docs_prevent_destroy]\u003c/span\u003e directive to avoid accidental\n  deletions.\n\n\n## Example Usage\n\nCreating a dynamic host volume:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = new nomad.DynamicHostVolume(\"example\", {\n    name: \"example\",\n    namespace: \"prod\",\n    pluginId: \"mkdir\",\n    capacityMax: \"12 GiB\",\n    capacityMin: \"1.0 GiB\",\n    capabilities: [{\n        accessMode: \"single-node-writer\",\n        attachmentMode: \"file-system\",\n    }],\n    constraints: [{\n        attribute: `${attr.kernel.name}`,\n        value: \"linux\",\n    }],\n    parameters: {\n        some_key: \"some_value\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.DynamicHostVolume(\"example\",\n    name=\"example\",\n    namespace=\"prod\",\n    plugin_id=\"mkdir\",\n    capacity_max=\"12 GiB\",\n    capacity_min=\"1.0 GiB\",\n    capabilities=[{\n        \"access_mode\": \"single-node-writer\",\n        \"attachment_mode\": \"file-system\",\n    }],\n    constraints=[{\n        \"attribute\": \"${attr.kernel.name}\",\n        \"value\": \"linux\",\n    }],\n    parameters={\n        \"some_key\": \"some_value\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Nomad.DynamicHostVolume(\"example\", new()\n    {\n        Name = \"example\",\n        Namespace = \"prod\",\n        PluginId = \"mkdir\",\n        CapacityMax = \"12 GiB\",\n        CapacityMin = \"1.0 GiB\",\n        Capabilities = new[]\n        {\n            new Nomad.Inputs.DynamicHostVolumeCapabilityArgs\n            {\n                AccessMode = \"single-node-writer\",\n                AttachmentMode = \"file-system\",\n            },\n        },\n        Constraints = new[]\n        {\n            new Nomad.Inputs.DynamicHostVolumeConstraintArgs\n            {\n                Attribute = \"${attr.kernel.name}\",\n                Value = \"linux\",\n            },\n        },\n        Parameters = \n        {\n            { \"some_key\", \"some_value\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewDynamicHostVolume(ctx, \"example\", \u0026nomad.DynamicHostVolumeArgs{\n\t\t\tName:        pulumi.String(\"example\"),\n\t\t\tNamespace:   pulumi.String(\"prod\"),\n\t\t\tPluginId:    pulumi.String(\"mkdir\"),\n\t\t\tCapacityMax: pulumi.String(\"12 GiB\"),\n\t\t\tCapacityMin: pulumi.String(\"1.0 GiB\"),\n\t\t\tCapabilities: nomad.DynamicHostVolumeCapabilityArray{\n\t\t\t\t\u0026nomad.DynamicHostVolumeCapabilityArgs{\n\t\t\t\t\tAccessMode:     pulumi.String(\"single-node-writer\"),\n\t\t\t\t\tAttachmentMode: pulumi.String(\"file-system\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tConstraints: nomad.DynamicHostVolumeConstraintArray{\n\t\t\t\t\u0026nomad.DynamicHostVolumeConstraintArgs{\n\t\t\t\t\tAttribute: pulumi.Sprintf(\"${attr.kernel.name}\"),\n\t\t\t\t\tValue:     pulumi.String(\"linux\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tParameters: pulumi.StringMap{\n\t\t\t\t\"some_key\": pulumi.String(\"some_value\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.DynamicHostVolume;\nimport com.pulumi.nomad.DynamicHostVolumeArgs;\nimport com.pulumi.nomad.inputs.DynamicHostVolumeCapabilityArgs;\nimport com.pulumi.nomad.inputs.DynamicHostVolumeConstraintArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new DynamicHostVolume(\"example\", DynamicHostVolumeArgs.builder()\n            .name(\"example\")\n            .namespace(\"prod\")\n            .pluginId(\"mkdir\")\n            .capacityMax(\"12 GiB\")\n            .capacityMin(\"1.0 GiB\")\n            .capabilities(DynamicHostVolumeCapabilityArgs.builder()\n                .accessMode(\"single-node-writer\")\n                .attachmentMode(\"file-system\")\n                .build())\n            .constraints(DynamicHostVolumeConstraintArgs.builder()\n                .attribute(\"${attr.kernel.name}\")\n                .value(\"linux\")\n                .build())\n            .parameters(Map.of(\"some_key\", \"some_value\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: nomad:DynamicHostVolume\n    properties:\n      name: example\n      namespace: prod\n      pluginId: mkdir\n      capacityMax: 12 GiB\n      capacityMin: 1.0 GiB\n      capabilities:\n        - accessMode: single-node-writer\n          attachmentMode: file-system\n      constraints:\n        - attribute: $${attr.kernel.name}\n          value: linux\n      parameters:\n        some_key: some_value\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "capabilities": {
                     "type": "array",
@@ -3229,14 +3229,14 @@
                 },
                 "capacityMax": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a maximum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a maximum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between \u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n\u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
                 },
                 "capacityMaxBytes": {
                     "type": "integer"
                 },
                 "capacityMin": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a minimum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a minimum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between \u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n\u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
                 },
                 "capacityMinBytes": {
                     "type": "integer"
@@ -3246,7 +3246,7 @@
                     "items": {
                         "$ref": "#/types/nomad:index/DynamicHostVolumeConstraint:DynamicHostVolumeConstraint"
                     },
-                    "description": "`(block: \u003coptional\u003e)` - A restriction on the eligible nodes where\na volume can be created, similar to the [`constraint`][] block on a Nomad job\nspecification.. You can provide multiple `constraint` blocks to add more\nconstraints. Each constraint block has the following attributes.\n"
+                    "description": "`(block: \u003coptional\u003e)` - A restriction on the eligible nodes where\na volume can be created, similar to the [\u003cspan pulumi-lang-nodejs=\"`constraint`\" pulumi-lang-dotnet=\"`Constraint`\" pulumi-lang-go=\"`constraint`\" pulumi-lang-python=\"`constraint`\" pulumi-lang-yaml=\"`constraint`\" pulumi-lang-java=\"`constraint`\"\u003e`constraint`\u003c/span\u003e][] block on a Nomad job\nspecification.. You can provide multiple \u003cspan pulumi-lang-nodejs=\"`constraint`\" pulumi-lang-dotnet=\"`Constraint`\" pulumi-lang-go=\"`constraint`\" pulumi-lang-python=\"`constraint`\" pulumi-lang-yaml=\"`constraint`\" pulumi-lang-java=\"`constraint`\"\u003e`constraint`\u003c/span\u003e blocks to add more\nconstraints. Each constraint block has the following attributes.\n"
                 },
                 "hostPath": {
                     "type": "string",
@@ -3254,7 +3254,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`]\u003cspan pulumi-lang-nodejs=\"[volumeSource]\" pulumi-lang-dotnet=\"[VolumeSource]\" pulumi-lang-go=\"[volumeSource]\" pulumi-lang-python=\"[volume_source]\" pulumi-lang-yaml=\"[volumeSource]\" pulumi-lang-java=\"[volumeSource]\"\u003e[volume_source]\u003c/span\u003e field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
                 },
                 "namespace": {
                     "type": "string",
@@ -3266,7 +3266,7 @@
                 },
                 "nodePool": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - A specific node pool where you would like\nthe volume to be created. If you also provide `node_id`, the node must be in the\nprovided `node_pool`.\n"
+                    "description": "`(string: \u003coptional\u003e)` - A specific node pool where you would like\nthe volume to be created. If you also provide \u003cspan pulumi-lang-nodejs=\"`nodeId`\" pulumi-lang-dotnet=\"`NodeId`\" pulumi-lang-go=\"`nodeId`\" pulumi-lang-python=\"`node_id`\" pulumi-lang-yaml=\"`nodeId`\" pulumi-lang-java=\"`nodeId`\"\u003e`node_id`\u003c/span\u003e, the node must be in the\nprovided \u003cspan pulumi-lang-nodejs=\"`nodePool`\" pulumi-lang-dotnet=\"`NodePool`\" pulumi-lang-go=\"`nodePool`\" pulumi-lang-python=\"`node_pool`\" pulumi-lang-yaml=\"`nodePool`\" pulumi-lang-java=\"`nodePool`\"\u003e`node_pool`\u003c/span\u003e.\n"
                 },
                 "parameters": {
                     "type": "object",
@@ -3307,22 +3307,22 @@
                 },
                 "capacityMax": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a maximum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a maximum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between \u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n\u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
                 },
                 "capacityMin": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a minimum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                    "description": "`(string: \u003coptional\u003e)` - Option for requesting a minimum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between \u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n\u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
                 },
                 "constraints": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/nomad:index/DynamicHostVolumeConstraint:DynamicHostVolumeConstraint"
                     },
-                    "description": "`(block: \u003coptional\u003e)` - A restriction on the eligible nodes where\na volume can be created, similar to the [`constraint`][] block on a Nomad job\nspecification.. You can provide multiple `constraint` blocks to add more\nconstraints. Each constraint block has the following attributes.\n"
+                    "description": "`(block: \u003coptional\u003e)` - A restriction on the eligible nodes where\na volume can be created, similar to the [\u003cspan pulumi-lang-nodejs=\"`constraint`\" pulumi-lang-dotnet=\"`Constraint`\" pulumi-lang-go=\"`constraint`\" pulumi-lang-python=\"`constraint`\" pulumi-lang-yaml=\"`constraint`\" pulumi-lang-java=\"`constraint`\"\u003e`constraint`\u003c/span\u003e][] block on a Nomad job\nspecification.. You can provide multiple \u003cspan pulumi-lang-nodejs=\"`constraint`\" pulumi-lang-dotnet=\"`Constraint`\" pulumi-lang-go=\"`constraint`\" pulumi-lang-python=\"`constraint`\" pulumi-lang-yaml=\"`constraint`\" pulumi-lang-java=\"`constraint`\"\u003e`constraint`\u003c/span\u003e blocks to add more\nconstraints. Each constraint block has the following attributes.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`]\u003cspan pulumi-lang-nodejs=\"[volumeSource]\" pulumi-lang-dotnet=\"[VolumeSource]\" pulumi-lang-go=\"[volumeSource]\" pulumi-lang-python=\"[volume_source]\" pulumi-lang-yaml=\"[volumeSource]\" pulumi-lang-java=\"[volumeSource]\"\u003e[volume_source]\u003c/span\u003e field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
                 },
                 "namespace": {
                     "type": "string",
@@ -3335,7 +3335,7 @@
                 },
                 "nodePool": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - A specific node pool where you would like\nthe volume to be created. If you also provide `node_id`, the node must be in the\nprovided `node_pool`.\n"
+                    "description": "`(string: \u003coptional\u003e)` - A specific node pool where you would like\nthe volume to be created. If you also provide \u003cspan pulumi-lang-nodejs=\"`nodeId`\" pulumi-lang-dotnet=\"`NodeId`\" pulumi-lang-go=\"`nodeId`\" pulumi-lang-python=\"`node_id`\" pulumi-lang-yaml=\"`nodeId`\" pulumi-lang-java=\"`nodeId`\"\u003e`node_id`\u003c/span\u003e, the node must be in the\nprovided \u003cspan pulumi-lang-nodejs=\"`nodePool`\" pulumi-lang-dotnet=\"`NodePool`\" pulumi-lang-go=\"`nodePool`\" pulumi-lang-python=\"`node_pool`\" pulumi-lang-yaml=\"`nodePool`\" pulumi-lang-java=\"`nodePool`\"\u003e`node_pool`\u003c/span\u003e.\n"
                 },
                 "parameters": {
                     "type": "object",
@@ -3372,14 +3372,14 @@
                     },
                     "capacityMax": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - Option for requesting a maximum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                        "description": "`(string: \u003coptional\u003e)` - Option for requesting a maximum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between \u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n\u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
                     },
                     "capacityMaxBytes": {
                         "type": "integer"
                     },
                     "capacityMin": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - Option for requesting a minimum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between `capacity_min` and `capacity_max`; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n`capacity_min` and `capacity_max` to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
+                        "description": "`(string: \u003coptional\u003e)` - Option for requesting a minimum\ncapacity, in bytes. The capacity of a volume may be the physical size of a\ndisk, or a quota, depending on the plugin. The specific size of the resulting\nvolume is somewhere between \u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e; the exact\nbehavior is up to the plugin. If you want to specify an exact size, set\n\u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e to the same value. Accepts human-friendly\nsuffixes such as `\"100GiB\"`. Plugins that cannot restrict the size of volumes\nmay ignore this field.\n"
                     },
                     "capacityMinBytes": {
                         "type": "integer"
@@ -3389,7 +3389,7 @@
                         "items": {
                             "$ref": "#/types/nomad:index/DynamicHostVolumeConstraint:DynamicHostVolumeConstraint"
                         },
-                        "description": "`(block: \u003coptional\u003e)` - A restriction on the eligible nodes where\na volume can be created, similar to the [`constraint`][] block on a Nomad job\nspecification.. You can provide multiple `constraint` blocks to add more\nconstraints. Each constraint block has the following attributes.\n"
+                        "description": "`(block: \u003coptional\u003e)` - A restriction on the eligible nodes where\na volume can be created, similar to the [\u003cspan pulumi-lang-nodejs=\"`constraint`\" pulumi-lang-dotnet=\"`Constraint`\" pulumi-lang-go=\"`constraint`\" pulumi-lang-python=\"`constraint`\" pulumi-lang-yaml=\"`constraint`\" pulumi-lang-java=\"`constraint`\"\u003e`constraint`\u003c/span\u003e][] block on a Nomad job\nspecification.. You can provide multiple \u003cspan pulumi-lang-nodejs=\"`constraint`\" pulumi-lang-dotnet=\"`Constraint`\" pulumi-lang-go=\"`constraint`\" pulumi-lang-python=\"`constraint`\" pulumi-lang-yaml=\"`constraint`\" pulumi-lang-java=\"`constraint`\"\u003e`constraint`\u003c/span\u003e blocks to add more\nconstraints. Each constraint block has the following attributes.\n"
                     },
                     "hostPath": {
                         "type": "string",
@@ -3397,7 +3397,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                        "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`]\u003cspan pulumi-lang-nodejs=\"[volumeSource]\" pulumi-lang-dotnet=\"[VolumeSource]\" pulumi-lang-go=\"[volumeSource]\" pulumi-lang-python=\"[volume_source]\" pulumi-lang-yaml=\"[volumeSource]\" pulumi-lang-java=\"[volumeSource]\"\u003e[volume_source]\u003c/span\u003e field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
                     },
                     "namespace": {
                         "type": "string",
@@ -3410,7 +3410,7 @@
                     },
                     "nodePool": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - A specific node pool where you would like\nthe volume to be created. If you also provide `node_id`, the node must be in the\nprovided `node_pool`.\n"
+                        "description": "`(string: \u003coptional\u003e)` - A specific node pool where you would like\nthe volume to be created. If you also provide \u003cspan pulumi-lang-nodejs=\"`nodeId`\" pulumi-lang-dotnet=\"`NodeId`\" pulumi-lang-go=\"`nodeId`\" pulumi-lang-python=\"`node_id`\" pulumi-lang-yaml=\"`nodeId`\" pulumi-lang-java=\"`nodeId`\"\u003e`node_id`\u003c/span\u003e, the node must be in the\nprovided \u003cspan pulumi-lang-nodejs=\"`nodePool`\" pulumi-lang-dotnet=\"`NodePool`\" pulumi-lang-go=\"`nodePool`\" pulumi-lang-python=\"`node_pool`\" pulumi-lang-yaml=\"`nodePool`\" pulumi-lang-java=\"`nodePool`\"\u003e`node_pool`\u003c/span\u003e.\n"
                     },
                     "parameters": {
                         "type": "object",
@@ -3443,7 +3443,7 @@
                 },
                 "capacity": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - The size of a volume in bytes. Either the\nphysical size of a disk or a quota, depending on the plugin. This field must\nbe between the `capacity_min` and `capacity_max` values unless they are\nomitted. Accepts human-friendly suffixes such as `\"100GiB\"`.\n"
+                    "description": "`(string: \u003coptional\u003e)` - The size of a volume in bytes. Either the\nphysical size of a disk or a quota, depending on the plugin. This field must\nbe between the \u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e values unless they are\nomitted. Accepts human-friendly suffixes such as `\"100GiB\"`.\n"
                 },
                 "capacityBytes": {
                     "type": "integer"
@@ -3467,7 +3467,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`]\u003cspan pulumi-lang-nodejs=\"[volumeSource]\" pulumi-lang-dotnet=\"[VolumeSource]\" pulumi-lang-go=\"[volumeSource]\" pulumi-lang-python=\"[volume_source]\" pulumi-lang-yaml=\"[volumeSource]\" pulumi-lang-java=\"[volumeSource]\"\u003e[volume_source]\u003c/span\u003e field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
                 },
                 "namespace": {
                     "type": "string",
@@ -3486,7 +3486,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n\n\n[`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode\n[`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode\n[volume_source]: /nomad/docs/job-specification/volume#source\n"
+                    "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n\n\n[\u003cspan pulumi-lang-nodejs=\"`accessMode`\" pulumi-lang-dotnet=\"`AccessMode`\" pulumi-lang-go=\"`accessMode`\" pulumi-lang-python=\"`access_mode`\" pulumi-lang-yaml=\"`accessMode`\" pulumi-lang-java=\"`accessMode`\"\u003e`access_mode`\u003c/span\u003e]: /nomad/docs/other-specifications/volume/capability#access_mode\n[\u003cspan pulumi-lang-nodejs=\"`attachmentMode`\" pulumi-lang-dotnet=\"`AttachmentMode`\" pulumi-lang-go=\"`attachmentMode`\" pulumi-lang-python=\"`attachment_mode`\" pulumi-lang-yaml=\"`attachmentMode`\" pulumi-lang-java=\"`attachmentMode`\"\u003e`attachment_mode`\u003c/span\u003e]: /nomad/docs/other-specifications/volume/capability#attachment_mode\n\u003cspan pulumi-lang-nodejs=\"[volumeSource]\" pulumi-lang-dotnet=\"[VolumeSource]\" pulumi-lang-go=\"[volumeSource]\" pulumi-lang-python=\"[volume_source]\" pulumi-lang-yaml=\"[volumeSource]\" pulumi-lang-java=\"[volumeSource]\"\u003e[volume_source]\u003c/span\u003e: /nomad/docs/job-specification/volume#source\n"
                 },
                 "pluginId": {
                     "type": "string",
@@ -3520,7 +3520,7 @@
                 },
                 "capacity": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - The size of a volume in bytes. Either the\nphysical size of a disk or a quota, depending on the plugin. This field must\nbe between the `capacity_min` and `capacity_max` values unless they are\nomitted. Accepts human-friendly suffixes such as `\"100GiB\"`.\n"
+                    "description": "`(string: \u003coptional\u003e)` - The size of a volume in bytes. Either the\nphysical size of a disk or a quota, depending on the plugin. This field must\nbe between the \u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e values unless they are\nomitted. Accepts human-friendly suffixes such as `\"100GiB\"`.\n"
                 },
                 "hostPath": {
                     "type": "string",
@@ -3528,7 +3528,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                    "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`]\u003cspan pulumi-lang-nodejs=\"[volumeSource]\" pulumi-lang-dotnet=\"[VolumeSource]\" pulumi-lang-go=\"[volumeSource]\" pulumi-lang-python=\"[volume_source]\" pulumi-lang-yaml=\"[volumeSource]\" pulumi-lang-java=\"[volumeSource]\"\u003e[volume_source]\u003c/span\u003e field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
                 },
                 "namespace": {
                     "type": "string",
@@ -3543,7 +3543,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n\n\n[`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode\n[`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode\n[volume_source]: /nomad/docs/job-specification/volume#source\n"
+                    "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n\n\n[\u003cspan pulumi-lang-nodejs=\"`accessMode`\" pulumi-lang-dotnet=\"`AccessMode`\" pulumi-lang-go=\"`accessMode`\" pulumi-lang-python=\"`access_mode`\" pulumi-lang-yaml=\"`accessMode`\" pulumi-lang-java=\"`accessMode`\"\u003e`access_mode`\u003c/span\u003e]: /nomad/docs/other-specifications/volume/capability#access_mode\n[\u003cspan pulumi-lang-nodejs=\"`attachmentMode`\" pulumi-lang-dotnet=\"`AttachmentMode`\" pulumi-lang-go=\"`attachmentMode`\" pulumi-lang-python=\"`attachment_mode`\" pulumi-lang-yaml=\"`attachmentMode`\" pulumi-lang-java=\"`attachmentMode`\"\u003e`attachment_mode`\u003c/span\u003e]: /nomad/docs/other-specifications/volume/capability#attachment_mode\n\u003cspan pulumi-lang-nodejs=\"[volumeSource]\" pulumi-lang-dotnet=\"[VolumeSource]\" pulumi-lang-go=\"[volumeSource]\" pulumi-lang-python=\"[volume_source]\" pulumi-lang-yaml=\"[volumeSource]\" pulumi-lang-java=\"[volumeSource]\"\u003e[volume_source]\u003c/span\u003e: /nomad/docs/job-specification/volume#source\n"
                 }
             },
             "requiredInputs": [
@@ -3563,7 +3563,7 @@
                     },
                     "capacity": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - The size of a volume in bytes. Either the\nphysical size of a disk or a quota, depending on the plugin. This field must\nbe between the `capacity_min` and `capacity_max` values unless they are\nomitted. Accepts human-friendly suffixes such as `\"100GiB\"`.\n"
+                        "description": "`(string: \u003coptional\u003e)` - The size of a volume in bytes. Either the\nphysical size of a disk or a quota, depending on the plugin. This field must\nbe between the \u003cspan pulumi-lang-nodejs=\"`capacityMin`\" pulumi-lang-dotnet=\"`CapacityMin`\" pulumi-lang-go=\"`capacityMin`\" pulumi-lang-python=\"`capacity_min`\" pulumi-lang-yaml=\"`capacityMin`\" pulumi-lang-java=\"`capacityMin`\"\u003e`capacity_min`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`capacityMax`\" pulumi-lang-dotnet=\"`CapacityMax`\" pulumi-lang-go=\"`capacityMax`\" pulumi-lang-python=\"`capacity_max`\" pulumi-lang-yaml=\"`capacityMax`\" pulumi-lang-java=\"`capacityMax`\"\u003e`capacity_max`\u003c/span\u003e values unless they are\nomitted. Accepts human-friendly suffixes such as `\"100GiB\"`.\n"
                     },
                     "capacityBytes": {
                         "type": "integer"
@@ -3587,7 +3587,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
+                        "description": "`(string: \u003crequired\u003e)` - The name of the volume, which is used as the\n[`volume.source`]\u003cspan pulumi-lang-nodejs=\"[volumeSource]\" pulumi-lang-dotnet=\"[VolumeSource]\" pulumi-lang-go=\"[volumeSource]\" pulumi-lang-python=\"[volume_source]\" pulumi-lang-yaml=\"[volumeSource]\" pulumi-lang-java=\"[volumeSource]\"\u003e[volume_source]\u003c/span\u003e field in job specifications that claim this\nvolume. Host volume names must be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n"
                     },
                     "namespace": {
                         "type": "string",
@@ -3606,7 +3606,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n\n\n[`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode\n[`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode\n[volume_source]: /nomad/docs/job-specification/volume#source\n"
+                        "description": "`(map\u003cstring|string\u003e: \u003coptional\u003e)` - A key-value map of strings\npassed directly to the plugin to configure the volume. The details of these\nparameters are specific to the plugin.\n\n\n[\u003cspan pulumi-lang-nodejs=\"`accessMode`\" pulumi-lang-dotnet=\"`AccessMode`\" pulumi-lang-go=\"`accessMode`\" pulumi-lang-python=\"`access_mode`\" pulumi-lang-yaml=\"`accessMode`\" pulumi-lang-java=\"`accessMode`\"\u003e`access_mode`\u003c/span\u003e]: /nomad/docs/other-specifications/volume/capability#access_mode\n[\u003cspan pulumi-lang-nodejs=\"`attachmentMode`\" pulumi-lang-dotnet=\"`AttachmentMode`\" pulumi-lang-go=\"`attachmentMode`\" pulumi-lang-python=\"`attachment_mode`\" pulumi-lang-yaml=\"`attachmentMode`\" pulumi-lang-java=\"`attachmentMode`\"\u003e`attachment_mode`\u003c/span\u003e]: /nomad/docs/other-specifications/volume/capability#attachment_mode\n\u003cspan pulumi-lang-nodejs=\"[volumeSource]\" pulumi-lang-dotnet=\"[VolumeSource]\" pulumi-lang-go=\"[volumeSource]\" pulumi-lang-python=\"[volume_source]\" pulumi-lang-yaml=\"[volumeSource]\" pulumi-lang-java=\"[volumeSource]\"\u003e[volume_source]\u003c/span\u003e: /nomad/docs/job-specification/volume#source\n"
                     },
                     "pluginId": {
                         "type": "string",
@@ -3640,7 +3640,7 @@
                 },
                 "cloneId": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.\n"
+                    "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\"\u003e`snapshot_id`\u003c/span\u003e.\n"
                 },
                 "controllerRequired": {
                     "type": "boolean"
@@ -3699,7 +3699,7 @@
                 },
                 "snapshotId": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.\n"
+                    "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`cloneId`\" pulumi-lang-dotnet=\"`CloneId`\" pulumi-lang-go=\"`cloneId`\" pulumi-lang-python=\"`clone_id`\" pulumi-lang-yaml=\"`cloneId`\" pulumi-lang-java=\"`cloneId`\"\u003e`clone_id`\u003c/span\u003e.\n"
                 },
                 "topologies": {
                     "type": "array",
@@ -3713,7 +3713,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only `csi` is supported.\n"
+                    "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only \u003cspan pulumi-lang-nodejs=\"`csi`\" pulumi-lang-dotnet=\"`Csi`\" pulumi-lang-go=\"`csi`\" pulumi-lang-python=\"`csi`\" pulumi-lang-yaml=\"`csi`\" pulumi-lang-java=\"`csi`\"\u003e`csi`\u003c/span\u003e is supported.\n"
                 },
                 "volumeId": {
                     "type": "string",
@@ -3756,7 +3756,7 @@
                 },
                 "cloneId": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.\n",
+                    "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\"\u003e`snapshot_id`\u003c/span\u003e.\n",
                     "willReplaceOnChanges": true
                 },
                 "mountOptions": {
@@ -3794,7 +3794,7 @@
                 },
                 "snapshotId": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.\n",
+                    "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`cloneId`\" pulumi-lang-dotnet=\"`CloneId`\" pulumi-lang-go=\"`cloneId`\" pulumi-lang-python=\"`clone_id`\" pulumi-lang-yaml=\"`cloneId`\" pulumi-lang-java=\"`cloneId`\"\u003e`clone_id`\u003c/span\u003e.\n",
                     "willReplaceOnChanges": true
                 },
                 "topologyRequest": {
@@ -3804,7 +3804,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only `csi` is supported.\n",
+                    "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only \u003cspan pulumi-lang-nodejs=\"`csi`\" pulumi-lang-dotnet=\"`Csi`\" pulumi-lang-go=\"`csi`\" pulumi-lang-python=\"`csi`\" pulumi-lang-yaml=\"`csi`\" pulumi-lang-java=\"`csi`\"\u003e`csi`\u003c/span\u003e is supported.\n",
                     "willReplaceOnChanges": true
                 },
                 "volumeId": {
@@ -3841,7 +3841,7 @@
                     },
                     "cloneId": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.\n",
+                        "description": "`(string: \u003coptional\u003e)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\"\u003e`snapshot_id`\u003c/span\u003e.\n",
                         "willReplaceOnChanges": true
                     },
                     "controllerRequired": {
@@ -3903,7 +3903,7 @@
                     },
                     "snapshotId": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.\n",
+                        "description": "`(string: \u003coptional\u003e)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with \u003cspan pulumi-lang-nodejs=\"`cloneId`\" pulumi-lang-dotnet=\"`CloneId`\" pulumi-lang-go=\"`cloneId`\" pulumi-lang-python=\"`clone_id`\" pulumi-lang-yaml=\"`cloneId`\" pulumi-lang-java=\"`cloneId`\"\u003e`clone_id`\u003c/span\u003e.\n",
                         "willReplaceOnChanges": true
                     },
                     "topologies": {
@@ -3919,7 +3919,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only `csi` is supported.\n",
+                        "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only \u003cspan pulumi-lang-nodejs=\"`csi`\" pulumi-lang-dotnet=\"`Csi`\" pulumi-lang-go=\"`csi`\" pulumi-lang-python=\"`csi`\" pulumi-lang-yaml=\"`csi`\" pulumi-lang-java=\"`csi`\"\u003e`csi`\u003c/span\u003e is supported.\n",
                         "willReplaceOnChanges": true
                     },
                     "volumeId": {
@@ -3939,7 +3939,7 @@
                         "type": "string"
                     },
                     "description": "The IDs for allocations associated with this job.",
-                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
+                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the\u003cspan pulumi-lang-nodejs=\" nomad.getAllocations \" pulumi-lang-dotnet=\" nomad.getAllocations \" pulumi-lang-go=\" getAllocations \" pulumi-lang-python=\" get_allocations \" pulumi-lang-yaml=\" nomad.getAllocations \" pulumi-lang-java=\" nomad.getAllocations \"\u003e nomad.getAllocations \u003c/span\u003edata source instead."
                 },
                 "datacenters": {
                     "type": "array",
@@ -3978,7 +3978,7 @@
                 },
                 "json": {
                     "type": "boolean",
-                    "description": "`(boolean: false)` - Set this to `true` if your jobspec is structured with\nJSON instead of the default HCL.\n"
+                    "description": "`(boolean: false)` - Set this to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e if your jobspec is structured with\nJSON instead of the default HCL.\n"
                 },
                 "modifyIndex": {
                     "type": "string",
@@ -4002,7 +4002,7 @@
                 },
                 "readAllocationIds": {
                     "type": "boolean",
-                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
+                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the\u003cspan pulumi-lang-nodejs=\" nomad.getAllocations \" pulumi-lang-dotnet=\" nomad.getAllocations \" pulumi-lang-go=\" getAllocations \" pulumi-lang-python=\" get_allocations \" pulumi-lang-yaml=\" nomad.getAllocations \" pulumi-lang-java=\" nomad.getAllocations \"\u003e nomad.getAllocations \u003c/span\u003edata source instead."
                 },
                 "region": {
                     "type": "string",
@@ -4010,7 +4010,7 @@
                 },
                 "rerunIfDead": {
                     "type": "boolean",
-                    "description": "`(boolean: false)` - Set this to true to force the job to run\nagain if its status is `dead`.\n"
+                    "description": "`(boolean: false)` - Set this to true to force the job to run\nagain if its status is \u003cspan pulumi-lang-nodejs=\"`dead`\" pulumi-lang-dotnet=\"`Dead`\" pulumi-lang-go=\"`dead`\" pulumi-lang-python=\"`dead`\" pulumi-lang-yaml=\"`dead`\" pulumi-lang-java=\"`dead`\"\u003e`dead`\u003c/span\u003e.\n"
                 },
                 "status": {
                     "type": "string",
@@ -4064,7 +4064,7 @@
                 },
                 "json": {
                     "type": "boolean",
-                    "description": "`(boolean: false)` - Set this to `true` if your jobspec is structured with\nJSON instead of the default HCL.\n"
+                    "description": "`(boolean: false)` - Set this to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e if your jobspec is structured with\nJSON instead of the default HCL.\n"
                 },
                 "policyOverride": {
                     "type": "boolean",
@@ -4076,11 +4076,11 @@
                 },
                 "readAllocationIds": {
                     "type": "boolean",
-                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
+                    "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the\u003cspan pulumi-lang-nodejs=\" nomad.getAllocations \" pulumi-lang-dotnet=\" nomad.getAllocations \" pulumi-lang-go=\" getAllocations \" pulumi-lang-python=\" get_allocations \" pulumi-lang-yaml=\" nomad.getAllocations \" pulumi-lang-java=\" nomad.getAllocations \"\u003e nomad.getAllocations \u003c/span\u003edata source instead."
                 },
                 "rerunIfDead": {
                     "type": "boolean",
-                    "description": "`(boolean: false)` - Set this to true to force the job to run\nagain if its status is `dead`.\n"
+                    "description": "`(boolean: false)` - Set this to true to force the job to run\nagain if its status is \u003cspan pulumi-lang-nodejs=\"`dead`\" pulumi-lang-dotnet=\"`Dead`\" pulumi-lang-go=\"`dead`\" pulumi-lang-python=\"`dead`\" pulumi-lang-yaml=\"`dead`\" pulumi-lang-java=\"`dead`\"\u003e`dead`\u003c/span\u003e.\n"
                 }
             },
             "requiredInputs": [
@@ -4095,7 +4095,7 @@
                             "type": "string"
                         },
                         "description": "The IDs for allocations associated with this job.",
-                        "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
+                        "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the\u003cspan pulumi-lang-nodejs=\" nomad.getAllocations \" pulumi-lang-dotnet=\" nomad.getAllocations \" pulumi-lang-go=\" getAllocations \" pulumi-lang-python=\" get_allocations \" pulumi-lang-yaml=\" nomad.getAllocations \" pulumi-lang-java=\" nomad.getAllocations \"\u003e nomad.getAllocations \u003c/span\u003edata source instead."
                     },
                     "datacenters": {
                         "type": "array",
@@ -4134,7 +4134,7 @@
                     },
                     "json": {
                         "type": "boolean",
-                        "description": "`(boolean: false)` - Set this to `true` if your jobspec is structured with\nJSON instead of the default HCL.\n"
+                        "description": "`(boolean: false)` - Set this to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e if your jobspec is structured with\nJSON instead of the default HCL.\n"
                     },
                     "modifyIndex": {
                         "type": "string",
@@ -4158,7 +4158,7 @@
                     },
                     "readAllocationIds": {
                         "type": "boolean",
-                        "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead."
+                        "deprecationMessage": "Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the\u003cspan pulumi-lang-nodejs=\" nomad.getAllocations \" pulumi-lang-dotnet=\" nomad.getAllocations \" pulumi-lang-go=\" getAllocations \" pulumi-lang-python=\" get_allocations \" pulumi-lang-yaml=\" nomad.getAllocations \" pulumi-lang-java=\" nomad.getAllocations \"\u003e nomad.getAllocations \u003c/span\u003edata source instead."
                     },
                     "region": {
                         "type": "string",
@@ -4166,7 +4166,7 @@
                     },
                     "rerunIfDead": {
                         "type": "boolean",
-                        "description": "`(boolean: false)` - Set this to true to force the job to run\nagain if its status is `dead`.\n"
+                        "description": "`(boolean: false)` - Set this to true to force the job to run\nagain if its status is \u003cspan pulumi-lang-nodejs=\"`dead`\" pulumi-lang-dotnet=\"`Dead`\" pulumi-lang-go=\"`dead`\" pulumi-lang-python=\"`dead`\" pulumi-lang-yaml=\"`dead`\" pulumi-lang-java=\"`dead`\"\u003e`dead`\u003c/span\u003e.\n"
                     },
                     "status": {
                         "type": "string",
@@ -4187,7 +4187,7 @@
             }
         },
         "nomad:index/namespace:Namespace": {
-            "description": "Provisions a namespace within a Nomad cluster.\n\nNomad auto-generates a default namespace called `default`. This namespace\ncannot be removed, so destroying a `nomad.Namespace` resource where\n`name = \"default\"` will cause the namespace to be reset to its default\nconfiguration.\n\n## Example Usage\n\nRegistering a namespace:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dev = new nomad.Namespace(\"dev\", {\n    name: \"dev\",\n    description: \"Shared development environment.\",\n    quota: \"dev\",\n    meta: {\n        owner: \"John Doe\",\n        foo: \"bar\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndev = nomad.Namespace(\"dev\",\n    name=\"dev\",\n    description=\"Shared development environment.\",\n    quota=\"dev\",\n    meta={\n        \"owner\": \"John Doe\",\n        \"foo\": \"bar\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dev = new Nomad.Namespace(\"dev\", new()\n    {\n        Name = \"dev\",\n        Description = \"Shared development environment.\",\n        Quota = \"dev\",\n        Meta = \n        {\n            { \"owner\", \"John Doe\" },\n            { \"foo\", \"bar\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewNamespace(ctx, \"dev\", \u0026nomad.NamespaceArgs{\n\t\t\tName:        pulumi.String(\"dev\"),\n\t\t\tDescription: pulumi.String(\"Shared development environment.\"),\n\t\t\tQuota:       pulumi.String(\"dev\"),\n\t\t\tMeta: pulumi.StringMap{\n\t\t\t\t\"owner\": pulumi.String(\"John Doe\"),\n\t\t\t\t\"foo\":   pulumi.String(\"bar\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.Namespace;\nimport com.pulumi.nomad.NamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dev = new Namespace(\"dev\", NamespaceArgs.builder()\n            .name(\"dev\")\n            .description(\"Shared development environment.\")\n            .quota(\"dev\")\n            .meta(Map.ofEntries(\n                Map.entry(\"owner\", \"John Doe\"),\n                Map.entry(\"foo\", \"bar\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dev:\n    type: nomad:Namespace\n    properties:\n      name: dev\n      description: Shared development environment.\n      quota: dev\n      meta:\n        owner: John Doe\n        foo: bar\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nRegistering a namespace with a quota:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst webTeam = new nomad.QuoteSpecification(\"web_team\", {\n    name: \"web-team\",\n    description: \"web team quota\",\n    limits: [{\n        region: \"global\",\n        regionLimit: {\n            cpu: 1000,\n            memoryMb: 256,\n        },\n    }],\n});\nconst web = new nomad.Namespace(\"web\", {\n    name: \"web\",\n    description: \"Web team production environment.\",\n    quota: webTeam.name,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nweb_team = nomad.QuoteSpecification(\"web_team\",\n    name=\"web-team\",\n    description=\"web team quota\",\n    limits=[{\n        \"region\": \"global\",\n        \"region_limit\": {\n            \"cpu\": 1000,\n            \"memory_mb\": 256,\n        },\n    }])\nweb = nomad.Namespace(\"web\",\n    name=\"web\",\n    description=\"Web team production environment.\",\n    quota=web_team.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var webTeam = new Nomad.QuoteSpecification(\"web_team\", new()\n    {\n        Name = \"web-team\",\n        Description = \"web team quota\",\n        Limits = new[]\n        {\n            new Nomad.Inputs.QuoteSpecificationLimitArgs\n            {\n                Region = \"global\",\n                RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs\n                {\n                    Cpu = 1000,\n                    MemoryMb = 256,\n                },\n            },\n        },\n    });\n\n    var web = new Nomad.Namespace(\"web\", new()\n    {\n        Name = \"web\",\n        Description = \"Web team production environment.\",\n        Quota = webTeam.Name,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\twebTeam, err := nomad.NewQuoteSpecification(ctx, \"web_team\", \u0026nomad.QuoteSpecificationArgs{\n\t\t\tName:        pulumi.String(\"web-team\"),\n\t\t\tDescription: pulumi.String(\"web team quota\"),\n\t\t\tLimits: nomad.QuoteSpecificationLimitArray{\n\t\t\t\t\u0026nomad.QuoteSpecificationLimitArgs{\n\t\t\t\t\tRegion: pulumi.String(\"global\"),\n\t\t\t\t\tRegionLimit: \u0026nomad.QuoteSpecificationLimitRegionLimitArgs{\n\t\t\t\t\t\tCpu:      pulumi.Int(1000),\n\t\t\t\t\t\tMemoryMb: pulumi.Int(256),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewNamespace(ctx, \"web\", \u0026nomad.NamespaceArgs{\n\t\t\tName:        pulumi.String(\"web\"),\n\t\t\tDescription: pulumi.String(\"Web team production environment.\"),\n\t\t\tQuota:       webTeam.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.QuoteSpecification;\nimport com.pulumi.nomad.QuoteSpecificationArgs;\nimport com.pulumi.nomad.inputs.QuoteSpecificationLimitArgs;\nimport com.pulumi.nomad.inputs.QuoteSpecificationLimitRegionLimitArgs;\nimport com.pulumi.nomad.Namespace;\nimport com.pulumi.nomad.NamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var webTeam = new QuoteSpecification(\"webTeam\", QuoteSpecificationArgs.builder()\n            .name(\"web-team\")\n            .description(\"web team quota\")\n            .limits(QuoteSpecificationLimitArgs.builder()\n                .region(\"global\")\n                .regionLimit(QuoteSpecificationLimitRegionLimitArgs.builder()\n                    .cpu(1000)\n                    .memoryMb(256)\n                    .build())\n                .build())\n            .build());\n\n        var web = new Namespace(\"web\", NamespaceArgs.builder()\n            .name(\"web\")\n            .description(\"Web team production environment.\")\n            .quota(webTeam.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  webTeam:\n    type: nomad:QuoteSpecification\n    name: web_team\n    properties:\n      name: web-team\n      description: web team quota\n      limits:\n        - region: global\n          regionLimit:\n            cpu: 1000\n            memoryMb: 256\n  web:\n    type: nomad:Namespace\n    properties:\n      name: web\n      description: Web team production environment.\n      quota: ${webTeam.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Provisions a namespace within a Nomad cluster.\n\nNomad auto-generates a default namespace called \u003cspan pulumi-lang-nodejs=\"`default`\" pulumi-lang-dotnet=\"`Default`\" pulumi-lang-go=\"`default`\" pulumi-lang-python=\"`default`\" pulumi-lang-yaml=\"`default`\" pulumi-lang-java=\"`default`\"\u003e`default`\u003c/span\u003e. This namespace\ncannot be removed, so destroying a \u003cspan pulumi-lang-nodejs=\"`nomad.Namespace`\" pulumi-lang-dotnet=\"`nomad.Namespace`\" pulumi-lang-go=\"`Namespace`\" pulumi-lang-python=\"`Namespace`\" pulumi-lang-yaml=\"`nomad.Namespace`\" pulumi-lang-java=\"`nomad.Namespace`\"\u003e`nomad.Namespace`\u003c/span\u003e resource where\n`name = \"default\"` will cause the namespace to be reset to its default\nconfiguration.\n\n## Example Usage\n\nRegistering a namespace:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst dev = new nomad.Namespace(\"dev\", {\n    name: \"dev\",\n    description: \"Shared development environment.\",\n    quota: \"dev\",\n    meta: {\n        owner: \"John Doe\",\n        foo: \"bar\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\ndev = nomad.Namespace(\"dev\",\n    name=\"dev\",\n    description=\"Shared development environment.\",\n    quota=\"dev\",\n    meta={\n        \"owner\": \"John Doe\",\n        \"foo\": \"bar\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var dev = new Nomad.Namespace(\"dev\", new()\n    {\n        Name = \"dev\",\n        Description = \"Shared development environment.\",\n        Quota = \"dev\",\n        Meta = \n        {\n            { \"owner\", \"John Doe\" },\n            { \"foo\", \"bar\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.NewNamespace(ctx, \"dev\", \u0026nomad.NamespaceArgs{\n\t\t\tName:        pulumi.String(\"dev\"),\n\t\t\tDescription: pulumi.String(\"Shared development environment.\"),\n\t\t\tQuota:       pulumi.String(\"dev\"),\n\t\t\tMeta: pulumi.StringMap{\n\t\t\t\t\"owner\": pulumi.String(\"John Doe\"),\n\t\t\t\t\"foo\":   pulumi.String(\"bar\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.Namespace;\nimport com.pulumi.nomad.NamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var dev = new Namespace(\"dev\", NamespaceArgs.builder()\n            .name(\"dev\")\n            .description(\"Shared development environment.\")\n            .quota(\"dev\")\n            .meta(Map.ofEntries(\n                Map.entry(\"owner\", \"John Doe\"),\n                Map.entry(\"foo\", \"bar\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  dev:\n    type: nomad:Namespace\n    properties:\n      name: dev\n      description: Shared development environment.\n      quota: dev\n      meta:\n        owner: John Doe\n        foo: bar\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nRegistering a namespace with a quota:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst webTeam = new nomad.QuoteSpecification(\"web_team\", {\n    name: \"web-team\",\n    description: \"web team quota\",\n    limits: [{\n        region: \"global\",\n        regionLimit: {\n            cpu: 1000,\n            memoryMb: 256,\n        },\n    }],\n});\nconst web = new nomad.Namespace(\"web\", {\n    name: \"web\",\n    description: \"Web team production environment.\",\n    quota: webTeam.name,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nweb_team = nomad.QuoteSpecification(\"web_team\",\n    name=\"web-team\",\n    description=\"web team quota\",\n    limits=[{\n        \"region\": \"global\",\n        \"region_limit\": {\n            \"cpu\": 1000,\n            \"memory_mb\": 256,\n        },\n    }])\nweb = nomad.Namespace(\"web\",\n    name=\"web\",\n    description=\"Web team production environment.\",\n    quota=web_team.name)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var webTeam = new Nomad.QuoteSpecification(\"web_team\", new()\n    {\n        Name = \"web-team\",\n        Description = \"web team quota\",\n        Limits = new[]\n        {\n            new Nomad.Inputs.QuoteSpecificationLimitArgs\n            {\n                Region = \"global\",\n                RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs\n                {\n                    Cpu = 1000,\n                    MemoryMb = 256,\n                },\n            },\n        },\n    });\n\n    var web = new Nomad.Namespace(\"web\", new()\n    {\n        Name = \"web\",\n        Description = \"Web team production environment.\",\n        Quota = webTeam.Name,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\twebTeam, err := nomad.NewQuoteSpecification(ctx, \"web_team\", \u0026nomad.QuoteSpecificationArgs{\n\t\t\tName:        pulumi.String(\"web-team\"),\n\t\t\tDescription: pulumi.String(\"web team quota\"),\n\t\t\tLimits: nomad.QuoteSpecificationLimitArray{\n\t\t\t\t\u0026nomad.QuoteSpecificationLimitArgs{\n\t\t\t\t\tRegion: pulumi.String(\"global\"),\n\t\t\t\t\tRegionLimit: \u0026nomad.QuoteSpecificationLimitRegionLimitArgs{\n\t\t\t\t\t\tCpu:      pulumi.Int(1000),\n\t\t\t\t\t\tMemoryMb: pulumi.Int(256),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = nomad.NewNamespace(ctx, \"web\", \u0026nomad.NamespaceArgs{\n\t\t\tName:        pulumi.String(\"web\"),\n\t\t\tDescription: pulumi.String(\"Web team production environment.\"),\n\t\t\tQuota:       webTeam.Name,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.QuoteSpecification;\nimport com.pulumi.nomad.QuoteSpecificationArgs;\nimport com.pulumi.nomad.inputs.QuoteSpecificationLimitArgs;\nimport com.pulumi.nomad.inputs.QuoteSpecificationLimitRegionLimitArgs;\nimport com.pulumi.nomad.Namespace;\nimport com.pulumi.nomad.NamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var webTeam = new QuoteSpecification(\"webTeam\", QuoteSpecificationArgs.builder()\n            .name(\"web-team\")\n            .description(\"web team quota\")\n            .limits(QuoteSpecificationLimitArgs.builder()\n                .region(\"global\")\n                .regionLimit(QuoteSpecificationLimitRegionLimitArgs.builder()\n                    .cpu(1000)\n                    .memoryMb(256)\n                    .build())\n                .build())\n            .build());\n\n        var web = new Namespace(\"web\", NamespaceArgs.builder()\n            .name(\"web\")\n            .description(\"Web team production environment.\")\n            .quota(webTeam.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  webTeam:\n    type: nomad:QuoteSpecification\n    name: web_team\n    properties:\n      name: web-team\n      description: web team quota\n      limits:\n        - region: global\n          regionLimit:\n            cpu: 1000\n            memoryMb: 256\n  web:\n    type: nomad:Namespace\n    properties:\n      name: web\n      description: Web team production environment.\n      quota: ${webTeam.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
                 "capabilities": {
                     "$ref": "#/types/nomad:index/NamespaceCapabilities:NamespaceCapabilities",
@@ -4433,7 +4433,7 @@
             "properties": {
                 "memoryOversubscriptionEnabled": {
                     "type": "boolean",
-                    "description": "`(bool: false)` - When `true`, tasks may exceed their reserved memory limit.\n"
+                    "description": "`(bool: false)` - When \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e, tasks may exceed their reserved memory limit.\n"
                 },
                 "preemptionConfig": {
                     "type": "object",
@@ -4444,13 +4444,13 @@
                 },
                 "schedulerAlgorithm": {
                     "type": "string",
-                    "description": "`(string: \"binpack\")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.\n"
+                    "description": "`(string: \"binpack\")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are \u003cspan pulumi-lang-nodejs=\"`binpack`\" pulumi-lang-dotnet=\"`Binpack`\" pulumi-lang-go=\"`binpack`\" pulumi-lang-python=\"`binpack`\" pulumi-lang-yaml=\"`binpack`\" pulumi-lang-java=\"`binpack`\"\u003e`binpack`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`spread`\" pulumi-lang-dotnet=\"`Spread`\" pulumi-lang-go=\"`spread`\" pulumi-lang-python=\"`spread`\" pulumi-lang-yaml=\"`spread`\" pulumi-lang-java=\"`spread`\"\u003e`spread`\u003c/span\u003e.\n"
                 }
             },
             "inputProperties": {
                 "memoryOversubscriptionEnabled": {
                     "type": "boolean",
-                    "description": "`(bool: false)` - When `true`, tasks may exceed their reserved memory limit.\n"
+                    "description": "`(bool: false)` - When \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e, tasks may exceed their reserved memory limit.\n"
                 },
                 "preemptionConfig": {
                     "type": "object",
@@ -4461,7 +4461,7 @@
                 },
                 "schedulerAlgorithm": {
                     "type": "string",
-                    "description": "`(string: \"binpack\")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.\n"
+                    "description": "`(string: \"binpack\")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are \u003cspan pulumi-lang-nodejs=\"`binpack`\" pulumi-lang-dotnet=\"`Binpack`\" pulumi-lang-go=\"`binpack`\" pulumi-lang-python=\"`binpack`\" pulumi-lang-yaml=\"`binpack`\" pulumi-lang-java=\"`binpack`\"\u003e`binpack`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`spread`\" pulumi-lang-dotnet=\"`Spread`\" pulumi-lang-go=\"`spread`\" pulumi-lang-python=\"`spread`\" pulumi-lang-yaml=\"`spread`\" pulumi-lang-java=\"`spread`\"\u003e`spread`\u003c/span\u003e.\n"
                 }
             },
             "stateInputs": {
@@ -4469,7 +4469,7 @@
                 "properties": {
                     "memoryOversubscriptionEnabled": {
                         "type": "boolean",
-                        "description": "`(bool: false)` - When `true`, tasks may exceed their reserved memory limit.\n"
+                        "description": "`(bool: false)` - When \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e, tasks may exceed their reserved memory limit.\n"
                     },
                     "preemptionConfig": {
                         "type": "object",
@@ -4480,7 +4480,7 @@
                     },
                     "schedulerAlgorithm": {
                         "type": "string",
-                        "description": "`(string: \"binpack\")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.\n"
+                        "description": "`(string: \"binpack\")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are \u003cspan pulumi-lang-nodejs=\"`binpack`\" pulumi-lang-dotnet=\"`Binpack`\" pulumi-lang-go=\"`binpack`\" pulumi-lang-python=\"`binpack`\" pulumi-lang-yaml=\"`binpack`\" pulumi-lang-java=\"`binpack`\"\u003e`binpack`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`spread`\" pulumi-lang-dotnet=\"`Spread`\" pulumi-lang-go=\"`spread`\" pulumi-lang-python=\"`spread`\" pulumi-lang-yaml=\"`spread`\" pulumi-lang-java=\"`spread`\"\u003e`spread`\u003c/span\u003e.\n"
                     }
                 },
                 "type": "object"
@@ -4650,12 +4650,12 @@
             "properties": {
                 "accessMode": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n",
+                    "description": "`(string: \u003coptional\u003e)` - **Deprecated**. Use \u003cspan pulumi-lang-nodejs=\"`capability`\" pulumi-lang-dotnet=\"`Capability`\" pulumi-lang-go=\"`capability`\" pulumi-lang-python=\"`capability`\" pulumi-lang-yaml=\"`capability`\" pulumi-lang-java=\"`capability`\"\u003e`capability`\u003c/span\u003e block instead. Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n",
                     "deprecationMessage": "use capability instead"
                 },
                 "attachmentMode": {
                     "type": "string",
-                    "description": "`(string: \u003cotional\u003e)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.\n",
+                    "description": "`(string: \u003cotional\u003e)` - **Deprecated**. Use \u003cspan pulumi-lang-nodejs=\"`capability`\" pulumi-lang-dotnet=\"`Capability`\" pulumi-lang-go=\"`capability`\" pulumi-lang-python=\"`capability`\" pulumi-lang-yaml=\"`capability`\" pulumi-lang-java=\"`capability`\"\u003e`capability`\u003c/span\u003e block instead. The storage API that will be used by the volume.\n",
                     "deprecationMessage": "use capability instead"
                 },
                 "capabilities": {
@@ -4747,7 +4747,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only `csi` is supported.\n"
+                    "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only \u003cspan pulumi-lang-nodejs=\"`csi`\" pulumi-lang-dotnet=\"`Csi`\" pulumi-lang-go=\"`csi`\" pulumi-lang-python=\"`csi`\" pulumi-lang-yaml=\"`csi`\" pulumi-lang-java=\"`csi`\"\u003e`csi`\u003c/span\u003e is supported.\n"
                 },
                 "volumeId": {
                     "type": "string",
@@ -4772,12 +4772,12 @@
             "inputProperties": {
                 "accessMode": {
                     "type": "string",
-                    "description": "`(string: \u003coptional\u003e)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n",
+                    "description": "`(string: \u003coptional\u003e)` - **Deprecated**. Use \u003cspan pulumi-lang-nodejs=\"`capability`\" pulumi-lang-dotnet=\"`Capability`\" pulumi-lang-go=\"`capability`\" pulumi-lang-python=\"`capability`\" pulumi-lang-yaml=\"`capability`\" pulumi-lang-java=\"`capability`\"\u003e`capability`\u003c/span\u003e block instead. Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n",
                     "deprecationMessage": "use capability instead"
                 },
                 "attachmentMode": {
                     "type": "string",
-                    "description": "`(string: \u003cotional\u003e)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.\n",
+                    "description": "`(string: \u003cotional\u003e)` - **Deprecated**. Use \u003cspan pulumi-lang-nodejs=\"`capability`\" pulumi-lang-dotnet=\"`Capability`\" pulumi-lang-go=\"`capability`\" pulumi-lang-python=\"`capability`\" pulumi-lang-yaml=\"`capability`\" pulumi-lang-java=\"`capability`\"\u003e`capability`\u003c/span\u003e block instead. The storage API that will be used by the volume.\n",
                     "deprecationMessage": "use capability instead"
                 },
                 "capabilities": {
@@ -4843,7 +4843,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only `csi` is supported.\n",
+                    "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only \u003cspan pulumi-lang-nodejs=\"`csi`\" pulumi-lang-dotnet=\"`Csi`\" pulumi-lang-go=\"`csi`\" pulumi-lang-python=\"`csi`\" pulumi-lang-yaml=\"`csi`\" pulumi-lang-java=\"`csi`\"\u003e`csi`\u003c/span\u003e is supported.\n",
                     "willReplaceOnChanges": true
                 },
                 "volumeId": {
@@ -4862,12 +4862,12 @@
                 "properties": {
                     "accessMode": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n",
+                        "description": "`(string: \u003coptional\u003e)` - **Deprecated**. Use \u003cspan pulumi-lang-nodejs=\"`capability`\" pulumi-lang-dotnet=\"`Capability`\" pulumi-lang-go=\"`capability`\" pulumi-lang-python=\"`capability`\" pulumi-lang-yaml=\"`capability`\" pulumi-lang-java=\"`capability`\"\u003e`capability`\u003c/span\u003e block instead. Defines whether a volume should be available concurrently. Possible values are:\n- `single-node-reader-only`\n- `single-node-writer`\n- `multi-node-reader-only`\n- `multi-node-single-writer`\n- `multi-node-multi-writer`\n",
                         "deprecationMessage": "use capability instead"
                     },
                     "attachmentMode": {
                         "type": "string",
-                        "description": "`(string: \u003cotional\u003e)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.\n",
+                        "description": "`(string: \u003cotional\u003e)` - **Deprecated**. Use \u003cspan pulumi-lang-nodejs=\"`capability`\" pulumi-lang-dotnet=\"`Capability`\" pulumi-lang-go=\"`capability`\" pulumi-lang-python=\"`capability`\" pulumi-lang-yaml=\"`capability`\" pulumi-lang-java=\"`capability`\"\u003e`capability`\u003c/span\u003e block instead. The storage API that will be used by the volume.\n",
                         "deprecationMessage": "use capability instead"
                     },
                     "capabilities": {
@@ -4963,7 +4963,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only `csi` is supported.\n",
+                        "description": "`(string: \u003crequired\u003e)` - The type of the volume. Currently, only \u003cspan pulumi-lang-nodejs=\"`csi`\" pulumi-lang-dotnet=\"`Csi`\" pulumi-lang-go=\"`csi`\" pulumi-lang-python=\"`csi`\" pulumi-lang-yaml=\"`csi`\" pulumi-lang-java=\"`csi`\"\u003e`csi`\u003c/span\u003e is supported.\n",
                         "willReplaceOnChanges": true
                     },
                     "volumeId": {
@@ -5195,7 +5195,7 @@
                         "type": "array"
                     },
                     "roles": {
-                        "description": "`(set: [])` - The list of roles attached to the token. Each entry has\n`name` and `id` attributes.\n",
+                        "description": "`(set: [])` - The list of roles attached to the token. Each entry has\n\u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\"\u003e`name`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\"\u003e`id`\u003c/span\u003e attributes.\n",
                         "items": {
                             "$ref": "#/types/nomad:index/getAclTokenRole:getAclTokenRole"
                         },
@@ -5271,7 +5271,7 @@
                 "properties": {
                     "filter": {
                         "type": "string",
-                        "description": "`(string: \u003coptional\u003e)` - Specifies the\n[expression][nomad_api_filter] used to filter the results.\n"
+                        "description": "`(string: \u003coptional\u003e)` - Specifies the\n[expression]\u003cspan pulumi-lang-nodejs=\"[nomadApiFilter]\" pulumi-lang-dotnet=\"[NomadApiFilter]\" pulumi-lang-go=\"[nomadApiFilter]\" pulumi-lang-python=\"[nomad_api_filter]\" pulumi-lang-yaml=\"[nomadApiFilter]\" pulumi-lang-java=\"[nomadApiFilter]\"\u003e[nomad_api_filter]\u003c/span\u003e used to filter the results.\n"
                     },
                     "namespace": {
                         "type": "string",
@@ -5323,7 +5323,7 @@
                 "properties": {
                     "ignoreDownNodes": {
                         "type": "boolean",
-                        "description": "`(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.\n"
+                        "description": "`(bool: false)`: An optional flag that, if set to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e will ignore down nodes when compiling the list of datacenters.\n"
                     },
                     "prefix": {
                         "type": "string",
@@ -5366,7 +5366,7 @@
                 "description": "A collection of values returned by getDeployments.\n",
                 "properties": {
                     "deployments": {
-                        "description": "`list of maps` a list of deployments in the cluster.\n* `ID`: `string` Deployment ID.\n* `JobID`: `string` Job ID associated with the deployment.\n* `JobVersion`: `string` Job version.\n* `Status`: `string` Deployment status.\n* `StatusDescription`: `string` Detailed description of the deployment's status.\n",
+                        "description": "`list of maps` a list of deployments in the cluster.\n* `ID`: \u003cspan pulumi-lang-nodejs=\"`string`\" pulumi-lang-dotnet=\"`String`\" pulumi-lang-go=\"`string`\" pulumi-lang-python=\"`string`\" pulumi-lang-yaml=\"`string`\" pulumi-lang-java=\"`string`\"\u003e`string`\u003c/span\u003e Deployment ID.\n* `JobID`: \u003cspan pulumi-lang-nodejs=\"`string`\" pulumi-lang-dotnet=\"`String`\" pulumi-lang-go=\"`string`\" pulumi-lang-python=\"`string`\" pulumi-lang-yaml=\"`string`\" pulumi-lang-java=\"`string`\"\u003e`string`\u003c/span\u003e Job ID associated with the deployment.\n* `JobVersion`: \u003cspan pulumi-lang-nodejs=\"`string`\" pulumi-lang-dotnet=\"`String`\" pulumi-lang-go=\"`string`\" pulumi-lang-python=\"`string`\" pulumi-lang-yaml=\"`string`\" pulumi-lang-java=\"`string`\"\u003e`string`\u003c/span\u003e Job version.\n* `Status`: \u003cspan pulumi-lang-nodejs=\"`string`\" pulumi-lang-dotnet=\"`String`\" pulumi-lang-go=\"`string`\" pulumi-lang-python=\"`string`\" pulumi-lang-yaml=\"`string`\" pulumi-lang-java=\"`string`\"\u003e`string`\u003c/span\u003e Deployment status.\n* `StatusDescription`: \u003cspan pulumi-lang-nodejs=\"`string`\" pulumi-lang-dotnet=\"`String`\" pulumi-lang-go=\"`string`\" pulumi-lang-python=\"`string`\" pulumi-lang-yaml=\"`string`\" pulumi-lang-java=\"`string`\"\u003e`string`\u003c/span\u003e Detailed description of the deployment's status.\n",
                         "items": {
                             "additionalProperties": {
                                 "type": "string"
@@ -5441,7 +5441,7 @@
                         "type": "integer"
                     },
                     "constraints": {
-                        "description": "`(block)` - The restrictions used to place the volume on a node,\nsimilar to the [`constraint`][] block on a Nomad job specification. A volume\nmay have multiple `constraint` blocks. Each constraint block has the following\nattributes.\n",
+                        "description": "`(block)` - The restrictions used to place the volume on a node,\nsimilar to the [\u003cspan pulumi-lang-nodejs=\"`constraint`\" pulumi-lang-dotnet=\"`Constraint`\" pulumi-lang-go=\"`constraint`\" pulumi-lang-python=\"`constraint`\" pulumi-lang-yaml=\"`constraint`\" pulumi-lang-java=\"`constraint`\"\u003e`constraint`\u003c/span\u003e][] block on a Nomad job specification. A volume\nmay have multiple \u003cspan pulumi-lang-nodejs=\"`constraint`\" pulumi-lang-dotnet=\"`Constraint`\" pulumi-lang-go=\"`constraint`\" pulumi-lang-python=\"`constraint`\" pulumi-lang-yaml=\"`constraint`\" pulumi-lang-java=\"`constraint`\"\u003e`constraint`\u003c/span\u003e blocks. Each constraint block has the following\nattributes.\n",
                         "items": {
                             "$ref": "#/types/nomad:index/getDynamicHostVolumeConstraint:getDynamicHostVolumeConstraint"
                         },
@@ -5455,7 +5455,7 @@
                         "type": "string"
                     },
                     "name": {
-                        "description": "`(string)` - The name of the volume, which is used as the\n[`volume.source`][volume_source] field in job specifications that claim this\nvolume. Host volume names are be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n",
+                        "description": "`(string)` - The name of the volume, which is used as the\n[`volume.source`]\u003cspan pulumi-lang-nodejs=\"[volumeSource]\" pulumi-lang-dotnet=\"[VolumeSource]\" pulumi-lang-go=\"[volumeSource]\" pulumi-lang-python=\"[volume_source]\" pulumi-lang-yaml=\"[volumeSource]\" pulumi-lang-java=\"[volumeSource]\"\u003e[volume_source]\u003c/span\u003e field in job specifications that claim this\nvolume. Host volume names are be unique per node. Names are visible to any\nuser with `node:read` ACL, even across namespaces, so they should not be\ntreated as sensitive values.\n",
                         "type": "string"
                     },
                     "namespace": {
@@ -5478,7 +5478,7 @@
                         "type": "object"
                     },
                     "pluginId": {
-                        "description": "`(string: \u003crequired\u003e)` - The ID of the [dynamic host volume\nplugin][dhv_plugin] that manages this volume.\n",
+                        "description": "`(string: \u003crequired\u003e)` - The ID of the [dynamic host volume\nplugin]\u003cspan pulumi-lang-nodejs=\"[dhvPlugin]\" pulumi-lang-dotnet=\"[DhvPlugin]\" pulumi-lang-go=\"[dhvPlugin]\" pulumi-lang-python=\"[dhv_plugin]\" pulumi-lang-yaml=\"[dhvPlugin]\" pulumi-lang-java=\"[dhvPlugin]\"\u003e[dhv_plugin]\u003c/span\u003e that manages this volume.\n",
                         "type": "string"
                     },
                     "state": {
@@ -5700,7 +5700,7 @@
             }
         },
         "nomad:index/getJwks:getJwks": {
-            "description": "Retrieve the cluster JWKS public keys.\n\nThe keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings\n(`pem_keys`), which may be more convenient for use.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = nomad.getJwks({});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_jwks()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetJwks.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetJwks(ctx, map[string]interface{}{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getJwks(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: nomad:getJwks\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Retrieve the cluster JWKS public keys.\n\nThe keys are returned both as a list of maps (\u003cspan pulumi-lang-nodejs=\"`keys`\" pulumi-lang-dotnet=\"`Keys`\" pulumi-lang-go=\"`keys`\" pulumi-lang-python=\"`keys`\" pulumi-lang-yaml=\"`keys`\" pulumi-lang-java=\"`keys`\"\u003e`keys`\u003c/span\u003e), and as a list of PEM-encoded strings\n(\u003cspan pulumi-lang-nodejs=\"`pemKeys`\" pulumi-lang-dotnet=\"`PemKeys`\" pulumi-lang-go=\"`pemKeys`\" pulumi-lang-python=\"`pem_keys`\" pulumi-lang-yaml=\"`pemKeys`\" pulumi-lang-java=\"`pemKeys`\"\u003e`pem_keys`\u003c/span\u003e), which may be more convenient for use.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst example = nomad.getJwks({});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nexample = nomad.get_jwks()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Nomad.GetJwks.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetJwks(ctx, map[string]interface{}{}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = NomadFunctions.getJwks(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      function: nomad:getJwks\n      arguments: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "outputs": {
                 "description": "A collection of values returned by getJwks.\n",
                 "properties": {
@@ -5882,7 +5882,7 @@
                 "properties": {
                     "filter": {
                         "type": "string",
-                        "description": "`(string)` - Specifies the [expression][nomad_api_filter] used to\nfilter the results.\n"
+                        "description": "`(string)` - Specifies the [expression]\u003cspan pulumi-lang-nodejs=\"[nomadApiFilter]\" pulumi-lang-dotnet=\"[NomadApiFilter]\" pulumi-lang-go=\"[nomadApiFilter]\" pulumi-lang-python=\"[nomad_api_filter]\" pulumi-lang-yaml=\"[nomadApiFilter]\" pulumi-lang-java=\"[nomadApiFilter]\"\u003e[nomad_api_filter]\u003c/span\u003e used to\nfilter the results.\n"
                     },
                     "prefix": {
                         "type": "string",
@@ -5920,7 +5920,7 @@
             }
         },
         "nomad:index/getPlugin:getPlugin": {
-            "description": "Lookup a plugin by ID. The aim of this datasource is to determine whether\na particular plugin exists on the cluster, to find information on the health\nand availability of the plugin, and to optionally wait for the plugin\nbefore performing actions the require an available plugin controller.\n\nIf a plugin with the specified ID does not exist and the datasource is not\nconfigured to wait, it will result in an error. For simple existence checks,\nuse the `nomad.getPlugins` listing datasource.\n\n## Example Usage\n\nCheck for the existence of a plugin:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst ebs = nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ebs = Nomad.GetPlugin.Invoke(new()\n    {\n        PluginId = \"aws-ebs0\",\n        WaitForHealthy = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetPlugin(ctx, \u0026nomad.GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetPluginArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()\n            .pluginId(\"aws-ebs0\")\n            .waitForHealthy(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  ebs:\n    fn::invoke:\n      function: nomad:getPlugin\n      arguments:\n        pluginId: aws-ebs0\n        waitForHealthy: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nThis will check for a plugin with the ID `aws-ebs0`, waiting until the plugin\nis healthy before returning.\n",
+            "description": "Lookup a plugin by ID. The aim of this datasource is to determine whether\na particular plugin exists on the cluster, to find information on the health\nand availability of the plugin, and to optionally wait for the plugin\nbefore performing actions the require an available plugin controller.\n\nIf a plugin with the specified ID does not exist and the datasource is not\nconfigured to wait, it will result in an error. For simple existence checks,\nuse the \u003cspan pulumi-lang-nodejs=\"`nomad.getPlugins`\" pulumi-lang-dotnet=\"`nomad.getPlugins`\" pulumi-lang-go=\"`getPlugins`\" pulumi-lang-python=\"`get_plugins`\" pulumi-lang-yaml=\"`nomad.getPlugins`\" pulumi-lang-java=\"`nomad.getPlugins`\"\u003e`nomad.getPlugins`\u003c/span\u003e listing datasource.\n\n## Example Usage\n\nCheck for the existence of a plugin:\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as nomad from \"@pulumi/nomad\";\n\nconst ebs = nomad.getPlugin({\n    pluginId: \"aws-ebs0\",\n    waitForHealthy: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_nomad as nomad\n\nebs = nomad.get_plugin(plugin_id=\"aws-ebs0\",\n    wait_for_healthy=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Nomad = Pulumi.Nomad;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ebs = Nomad.GetPlugin.Invoke(new()\n    {\n        PluginId = \"aws-ebs0\",\n        WaitForHealthy = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := nomad.GetPlugin(ctx, \u0026nomad.GetPluginArgs{\n\t\t\tPluginId:       \"aws-ebs0\",\n\t\t\tWaitForHealthy: pulumi.BoolRef(true),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.nomad.NomadFunctions;\nimport com.pulumi.nomad.inputs.GetPluginArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var ebs = NomadFunctions.getPlugin(GetPluginArgs.builder()\n            .pluginId(\"aws-ebs0\")\n            .waitForHealthy(true)\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  ebs:\n    fn::invoke:\n      function: nomad:getPlugin\n      arguments:\n        pluginId: aws-ebs0\n        waitForHealthy: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nThis will check for a plugin with the ID `aws-ebs0`, waiting until the plugin\nis healthy before returning.\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getPlugin.\n",
                 "properties": {
@@ -6188,7 +6188,7 @@
                         "type": "string"
                     },
                     "memoryOversubscriptionEnabled": {
-                        "description": "`(bool: false)` - When `true`, tasks may exceed their reserved memory limit.\n",
+                        "description": "`(bool: false)` - When \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\"\u003e`true`\u003c/span\u003e, tasks may exceed their reserved memory limit.\n",
                         "type": "boolean"
                     },
                     "preemptionConfig": {
@@ -6282,7 +6282,7 @@
                     },
                     "type": {
                         "type": "string",
-                        "description": "`(string: \"csi\")` Volume type (one of `csi` or `host`)\n"
+                        "description": "`(string: \"csi\")` Volume type (one of \u003cspan pulumi-lang-nodejs=\"`csi`\" pulumi-lang-dotnet=\"`Csi`\" pulumi-lang-go=\"`csi`\" pulumi-lang-python=\"`csi`\" pulumi-lang-yaml=\"`csi`\" pulumi-lang-java=\"`csi`\"\u003e`csi`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`host`\" pulumi-lang-dotnet=\"`Host`\" pulumi-lang-go=\"`host`\" pulumi-lang-python=\"`host`\" pulumi-lang-yaml=\"`host`\" pulumi-lang-java=\"`host`\"\u003e`host`\u003c/span\u003e)\n"
                     }
                 },
                 "type": "object"
@@ -6295,7 +6295,7 @@
                         "type": "string"
                     },
                     "namespace": {
-                        "description": "`string` Volume namespace.\n",
+                        "description": "\u003cspan pulumi-lang-nodejs=\"`string`\" pulumi-lang-dotnet=\"`String`\" pulumi-lang-go=\"`string`\" pulumi-lang-python=\"`string`\" pulumi-lang-yaml=\"`string`\" pulumi-lang-java=\"`string`\"\u003e`string`\u003c/span\u003e Volume namespace.\n",
                         "type": "string"
                     },
                     "nodeId": {
