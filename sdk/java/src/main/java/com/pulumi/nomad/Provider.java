@@ -65,28 +65,28 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.caPem);
     }
     /**
-     * A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+     * A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      * 
      */
     @Export(name="certFile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> certFile;
 
     /**
-     * @return A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+     * @return A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      * 
      */
     public Output<Optional<String>> certFile() {
         return Codegen.optional(this.certFile);
     }
     /**
-     * PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+     * PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      * 
      */
     @Export(name="certPem", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> certPem;
 
     /**
-     * @return PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
+     * @return PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      * 
      */
     public Output<Optional<String>> certPem() {
@@ -107,28 +107,28 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.httpAuth);
     }
     /**
-     * A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+     * A path to a PEM-encoded private key, required if certFile or certPem is specified.
      * 
      */
     @Export(name="keyFile", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> keyFile;
 
     /**
-     * @return A path to a PEM-encoded private key, required if cert_file or cert_pem is specified.
+     * @return A path to a PEM-encoded private key, required if certFile or certPem is specified.
      * 
      */
     public Output<Optional<String>> keyFile() {
         return Codegen.optional(this.keyFile);
     }
     /**
-     * PEM-encoded private key, required if cert_file or cert_pem is specified.
+     * PEM-encoded private key, required if certFile or certPem is specified.
      * 
      */
     @Export(name="keyPem", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> keyPem;
 
     /**
-     * @return PEM-encoded private key, required if cert_file or cert_pem is specified.
+     * @return PEM-encoded private key, required if certFile or certPem is specified.
      * 
      */
     public Output<Optional<String>> keyPem() {

@@ -33,18 +33,18 @@ public class AclBindingRule extends com.pulumi.resources.CustomResource {
         return this.authMethod;
     }
     /**
-     * `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
-     * `role` or `policy` then `bind_name` is required. If `bind_type` is
-     * `management` than `bind_name` must not be defined.
+     * `(string: &lt;optional&gt;)` - Target of the binding. If `bindType` is
+     * `role` or `policy` then `bindName` is required. If `bindType` is
+     * `management` than `bindName` must not be defined.
      * 
      */
     @Export(name="bindName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bindName;
 
     /**
-     * @return `(string: &lt;optional&gt;)` - Target of the binding. If `bind_type` is
-     * `role` or `policy` then `bind_name` is required. If `bind_type` is
-     * `management` than `bind_name` must not be defined.
+     * @return `(string: &lt;optional&gt;)` - Target of the binding. If `bindType` is
+     * `role` or `policy` then `bindName` is required. If `bindType` is
+     * `management` than `bindName` must not be defined.
      * 
      */
     public Output<Optional<String>> bindName() {

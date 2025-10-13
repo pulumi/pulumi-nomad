@@ -20,7 +20,7 @@ namespace Pulumi.Nomad.Inputs
 
         /// <summary>
         /// `(block: &lt;required&gt;)` - The limits to enforce. This block
-        /// may only be specified once in the `limits` block. Its structure is
+        /// may only be specified once in the `Limits` block. Its structure is
         /// documented below.
         /// </summary>
         [Input("regionLimit", required: true)]

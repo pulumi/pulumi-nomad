@@ -2833,7 +2833,7 @@ public final class NomadFunctions {
      * Retrieve the cluster JWKS public keys.
      * 
      * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
-     * (`pem_keys`), which may be more convenient for use.
+     * (`pemKeys`), which may be more convenient for use.
      * 
      * ## Example Usage
      * 
@@ -2873,7 +2873,7 @@ public final class NomadFunctions {
      * Retrieve the cluster JWKS public keys.
      * 
      * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
-     * (`pem_keys`), which may be more convenient for use.
+     * (`pemKeys`), which may be more convenient for use.
      * 
      * ## Example Usage
      * 
@@ -2913,7 +2913,7 @@ public final class NomadFunctions {
      * Retrieve the cluster JWKS public keys.
      * 
      * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
-     * (`pem_keys`), which may be more convenient for use.
+     * (`pemKeys`), which may be more convenient for use.
      * 
      * ## Example Usage
      * 
@@ -2953,7 +2953,7 @@ public final class NomadFunctions {
      * Retrieve the cluster JWKS public keys.
      * 
      * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
-     * (`pem_keys`), which may be more convenient for use.
+     * (`pemKeys`), which may be more convenient for use.
      * 
      * ## Example Usage
      * 
@@ -2993,7 +2993,7 @@ public final class NomadFunctions {
      * Retrieve the cluster JWKS public keys.
      * 
      * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
-     * (`pem_keys`), which may be more convenient for use.
+     * (`pemKeys`), which may be more convenient for use.
      * 
      * ## Example Usage
      * 
@@ -3033,7 +3033,7 @@ public final class NomadFunctions {
      * Retrieve the cluster JWKS public keys.
      * 
      * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
-     * (`pem_keys`), which may be more convenient for use.
+     * (`pemKeys`), which may be more convenient for use.
      * 
      * ## Example Usage
      * 
@@ -3073,7 +3073,7 @@ public final class NomadFunctions {
      * Retrieve the cluster JWKS public keys.
      * 
      * The keys are returned both as a list of maps (`keys`), and as a list of PEM-encoded strings
-     * (`pem_keys`), which may be more convenient for use.
+     * (`pemKeys`), which may be more convenient for use.
      * 
      * ## Example Usage
      * 
@@ -4701,12 +4701,16 @@ public final class NomadFunctions {
     /**
      * Retrieve a list of regions available in Nomad.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetRegionsResult> getRegions() {
         return getRegions(InvokeArgs.Empty, InvokeOptions.Empty);
     }
     /**
      * Retrieve a list of regions available in Nomad.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetRegionsResult> getRegionsPlain() {
@@ -4715,12 +4719,16 @@ public final class NomadFunctions {
     /**
      * Retrieve a list of regions available in Nomad.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetRegionsResult> getRegions(InvokeArgs args) {
         return getRegions(args, InvokeOptions.Empty);
     }
     /**
      * Retrieve a list of regions available in Nomad.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetRegionsResult> getRegionsPlain(InvokeArgs args) {
@@ -4729,6 +4737,8 @@ public final class NomadFunctions {
     /**
      * Retrieve a list of regions available in Nomad.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetRegionsResult> getRegions(InvokeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getRegions:getRegions", TypeShape.of(GetRegionsResult.class), args, Utilities.withVersion(options));
@@ -4736,12 +4746,16 @@ public final class NomadFunctions {
     /**
      * Retrieve a list of regions available in Nomad.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetRegionsResult> getRegions(InvokeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("nomad:index/getRegions:getRegions", TypeShape.of(GetRegionsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Retrieve a list of regions available in Nomad.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetRegionsResult> getRegionsPlain(InvokeArgs args, InvokeOptions options) {

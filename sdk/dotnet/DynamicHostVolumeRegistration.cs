@@ -27,7 +27,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: &lt;optional&gt;)` - The size of a volume in bytes. Either the
         /// physical size of a disk or a quota, depending on the plugin. This field must
-        /// be between the `capacity_min` and `capacity_max` values unless they are
+        /// be between the `CapacityMin` and `CapacityMax` values unless they are
         /// omitted. Accepts human-friendly suffixes such as `"100GiB"`.
         /// </summary>
         [Output("capacity")]
@@ -56,7 +56,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-        /// [`volume.source`][volume_source] field in job specifications that claim this
+        /// [`volume.source`][VolumeSource] field in job specifications that claim this
         /// volume. Host volume names must be unique per node. Names are visible to any
         /// user with `node:read` ACL, even across namespaces, so they should not be
         /// treated as sensitive values.
@@ -91,9 +91,9 @@ namespace Pulumi.Nomad
         /// parameters are specific to the plugin.
         /// 
         /// 
-        /// [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-        /// [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-        /// [volume_source]: /nomad/docs/job-specification/volume#source
+        /// [`AccessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+        /// [`AttachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+        /// [VolumeSource]: /nomad/docs/job-specification/volume#source
         /// </summary>
         [Output("parameters")]
         public Output<ImmutableDictionary<string, string>?> Parameters { get; private set; } = null!;
@@ -172,7 +172,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: &lt;optional&gt;)` - The size of a volume in bytes. Either the
         /// physical size of a disk or a quota, depending on the plugin. This field must
-        /// be between the `capacity_min` and `capacity_max` values unless they are
+        /// be between the `CapacityMin` and `CapacityMax` values unless they are
         /// omitted. Accepts human-friendly suffixes such as `"100GiB"`.
         /// </summary>
         [Input("capacity")]
@@ -186,7 +186,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-        /// [`volume.source`][volume_source] field in job specifications that claim this
+        /// [`volume.source`][VolumeSource] field in job specifications that claim this
         /// volume. Host volume names must be unique per node. Names are visible to any
         /// user with `node:read` ACL, even across namespaces, so they should not be
         /// treated as sensitive values.
@@ -218,9 +218,9 @@ namespace Pulumi.Nomad
         /// parameters are specific to the plugin.
         /// 
         /// 
-        /// [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-        /// [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-        /// [volume_source]: /nomad/docs/job-specification/volume#source
+        /// [`AccessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+        /// [`AttachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+        /// [VolumeSource]: /nomad/docs/job-specification/volume#source
         /// </summary>
         public InputMap<string> Parameters
         {
@@ -252,7 +252,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: &lt;optional&gt;)` - The size of a volume in bytes. Either the
         /// physical size of a disk or a quota, depending on the plugin. This field must
-        /// be between the `capacity_min` and `capacity_max` values unless they are
+        /// be between the `CapacityMin` and `CapacityMax` values unless they are
         /// omitted. Accepts human-friendly suffixes such as `"100GiB"`.
         /// </summary>
         [Input("capacity")]
@@ -287,7 +287,7 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(string: &lt;required&gt;)` - The name of the volume, which is used as the
-        /// [`volume.source`][volume_source] field in job specifications that claim this
+        /// [`volume.source`][VolumeSource] field in job specifications that claim this
         /// volume. Host volume names must be unique per node. Names are visible to any
         /// user with `node:read` ACL, even across namespaces, so they should not be
         /// treated as sensitive values.
@@ -325,9 +325,9 @@ namespace Pulumi.Nomad
         /// parameters are specific to the plugin.
         /// 
         /// 
-        /// [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-        /// [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-        /// [volume_source]: /nomad/docs/job-specification/volume#source
+        /// [`AccessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+        /// [`AttachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+        /// [VolumeSource]: /nomad/docs/job-specification/volume#source
         /// </summary>
         public InputMap<string> Parameters
         {
