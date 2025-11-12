@@ -274,7 +274,13 @@
                         "maxItemsOne": true,
                         "elem": {
                             "fields": {
+                                "disabled_network_modes": {
+                                    "maxItemsOne": false
+                                },
                                 "disabled_task_drivers": {
+                                    "maxItemsOne": false
+                                },
+                                "enabled_network_modes": {
                                     "maxItemsOne": false
                                 },
                                 "enabled_task_drivers": {
@@ -523,7 +529,13 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "disabled_network_modes": {
+                                    "maxItemsOne": false
+                                },
                                 "disabled_task_drivers": {
+                                    "maxItemsOne": false
+                                },
+                                "enabled_network_modes": {
                                     "maxItemsOne": false
                                 },
                                 "enabled_task_drivers": {
