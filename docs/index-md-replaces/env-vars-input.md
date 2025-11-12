@@ -10,6 +10,9 @@
     ```.
   Set these values to `false` if you need to load these environment variables.
 
+- `auth_jwt` `(block)` - Authenticates to Nomad using a JWT authentication method, described below.
+  This block can only be specified one time.
+
 The `headers` configuration block accepts the following arguments:
 * `name` - (Required) The name of the header.
 * `value` - (Required) The value of the header.
