@@ -1940,8 +1940,12 @@ class NamespaceCapabilities(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "disabledTaskDrivers":
+        if key == "disabledNetworkModes":
+            suggest = "disabled_network_modes"
+        elif key == "disabledTaskDrivers":
             suggest = "disabled_task_drivers"
+        elif key == "enabledNetworkModes":
+            suggest = "enabled_network_modes"
         elif key == "enabledTaskDrivers":
             suggest = "enabled_task_drivers"
 
@@ -1957,16 +1961,32 @@ class NamespaceCapabilities(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 disabled_network_modes: Optional[Sequence[_builtins.str]] = None,
                  disabled_task_drivers: Optional[Sequence[_builtins.str]] = None,
+                 enabled_network_modes: Optional[Sequence[_builtins.str]] = None,
                  enabled_task_drivers: Optional[Sequence[_builtins.str]] = None):
         """
+        :param Sequence[_builtins.str] disabled_network_modes: `([]string: <optional>)` - Network modes disabled for the namespace.
         :param Sequence[_builtins.str] disabled_task_drivers: `([]string: <optional>)` - Task drivers disabled for the namespace.
+        :param Sequence[_builtins.str] enabled_network_modes: `([]string: <optional>)` - Network modes enabled for the namespace.
         :param Sequence[_builtins.str] enabled_task_drivers: `([]string: <optional>)` - Task drivers enabled for the namespace.
         """
+        if disabled_network_modes is not None:
+            pulumi.set(__self__, "disabled_network_modes", disabled_network_modes)
         if disabled_task_drivers is not None:
             pulumi.set(__self__, "disabled_task_drivers", disabled_task_drivers)
+        if enabled_network_modes is not None:
+            pulumi.set(__self__, "enabled_network_modes", enabled_network_modes)
         if enabled_task_drivers is not None:
             pulumi.set(__self__, "enabled_task_drivers", enabled_task_drivers)
+
+    @_builtins.property
+    @pulumi.getter(name="disabledNetworkModes")
+    def disabled_network_modes(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        `([]string: <optional>)` - Network modes disabled for the namespace.
+        """
+        return pulumi.get(self, "disabled_network_modes")
 
     @_builtins.property
     @pulumi.getter(name="disabledTaskDrivers")
@@ -1975,6 +1995,14 @@ class NamespaceCapabilities(dict):
         `([]string: <optional>)` - Task drivers disabled for the namespace.
         """
         return pulumi.get(self, "disabled_task_drivers")
+
+    @_builtins.property
+    @pulumi.getter(name="enabledNetworkModes")
+    def enabled_network_modes(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        `([]string: <optional>)` - Network modes enabled for the namespace.
+        """
+        return pulumi.get(self, "enabled_network_modes")
 
     @_builtins.property
     @pulumi.getter(name="enabledTaskDrivers")
@@ -3288,16 +3316,32 @@ class GetJwksKeyResult(dict):
 @pulumi.output_type
 class GetNamespaceCapabilityResult(dict):
     def __init__(__self__, *,
+                 disabled_network_modes: Optional[Sequence[_builtins.str]] = None,
                  disabled_task_drivers: Optional[Sequence[_builtins.str]] = None,
+                 enabled_network_modes: Optional[Sequence[_builtins.str]] = None,
                  enabled_task_drivers: Optional[Sequence[_builtins.str]] = None):
         """
+        :param Sequence[_builtins.str] disabled_network_modes: `([]string)` - Network modes disabled for the namespace.
         :param Sequence[_builtins.str] disabled_task_drivers: `([]string)` - Task drivers disabled for the namespace.
+        :param Sequence[_builtins.str] enabled_network_modes: `([]string)` - Network modes enabled for the namespace.
         :param Sequence[_builtins.str] enabled_task_drivers: `([]string)` - Task drivers enabled for the namespace.
         """
+        if disabled_network_modes is not None:
+            pulumi.set(__self__, "disabled_network_modes", disabled_network_modes)
         if disabled_task_drivers is not None:
             pulumi.set(__self__, "disabled_task_drivers", disabled_task_drivers)
+        if enabled_network_modes is not None:
+            pulumi.set(__self__, "enabled_network_modes", enabled_network_modes)
         if enabled_task_drivers is not None:
             pulumi.set(__self__, "enabled_task_drivers", enabled_task_drivers)
+
+    @_builtins.property
+    @pulumi.getter(name="disabledNetworkModes")
+    def disabled_network_modes(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        `([]string)` - Network modes disabled for the namespace.
+        """
+        return pulumi.get(self, "disabled_network_modes")
 
     @_builtins.property
     @pulumi.getter(name="disabledTaskDrivers")
@@ -3306,6 +3350,14 @@ class GetNamespaceCapabilityResult(dict):
         `([]string)` - Task drivers disabled for the namespace.
         """
         return pulumi.get(self, "disabled_task_drivers")
+
+    @_builtins.property
+    @pulumi.getter(name="enabledNetworkModes")
+    def enabled_network_modes(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        `([]string)` - Network modes enabled for the namespace.
+        """
+        return pulumi.get(self, "enabled_network_modes")
 
     @_builtins.property
     @pulumi.getter(name="enabledTaskDrivers")

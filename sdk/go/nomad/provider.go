@@ -62,6 +62,8 @@ func NewProvider(ctx *pulumi.Context,
 type providerArgs struct {
 	// URL of the root of the target Nomad agent.
 	Address *string `pulumi:"address"`
+	// Authenticates to Nomad using a JWT authentication method.
+	AuthJwt *ProviderAuthJwt `pulumi:"authJwt"`
 	// A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
 	CaFile *string `pulumi:"caFile"`
 	// PEM-encoded certificate authority used to verify the remote agent's certificate.
@@ -92,6 +94,8 @@ type providerArgs struct {
 type ProviderArgs struct {
 	// URL of the root of the target Nomad agent.
 	Address pulumi.StringPtrInput
+	// Authenticates to Nomad using a JWT authentication method.
+	AuthJwt ProviderAuthJwtPtrInput
 	// A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
 	CaFile pulumi.StringPtrInput
 	// PEM-encoded certificate authority used to verify the remote agent's certificate.

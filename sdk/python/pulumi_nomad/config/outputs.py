@@ -15,8 +15,38 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'AuthJwt',
     'Headers',
 ]
+
+@pulumi.output_type
+class AuthJwt(dict):
+    def __init__(__self__, *,
+                 auth_method: _builtins.str,
+                 login_token: _builtins.str):
+        """
+        :param _builtins.str auth_method: The name of the auth method to use for login.
+        :param _builtins.str login_token: The externally issued authentication token to be exchanged for a Nomad ACL Token.
+        """
+        pulumi.set(__self__, "auth_method", auth_method)
+        pulumi.set(__self__, "login_token", login_token)
+
+    @_builtins.property
+    @pulumi.getter(name="authMethod")
+    def auth_method(self) -> _builtins.str:
+        """
+        The name of the auth method to use for login.
+        """
+        return pulumi.get(self, "auth_method")
+
+    @_builtins.property
+    @pulumi.getter(name="loginToken")
+    def login_token(self) -> _builtins.str:
+        """
+        The externally issued authentication token to be exchanged for a Nomad ACL Token.
+        """
+        return pulumi.get(self, "login_token")
+
 
 @pulumi.output_type
 class Headers(dict):

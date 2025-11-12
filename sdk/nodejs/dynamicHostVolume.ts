@@ -6,50 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * layout: "nomad"
- * page_title: "Nomad: nomad.DynamicHostVolume"
- * sidebar_current: "docs-nomad-resource-dynamic-host-volume"
- * description: |-
- *   Manages the lifecycle of creating and deleting dynamic host volumes.
- * ---
- *
- * Creates and registers a dynamic host volume in Nomad. Note that Nomad supports
- * two workflows for dynamic host volumes: create and register. Both resources
- * result in the same data source with the same outputs.
- *
- * > **Warning:** Destroying this resource **will result in data loss**. Use the
- *   [`preventDestroy`][tfDocsPreventDestroy] directive to avoid accidental
- *   deletions.
- *
- * ## Example Usage
- *
- * Creating a dynamic host volume:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as nomad from "@pulumi/nomad";
- *
- * const example = new nomad.DynamicHostVolume("example", {
- *     name: "example",
- *     namespace: "prod",
- *     pluginId: "mkdir",
- *     capacityMax: "12 GiB",
- *     capacityMin: "1.0 GiB",
- *     capabilities: [{
- *         accessMode: "single-node-writer",
- *         attachmentMode: "file-system",
- *     }],
- *     constraints: [{
- *         attribute: `${attr.kernel.name}`,
- *         value: "linux",
- *     }],
- *     parameters: {
- *         some_key: "some_value",
- *     },
- * });
- * ```
- */
 export class DynamicHostVolume extends pulumi.CustomResource {
     /**
      * Get an existing DynamicHostVolume resource's state with the given name, ID, and optional extra

@@ -80,6 +80,7 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["address"] = args?.address;
+            resourceInputs["authJwt"] = pulumi.output(args?.authJwt).apply(JSON.stringify);
             resourceInputs["caFile"] = args?.caFile;
             resourceInputs["caPem"] = args?.caPem;
             resourceInputs["certFile"] = args?.certFile;
@@ -115,6 +116,10 @@ export interface ProviderArgs {
      * URL of the root of the target Nomad agent.
      */
     address?: pulumi.Input<string>;
+    /**
+     * Authenticates to Nomad using a JWT authentication method.
+     */
+    authJwt?: pulumi.Input<inputs.ProviderAuthJwt>;
     /**
      * A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
      */

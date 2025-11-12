@@ -21,6 +21,7 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  address: Optional[pulumi.Input[_builtins.str]] = None,
+                 auth_jwt: Optional[pulumi.Input['ProviderAuthJwtArgs']] = None,
                  ca_file: Optional[pulumi.Input[_builtins.str]] = None,
                  ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
                  cert_file: Optional[pulumi.Input[_builtins.str]] = None,
@@ -36,6 +37,7 @@ class ProviderArgs:
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[_builtins.str] address: URL of the root of the target Nomad agent.
+        :param pulumi.Input['ProviderAuthJwtArgs'] auth_jwt: Authenticates to Nomad using a JWT authentication method.
         :param pulumi.Input[_builtins.str] ca_file: A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
         :param pulumi.Input[_builtins.str] ca_pem: PEM-encoded certificate authority used to verify the remote agent's certificate.
         :param pulumi.Input[_builtins.str] cert_file: A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
@@ -51,6 +53,8 @@ class ProviderArgs:
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
+        if auth_jwt is not None:
+            pulumi.set(__self__, "auth_jwt", auth_jwt)
         if ca_file is not None:
             pulumi.set(__self__, "ca_file", ca_file)
         if ca_pem is not None:
@@ -87,6 +91,18 @@ class ProviderArgs:
     @address.setter
     def address(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "address", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authJwt")
+    def auth_jwt(self) -> Optional[pulumi.Input['ProviderAuthJwtArgs']]:
+        """
+        Authenticates to Nomad using a JWT authentication method.
+        """
+        return pulumi.get(self, "auth_jwt")
+
+    @auth_jwt.setter
+    def auth_jwt(self, value: Optional[pulumi.Input['ProviderAuthJwtArgs']]):
+        pulumi.set(self, "auth_jwt", value)
 
     @_builtins.property
     @pulumi.getter(name="caFile")
@@ -240,6 +256,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address: Optional[pulumi.Input[_builtins.str]] = None,
+                 auth_jwt: Optional[pulumi.Input[Union['ProviderAuthJwtArgs', 'ProviderAuthJwtArgsDict']]] = None,
                  ca_file: Optional[pulumi.Input[_builtins.str]] = None,
                  ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
                  cert_file: Optional[pulumi.Input[_builtins.str]] = None,
@@ -262,6 +279,7 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] address: URL of the root of the target Nomad agent.
+        :param pulumi.Input[Union['ProviderAuthJwtArgs', 'ProviderAuthJwtArgsDict']] auth_jwt: Authenticates to Nomad using a JWT authentication method.
         :param pulumi.Input[_builtins.str] ca_file: A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
         :param pulumi.Input[_builtins.str] ca_pem: PEM-encoded certificate authority used to verify the remote agent's certificate.
         :param pulumi.Input[_builtins.str] cert_file: A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file or key_pem.
@@ -303,6 +321,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address: Optional[pulumi.Input[_builtins.str]] = None,
+                 auth_jwt: Optional[pulumi.Input[Union['ProviderAuthJwtArgs', 'ProviderAuthJwtArgsDict']]] = None,
                  ca_file: Optional[pulumi.Input[_builtins.str]] = None,
                  ca_pem: Optional[pulumi.Input[_builtins.str]] = None,
                  cert_file: Optional[pulumi.Input[_builtins.str]] = None,
@@ -325,6 +344,7 @@ class Provider(pulumi.ProviderResource):
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
             __props__.__dict__["address"] = address
+            __props__.__dict__["auth_jwt"] = pulumi.Output.from_input(auth_jwt).apply(pulumi.runtime.to_json) if auth_jwt is not None else None
             __props__.__dict__["ca_file"] = ca_file
             __props__.__dict__["ca_pem"] = ca_pem
             __props__.__dict__["cert_file"] = cert_file

@@ -5447,8 +5447,12 @@ func (o JobTaskGroupVolumeArrayOutput) Index(i pulumi.IntInput) JobTaskGroupVolu
 }
 
 type NamespaceCapabilities struct {
+	// `([]string: <optional>)` - Network modes disabled for the namespace.
+	DisabledNetworkModes []string `pulumi:"disabledNetworkModes"`
 	// `([]string: <optional>)` - Task drivers disabled for the namespace.
 	DisabledTaskDrivers []string `pulumi:"disabledTaskDrivers"`
+	// `([]string: <optional>)` - Network modes enabled for the namespace.
+	EnabledNetworkModes []string `pulumi:"enabledNetworkModes"`
 	// `([]string: <optional>)` - Task drivers enabled for the namespace.
 	EnabledTaskDrivers []string `pulumi:"enabledTaskDrivers"`
 }
@@ -5465,8 +5469,12 @@ type NamespaceCapabilitiesInput interface {
 }
 
 type NamespaceCapabilitiesArgs struct {
+	// `([]string: <optional>)` - Network modes disabled for the namespace.
+	DisabledNetworkModes pulumi.StringArrayInput `pulumi:"disabledNetworkModes"`
 	// `([]string: <optional>)` - Task drivers disabled for the namespace.
 	DisabledTaskDrivers pulumi.StringArrayInput `pulumi:"disabledTaskDrivers"`
+	// `([]string: <optional>)` - Network modes enabled for the namespace.
+	EnabledNetworkModes pulumi.StringArrayInput `pulumi:"enabledNetworkModes"`
 	// `([]string: <optional>)` - Task drivers enabled for the namespace.
 	EnabledTaskDrivers pulumi.StringArrayInput `pulumi:"enabledTaskDrivers"`
 }
@@ -5548,9 +5556,19 @@ func (o NamespaceCapabilitiesOutput) ToNamespaceCapabilitiesPtrOutputWithContext
 	}).(NamespaceCapabilitiesPtrOutput)
 }
 
+// `([]string: <optional>)` - Network modes disabled for the namespace.
+func (o NamespaceCapabilitiesOutput) DisabledNetworkModes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NamespaceCapabilities) []string { return v.DisabledNetworkModes }).(pulumi.StringArrayOutput)
+}
+
 // `([]string: <optional>)` - Task drivers disabled for the namespace.
 func (o NamespaceCapabilitiesOutput) DisabledTaskDrivers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NamespaceCapabilities) []string { return v.DisabledTaskDrivers }).(pulumi.StringArrayOutput)
+}
+
+// `([]string: <optional>)` - Network modes enabled for the namespace.
+func (o NamespaceCapabilitiesOutput) EnabledNetworkModes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NamespaceCapabilities) []string { return v.EnabledNetworkModes }).(pulumi.StringArrayOutput)
 }
 
 // `([]string: <optional>)` - Task drivers enabled for the namespace.
@@ -5582,6 +5600,16 @@ func (o NamespaceCapabilitiesPtrOutput) Elem() NamespaceCapabilitiesOutput {
 	}).(NamespaceCapabilitiesOutput)
 }
 
+// `([]string: <optional>)` - Network modes disabled for the namespace.
+func (o NamespaceCapabilitiesPtrOutput) DisabledNetworkModes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NamespaceCapabilities) []string {
+		if v == nil {
+			return nil
+		}
+		return v.DisabledNetworkModes
+	}).(pulumi.StringArrayOutput)
+}
+
 // `([]string: <optional>)` - Task drivers disabled for the namespace.
 func (o NamespaceCapabilitiesPtrOutput) DisabledTaskDrivers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NamespaceCapabilities) []string {
@@ -5589,6 +5617,16 @@ func (o NamespaceCapabilitiesPtrOutput) DisabledTaskDrivers() pulumi.StringArray
 			return nil
 		}
 		return v.DisabledTaskDrivers
+	}).(pulumi.StringArrayOutput)
+}
+
+// `([]string: <optional>)` - Network modes enabled for the namespace.
+func (o NamespaceCapabilitiesPtrOutput) EnabledNetworkModes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NamespaceCapabilities) []string {
+		if v == nil {
+			return nil
+		}
+		return v.EnabledNetworkModes
 	}).(pulumi.StringArrayOutput)
 }
 
@@ -5966,6 +6004,162 @@ func (o NodePoolSchedulerConfigPtrOutput) SchedulerAlgorithm() pulumi.StringPtrO
 			return nil
 		}
 		return v.SchedulerAlgorithm
+	}).(pulumi.StringPtrOutput)
+}
+
+type ProviderAuthJwt struct {
+	// The name of the auth method to use for login.
+	AuthMethod string `pulumi:"authMethod"`
+	// The externally issued authentication token to be exchanged for a Nomad ACL Token.
+	LoginToken string `pulumi:"loginToken"`
+}
+
+// ProviderAuthJwtInput is an input type that accepts ProviderAuthJwtArgs and ProviderAuthJwtOutput values.
+// You can construct a concrete instance of `ProviderAuthJwtInput` via:
+//
+//	ProviderAuthJwtArgs{...}
+type ProviderAuthJwtInput interface {
+	pulumi.Input
+
+	ToProviderAuthJwtOutput() ProviderAuthJwtOutput
+	ToProviderAuthJwtOutputWithContext(context.Context) ProviderAuthJwtOutput
+}
+
+type ProviderAuthJwtArgs struct {
+	// The name of the auth method to use for login.
+	AuthMethod pulumi.StringInput `pulumi:"authMethod"`
+	// The externally issued authentication token to be exchanged for a Nomad ACL Token.
+	LoginToken pulumi.StringInput `pulumi:"loginToken"`
+}
+
+func (ProviderAuthJwtArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAuthJwt)(nil)).Elem()
+}
+
+func (i ProviderAuthJwtArgs) ToProviderAuthJwtOutput() ProviderAuthJwtOutput {
+	return i.ToProviderAuthJwtOutputWithContext(context.Background())
+}
+
+func (i ProviderAuthJwtArgs) ToProviderAuthJwtOutputWithContext(ctx context.Context) ProviderAuthJwtOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthJwtOutput)
+}
+
+func (i ProviderAuthJwtArgs) ToProviderAuthJwtPtrOutput() ProviderAuthJwtPtrOutput {
+	return i.ToProviderAuthJwtPtrOutputWithContext(context.Background())
+}
+
+func (i ProviderAuthJwtArgs) ToProviderAuthJwtPtrOutputWithContext(ctx context.Context) ProviderAuthJwtPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthJwtOutput).ToProviderAuthJwtPtrOutputWithContext(ctx)
+}
+
+// ProviderAuthJwtPtrInput is an input type that accepts ProviderAuthJwtArgs, ProviderAuthJwtPtr and ProviderAuthJwtPtrOutput values.
+// You can construct a concrete instance of `ProviderAuthJwtPtrInput` via:
+//
+//	        ProviderAuthJwtArgs{...}
+//
+//	or:
+//
+//	        nil
+type ProviderAuthJwtPtrInput interface {
+	pulumi.Input
+
+	ToProviderAuthJwtPtrOutput() ProviderAuthJwtPtrOutput
+	ToProviderAuthJwtPtrOutputWithContext(context.Context) ProviderAuthJwtPtrOutput
+}
+
+type providerAuthJwtPtrType ProviderAuthJwtArgs
+
+func ProviderAuthJwtPtr(v *ProviderAuthJwtArgs) ProviderAuthJwtPtrInput {
+	return (*providerAuthJwtPtrType)(v)
+}
+
+func (*providerAuthJwtPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProviderAuthJwt)(nil)).Elem()
+}
+
+func (i *providerAuthJwtPtrType) ToProviderAuthJwtPtrOutput() ProviderAuthJwtPtrOutput {
+	return i.ToProviderAuthJwtPtrOutputWithContext(context.Background())
+}
+
+func (i *providerAuthJwtPtrType) ToProviderAuthJwtPtrOutputWithContext(ctx context.Context) ProviderAuthJwtPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProviderAuthJwtPtrOutput)
+}
+
+type ProviderAuthJwtOutput struct{ *pulumi.OutputState }
+
+func (ProviderAuthJwtOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderAuthJwt)(nil)).Elem()
+}
+
+func (o ProviderAuthJwtOutput) ToProviderAuthJwtOutput() ProviderAuthJwtOutput {
+	return o
+}
+
+func (o ProviderAuthJwtOutput) ToProviderAuthJwtOutputWithContext(ctx context.Context) ProviderAuthJwtOutput {
+	return o
+}
+
+func (o ProviderAuthJwtOutput) ToProviderAuthJwtPtrOutput() ProviderAuthJwtPtrOutput {
+	return o.ToProviderAuthJwtPtrOutputWithContext(context.Background())
+}
+
+func (o ProviderAuthJwtOutput) ToProviderAuthJwtPtrOutputWithContext(ctx context.Context) ProviderAuthJwtPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ProviderAuthJwt) *ProviderAuthJwt {
+		return &v
+	}).(ProviderAuthJwtPtrOutput)
+}
+
+// The name of the auth method to use for login.
+func (o ProviderAuthJwtOutput) AuthMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAuthJwt) string { return v.AuthMethod }).(pulumi.StringOutput)
+}
+
+// The externally issued authentication token to be exchanged for a Nomad ACL Token.
+func (o ProviderAuthJwtOutput) LoginToken() pulumi.StringOutput {
+	return o.ApplyT(func(v ProviderAuthJwt) string { return v.LoginToken }).(pulumi.StringOutput)
+}
+
+type ProviderAuthJwtPtrOutput struct{ *pulumi.OutputState }
+
+func (ProviderAuthJwtPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ProviderAuthJwt)(nil)).Elem()
+}
+
+func (o ProviderAuthJwtPtrOutput) ToProviderAuthJwtPtrOutput() ProviderAuthJwtPtrOutput {
+	return o
+}
+
+func (o ProviderAuthJwtPtrOutput) ToProviderAuthJwtPtrOutputWithContext(ctx context.Context) ProviderAuthJwtPtrOutput {
+	return o
+}
+
+func (o ProviderAuthJwtPtrOutput) Elem() ProviderAuthJwtOutput {
+	return o.ApplyT(func(v *ProviderAuthJwt) ProviderAuthJwt {
+		if v != nil {
+			return *v
+		}
+		var ret ProviderAuthJwt
+		return ret
+	}).(ProviderAuthJwtOutput)
+}
+
+// The name of the auth method to use for login.
+func (o ProviderAuthJwtPtrOutput) AuthMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthJwt) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AuthMethod
+	}).(pulumi.StringPtrOutput)
+}
+
+// The externally issued authentication token to be exchanged for a Nomad ACL Token.
+func (o ProviderAuthJwtPtrOutput) LoginToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ProviderAuthJwt) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.LoginToken
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -9159,8 +9353,12 @@ func (o GetJwksKeyArrayOutput) Index(i pulumi.IntInput) GetJwksKeyOutput {
 }
 
 type GetNamespaceCapability struct {
+	// `([]string)` - Network modes disabled for the namespace.
+	DisabledNetworkModes []string `pulumi:"disabledNetworkModes"`
 	// `([]string)` - Task drivers disabled for the namespace.
 	DisabledTaskDrivers []string `pulumi:"disabledTaskDrivers"`
+	// `([]string)` - Network modes enabled for the namespace.
+	EnabledNetworkModes []string `pulumi:"enabledNetworkModes"`
 	// `([]string)` - Task drivers enabled for the namespace.
 	EnabledTaskDrivers []string `pulumi:"enabledTaskDrivers"`
 }
@@ -9177,8 +9375,12 @@ type GetNamespaceCapabilityInput interface {
 }
 
 type GetNamespaceCapabilityArgs struct {
+	// `([]string)` - Network modes disabled for the namespace.
+	DisabledNetworkModes pulumi.StringArrayInput `pulumi:"disabledNetworkModes"`
 	// `([]string)` - Task drivers disabled for the namespace.
 	DisabledTaskDrivers pulumi.StringArrayInput `pulumi:"disabledTaskDrivers"`
+	// `([]string)` - Network modes enabled for the namespace.
+	EnabledNetworkModes pulumi.StringArrayInput `pulumi:"enabledNetworkModes"`
 	// `([]string)` - Task drivers enabled for the namespace.
 	EnabledTaskDrivers pulumi.StringArrayInput `pulumi:"enabledTaskDrivers"`
 }
@@ -9234,9 +9436,19 @@ func (o GetNamespaceCapabilityOutput) ToGetNamespaceCapabilityOutputWithContext(
 	return o
 }
 
+// `([]string)` - Network modes disabled for the namespace.
+func (o GetNamespaceCapabilityOutput) DisabledNetworkModes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespaceCapability) []string { return v.DisabledNetworkModes }).(pulumi.StringArrayOutput)
+}
+
 // `([]string)` - Task drivers disabled for the namespace.
 func (o GetNamespaceCapabilityOutput) DisabledTaskDrivers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetNamespaceCapability) []string { return v.DisabledTaskDrivers }).(pulumi.StringArrayOutput)
+}
+
+// `([]string)` - Network modes enabled for the namespace.
+func (o GetNamespaceCapabilityOutput) EnabledNetworkModes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespaceCapability) []string { return v.EnabledNetworkModes }).(pulumi.StringArrayOutput)
 }
 
 // `([]string)` - Task drivers enabled for the namespace.
@@ -10038,6 +10250,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceNodePoolConfigPtrInput)(nil)).Elem(), NamespaceNodePoolConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolSchedulerConfigInput)(nil)).Elem(), NodePoolSchedulerConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolSchedulerConfigPtrInput)(nil)).Elem(), NodePoolSchedulerConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthJwtInput)(nil)).Elem(), ProviderAuthJwtArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthJwtPtrInput)(nil)).Elem(), ProviderAuthJwtArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderInput)(nil)).Elem(), ProviderHeaderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderArrayInput)(nil)).Elem(), ProviderHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitInput)(nil)).Elem(), QuoteSpecificationLimitArgs{})
@@ -10183,6 +10397,8 @@ func init() {
 	pulumi.RegisterOutputType(NamespaceNodePoolConfigPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolSchedulerConfigOutput{})
 	pulumi.RegisterOutputType(NodePoolSchedulerConfigPtrOutput{})
+	pulumi.RegisterOutputType(ProviderAuthJwtOutput{})
+	pulumi.RegisterOutputType(ProviderAuthJwtPtrOutput{})
 	pulumi.RegisterOutputType(ProviderHeaderOutput{})
 	pulumi.RegisterOutputType(ProviderHeaderArrayOutput{})
 	pulumi.RegisterOutputType(QuoteSpecificationLimitOutput{})

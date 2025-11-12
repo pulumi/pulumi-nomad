@@ -14,9 +14,17 @@ namespace Pulumi.Nomad.Outputs
     public sealed class GetNamespaceCapabilityResult
     {
         /// <summary>
+        /// `([]string)` - Network modes disabled for the namespace.
+        /// </summary>
+        public readonly ImmutableArray<string> DisabledNetworkModes;
+        /// <summary>
         /// `([]string)` - Task drivers disabled for the namespace.
         /// </summary>
         public readonly ImmutableArray<string> DisabledTaskDrivers;
+        /// <summary>
+        /// `([]string)` - Network modes enabled for the namespace.
+        /// </summary>
+        public readonly ImmutableArray<string> EnabledNetworkModes;
         /// <summary>
         /// `([]string)` - Task drivers enabled for the namespace.
         /// </summary>
@@ -24,11 +32,17 @@ namespace Pulumi.Nomad.Outputs
 
         [OutputConstructor]
         private GetNamespaceCapabilityResult(
+            ImmutableArray<string> disabledNetworkModes,
+
             ImmutableArray<string> disabledTaskDrivers,
+
+            ImmutableArray<string> enabledNetworkModes,
 
             ImmutableArray<string> enabledTaskDrivers)
         {
+            DisabledNetworkModes = disabledNetworkModes;
             DisabledTaskDrivers = disabledTaskDrivers;
+            EnabledNetworkModes = enabledNetworkModes;
             EnabledTaskDrivers = enabledTaskDrivers;
         }
     }

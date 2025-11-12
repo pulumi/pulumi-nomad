@@ -10,6 +10,14 @@ import * as utilities from "./utilities";
  * Registers a dynamic host volume in Nomad that has already been created. Note
  * that Nomad supports two workflows for dynamic host volumes: create and
  * register. Both resources result in the same data source with the same outputs.
+ *
+ * ## Importing Dynamic Host Volumes
+ *
+ * Dynamic host volumes are imported using the pattern `<volume ID>@<namespace>` .
+ *
+ * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+ * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+ * [volumeSource]: /nomad/docs/job-specification/volume#source
  */
 export class DynamicHostVolumeRegistration extends pulumi.CustomResource {
     /**
@@ -89,11 +97,6 @@ export class DynamicHostVolumeRegistration extends pulumi.CustomResource {
      * `(map<string|string>: <optional>)` - A key-value map of strings
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
-     *
-     *
-     * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-     * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-     * [volumeSource]: /nomad/docs/job-specification/volume#source
      */
     declare public readonly parameters: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -217,11 +220,6 @@ export interface DynamicHostVolumeRegistrationState {
      * `(map<string|string>: <optional>)` - A key-value map of strings
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
-     *
-     *
-     * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-     * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-     * [volumeSource]: /nomad/docs/job-specification/volume#source
      */
     parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -277,11 +275,6 @@ export interface DynamicHostVolumeRegistrationArgs {
      * `(map<string|string>: <optional>)` - A key-value map of strings
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
-     *
-     *
-     * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-     * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-     * [volumeSource]: /nomad/docs/job-specification/volume#source
      */
     parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

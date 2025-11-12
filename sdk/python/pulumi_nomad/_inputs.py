@@ -95,6 +95,8 @@ __all__ = [
     'NamespaceNodePoolConfigArgsDict',
     'NodePoolSchedulerConfigArgs',
     'NodePoolSchedulerConfigArgsDict',
+    'ProviderAuthJwtArgs',
+    'ProviderAuthJwtArgsDict',
     'ProviderHeaderArgs',
     'ProviderHeaderArgsDict',
     'QuoteSpecificationLimitArgs',
@@ -2621,9 +2623,17 @@ class JobTaskGroupVolumeArgs:
 
 if not MYPY:
     class NamespaceCapabilitiesArgsDict(TypedDict):
+        disabled_network_modes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        `([]string: <optional>)` - Network modes disabled for the namespace.
+        """
         disabled_task_drivers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
         """
         `([]string: <optional>)` - Task drivers disabled for the namespace.
+        """
+        enabled_network_modes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        `([]string: <optional>)` - Network modes enabled for the namespace.
         """
         enabled_task_drivers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
         """
@@ -2635,16 +2645,36 @@ elif False:
 @pulumi.input_type
 class NamespaceCapabilitiesArgs:
     def __init__(__self__, *,
+                 disabled_network_modes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  disabled_task_drivers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enabled_network_modes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  enabled_task_drivers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] disabled_network_modes: `([]string: <optional>)` - Network modes disabled for the namespace.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] disabled_task_drivers: `([]string: <optional>)` - Task drivers disabled for the namespace.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_network_modes: `([]string: <optional>)` - Network modes enabled for the namespace.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_task_drivers: `([]string: <optional>)` - Task drivers enabled for the namespace.
         """
+        if disabled_network_modes is not None:
+            pulumi.set(__self__, "disabled_network_modes", disabled_network_modes)
         if disabled_task_drivers is not None:
             pulumi.set(__self__, "disabled_task_drivers", disabled_task_drivers)
+        if enabled_network_modes is not None:
+            pulumi.set(__self__, "enabled_network_modes", enabled_network_modes)
         if enabled_task_drivers is not None:
             pulumi.set(__self__, "enabled_task_drivers", enabled_task_drivers)
+
+    @_builtins.property
+    @pulumi.getter(name="disabledNetworkModes")
+    def disabled_network_modes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        `([]string: <optional>)` - Network modes disabled for the namespace.
+        """
+        return pulumi.get(self, "disabled_network_modes")
+
+    @disabled_network_modes.setter
+    def disabled_network_modes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "disabled_network_modes", value)
 
     @_builtins.property
     @pulumi.getter(name="disabledTaskDrivers")
@@ -2657,6 +2687,18 @@ class NamespaceCapabilitiesArgs:
     @disabled_task_drivers.setter
     def disabled_task_drivers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "disabled_task_drivers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="enabledNetworkModes")
+    def enabled_network_modes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        `([]string: <optional>)` - Network modes enabled for the namespace.
+        """
+        return pulumi.get(self, "enabled_network_modes")
+
+    @enabled_network_modes.setter
+    def enabled_network_modes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "enabled_network_modes", value)
 
     @_builtins.property
     @pulumi.getter(name="enabledTaskDrivers")
@@ -2820,6 +2862,56 @@ class NodePoolSchedulerConfigArgs:
     @scheduler_algorithm.setter
     def scheduler_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "scheduler_algorithm", value)
+
+
+if not MYPY:
+    class ProviderAuthJwtArgsDict(TypedDict):
+        auth_method: pulumi.Input[_builtins.str]
+        """
+        The name of the auth method to use for login.
+        """
+        login_token: pulumi.Input[_builtins.str]
+        """
+        The externally issued authentication token to be exchanged for a Nomad ACL Token.
+        """
+elif False:
+    ProviderAuthJwtArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProviderAuthJwtArgs:
+    def __init__(__self__, *,
+                 auth_method: pulumi.Input[_builtins.str],
+                 login_token: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] auth_method: The name of the auth method to use for login.
+        :param pulumi.Input[_builtins.str] login_token: The externally issued authentication token to be exchanged for a Nomad ACL Token.
+        """
+        pulumi.set(__self__, "auth_method", auth_method)
+        pulumi.set(__self__, "login_token", login_token)
+
+    @_builtins.property
+    @pulumi.getter(name="authMethod")
+    def auth_method(self) -> pulumi.Input[_builtins.str]:
+        """
+        The name of the auth method to use for login.
+        """
+        return pulumi.get(self, "auth_method")
+
+    @auth_method.setter
+    def auth_method(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "auth_method", value)
+
+    @_builtins.property
+    @pulumi.getter(name="loginToken")
+    def login_token(self) -> pulumi.Input[_builtins.str]:
+        """
+        The externally issued authentication token to be exchanged for a Nomad ACL Token.
+        """
+        return pulumi.get(self, "login_token")
+
+    @login_token.setter
+    def login_token(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "login_token", value)
 
 
 if not MYPY:

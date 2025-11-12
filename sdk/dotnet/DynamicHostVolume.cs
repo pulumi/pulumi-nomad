@@ -9,66 +9,6 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad
 {
-    /// <summary>
-    /// layout: "nomad"
-    /// page_title: "Nomad: nomad.DynamicHostVolume"
-    /// sidebar_current: "docs-nomad-resource-dynamic-host-volume"
-    /// description: |-
-    ///   Manages the lifecycle of creating and deleting dynamic host volumes.
-    /// ---
-    /// 
-    /// Creates and registers a dynamic host volume in Nomad. Note that Nomad supports
-    /// two workflows for dynamic host volumes: create and register. Both resources
-    /// result in the same data source with the same outputs.
-    /// 
-    /// &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
-    ///   [`PreventDestroy`][TfDocsPreventDestroy] directive to avoid accidental
-    ///   deletions.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// Creating a dynamic host volume:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Nomad = Pulumi.Nomad;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var example = new Nomad.DynamicHostVolume("example", new()
-    ///     {
-    ///         Name = "example",
-    ///         Namespace = "prod",
-    ///         PluginId = "mkdir",
-    ///         CapacityMax = "12 GiB",
-    ///         CapacityMin = "1.0 GiB",
-    ///         Capabilities = new[]
-    ///         {
-    ///             new Nomad.Inputs.DynamicHostVolumeCapabilityArgs
-    ///             {
-    ///                 AccessMode = "single-node-writer",
-    ///                 AttachmentMode = "file-system",
-    ///             },
-    ///         },
-    ///         Constraints = new[]
-    ///         {
-    ///             new Nomad.Inputs.DynamicHostVolumeConstraintArgs
-    ///             {
-    ///                 Attribute = "${attr.kernel.name}",
-    ///                 Value = "linux",
-    ///             },
-    ///         },
-    ///         Parameters = 
-    ///         {
-    ///             { "some_key", "some_value" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// </summary>
     [NomadResourceType("nomad:index/dynamicHostVolume:DynamicHostVolume")]
     public partial class DynamicHostVolume : global::Pulumi.CustomResource
     {

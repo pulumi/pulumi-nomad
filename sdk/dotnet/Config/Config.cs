@@ -42,6 +42,16 @@ namespace Pulumi.Nomad
             set => _address.Set(value);
         }
 
+        private static readonly __Value<Pulumi.Nomad.Config.Types.AuthJwt?> _authJwt = new __Value<Pulumi.Nomad.Config.Types.AuthJwt?>(() => __config.GetObject<Pulumi.Nomad.Config.Types.AuthJwt>("authJwt"));
+        /// <summary>
+        /// Authenticates to Nomad using a JWT authentication method.
+        /// </summary>
+        public static Pulumi.Nomad.Config.Types.AuthJwt? AuthJwt
+        {
+            get => _authJwt.Get();
+            set => _authJwt.Set(value);
+        }
+
         private static readonly __Value<string?> _caFile = new __Value<string?>(() => __config.Get("caFile"));
         /// <summary>
         /// A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
@@ -164,6 +174,18 @@ namespace Pulumi.Nomad
 
         public static class Types
         {
+
+             public class AuthJwt
+             {
+            /// <summary>
+            /// The name of the auth method to use for login.
+            /// </summary>
+                public string AuthMethod { get; set; }
+            /// <summary>
+            /// The externally issued authentication token to be exchanged for a Nomad ACL Token.
+            /// </summary>
+                public string LoginToken { get; set; }
+            }
 
              public class Headers
              {

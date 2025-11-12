@@ -546,9 +546,17 @@ export interface JobTaskGroupVolume {
 
 export interface NamespaceCapabilities {
     /**
+     * `([]string: <optional>)` - Network modes disabled for the namespace.
+     */
+    disabledNetworkModes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * `([]string: <optional>)` - Task drivers disabled for the namespace.
      */
     disabledTaskDrivers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * `([]string: <optional>)` - Network modes enabled for the namespace.
+     */
+    enabledNetworkModes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * `([]string: <optional>)` - Task drivers enabled for the namespace.
      */
@@ -588,6 +596,17 @@ export interface NodePoolSchedulerConfig {
      * cluster configuration is used.
      */
     schedulerAlgorithm?: pulumi.Input<string>;
+}
+
+export interface ProviderAuthJwt {
+    /**
+     * The name of the auth method to use for login.
+     */
+    authMethod: pulumi.Input<string>;
+    /**
+     * The externally issued authentication token to be exchanged for a Nomad ACL Token.
+     */
+    loginToken: pulumi.Input<string>;
 }
 
 export interface ProviderHeader {

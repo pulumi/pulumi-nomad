@@ -34,8 +34,8 @@ namespace Pulumi.Nomad
         ///         {
         ///             Name = $"namespace-{namespaces[range.Value]}",
         ///             Description = $"Write to the namespace {namespaces[range.Value]}",
-        ///             RulesHcl = @$"namespace ""{namespaces[range.Value]}"" {{
-        ///   policy = ""write""
+        ///             RulesHcl = @$"namespace \""{namespaces[range.Value]}\"" {{
+        ///   policy = \""write\""
         /// }}
         /// ",
         ///         }));
@@ -69,8 +69,8 @@ namespace Pulumi.Nomad
         ///         {
         ///             Name = $"namespace-{namespaces[range.Value]}",
         ///             Description = $"Write to the namespace {namespaces[range.Value]}",
-        ///             RulesHcl = @$"namespace ""{namespaces[range.Value]}"" {{
-        ///   policy = ""write""
+        ///             RulesHcl = @$"namespace \""{namespaces[range.Value]}\"" {{
+        ///   policy = \""write\""
         /// }}
         /// ",
         ///         }));
@@ -104,8 +104,8 @@ namespace Pulumi.Nomad
         ///         {
         ///             Name = $"namespace-{namespaces[range.Value]}",
         ///             Description = $"Write to the namespace {namespaces[range.Value]}",
-        ///             RulesHcl = @$"namespace ""{namespaces[range.Value]}"" {{
-        ///   policy = ""write""
+        ///             RulesHcl = @$"namespace \""{namespaces[range.Value]}\"" {{
+        ///   policy = \""write\""
         /// }}
         /// ",
         ///         }));

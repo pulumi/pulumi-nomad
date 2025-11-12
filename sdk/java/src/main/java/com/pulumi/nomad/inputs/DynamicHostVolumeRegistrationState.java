@@ -188,10 +188,6 @@ public final class DynamicHostVolumeRegistrationState extends com.pulumi.resourc
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
      * 
-     * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-     * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-     * [volumeSource]: /nomad/docs/job-specification/volume#source
-     * 
      */
     @Import(name="parameters")
     private @Nullable Output<Map<String,String>> parameters;
@@ -200,10 +196,6 @@ public final class DynamicHostVolumeRegistrationState extends com.pulumi.resourc
      * @return `(map&lt;string|string&gt;: &lt;optional&gt;)` - A key-value map of strings
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
-     * 
-     * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-     * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-     * [volumeSource]: /nomad/docs/job-specification/volume#source
      * 
      */
     public Optional<Output<Map<String,String>>> parameters() {
@@ -520,10 +512,6 @@ public final class DynamicHostVolumeRegistrationState extends com.pulumi.resourc
          * passed directly to the plugin to configure the volume. The details of these
          * parameters are specific to the plugin.
          * 
-         * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-         * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-         * [volumeSource]: /nomad/docs/job-specification/volume#source
-         * 
          * @return builder
          * 
          */
@@ -536,10 +524,6 @@ public final class DynamicHostVolumeRegistrationState extends com.pulumi.resourc
          * @param parameters `(map&lt;string|string&gt;: &lt;optional&gt;)` - A key-value map of strings
          * passed directly to the plugin to configure the volume. The details of these
          * parameters are specific to the plugin.
-         * 
-         * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-         * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-         * [volumeSource]: /nomad/docs/job-specification/volume#source
          * 
          * @return builder
          * 

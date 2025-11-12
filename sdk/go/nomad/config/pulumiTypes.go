@@ -13,6 +13,67 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AuthJwt struct {
+	// The name of the auth method to use for login.
+	AuthMethod string `pulumi:"authMethod"`
+	// The externally issued authentication token to be exchanged for a Nomad ACL Token.
+	LoginToken string `pulumi:"loginToken"`
+}
+
+// AuthJwtInput is an input type that accepts AuthJwtArgs and AuthJwtOutput values.
+// You can construct a concrete instance of `AuthJwtInput` via:
+//
+//	AuthJwtArgs{...}
+type AuthJwtInput interface {
+	pulumi.Input
+
+	ToAuthJwtOutput() AuthJwtOutput
+	ToAuthJwtOutputWithContext(context.Context) AuthJwtOutput
+}
+
+type AuthJwtArgs struct {
+	// The name of the auth method to use for login.
+	AuthMethod pulumi.StringInput `pulumi:"authMethod"`
+	// The externally issued authentication token to be exchanged for a Nomad ACL Token.
+	LoginToken pulumi.StringInput `pulumi:"loginToken"`
+}
+
+func (AuthJwtArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthJwt)(nil)).Elem()
+}
+
+func (i AuthJwtArgs) ToAuthJwtOutput() AuthJwtOutput {
+	return i.ToAuthJwtOutputWithContext(context.Background())
+}
+
+func (i AuthJwtArgs) ToAuthJwtOutputWithContext(ctx context.Context) AuthJwtOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AuthJwtOutput)
+}
+
+type AuthJwtOutput struct{ *pulumi.OutputState }
+
+func (AuthJwtOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AuthJwt)(nil)).Elem()
+}
+
+func (o AuthJwtOutput) ToAuthJwtOutput() AuthJwtOutput {
+	return o
+}
+
+func (o AuthJwtOutput) ToAuthJwtOutputWithContext(ctx context.Context) AuthJwtOutput {
+	return o
+}
+
+// The name of the auth method to use for login.
+func (o AuthJwtOutput) AuthMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthJwt) string { return v.AuthMethod }).(pulumi.StringOutput)
+}
+
+// The externally issued authentication token to be exchanged for a Nomad ACL Token.
+func (o AuthJwtOutput) LoginToken() pulumi.StringOutput {
+	return o.ApplyT(func(v AuthJwt) string { return v.LoginToken }).(pulumi.StringOutput)
+}
+
 type Headers struct {
 	// The header name
 	Name string `pulumi:"name"`
@@ -120,8 +181,10 @@ func (o HeadersArrayOutput) Index(i pulumi.IntInput) HeadersOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthJwtInput)(nil)).Elem(), AuthJwtArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HeadersInput)(nil)).Elem(), HeadersArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HeadersArrayInput)(nil)).Elem(), HeadersArray{})
+	pulumi.RegisterOutputType(AuthJwtOutput{})
 	pulumi.RegisterOutputType(HeadersOutput{})
 	pulumi.RegisterOutputType(HeadersArrayOutput{})
 }

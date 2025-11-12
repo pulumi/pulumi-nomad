@@ -24,6 +24,14 @@ import javax.annotation.Nullable;
  * that Nomad supports two workflows for dynamic host volumes: create and
  * register. Both resources result in the same data source with the same outputs.
  * 
+ * ## Importing Dynamic Host Volumes
+ * 
+ * Dynamic host volumes are imported using the pattern `&lt;volume ID&gt;{@literal @}&lt;namespace&gt;` .
+ * 
+ * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+ * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+ * [volumeSource]: /nomad/docs/job-specification/volume#source
+ * 
  */
 @ResourceType(type="nomad:index/dynamicHostVolumeRegistration:DynamicHostVolumeRegistration")
 public class DynamicHostVolumeRegistration extends com.pulumi.resources.CustomResource {
@@ -184,10 +192,6 @@ public class DynamicHostVolumeRegistration extends com.pulumi.resources.CustomRe
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
      * 
-     * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-     * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-     * [volumeSource]: /nomad/docs/job-specification/volume#source
-     * 
      */
     @Export(name="parameters", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> parameters;
@@ -196,10 +200,6 @@ public class DynamicHostVolumeRegistration extends com.pulumi.resources.CustomRe
      * @return `(map&lt;string|string&gt;: &lt;optional&gt;)` - A key-value map of strings
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
-     * 
-     * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-     * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-     * [volumeSource]: /nomad/docs/job-specification/volume#source
      * 
      */
     public Output<Optional<Map<String,String>>> parameters() {

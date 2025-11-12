@@ -12,10 +12,20 @@ import javax.annotation.Nullable;
 @CustomType
 public final class NamespaceCapabilities {
     /**
+     * @return `([]string: &lt;optional&gt;)` - Network modes disabled for the namespace.
+     * 
+     */
+    private @Nullable List<String> disabledNetworkModes;
+    /**
      * @return `([]string: &lt;optional&gt;)` - Task drivers disabled for the namespace.
      * 
      */
     private @Nullable List<String> disabledTaskDrivers;
+    /**
+     * @return `([]string: &lt;optional&gt;)` - Network modes enabled for the namespace.
+     * 
+     */
+    private @Nullable List<String> enabledNetworkModes;
     /**
      * @return `([]string: &lt;optional&gt;)` - Task drivers enabled for the namespace.
      * 
@@ -24,11 +34,25 @@ public final class NamespaceCapabilities {
 
     private NamespaceCapabilities() {}
     /**
+     * @return `([]string: &lt;optional&gt;)` - Network modes disabled for the namespace.
+     * 
+     */
+    public List<String> disabledNetworkModes() {
+        return this.disabledNetworkModes == null ? List.of() : this.disabledNetworkModes;
+    }
+    /**
      * @return `([]string: &lt;optional&gt;)` - Task drivers disabled for the namespace.
      * 
      */
     public List<String> disabledTaskDrivers() {
         return this.disabledTaskDrivers == null ? List.of() : this.disabledTaskDrivers;
+    }
+    /**
+     * @return `([]string: &lt;optional&gt;)` - Network modes enabled for the namespace.
+     * 
+     */
+    public List<String> enabledNetworkModes() {
+        return this.enabledNetworkModes == null ? List.of() : this.enabledNetworkModes;
     }
     /**
      * @return `([]string: &lt;optional&gt;)` - Task drivers enabled for the namespace.
@@ -47,15 +71,28 @@ public final class NamespaceCapabilities {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable List<String> disabledNetworkModes;
         private @Nullable List<String> disabledTaskDrivers;
+        private @Nullable List<String> enabledNetworkModes;
         private @Nullable List<String> enabledTaskDrivers;
         public Builder() {}
         public Builder(NamespaceCapabilities defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.disabledNetworkModes = defaults.disabledNetworkModes;
     	      this.disabledTaskDrivers = defaults.disabledTaskDrivers;
+    	      this.enabledNetworkModes = defaults.enabledNetworkModes;
     	      this.enabledTaskDrivers = defaults.enabledTaskDrivers;
         }
 
+        @CustomType.Setter
+        public Builder disabledNetworkModes(@Nullable List<String> disabledNetworkModes) {
+
+            this.disabledNetworkModes = disabledNetworkModes;
+            return this;
+        }
+        public Builder disabledNetworkModes(String... disabledNetworkModes) {
+            return disabledNetworkModes(List.of(disabledNetworkModes));
+        }
         @CustomType.Setter
         public Builder disabledTaskDrivers(@Nullable List<String> disabledTaskDrivers) {
 
@@ -64,6 +101,15 @@ public final class NamespaceCapabilities {
         }
         public Builder disabledTaskDrivers(String... disabledTaskDrivers) {
             return disabledTaskDrivers(List.of(disabledTaskDrivers));
+        }
+        @CustomType.Setter
+        public Builder enabledNetworkModes(@Nullable List<String> enabledNetworkModes) {
+
+            this.enabledNetworkModes = enabledNetworkModes;
+            return this;
+        }
+        public Builder enabledNetworkModes(String... enabledNetworkModes) {
+            return enabledNetworkModes(List.of(enabledNetworkModes));
         }
         @CustomType.Setter
         public Builder enabledTaskDrivers(@Nullable List<String> enabledTaskDrivers) {
@@ -76,7 +122,9 @@ public final class NamespaceCapabilities {
         }
         public NamespaceCapabilities build() {
             final var _resultValue = new NamespaceCapabilities();
+            _resultValue.disabledNetworkModes = disabledNetworkModes;
             _resultValue.disabledTaskDrivers = disabledTaskDrivers;
+            _resultValue.enabledNetworkModes = enabledNetworkModes;
             _resultValue.enabledTaskDrivers = enabledTaskDrivers;
             return _resultValue;
         }
