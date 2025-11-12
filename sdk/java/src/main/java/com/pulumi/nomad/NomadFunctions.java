@@ -3345,8 +3345,8 @@ public final class NomadFunctions {
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace "%s" {
-     *   policy = "write"
+     * namespace \"%s\" {
+     *   policy = \"write\"
      * }
      * ", namespaces[range.value()]))
      *                 .build());
@@ -3398,8 +3398,8 @@ public final class NomadFunctions {
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace "%s" {
-     *   policy = "write"
+     * namespace \"%s\" {
+     *   policy = \"write\"
      * }
      * ", namespaces[range.value()]))
      *                 .build());
@@ -3451,8 +3451,8 @@ public final class NomadFunctions {
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace "%s" {
-     *   policy = "write"
+     * namespace \"%s\" {
+     *   policy = \"write\"
      * }
      * ", namespaces[range.value()]))
      *                 .build());
@@ -3504,8 +3504,8 @@ public final class NomadFunctions {
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace "%s" {
-     *   policy = "write"
+     * namespace \"%s\" {
+     *   policy = \"write\"
      * }
      * ", namespaces[range.value()]))
      *                 .build());
@@ -3557,8 +3557,8 @@ public final class NomadFunctions {
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace "%s" {
-     *   policy = "write"
+     * namespace \"%s\" {
+     *   policy = \"write\"
      * }
      * ", namespaces[range.value()]))
      *                 .build());
@@ -3610,8 +3610,8 @@ public final class NomadFunctions {
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace "%s" {
-     *   policy = "write"
+     * namespace \"%s\" {
+     *   policy = \"write\"
      * }
      * ", namespaces[range.value()]))
      *                 .build());
@@ -3663,8 +3663,8 @@ public final class NomadFunctions {
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace "%s" {
-     *   policy = "write"
+     * namespace \"%s\" {
+     *   policy = \"write\"
      * }
      * ", namespaces[range.value()]))
      *                 .build());

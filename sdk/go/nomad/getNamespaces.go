@@ -40,7 +40,7 @@ import (
 //				__res, err := nomad.NewAclPolicy(ctx, fmt.Sprintf("namespace-%v", key0), &nomad.AclPolicyArgs{
 //					Name:        pulumi.Sprintf("namespace-%v", namespaces[val0]),
 //					Description: pulumi.Sprintf("Write to the namespace %v", namespaces[val0]),
-//					RulesHcl:    pulumi.Sprintf("namespace \"%v\" {\n  policy = \"write\"\n}\n", namespaces[val0]),
+//					RulesHcl:    pulumi.Sprintf("namespace \\\"%v\\\" {\n  policy = \\\"write\\\"\n}\n", namespaces[val0]),
 //				})
 //				if err != nil {
 //					return err

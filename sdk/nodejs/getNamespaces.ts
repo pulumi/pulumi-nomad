@@ -20,8 +20,8 @@ import * as utilities from "./utilities";
  *         namespace.push(new nomad.AclPolicy(`namespace-${range.value}`, {
  *             name: namespaces.then(namespaces => `namespace-${namespaces[range.value]}`),
  *             description: namespaces.then(namespaces => `Write to the namespace ${namespaces[range.value]}`),
- *             rulesHcl: namespaces.then(namespaces => `namespace "${namespaces[range.value]}" {
- *   policy = "write"
+ *             rulesHcl: namespaces.then(namespaces => `namespace \"${namespaces[range.value]}\" {
+ *   policy = \"write\"
  * }
  * `),
  *         }));
@@ -64,8 +64,8 @@ export interface GetNamespacesResult {
  *         namespace.push(new nomad.AclPolicy(`namespace-${range.value}`, {
  *             name: namespaces.then(namespaces => `namespace-${namespaces[range.value]}`),
  *             description: namespaces.then(namespaces => `Write to the namespace ${namespaces[range.value]}`),
- *             rulesHcl: namespaces.then(namespaces => `namespace "${namespaces[range.value]}" {
- *   policy = "write"
+ *             rulesHcl: namespaces.then(namespaces => `namespace \"${namespaces[range.value]}\" {
+ *   policy = \"write\"
  * }
  * `),
  *         }));

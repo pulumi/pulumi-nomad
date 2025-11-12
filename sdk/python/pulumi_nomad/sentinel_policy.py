@@ -238,7 +238,7 @@ class SentinelPolicy(pulumi.CustomResource):
         all_drivers_exec = rule {
             all job.task_groups as tg {
                 all tg.tasks as task {
-                    task.driver is "exec"
+                    task.driver is \\"exec\\"
                 }
             }
         }
@@ -286,7 +286,7 @@ class SentinelPolicy(pulumi.CustomResource):
         all_drivers_exec = rule {
             all job.task_groups as tg {
                 all tg.tasks as task {
-                    task.driver is "exec"
+                    task.driver is \\"exec\\"
                 }
             }
         }
