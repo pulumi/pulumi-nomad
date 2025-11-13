@@ -15,6 +15,14 @@ import (
 // Registers a dynamic host volume in Nomad that has already been created. Note
 // that Nomad supports two workflows for dynamic host volumes: create and
 // register. Both resources result in the same data source with the same outputs.
+//
+// ## Importing Dynamic Host Volumes
+//
+// Dynamic host volumes are imported using the pattern `<volume ID>@<namespace>` .
+//
+// [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+// [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+// [volumeSource]: /nomad/docs/job-specification/volume#source
 type DynamicHostVolumeRegistration struct {
 	pulumi.CustomResourceState
 
@@ -51,10 +59,6 @@ type DynamicHostVolumeRegistration struct {
 	// `(map<string|string>: <optional>)` - A key-value map of strings
 	// passed directly to the plugin to configure the volume. The details of these
 	// parameters are specific to the plugin.
-	//
-	// [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-	// [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-	// [volumeSource]: /nomad/docs/job-specification/volume#source
 	Parameters pulumi.StringMapOutput `pulumi:"parameters"`
 	// Plugin ID
 	PluginId pulumi.StringOutput `pulumi:"pluginId"`
@@ -134,10 +138,6 @@ type dynamicHostVolumeRegistrationState struct {
 	// `(map<string|string>: <optional>)` - A key-value map of strings
 	// passed directly to the plugin to configure the volume. The details of these
 	// parameters are specific to the plugin.
-	//
-	// [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-	// [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-	// [volumeSource]: /nomad/docs/job-specification/volume#source
 	Parameters map[string]string `pulumi:"parameters"`
 	// Plugin ID
 	PluginId *string `pulumi:"pluginId"`
@@ -179,10 +179,6 @@ type DynamicHostVolumeRegistrationState struct {
 	// `(map<string|string>: <optional>)` - A key-value map of strings
 	// passed directly to the plugin to configure the volume. The details of these
 	// parameters are specific to the plugin.
-	//
-	// [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-	// [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-	// [volumeSource]: /nomad/docs/job-specification/volume#source
 	Parameters pulumi.StringMapInput
 	// Plugin ID
 	PluginId pulumi.StringPtrInput
@@ -221,10 +217,6 @@ type dynamicHostVolumeRegistrationArgs struct {
 	// `(map<string|string>: <optional>)` - A key-value map of strings
 	// passed directly to the plugin to configure the volume. The details of these
 	// parameters are specific to the plugin.
-	//
-	// [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-	// [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-	// [volumeSource]: /nomad/docs/job-specification/volume#source
 	Parameters map[string]string `pulumi:"parameters"`
 }
 
@@ -256,10 +248,6 @@ type DynamicHostVolumeRegistrationArgs struct {
 	// `(map<string|string>: <optional>)` - A key-value map of strings
 	// passed directly to the plugin to configure the volume. The details of these
 	// parameters are specific to the plugin.
-	//
-	// [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-	// [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-	// [volumeSource]: /nomad/docs/job-specification/volume#source
 	Parameters pulumi.StringMapInput
 }
 
@@ -420,10 +408,6 @@ func (o DynamicHostVolumeRegistrationOutput) NodePool() pulumi.StringOutput {
 // `(map<string|string>: <optional>)` - A key-value map of strings
 // passed directly to the plugin to configure the volume. The details of these
 // parameters are specific to the plugin.
-//
-// [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-// [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-// [volumeSource]: /nomad/docs/job-specification/volume#source
 func (o DynamicHostVolumeRegistrationOutput) Parameters() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DynamicHostVolumeRegistration) pulumi.StringMapOutput { return v.Parameters }).(pulumi.StringMapOutput)
 }

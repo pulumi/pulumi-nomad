@@ -20,6 +20,11 @@ address: Optional[str]
 URL of the root of the target Nomad agent.
 """
 
+authJwt: Optional[str]
+"""
+Authenticates to Nomad using a JWT authentication method.
+"""
+
 caFile: Optional[str]
 """
 A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.

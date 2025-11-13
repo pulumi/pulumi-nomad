@@ -119,6 +119,12 @@ namespace Pulumi.Nomad
         public Input<string>? Address { get; set; }
 
         /// <summary>
+        /// Authenticates to Nomad using a JWT authentication method.
+        /// </summary>
+        [Input("authJwt", json: true)]
+        public Input<Inputs.ProviderAuthJwtArgs>? AuthJwt { get; set; }
+
+        /// <summary>
         /// A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
         /// </summary>
         [Input("caFile")]

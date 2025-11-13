@@ -278,6 +278,20 @@ The following configuration inputs are supported:
   that are ignored by the provider when configuring the Nomad API client.
   Supported keys are: `NOMAD_NAMESPACE` and `NOMAD_REGION`.
 
+- `authJwt` - Authenticates to Nomad using a JWT authentication method.
+
 The `headers` nested type accepts the following arguments:
 * `name` - (Required) The name of the header.
 * `value` - (Required) The value of the header.
+
+The `authJwt` configuration block accepts the following arguments:
+* `authMethod` - (Required) The name of the auth method.
+* `loginToken` - (Required) The value of the jwt token.
+
+An example using the `authJwt` configuration block :
+```yaml
+# Pulumi.yaml provider configuration file
+name: configuration-example
+runtime:
+
+```

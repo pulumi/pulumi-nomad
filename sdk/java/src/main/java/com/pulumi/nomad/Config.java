@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.TypeShape;
 import com.pulumi.core.internal.Codegen;
+import com.pulumi.nomad.config.inputs.AuthJwt;
 import com.pulumi.nomad.config.inputs.Headers;
 import java.lang.Boolean;
 import java.lang.String;
@@ -21,6 +22,13 @@ public final class Config {
  */
     public String address() {
         return Codegen.stringProp("address").config(config).require();
+    }
+/**
+ * Authenticates to Nomad using a JWT authentication method.
+ * 
+ */
+    public Optional<AuthJwt> authJwt() {
+        return Codegen.objectProp("authJwt", AuthJwt.class).config(config).get();
     }
 /**
  * A path to a PEM-encoded certificate authority used to verify the remote agent&#39;s certificate.

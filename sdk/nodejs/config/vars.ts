@@ -21,6 +21,17 @@ Object.defineProperty(exports, "address", {
 });
 
 /**
+ * Authenticates to Nomad using a JWT authentication method.
+ */
+export declare const authJwt: outputs.config.AuthJwt | undefined;
+Object.defineProperty(exports, "authJwt", {
+    get() {
+        return __config.getObject<outputs.config.AuthJwt>("authJwt");
+    },
+    enumerable: true,
+});
+
+/**
  * A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
  */
 export declare const caFile: string | undefined;

@@ -5,6 +5,7 @@ package com.pulumi.nomad;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.nomad.inputs.ProviderAuthJwtArgs;
 import com.pulumi.nomad.inputs.ProviderHeaderArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -32,6 +33,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> address() {
         return Optional.ofNullable(this.address);
+    }
+
+    /**
+     * Authenticates to Nomad using a JWT authentication method.
+     * 
+     */
+    @Import(name="authJwt", json=true)
+    private @Nullable Output<ProviderAuthJwtArgs> authJwt;
+
+    /**
+     * @return Authenticates to Nomad using a JWT authentication method.
+     * 
+     */
+    public Optional<Output<ProviderAuthJwtArgs>> authJwt() {
+        return Optional.ofNullable(this.authJwt);
     }
 
     /**
@@ -218,6 +234,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     private ProviderArgs(ProviderArgs $) {
         this.address = $.address;
+        this.authJwt = $.authJwt;
         this.caFile = $.caFile;
         this.caPem = $.caPem;
         this.certFile = $.certFile;
@@ -269,6 +286,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder address(String address) {
             return address(Output.of(address));
+        }
+
+        /**
+         * @param authJwt Authenticates to Nomad using a JWT authentication method.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authJwt(@Nullable Output<ProviderAuthJwtArgs> authJwt) {
+            $.authJwt = authJwt;
+            return this;
+        }
+
+        /**
+         * @param authJwt Authenticates to Nomad using a JWT authentication method.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authJwt(ProviderAuthJwtArgs authJwt) {
+            return authJwt(Output.of(authJwt));
         }
 
         /**

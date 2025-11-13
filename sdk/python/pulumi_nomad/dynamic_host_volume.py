@@ -570,48 +570,7 @@ class DynamicHostVolume(pulumi.CustomResource):
                  plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        layout: "nomad"
-        page_title: "Nomad: DynamicHostVolume"
-        sidebar_current: "docs-nomad-resource-dynamic-host-volume"
-        description: |-
-          Manages the lifecycle of creating and deleting dynamic host volumes.
-        ---
-
-        Creates and registers a dynamic host volume in Nomad. Note that Nomad supports
-        two workflows for dynamic host volumes: create and register. Both resources
-        result in the same data source with the same outputs.
-
-        > **Warning:** Destroying this resource **will result in data loss**. Use the
-          [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
-          deletions.
-
-        ## Example Usage
-
-        Creating a dynamic host volume:
-
-        ```python
-        import pulumi
-        import pulumi_nomad as nomad
-
-        example = nomad.DynamicHostVolume("example",
-            name="example",
-            namespace="prod",
-            plugin_id="mkdir",
-            capacity_max="12 GiB",
-            capacity_min="1.0 GiB",
-            capabilities=[{
-                "access_mode": "single-node-writer",
-                "attachment_mode": "file-system",
-            }],
-            constraints=[{
-                "attribute": "${attr.kernel.name}",
-                "value": "linux",
-            }],
-            parameters={
-                "some_key": "some_value",
-            })
-        ```
-
+        Create a DynamicHostVolume resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
@@ -661,48 +620,7 @@ class DynamicHostVolume(pulumi.CustomResource):
                  args: DynamicHostVolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        layout: "nomad"
-        page_title: "Nomad: DynamicHostVolume"
-        sidebar_current: "docs-nomad-resource-dynamic-host-volume"
-        description: |-
-          Manages the lifecycle of creating and deleting dynamic host volumes.
-        ---
-
-        Creates and registers a dynamic host volume in Nomad. Note that Nomad supports
-        two workflows for dynamic host volumes: create and register. Both resources
-        result in the same data source with the same outputs.
-
-        > **Warning:** Destroying this resource **will result in data loss**. Use the
-          [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
-          deletions.
-
-        ## Example Usage
-
-        Creating a dynamic host volume:
-
-        ```python
-        import pulumi
-        import pulumi_nomad as nomad
-
-        example = nomad.DynamicHostVolume("example",
-            name="example",
-            namespace="prod",
-            plugin_id="mkdir",
-            capacity_max="12 GiB",
-            capacity_min="1.0 GiB",
-            capabilities=[{
-                "access_mode": "single-node-writer",
-                "attachment_mode": "file-system",
-            }],
-            constraints=[{
-                "attribute": "${attr.kernel.name}",
-                "value": "linux",
-            }],
-            parameters={
-                "some_key": "some_value",
-            })
-        ```
-
+        Create a DynamicHostVolume resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param DynamicHostVolumeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

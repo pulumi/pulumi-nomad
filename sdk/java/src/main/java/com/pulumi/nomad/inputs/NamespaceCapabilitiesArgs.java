@@ -17,6 +17,21 @@ public final class NamespaceCapabilitiesArgs extends com.pulumi.resources.Resour
     public static final NamespaceCapabilitiesArgs Empty = new NamespaceCapabilitiesArgs();
 
     /**
+     * `([]string: &lt;optional&gt;)` - Network modes disabled for the namespace.
+     * 
+     */
+    @Import(name="disabledNetworkModes")
+    private @Nullable Output<List<String>> disabledNetworkModes;
+
+    /**
+     * @return `([]string: &lt;optional&gt;)` - Network modes disabled for the namespace.
+     * 
+     */
+    public Optional<Output<List<String>>> disabledNetworkModes() {
+        return Optional.ofNullable(this.disabledNetworkModes);
+    }
+
+    /**
      * `([]string: &lt;optional&gt;)` - Task drivers disabled for the namespace.
      * 
      */
@@ -29,6 +44,21 @@ public final class NamespaceCapabilitiesArgs extends com.pulumi.resources.Resour
      */
     public Optional<Output<List<String>>> disabledTaskDrivers() {
         return Optional.ofNullable(this.disabledTaskDrivers);
+    }
+
+    /**
+     * `([]string: &lt;optional&gt;)` - Network modes enabled for the namespace.
+     * 
+     */
+    @Import(name="enabledNetworkModes")
+    private @Nullable Output<List<String>> enabledNetworkModes;
+
+    /**
+     * @return `([]string: &lt;optional&gt;)` - Network modes enabled for the namespace.
+     * 
+     */
+    public Optional<Output<List<String>>> enabledNetworkModes() {
+        return Optional.ofNullable(this.enabledNetworkModes);
     }
 
     /**
@@ -49,7 +79,9 @@ public final class NamespaceCapabilitiesArgs extends com.pulumi.resources.Resour
     private NamespaceCapabilitiesArgs() {}
 
     private NamespaceCapabilitiesArgs(NamespaceCapabilitiesArgs $) {
+        this.disabledNetworkModes = $.disabledNetworkModes;
         this.disabledTaskDrivers = $.disabledTaskDrivers;
+        this.enabledNetworkModes = $.enabledNetworkModes;
         this.enabledTaskDrivers = $.enabledTaskDrivers;
     }
 
@@ -69,6 +101,37 @@ public final class NamespaceCapabilitiesArgs extends com.pulumi.resources.Resour
 
         public Builder(NamespaceCapabilitiesArgs defaults) {
             $ = new NamespaceCapabilitiesArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param disabledNetworkModes `([]string: &lt;optional&gt;)` - Network modes disabled for the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabledNetworkModes(@Nullable Output<List<String>> disabledNetworkModes) {
+            $.disabledNetworkModes = disabledNetworkModes;
+            return this;
+        }
+
+        /**
+         * @param disabledNetworkModes `([]string: &lt;optional&gt;)` - Network modes disabled for the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabledNetworkModes(List<String> disabledNetworkModes) {
+            return disabledNetworkModes(Output.of(disabledNetworkModes));
+        }
+
+        /**
+         * @param disabledNetworkModes `([]string: &lt;optional&gt;)` - Network modes disabled for the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disabledNetworkModes(String... disabledNetworkModes) {
+            return disabledNetworkModes(List.of(disabledNetworkModes));
         }
 
         /**
@@ -100,6 +163,37 @@ public final class NamespaceCapabilitiesArgs extends com.pulumi.resources.Resour
          */
         public Builder disabledTaskDrivers(String... disabledTaskDrivers) {
             return disabledTaskDrivers(List.of(disabledTaskDrivers));
+        }
+
+        /**
+         * @param enabledNetworkModes `([]string: &lt;optional&gt;)` - Network modes enabled for the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabledNetworkModes(@Nullable Output<List<String>> enabledNetworkModes) {
+            $.enabledNetworkModes = enabledNetworkModes;
+            return this;
+        }
+
+        /**
+         * @param enabledNetworkModes `([]string: &lt;optional&gt;)` - Network modes enabled for the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabledNetworkModes(List<String> enabledNetworkModes) {
+            return enabledNetworkModes(Output.of(enabledNetworkModes));
+        }
+
+        /**
+         * @param enabledNetworkModes `([]string: &lt;optional&gt;)` - Network modes enabled for the namespace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder enabledNetworkModes(String... enabledNetworkModes) {
+            return enabledNetworkModes(List.of(enabledNetworkModes));
         }
 
         /**

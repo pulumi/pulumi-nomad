@@ -12,6 +12,18 @@ namespace Pulumi.Nomad.Inputs
 
     public sealed class NamespaceCapabilitiesArgs : global::Pulumi.ResourceArgs
     {
+        [Input("disabledNetworkModes")]
+        private InputList<string>? _disabledNetworkModes;
+
+        /// <summary>
+        /// `([]string: &lt;optional&gt;)` - Network modes disabled for the namespace.
+        /// </summary>
+        public InputList<string> DisabledNetworkModes
+        {
+            get => _disabledNetworkModes ?? (_disabledNetworkModes = new InputList<string>());
+            set => _disabledNetworkModes = value;
+        }
+
         [Input("disabledTaskDrivers")]
         private InputList<string>? _disabledTaskDrivers;
 
@@ -22,6 +34,18 @@ namespace Pulumi.Nomad.Inputs
         {
             get => _disabledTaskDrivers ?? (_disabledTaskDrivers = new InputList<string>());
             set => _disabledTaskDrivers = value;
+        }
+
+        [Input("enabledNetworkModes")]
+        private InputList<string>? _enabledNetworkModes;
+
+        /// <summary>
+        /// `([]string: &lt;optional&gt;)` - Network modes enabled for the namespace.
+        /// </summary>
+        public InputList<string> EnabledNetworkModes
+        {
+            get => _enabledNetworkModes ?? (_enabledNetworkModes = new InputList<string>());
+            set => _enabledNetworkModes = value;
         }
 
         [Input("enabledTaskDrivers")]

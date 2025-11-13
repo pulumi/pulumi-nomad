@@ -13,6 +13,14 @@ namespace Pulumi.Nomad
     /// Registers a dynamic host volume in Nomad that has already been created. Note
     /// that Nomad supports two workflows for dynamic host volumes: create and
     /// register. Both resources result in the same data source with the same outputs.
+    /// 
+    /// ## Importing Dynamic Host Volumes
+    /// 
+    /// Dynamic host volumes are imported using the pattern `&lt;volume ID&gt;@&lt;namespace&gt;` .
+    /// 
+    /// [`AccessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+    /// [`AttachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+    /// [VolumeSource]: /nomad/docs/job-specification/volume#source
     /// </summary>
     [NomadResourceType("nomad:index/dynamicHostVolumeRegistration:DynamicHostVolumeRegistration")]
     public partial class DynamicHostVolumeRegistration : global::Pulumi.CustomResource
@@ -89,11 +97,6 @@ namespace Pulumi.Nomad
         /// `(map&lt;string|string&gt;: &lt;optional&gt;)` - A key-value map of strings
         /// passed directly to the plugin to configure the volume. The details of these
         /// parameters are specific to the plugin.
-        /// 
-        /// 
-        /// [`AccessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-        /// [`AttachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-        /// [VolumeSource]: /nomad/docs/job-specification/volume#source
         /// </summary>
         [Output("parameters")]
         public Output<ImmutableDictionary<string, string>?> Parameters { get; private set; } = null!;
@@ -216,11 +219,6 @@ namespace Pulumi.Nomad
         /// `(map&lt;string|string&gt;: &lt;optional&gt;)` - A key-value map of strings
         /// passed directly to the plugin to configure the volume. The details of these
         /// parameters are specific to the plugin.
-        /// 
-        /// 
-        /// [`AccessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-        /// [`AttachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-        /// [VolumeSource]: /nomad/docs/job-specification/volume#source
         /// </summary>
         public InputMap<string> Parameters
         {
@@ -323,11 +321,6 @@ namespace Pulumi.Nomad
         /// `(map&lt;string|string&gt;: &lt;optional&gt;)` - A key-value map of strings
         /// passed directly to the plugin to configure the volume. The details of these
         /// parameters are specific to the plugin.
-        /// 
-        /// 
-        /// [`AccessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
-        /// [`AttachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
-        /// [VolumeSource]: /nomad/docs/job-specification/volume#source
         /// </summary>
         public InputMap<string> Parameters
         {

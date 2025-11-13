@@ -29,6 +29,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('address')
 
     @_builtins.property
+    def auth_jwt(self) -> Optional[str]:
+        """
+        Authenticates to Nomad using a JWT authentication method.
+        """
+        return __config__.get('authJwt')
+
+    @_builtins.property
     def ca_file(self) -> Optional[str]:
         """
         A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.

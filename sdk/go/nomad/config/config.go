@@ -16,6 +16,11 @@ func GetAddress(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:address")
 }
 
+// Authenticates to Nomad using a JWT authentication method.
+func GetAuthJwt(ctx *pulumi.Context) string {
+	return config.Get(ctx, "nomad:authJwt")
+}
+
 // A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
 func GetCaFile(ctx *pulumi.Context) string {
 	return config.Get(ctx, "nomad:caFile")

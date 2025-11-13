@@ -822,9 +822,17 @@ export interface GetJwksKey {
 
 export interface GetNamespaceCapability {
     /**
+     * `([]string)` - Network modes disabled for the namespace.
+     */
+    disabledNetworkModes?: string[];
+    /**
      * `([]string)` - Task drivers disabled for the namespace.
      */
     disabledTaskDrivers?: string[];
+    /**
+     * `([]string)` - Network modes enabled for the namespace.
+     */
+    enabledNetworkModes?: string[];
     /**
      * `([]string)` - Task drivers enabled for the namespace.
      */
@@ -952,9 +960,17 @@ export interface JobTaskGroupVolume {
 
 export interface NamespaceCapabilities {
     /**
+     * `([]string: <optional>)` - Network modes disabled for the namespace.
+     */
+    disabledNetworkModes?: string[];
+    /**
      * `([]string: <optional>)` - Task drivers disabled for the namespace.
      */
     disabledTaskDrivers?: string[];
+    /**
+     * `([]string: <optional>)` - Network modes enabled for the namespace.
+     */
+    enabledNetworkModes?: string[];
     /**
      * `([]string: <optional>)` - Task drivers enabled for the namespace.
      */
@@ -1084,6 +1100,17 @@ export interface VolumeTopologyRequestRequiredTopology {
 }
 
 export namespace config {
+    export interface AuthJwt {
+        /**
+         * The name of the auth method to use for login.
+         */
+        authMethod: string;
+        /**
+         * The externally issued authentication token to be exchanged for a Nomad ACL Token.
+         */
+        loginToken: string;
+    }
+
     export interface Headers {
         /**
          * The header name
