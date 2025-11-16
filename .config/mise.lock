@@ -25,13 +25,13 @@ url = "https://github.com/pulumi/schema-tools/releases/download/v0.6.0/schema-to
 url_api = ""
 
 [[tools.go]]
-version = "1.24.7"
+version = "1.25.4"
 backend = "core:go"
 
 [tools.go.platforms.linux-x64]
-checksum = "sha256:da18191ddb7db8a9339816f3e2b54bdded8047cdc2a5d67059478f8d1595c43f"
-size = 78584952
-url = "https://dl.google.com/go/go1.24.7.linux-amd64.tar.gz"
+checksum = "sha256:9fa5ffeda4170de60f67f3aa0f824e426421ba724c21e133c1e35d6159ca1bec"
+size = 59766394
+url = "https://dl.google.com/go/go1.25.4.linux-amd64.tar.gz"
 
 [[tools.golangci-lint]]
 version = "1.64.8"
