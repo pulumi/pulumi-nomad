@@ -36,6 +36,7 @@ config:
         value: us-east-2
 
 ```
+
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
 import * as nomad from "@pulumi/nomad";
@@ -50,6 +51,7 @@ const monitoring = new nomad.Job("monitoring", {jobspec: std.file({
     input: `${notImplemented("path.module")}/jobspec.hcl`,
 }).then(invoke => invoke.result)});
 ```
+
 {{% /choosable %}}
 {{% choosable language python %}}
 ```yaml
@@ -63,6 +65,7 @@ config:
         value: us-east-2
 
 ```
+
 ```python
 import pulumi
 import pulumi_nomad as nomad
@@ -75,6 +78,7 @@ def not_implemented(msg):
 # Register a job
 monitoring = nomad.Job("monitoring", jobspec=std.file(input=f"{not_implemented('path.module')}/jobspec.hcl").result)
 ```
+
 {{% /choosable %}}
 {{% choosable language csharp %}}
 ```yaml
@@ -88,6 +92,7 @@ config:
         value: us-east-2
 
 ```
+
 ```csharp
 using System.Collections.Generic;
 using System.Linq;
@@ -115,6 +120,7 @@ return await Deployment.RunAsync(() =>
 });
 
 ```
+
 {{% /choosable %}}
 {{% choosable language go %}}
 ```yaml
@@ -128,6 +134,7 @@ config:
         value: us-east-2
 
 ```
+
 ```go
 package main
 
@@ -162,6 +169,7 @@ func main() {
 	})
 }
 ```
+
 {{% /choosable %}}
 {{% choosable language yaml %}}
 ```yaml
@@ -175,9 +183,11 @@ config:
         value: us-east-2
 
 ```
+
 ```yaml
 Example currently unavailable in this language
 ```
+
 {{% /choosable %}}
 {{% choosable language java %}}
 ```yaml
@@ -191,6 +201,7 @@ config:
         value: us-east-2
 
 ```
+
 ```java
 package generated_program;
 
@@ -224,6 +235,7 @@ public class App {
     }
 }
 ```
+
 {{% /choosable %}}
 {{< /chooser >}}
 ## Configuration Reference
