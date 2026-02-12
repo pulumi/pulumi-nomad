@@ -645,7 +645,66 @@ class CsiVolumeRegistration(pulumi.CustomResource):
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a CsiVolumeRegistration resource with the given unique name, props, and options.
+        Manages the registration of a CSI volume in Nomad
+
+        This can be used to register and deregister CSI volumes in a Nomad cluster. The
+        volume must already exist to be registered. Use the `CsiVolume`
+        resource to create a new volume.
+
+        > **Warning:** this resource will store any sensitive values placed in
+          `secrets` or `mount_options` in the Terraform's state file. Take care to
+          [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
+        ## Example Usage
+
+        Registering a volume:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        # It can sometimes be helpful to wait for a particular plugin to be available
+        ebs = nomad.get_plugin(plugin_id="aws-ebs0",
+            wait_for_healthy=True)
+        mysql_volume = nomad.CsiVolumeRegistration("mysql_volume",
+            plugin_id="aws-ebs0",
+            volume_id="mysql_volume",
+            name="mysql_volume",
+            external_id=hashistack["ebsTestVolumeId"],
+            capabilities=[{
+                "access_mode": "single-node-writer",
+                "attachment_mode": "file-system",
+            }],
+            mount_options={
+                "fs_type": "ext4",
+            },
+            topology_request={
+                "required": {
+                    "topologies": [
+                        {
+                            "segments": {
+                                "rack": "R1",
+                                "zone": "us-east-1a",
+                            },
+                        },
+                        {
+                            "segments": {
+                                "rack": "R2",
+                            },
+                        },
+                    ],
+                },
+            },
+            opts = pulumi.ResourceOptions(depends_on=[ebs]))
+        ```
+
+        ## Importing CSI Volume Registrations
+
+        CSI volume registrations are imported using the pattern
+        `<volume ID>@<namespace>`.
+
+        [tf_docs_timeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeRegistrationCapabilityArgs', 'CsiVolumeRegistrationCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
@@ -670,7 +729,66 @@ class CsiVolumeRegistration(pulumi.CustomResource):
                  args: CsiVolumeRegistrationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a CsiVolumeRegistration resource with the given unique name, props, and options.
+        Manages the registration of a CSI volume in Nomad
+
+        This can be used to register and deregister CSI volumes in a Nomad cluster. The
+        volume must already exist to be registered. Use the `CsiVolume`
+        resource to create a new volume.
+
+        > **Warning:** this resource will store any sensitive values placed in
+          `secrets` or `mount_options` in the Terraform's state file. Take care to
+          [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
+        ## Example Usage
+
+        Registering a volume:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        # It can sometimes be helpful to wait for a particular plugin to be available
+        ebs = nomad.get_plugin(plugin_id="aws-ebs0",
+            wait_for_healthy=True)
+        mysql_volume = nomad.CsiVolumeRegistration("mysql_volume",
+            plugin_id="aws-ebs0",
+            volume_id="mysql_volume",
+            name="mysql_volume",
+            external_id=hashistack["ebsTestVolumeId"],
+            capabilities=[{
+                "access_mode": "single-node-writer",
+                "attachment_mode": "file-system",
+            }],
+            mount_options={
+                "fs_type": "ext4",
+            },
+            topology_request={
+                "required": {
+                    "topologies": [
+                        {
+                            "segments": {
+                                "rack": "R1",
+                                "zone": "us-east-1a",
+                            },
+                        },
+                        {
+                            "segments": {
+                                "rack": "R2",
+                            },
+                        },
+                    ],
+                },
+            },
+            opts = pulumi.ResourceOptions(depends_on=[ebs]))
+        ```
+
+        ## Importing CSI Volume Registrations
+
+        CSI volume registrations are imported using the pattern
+        `<volume ID>@<namespace>`.
+
+        [tf_docs_timeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
+
         :param str resource_name: The name of the resource.
         :param CsiVolumeRegistrationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

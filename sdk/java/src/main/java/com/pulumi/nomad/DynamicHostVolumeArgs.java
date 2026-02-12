@@ -214,14 +214,44 @@ public final class DynamicHostVolumeArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Plugin ID
+     * `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
+     * plugin][dhvPlugin] that manages this volume.
+     * 
+     * [tfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+     * [`constraint`]: /nomad/docs/job-specification/constraint
+     * [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+     * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+     * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+     * [volumeSource]: /nomad/docs/job-specification/volume#source
+     * # nomad.DynamicHostVolume
+     * 
+     * Creates and registers a dynamic host volume in Nomad.
+     * 
+     * &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
+     * [`preventDestroy`][tfDocsPreventDestroy] directive to avoid accidental
+     * deletions.
      * 
      */
     @Import(name="pluginId", required=true)
     private Output<String> pluginId;
 
     /**
-     * @return Plugin ID
+     * @return `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
+     * plugin][dhvPlugin] that manages this volume.
+     * 
+     * [tfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+     * [`constraint`]: /nomad/docs/job-specification/constraint
+     * [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+     * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+     * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+     * [volumeSource]: /nomad/docs/job-specification/volume#source
+     * # nomad.DynamicHostVolume
+     * 
+     * Creates and registers a dynamic host volume in Nomad.
+     * 
+     * &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
+     * [`preventDestroy`][tfDocsPreventDestroy] directive to avoid accidental
+     * deletions.
      * 
      */
     public Output<String> pluginId() {
@@ -533,7 +563,22 @@ public final class DynamicHostVolumeArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param pluginId Plugin ID
+         * @param pluginId `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
+         * plugin][dhvPlugin] that manages this volume.
+         * 
+         * [tfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+         * [`constraint`]: /nomad/docs/job-specification/constraint
+         * [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+         * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+         * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+         * [volumeSource]: /nomad/docs/job-specification/volume#source
+         * # nomad.DynamicHostVolume
+         * 
+         * Creates and registers a dynamic host volume in Nomad.
+         * 
+         * &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
+         * [`preventDestroy`][tfDocsPreventDestroy] directive to avoid accidental
+         * deletions.
          * 
          * @return builder
          * 
@@ -544,7 +589,22 @@ public final class DynamicHostVolumeArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param pluginId Plugin ID
+         * @param pluginId `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
+         * plugin][dhvPlugin] that manages this volume.
+         * 
+         * [tfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+         * [`constraint`]: /nomad/docs/job-specification/constraint
+         * [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+         * [`accessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+         * [`attachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+         * [volumeSource]: /nomad/docs/job-specification/volume#source
+         * # nomad.DynamicHostVolume
+         * 
+         * Creates and registers a dynamic host volume in Nomad.
+         * 
+         * &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
+         * [`preventDestroy`][tfDocsPreventDestroy] directive to avoid accidental
+         * deletions.
          * 
          * @return builder
          * 

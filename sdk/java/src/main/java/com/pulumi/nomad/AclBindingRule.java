@@ -14,6 +14,75 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Manages an ACL Binding Rule in Nomad.
+ * 
+ * &gt; **Warning:** this resource will store the sensitive value placed in
+ *   `config.oidc_client_secret` in the Terraform&#39;s state file. Take care to
+ *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+ * 
+ * ## Example Usage
+ * 
+ * Creating an ALC Binding Rule associated to an ACL Auth Method also created and
+ * managed by Terraform:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.nomad.AclAuthMethod;
+ * import com.pulumi.nomad.AclAuthMethodArgs;
+ * import com.pulumi.nomad.inputs.AclAuthMethodConfigArgs;
+ * import com.pulumi.nomad.AclBindingRule;
+ * import com.pulumi.nomad.AclBindingRuleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myNomadAclAuthMethod = new AclAuthMethod("myNomadAclAuthMethod", AclAuthMethodArgs.builder()
+ *             .name("my-nomad-acl-auth-method")
+ *             .type("OIDC")
+ *             .tokenLocality("global")
+ *             .maxTokenTtl("10m0s")
+ *             .default_(true)
+ *             .config(AclAuthMethodConfigArgs.builder()
+ *                 .oidcDiscoveryUrl("https://uk.auth0.com/")
+ *                 .oidcClientId("someclientid")
+ *                 .oidcClientSecret("someclientsecret-t")
+ *                 .boundAudiences("someclientid")
+ *                 .allowedRedirectUris(                
+ *                     "http://localhost:4649/oidc/callback",
+ *                     "http://localhost:4646/ui/settings/tokens")
+ *                 .listClaimMappings(Map.of("http://nomad.internal/roles", "roles"))
+ *                 .build())
+ *             .build());
+ * 
+ *         var myNomadAclBindingRule = new AclBindingRule("myNomadAclBindingRule", AclBindingRuleArgs.builder()
+ *             .description("engineering rule")
+ *             .authMethod(myNomadAclAuthMethod.name())
+ *             .selector("engineering in list.roles")
+ *             .bindType("role")
+ *             .bindName("engineering-read-only")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ */
 @ResourceType(type="nomad:index/aclBindingRule:AclBindingRule")
 public class AclBindingRule extends com.pulumi.resources.CustomResource {
     /**

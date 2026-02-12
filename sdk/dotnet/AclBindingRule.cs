@@ -9,6 +9,66 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad
 {
+    /// <summary>
+    /// Manages an ACL Binding Rule in Nomad.
+    /// 
+    /// &gt; **Warning:** this resource will store the sensitive value placed in
+    ///   `config.oidc_client_secret` in the Terraform's state file. Take care to
+    ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Creating an ALC Binding Rule associated to an ACL Auth Method also created and
+    /// managed by Terraform:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Nomad = Pulumi.Nomad;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myNomadAclAuthMethod = new Nomad.AclAuthMethod("my_nomad_acl_auth_method", new()
+    ///     {
+    ///         Name = "my-nomad-acl-auth-method",
+    ///         Type = "OIDC",
+    ///         TokenLocality = "global",
+    ///         MaxTokenTtl = "10m0s",
+    ///         Default = true,
+    ///         Config = new Nomad.Inputs.AclAuthMethodConfigArgs
+    ///         {
+    ///             OidcDiscoveryUrl = "https://uk.auth0.com/",
+    ///             OidcClientId = "someclientid",
+    ///             OidcClientSecret = "someclientsecret-t",
+    ///             BoundAudiences = new[]
+    ///             {
+    ///                 "someclientid",
+    ///             },
+    ///             AllowedRedirectUris = new[]
+    ///             {
+    ///                 "http://localhost:4649/oidc/callback",
+    ///                 "http://localhost:4646/ui/settings/tokens",
+    ///             },
+    ///             ListClaimMappings = 
+    ///             {
+    ///                 { "http://nomad.internal/roles", "roles" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var myNomadAclBindingRule = new Nomad.AclBindingRule("my_nomad_acl_binding_rule", new()
+    ///     {
+    ///         Description = "engineering rule",
+    ///         AuthMethod = myNomadAclAuthMethod.Name,
+    ///         Selector = "engineering in list.roles",
+    ///         BindType = "role",
+    ///         BindName = "engineering-read-only",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [NomadResourceType("nomad:index/aclBindingRule:AclBindingRule")]
     public partial class AclBindingRule : global::Pulumi.CustomResource
     {

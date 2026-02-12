@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Get the information about a Nomad variable.
+ *
+ * > **Warning:** this data source will store the sensitive values from `items`
+ *   in the Terraform's state file. Take care to
+ *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -58,6 +64,12 @@ export interface GetVariableResult {
     readonly path: string;
 }
 /**
+ * Get the information about a Nomad variable.
+ *
+ * > **Warning:** this data source will store the sensitive values from `items`
+ *   in the Terraform's state file. Take care to
+ *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+ *
  * ## Example Usage
  *
  * ```typescript

@@ -89,6 +89,12 @@ def get_variable(namespace: Optional[_builtins.str] = None,
                  path: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVariableResult:
     """
+    Get the information about a Nomad variable.
+
+    > **Warning:** this data source will store the sensitive values from `items`
+      in the Terraform's state file. Take care to
+      [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
     ## Example Usage
 
     ```python
@@ -117,6 +123,12 @@ def get_variable_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]
                         path: Optional[pulumi.Input[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVariableResult]:
     """
+    Get the information about a Nomad variable.
+
+    > **Warning:** this data source will store the sensitive values from `items`
+      in the Terraform's state file. Take care to
+      [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
     ## Example Usage
 
     ```python

@@ -10,6 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Nomad
 {
     /// <summary>
+    /// &gt; **Deprecated:** This resource has been deprecated and may be removed in a
+    /// future release. Use `nomad.CsiVolumeRegistration` instead.
+    /// 
+    /// Manages an external volume in Nomad.
+    /// 
+    /// This can be used to register external volumes in a Nomad cluster.
+    /// 
+    /// &gt; **Warning:** this resource will store any sensitive values placed in
+    ///   `Secrets` or `MountOptions` in the Terraform's state file. Take care to
+    ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+    /// 
     /// ## Example Usage
     /// 
     /// Registering a volume:

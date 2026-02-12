@@ -7,6 +7,11 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Get information on an ACL token.
+ *
+ * > **Warning:** this data source will store tokens in the Terraform state. Take care to
+ *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -88,6 +93,11 @@ export interface GetAclTokenResult {
     readonly type: string;
 }
 /**
+ * Get information on an ACL token.
+ *
+ * > **Warning:** this data source will store tokens in the Terraform state. Take care to
+ *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+ *
  * ## Example Usage
  *
  * ```typescript

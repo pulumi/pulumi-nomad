@@ -12,6 +12,48 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages an ACL Role in Nomad.
+//
+// ## Example Usage
+//
+// Creating an ALC Role linked to an ACL policy also created by Terraform:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myNomadAclPolicy, err := nomad.NewAclPolicy(ctx, "my_nomad_acl_policy", &nomad.AclPolicyArgs{
+//				Name:     pulumi.String("my-nomad-acl-policy"),
+//				RulesHcl: pulumi.Sprintf("namespace \\\"default\\\" {\n  policy       = \\\"read\\\"\n  capabilities = [\\\"submit-job\\\"]\n}\n"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nomad.NewAclRole(ctx, "my_nomad_acl_role", &nomad.AclRoleArgs{
+//				Name:        pulumi.String("my-nomad-acl-role"),
+//				Description: pulumi.String("An ACL Role for cluster developers"),
+//				Policies: nomad.AclRolePolicyArray{
+//					&nomad.AclRolePolicyArgs{
+//						Name: myNomadAclPolicy.Name,
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type AclRole struct {
 	pulumi.CustomResourceState
 

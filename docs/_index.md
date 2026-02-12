@@ -142,7 +142,7 @@ import (
 	"fmt"
 
 	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
-	"github.com/pulumi/pulumi-std/sdk/go/std"
+	"github.com/pulumi/pulumi-std/sdk/v2/go/std"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

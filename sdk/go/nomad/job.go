@@ -12,6 +12,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a job registered in Nomad.
+//
+// This can be used to initialize your cluster with system jobs, common services,
+// and more. In day to day Nomad use it is common for developers to submit jobs to
+// Nomad directly, such as for general app deployment. In addition to these apps, a
+// Nomad cluster often runs core system services that are ideally setup during
+// infrastructure creation. This resource is ideal for the latter type of job, but
+// can be used to manage any job within Nomad.
+//
+// ## Importing Jobs
+//
+// Jobs are imported using the pattern `<job ID>@<namespace>`.
+//
+// [tfDocsTimeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
+// [tfDocsTemplatefile]: https://www.terraform.io/docs/configuration/functions/templatefile.html
+// [tfDocsStringTemplate]: https://www.terraform.io/language/expressions/strings#string-templates
 type Job struct {
 	pulumi.CustomResourceState
 
@@ -25,7 +41,8 @@ type Job struct {
 	DeploymentId pulumi.StringOutput `pulumi:"deploymentId"`
 	// If detach = false, the status for the deployment associated with the last job create/update, if one exists.
 	DeploymentStatus pulumi.StringOutput `pulumi:"deploymentStatus"`
-	// If true, the job will be deregistered on destroy.
+	// `(boolean: true)` - Determines if the job will be
+	// deregistered when this resource is destroyed in Terraform.
 	DeregisterOnDestroy pulumi.BoolPtrOutput `pulumi:"deregisterOnDestroy"`
 	// `(boolean: true)` - Determines if the job will be
 	// deregistered if the ID of the job in the jobspec changes.
@@ -109,7 +126,8 @@ type jobState struct {
 	DeploymentId *string `pulumi:"deploymentId"`
 	// If detach = false, the status for the deployment associated with the last job create/update, if one exists.
 	DeploymentStatus *string `pulumi:"deploymentStatus"`
-	// If true, the job will be deregistered on destroy.
+	// `(boolean: true)` - Determines if the job will be
+	// deregistered when this resource is destroyed in Terraform.
 	DeregisterOnDestroy *bool `pulumi:"deregisterOnDestroy"`
 	// `(boolean: true)` - Determines if the job will be
 	// deregistered if the ID of the job in the jobspec changes.
@@ -161,7 +179,8 @@ type JobState struct {
 	DeploymentId pulumi.StringPtrInput
 	// If detach = false, the status for the deployment associated with the last job create/update, if one exists.
 	DeploymentStatus pulumi.StringPtrInput
-	// If true, the job will be deregistered on destroy.
+	// `(boolean: true)` - Determines if the job will be
+	// deregistered when this resource is destroyed in Terraform.
 	DeregisterOnDestroy pulumi.BoolPtrInput
 	// `(boolean: true)` - Determines if the job will be
 	// deregistered if the ID of the job in the jobspec changes.
@@ -207,7 +226,8 @@ func (JobState) ElementType() reflect.Type {
 }
 
 type jobArgs struct {
-	// If true, the job will be deregistered on destroy.
+	// `(boolean: true)` - Determines if the job will be
+	// deregistered when this resource is destroyed in Terraform.
 	DeregisterOnDestroy *bool `pulumi:"deregisterOnDestroy"`
 	// `(boolean: true)` - Determines if the job will be
 	// deregistered if the ID of the job in the jobspec changes.
@@ -237,7 +257,8 @@ type jobArgs struct {
 
 // The set of arguments for constructing a Job resource.
 type JobArgs struct {
-	// If true, the job will be deregistered on destroy.
+	// `(boolean: true)` - Determines if the job will be
+	// deregistered when this resource is destroyed in Terraform.
 	DeregisterOnDestroy pulumi.BoolPtrInput
 	// `(boolean: true)` - Determines if the job will be
 	// deregistered if the ID of the job in the jobspec changes.
@@ -374,7 +395,8 @@ func (o JobOutput) DeploymentStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.DeploymentStatus }).(pulumi.StringOutput)
 }
 
-// If true, the job will be deregistered on destroy.
+// `(boolean: true)` - Determines if the job will be
+// deregistered when this resource is destroyed in Terraform.
 func (o JobOutput) DeregisterOnDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.DeregisterOnDestroy }).(pulumi.BoolPtrOutput)
 }

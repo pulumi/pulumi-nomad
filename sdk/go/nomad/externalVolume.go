@@ -12,6 +12,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// > **Deprecated:** This resource has been deprecated and may be removed in a
+// future release. Use `CsiVolume` instead.
+//
+// Creates and registers an external volume in Nomad.
+//
+// This can be used to create and register external volumes in a Nomad cluster.
+//
+// > **Warning:** This resource will store any sensitive values placed in
+//
+//	`secrets` or `mountOptions` in the Terraform's state file. Take care to
+//	[protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+//
+// > **Warning:** Destroying this resource **will result in data loss**. Use the
+//
+//	[`preventDestroy`][tfDocsPreventDestroy] directive to avoid accidental
+//	deletions.
+//
 // ## Example Usage
 //
 // Creating a volume:

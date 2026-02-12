@@ -34,7 +34,8 @@ class JobArgs:
         """
         The set of arguments for constructing a Job resource.
         :param pulumi.Input[_builtins.str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
-        :param pulumi.Input[_builtins.bool] deregister_on_destroy: If true, the job will be deregistered on destroy.
+        :param pulumi.Input[_builtins.bool] deregister_on_destroy: `(boolean: true)` - Determines if the job will be
+               deregistered when this resource is destroyed in Terraform.
         :param pulumi.Input[_builtins.bool] deregister_on_id_change: `(boolean: true)` - Determines if the job will be
                deregistered if the ID of the job in the jobspec changes.
         :param pulumi.Input[_builtins.bool] detach: `(boolean: true)` - If true, the provider will return immediately
@@ -88,7 +89,8 @@ class JobArgs:
     @pulumi.getter(name="deregisterOnDestroy")
     def deregister_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        If true, the job will be deregistered on destroy.
+        `(boolean: true)` - Determines if the job will be
+        deregistered when this resource is destroyed in Terraform.
         """
         return pulumi.get(self, "deregister_on_destroy")
 
@@ -227,7 +229,8 @@ class _JobState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] datacenters: The target datacenters for the job, as derived from the jobspec.
         :param pulumi.Input[_builtins.str] deployment_id: If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
         :param pulumi.Input[_builtins.str] deployment_status: If detach = false, the status for the deployment associated with the last job create/update, if one exists.
-        :param pulumi.Input[_builtins.bool] deregister_on_destroy: If true, the job will be deregistered on destroy.
+        :param pulumi.Input[_builtins.bool] deregister_on_destroy: `(boolean: true)` - Determines if the job will be
+               deregistered when this resource is destroyed in Terraform.
         :param pulumi.Input[_builtins.bool] deregister_on_id_change: `(boolean: true)` - Determines if the job will be
                deregistered if the ID of the job in the jobspec changes.
         :param pulumi.Input[_builtins.bool] detach: `(boolean: true)` - If true, the provider will return immediately
@@ -351,7 +354,8 @@ class _JobState:
     @pulumi.getter(name="deregisterOnDestroy")
     def deregister_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        If true, the job will be deregistered on destroy.
+        `(boolean: true)` - Determines if the job will be
+        deregistered when this resource is destroyed in Terraform.
         """
         return pulumi.get(self, "deregister_on_destroy")
 
@@ -571,10 +575,27 @@ class Job(pulumi.CustomResource):
                  rerun_if_dead: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        Create a Job resource with the given unique name, props, and options.
+        Manages a job registered in Nomad.
+
+        This can be used to initialize your cluster with system jobs, common services,
+        and more. In day to day Nomad use it is common for developers to submit jobs to
+        Nomad directly, such as for general app deployment. In addition to these apps, a
+        Nomad cluster often runs core system services that are ideally setup during
+        infrastructure creation. This resource is ideal for the latter type of job, but
+        can be used to manage any job within Nomad.
+
+        ## Importing Jobs
+
+        Jobs are imported using the pattern `<job ID>@<namespace>`.
+
+        [tf_docs_timeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
+        [tf_docs_templatefile]: https://www.terraform.io/docs/configuration/functions/templatefile.html
+        [tf_docs_string_template]: https://www.terraform.io/language/expressions/strings#string-templates
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] deregister_on_destroy: If true, the job will be deregistered on destroy.
+        :param pulumi.Input[_builtins.bool] deregister_on_destroy: `(boolean: true)` - Determines if the job will be
+               deregistered when this resource is destroyed in Terraform.
         :param pulumi.Input[_builtins.bool] deregister_on_id_change: `(boolean: true)` - Determines if the job will be
                deregistered if the ID of the job in the jobspec changes.
         :param pulumi.Input[_builtins.bool] detach: `(boolean: true)` - If true, the provider will return immediately
@@ -597,7 +618,23 @@ class Job(pulumi.CustomResource):
                  args: JobArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Job resource with the given unique name, props, and options.
+        Manages a job registered in Nomad.
+
+        This can be used to initialize your cluster with system jobs, common services,
+        and more. In day to day Nomad use it is common for developers to submit jobs to
+        Nomad directly, such as for general app deployment. In addition to these apps, a
+        Nomad cluster often runs core system services that are ideally setup during
+        infrastructure creation. This resource is ideal for the latter type of job, but
+        can be used to manage any job within Nomad.
+
+        ## Importing Jobs
+
+        Jobs are imported using the pattern `<job ID>@<namespace>`.
+
+        [tf_docs_timeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
+        [tf_docs_templatefile]: https://www.terraform.io/docs/configuration/functions/templatefile.html
+        [tf_docs_string_template]: https://www.terraform.io/language/expressions/strings#string-templates
+
         :param str resource_name: The name of the resource.
         :param JobArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -697,7 +734,8 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] datacenters: The target datacenters for the job, as derived from the jobspec.
         :param pulumi.Input[_builtins.str] deployment_id: If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
         :param pulumi.Input[_builtins.str] deployment_status: If detach = false, the status for the deployment associated with the last job create/update, if one exists.
-        :param pulumi.Input[_builtins.bool] deregister_on_destroy: If true, the job will be deregistered on destroy.
+        :param pulumi.Input[_builtins.bool] deregister_on_destroy: `(boolean: true)` - Determines if the job will be
+               deregistered when this resource is destroyed in Terraform.
         :param pulumi.Input[_builtins.bool] deregister_on_id_change: `(boolean: true)` - Determines if the job will be
                deregistered if the ID of the job in the jobspec changes.
         :param pulumi.Input[_builtins.bool] detach: `(boolean: true)` - If true, the provider will return immediately
@@ -783,7 +821,8 @@ class Job(pulumi.CustomResource):
     @pulumi.getter(name="deregisterOnDestroy")
     def deregister_on_destroy(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        If true, the job will be deregistered on destroy.
+        `(boolean: true)` - Determines if the job will be
+        deregistered when this resource is destroyed in Terraform.
         """
         return pulumi.get(self, "deregister_on_destroy")
 

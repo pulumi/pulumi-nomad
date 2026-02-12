@@ -12,6 +12,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages an ACL token in Nomad.
+//
+// > **Warning:** this resource will store any tokens it creates in
+//
+//	Terraform's state file. Take care to
+//	[protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+//
 // ## Example Usage
 //
 // Creating a token with limited policies:

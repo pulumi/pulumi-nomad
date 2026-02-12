@@ -137,6 +137,13 @@ class Variable(pulumi.CustomResource):
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Creates and manages a variable, including it's contents, within a
+        Nomad cluster.
+
+        > **Warning:** this resource will store the sensitive values placed in
+          `items` in the Terraform's state file. Take care to
+          [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
         ## Example Usage
 
         Creating a variable in the default namespace:
@@ -182,6 +189,13 @@ class Variable(pulumi.CustomResource):
                  args: VariableArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages a variable, including it's contents, within a
+        Nomad cluster.
+
+        > **Warning:** this resource will store the sensitive values placed in
+          `items` in the Terraform's state file. Take care to
+          [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
         ## Example Usage
 
         Creating a variable in the default namespace:

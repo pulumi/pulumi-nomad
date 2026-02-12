@@ -678,6 +678,17 @@ class Volume(pulumi.CustomResource):
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        > **Deprecated:** This resource has been deprecated and may be removed in a
+        future release. Use `CsiVolumeRegistration` instead.
+
+        Manages an external volume in Nomad.
+
+        This can be used to register external volumes in a Nomad cluster.
+
+        > **Warning:** this resource will store any sensitive values placed in
+          `secrets` or `mount_options` in the Terraform's state file. Take care to
+          [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
         ## Example Usage
 
         Registering a volume:
@@ -752,6 +763,17 @@ class Volume(pulumi.CustomResource):
                  args: VolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **Deprecated:** This resource has been deprecated and may be removed in a
+        future release. Use `CsiVolumeRegistration` instead.
+
+        Manages an external volume in Nomad.
+
+        This can be used to register external volumes in a Nomad cluster.
+
+        > **Warning:** this resource will store any sensitive values placed in
+          `secrets` or `mount_options` in the Terraform's state file. Take care to
+          [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
         ## Example Usage
 
         Registering a volume:

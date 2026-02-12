@@ -11,6 +11,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information on an ACL token.
+//
+// > **Warning:** this data source will store tokens in the Terraform state. Take care to
+//
+//	[protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+//
 // ## Example Usage
 //
 // ```go

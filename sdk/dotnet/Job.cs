@@ -9,6 +9,24 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad
 {
+    /// <summary>
+    /// Manages a job registered in Nomad.
+    /// 
+    /// This can be used to initialize your cluster with system jobs, common services,
+    /// and more. In day to day Nomad use it is common for developers to submit jobs to
+    /// Nomad directly, such as for general app deployment. In addition to these apps, a
+    /// Nomad cluster often runs core system services that are ideally setup during
+    /// infrastructure creation. This resource is ideal for the latter type of job, but
+    /// can be used to manage any job within Nomad.
+    /// 
+    /// ## Importing Jobs
+    /// 
+    /// Jobs are imported using the pattern `&lt;job ID&gt;@&lt;namespace&gt;`.
+    /// 
+    /// [TfDocsTimeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
+    /// [TfDocsTemplatefile]: https://www.terraform.io/docs/configuration/functions/templatefile.html
+    /// [TfDocsStringTemplate]: https://www.terraform.io/language/expressions/strings#string-templates
+    /// </summary>
     [NomadResourceType("nomad:index/job:Job")]
     public partial class Job : global::Pulumi.CustomResource
     {
@@ -37,7 +55,8 @@ namespace Pulumi.Nomad
         public Output<string> DeploymentStatus { get; private set; } = null!;
 
         /// <summary>
-        /// If true, the job will be deregistered on destroy.
+        /// `(boolean: true)` - Determines if the job will be
+        /// deregistered when this resource is destroyed in Terraform.
         /// </summary>
         [Output("deregisterOnDestroy")]
         public Output<bool?> DeregisterOnDestroy { get; private set; } = null!;
@@ -185,7 +204,8 @@ namespace Pulumi.Nomad
     public sealed class JobArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If true, the job will be deregistered on destroy.
+        /// `(boolean: true)` - Determines if the job will be
+        /// deregistered when this resource is destroyed in Terraform.
         /// </summary>
         [Input("deregisterOnDestroy")]
         public Input<bool>? DeregisterOnDestroy { get; set; }
@@ -293,7 +313,8 @@ namespace Pulumi.Nomad
         public Input<string>? DeploymentStatus { get; set; }
 
         /// <summary>
-        /// If true, the job will be deregistered on destroy.
+        /// `(boolean: true)` - Determines if the job will be
+        /// deregistered when this resource is destroyed in Terraform.
         /// </summary>
         [Input("deregisterOnDestroy")]
         public Input<bool>? DeregisterOnDestroy { get; set; }

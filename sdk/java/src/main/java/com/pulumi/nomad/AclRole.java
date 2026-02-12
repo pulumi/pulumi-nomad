@@ -16,6 +16,62 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Manages an ACL Role in Nomad.
+ * 
+ * ## Example Usage
+ * 
+ * Creating an ALC Role linked to an ACL policy also created by Terraform:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.nomad.AclPolicy;
+ * import com.pulumi.nomad.AclPolicyArgs;
+ * import com.pulumi.nomad.AclRole;
+ * import com.pulumi.nomad.AclRoleArgs;
+ * import com.pulumi.nomad.inputs.AclRolePolicyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myNomadAclPolicy = new AclPolicy("myNomadAclPolicy", AclPolicyArgs.builder()
+ *             .name("my-nomad-acl-policy")
+ *             .rulesHcl("""
+ * namespace \"default\" {
+ *   policy       = \"read\"
+ *   capabilities = [\"submit-job\"]
+ * }
+ *             """)
+ *             .build());
+ * 
+ *         var myNomadAclRole = new AclRole("myNomadAclRole", AclRoleArgs.builder()
+ *             .name("my-nomad-acl-role")
+ *             .description("An ACL Role for cluster developers")
+ *             .policies(AclRolePolicyArgs.builder()
+ *                 .name(myNomadAclPolicy.name())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ */
 @ResourceType(type="nomad:index/aclRole:AclRole")
 public class AclRole extends com.pulumi.resources.CustomResource {
     /**
