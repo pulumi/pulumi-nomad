@@ -1039,6 +1039,11 @@ public final class NomadFunctions {
         return Deployment.getInstance().invokeAsync("nomad:index/getAclRoles:getAclRoles", TypeShape.of(GetAclRolesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Get information on an ACL token.
+     * 
+     * &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
+     *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1077,6 +1082,11 @@ public final class NomadFunctions {
         return getAclToken(args, InvokeOptions.Empty);
     }
     /**
+     * Get information on an ACL token.
+     * 
+     * &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
+     *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1115,6 +1125,11 @@ public final class NomadFunctions {
         return getAclTokenPlain(args, InvokeOptions.Empty);
     }
     /**
+     * Get information on an ACL token.
+     * 
+     * &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
+     *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1153,6 +1168,11 @@ public final class NomadFunctions {
         return Deployment.getInstance().invoke("nomad:index/getAclToken:getAclToken", TypeShape.of(GetAclTokenResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Get information on an ACL token.
+     * 
+     * &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
+     *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1191,6 +1211,11 @@ public final class NomadFunctions {
         return Deployment.getInstance().invoke("nomad:index/getAclToken:getAclToken", TypeShape.of(GetAclTokenResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Get information on an ACL token.
+     * 
+     * &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
+     *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -5508,6 +5533,12 @@ public final class NomadFunctions {
         return Deployment.getInstance().invokeAsync("nomad:index/getSchedulerPolicy:getSchedulerPolicy", TypeShape.of(GetSchedulerPolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Get the information about a Nomad variable.
+     * 
+     * &gt; **Warning:** this data source will store the sensitive values from `items`
+     *   in the Terraform&#39;s state file. Take care to
+     *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -5546,6 +5577,12 @@ public final class NomadFunctions {
         return getVariable(args, InvokeOptions.Empty);
     }
     /**
+     * Get the information about a Nomad variable.
+     * 
+     * &gt; **Warning:** this data source will store the sensitive values from `items`
+     *   in the Terraform&#39;s state file. Take care to
+     *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -5584,6 +5621,12 @@ public final class NomadFunctions {
         return getVariablePlain(args, InvokeOptions.Empty);
     }
     /**
+     * Get the information about a Nomad variable.
+     * 
+     * &gt; **Warning:** this data source will store the sensitive values from `items`
+     *   in the Terraform&#39;s state file. Take care to
+     *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -5622,6 +5665,12 @@ public final class NomadFunctions {
         return Deployment.getInstance().invoke("nomad:index/getVariable:getVariable", TypeShape.of(GetVariableResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Get the information about a Nomad variable.
+     * 
+     * &gt; **Warning:** this data source will store the sensitive values from `items`
+     *   in the Terraform&#39;s state file. Take care to
+     *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -5660,6 +5709,12 @@ public final class NomadFunctions {
         return Deployment.getInstance().invoke("nomad:index/getVariable:getVariable", TypeShape.of(GetVariableResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Get the information about a Nomad variable.
+     * 
+     * &gt; **Warning:** this data source will store the sensitive values from `items`
+     *   in the Terraform&#39;s state file. Take care to
+     *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
      * ## Example Usage
      * 
      * <pre>

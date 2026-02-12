@@ -12,6 +12,11 @@ namespace Pulumi.Nomad
     public static class GetAclToken
     {
         /// <summary>
+        /// Get information on an ACL token.
+        /// 
+        /// &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
+        ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -34,6 +39,11 @@ namespace Pulumi.Nomad
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAclTokenResult>("nomad:index/getAclToken:getAclToken", args ?? new GetAclTokenArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Get information on an ACL token.
+        /// 
+        /// &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
+        ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -56,6 +66,11 @@ namespace Pulumi.Nomad
             => global::Pulumi.Deployment.Instance.Invoke<GetAclTokenResult>("nomad:index/getAclToken:getAclToken", args ?? new GetAclTokenInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Get information on an ACL token.
+        /// 
+        /// &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
+        ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp

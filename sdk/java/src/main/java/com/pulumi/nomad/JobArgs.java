@@ -19,14 +19,16 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     public static final JobArgs Empty = new JobArgs();
 
     /**
-     * If true, the job will be deregistered on destroy.
+     * `(boolean: true)` - Determines if the job will be
+     * deregistered when this resource is destroyed in Terraform.
      * 
      */
     @Import(name="deregisterOnDestroy")
     private @Nullable Output<Boolean> deregisterOnDestroy;
 
     /**
-     * @return If true, the job will be deregistered on destroy.
+     * @return `(boolean: true)` - Determines if the job will be
+     * deregistered when this resource is destroyed in Terraform.
      * 
      */
     public Optional<Output<Boolean>> deregisterOnDestroy() {
@@ -218,7 +220,8 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deregisterOnDestroy If true, the job will be deregistered on destroy.
+         * @param deregisterOnDestroy `(boolean: true)` - Determines if the job will be
+         * deregistered when this resource is destroyed in Terraform.
          * 
          * @return builder
          * 
@@ -229,7 +232,8 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deregisterOnDestroy If true, the job will be deregistered on destroy.
+         * @param deregisterOnDestroy `(boolean: true)` - Determines if the job will be
+         * deregistered when this resource is destroyed in Terraform.
          * 
          * @return builder
          * 

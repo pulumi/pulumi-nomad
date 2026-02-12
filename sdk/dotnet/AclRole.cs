@@ -9,6 +9,47 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad
 {
+    /// <summary>
+    /// Manages an ACL Role in Nomad.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Creating an ALC Role linked to an ACL policy also created by Terraform:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Nomad = Pulumi.Nomad;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myNomadAclPolicy = new Nomad.AclPolicy("my_nomad_acl_policy", new()
+    ///     {
+    ///         Name = "my-nomad-acl-policy",
+    ///         RulesHcl = @"namespace \""default\"" {
+    ///   policy       = \""read\""
+    ///   capabilities = [\""submit-job\""]
+    /// }
+    /// ",
+    ///     });
+    /// 
+    ///     var myNomadAclRole = new Nomad.AclRole("my_nomad_acl_role", new()
+    ///     {
+    ///         Name = "my-nomad-acl-role",
+    ///         Description = "An ACL Role for cluster developers",
+    ///         Policies = new[]
+    ///         {
+    ///             new Nomad.Inputs.AclRolePolicyArgs
+    ///             {
+    ///                 Name = myNomadAclPolicy.Name,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [NomadResourceType("nomad:index/aclRole:AclRole")]
     public partial class AclRole : global::Pulumi.CustomResource
     {

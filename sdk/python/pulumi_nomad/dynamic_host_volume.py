@@ -35,7 +35,23 @@ class DynamicHostVolumeArgs:
         The set of arguments for constructing a DynamicHostVolume resource.
         :param pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeCapabilityArgs']]] capabilities: `(block: <optional>)` - Option for validating the capability of a
                volume. Each capability block has the following attributes:
-        :param pulumi.Input[_builtins.str] plugin_id: Plugin ID
+        :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the [dynamic host volume
+               plugin][dhv_plugin] that manages this volume.
+               
+               
+               [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+               [`constraint`]: /nomad/docs/job-specification/constraint
+               [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+               [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+               [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+               [volume_source]: /nomad/docs/job-specification/volume#source
+               # DynamicHostVolume
+               
+               Creates and registers a dynamic host volume in Nomad.
+               
+               > **Warning:** Destroying this resource **will result in data loss**. Use the
+               [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+               deletions.
         :param pulumi.Input[_builtins.str] capacity_max: `(string: <optional>)` - Option for requesting a maximum
                capacity, in bytes. The capacity of a volume may be the physical size of a
                disk, or a quota, depending on the plugin. The specific size of the resulting
@@ -109,7 +125,23 @@ class DynamicHostVolumeArgs:
     @pulumi.getter(name="pluginId")
     def plugin_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Plugin ID
+        `(string: <required>)` - The ID of the [dynamic host volume
+        plugin][dhv_plugin] that manages this volume.
+
+
+        [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+        [`constraint`]: /nomad/docs/job-specification/constraint
+        [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+        [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+        [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+        [volume_source]: /nomad/docs/job-specification/volume#source
+        # DynamicHostVolume
+
+        Creates and registers a dynamic host volume in Nomad.
+
+        > **Warning:** Destroying this resource **will result in data loss**. Use the
+        [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+        deletions.
         """
         return pulumi.get(self, "plugin_id")
 
@@ -303,7 +335,23 @@ class _DynamicHostVolumeState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] parameters: `(map<string|string>: <optional>)` - A key-value map of strings
                passed directly to the plugin to configure the volume. The details of these
                parameters are specific to the plugin.
-        :param pulumi.Input[_builtins.str] plugin_id: Plugin ID
+        :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the [dynamic host volume
+               plugin][dhv_plugin] that manages this volume.
+               
+               
+               [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+               [`constraint`]: /nomad/docs/job-specification/constraint
+               [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+               [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+               [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+               [volume_source]: /nomad/docs/job-specification/volume#source
+               # DynamicHostVolume
+               
+               Creates and registers a dynamic host volume in Nomad.
+               
+               > **Warning:** Destroying this resource **will result in data loss**. Use the
+               [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+               deletions.
         :param pulumi.Input[_builtins.str] state: State
         """
         if capabilities is not None:
@@ -531,7 +579,23 @@ class _DynamicHostVolumeState:
     @pulumi.getter(name="pluginId")
     def plugin_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Plugin ID
+        `(string: <required>)` - The ID of the [dynamic host volume
+        plugin][dhv_plugin] that manages this volume.
+
+
+        [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+        [`constraint`]: /nomad/docs/job-specification/constraint
+        [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+        [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+        [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+        [volume_source]: /nomad/docs/job-specification/volume#source
+        # DynamicHostVolume
+
+        Creates and registers a dynamic host volume in Nomad.
+
+        > **Warning:** Destroying this resource **will result in data loss**. Use the
+        [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+        deletions.
         """
         return pulumi.get(self, "plugin_id")
 
@@ -570,7 +634,54 @@ class DynamicHostVolume(pulumi.CustomResource):
                  plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a DynamicHostVolume resource with the given unique name, props, and options.
+        layout: "nomad"
+        page_title: "Nomad: DynamicHostVolume"
+        sidebar_current: "docs-nomad-resource-dynamic-host-volume"
+        description: |-
+          Manages the lifecycle of creating and deleting dynamic host volumes.
+        ---
+
+        Creates and registers a dynamic host volume in Nomad. Note that Nomad supports
+        two workflows for dynamic host volumes: create and register. Both resources
+        result in the same data source with the same outputs.
+
+        > **Warning:** Destroying this resource **will result in data loss**. Use the
+          [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+          deletions.
+
+        ## Example Usage
+
+        Creating a dynamic host volume:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        example = nomad.DynamicHostVolume("example",
+            name="example",
+            namespace="prod",
+            plugin_id="mkdir",
+            capacity_max="12 GiB",
+            capacity_min="1.0 GiB",
+            capabilities=[{
+                "access_mode": "single-node-writer",
+                "attachment_mode": "file-system",
+            }],
+            constraints=[{
+                "attribute": "${attr.kernel.name}",
+                "value": "linux",
+            }],
+            parameters={
+                "some_key": "some_value",
+            })
+        ```
+
+        ## Importing Dynamic Host Volumes
+
+        Dynamic host volumes are imported using the pattern `<volume ID>@<namespace>` .
+
+        [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
@@ -611,7 +722,23 @@ class DynamicHostVolume(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] parameters: `(map<string|string>: <optional>)` - A key-value map of strings
                passed directly to the plugin to configure the volume. The details of these
                parameters are specific to the plugin.
-        :param pulumi.Input[_builtins.str] plugin_id: Plugin ID
+        :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the [dynamic host volume
+               plugin][dhv_plugin] that manages this volume.
+               
+               
+               [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+               [`constraint`]: /nomad/docs/job-specification/constraint
+               [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+               [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+               [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+               [volume_source]: /nomad/docs/job-specification/volume#source
+               # DynamicHostVolume
+               
+               Creates and registers a dynamic host volume in Nomad.
+               
+               > **Warning:** Destroying this resource **will result in data loss**. Use the
+               [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+               deletions.
         """
         ...
     @overload
@@ -620,7 +747,54 @@ class DynamicHostVolume(pulumi.CustomResource):
                  args: DynamicHostVolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DynamicHostVolume resource with the given unique name, props, and options.
+        layout: "nomad"
+        page_title: "Nomad: DynamicHostVolume"
+        sidebar_current: "docs-nomad-resource-dynamic-host-volume"
+        description: |-
+          Manages the lifecycle of creating and deleting dynamic host volumes.
+        ---
+
+        Creates and registers a dynamic host volume in Nomad. Note that Nomad supports
+        two workflows for dynamic host volumes: create and register. Both resources
+        result in the same data source with the same outputs.
+
+        > **Warning:** Destroying this resource **will result in data loss**. Use the
+          [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+          deletions.
+
+        ## Example Usage
+
+        Creating a dynamic host volume:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        example = nomad.DynamicHostVolume("example",
+            name="example",
+            namespace="prod",
+            plugin_id="mkdir",
+            capacity_max="12 GiB",
+            capacity_min="1.0 GiB",
+            capabilities=[{
+                "access_mode": "single-node-writer",
+                "attachment_mode": "file-system",
+            }],
+            constraints=[{
+                "attribute": "${attr.kernel.name}",
+                "value": "linux",
+            }],
+            parameters={
+                "some_key": "some_value",
+            })
+        ```
+
+        ## Importing Dynamic Host Volumes
+
+        Dynamic host volumes are imported using the pattern `<volume ID>@<namespace>` .
+
+        [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+
         :param str resource_name: The name of the resource.
         :param DynamicHostVolumeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -748,7 +922,23 @@ class DynamicHostVolume(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] parameters: `(map<string|string>: <optional>)` - A key-value map of strings
                passed directly to the plugin to configure the volume. The details of these
                parameters are specific to the plugin.
-        :param pulumi.Input[_builtins.str] plugin_id: Plugin ID
+        :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the [dynamic host volume
+               plugin][dhv_plugin] that manages this volume.
+               
+               
+               [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+               [`constraint`]: /nomad/docs/job-specification/constraint
+               [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+               [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+               [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+               [volume_source]: /nomad/docs/job-specification/volume#source
+               # DynamicHostVolume
+               
+               Creates and registers a dynamic host volume in Nomad.
+               
+               > **Warning:** Destroying this resource **will result in data loss**. Use the
+               [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+               deletions.
         :param pulumi.Input[_builtins.str] state: State
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -909,7 +1099,23 @@ class DynamicHostVolume(pulumi.CustomResource):
     @pulumi.getter(name="pluginId")
     def plugin_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Plugin ID
+        `(string: <required>)` - The ID of the [dynamic host volume
+        plugin][dhv_plugin] that manages this volume.
+
+
+        [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+        [`constraint`]: /nomad/docs/job-specification/constraint
+        [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+        [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+        [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+        [volume_source]: /nomad/docs/job-specification/volume#source
+        # DynamicHostVolume
+
+        Creates and registers a dynamic host volume in Nomad.
+
+        > **Warning:** Destroying this resource **will result in data loss**. Use the
+        [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+        deletions.
         """
         return pulumi.get(self, "plugin_id")
 

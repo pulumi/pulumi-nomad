@@ -11,6 +11,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get the information about a Nomad variable.
+//
+// > **Warning:** this data source will store the sensitive values from `items`
+//
+//	in the Terraform's state file. Take care to
+//	[protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+//
 // ## Example Usage
 //
 // ```go

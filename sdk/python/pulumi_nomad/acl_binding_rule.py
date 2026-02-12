@@ -223,7 +223,48 @@ class AclBindingRule(pulumi.CustomResource):
                  selector: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a AclBindingRule resource with the given unique name, props, and options.
+        Manages an ACL Binding Rule in Nomad.
+
+        > **Warning:** this resource will store the sensitive value placed in
+          `config.oidc_client_secret` in the Terraform's state file. Take care to
+          [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
+        ## Example Usage
+
+        Creating an ALC Binding Rule associated to an ACL Auth Method also created and
+        managed by Terraform:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        my_nomad_acl_auth_method = nomad.AclAuthMethod("my_nomad_acl_auth_method",
+            name="my-nomad-acl-auth-method",
+            type="OIDC",
+            token_locality="global",
+            max_token_ttl="10m0s",
+            default=True,
+            config={
+                "oidc_discovery_url": "https://uk.auth0.com/",
+                "oidc_client_id": "someclientid",
+                "oidc_client_secret": "someclientsecret-t",
+                "bound_audiences": ["someclientid"],
+                "allowed_redirect_uris": [
+                    "http://localhost:4649/oidc/callback",
+                    "http://localhost:4646/ui/settings/tokens",
+                ],
+                "list_claim_mappings": {
+                    "http://nomad.internal/roles": "roles",
+                },
+            })
+        my_nomad_acl_binding_rule = nomad.AclBindingRule("my_nomad_acl_binding_rule",
+            description="engineering rule",
+            auth_method=my_nomad_acl_auth_method.name,
+            selector="engineering in list.roles",
+            bind_type="role",
+            bind_name="engineering-read-only")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] auth_method: `(string: <required>)` - Name of the auth method for which this
@@ -244,7 +285,48 @@ class AclBindingRule(pulumi.CustomResource):
                  args: AclBindingRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AclBindingRule resource with the given unique name, props, and options.
+        Manages an ACL Binding Rule in Nomad.
+
+        > **Warning:** this resource will store the sensitive value placed in
+          `config.oidc_client_secret` in the Terraform's state file. Take care to
+          [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
+        ## Example Usage
+
+        Creating an ALC Binding Rule associated to an ACL Auth Method also created and
+        managed by Terraform:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        my_nomad_acl_auth_method = nomad.AclAuthMethod("my_nomad_acl_auth_method",
+            name="my-nomad-acl-auth-method",
+            type="OIDC",
+            token_locality="global",
+            max_token_ttl="10m0s",
+            default=True,
+            config={
+                "oidc_discovery_url": "https://uk.auth0.com/",
+                "oidc_client_id": "someclientid",
+                "oidc_client_secret": "someclientsecret-t",
+                "bound_audiences": ["someclientid"],
+                "allowed_redirect_uris": [
+                    "http://localhost:4649/oidc/callback",
+                    "http://localhost:4646/ui/settings/tokens",
+                ],
+                "list_claim_mappings": {
+                    "http://nomad.internal/roles": "roles",
+                },
+            })
+        my_nomad_acl_binding_rule = nomad.AclBindingRule("my_nomad_acl_binding_rule",
+            description="engineering rule",
+            auth_method=my_nomad_acl_auth_method.name,
+            selector="engineering in list.roles",
+            bind_type="role",
+            bind_name="engineering-read-only")
+        ```
+
         :param str resource_name: The name of the resource.
         :param AclBindingRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

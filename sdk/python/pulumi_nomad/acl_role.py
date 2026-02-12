@@ -144,7 +144,31 @@ class AclRole(pulumi.CustomResource):
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclRolePolicyArgs', 'AclRolePolicyArgsDict']]]]] = None,
                  __props__=None):
         """
-        Create a AclRole resource with the given unique name, props, and options.
+        Manages an ACL Role in Nomad.
+
+        ## Example Usage
+
+        Creating an ALC Role linked to an ACL policy also created by Terraform:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        my_nomad_acl_policy = nomad.AclPolicy("my_nomad_acl_policy",
+            name="my-nomad-acl-policy",
+            rules_hcl=\"\"\"namespace \\"default\\" {
+          policy       = \\"read\\"
+          capabilities = [\\"submit-job\\"]
+        }
+        \"\"\")
+        my_nomad_acl_role = nomad.AclRole("my_nomad_acl_role",
+            name="my-nomad-acl-role",
+            description="An ACL Role for cluster developers",
+            policies=[{
+                "name": my_nomad_acl_policy.name,
+            }])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the ACL Role.
@@ -159,7 +183,31 @@ class AclRole(pulumi.CustomResource):
                  args: AclRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AclRole resource with the given unique name, props, and options.
+        Manages an ACL Role in Nomad.
+
+        ## Example Usage
+
+        Creating an ALC Role linked to an ACL policy also created by Terraform:
+
+        ```python
+        import pulumi
+        import pulumi_nomad as nomad
+
+        my_nomad_acl_policy = nomad.AclPolicy("my_nomad_acl_policy",
+            name="my-nomad-acl-policy",
+            rules_hcl=\"\"\"namespace \\"default\\" {
+          policy       = \\"read\\"
+          capabilities = [\\"submit-job\\"]
+        }
+        \"\"\")
+        my_nomad_acl_role = nomad.AclRole("my_nomad_acl_role",
+            name="my-nomad-acl-role",
+            description="An ACL Role for cluster developers",
+            policies=[{
+                "name": my_nomad_acl_policy.name,
+            }])
+        ```
+
         :param str resource_name: The name of the resource.
         :param AclRoleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

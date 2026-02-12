@@ -18,6 +18,25 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Manages a job registered in Nomad.
+ * 
+ * This can be used to initialize your cluster with system jobs, common services,
+ * and more. In day to day Nomad use it is common for developers to submit jobs to
+ * Nomad directly, such as for general app deployment. In addition to these apps, a
+ * Nomad cluster often runs core system services that are ideally setup during
+ * infrastructure creation. This resource is ideal for the latter type of job, but
+ * can be used to manage any job within Nomad.
+ * 
+ * ## Importing Jobs
+ * 
+ * Jobs are imported using the pattern `&lt;job ID&gt;{@literal @}&lt;namespace&gt;`.
+ * 
+ * [tfDocsTimeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
+ * [tfDocsTemplatefile]: https://www.terraform.io/docs/configuration/functions/templatefile.html
+ * [tfDocsStringTemplate]: https://www.terraform.io/language/expressions/strings#string-templates
+ * 
+ */
 @ResourceType(type="nomad:index/job:Job")
 public class Job extends com.pulumi.resources.CustomResource {
     /**
@@ -81,14 +100,16 @@ public class Job extends com.pulumi.resources.CustomResource {
         return this.deploymentStatus;
     }
     /**
-     * If true, the job will be deregistered on destroy.
+     * `(boolean: true)` - Determines if the job will be
+     * deregistered when this resource is destroyed in Terraform.
      * 
      */
     @Export(name="deregisterOnDestroy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deregisterOnDestroy;
 
     /**
-     * @return If true, the job will be deregistered on destroy.
+     * @return `(boolean: true)` - Determines if the job will be
+     * deregistered when this resource is destroyed in Terraform.
      * 
      */
     public Output<Optional<Boolean>> deregisterOnDestroy() {

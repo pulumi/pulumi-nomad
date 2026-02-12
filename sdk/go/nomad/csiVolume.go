@@ -12,6 +12,94 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates and registers a CSI volume in Nomad.
+//
+// This can be used to create and register CSI volumes in a Nomad cluster.
+//
+// > **Warning:** This resource will store any sensitive values placed in
+//
+//	`secrets` or `mountOptions` in the Terraform's state file. Take care to
+//	[protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+//
+// > **Warning:** Destroying this resource **will result in data loss**. Use the
+//
+//	[`preventDestroy`][tfDocsPreventDestroy] directive to avoid accidental
+//	deletions.
+//
+// ## Example Usage
+//
+// Creating a volume:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// It can sometimes be helpful to wait for a particular plugin to be available
+//			ebs, err := nomad.GetPlugin(ctx, &nomad.GetPluginArgs{
+//				PluginId:       "aws-ebs0",
+//				WaitForHealthy: pulumi.BoolRef(true),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nomad.NewCsiVolume(ctx, "mysql_volume", &nomad.CsiVolumeArgs{
+//				PluginId:    pulumi.String("aws-ebs0"),
+//				VolumeId:    pulumi.String("mysql_volume"),
+//				Name:        pulumi.String("mysql_volume"),
+//				CapacityMin: pulumi.String("10GiB"),
+//				CapacityMax: pulumi.String("20GiB"),
+//				Capabilities: nomad.CsiVolumeCapabilityArray{
+//					&nomad.CsiVolumeCapabilityArgs{
+//						AccessMode:     pulumi.String("single-node-writer"),
+//						AttachmentMode: pulumi.String("file-system"),
+//					},
+//				},
+//				MountOptions: &nomad.CsiVolumeMountOptionsArgs{
+//					FsType: pulumi.String("ext4"),
+//				},
+//				TopologyRequest: &nomad.CsiVolumeTopologyRequestArgs{
+//					Required: &nomad.CsiVolumeTopologyRequestRequiredArgs{
+//						Topologies: nomad.CsiVolumeTopologyRequestRequiredTopologyArray{
+//							&nomad.CsiVolumeTopologyRequestRequiredTopologyArgs{
+//								Segments: pulumi.StringMap{
+//									"rack": pulumi.String("R1"),
+//									"zone": pulumi.String("us-east-1a"),
+//								},
+//							},
+//							&nomad.CsiVolumeTopologyRequestRequiredTopologyArgs{
+//								Segments: pulumi.StringMap{
+//									"rack": pulumi.String("R2"),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				ebs,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Importing CSI Volumes
+//
+// CSI volumes are imported using the pattern `<volume ID>@<namespace>` .
+//
+// [tfDocsTimeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
+// [tfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
 type CsiVolume struct {
 	pulumi.CustomResourceState
 

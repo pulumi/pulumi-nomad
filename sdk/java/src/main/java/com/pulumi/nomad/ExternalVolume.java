@@ -23,6 +23,21 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * &gt; **Deprecated:** This resource has been deprecated and may be removed in a
+ * future release. Use `nomad.CsiVolume` instead.
+ * 
+ * Creates and registers an external volume in Nomad.
+ * 
+ * This can be used to create and register external volumes in a Nomad cluster.
+ * 
+ * &gt; **Warning:** This resource will store any sensitive values placed in
+ *   `secrets` or `mountOptions` in the Terraform&#39;s state file. Take care to
+ *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+ * 
+ * &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
+ *   [`preventDestroy`][tfDocsPreventDestroy] directive to avoid accidental
+ *   deletions.
+ * 
  * ## Example Usage
  * 
  * Creating a volume:

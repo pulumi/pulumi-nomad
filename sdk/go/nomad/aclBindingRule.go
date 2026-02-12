@@ -12,6 +12,70 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages an ACL Binding Rule in Nomad.
+//
+// > **Warning:** this resource will store the sensitive value placed in
+//
+//	`config.oidc_client_secret` in the Terraform's state file. Take care to
+//	[protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+//
+// ## Example Usage
+//
+// Creating an ALC Binding Rule associated to an ACL Auth Method also created and
+// managed by Terraform:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myNomadAclAuthMethod, err := nomad.NewAclAuthMethod(ctx, "my_nomad_acl_auth_method", &nomad.AclAuthMethodArgs{
+//				Name:          pulumi.String("my-nomad-acl-auth-method"),
+//				Type:          pulumi.String("OIDC"),
+//				TokenLocality: pulumi.String("global"),
+//				MaxTokenTtl:   pulumi.String("10m0s"),
+//				Default:       pulumi.Bool(true),
+//				Config: &nomad.AclAuthMethodConfigArgs{
+//					OidcDiscoveryUrl: pulumi.String("https://uk.auth0.com/"),
+//					OidcClientId:     pulumi.String("someclientid"),
+//					OidcClientSecret: pulumi.String("someclientsecret-t"),
+//					BoundAudiences: pulumi.StringArray{
+//						pulumi.String("someclientid"),
+//					},
+//					AllowedRedirectUris: pulumi.StringArray{
+//						pulumi.String("http://localhost:4649/oidc/callback"),
+//						pulumi.String("http://localhost:4646/ui/settings/tokens"),
+//					},
+//					ListClaimMappings: pulumi.StringMap{
+//						"http://nomad.internal/roles": pulumi.String("roles"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nomad.NewAclBindingRule(ctx, "my_nomad_acl_binding_rule", &nomad.AclBindingRuleArgs{
+//				Description: pulumi.String("engineering rule"),
+//				AuthMethod:  myNomadAclAuthMethod.Name,
+//				Selector:    pulumi.String("engineering in list.roles"),
+//				BindType:    pulumi.String("role"),
+//				BindName:    pulumi.String("engineering-read-only"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type AclBindingRule struct {
 	pulumi.CustomResourceState
 

@@ -4,6 +4,51 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages an ACL Binding Rule in Nomad.
+ *
+ * > **Warning:** this resource will store the sensitive value placed in
+ *   `config.oidc_client_secret` in the Terraform's state file. Take care to
+ *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+ *
+ * ## Example Usage
+ *
+ * Creating an ALC Binding Rule associated to an ACL Auth Method also created and
+ * managed by Terraform:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const myNomadAclAuthMethod = new nomad.AclAuthMethod("my_nomad_acl_auth_method", {
+ *     name: "my-nomad-acl-auth-method",
+ *     type: "OIDC",
+ *     tokenLocality: "global",
+ *     maxTokenTtl: "10m0s",
+ *     "default": true,
+ *     config: {
+ *         oidcDiscoveryUrl: "https://uk.auth0.com/",
+ *         oidcClientId: "someclientid",
+ *         oidcClientSecret: "someclientsecret-t",
+ *         boundAudiences: ["someclientid"],
+ *         allowedRedirectUris: [
+ *             "http://localhost:4649/oidc/callback",
+ *             "http://localhost:4646/ui/settings/tokens",
+ *         ],
+ *         listClaimMappings: {
+ *             "http://nomad.internal/roles": "roles",
+ *         },
+ *     },
+ * });
+ * const myNomadAclBindingRule = new nomad.AclBindingRule("my_nomad_acl_binding_rule", {
+ *     description: "engineering rule",
+ *     authMethod: myNomadAclAuthMethod.name,
+ *     selector: "engineering in list.roles",
+ *     bindType: "role",
+ *     bindName: "engineering-read-only",
+ * });
+ * ```
+ */
 export class AclBindingRule extends pulumi.CustomResource {
     /**
      * Get an existing AclBindingRule resource's state with the given name, ID, and optional extra

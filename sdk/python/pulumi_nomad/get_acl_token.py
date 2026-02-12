@@ -176,6 +176,11 @@ class AwaitableGetAclTokenResult(GetAclTokenResult):
 def get_acl_token(accessor_id: Optional[_builtins.str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAclTokenResult:
     """
+    Get information on an ACL token.
+
+    > **Warning:** this data source will store tokens in the Terraform state. Take care to
+      [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
     ## Example Usage
 
     ```python
@@ -208,6 +213,11 @@ def get_acl_token(accessor_id: Optional[_builtins.str] = None,
 def get_acl_token_output(accessor_id: Optional[pulumi.Input[_builtins.str]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclTokenResult]:
     """
+    Get information on an ACL token.
+
+    > **Warning:** this data source will store tokens in the Terraform state. Take care to
+      [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
     ## Example Usage
 
     ```python

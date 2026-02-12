@@ -9,6 +9,72 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Nomad
 {
+    /// <summary>
+    /// layout: "nomad"
+    /// page_title: "Nomad: nomad.DynamicHostVolume"
+    /// sidebar_current: "docs-nomad-resource-dynamic-host-volume"
+    /// description: |-
+    ///   Manages the lifecycle of creating and deleting dynamic host volumes.
+    /// ---
+    /// 
+    /// Creates and registers a dynamic host volume in Nomad. Note that Nomad supports
+    /// two workflows for dynamic host volumes: create and register. Both resources
+    /// result in the same data source with the same outputs.
+    /// 
+    /// &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
+    ///   [`PreventDestroy`][TfDocsPreventDestroy] directive to avoid accidental
+    ///   deletions.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Creating a dynamic host volume:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Nomad = Pulumi.Nomad;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Nomad.DynamicHostVolume("example", new()
+    ///     {
+    ///         Name = "example",
+    ///         Namespace = "prod",
+    ///         PluginId = "mkdir",
+    ///         CapacityMax = "12 GiB",
+    ///         CapacityMin = "1.0 GiB",
+    ///         Capabilities = new[]
+    ///         {
+    ///             new Nomad.Inputs.DynamicHostVolumeCapabilityArgs
+    ///             {
+    ///                 AccessMode = "single-node-writer",
+    ///                 AttachmentMode = "file-system",
+    ///             },
+    ///         },
+    ///         Constraints = new[]
+    ///         {
+    ///             new Nomad.Inputs.DynamicHostVolumeConstraintArgs
+    ///             {
+    ///                 Attribute = "${attr.kernel.name}",
+    ///                 Value = "linux",
+    ///             },
+    ///         },
+    ///         Parameters = 
+    ///         {
+    ///             { "some_key", "some_value" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Importing Dynamic Host Volumes
+    /// 
+    /// Dynamic host volumes are imported using the pattern `&lt;volume ID&gt;@&lt;namespace&gt;` .
+    /// 
+    /// [TfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+    /// </summary>
     [NomadResourceType("nomad:index/dynamicHostVolume:DynamicHostVolume")]
     public partial class DynamicHostVolume : global::Pulumi.CustomResource
     {
@@ -117,7 +183,23 @@ namespace Pulumi.Nomad
         public Output<ImmutableDictionary<string, string>?> Parameters { get; private set; } = null!;
 
         /// <summary>
-        /// Plugin ID
+        /// `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
+        /// plugin][DhvPlugin] that manages this volume.
+        /// 
+        /// 
+        /// [TfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+        /// [`Constraint`]: /nomad/docs/job-specification/constraint
+        /// [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+        /// [`AccessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+        /// [`AttachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+        /// [VolumeSource]: /nomad/docs/job-specification/volume#source
+        /// # nomad.DynamicHostVolume
+        /// 
+        /// Creates and registers a dynamic host volume in Nomad.
+        /// 
+        /// &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
+        /// [`PreventDestroy`][TfDocsPreventDestroy] directive to avoid accidental
+        /// deletions.
         /// </summary>
         [Output("pluginId")]
         public Output<string> PluginId { get; private set; } = null!;
@@ -276,7 +358,23 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// Plugin ID
+        /// `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
+        /// plugin][DhvPlugin] that manages this volume.
+        /// 
+        /// 
+        /// [TfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+        /// [`Constraint`]: /nomad/docs/job-specification/constraint
+        /// [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+        /// [`AccessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+        /// [`AttachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+        /// [VolumeSource]: /nomad/docs/job-specification/volume#source
+        /// # nomad.DynamicHostVolume
+        /// 
+        /// Creates and registers a dynamic host volume in Nomad.
+        /// 
+        /// &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
+        /// [`PreventDestroy`][TfDocsPreventDestroy] directive to avoid accidental
+        /// deletions.
         /// </summary>
         [Input("pluginId", required: true)]
         public Input<string> PluginId { get; set; } = null!;
@@ -412,7 +510,23 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// Plugin ID
+        /// `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
+        /// plugin][DhvPlugin] that manages this volume.
+        /// 
+        /// 
+        /// [TfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+        /// [`Constraint`]: /nomad/docs/job-specification/constraint
+        /// [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
+        /// [`AccessMode`]: /nomad/docs/other-specifications/volume/capability#access_mode
+        /// [`AttachmentMode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
+        /// [VolumeSource]: /nomad/docs/job-specification/volume#source
+        /// # nomad.DynamicHostVolume
+        /// 
+        /// Creates and registers a dynamic host volume in Nomad.
+        /// 
+        /// &gt; **Warning:** Destroying this resource **will result in data loss**. Use the
+        /// [`PreventDestroy`][TfDocsPreventDestroy] directive to avoid accidental
+        /// deletions.
         /// </summary>
         [Input("pluginId")]
         public Input<string>? PluginId { get; set; }

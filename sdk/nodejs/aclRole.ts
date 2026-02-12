@@ -6,6 +6,34 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Manages an ACL Role in Nomad.
+ *
+ * ## Example Usage
+ *
+ * Creating an ALC Role linked to an ACL policy also created by Terraform:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const myNomadAclPolicy = new nomad.AclPolicy("my_nomad_acl_policy", {
+ *     name: "my-nomad-acl-policy",
+ *     rulesHcl: `namespace \"default\" {
+ *   policy       = \"read\"
+ *   capabilities = [\"submit-job\"]
+ * }
+ * `,
+ * });
+ * const myNomadAclRole = new nomad.AclRole("my_nomad_acl_role", {
+ *     name: "my-nomad-acl-role",
+ *     description: "An ACL Role for cluster developers",
+ *     policies: [{
+ *         name: myNomadAclPolicy.name,
+ *     }],
+ * });
+ * ```
+ */
 export class AclRole extends pulumi.CustomResource {
     /**
      * Get an existing AclRole resource's state with the given name, ID, and optional extra

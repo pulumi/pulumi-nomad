@@ -609,6 +609,21 @@ class ExternalVolume(pulumi.CustomResource):
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        > **Deprecated:** This resource has been deprecated and may be removed in a
+        future release. Use `CsiVolume` instead.
+
+        Creates and registers an external volume in Nomad.
+
+        This can be used to create and register external volumes in a Nomad cluster.
+
+        > **Warning:** This resource will store any sensitive values placed in
+          `secrets` or `mount_options` in the Terraform's state file. Take care to
+          [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
+        > **Warning:** Destroying this resource **will result in data loss**. Use the
+          [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+          deletions.
+
         ## Example Usage
 
         Creating a volume:
@@ -678,6 +693,21 @@ class ExternalVolume(pulumi.CustomResource):
                  args: ExternalVolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **Deprecated:** This resource has been deprecated and may be removed in a
+        future release. Use `CsiVolume` instead.
+
+        Creates and registers an external volume in Nomad.
+
+        This can be used to create and register external volumes in a Nomad cluster.
+
+        > **Warning:** This resource will store any sensitive values placed in
+          `secrets` or `mount_options` in the Terraform's state file. Take care to
+          [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
+        > **Warning:** Destroying this resource **will result in data loss**. Use the
+          [`prevent_destroy`][tf_docs_prevent_destroy] directive to avoid accidental
+          deletions.
+
         ## Example Usage
 
         Creating a volume:

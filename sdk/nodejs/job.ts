@@ -6,6 +6,24 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a job registered in Nomad.
+ *
+ * This can be used to initialize your cluster with system jobs, common services,
+ * and more. In day to day Nomad use it is common for developers to submit jobs to
+ * Nomad directly, such as for general app deployment. In addition to these apps, a
+ * Nomad cluster often runs core system services that are ideally setup during
+ * infrastructure creation. This resource is ideal for the latter type of job, but
+ * can be used to manage any job within Nomad.
+ *
+ * ## Importing Jobs
+ *
+ * Jobs are imported using the pattern `<job ID>@<namespace>`.
+ *
+ * [tfDocsTimeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
+ * [tfDocsTemplatefile]: https://www.terraform.io/docs/configuration/functions/templatefile.html
+ * [tfDocsStringTemplate]: https://www.terraform.io/language/expressions/strings#string-templates
+ */
 export class Job extends pulumi.CustomResource {
     /**
      * Get an existing Job resource's state with the given name, ID, and optional extra
@@ -53,7 +71,8 @@ export class Job extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly deploymentStatus: pulumi.Output<string>;
     /**
-     * If true, the job will be deregistered on destroy.
+     * `(boolean: true)` - Determines if the job will be
+     * deregistered when this resource is destroyed in Terraform.
      */
     declare public readonly deregisterOnDestroy: pulumi.Output<boolean | undefined>;
     /**
@@ -213,7 +232,8 @@ export interface JobState {
      */
     deploymentStatus?: pulumi.Input<string>;
     /**
-     * If true, the job will be deregistered on destroy.
+     * `(boolean: true)` - Determines if the job will be
+     * deregistered when this resource is destroyed in Terraform.
      */
     deregisterOnDestroy?: pulumi.Input<boolean>;
     /**
@@ -290,7 +310,8 @@ export interface JobState {
  */
 export interface JobArgs {
     /**
-     * If true, the job will be deregistered on destroy.
+     * `(boolean: true)` - Determines if the job will be
+     * deregistered when this resource is destroyed in Terraform.
      */
     deregisterOnDestroy?: pulumi.Input<boolean>;
     /**

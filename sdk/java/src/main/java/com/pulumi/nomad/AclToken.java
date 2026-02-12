@@ -18,6 +18,12 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Manages an ACL token in Nomad.
+ * 
+ * &gt; **Warning:** this resource will store any tokens it creates in
+ *   Terraform&#39;s state file. Take care to
+ *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+ * 
  * ## Example Usage
  * 
  * Creating a token with limited policies:

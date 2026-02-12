@@ -12,6 +12,12 @@ namespace Pulumi.Nomad
     public static class GetVariable
     {
         /// <summary>
+        /// Get the information about a Nomad variable.
+        /// 
+        /// &gt; **Warning:** this data source will store the sensitive values from `Items`
+        ///   in the Terraform's state file. Take care to
+        ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -34,6 +40,12 @@ namespace Pulumi.Nomad
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVariableResult>("nomad:index/getVariable:getVariable", args ?? new GetVariableArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Get the information about a Nomad variable.
+        /// 
+        /// &gt; **Warning:** this data source will store the sensitive values from `Items`
+        ///   in the Terraform's state file. Take care to
+        ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -56,6 +68,12 @@ namespace Pulumi.Nomad
             => global::Pulumi.Deployment.Instance.Invoke<GetVariableResult>("nomad:index/getVariable:getVariable", args ?? new GetVariableInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Get the information about a Nomad variable.
+        /// 
+        /// &gt; **Warning:** this data source will store the sensitive values from `Items`
+        ///   in the Terraform's state file. Take care to
+        ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp

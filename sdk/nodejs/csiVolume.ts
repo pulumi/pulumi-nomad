@@ -6,6 +6,74 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Creates and registers a CSI volume in Nomad.
+ *
+ * This can be used to create and register CSI volumes in a Nomad cluster.
+ *
+ * > **Warning:** This resource will store any sensitive values placed in
+ *   `secrets` or `mountOptions` in the Terraform's state file. Take care to
+ *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+ *
+ * > **Warning:** Destroying this resource **will result in data loss**. Use the
+ *   [`preventDestroy`][tfDocsPreventDestroy] directive to avoid accidental
+ *   deletions.
+ *
+ * ## Example Usage
+ *
+ * Creating a volume:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * // It can sometimes be helpful to wait for a particular plugin to be available
+ * const ebs = nomad.getPlugin({
+ *     pluginId: "aws-ebs0",
+ *     waitForHealthy: true,
+ * });
+ * const mysqlVolume = new nomad.CsiVolume("mysql_volume", {
+ *     pluginId: "aws-ebs0",
+ *     volumeId: "mysql_volume",
+ *     name: "mysql_volume",
+ *     capacityMin: "10GiB",
+ *     capacityMax: "20GiB",
+ *     capabilities: [{
+ *         accessMode: "single-node-writer",
+ *         attachmentMode: "file-system",
+ *     }],
+ *     mountOptions: {
+ *         fsType: "ext4",
+ *     },
+ *     topologyRequest: {
+ *         required: {
+ *             topologies: [
+ *                 {
+ *                     segments: {
+ *                         rack: "R1",
+ *                         zone: "us-east-1a",
+ *                     },
+ *                 },
+ *                 {
+ *                     segments: {
+ *                         rack: "R2",
+ *                     },
+ *                 },
+ *             ],
+ *         },
+ *     },
+ * }, {
+ *     dependsOn: [ebs],
+ * });
+ * ```
+ *
+ * ## Importing CSI Volumes
+ *
+ * CSI volumes are imported using the pattern `<volume ID>@<namespace>` .
+ *
+ * [tfDocsTimeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
+ * [tfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+ */
 export class CsiVolume extends pulumi.CustomResource {
     /**
      * Get an existing CsiVolume resource's state with the given name, ID, and optional extra
