@@ -33,6 +33,7 @@ class JobArgs:
                  rerun_if_dead: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Job resource.
+
         :param pulumi.Input[_builtins.str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
         :param pulumi.Input[_builtins.bool] deregister_on_destroy: `(boolean: true)` - Determines if the job will be
                deregistered when this resource is destroyed in Terraform.
@@ -225,6 +226,7 @@ class _JobState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Job resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allocation_ids: The IDs for allocations associated with this job.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] datacenters: The target datacenters for the job, as derived from the jobspec.
         :param pulumi.Input[_builtins.str] deployment_id: If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
@@ -592,6 +594,7 @@ class Job(pulumi.CustomResource):
         [tf_docs_templatefile]: https://www.terraform.io/docs/configuration/functions/templatefile.html
         [tf_docs_string_template]: https://www.terraform.io/language/expressions/strings#string-templates
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] deregister_on_destroy: `(boolean: true)` - Determines if the job will be
@@ -634,6 +637,7 @@ class Job(pulumi.CustomResource):
         [tf_docs_timeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
         [tf_docs_templatefile]: https://www.terraform.io/docs/configuration/functions/templatefile.html
         [tf_docs_string_template]: https://www.terraform.io/language/expressions/strings#string-templates
+
 
         :param str resource_name: The name of the resource.
         :param JobArgs args: The arguments to use to populate this resource's properties.

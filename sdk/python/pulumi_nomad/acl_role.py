@@ -26,6 +26,7 @@ class AclRoleArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AclRole resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['AclRolePolicyArgs']]] policies: `(set: <required>)` - A set of policy names to associate with this
                ACL Role. It may be used multiple times.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the ACL Role.
@@ -83,6 +84,7 @@ class _AclRoleState:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input['AclRolePolicyArgs']]]] = None):
         """
         Input properties used for looking up and filtering AclRole resources.
+
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the ACL Role.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - A human-friendly name for this ACL Role.
         :param pulumi.Input[Sequence[pulumi.Input['AclRolePolicyArgs']]] policies: `(set: <required>)` - A set of policy names to associate with this
@@ -169,6 +171,7 @@ class AclRole(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the ACL Role.
@@ -207,6 +210,7 @@ class AclRole(pulumi.CustomResource):
                 "name": my_nomad_acl_policy.name,
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AclRoleArgs args: The arguments to use to populate this resource's properties.

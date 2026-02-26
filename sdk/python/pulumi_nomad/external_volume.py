@@ -37,6 +37,7 @@ class ExternalVolumeArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ExternalVolume resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['ExternalVolumeCapabilityArgs']]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[_builtins.str] volume_id: `(string: <required>)` - The unique ID of the volume.
@@ -275,6 +276,7 @@ class _ExternalVolumeState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ExternalVolume resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['ExternalVolumeCapabilityArgs']]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[_builtins.str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[_builtins.str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
@@ -669,6 +671,7 @@ class ExternalVolume(pulumi.CustomResource):
             opts = pulumi.ResourceOptions(depends_on=[ebs]))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ExternalVolumeCapabilityArgs', 'ExternalVolumeCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
@@ -752,6 +755,7 @@ class ExternalVolume(pulumi.CustomResource):
             },
             opts = pulumi.ResourceOptions(depends_on=[ebs]))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ExternalVolumeArgs args: The arguments to use to populate this resource's properties.

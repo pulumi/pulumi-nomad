@@ -38,6 +38,7 @@ class VolumeArgs:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Volume resource.
+
         :param pulumi.Input[_builtins.str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[_builtins.str] volume_id: `(string: <required>)` - The unique ID of the volume.
@@ -310,6 +311,7 @@ class _VolumeState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
+
         :param pulumi.Input[_builtins.str] access_mode: `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
                - `single-node-reader-only`
                - `single-node-writer`
@@ -733,6 +735,7 @@ class Volume(pulumi.CustomResource):
             opts = pulumi.ResourceOptions(depends_on=[ebs]))
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_mode: `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
@@ -817,6 +820,7 @@ class Volume(pulumi.CustomResource):
             },
             opts = pulumi.ResourceOptions(depends_on=[ebs]))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VolumeArgs args: The arguments to use to populate this resource's properties.

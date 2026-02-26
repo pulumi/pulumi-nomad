@@ -24,6 +24,7 @@ class VariableArgs:
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Variable resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
         :param pulumi.Input[_builtins.str] path: `(string: <required>)` - A unique path to create the variable at.
         :param pulumi.Input[_builtins.str] namespace: `(string: "default")` - The namepsace to create the variable in.
@@ -78,6 +79,7 @@ class _VariableState:
                  path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Variable resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
         :param pulumi.Input[_builtins.str] namespace: `(string: "default")` - The namepsace to create the variable in.
         :param pulumi.Input[_builtins.str] path: `(string: <required>)` - A unique path to create the variable at.
@@ -176,6 +178,7 @@ class Variable(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
@@ -227,6 +230,7 @@ class Variable(pulumi.CustomResource):
                 "example_key": "example_value",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param VariableArgs args: The arguments to use to populate this resource's properties.

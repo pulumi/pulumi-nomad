@@ -33,6 +33,7 @@ class DynamicHostVolumeArgs:
                  parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a DynamicHostVolume resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeCapabilityArgs']]] capabilities: `(block: <optional>)` - Option for validating the capability of a
                volume. Each capability block has the following attributes:
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the [dynamic host volume
@@ -295,6 +296,7 @@ class _DynamicHostVolumeState:
                  state: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DynamicHostVolume resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeCapabilityArgs']]] capabilities: `(block: <optional>)` - Option for validating the capability of a
                volume. Each capability block has the following attributes:
         :param pulumi.Input[_builtins.str] capacity: Provisioned capacity
@@ -682,6 +684,7 @@ class DynamicHostVolume(pulumi.CustomResource):
 
         [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
@@ -794,6 +797,7 @@ class DynamicHostVolume(pulumi.CustomResource):
         Dynamic host volumes are imported using the pattern `<volume ID>@<namespace>` .
 
         [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
+
 
         :param str resource_name: The name of the resource.
         :param DynamicHostVolumeArgs args: The arguments to use to populate this resource's properties.

@@ -29,6 +29,7 @@ class AclTokenArgs:
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]]] = None):
         """
         The set of arguments for constructing a AclToken resource.
+
         :param pulumi.Input[_builtins.str] type: `(string: <required>)` - The type of token this is. Use `client`
                for tokens that will have policies associated with them. Use `management`
                for tokens that can perform any action.
@@ -158,6 +159,7 @@ class _AclTokenState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AclToken resources.
+
         :param pulumi.Input[_builtins.str] accessor_id: `(string)` - A non-sensitive identifier for this token that
                can be logged and shared safely without granting any access to the cluster.
         :param pulumi.Input[_builtins.str] create_time: `(string)` - The timestamp the token was created.
@@ -415,6 +417,7 @@ class AclToken(pulumi.CustomResource):
         pulumi.export("nomadToken", token.secret_id)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] expiration_ttl: `(string: "")` - Provides a TTL for the token in the form of
@@ -503,6 +506,7 @@ class AclToken(pulumi.CustomResource):
             policies=["dev"])
         pulumi.export("nomadToken", token.secret_id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AclTokenArgs args: The arguments to use to populate this resource's properties.

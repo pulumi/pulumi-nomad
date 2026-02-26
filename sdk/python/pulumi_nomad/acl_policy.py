@@ -27,6 +27,7 @@ class AclPolicyArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AclPolicy resource.
+
         :param pulumi.Input[_builtins.str] rules_hcl: `(string: <required>)` - The contents of the policy to register,
                as HCL or JSON.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the policy.
@@ -102,6 +103,7 @@ class _AclPolicyState:
                  rules_hcl: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AclPolicy resources.
+
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the policy.
         :param pulumi.Input['AclPolicyJobAclArgs'] job_acl: `(``JobACL``: <optional>)` - Options for assigning the
                ACL rules to a job, group, or task.
@@ -183,6 +185,7 @@ class AclPolicy(pulumi.CustomResource):
         """
         Manages an ACL policy registered in Nomad.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the policy.
@@ -200,6 +203,7 @@ class AclPolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages an ACL policy registered in Nomad.
+
 
         :param str resource_name: The name of the resource.
         :param AclPolicyArgs args: The arguments to use to populate this resource's properties.

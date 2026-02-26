@@ -30,6 +30,7 @@ class AclAuthMethodArgs:
                  token_name_format: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AclAuthMethod resource.
+
         :param pulumi.Input['AclAuthMethodConfigArgs'] config: `(block: <required>)` - Configuration specific to the auth method
                provider.
         :param pulumi.Input[_builtins.str] max_token_ttl: `(string: <required>)` - Defines the maximum life of a token
@@ -162,6 +163,7 @@ class _AclAuthMethodState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AclAuthMethod resources.
+
         :param pulumi.Input['AclAuthMethodConfigArgs'] config: `(block: <required>)` - Configuration specific to the auth method
                provider.
         :param pulumi.Input[_builtins.bool] default: `(bool: false)` - Defines whether this ACL Auth Method is to be set
@@ -333,6 +335,7 @@ class AclAuthMethod(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']] config: `(block: <required>)` - Configuration specific to the auth method
@@ -389,6 +392,7 @@ class AclAuthMethod(pulumi.CustomResource):
                 },
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param AclAuthMethodArgs args: The arguments to use to populate this resource's properties.
