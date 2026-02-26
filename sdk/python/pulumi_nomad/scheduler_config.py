@@ -24,6 +24,7 @@ class SchedulerConfigArgs:
                  scheduler_algorithm: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SchedulerConfig resource.
+
         :param pulumi.Input[_builtins.bool] memory_oversubscription_enabled: `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.bool]]] preemption_config: `(map[string]bool)` - Options to enable preemption for various schedulers.
         :param pulumi.Input[_builtins.str] scheduler_algorithm: `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
@@ -80,6 +81,7 @@ class _SchedulerConfigState:
                  scheduler_algorithm: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SchedulerConfig resources.
+
         :param pulumi.Input[_builtins.bool] memory_oversubscription_enabled: `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.bool]]] preemption_config: `(map[string]bool)` - Options to enable preemption for various schedulers.
         :param pulumi.Input[_builtins.str] scheduler_algorithm: `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
@@ -165,6 +167,7 @@ class SchedulerConfig(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] memory_oversubscription_enabled: `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
@@ -203,6 +206,7 @@ class SchedulerConfig(pulumi.CustomResource):
                 "sysbatch_scheduler_enabled": True,
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SchedulerConfigArgs args: The arguments to use to populate this resource's properties.

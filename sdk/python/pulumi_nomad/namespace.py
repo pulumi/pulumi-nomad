@@ -29,6 +29,7 @@ class NamespaceArgs:
                  quota: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
+
         :param pulumi.Input['NamespaceCapabilitiesArgs'] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't
                be repeated. See below for the structure of this block.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the namespace.
@@ -135,6 +136,7 @@ class _NamespaceState:
                  quota: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
+
         :param pulumi.Input['NamespaceCapabilitiesArgs'] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't
                be repeated. See below for the structure of this block.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the namespace.
@@ -291,6 +293,7 @@ class Namespace(pulumi.CustomResource):
             quota=web_team.name)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']] capabilities: `(block: <optional>)` - A block of capabilities for the namespace. Can't
@@ -354,6 +357,7 @@ class Namespace(pulumi.CustomResource):
             description="Web team production environment.",
             quota=web_team.name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NamespaceArgs args: The arguments to use to populate this resource's properties.

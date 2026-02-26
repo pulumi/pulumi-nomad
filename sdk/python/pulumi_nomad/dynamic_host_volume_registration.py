@@ -30,6 +30,7 @@ class DynamicHostVolumeRegistrationArgs:
                  parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a DynamicHostVolumeRegistration resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeRegistrationCapabilityArgs']]] capabilities: `(block: <optional>)` - Option for validating the capability of a
                volume. Each capability block has the following attributes:
         :param pulumi.Input[_builtins.str] host_path: `(string)` - The path on disk where the volume exists.
@@ -180,6 +181,7 @@ class _DynamicHostVolumeRegistrationState:
                  state: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DynamicHostVolumeRegistration resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeRegistrationCapabilityArgs']]] capabilities: `(block: <optional>)` - Option for validating the capability of a
                volume. Each capability block has the following attributes:
         :param pulumi.Input[_builtins.str] capacity: `(string: <optional>)` - The size of a volume in bytes. Either the
@@ -434,6 +436,7 @@ class DynamicHostVolumeRegistration(pulumi.CustomResource):
         [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
         [volume_source]: /nomad/docs/job-specification/volume#source
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationCapabilityArgs', 'DynamicHostVolumeRegistrationCapabilityArgsDict']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
@@ -475,6 +478,7 @@ class DynamicHostVolumeRegistration(pulumi.CustomResource):
         [`access_mode`]: /nomad/docs/other-specifications/volume/capability#access_mode
         [`attachment_mode`]: /nomad/docs/other-specifications/volume/capability#attachment_mode
         [volume_source]: /nomad/docs/job-specification/volume#source
+
 
         :param str resource_name: The name of the resource.
         :param DynamicHostVolumeRegistrationArgs args: The arguments to use to populate this resource's properties.

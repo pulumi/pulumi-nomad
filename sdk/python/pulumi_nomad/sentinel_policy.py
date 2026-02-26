@@ -26,6 +26,7 @@ class SentinelPolicyArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SentinelPolicy resource.
+
         :param pulumi.Input[_builtins.str] enforcement_level: `(strings: <required>)` - The [enforcement level][enforcement-level]
                for this policy.
         :param pulumi.Input[_builtins.str] policy: `(string: <required>)` - The contents of the policy to register.
@@ -119,6 +120,7 @@ class _SentinelPolicyState:
                  scope: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SentinelPolicy resources.
+
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the policy.
                
                [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
@@ -247,6 +249,7 @@ class SentinelPolicy(pulumi.CustomResource):
             enforcement_level="soft-mandatory")
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the policy.
@@ -294,6 +297,7 @@ class SentinelPolicy(pulumi.CustomResource):
             scope="submit-job",
             enforcement_level="soft-mandatory")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SentinelPolicyArgs args: The arguments to use to populate this resource's properties.

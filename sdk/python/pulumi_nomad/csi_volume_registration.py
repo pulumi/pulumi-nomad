@@ -37,6 +37,7 @@ class CsiVolumeRegistrationArgs:
                  topology_request: Optional[pulumi.Input['CsiVolumeRegistrationTopologyRequestArgs']] = None):
         """
         The set of arguments for constructing a CsiVolumeRegistration resource.
+
         :param pulumi.Input[_builtins.str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[_builtins.str] volume_id: `(string: <required>)` - The unique ID of the volume.
@@ -278,6 +279,7 @@ class _CsiVolumeRegistrationState:
                  volume_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CsiVolumeRegistration resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['CsiVolumeRegistrationCapabilityArgs']]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[_builtins.str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[_builtins.str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
@@ -705,6 +707,7 @@ class CsiVolumeRegistration(pulumi.CustomResource):
 
         [tf_docs_timeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CsiVolumeRegistrationCapabilityArgs', 'CsiVolumeRegistrationCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
@@ -788,6 +791,7 @@ class CsiVolumeRegistration(pulumi.CustomResource):
         `<volume ID>@<namespace>`.
 
         [tf_docs_timeouts]: https://www.terraform.io/docs/configuration/blocks/resources/syntax.html#operation-timeouts
+
 
         :param str resource_name: The name of the resource.
         :param CsiVolumeRegistrationArgs args: The arguments to use to populate this resource's properties.

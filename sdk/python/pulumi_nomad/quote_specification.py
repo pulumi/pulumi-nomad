@@ -26,6 +26,7 @@ class QuoteSpecificationArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a QuoteSpecification resource.
+
         :param pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]] limits: `(block: <required>)` - A block of quota limits to enforce. Can
                be repeated. See below for the structure of this block.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the quota specification.
@@ -83,6 +84,7 @@ class _QuoteSpecificationState:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering QuoteSpecification resources.
+
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the quota specification.
         :param pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]] limits: `(block: <required>)` - A block of quota limits to enforce. Can
                be repeated. See below for the structure of this block.
@@ -166,6 +168,7 @@ class QuoteSpecification(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the quota specification.
@@ -201,6 +204,7 @@ class QuoteSpecification(pulumi.CustomResource):
                 },
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param QuoteSpecificationArgs args: The arguments to use to populate this resource's properties.

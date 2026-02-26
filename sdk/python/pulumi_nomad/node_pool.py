@@ -27,6 +27,7 @@ class NodePoolArgs:
                  scheduler_config: Optional[pulumi.Input['NodePoolSchedulerConfigArgs']] = None):
         """
         The set of arguments for constructing a NodePool resource.
+
         :param pulumi.Input[_builtins.str] description: `(string)` - The description of the node pool.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] meta: `(map[string]string)` - Arbitrary KV metadata associated with the
                node pool.
@@ -101,6 +102,7 @@ class _NodePoolState:
                  scheduler_config: Optional[pulumi.Input['NodePoolSchedulerConfigArgs']] = None):
         """
         Input properties used for looking up and filtering NodePool resources.
+
         :param pulumi.Input[_builtins.str] description: `(string)` - The description of the node pool.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] meta: `(map[string]string)` - Arbitrary KV metadata associated with the
                node pool.
@@ -197,6 +199,7 @@ class NodePool(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string)` - The description of the node pool.
@@ -230,6 +233,7 @@ class NodePool(pulumi.CustomResource):
                 "env": "dev",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param NodePoolArgs args: The arguments to use to populate this resource's properties.
