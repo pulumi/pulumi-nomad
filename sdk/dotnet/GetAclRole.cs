@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetAclRole.Invoke(new()
+        ///     var example = Nomad.Index.GetAclRole.Invoke(new()
         ///     {
         ///         Id = "aa534e09-6a07-0a45-2295-a7f77063d429",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetAclRole.Invoke(new()
+        ///     var example = Nomad.Index.GetAclRole.Invoke(new()
         ///     {
         ///         Id = "aa534e09-6a07-0a45-2295-a7f77063d429",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetAclRole.Invoke(new()
+        ///     var example = Nomad.Index.GetAclRole.Invoke(new()
         ///     {
         ///         Id = "aa534e09-6a07-0a45-2295-a7f77063d429",
         ///     });

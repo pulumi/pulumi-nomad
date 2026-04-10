@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.LookupNodePool(ctx, &nomad.LookupNodePoolArgs{
+//			_, err := nomad.GetNodePool(ctx, &nomad.LookupNodePoolArgs{
 //				Name: "dev",
 //			}, nil)
 //			if err != nil {

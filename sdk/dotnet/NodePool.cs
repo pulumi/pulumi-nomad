@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var dev = new Nomad.NodePool("dev", new()
+    ///     var dev = new Nomad.Index.NodePool("dev", new()
     ///     {
     ///         Name = "dev",
     ///         Description = "Nodes for the development environment.",

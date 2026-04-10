@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetPlugins.Invoke();
+        ///     var example = Nomad.Index.GetPlugins.Invoke();
         /// 
         /// });
         /// ```
@@ -45,7 +45,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetPlugins.Invoke();
+        ///     var example = Nomad.Index.GetPlugins.Invoke();
         /// 
         /// });
         /// ```
@@ -66,7 +66,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetPlugins.Invoke();
+        ///     var example = Nomad.Index.GetPlugins.Invoke();
         /// 
         /// });
         /// ```

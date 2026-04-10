@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.LookupNamespace(ctx, &nomad.LookupNamespaceArgs{
+//			_, err := nomad.GetNamespace(ctx, &nomad.LookupNamespaceArgs{
 //				Name: "default",
 //			}, nil)
 //			if err != nil {

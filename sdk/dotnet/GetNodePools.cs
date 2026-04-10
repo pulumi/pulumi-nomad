@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var prod = Nomad.GetNodePools.Invoke(new()
+        ///     var prod = Nomad.Index.GetNodePools.Invoke(new()
         ///     {
         ///         Filter = "Meta.env == \"prod\"",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var prod = Nomad.GetNodePools.Invoke(new()
+        ///     var prod = Nomad.Index.GetNodePools.Invoke(new()
         ///     {
         ///         Filter = "Meta.env == \"prod\"",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var prod = Nomad.GetNodePools.Invoke(new()
+        ///     var prod = Nomad.Index.GetNodePools.Invoke(new()
         ///     {
         ///         Filter = "Meta.env == \"prod\"",
         ///     });

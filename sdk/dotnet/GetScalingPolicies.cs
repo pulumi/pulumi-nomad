@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetScalingPolicies.Invoke(new()
+        ///     var example = Nomad.Index.GetScalingPolicies.Invoke(new()
         ///     {
         ///         JobId = "webapp",
         ///         Type = "horizontal",
@@ -49,7 +49,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetScalingPolicies.Invoke(new()
+        ///     var example = Nomad.Index.GetScalingPolicies.Invoke(new()
         ///     {
         ///         JobId = "webapp",
         ///         Type = "horizontal",
@@ -74,7 +74,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetScalingPolicies.Invoke(new()
+        ///     var example = Nomad.Index.GetScalingPolicies.Invoke(new()
         ///     {
         ///         JobId = "webapp",
         ///         Type = "horizontal",
