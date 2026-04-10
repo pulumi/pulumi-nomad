@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myPolicy = Nomad.GetAclPolicy.Invoke(new()
+        ///     var myPolicy = Nomad.Index.GetAclPolicy.Invoke(new()
         ///     {
         ///         Name = "my-policy",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myPolicy = Nomad.GetAclPolicy.Invoke(new()
+        ///     var myPolicy = Nomad.Index.GetAclPolicy.Invoke(new()
         ///     {
         ///         Name = "my-policy",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myPolicy = Nomad.GetAclPolicy.Invoke(new()
+        ///     var myPolicy = Nomad.Index.GetAclPolicy.Invoke(new()
         ///     {
         ///         Name = "my-policy",
         ///     });

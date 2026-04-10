@@ -33,7 +33,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ebs = Nomad.GetPlugin.Invoke(new()
+        ///     var ebs = Nomad.Index.GetPlugin.Invoke(new()
         ///     {
         ///         PluginId = "aws-ebs0",
         ///         WaitForHealthy = true,
@@ -70,7 +70,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ebs = Nomad.GetPlugin.Invoke(new()
+        ///     var ebs = Nomad.Index.GetPlugin.Invoke(new()
         ///     {
         ///         PluginId = "aws-ebs0",
         ///         WaitForHealthy = true,
@@ -107,7 +107,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ebs = Nomad.GetPlugin.Invoke(new()
+        ///     var ebs = Nomad.Index.GetPlugin.Invoke(new()
         ///     {
         ///         PluginId = "aws-ebs0",
         ///         WaitForHealthy = true,

@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.LookupJob(ctx, &nomad.LookupJobArgs{
+//			_, err := nomad.GetJob(ctx, &nomad.LookupJobArgs{
 //				JobId:     "example",
 //				Namespace: pulumi.StringRef("dev"),
 //			}, nil)

@@ -29,7 +29,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myNomadAclAuthMethod = new Nomad.AclAuthMethod("my_nomad_acl_auth_method", new()
+    ///     var myNomadAclAuthMethod = new Nomad.Index.AclAuthMethod("my_nomad_acl_auth_method", new()
     ///     {
     ///         Name = "my-nomad-acl-auth-method",
     ///         Type = "OIDC",
@@ -57,7 +57,7 @@ namespace Pulumi.Nomad
     ///         },
     ///     });
     /// 
-    ///     var myNomadAclBindingRule = new Nomad.AclBindingRule("my_nomad_acl_binding_rule", new()
+    ///     var myNomadAclBindingRule = new Nomad.Index.AclBindingRule("my_nomad_acl_binding_rule", new()
     ///     {
     ///         Description = "engineering rule",
     ///         AuthMethod = myNomadAclAuthMethod.Name,

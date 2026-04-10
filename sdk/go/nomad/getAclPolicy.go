@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.LookupAclPolicy(ctx, &nomad.LookupAclPolicyArgs{
+//			_, err := nomad.GetAclPolicy(ctx, &nomad.LookupAclPolicyArgs{
 //				Name: "my-policy",
 //			}, nil)
 //			if err != nil {

@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var datacenters = Nomad.GetDatacenters.Invoke(new()
+        ///     var datacenters = Nomad.Index.GetDatacenters.Invoke(new()
         ///     {
         ///         Prefix = "prod",
         ///         IgnoreDownNodes = true,
@@ -49,7 +49,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var datacenters = Nomad.GetDatacenters.Invoke(new()
+        ///     var datacenters = Nomad.Index.GetDatacenters.Invoke(new()
         ///     {
         ///         Prefix = "prod",
         ///         IgnoreDownNodes = true,
@@ -74,7 +74,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var datacenters = Nomad.GetDatacenters.Invoke(new()
+        ///     var datacenters = Nomad.Index.GetDatacenters.Invoke(new()
         ///     {
         ///         Prefix = "prod",
         ///         IgnoreDownNodes = true,

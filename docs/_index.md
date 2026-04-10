@@ -109,9 +109,9 @@ object NotImplemented(string errorMessage)
 return await Deployment.RunAsync(() =>
 {
     // Register a job
-    var monitoring = new Nomad.Job("monitoring", new()
+    var monitoring = new Nomad.Index.Job("monitoring", new()
     {
-        Jobspec = Std.File.Invoke(new()
+        Jobspec = Std.Index.File.Invoke(new()
         {
             Input = $"{NotImplemented("path.module")}/jobspec.hcl",
         }).Apply(invoke => invoke.Result),

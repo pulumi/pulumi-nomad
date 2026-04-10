@@ -28,7 +28,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Nomad.Variable("example", new()
+        ///     var example = new Nomad.Index.Variable("example", new()
         ///     {
         ///         Path = "path/of/existing/variable",
         ///     });
@@ -56,7 +56,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Nomad.Variable("example", new()
+        ///     var example = new Nomad.Index.Variable("example", new()
         ///     {
         ///         Path = "path/of/existing/variable",
         ///     });
@@ -84,7 +84,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Nomad.Variable("example", new()
+        ///     var example = new Nomad.Index.Variable("example", new()
         ///     {
         ///         Path = "path/of/existing/variable",
         ///     });

@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var prodApi = new Nomad.QuoteSpecification("prod_api", new()
+    ///     var prodApi = new Nomad.Index.QuoteSpecification("prod_api", new()
     ///     {
     ///         Name = "prod-api",
     ///         Description = "Production instances of backend API servers",

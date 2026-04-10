@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.LookupAclToken(ctx, &nomad.LookupAclTokenArgs{
+//			_, err := nomad.GetAclToken(ctx, &nomad.LookupAclTokenArgs{
 //				AccessorId: "aa534e09-6a07-0a45-2295-a7f77063d429",
 //			}, nil)
 //			if err != nil {

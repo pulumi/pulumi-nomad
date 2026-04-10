@@ -37,7 +37,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Nomad.DynamicHostVolume("example", new()
+    ///     var example = new Nomad.Index.DynamicHostVolume("example", new()
     ///     {
     ///         Name = "example",
     ///         Namespace = "prod",

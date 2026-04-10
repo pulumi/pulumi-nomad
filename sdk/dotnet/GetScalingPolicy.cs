@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetScalingPolicy.Invoke(new()
+        ///     var example = Nomad.Index.GetScalingPolicy.Invoke(new()
         ///     {
         ///         Id = "ad19848d-1921-179c-affa-244a3543be88",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetScalingPolicy.Invoke(new()
+        ///     var example = Nomad.Index.GetScalingPolicy.Invoke(new()
         ///     {
         ///         Id = "ad19848d-1921-179c-affa-244a3543be88",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.GetScalingPolicy.Invoke(new()
+        ///     var example = Nomad.Index.GetScalingPolicy.Invoke(new()
         ///     {
         ///         Id = "ad19848d-1921-179c-affa-244a3543be88",
         ///     });

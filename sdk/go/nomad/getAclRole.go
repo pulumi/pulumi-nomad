@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.LookupAclRole(ctx, &nomad.LookupAclRoleArgs{
+//			_, err := nomad.GetAclRole(ctx, &nomad.LookupAclRoleArgs{
 //				Id: "aa534e09-6a07-0a45-2295-a7f77063d429",
 //			}, nil)
 //			if err != nil {

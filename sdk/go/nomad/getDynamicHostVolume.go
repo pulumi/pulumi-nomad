@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nomad.LookupDynamicHostVolume(ctx, &nomad.LookupDynamicHostVolumeArgs{
+//			_, err := nomad.GetDynamicHostVolume(ctx, &nomad.LookupDynamicHostVolumeArgs{
 //				Namespace: pulumi.StringRef("prod"),
 //				Id:        "d688ff7a-d299-11ef-ae3c-6f2400953c18",
 //			}, nil)
