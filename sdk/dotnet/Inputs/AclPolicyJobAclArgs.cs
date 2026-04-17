@@ -19,10 +19,10 @@ namespace Pulumi.Nomad.Inputs
         public Input<string>? Group { get; set; }
 
         /// <summary>
-        /// Job
+        /// Job. If empty, the policy applies to all jobs in the namespace.
         /// </summary>
-        [Input("jobId", required: true)]
-        public Input<string> JobId { get; set; } = null!;
+        [Input("jobId")]
+        public Input<string>? JobId { get; set; }
 
         /// <summary>
         /// Namespace

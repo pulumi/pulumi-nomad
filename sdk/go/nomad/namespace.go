@@ -101,6 +101,8 @@ type Namespace struct {
 	// `(block: <optional>)` - A block of capabilities for the namespace. Can't
 	// be repeated. See below for the structure of this block.
 	Capabilities NamespaceCapabilitiesPtrOutput `pulumi:"capabilities"`
+	// `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+	ConsulConfig NamespaceConsulConfigOutput `pulumi:"consulConfig"`
 	// `(string: "")` - A description of the namespace.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
@@ -111,6 +113,8 @@ type Namespace struct {
 	NodePoolConfig NamespaceNodePoolConfigOutput `pulumi:"nodePoolConfig"`
 	// `(string: "")` - A resource quota to attach to the namespace.
 	Quota pulumi.StringPtrOutput `pulumi:"quota"`
+	// `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+	VaultConfig NamespaceVaultConfigOutput `pulumi:"vaultConfig"`
 }
 
 // NewNamespace registers a new resource with the given unique name, arguments, and options.
@@ -146,6 +150,8 @@ type namespaceState struct {
 	// `(block: <optional>)` - A block of capabilities for the namespace. Can't
 	// be repeated. See below for the structure of this block.
 	Capabilities *NamespaceCapabilities `pulumi:"capabilities"`
+	// `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+	ConsulConfig *NamespaceConsulConfig `pulumi:"consulConfig"`
 	// `(string: "")` - A description of the namespace.
 	Description *string `pulumi:"description"`
 	// `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
@@ -156,12 +162,16 @@ type namespaceState struct {
 	NodePoolConfig *NamespaceNodePoolConfig `pulumi:"nodePoolConfig"`
 	// `(string: "")` - A resource quota to attach to the namespace.
 	Quota *string `pulumi:"quota"`
+	// `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+	VaultConfig *NamespaceVaultConfig `pulumi:"vaultConfig"`
 }
 
 type NamespaceState struct {
 	// `(block: <optional>)` - A block of capabilities for the namespace. Can't
 	// be repeated. See below for the structure of this block.
 	Capabilities NamespaceCapabilitiesPtrInput
+	// `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+	ConsulConfig NamespaceConsulConfigPtrInput
 	// `(string: "")` - A description of the namespace.
 	Description pulumi.StringPtrInput
 	// `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
@@ -172,6 +182,8 @@ type NamespaceState struct {
 	NodePoolConfig NamespaceNodePoolConfigPtrInput
 	// `(string: "")` - A resource quota to attach to the namespace.
 	Quota pulumi.StringPtrInput
+	// `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+	VaultConfig NamespaceVaultConfigPtrInput
 }
 
 func (NamespaceState) ElementType() reflect.Type {
@@ -182,6 +194,8 @@ type namespaceArgs struct {
 	// `(block: <optional>)` - A block of capabilities for the namespace. Can't
 	// be repeated. See below for the structure of this block.
 	Capabilities *NamespaceCapabilities `pulumi:"capabilities"`
+	// `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+	ConsulConfig *NamespaceConsulConfig `pulumi:"consulConfig"`
 	// `(string: "")` - A description of the namespace.
 	Description *string `pulumi:"description"`
 	// `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
@@ -192,6 +206,8 @@ type namespaceArgs struct {
 	NodePoolConfig *NamespaceNodePoolConfig `pulumi:"nodePoolConfig"`
 	// `(string: "")` - A resource quota to attach to the namespace.
 	Quota *string `pulumi:"quota"`
+	// `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+	VaultConfig *NamespaceVaultConfig `pulumi:"vaultConfig"`
 }
 
 // The set of arguments for constructing a Namespace resource.
@@ -199,6 +215,8 @@ type NamespaceArgs struct {
 	// `(block: <optional>)` - A block of capabilities for the namespace. Can't
 	// be repeated. See below for the structure of this block.
 	Capabilities NamespaceCapabilitiesPtrInput
+	// `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+	ConsulConfig NamespaceConsulConfigPtrInput
 	// `(string: "")` - A description of the namespace.
 	Description pulumi.StringPtrInput
 	// `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
@@ -209,6 +227,8 @@ type NamespaceArgs struct {
 	NodePoolConfig NamespaceNodePoolConfigPtrInput
 	// `(string: "")` - A resource quota to attach to the namespace.
 	Quota pulumi.StringPtrInput
+	// `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+	VaultConfig NamespaceVaultConfigPtrInput
 }
 
 func (NamespaceArgs) ElementType() reflect.Type {
@@ -304,6 +324,11 @@ func (o NamespaceOutput) Capabilities() NamespaceCapabilitiesPtrOutput {
 	return o.ApplyT(func(v *Namespace) NamespaceCapabilitiesPtrOutput { return v.Capabilities }).(NamespaceCapabilitiesPtrOutput)
 }
 
+// `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+func (o NamespaceOutput) ConsulConfig() NamespaceConsulConfigOutput {
+	return o.ApplyT(func(v *Namespace) NamespaceConsulConfigOutput { return v.ConsulConfig }).(NamespaceConsulConfigOutput)
+}
+
 // `(string: "")` - A description of the namespace.
 func (o NamespaceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Namespace) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -327,6 +352,11 @@ func (o NamespaceOutput) NodePoolConfig() NamespaceNodePoolConfigOutput {
 // `(string: "")` - A resource quota to attach to the namespace.
 func (o NamespaceOutput) Quota() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Namespace) pulumi.StringPtrOutput { return v.Quota }).(pulumi.StringPtrOutput)
+}
+
+// `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+func (o NamespaceOutput) VaultConfig() NamespaceVaultConfigOutput {
+	return o.ApplyT(func(v *Namespace) NamespaceVaultConfigOutput { return v.VaultConfig }).(NamespaceVaultConfigOutput)
 }
 
 type NamespaceArrayOutput struct{ *pulumi.OutputState }

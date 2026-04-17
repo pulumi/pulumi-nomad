@@ -6,6 +6,7 @@ package com.pulumi.nomad;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -18,18 +19,50 @@ public final class VariableArgs extends com.pulumi.resources.ResourceArgs {
     public static final VariableArgs Empty = new VariableArgs();
 
     /**
-     * `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
+     * `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
      * 
      */
-    @Import(name="items", required=true)
-    private Output<Map<String,String>> items;
+    @Import(name="items")
+    private @Nullable Output<Map<String,String>> items;
 
     /**
-     * @return `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
+     * @return `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
      * 
      */
-    public Output<Map<String,String>> items() {
-        return this.items;
+    public Optional<Output<Map<String,String>>> items() {
+        return Optional.ofNullable(this.items);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+     * 
+     */
+    @Import(name="itemsWo")
+    private @Nullable Output<String> itemsWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+     * 
+     */
+    public Optional<Output<String>> itemsWo() {
+        return Optional.ofNullable(this.itemsWo);
+    }
+
+    /**
+     * `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+     * 
+     */
+    @Import(name="itemsWoVersion")
+    private @Nullable Output<Integer> itemsWoVersion;
+
+    /**
+     * @return `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+     * 
+     */
+    public Optional<Output<Integer>> itemsWoVersion() {
+        return Optional.ofNullable(this.itemsWoVersion);
     }
 
     /**
@@ -66,6 +99,8 @@ public final class VariableArgs extends com.pulumi.resources.ResourceArgs {
 
     private VariableArgs(VariableArgs $) {
         this.items = $.items;
+        this.itemsWo = $.itemsWo;
+        this.itemsWoVersion = $.itemsWoVersion;
         this.namespace = $.namespace;
         this.path = $.path;
     }
@@ -89,24 +124,68 @@ public final class VariableArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param items `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
+         * @param items `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
          * 
          * @return builder
          * 
          */
-        public Builder items(Output<Map<String,String>> items) {
+        public Builder items(@Nullable Output<Map<String,String>> items) {
             $.items = items;
             return this;
         }
 
         /**
-         * @param items `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
+         * @param items `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
          * 
          * @return builder
          * 
          */
         public Builder items(Map<String,String> items) {
             return items(Output.of(items));
+        }
+
+        /**
+         * @param itemsWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder itemsWo(@Nullable Output<String> itemsWo) {
+            $.itemsWo = itemsWo;
+            return this;
+        }
+
+        /**
+         * @param itemsWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder itemsWo(String itemsWo) {
+            return itemsWo(Output.of(itemsWo));
+        }
+
+        /**
+         * @param itemsWoVersion `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder itemsWoVersion(@Nullable Output<Integer> itemsWoVersion) {
+            $.itemsWoVersion = itemsWoVersion;
+            return this;
+        }
+
+        /**
+         * @param itemsWoVersion `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder itemsWoVersion(Integer itemsWoVersion) {
+            return itemsWoVersion(Output.of(itemsWoVersion));
         }
 
         /**
@@ -152,9 +231,6 @@ public final class VariableArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public VariableArgs build() {
-            if ($.items == null) {
-                throw new MissingRequiredPropertyException("VariableArgs", "items");
-            }
             if ($.path == null) {
                 throw new MissingRequiredPropertyException("VariableArgs", "path");
             }

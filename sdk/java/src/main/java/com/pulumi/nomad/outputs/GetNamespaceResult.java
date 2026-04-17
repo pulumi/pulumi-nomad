@@ -6,7 +6,9 @@ package com.pulumi.nomad.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetNamespaceCapability;
+import com.pulumi.nomad.outputs.GetNamespaceConsulConfig;
 import com.pulumi.nomad.outputs.GetNamespaceNodePoolConfig;
+import com.pulumi.nomad.outputs.GetNamespaceVaultConfig;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,11 @@ public final class GetNamespaceResult {
      * 
      */
     private List<GetNamespaceCapability> capabilities;
+    /**
+     * @return `(block)` - Consul configuration for the namespace.
+     * 
+     */
+    private List<GetNamespaceConsulConfig> consulConfigs;
     /**
      * @return `(string)` - The description of the namespace.
      * 
@@ -35,12 +42,21 @@ public final class GetNamespaceResult {
      */
     private Map<String,String> meta;
     private String name;
+    /**
+     * @return `(block)` - Node pool configuration for the namespace.
+     * 
+     */
     private List<GetNamespaceNodePoolConfig> nodePoolConfigs;
     /**
      * @return `(string)` - The quota associated with the namespace.
      * 
      */
     private String quota;
+    /**
+     * @return `(block)` - Vault configuration for the namespace.
+     * 
+     */
+    private List<GetNamespaceVaultConfig> vaultConfigs;
 
     private GetNamespaceResult() {}
     /**
@@ -49,6 +65,13 @@ public final class GetNamespaceResult {
      */
     public List<GetNamespaceCapability> capabilities() {
         return this.capabilities;
+    }
+    /**
+     * @return `(block)` - Consul configuration for the namespace.
+     * 
+     */
+    public List<GetNamespaceConsulConfig> consulConfigs() {
+        return this.consulConfigs;
     }
     /**
      * @return `(string)` - The description of the namespace.
@@ -74,6 +97,10 @@ public final class GetNamespaceResult {
     public String name() {
         return this.name;
     }
+    /**
+     * @return `(block)` - Node pool configuration for the namespace.
+     * 
+     */
     public List<GetNamespaceNodePoolConfig> nodePoolConfigs() {
         return this.nodePoolConfigs;
     }
@@ -83,6 +110,13 @@ public final class GetNamespaceResult {
      */
     public String quota() {
         return this.quota;
+    }
+    /**
+     * @return `(block)` - Vault configuration for the namespace.
+     * 
+     */
+    public List<GetNamespaceVaultConfig> vaultConfigs() {
+        return this.vaultConfigs;
     }
 
     public static Builder builder() {
@@ -95,22 +129,26 @@ public final class GetNamespaceResult {
     @CustomType.Builder
     public static final class Builder {
         private List<GetNamespaceCapability> capabilities;
+        private List<GetNamespaceConsulConfig> consulConfigs;
         private String description;
         private String id;
         private Map<String,String> meta;
         private String name;
         private List<GetNamespaceNodePoolConfig> nodePoolConfigs;
         private String quota;
+        private List<GetNamespaceVaultConfig> vaultConfigs;
         public Builder() {}
         public Builder(GetNamespaceResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.capabilities = defaults.capabilities;
+    	      this.consulConfigs = defaults.consulConfigs;
     	      this.description = defaults.description;
     	      this.id = defaults.id;
     	      this.meta = defaults.meta;
     	      this.name = defaults.name;
     	      this.nodePoolConfigs = defaults.nodePoolConfigs;
     	      this.quota = defaults.quota;
+    	      this.vaultConfigs = defaults.vaultConfigs;
         }
 
         @CustomType.Setter
@@ -123,6 +161,17 @@ public final class GetNamespaceResult {
         }
         public Builder capabilities(GetNamespaceCapability... capabilities) {
             return capabilities(List.of(capabilities));
+        }
+        @CustomType.Setter
+        public Builder consulConfigs(List<GetNamespaceConsulConfig> consulConfigs) {
+            if (consulConfigs == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceResult", "consulConfigs");
+            }
+            this.consulConfigs = consulConfigs;
+            return this;
+        }
+        public Builder consulConfigs(GetNamespaceConsulConfig... consulConfigs) {
+            return consulConfigs(List.of(consulConfigs));
         }
         @CustomType.Setter
         public Builder description(String description) {
@@ -175,15 +224,28 @@ public final class GetNamespaceResult {
             this.quota = quota;
             return this;
         }
+        @CustomType.Setter
+        public Builder vaultConfigs(List<GetNamespaceVaultConfig> vaultConfigs) {
+            if (vaultConfigs == null) {
+              throw new MissingRequiredPropertyException("GetNamespaceResult", "vaultConfigs");
+            }
+            this.vaultConfigs = vaultConfigs;
+            return this;
+        }
+        public Builder vaultConfigs(GetNamespaceVaultConfig... vaultConfigs) {
+            return vaultConfigs(List.of(vaultConfigs));
+        }
         public GetNamespaceResult build() {
             final var _resultValue = new GetNamespaceResult();
             _resultValue.capabilities = capabilities;
+            _resultValue.consulConfigs = consulConfigs;
             _resultValue.description = description;
             _resultValue.id = id;
             _resultValue.meta = meta;
             _resultValue.name = name;
             _resultValue.nodePoolConfigs = nodePoolConfigs;
             _resultValue.quota = quota;
+            _resultValue.vaultConfigs = vaultConfigs;
             return _resultValue;
         }
     }

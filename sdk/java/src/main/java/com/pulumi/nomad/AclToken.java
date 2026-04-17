@@ -24,6 +24,10 @@ import javax.annotation.Nullable;
  *   Terraform&#39;s state file. Take care to
  *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
  * 
+ * &gt; **Note:** `secretId` is deprecated on this resource. Use the `nomad.AclToken`
+ * ephemeral resource when the token secret is needed during a run without
+ * storing it in Terraform state.
+ * 
  * ## Example Usage
  * 
  * Creating a token with limited policies:
@@ -309,15 +313,21 @@ public class AclToken extends com.pulumi.resources.CustomResource {
     }
     /**
      * `(string)` - The token value itself, which is presented for
-     * access to the cluster.
+     * access to the cluster. This attribute is deprecated and will be removed in a
+     * future release.
+     * 
+     * @deprecated
+     * Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
      * 
      */
+    @Deprecated /* Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release. */
     @Export(name="secretId", refs={String.class}, tree="[0]")
     private Output<String> secretId;
 
     /**
      * @return `(string)` - The token value itself, which is presented for
-     * access to the cluster.
+     * access to the cluster. This attribute is deprecated and will be removed in a
+     * future release.
      * 
      */
     public Output<String> secretId() {

@@ -17,6 +17,9 @@ public final class QuoteSpecificationLimitArgs extends com.pulumi.resources.Reso
 
     /**
      * `(string: &lt;required&gt;)` - The region these limits should apply to.
+     * - `regionLimit` `(block: &lt;required&gt;)` - The limits to enforce. This block
+     *   may only be specified once in the `limits` block. Its structure is
+     *   documented below.
      * 
      */
     @Import(name="region", required=true)
@@ -24,6 +27,9 @@ public final class QuoteSpecificationLimitArgs extends com.pulumi.resources.Reso
 
     /**
      * @return `(string: &lt;required&gt;)` - The region these limits should apply to.
+     * - `regionLimit` `(block: &lt;required&gt;)` - The limits to enforce. This block
+     *   may only be specified once in the `limits` block. Its structure is
+     *   documented below.
      * 
      */
     public Output<String> region() {
@@ -31,18 +37,14 @@ public final class QuoteSpecificationLimitArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * `(block: &lt;required&gt;)` - The limits to enforce. This block
-     * may only be specified once in the `limits` block. Its structure is
-     * documented below.
+     * The limit applied to this region.
      * 
      */
     @Import(name="regionLimit", required=true)
     private Output<QuoteSpecificationLimitRegionLimitArgs> regionLimit;
 
     /**
-     * @return `(block: &lt;required&gt;)` - The limits to enforce. This block
-     * may only be specified once in the `limits` block. Its structure is
-     * documented below.
+     * @return The limit applied to this region.
      * 
      */
     public Output<QuoteSpecificationLimitRegionLimitArgs> regionLimit() {
@@ -76,6 +78,9 @@ public final class QuoteSpecificationLimitArgs extends com.pulumi.resources.Reso
 
         /**
          * @param region `(string: &lt;required&gt;)` - The region these limits should apply to.
+         * - `regionLimit` `(block: &lt;required&gt;)` - The limits to enforce. This block
+         *   may only be specified once in the `limits` block. Its structure is
+         *   documented below.
          * 
          * @return builder
          * 
@@ -87,6 +92,9 @@ public final class QuoteSpecificationLimitArgs extends com.pulumi.resources.Reso
 
         /**
          * @param region `(string: &lt;required&gt;)` - The region these limits should apply to.
+         * - `regionLimit` `(block: &lt;required&gt;)` - The limits to enforce. This block
+         *   may only be specified once in the `limits` block. Its structure is
+         *   documented below.
          * 
          * @return builder
          * 
@@ -96,9 +104,7 @@ public final class QuoteSpecificationLimitArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param regionLimit `(block: &lt;required&gt;)` - The limits to enforce. This block
-         * may only be specified once in the `limits` block. Its structure is
-         * documented below.
+         * @param regionLimit The limit applied to this region.
          * 
          * @return builder
          * 
@@ -109,9 +115,7 @@ public final class QuoteSpecificationLimitArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param regionLimit `(block: &lt;required&gt;)` - The limits to enforce. This block
-         * may only be specified once in the `limits` block. Its structure is
-         * documented below.
+         * @param regionLimit The limit applied to this region.
          * 
          * @return builder
          * 

@@ -11,17 +11,41 @@ import java.util.Objects;
 
 @CustomType
 public final class GetJobTaskGroupTaskVolumeMount {
+    /**
+     * @return `(string)` Destination path inside the task.
+     * 
+     */
     private String destination;
+    /**
+     * @return `(boolean)` Whether the volume is read-only.
+     * 
+     */
     private Boolean readOnly;
+    /**
+     * @return `(string)` Volume name.
+     * 
+     */
     private String volume;
 
     private GetJobTaskGroupTaskVolumeMount() {}
+    /**
+     * @return `(string)` Destination path inside the task.
+     * 
+     */
     public String destination() {
         return this.destination;
     }
+    /**
+     * @return `(boolean)` Whether the volume is read-only.
+     * 
+     */
     public Boolean readOnly() {
         return this.readOnly;
     }
+    /**
+     * @return `(string)` Volume name.
+     * 
+     */
     public String volume() {
         return this.volume;
     }

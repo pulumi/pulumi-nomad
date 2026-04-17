@@ -34,6 +34,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.nomad.QuoteSpecificationArgs;
  * import com.pulumi.nomad.inputs.QuoteSpecificationLimitArgs;
  * import com.pulumi.nomad.inputs.QuoteSpecificationLimitRegionLimitArgs;
+ * import com.pulumi.nomad.inputs.QuoteSpecificationLimitRegionLimitStorageArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -54,7 +55,32 @@ import javax.annotation.Nullable;
  *                 .region("global")
  *                 .regionLimit(QuoteSpecificationLimitRegionLimitArgs.builder()
  *                     .cpu(2400)
+ *                     .cores(4)
  *                     .memoryMb(1200)
+ *                     .memoryMaxMb(2400)
+ *                     .devices(QuoteSpecificationLimitRegionLimitDeviceArgs.builder()
+ *                         .name("nvidia/gpu")
+ *                         .count(2)
+ *                         .build())
+ *                     .nodePools(QuoteSpecificationLimitRegionLimitNodePoolArgs.builder()
+ *                         .nodePool("batch")
+ *                         .cpu(800)
+ *                         .cores(2)
+ *                         .memoryMb(1024)
+ *                         .memoryMaxMb(2048)
+ *                         .devices(QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs.builder()
+ *                             .name("fpga")
+ *                             .count(1)
+ *                             .build())
+ *                         .storage(QuoteSpecificationLimitRegionLimitNodePoolStorageArgs.builder()
+ *                             .variablesMb(25)
+ *                             .hostVolumesMb(50)
+ *                             .build())
+ *                         .build())
+ *                     .storage(QuoteSpecificationLimitRegionLimitStorageArgs.builder()
+ *                         .variablesMb(500)
+ *                         .hostVolumesMb(1000)
+ *                         .build())
  *                     .build())
  *                 .build())
  *             .build());
@@ -69,6 +95,8 @@ import javax.annotation.Nullable;
 public class QuoteSpecification extends com.pulumi.resources.CustomResource {
     /**
      * `(string: &#34;&#34;)` - A description of the quota specification.
+     * - `limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
+     *   be repeated. See below for the structure of this block.
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
@@ -76,22 +104,22 @@ public class QuoteSpecification extends com.pulumi.resources.CustomResource {
 
     /**
      * @return `(string: &#34;&#34;)` - A description of the quota specification.
+     * - `limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
+     *   be repeated. See below for the structure of this block.
      * 
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
     /**
-     * `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-     * be repeated. See below for the structure of this block.
+     * Limits encapsulated by this quota specification.
      * 
      */
     @Export(name="limits", refs={List.class,QuoteSpecificationLimit.class}, tree="[0,1]")
     private Output<List<QuoteSpecificationLimit>> limits;
 
     /**
-     * @return `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-     * be repeated. See below for the structure of this block.
+     * @return Limits encapsulated by this quota specification.
      * 
      */
     public Output<List<QuoteSpecificationLimit>> limits() {

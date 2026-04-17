@@ -14,13 +14,19 @@ namespace Pulumi.Nomad.Outputs
     public sealed class GetJobTaskGroupVolumeResult
     {
         /// <summary>
-        /// `(string)` Name of the job.
+        /// `(string)` Volume name.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// `(boolean)` Whether the volume is read-only.
+        /// </summary>
         public readonly bool ReadOnly;
+        /// <summary>
+        /// `(string)` Volume source.
+        /// </summary>
         public readonly string Source;
         /// <summary>
-        /// `(string)` Scheduler type used during job creation.
+        /// `(string)` Volume type.
         /// </summary>
         public readonly string Type;
 

@@ -6,7 +6,9 @@ package com.pulumi.nomad;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.nomad.inputs.NamespaceCapabilitiesArgs;
+import com.pulumi.nomad.inputs.NamespaceConsulConfigArgs;
 import com.pulumi.nomad.inputs.NamespaceNodePoolConfigArgs;
+import com.pulumi.nomad.inputs.NamespaceVaultConfigArgs;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -33,6 +35,21 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<NamespaceCapabilitiesArgs>> capabilities() {
         return Optional.ofNullable(this.capabilities);
+    }
+
+    /**
+     * `(block: &lt;optional&gt;)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    @Import(name="consulConfig")
+    private @Nullable Output<NamespaceConsulConfigArgs> consulConfig;
+
+    /**
+     * @return `(block: &lt;optional&gt;)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    public Optional<Output<NamespaceConsulConfigArgs>> consulConfig() {
+        return Optional.ofNullable(this.consulConfig);
     }
 
     /**
@@ -110,15 +127,32 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.quota);
     }
 
+    /**
+     * `(block: &lt;optional&gt;)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    @Import(name="vaultConfig")
+    private @Nullable Output<NamespaceVaultConfigArgs> vaultConfig;
+
+    /**
+     * @return `(block: &lt;optional&gt;)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    public Optional<Output<NamespaceVaultConfigArgs>> vaultConfig() {
+        return Optional.ofNullable(this.vaultConfig);
+    }
+
     private NamespaceArgs() {}
 
     private NamespaceArgs(NamespaceArgs $) {
         this.capabilities = $.capabilities;
+        this.consulConfig = $.consulConfig;
         this.description = $.description;
         this.meta = $.meta;
         this.name = $.name;
         this.nodePoolConfig = $.nodePoolConfig;
         this.quota = $.quota;
+        this.vaultConfig = $.vaultConfig;
     }
 
     public static Builder builder() {
@@ -160,6 +194,27 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder capabilities(NamespaceCapabilitiesArgs capabilities) {
             return capabilities(Output.of(capabilities));
+        }
+
+        /**
+         * @param consulConfig `(block: &lt;optional&gt;)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder consulConfig(@Nullable Output<NamespaceConsulConfigArgs> consulConfig) {
+            $.consulConfig = consulConfig;
+            return this;
+        }
+
+        /**
+         * @param consulConfig `(block: &lt;optional&gt;)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder consulConfig(NamespaceConsulConfigArgs consulConfig) {
+            return consulConfig(Output.of(consulConfig));
         }
 
         /**
@@ -265,6 +320,27 @@ public final class NamespaceArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder quota(String quota) {
             return quota(Output.of(quota));
+        }
+
+        /**
+         * @param vaultConfig `(block: &lt;optional&gt;)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vaultConfig(@Nullable Output<NamespaceVaultConfigArgs> vaultConfig) {
+            $.vaultConfig = vaultConfig;
+            return this;
+        }
+
+        /**
+         * @param vaultConfig `(block: &lt;optional&gt;)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vaultConfig(NamespaceVaultConfigArgs vaultConfig) {
+            return vaultConfig(Output.of(vaultConfig));
         }
 
         public NamespaceArgs build() {

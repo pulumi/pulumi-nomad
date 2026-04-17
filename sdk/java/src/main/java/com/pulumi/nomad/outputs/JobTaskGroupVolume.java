@@ -12,21 +12,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class JobTaskGroupVolume {
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return `(boolean)` - Whether the volume is read-only.
+     * 
+     */
     private @Nullable Boolean readOnly;
+    /**
+     * @return `(string)` - Volume source.
+     * 
+     */
     private @Nullable String source;
+    /**
+     * @return `(string)` - Volume type.
+     * 
+     */
     private @Nullable String type;
 
     private JobTaskGroupVolume() {}
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return `(boolean)` - Whether the volume is read-only.
+     * 
+     */
     public Optional<Boolean> readOnly() {
         return Optional.ofNullable(this.readOnly);
     }
+    /**
+     * @return `(string)` - Volume source.
+     * 
+     */
     public Optional<String> source() {
         return Optional.ofNullable(this.source);
     }
+    /**
+     * @return `(string)` - Volume type.
+     * 
+     */
     public Optional<String> type() {
         return Optional.ofNullable(this.type);
     }

@@ -33,10 +33,14 @@ import com.pulumi.nomad.inputs.GetJobParserPlainArgs;
 import com.pulumi.nomad.inputs.GetJobPlainArgs;
 import com.pulumi.nomad.inputs.GetNamespaceArgs;
 import com.pulumi.nomad.inputs.GetNamespacePlainArgs;
+import com.pulumi.nomad.inputs.GetNodeArgs;
+import com.pulumi.nomad.inputs.GetNodePlainArgs;
 import com.pulumi.nomad.inputs.GetNodePoolArgs;
 import com.pulumi.nomad.inputs.GetNodePoolPlainArgs;
 import com.pulumi.nomad.inputs.GetNodePoolsArgs;
 import com.pulumi.nomad.inputs.GetNodePoolsPlainArgs;
+import com.pulumi.nomad.inputs.GetNodesArgs;
+import com.pulumi.nomad.inputs.GetNodesPlainArgs;
 import com.pulumi.nomad.inputs.GetPluginArgs;
 import com.pulumi.nomad.inputs.GetPluginPlainArgs;
 import com.pulumi.nomad.inputs.GetPluginsArgs;
@@ -66,6 +70,8 @@ import com.pulumi.nomad.outputs.GetNamespaceResult;
 import com.pulumi.nomad.outputs.GetNamespacesResult;
 import com.pulumi.nomad.outputs.GetNodePoolResult;
 import com.pulumi.nomad.outputs.GetNodePoolsResult;
+import com.pulumi.nomad.outputs.GetNodeResult;
+import com.pulumi.nomad.outputs.GetNodesResult;
 import com.pulumi.nomad.outputs.GetPluginResult;
 import com.pulumi.nomad.outputs.GetPluginsResult;
 import com.pulumi.nomad.outputs.GetRegionsResult;
@@ -1044,6 +1050,10 @@ public final class NomadFunctions {
      * &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
      *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
      * 
+     * &gt; **Note:** This data source is deprecated and may be removed in a future
+     * release. Use the `nomad.AclToken` ephemeral resource when the token secret is
+     * needed during a run without storing it in Terraform state.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1086,6 +1096,10 @@ public final class NomadFunctions {
      * 
      * &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
      *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
+     * &gt; **Note:** This data source is deprecated and may be removed in a future
+     * release. Use the `nomad.AclToken` ephemeral resource when the token secret is
+     * needed during a run without storing it in Terraform state.
      * 
      * ## Example Usage
      * 
@@ -1130,6 +1144,10 @@ public final class NomadFunctions {
      * &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
      *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
      * 
+     * &gt; **Note:** This data source is deprecated and may be removed in a future
+     * release. Use the `nomad.AclToken` ephemeral resource when the token secret is
+     * needed during a run without storing it in Terraform state.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1173,6 +1191,10 @@ public final class NomadFunctions {
      * &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
      *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
      * 
+     * &gt; **Note:** This data source is deprecated and may be removed in a future
+     * release. Use the `nomad.AclToken` ephemeral resource when the token secret is
+     * needed during a run without storing it in Terraform state.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1215,6 +1237,10 @@ public final class NomadFunctions {
      * 
      * &gt; **Warning:** this data source will store tokens in the Terraform state. Take care to
      *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+     * 
+     * &gt; **Note:** This data source is deprecated and may be removed in a future
+     * release. Use the `nomad.AclToken` ephemeral resource when the token secret is
+     * needed during a run without storing it in Terraform state.
      * 
      * ## Example Usage
      * 
@@ -3706,6 +3732,231 @@ public final class NomadFunctions {
         return Deployment.getInstance().invokeAsync("nomad:index/getNamespaces:getNamespaces", TypeShape.of(GetNamespacesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Get information about a specific Nomad node by its ID.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myNode = NomadFunctions.getNode(GetNodeArgs.builder()
+     *             .nodeId("abc123")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNodeResult> getNode(GetNodeArgs args) {
+        return getNode(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about a specific Nomad node by its ID.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myNode = NomadFunctions.getNode(GetNodeArgs.builder()
+     *             .nodeId("abc123")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNodeResult> getNodePlain(GetNodePlainArgs args) {
+        return getNodePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information about a specific Nomad node by its ID.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myNode = NomadFunctions.getNode(GetNodeArgs.builder()
+     *             .nodeId("abc123")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNodeResult> getNode(GetNodeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getNode:getNode", TypeShape.of(GetNodeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information about a specific Nomad node by its ID.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myNode = NomadFunctions.getNode(GetNodeArgs.builder()
+     *             .nodeId("abc123")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNodeResult> getNode(GetNodeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getNode:getNode", TypeShape.of(GetNodeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information about a specific Nomad node by its ID.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myNode = NomadFunctions.getNode(GetNodeArgs.builder()
+     *             .nodeId("abc123")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNodeResult> getNodePlain(GetNodePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("nomad:index/getNode:getNode", TypeShape.of(GetNodeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * Get information about a node pool in Nomad.
      * 
      * ## Example Usage
@@ -4184,6 +4435,783 @@ public final class NomadFunctions {
      */
     public static CompletableFuture<GetNodePoolsResult> getNodePoolsPlain(GetNodePoolsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("nomad:index/getNodePools:getNodePools", TypeShape.of(GetNodePoolsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of nodes from Nomad.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filtering by status
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .filter("Status == \"ready\"")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Including OS attributes and resources
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var withDetails = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .os(true)
+     *             .resources(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNodesResult> getNodes() {
+        return getNodes(GetNodesArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve a list of nodes from Nomad.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filtering by status
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .filter("Status == \"ready\"")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Including OS attributes and resources
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var withDetails = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .os(true)
+     *             .resources(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNodesResult> getNodesPlain() {
+        return getNodesPlain(GetNodesPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve a list of nodes from Nomad.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filtering by status
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .filter("Status == \"ready\"")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Including OS attributes and resources
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var withDetails = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .os(true)
+     *             .resources(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNodesResult> getNodes(GetNodesArgs args) {
+        return getNodes(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve a list of nodes from Nomad.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filtering by status
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .filter("Status == \"ready\"")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Including OS attributes and resources
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var withDetails = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .os(true)
+     *             .resources(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNodesResult> getNodesPlain(GetNodesPlainArgs args) {
+        return getNodesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieve a list of nodes from Nomad.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filtering by status
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .filter("Status == \"ready\"")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Including OS attributes and resources
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var withDetails = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .os(true)
+     *             .resources(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNodesResult> getNodes(GetNodesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getNodes:getNodes", TypeShape.of(GetNodesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of nodes from Nomad.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filtering by status
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .filter("Status == \"ready\"")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Including OS attributes and resources
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var withDetails = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .os(true)
+     *             .resources(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetNodesResult> getNodes(GetNodesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("nomad:index/getNodes:getNodes", TypeShape.of(GetNodesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve a list of nodes from Nomad.
+     * 
+     * &gt; **Note:** All node attribute values can change if the node is restarted and
+     * its fingerprint changes. In particular, the `drain`, `status`, `statusDescription`,
+     * and `schedulingEligibility` fields are ephemeral and can change at any time
+     * without an agent restart.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filtering by status
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .filter("Status == \"ready\"")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Including OS attributes and resources
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.nomad.NomadFunctions;
+     * import com.pulumi.nomad.inputs.GetNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var withDetails = NomadFunctions.getNodes(GetNodesArgs.builder()
+     *             .os(true)
+     *             .resources(true)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetNodesResult> getNodesPlain(GetNodesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("nomad:index/getNodes:getNodes", TypeShape.of(GetNodesResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Lookup a plugin by ID. The aim of this datasource is to determine whether
@@ -5535,6 +6563,10 @@ public final class NomadFunctions {
     /**
      * Get the information about a Nomad variable.
      * 
+     * &gt; **Deprecated:** Use the `nomad.Variable` ephemeral resource instead when you
+     * need to read variable items without storing them in Terraform state. This data
+     * source will be removed in a future release.
+     * 
      * &gt; **Warning:** this data source will store the sensitive values from `items`
      *   in the Terraform&#39;s state file. Take care to
      *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
@@ -5578,6 +6610,10 @@ public final class NomadFunctions {
     }
     /**
      * Get the information about a Nomad variable.
+     * 
+     * &gt; **Deprecated:** Use the `nomad.Variable` ephemeral resource instead when you
+     * need to read variable items without storing them in Terraform state. This data
+     * source will be removed in a future release.
      * 
      * &gt; **Warning:** this data source will store the sensitive values from `items`
      *   in the Terraform&#39;s state file. Take care to
@@ -5623,6 +6659,10 @@ public final class NomadFunctions {
     /**
      * Get the information about a Nomad variable.
      * 
+     * &gt; **Deprecated:** Use the `nomad.Variable` ephemeral resource instead when you
+     * need to read variable items without storing them in Terraform state. This data
+     * source will be removed in a future release.
+     * 
      * &gt; **Warning:** this data source will store the sensitive values from `items`
      *   in the Terraform&#39;s state file. Take care to
      *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
@@ -5667,6 +6707,10 @@ public final class NomadFunctions {
     /**
      * Get the information about a Nomad variable.
      * 
+     * &gt; **Deprecated:** Use the `nomad.Variable` ephemeral resource instead when you
+     * need to read variable items without storing them in Terraform state. This data
+     * source will be removed in a future release.
+     * 
      * &gt; **Warning:** this data source will store the sensitive values from `items`
      *   in the Terraform&#39;s state file. Take care to
      *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
@@ -5710,6 +6754,10 @@ public final class NomadFunctions {
     }
     /**
      * Get the information about a Nomad variable.
+     * 
+     * &gt; **Deprecated:** Use the `nomad.Variable` ephemeral resource instead when you
+     * need to read variable items without storing them in Terraform state. This data
+     * source will be removed in a future release.
      * 
      * &gt; **Warning:** this data source will store the sensitive values from `items`
      *   in the Terraform&#39;s state file. Take care to

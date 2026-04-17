@@ -13,15 +13,7 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetJobParserResult {
-    /**
-     * @return `(boolean: true)` - flag to enable setting any unset fields to their default values.
-     * 
-     */
     private @Nullable Boolean canonicalize;
-    /**
-     * @return `(string)` - the HCL definition of the job.
-     * 
-     */
     private String hcl;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -29,23 +21,16 @@ public final class GetJobParserResult {
      */
     private String id;
     /**
-     * @return `(string)` - the parsed job as JSON string.
+     * @return `(string)` - The parsed job as JSON string.
      * 
      */
     private String json;
+    private @Nullable String variables;
 
     private GetJobParserResult() {}
-    /**
-     * @return `(boolean: true)` - flag to enable setting any unset fields to their default values.
-     * 
-     */
     public Optional<Boolean> canonicalize() {
         return Optional.ofNullable(this.canonicalize);
     }
-    /**
-     * @return `(string)` - the HCL definition of the job.
-     * 
-     */
     public String hcl() {
         return this.hcl;
     }
@@ -57,11 +42,14 @@ public final class GetJobParserResult {
         return this.id;
     }
     /**
-     * @return `(string)` - the parsed job as JSON string.
+     * @return `(string)` - The parsed job as JSON string.
      * 
      */
     public String json() {
         return this.json;
+    }
+    public Optional<String> variables() {
+        return Optional.ofNullable(this.variables);
     }
 
     public static Builder builder() {
@@ -77,6 +65,7 @@ public final class GetJobParserResult {
         private String hcl;
         private String id;
         private String json;
+        private @Nullable String variables;
         public Builder() {}
         public Builder(GetJobParserResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -84,6 +73,7 @@ public final class GetJobParserResult {
     	      this.hcl = defaults.hcl;
     	      this.id = defaults.id;
     	      this.json = defaults.json;
+    	      this.variables = defaults.variables;
         }
 
         @CustomType.Setter
@@ -116,12 +106,19 @@ public final class GetJobParserResult {
             this.json = json;
             return this;
         }
+        @CustomType.Setter
+        public Builder variables(@Nullable String variables) {
+
+            this.variables = variables;
+            return this;
+        }
         public GetJobParserResult build() {
             final var _resultValue = new GetJobParserResult();
             _resultValue.canonicalize = canonicalize;
             _resultValue.hcl = hcl;
             _resultValue.id = id;
             _resultValue.json = json;
+            _resultValue.variables = variables;
             return _resultValue;
         }
     }

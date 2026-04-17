@@ -16,23 +16,47 @@ public final class JobTaskGroupTaskVolumeMountArgs extends com.pulumi.resources.
 
     public static final JobTaskGroupTaskVolumeMountArgs Empty = new JobTaskGroupTaskVolumeMountArgs();
 
+    /**
+     * `(string)` - Destination path inside the task.
+     * 
+     */
     @Import(name="destination")
     private @Nullable Output<String> destination;
 
+    /**
+     * @return `(string)` - Destination path inside the task.
+     * 
+     */
     public Optional<Output<String>> destination() {
         return Optional.ofNullable(this.destination);
     }
 
+    /**
+     * `(boolean)` - Whether the volume is read-only.
+     * 
+     */
     @Import(name="readOnly")
     private @Nullable Output<Boolean> readOnly;
 
+    /**
+     * @return `(boolean)` - Whether the volume is read-only.
+     * 
+     */
     public Optional<Output<Boolean>> readOnly() {
         return Optional.ofNullable(this.readOnly);
     }
 
+    /**
+     * `(string)` - Volume name.
+     * 
+     */
     @Import(name="volume")
     private @Nullable Output<String> volume;
 
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     public Optional<Output<String>> volume() {
         return Optional.ofNullable(this.volume);
     }
@@ -63,29 +87,65 @@ public final class JobTaskGroupTaskVolumeMountArgs extends com.pulumi.resources.
             $ = new JobTaskGroupTaskVolumeMountArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param destination `(string)` - Destination path inside the task.
+         * 
+         * @return builder
+         * 
+         */
         public Builder destination(@Nullable Output<String> destination) {
             $.destination = destination;
             return this;
         }
 
+        /**
+         * @param destination `(string)` - Destination path inside the task.
+         * 
+         * @return builder
+         * 
+         */
         public Builder destination(String destination) {
             return destination(Output.of(destination));
         }
 
+        /**
+         * @param readOnly `(boolean)` - Whether the volume is read-only.
+         * 
+         * @return builder
+         * 
+         */
         public Builder readOnly(@Nullable Output<Boolean> readOnly) {
             $.readOnly = readOnly;
             return this;
         }
 
+        /**
+         * @param readOnly `(boolean)` - Whether the volume is read-only.
+         * 
+         * @return builder
+         * 
+         */
         public Builder readOnly(Boolean readOnly) {
             return readOnly(Output.of(readOnly));
         }
 
+        /**
+         * @param volume `(string)` - Volume name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder volume(@Nullable Output<String> volume) {
             $.volume = volume;
             return this;
         }
 
+        /**
+         * @param volume `(string)` - Volume name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder volume(String volume) {
             return volume(Output.of(volume));
         }

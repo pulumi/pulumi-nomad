@@ -13,13 +13,14 @@ import java.util.Objects;
 public final class QuoteSpecificationLimit {
     /**
      * @return `(string: &lt;required&gt;)` - The region these limits should apply to.
+     * - `regionLimit` `(block: &lt;required&gt;)` - The limits to enforce. This block
+     *   may only be specified once in the `limits` block. Its structure is
+     *   documented below.
      * 
      */
     private String region;
     /**
-     * @return `(block: &lt;required&gt;)` - The limits to enforce. This block
-     * may only be specified once in the `limits` block. Its structure is
-     * documented below.
+     * @return The limit applied to this region.
      * 
      */
     private QuoteSpecificationLimitRegionLimit regionLimit;
@@ -27,15 +28,16 @@ public final class QuoteSpecificationLimit {
     private QuoteSpecificationLimit() {}
     /**
      * @return `(string: &lt;required&gt;)` - The region these limits should apply to.
+     * - `regionLimit` `(block: &lt;required&gt;)` - The limits to enforce. This block
+     *   may only be specified once in the `limits` block. Its structure is
+     *   documented below.
      * 
      */
     public String region() {
         return this.region;
     }
     /**
-     * @return `(block: &lt;required&gt;)` - The limits to enforce. This block
-     * may only be specified once in the `limits` block. Its structure is
-     * documented below.
+     * @return The limit applied to this region.
      * 
      */
     public QuoteSpecificationLimitRegionLimit regionLimit() {

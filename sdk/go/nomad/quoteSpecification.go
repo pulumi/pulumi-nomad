@@ -37,8 +37,39 @@ import (
 //					&nomad.QuoteSpecificationLimitArgs{
 //						Region: pulumi.String("global"),
 //						RegionLimit: &nomad.QuoteSpecificationLimitRegionLimitArgs{
-//							Cpu:      pulumi.Int(2400),
-//							MemoryMb: pulumi.Int(1200),
+//							Cpu:         pulumi.Int(2400),
+//							Cores:       pulumi.Int(4),
+//							MemoryMb:    pulumi.Int(1200),
+//							MemoryMaxMb: pulumi.Int(2400),
+//							Devices: nomad.QuoteSpecificationLimitRegionLimitDeviceArray{
+//								&nomad.QuoteSpecificationLimitRegionLimitDeviceArgs{
+//									Name:  pulumi.String("nvidia/gpu"),
+//									Count: pulumi.Int(2),
+//								},
+//							},
+//							NodePools: nomad.QuoteSpecificationLimitRegionLimitNodePoolArray{
+//								&nomad.QuoteSpecificationLimitRegionLimitNodePoolArgs{
+//									NodePool:    pulumi.String("batch"),
+//									Cpu:         pulumi.Int(800),
+//									Cores:       pulumi.Int(2),
+//									MemoryMb:    pulumi.Int(1024),
+//									MemoryMaxMb: pulumi.Int(2048),
+//									Devices: nomad.QuoteSpecificationLimitRegionLimitNodePoolDeviceArray{
+//										&nomad.QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs{
+//											Name:  pulumi.String("fpga"),
+//											Count: pulumi.Int(1),
+//										},
+//									},
+//									Storage: &nomad.QuoteSpecificationLimitRegionLimitNodePoolStorageArgs{
+//										VariablesMb:   pulumi.Int(25),
+//										HostVolumesMb: pulumi.Int(50),
+//									},
+//								},
+//							},
+//							Storage: &nomad.QuoteSpecificationLimitRegionLimitStorageArgs{
+//								VariablesMb:   pulumi.Int(500),
+//								HostVolumesMb: pulumi.Int(1000),
+//							},
 //						},
 //					},
 //				},
@@ -55,9 +86,10 @@ type QuoteSpecification struct {
 	pulumi.CustomResourceState
 
 	// `(string: "")` - A description of the quota specification.
+	// - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+	//   be repeated. See below for the structure of this block.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// `(block: <required>)` - A block of quota limits to enforce. Can
-	// be repeated. See below for the structure of this block.
+	// Limits encapsulated by this quota specification.
 	Limits QuoteSpecificationLimitArrayOutput `pulumi:"limits"`
 	// `(string: <required>)` - A unique name for the quota specification.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -97,9 +129,10 @@ func GetQuoteSpecification(ctx *pulumi.Context,
 // Input properties used for looking up and filtering QuoteSpecification resources.
 type quoteSpecificationState struct {
 	// `(string: "")` - A description of the quota specification.
+	// - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+	//   be repeated. See below for the structure of this block.
 	Description *string `pulumi:"description"`
-	// `(block: <required>)` - A block of quota limits to enforce. Can
-	// be repeated. See below for the structure of this block.
+	// Limits encapsulated by this quota specification.
 	Limits []QuoteSpecificationLimit `pulumi:"limits"`
 	// `(string: <required>)` - A unique name for the quota specification.
 	Name *string `pulumi:"name"`
@@ -107,9 +140,10 @@ type quoteSpecificationState struct {
 
 type QuoteSpecificationState struct {
 	// `(string: "")` - A description of the quota specification.
+	// - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+	//   be repeated. See below for the structure of this block.
 	Description pulumi.StringPtrInput
-	// `(block: <required>)` - A block of quota limits to enforce. Can
-	// be repeated. See below for the structure of this block.
+	// Limits encapsulated by this quota specification.
 	Limits QuoteSpecificationLimitArrayInput
 	// `(string: <required>)` - A unique name for the quota specification.
 	Name pulumi.StringPtrInput
@@ -121,9 +155,10 @@ func (QuoteSpecificationState) ElementType() reflect.Type {
 
 type quoteSpecificationArgs struct {
 	// `(string: "")` - A description of the quota specification.
+	// - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+	//   be repeated. See below for the structure of this block.
 	Description *string `pulumi:"description"`
-	// `(block: <required>)` - A block of quota limits to enforce. Can
-	// be repeated. See below for the structure of this block.
+	// Limits encapsulated by this quota specification.
 	Limits []QuoteSpecificationLimit `pulumi:"limits"`
 	// `(string: <required>)` - A unique name for the quota specification.
 	Name *string `pulumi:"name"`
@@ -132,9 +167,10 @@ type quoteSpecificationArgs struct {
 // The set of arguments for constructing a QuoteSpecification resource.
 type QuoteSpecificationArgs struct {
 	// `(string: "")` - A description of the quota specification.
+	// - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+	//   be repeated. See below for the structure of this block.
 	Description pulumi.StringPtrInput
-	// `(block: <required>)` - A block of quota limits to enforce. Can
-	// be repeated. See below for the structure of this block.
+	// Limits encapsulated by this quota specification.
 	Limits QuoteSpecificationLimitArrayInput
 	// `(string: <required>)` - A unique name for the quota specification.
 	Name pulumi.StringPtrInput
@@ -228,12 +264,13 @@ func (o QuoteSpecificationOutput) ToQuoteSpecificationOutputWithContext(ctx cont
 }
 
 // `(string: "")` - A description of the quota specification.
+//   - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+//     be repeated. See below for the structure of this block.
 func (o QuoteSpecificationOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *QuoteSpecification) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// `(block: <required>)` - A block of quota limits to enforce. Can
-// be repeated. See below for the structure of this block.
+// Limits encapsulated by this quota specification.
 func (o QuoteSpecificationOutput) Limits() QuoteSpecificationLimitArrayOutput {
 	return o.ApplyT(func(v *QuoteSpecification) QuoteSpecificationLimitArrayOutput { return v.Limits }).(QuoteSpecificationLimitArrayOutput)
 }

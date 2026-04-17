@@ -56,6 +56,9 @@ export interface GetJobResult {
      * `(boolean)`  If the scheduler can make partial placements on oversubscribed nodes.
      */
     readonly allAtOnce: boolean;
+    /**
+     * `(list of maps)` Job constraints.
+     */
     readonly constraints: outputs.GetJobConstraint[];
     /**
      * `(integer)` Creation Index.
@@ -79,7 +82,7 @@ export interface GetJobResult {
      */
     readonly modifyIndex: number;
     /**
-     * `(string)` Name of the job.
+     * `(string)` Volume name.
      */
     readonly name: string;
     readonly namespace?: string;
@@ -88,7 +91,7 @@ export interface GetJobResult {
      */
     readonly parentId: string;
     /**
-     * `(list of maps)` Job's periodic configuration (time based scheduling).
+     * `(list of maps)` Job's periodic configuration.
      */
     readonly periodicConfigs: outputs.GetJobPeriodicConfig[];
     /**
@@ -118,15 +121,19 @@ export interface GetJobResult {
     /**
      * `(integer)` Job submission date.
      */
-    readonly submitTime: number;
+    readonly submitTime: string;
     /**
-     * `(list of maps)` A list of of the job's task groups.
+     * `(list of maps)` A list of the job's task groups.
      */
     readonly taskGroups: outputs.GetJobTaskGroup[];
     /**
-     * `(string)` Scheduler type used during job creation.
+     * `(string)` Volume type.
      */
     readonly type: string;
+    /**
+     * `(list of maps)` Job-level update strategy returned by Nomad.
+     */
+    readonly updateStrategies: outputs.GetJobUpdateStrategy[];
     /**
      * `(integer)` Version of the specified job.
      */

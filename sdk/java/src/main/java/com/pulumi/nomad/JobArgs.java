@@ -134,6 +134,25 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * `(boolean: false)` - If true, preserves the current task
+     * group counts already stored in Nomad during job registration instead of
+     * applying the counts from the submitted jobspec.
+     * 
+     */
+    @Import(name="preserveCounts")
+    private @Nullable Output<Boolean> preserveCounts;
+
+    /**
+     * @return `(boolean: false)` - If true, preserves the current task
+     * group counts already stored in Nomad during job registration instead of
+     * applying the counts from the submitted jobspec.
+     * 
+     */
+    public Optional<Output<Boolean>> preserveCounts() {
+        return Optional.ofNullable(this.preserveCounts);
+    }
+
+    /**
      * `(boolean: false)` - Set this to true if you want the job to
      * be purged when the resource is destroyed.
      * 
@@ -196,6 +215,7 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         this.jobspec = $.jobspec;
         this.json = $.json;
         this.policyOverride = $.policyOverride;
+        this.preserveCounts = $.preserveCounts;
         this.purgeOnDestroy = $.purgeOnDestroy;
         this.readAllocationIds = $.readAllocationIds;
         this.rerunIfDead = $.rerunIfDead;
@@ -374,6 +394,31 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder policyOverride(Boolean policyOverride) {
             return policyOverride(Output.of(policyOverride));
+        }
+
+        /**
+         * @param preserveCounts `(boolean: false)` - If true, preserves the current task
+         * group counts already stored in Nomad during job registration instead of
+         * applying the counts from the submitted jobspec.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preserveCounts(@Nullable Output<Boolean> preserveCounts) {
+            $.preserveCounts = preserveCounts;
+            return this;
+        }
+
+        /**
+         * @param preserveCounts `(boolean: false)` - If true, preserves the current task
+         * group counts already stored in Nomad during job registration instead of
+         * applying the counts from the submitted jobspec.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preserveCounts(Boolean preserveCounts) {
+            return preserveCounts(Output.of(preserveCounts));
         }
 
         /**

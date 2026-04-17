@@ -91,6 +91,10 @@ export class Namespace extends pulumi.CustomResource {
      */
     declare public readonly capabilities: pulumi.Output<outputs.NamespaceCapabilities | undefined>;
     /**
+     * `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+     */
+    declare public readonly consulConfig: pulumi.Output<outputs.NamespaceConsulConfig>;
+    /**
      * `(string: "")` - A description of the namespace.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
@@ -110,6 +114,10 @@ export class Namespace extends pulumi.CustomResource {
      * `(string: "")` - A resource quota to attach to the namespace.
      */
     declare public readonly quota: pulumi.Output<string | undefined>;
+    /**
+     * `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+     */
+    declare public readonly vaultConfig: pulumi.Output<outputs.NamespaceVaultConfig>;
 
     /**
      * Create a Namespace resource with the given unique name, arguments, and options.
@@ -125,19 +133,23 @@ export class Namespace extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as NamespaceState | undefined;
             resourceInputs["capabilities"] = state?.capabilities;
+            resourceInputs["consulConfig"] = state?.consulConfig;
             resourceInputs["description"] = state?.description;
             resourceInputs["meta"] = state?.meta;
             resourceInputs["name"] = state?.name;
             resourceInputs["nodePoolConfig"] = state?.nodePoolConfig;
             resourceInputs["quota"] = state?.quota;
+            resourceInputs["vaultConfig"] = state?.vaultConfig;
         } else {
             const args = argsOrState as NamespaceArgs | undefined;
             resourceInputs["capabilities"] = args?.capabilities;
+            resourceInputs["consulConfig"] = args?.consulConfig;
             resourceInputs["description"] = args?.description;
             resourceInputs["meta"] = args?.meta;
             resourceInputs["name"] = args?.name;
             resourceInputs["nodePoolConfig"] = args?.nodePoolConfig;
             resourceInputs["quota"] = args?.quota;
+            resourceInputs["vaultConfig"] = args?.vaultConfig;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Namespace.__pulumiType, name, resourceInputs, opts);
@@ -154,6 +166,10 @@ export interface NamespaceState {
      */
     capabilities?: pulumi.Input<inputs.NamespaceCapabilities>;
     /**
+     * `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+     */
+    consulConfig?: pulumi.Input<inputs.NamespaceConsulConfig>;
+    /**
      * `(string: "")` - A description of the namespace.
      */
     description?: pulumi.Input<string>;
@@ -173,6 +189,10 @@ export interface NamespaceState {
      * `(string: "")` - A resource quota to attach to the namespace.
      */
     quota?: pulumi.Input<string>;
+    /**
+     * `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+     */
+    vaultConfig?: pulumi.Input<inputs.NamespaceVaultConfig>;
 }
 
 /**
@@ -185,6 +205,10 @@ export interface NamespaceArgs {
      */
     capabilities?: pulumi.Input<inputs.NamespaceCapabilities>;
     /**
+     * `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+     */
+    consulConfig?: pulumi.Input<inputs.NamespaceConsulConfig>;
+    /**
      * `(string: "")` - A description of the namespace.
      */
     description?: pulumi.Input<string>;
@@ -204,4 +228,8 @@ export interface NamespaceArgs {
      * `(string: "")` - A resource quota to attach to the namespace.
      */
     quota?: pulumi.Input<string>;
+    /**
+     * `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+     */
+    vaultConfig?: pulumi.Input<inputs.NamespaceVaultConfig>;
 }

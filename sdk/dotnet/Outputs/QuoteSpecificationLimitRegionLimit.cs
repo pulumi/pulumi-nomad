@@ -14,25 +14,61 @@ namespace Pulumi.Nomad.Outputs
     public sealed class QuoteSpecificationLimitRegionLimit
     {
         /// <summary>
+        /// `(int: 0)` - The number of CPU cores to limit allocations to. A value
+        /// of zero is treated as unlimited, and a negative value is treated as fully
+        /// disallowed.
+        /// </summary>
+        public readonly int? Cores;
+        /// <summary>
         /// `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
         /// is treated as unlimited, and a negative value is treated as fully disallowed.
         /// </summary>
         public readonly int? Cpu;
+        public readonly ImmutableArray<Outputs.QuoteSpecificationLimitRegionLimitDevice> Devices;
+        /// <summary>
+        /// `(int: 0)` - The maximum amount of memory (in megabytes) to
+        /// limit allocations to. A value of zero is treated as unlimited, and a negative
+        /// value is treated as fully disallowed.
+        /// - `Devices` `(block: optional)` - A list of device quotas to enforce. Can be
+        /// repeated. See below for the structure of this block.
+        /// - `NodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+        /// repeated. See below for the structure of this block.
+        /// - `Storage` `(block: optional)` - Storage resource quota configuration. May only
+        /// be specified once. See below for the structure of this block.
+        /// </summary>
+        public readonly int? MemoryMaxMb;
         /// <summary>
         /// `(int: 0)` - The amount of memory (in megabytes) to limit
         /// allocations to. A value of zero is treated as unlimited, and a negative value
         /// is treated as fully disallowed.
         /// </summary>
         public readonly int? MemoryMb;
+        public readonly ImmutableArray<Outputs.QuoteSpecificationLimitRegionLimitNodePool> NodePools;
+        public readonly Outputs.QuoteSpecificationLimitRegionLimitStorage? Storage;
 
         [OutputConstructor]
         private QuoteSpecificationLimitRegionLimit(
+            int? cores,
+
             int? cpu,
 
-            int? memoryMb)
+            ImmutableArray<Outputs.QuoteSpecificationLimitRegionLimitDevice> devices,
+
+            int? memoryMaxMb,
+
+            int? memoryMb,
+
+            ImmutableArray<Outputs.QuoteSpecificationLimitRegionLimitNodePool> nodePools,
+
+            Outputs.QuoteSpecificationLimitRegionLimitStorage? storage)
         {
+            Cores = cores;
             Cpu = cpu;
+            Devices = devices;
+            MemoryMaxMb = memoryMaxMb;
             MemoryMb = memoryMb;
+            NodePools = nodePools;
+            Storage = storage;
         }
     }
 }

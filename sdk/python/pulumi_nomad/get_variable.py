@@ -91,6 +91,10 @@ def get_variable(namespace: Optional[_builtins.str] = None,
     """
     Get the information about a Nomad variable.
 
+    > **Deprecated:** Use the `Variable` ephemeral resource instead when you
+    need to read variable items without storing them in Terraform state. This data
+    source will be removed in a future release.
+
     > **Warning:** this data source will store the sensitive values from `items`
       in the Terraform's state file. Take care to
       [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
@@ -124,6 +128,10 @@ def get_variable_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVariableResult]:
     """
     Get the information about a Nomad variable.
+
+    > **Deprecated:** Use the `Variable` ephemeral resource instead when you
+    need to read variable items without storing them in Terraform state. This data
+    source will be removed in a future release.
 
     > **Warning:** this data source will store the sensitive values from `items`
       in the Terraform's state file. Take care to

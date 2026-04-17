@@ -5,9 +5,13 @@ package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.nomad.inputs.JobConstraintArgs;
 import com.pulumi.nomad.inputs.JobHcl2Args;
+import com.pulumi.nomad.inputs.JobPeriodicConfigArgs;
 import com.pulumi.nomad.inputs.JobTaskGroupArgs;
+import com.pulumi.nomad.inputs.JobUpdateStrategyArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +24,22 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     public static final JobState Empty = new JobState();
 
     /**
-     * The IDs for allocations associated with this job.
+     * `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+     * 
+     */
+    @Import(name="allAtOnce")
+    private @Nullable Output<Boolean> allAtOnce;
+
+    /**
+     * @return `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+     * 
+     */
+    public Optional<Output<Boolean>> allAtOnce() {
+        return Optional.ofNullable(this.allAtOnce);
+    }
+
+    /**
+     * `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
      * 
      * @deprecated
      * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
@@ -31,7 +50,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<List<String>> allocationIds;
 
     /**
-     * @return The IDs for allocations associated with this job.
+     * @return `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
      * 
      * @deprecated
      * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
@@ -43,14 +62,44 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The target datacenters for the job, as derived from the jobspec.
+     * `(list of maps)` - Job constraints.
+     * 
+     */
+    @Import(name="constraints")
+    private @Nullable Output<List<JobConstraintArgs>> constraints;
+
+    /**
+     * @return `(list of maps)` - Job constraints.
+     * 
+     */
+    public Optional<Output<List<JobConstraintArgs>>> constraints() {
+        return Optional.ofNullable(this.constraints);
+    }
+
+    /**
+     * `(integer)` - The job creation index.
+     * 
+     */
+    @Import(name="createIndex")
+    private @Nullable Output<Integer> createIndex;
+
+    /**
+     * @return `(integer)` - The job creation index.
+     * 
+     */
+    public Optional<Output<Integer>> createIndex() {
+        return Optional.ofNullable(this.createIndex);
+    }
+
+    /**
+     * `(set of strings)` - The target datacenters for the job.
      * 
      */
     @Import(name="datacenters")
     private @Nullable Output<List<String>> datacenters;
 
     /**
-     * @return The target datacenters for the job, as derived from the jobspec.
+     * @return `(set of strings)` - The target datacenters for the job.
      * 
      */
     public Optional<Output<List<String>>> datacenters() {
@@ -58,14 +107,14 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+     * `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
      * 
      */
     @Import(name="deploymentId")
     private @Nullable Output<String> deploymentId;
 
     /**
-     * @return If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+     * @return `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
      * 
      */
     public Optional<Output<String>> deploymentId() {
@@ -73,14 +122,14 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+     * `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
      * 
      */
     @Import(name="deploymentStatus")
     private @Nullable Output<String> deploymentStatus;
 
     /**
-     * @return If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+     * @return `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
      * 
      */
     public Optional<Output<String>> deploymentStatus() {
@@ -186,14 +235,14 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Integer that increments for each change. Used to detect any changes between plan and apply.
+     * `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
      * 
      */
     @Import(name="modifyIndex")
     private @Nullable Output<String> modifyIndex;
 
     /**
-     * @return Integer that increments for each change. Used to detect any changes between plan and apply.
+     * @return `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
      * 
      */
     public Optional<Output<String>> modifyIndex() {
@@ -201,14 +250,14 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the job, as derived from the jobspec.
+     * `(string)` - Volume name.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the job, as derived from the jobspec.
+     * @return `(string)` - Volume name.
      * 
      */
     public Optional<Output<String>> name() {
@@ -216,18 +265,48 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The namespace of the job, as derived from the jobspec.
+     * `(string)` - The namespace of the job, as derived from the jobspec.
      * 
      */
     @Import(name="namespace")
     private @Nullable Output<String> namespace;
 
     /**
-     * @return The namespace of the job, as derived from the jobspec.
+     * @return `(string)` - The namespace of the job, as derived from the jobspec.
      * 
      */
     public Optional<Output<String>> namespace() {
         return Optional.ofNullable(this.namespace);
+    }
+
+    /**
+     * `(string)` - The parent job ID, if applicable.
+     * 
+     */
+    @Import(name="parentId")
+    private @Nullable Output<String> parentId;
+
+    /**
+     * @return `(string)` - The parent job ID, if applicable.
+     * 
+     */
+    public Optional<Output<String>> parentId() {
+        return Optional.ofNullable(this.parentId);
+    }
+
+    /**
+     * `(list of maps)` - The job&#39;s periodic configuration.
+     * 
+     */
+    @Import(name="periodicConfigs")
+    private @Nullable Output<List<JobPeriodicConfigArgs>> periodicConfigs;
+
+    /**
+     * @return `(list of maps)` - The job&#39;s periodic configuration.
+     * 
+     */
+    public Optional<Output<List<JobPeriodicConfigArgs>>> periodicConfigs() {
+        return Optional.ofNullable(this.periodicConfigs);
     }
 
     /**
@@ -245,6 +324,40 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> policyOverride() {
         return Optional.ofNullable(this.policyOverride);
+    }
+
+    /**
+     * `(boolean: false)` - If true, preserves the current task
+     * group counts already stored in Nomad during job registration instead of
+     * applying the counts from the submitted jobspec.
+     * 
+     */
+    @Import(name="preserveCounts")
+    private @Nullable Output<Boolean> preserveCounts;
+
+    /**
+     * @return `(boolean: false)` - If true, preserves the current task
+     * group counts already stored in Nomad during job registration instead of
+     * applying the counts from the submitted jobspec.
+     * 
+     */
+    public Optional<Output<Boolean>> preserveCounts() {
+        return Optional.ofNullable(this.preserveCounts);
+    }
+
+    /**
+     * `(integer)` - The job priority for scheduling and resource access.
+     * 
+     */
+    @Import(name="priority")
+    private @Nullable Output<Integer> priority;
+
+    /**
+     * @return `(integer)` - The job priority for scheduling and resource access.
+     * 
+     */
+    public Optional<Output<Integer>> priority() {
+        return Optional.ofNullable(this.priority);
     }
 
     /**
@@ -284,14 +397,14 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The target region for the job, as derived from the jobspec.
+     * `(string)` - The target region for the job.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The target region for the job, as derived from the jobspec.
+     * @return `(string)` - The target region for the job.
      * 
      */
     public Optional<Output<String>> region() {
@@ -316,46 +429,147 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The status of the job.
+     * `(boolean)` - Whether the job is stable.
+     * 
+     */
+    @Import(name="stable")
+    private @Nullable Output<Boolean> stable;
+
+    /**
+     * @return `(boolean)` - Whether the job is stable.
+     * 
+     */
+    public Optional<Output<Boolean>> stable() {
+        return Optional.ofNullable(this.stable);
+    }
+
+    /**
+     * `(string)` - The current status of the job.
      * 
      */
     @Import(name="status")
     private @Nullable Output<String> status;
 
     /**
-     * @return The status of the job.
+     * @return `(string)` - The current status of the job.
      * 
      */
     public Optional<Output<String>> status() {
         return Optional.ofNullable(this.status);
     }
 
+    /**
+     * `(string)` - Additional status information returned by Nomad.
+     * 
+     */
+    @Import(name="statusDescription")
+    private @Nullable Output<String> statusDescription;
+
+    /**
+     * @return `(string)` - Additional status information returned by Nomad.
+     * 
+     */
+    public Optional<Output<String>> statusDescription() {
+        return Optional.ofNullable(this.statusDescription);
+    }
+
+    /**
+     * `(boolean)` - Whether the job is stopped.
+     * 
+     */
+    @Import(name="stop")
+    private @Nullable Output<Boolean> stop;
+
+    /**
+     * @return `(boolean)` - Whether the job is stopped.
+     * 
+     */
+    public Optional<Output<Boolean>> stop() {
+        return Optional.ofNullable(this.stop);
+    }
+
+    /**
+     * `(integer)` - The Unix timestamp when the job was submitted.
+     * 
+     */
+    @Import(name="submitTime")
+    private @Nullable Output<String> submitTime;
+
+    /**
+     * @return `(integer)` - The Unix timestamp when the job was submitted.
+     * 
+     */
+    public Optional<Output<String>> submitTime() {
+        return Optional.ofNullable(this.submitTime);
+    }
+
+    /**
+     * `(list of maps)` - A list of the job&#39;s task groups.
+     * 
+     */
     @Import(name="taskGroups")
     private @Nullable Output<List<JobTaskGroupArgs>> taskGroups;
 
+    /**
+     * @return `(list of maps)` - A list of the job&#39;s task groups.
+     * 
+     */
     public Optional<Output<List<JobTaskGroupArgs>>> taskGroups() {
         return Optional.ofNullable(this.taskGroups);
     }
 
     /**
-     * The type of the job, as derived from the jobspec.
+     * `(string)` - Volume type.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return The type of the job, as derived from the jobspec.
+     * @return `(string)` - Volume type.
      * 
      */
     public Optional<Output<String>> type() {
         return Optional.ofNullable(this.type);
     }
 
+    /**
+     * `(list of maps)` - Effective update strategy for the task group.
+     * 
+     */
+    @Import(name="updateStrategies")
+    private @Nullable Output<List<JobUpdateStrategyArgs>> updateStrategies;
+
+    /**
+     * @return `(list of maps)` - Effective update strategy for the task group.
+     * 
+     */
+    public Optional<Output<List<JobUpdateStrategyArgs>>> updateStrategies() {
+        return Optional.ofNullable(this.updateStrategies);
+    }
+
+    /**
+     * `(integer)` - The current job version.
+     * 
+     */
+    @Import(name="version")
+    private @Nullable Output<Integer> version;
+
+    /**
+     * @return `(integer)` - The current job version.
+     * 
+     */
+    public Optional<Output<Integer>> version() {
+        return Optional.ofNullable(this.version);
+    }
+
     private JobState() {}
 
     private JobState(JobState $) {
+        this.allAtOnce = $.allAtOnce;
         this.allocationIds = $.allocationIds;
+        this.constraints = $.constraints;
+        this.createIndex = $.createIndex;
         this.datacenters = $.datacenters;
         this.deploymentId = $.deploymentId;
         this.deploymentStatus = $.deploymentStatus;
@@ -368,14 +582,24 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         this.modifyIndex = $.modifyIndex;
         this.name = $.name;
         this.namespace = $.namespace;
+        this.parentId = $.parentId;
+        this.periodicConfigs = $.periodicConfigs;
         this.policyOverride = $.policyOverride;
+        this.preserveCounts = $.preserveCounts;
+        this.priority = $.priority;
         this.purgeOnDestroy = $.purgeOnDestroy;
         this.readAllocationIds = $.readAllocationIds;
         this.region = $.region;
         this.rerunIfDead = $.rerunIfDead;
+        this.stable = $.stable;
         this.status = $.status;
+        this.statusDescription = $.statusDescription;
+        this.stop = $.stop;
+        this.submitTime = $.submitTime;
         this.taskGroups = $.taskGroups;
         this.type = $.type;
+        this.updateStrategies = $.updateStrategies;
+        this.version = $.version;
     }
 
     public static Builder builder() {
@@ -397,7 +621,28 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allocationIds The IDs for allocations associated with this job.
+         * @param allAtOnce `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allAtOnce(@Nullable Output<Boolean> allAtOnce) {
+            $.allAtOnce = allAtOnce;
+            return this;
+        }
+
+        /**
+         * @param allAtOnce `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder allAtOnce(Boolean allAtOnce) {
+            return allAtOnce(Output.of(allAtOnce));
+        }
+
+        /**
+         * @param allocationIds `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
          * 
          * @return builder
          * 
@@ -412,7 +657,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allocationIds The IDs for allocations associated with this job.
+         * @param allocationIds `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
          * 
          * @return builder
          * 
@@ -426,7 +671,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param allocationIds The IDs for allocations associated with this job.
+         * @param allocationIds `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
          * 
          * @return builder
          * 
@@ -440,7 +685,59 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param datacenters The target datacenters for the job, as derived from the jobspec.
+         * @param constraints `(list of maps)` - Job constraints.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder constraints(@Nullable Output<List<JobConstraintArgs>> constraints) {
+            $.constraints = constraints;
+            return this;
+        }
+
+        /**
+         * @param constraints `(list of maps)` - Job constraints.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder constraints(List<JobConstraintArgs> constraints) {
+            return constraints(Output.of(constraints));
+        }
+
+        /**
+         * @param constraints `(list of maps)` - Job constraints.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder constraints(JobConstraintArgs... constraints) {
+            return constraints(List.of(constraints));
+        }
+
+        /**
+         * @param createIndex `(integer)` - The job creation index.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder createIndex(@Nullable Output<Integer> createIndex) {
+            $.createIndex = createIndex;
+            return this;
+        }
+
+        /**
+         * @param createIndex `(integer)` - The job creation index.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder createIndex(Integer createIndex) {
+            return createIndex(Output.of(createIndex));
+        }
+
+        /**
+         * @param datacenters `(set of strings)` - The target datacenters for the job.
          * 
          * @return builder
          * 
@@ -451,7 +748,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param datacenters The target datacenters for the job, as derived from the jobspec.
+         * @param datacenters `(set of strings)` - The target datacenters for the job.
          * 
          * @return builder
          * 
@@ -461,7 +758,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param datacenters The target datacenters for the job, as derived from the jobspec.
+         * @param datacenters `(set of strings)` - The target datacenters for the job.
          * 
          * @return builder
          * 
@@ -471,7 +768,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deploymentId If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+         * @param deploymentId `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
          * 
          * @return builder
          * 
@@ -482,7 +779,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deploymentId If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+         * @param deploymentId `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
          * 
          * @return builder
          * 
@@ -492,7 +789,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deploymentStatus If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+         * @param deploymentStatus `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
          * 
          * @return builder
          * 
@@ -503,7 +800,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param deploymentStatus If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+         * @param deploymentStatus `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
          * 
          * @return builder
          * 
@@ -647,7 +944,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param modifyIndex Integer that increments for each change. Used to detect any changes between plan and apply.
+         * @param modifyIndex `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
          * 
          * @return builder
          * 
@@ -658,7 +955,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param modifyIndex Integer that increments for each change. Used to detect any changes between plan and apply.
+         * @param modifyIndex `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
          * 
          * @return builder
          * 
@@ -668,7 +965,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the job, as derived from the jobspec.
+         * @param name `(string)` - Volume name.
          * 
          * @return builder
          * 
@@ -679,7 +976,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the job, as derived from the jobspec.
+         * @param name `(string)` - Volume name.
          * 
          * @return builder
          * 
@@ -689,7 +986,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param namespace The namespace of the job, as derived from the jobspec.
+         * @param namespace `(string)` - The namespace of the job, as derived from the jobspec.
          * 
          * @return builder
          * 
@@ -700,13 +997,65 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param namespace The namespace of the job, as derived from the jobspec.
+         * @param namespace `(string)` - The namespace of the job, as derived from the jobspec.
          * 
          * @return builder
          * 
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param parentId `(string)` - The parent job ID, if applicable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parentId(@Nullable Output<String> parentId) {
+            $.parentId = parentId;
+            return this;
+        }
+
+        /**
+         * @param parentId `(string)` - The parent job ID, if applicable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parentId(String parentId) {
+            return parentId(Output.of(parentId));
+        }
+
+        /**
+         * @param periodicConfigs `(list of maps)` - The job&#39;s periodic configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder periodicConfigs(@Nullable Output<List<JobPeriodicConfigArgs>> periodicConfigs) {
+            $.periodicConfigs = periodicConfigs;
+            return this;
+        }
+
+        /**
+         * @param periodicConfigs `(list of maps)` - The job&#39;s periodic configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder periodicConfigs(List<JobPeriodicConfigArgs> periodicConfigs) {
+            return periodicConfigs(Output.of(periodicConfigs));
+        }
+
+        /**
+         * @param periodicConfigs `(list of maps)` - The job&#39;s periodic configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder periodicConfigs(JobPeriodicConfigArgs... periodicConfigs) {
+            return periodicConfigs(List.of(periodicConfigs));
         }
 
         /**
@@ -730,6 +1079,52 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder policyOverride(Boolean policyOverride) {
             return policyOverride(Output.of(policyOverride));
+        }
+
+        /**
+         * @param preserveCounts `(boolean: false)` - If true, preserves the current task
+         * group counts already stored in Nomad during job registration instead of
+         * applying the counts from the submitted jobspec.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preserveCounts(@Nullable Output<Boolean> preserveCounts) {
+            $.preserveCounts = preserveCounts;
+            return this;
+        }
+
+        /**
+         * @param preserveCounts `(boolean: false)` - If true, preserves the current task
+         * group counts already stored in Nomad during job registration instead of
+         * applying the counts from the submitted jobspec.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder preserveCounts(Boolean preserveCounts) {
+            return preserveCounts(Output.of(preserveCounts));
+        }
+
+        /**
+         * @param priority `(integer)` - The job priority for scheduling and resource access.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder priority(@Nullable Output<Integer> priority) {
+            $.priority = priority;
+            return this;
+        }
+
+        /**
+         * @param priority `(integer)` - The job priority for scheduling and resource access.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder priority(Integer priority) {
+            return priority(Output.of(priority));
         }
 
         /**
@@ -781,7 +1176,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The target region for the job, as derived from the jobspec.
+         * @param region `(string)` - The target region for the job.
          * 
          * @return builder
          * 
@@ -792,7 +1187,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region The target region for the job, as derived from the jobspec.
+         * @param region `(string)` - The target region for the job.
          * 
          * @return builder
          * 
@@ -825,7 +1220,28 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status The status of the job.
+         * @param stable `(boolean)` - Whether the job is stable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stable(@Nullable Output<Boolean> stable) {
+            $.stable = stable;
+            return this;
+        }
+
+        /**
+         * @param stable `(boolean)` - Whether the job is stable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stable(Boolean stable) {
+            return stable(Output.of(stable));
+        }
+
+        /**
+         * @param status `(string)` - The current status of the job.
          * 
          * @return builder
          * 
@@ -836,7 +1252,7 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status The status of the job.
+         * @param status `(string)` - The current status of the job.
          * 
          * @return builder
          * 
@@ -845,21 +1261,102 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
             return status(Output.of(status));
         }
 
+        /**
+         * @param statusDescription `(string)` - Additional status information returned by Nomad.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder statusDescription(@Nullable Output<String> statusDescription) {
+            $.statusDescription = statusDescription;
+            return this;
+        }
+
+        /**
+         * @param statusDescription `(string)` - Additional status information returned by Nomad.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder statusDescription(String statusDescription) {
+            return statusDescription(Output.of(statusDescription));
+        }
+
+        /**
+         * @param stop `(boolean)` - Whether the job is stopped.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stop(@Nullable Output<Boolean> stop) {
+            $.stop = stop;
+            return this;
+        }
+
+        /**
+         * @param stop `(boolean)` - Whether the job is stopped.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stop(Boolean stop) {
+            return stop(Output.of(stop));
+        }
+
+        /**
+         * @param submitTime `(integer)` - The Unix timestamp when the job was submitted.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder submitTime(@Nullable Output<String> submitTime) {
+            $.submitTime = submitTime;
+            return this;
+        }
+
+        /**
+         * @param submitTime `(integer)` - The Unix timestamp when the job was submitted.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder submitTime(String submitTime) {
+            return submitTime(Output.of(submitTime));
+        }
+
+        /**
+         * @param taskGroups `(list of maps)` - A list of the job&#39;s task groups.
+         * 
+         * @return builder
+         * 
+         */
         public Builder taskGroups(@Nullable Output<List<JobTaskGroupArgs>> taskGroups) {
             $.taskGroups = taskGroups;
             return this;
         }
 
+        /**
+         * @param taskGroups `(list of maps)` - A list of the job&#39;s task groups.
+         * 
+         * @return builder
+         * 
+         */
         public Builder taskGroups(List<JobTaskGroupArgs> taskGroups) {
             return taskGroups(Output.of(taskGroups));
         }
 
+        /**
+         * @param taskGroups `(list of maps)` - A list of the job&#39;s task groups.
+         * 
+         * @return builder
+         * 
+         */
         public Builder taskGroups(JobTaskGroupArgs... taskGroups) {
             return taskGroups(List.of(taskGroups));
         }
 
         /**
-         * @param type The type of the job, as derived from the jobspec.
+         * @param type `(string)` - Volume type.
          * 
          * @return builder
          * 
@@ -870,13 +1367,65 @@ public final class JobState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param type The type of the job, as derived from the jobspec.
+         * @param type `(string)` - Volume type.
          * 
          * @return builder
          * 
          */
         public Builder type(String type) {
             return type(Output.of(type));
+        }
+
+        /**
+         * @param updateStrategies `(list of maps)` - Effective update strategy for the task group.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updateStrategies(@Nullable Output<List<JobUpdateStrategyArgs>> updateStrategies) {
+            $.updateStrategies = updateStrategies;
+            return this;
+        }
+
+        /**
+         * @param updateStrategies `(list of maps)` - Effective update strategy for the task group.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updateStrategies(List<JobUpdateStrategyArgs> updateStrategies) {
+            return updateStrategies(Output.of(updateStrategies));
+        }
+
+        /**
+         * @param updateStrategies `(list of maps)` - Effective update strategy for the task group.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updateStrategies(JobUpdateStrategyArgs... updateStrategies) {
+            return updateStrategies(List.of(updateStrategies));
+        }
+
+        /**
+         * @param version `(integer)` - The current job version.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder version(@Nullable Output<Integer> version) {
+            $.version = version;
+            return this;
+        }
+
+        /**
+         * @param version `(integer)` - The current job version.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder version(Integer version) {
+            return version(Output.of(version));
         }
 
         public JobState build() {

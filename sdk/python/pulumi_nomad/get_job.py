@@ -27,7 +27,7 @@ class GetJobResult:
     """
     A collection of values returned by getJob.
     """
-    def __init__(__self__, all_at_once=None, constraints=None, create_index=None, datacenters=None, id=None, job_id=None, job_modify_index=None, modify_index=None, name=None, namespace=None, parent_id=None, periodic_configs=None, priority=None, region=None, stable=None, status=None, status_description=None, stop=None, submit_time=None, task_groups=None, type=None, version=None):
+    def __init__(__self__, all_at_once=None, constraints=None, create_index=None, datacenters=None, id=None, job_id=None, job_modify_index=None, modify_index=None, name=None, namespace=None, parent_id=None, periodic_configs=None, priority=None, region=None, stable=None, status=None, status_description=None, stop=None, submit_time=None, task_groups=None, type=None, update_strategies=None, version=None):
         if all_at_once and not isinstance(all_at_once, bool):
             raise TypeError("Expected argument 'all_at_once' to be a bool")
         pulumi.set(__self__, "all_at_once", all_at_once)
@@ -82,8 +82,8 @@ class GetJobResult:
         if stop and not isinstance(stop, bool):
             raise TypeError("Expected argument 'stop' to be a bool")
         pulumi.set(__self__, "stop", stop)
-        if submit_time and not isinstance(submit_time, int):
-            raise TypeError("Expected argument 'submit_time' to be a int")
+        if submit_time and not isinstance(submit_time, str):
+            raise TypeError("Expected argument 'submit_time' to be a str")
         pulumi.set(__self__, "submit_time", submit_time)
         if task_groups and not isinstance(task_groups, list):
             raise TypeError("Expected argument 'task_groups' to be a list")
@@ -91,6 +91,9 @@ class GetJobResult:
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
+        if update_strategies and not isinstance(update_strategies, list):
+            raise TypeError("Expected argument 'update_strategies' to be a list")
+        pulumi.set(__self__, "update_strategies", update_strategies)
         if version and not isinstance(version, int):
             raise TypeError("Expected argument 'version' to be a int")
         pulumi.set(__self__, "version", version)
@@ -106,6 +109,9 @@ class GetJobResult:
     @_builtins.property
     @pulumi.getter
     def constraints(self) -> Sequence['outputs.GetJobConstraintResult']:
+        """
+        `(list of maps)` Job constraints.
+        """
         return pulumi.get(self, "constraints")
 
     @_builtins.property
@@ -157,7 +163,7 @@ class GetJobResult:
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        `(string)` Name of the job.
+        `(string)` Volume name.
         """
         return pulumi.get(self, "name")
 
@@ -178,7 +184,7 @@ class GetJobResult:
     @pulumi.getter(name="periodicConfigs")
     def periodic_configs(self) -> Sequence['outputs.GetJobPeriodicConfigResult']:
         """
-        `(list of maps)` Job's periodic configuration (time based scheduling).
+        `(list of maps)` Job's periodic configuration.
         """
         return pulumi.get(self, "periodic_configs")
 
@@ -232,7 +238,7 @@ class GetJobResult:
 
     @_builtins.property
     @pulumi.getter(name="submitTime")
-    def submit_time(self) -> _builtins.int:
+    def submit_time(self) -> _builtins.str:
         """
         `(integer)` Job submission date.
         """
@@ -242,7 +248,7 @@ class GetJobResult:
     @pulumi.getter(name="taskGroups")
     def task_groups(self) -> Sequence['outputs.GetJobTaskGroupResult']:
         """
-        `(list of maps)` A list of of the job's task groups.
+        `(list of maps)` A list of the job's task groups.
         """
         return pulumi.get(self, "task_groups")
 
@@ -250,9 +256,17 @@ class GetJobResult:
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        `(string)` Scheduler type used during job creation.
+        `(string)` Volume type.
         """
         return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updateStrategies")
+    def update_strategies(self) -> Sequence['outputs.GetJobUpdateStrategyResult']:
+        """
+        `(list of maps)` Job-level update strategy returned by Nomad.
+        """
+        return pulumi.get(self, "update_strategies")
 
     @_builtins.property
     @pulumi.getter
@@ -290,6 +304,7 @@ class AwaitableGetJobResult(GetJobResult):
             submit_time=self.submit_time,
             task_groups=self.task_groups,
             type=self.type,
+            update_strategies=self.update_strategies,
             version=self.version)
 
 
@@ -346,6 +361,7 @@ def get_job(job_id: Optional[_builtins.str] = None,
         submit_time=pulumi.get(__ret__, 'submit_time'),
         task_groups=pulumi.get(__ret__, 'task_groups'),
         type=pulumi.get(__ret__, 'type'),
+        update_strategies=pulumi.get(__ret__, 'update_strategies'),
         version=pulumi.get(__ret__, 'version'))
 def get_job_output(job_id: Optional[pulumi.Input[_builtins.str]] = None,
                    namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
@@ -399,4 +415,5 @@ def get_job_output(job_id: Optional[pulumi.Input[_builtins.str]] = None,
         submit_time=pulumi.get(__response__, 'submit_time'),
         task_groups=pulumi.get(__response__, 'task_groups'),
         type=pulumi.get(__response__, 'type'),
+        update_strategies=pulumi.get(__response__, 'update_strategies'),
         version=pulumi.get(__response__, 'version')))

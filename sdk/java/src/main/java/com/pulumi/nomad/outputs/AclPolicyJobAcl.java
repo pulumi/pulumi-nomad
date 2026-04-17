@@ -4,7 +4,6 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,10 +17,10 @@ public final class AclPolicyJobAcl {
      */
     private @Nullable String group;
     /**
-     * @return Job
+     * @return Job. If empty, the policy applies to all jobs in the namespace.
      * 
      */
-    private String jobId;
+    private @Nullable String jobId;
     /**
      * @return Namespace
      * 
@@ -42,11 +41,11 @@ public final class AclPolicyJobAcl {
         return Optional.ofNullable(this.group);
     }
     /**
-     * @return Job
+     * @return Job. If empty, the policy applies to all jobs in the namespace.
      * 
      */
-    public String jobId() {
-        return this.jobId;
+    public Optional<String> jobId() {
+        return Optional.ofNullable(this.jobId);
     }
     /**
      * @return Namespace
@@ -73,7 +72,7 @@ public final class AclPolicyJobAcl {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String group;
-        private String jobId;
+        private @Nullable String jobId;
         private @Nullable String namespace;
         private @Nullable String task;
         public Builder() {}
@@ -92,10 +91,8 @@ public final class AclPolicyJobAcl {
             return this;
         }
         @CustomType.Setter
-        public Builder jobId(String jobId) {
-            if (jobId == null) {
-              throw new MissingRequiredPropertyException("AclPolicyJobAcl", "jobId");
-            }
+        public Builder jobId(@Nullable String jobId) {
+
             this.jobId = jobId;
             return this;
         }

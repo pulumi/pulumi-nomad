@@ -12,30 +12,60 @@ namespace Pulumi.Nomad.Inputs
 
     public sealed class JobTaskGroupArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// `(integer)` - Task group count.
+        /// </summary>
         [Input("count")]
         public Input<int>? Count { get; set; }
 
         [Input("meta")]
         private InputMap<string>? _meta;
+
+        /// <summary>
+        /// `(map of strings)` - Task group metadata.
+        /// </summary>
         public InputMap<string> Meta
         {
             get => _meta ?? (_meta = new InputMap<string>());
             set => _meta = value;
         }
 
+        /// <summary>
+        /// `(string)` - Volume name.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("tasks")]
         private InputList<Inputs.JobTaskGroupTaskArgs>? _tasks;
+
+        /// <summary>
+        /// `(list of maps)` - Tasks in the task group.
+        /// </summary>
         public InputList<Inputs.JobTaskGroupTaskArgs> Tasks
         {
             get => _tasks ?? (_tasks = new InputList<Inputs.JobTaskGroupTaskArgs>());
             set => _tasks = value;
         }
 
+        [Input("updateStrategies")]
+        private InputList<Inputs.JobTaskGroupUpdateStrategyArgs>? _updateStrategies;
+
+        /// <summary>
+        /// `(list of maps)` - Effective update strategy for the task group.
+        /// </summary>
+        public InputList<Inputs.JobTaskGroupUpdateStrategyArgs> UpdateStrategies
+        {
+            get => _updateStrategies ?? (_updateStrategies = new InputList<Inputs.JobTaskGroupUpdateStrategyArgs>());
+            set => _updateStrategies = value;
+        }
+
         [Input("volumes")]
         private InputList<Inputs.JobTaskGroupVolumeArgs>? _volumes;
+
+        /// <summary>
+        /// `(list of maps)` - Volume requests for the task group.
+        /// </summary>
         public InputList<Inputs.JobTaskGroupVolumeArgs> Volumes
         {
             get => _volumes ?? (_volumes = new InputList<Inputs.JobTaskGroupVolumeArgs>());

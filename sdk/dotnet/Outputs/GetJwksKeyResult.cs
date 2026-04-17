@@ -14,11 +14,15 @@ namespace Pulumi.Nomad.Outputs
     public sealed class GetJwksKeyResult
     {
         /// <summary>
-        /// `(string)` - JWK field `Alg`
+        /// `(string)` - JWK field `Alg` (e.g. `RS256`, `EdDSA`)
         /// </summary>
         public readonly string Algorithm;
         /// <summary>
-        /// `(string)` - JWK field `E`
+        /// `(string)` - JWK field `Crv` (EdDSA only, e.g. `Ed25519`)
+        /// </summary>
+        public readonly string Curve;
+        /// <summary>
+        /// `(string)` - JWK field `E` (RSA only)
         /// </summary>
         public readonly string Exponent;
         /// <summary>
@@ -26,7 +30,7 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string KeyId;
         /// <summary>
-        /// `(string)` - JWK field `Kty`
+        /// `(string)` - JWK field `Kty` (e.g. `RSA`, `OKP`)
         /// </summary>
         public readonly string KeyType;
         /// <summary>
@@ -34,13 +38,19 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string KeyUse;
         /// <summary>
-        /// `(string)` - JWK field `N`
+        /// `(string)` - JWK field `N` (RSA only)
         /// </summary>
         public readonly string Modulus;
+        /// <summary>
+        /// `(string)` - JWK field `X` (EdDSA only, the public key)
+        /// </summary>
+        public readonly string X;
 
         [OutputConstructor]
         private GetJwksKeyResult(
             string algorithm,
+
+            string curve,
 
             string exponent,
 
@@ -50,14 +60,18 @@ namespace Pulumi.Nomad.Outputs
 
             string keyUse,
 
-            string modulus)
+            string modulus,
+
+            string x)
         {
             Algorithm = algorithm;
+            Curve = curve;
             Exponent = exponent;
             KeyId = keyId;
             KeyType = keyType;
             KeyUse = keyUse;
             Modulus = modulus;
+            X = x;
         }
     }
 }

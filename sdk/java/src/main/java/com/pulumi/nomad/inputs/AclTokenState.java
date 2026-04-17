@@ -162,17 +162,27 @@ public final class AclTokenState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * `(string)` - The token value itself, which is presented for
-     * access to the cluster.
+     * access to the cluster. This attribute is deprecated and will be removed in a
+     * future release.
+     * 
+     * @deprecated
+     * Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
      * 
      */
+    @Deprecated /* Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release. */
     @Import(name="secretId")
     private @Nullable Output<String> secretId;
 
     /**
      * @return `(string)` - The token value itself, which is presented for
-     * access to the cluster.
+     * access to the cluster. This attribute is deprecated and will be removed in a
+     * future release.
+     * 
+     * @deprecated
+     * Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
      * 
      */
+    @Deprecated /* Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release. */
     public Optional<Output<String>> secretId() {
         return Optional.ofNullable(this.secretId);
     }
@@ -445,11 +455,16 @@ public final class AclTokenState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param secretId `(string)` - The token value itself, which is presented for
-         * access to the cluster.
+         * access to the cluster. This attribute is deprecated and will be removed in a
+         * future release.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
+         * 
          */
+        @Deprecated /* Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release. */
         public Builder secretId(@Nullable Output<String> secretId) {
             $.secretId = secretId;
             return this;
@@ -457,11 +472,16 @@ public final class AclTokenState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param secretId `(string)` - The token value itself, which is presented for
-         * access to the cluster.
+         * access to the cluster. This attribute is deprecated and will be removed in a
+         * future release.
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
+         * 
          */
+        @Deprecated /* Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release. */
         public Builder secretId(String secretId) {
             return secretId(Output.of(secretId));
         }

@@ -56,6 +56,11 @@ export interface GetNodePoolResult {
     readonly meta: {[key: string]: string};
     readonly name: string;
     /**
+     * `(string)` - The TTL applied to node identities issued to
+     * nodes in this pool.
+     */
+    readonly nodeIdentityTtl: string;
+    /**
      * `(block)` - Scheduler configuration for the node pool.
      */
     readonly schedulerConfigs: outputs.GetNodePoolSchedulerConfig[];

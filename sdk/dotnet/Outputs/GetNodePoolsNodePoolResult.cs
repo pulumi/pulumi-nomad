@@ -27,6 +27,11 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// `(string)` - The TTL applied to node identities issued to
+        /// nodes in this pool.
+        /// </summary>
+        public readonly string NodeIdentityTtl;
+        /// <summary>
         /// `(block)` - Scheduler configuration for the node pool.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetNodePoolsNodePoolSchedulerConfigResult> SchedulerConfigs;
@@ -39,11 +44,14 @@ namespace Pulumi.Nomad.Outputs
 
             string name,
 
+            string nodeIdentityTtl,
+
             ImmutableArray<Outputs.GetNodePoolsNodePoolSchedulerConfigResult> schedulerConfigs)
         {
             Description = description;
             Meta = meta;
             Name = name;
+            NodeIdentityTtl = nodeIdentityTtl;
             SchedulerConfigs = schedulerConfigs;
         }
     }

@@ -12,6 +12,9 @@ import * as utilities from "./utilities";
  *   `items` in the Terraform's state file. Take care to
  *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
  *
+ * > **Note:** Use `itemsWo` with `itemsWoVersion` when you want Terraform to
+ *   write variable items without storing those values in the state file.
+ *
  * ## Example Usage
  *
  * Creating a variable in the default namespace:
@@ -25,6 +28,21 @@ import * as utilities from "./utilities";
  *     items: {
  *         example_key: "example_value",
  *     },
+ * });
+ * ```
+ *
+ * Creating a variable with write-only items:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as nomad from "@pulumi/nomad";
+ *
+ * const example = new nomad.Variable("example", {
+ *     path: "some/path/of/your/choosing",
+ *     itemsWo: JSON.stringify({
+ *         example_key: "example_value",
+ *     }),
+ *     itemsWoVersion: 1,
  * });
  * ```
  *
@@ -76,9 +94,18 @@ export class Variable extends pulumi.CustomResource {
     }
 
     /**
-     * `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+     * `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
      */
-    declare public readonly items: pulumi.Output<{[key: string]: string}>;
+    declare public readonly items: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+     */
+    declare public readonly itemsWo: pulumi.Output<string | undefined>;
+    /**
+     * `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+     */
+    declare public readonly itemsWoVersion: pulumi.Output<number | undefined>;
     /**
      * `(string: "default")` - The namepsace to create the variable in.
      */
@@ -102,22 +129,23 @@ export class Variable extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as VariableState | undefined;
             resourceInputs["items"] = state?.items;
+            resourceInputs["itemsWo"] = state?.itemsWo;
+            resourceInputs["itemsWoVersion"] = state?.itemsWoVersion;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["path"] = state?.path;
         } else {
             const args = argsOrState as VariableArgs | undefined;
-            if (args?.items === undefined && !opts.urn) {
-                throw new Error("Missing required property 'items'");
-            }
             if (args?.path === undefined && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
             resourceInputs["items"] = args?.items ? pulumi.secret(args.items) : undefined;
+            resourceInputs["itemsWo"] = args?.itemsWo ? pulumi.secret(args.itemsWo) : undefined;
+            resourceInputs["itemsWoVersion"] = args?.itemsWoVersion;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["path"] = args?.path;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["items"] };
+        const secretOpts = { additionalSecretOutputs: ["items", "itemsWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Variable.__pulumiType, name, resourceInputs, opts);
     }
@@ -128,9 +156,18 @@ export class Variable extends pulumi.CustomResource {
  */
 export interface VariableState {
     /**
-     * `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+     * `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
      */
     items?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+     */
+    itemsWo?: pulumi.Input<string>;
+    /**
+     * `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+     */
+    itemsWoVersion?: pulumi.Input<number>;
     /**
      * `(string: "default")` - The namepsace to create the variable in.
      */
@@ -146,9 +183,18 @@ export interface VariableState {
  */
 export interface VariableArgs {
     /**
-     * `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+     * `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
      */
-    items: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    items?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+     */
+    itemsWo?: pulumi.Input<string>;
+    /**
+     * `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+     */
+    itemsWoVersion?: pulumi.Input<number>;
     /**
      * `(string: "default")` - The namepsace to create the variable in.
      */

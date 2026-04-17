@@ -5,7 +5,6 @@ package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -32,18 +31,18 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Job
+     * Job. If empty, the policy applies to all jobs in the namespace.
      * 
      */
-    @Import(name="jobId", required=true)
-    private Output<String> jobId;
+    @Import(name="jobId")
+    private @Nullable Output<String> jobId;
 
     /**
-     * @return Job
+     * @return Job. If empty, the policy applies to all jobs in the namespace.
      * 
      */
-    public Output<String> jobId() {
-        return this.jobId;
+    public Optional<Output<String>> jobId() {
+        return Optional.ofNullable(this.jobId);
     }
 
     /**
@@ -125,18 +124,18 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param jobId Job
+         * @param jobId Job. If empty, the policy applies to all jobs in the namespace.
          * 
          * @return builder
          * 
          */
-        public Builder jobId(Output<String> jobId) {
+        public Builder jobId(@Nullable Output<String> jobId) {
             $.jobId = jobId;
             return this;
         }
 
         /**
-         * @param jobId Job
+         * @param jobId Job. If empty, the policy applies to all jobs in the namespace.
          * 
          * @return builder
          * 
@@ -188,9 +187,6 @@ public final class AclPolicyJobAclArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public AclPolicyJobAclArgs build() {
-            if ($.jobId == null) {
-                throw new MissingRequiredPropertyException("AclPolicyJobAclArgs", "jobId");
-            }
             return $;
         }
     }

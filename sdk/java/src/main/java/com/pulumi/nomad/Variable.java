@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.nomad.Utilities;
 import com.pulumi.nomad.VariableArgs;
 import com.pulumi.nomad.inputs.VariableState;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,9 @@ import javax.annotation.Nullable;
  * &gt; **Warning:** this resource will store the sensitive values placed in
  *   `items` in the Terraform&#39;s state file. Take care to
  *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+ * 
+ * &gt; **Note:** Use `itemsWo` with `itemsWoVersion` when you want Terraform to
+ *   write variable items without storing those values in the state file.
  * 
  * ## Example Usage
  * 
@@ -53,6 +57,45 @@ import javax.annotation.Nullable;
  *         var example = new Variable("example", VariableArgs.builder()
  *             .path("some/path/of/your/choosing")
  *             .items(Map.of("example_key", "example_value"))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Creating a variable with write-only items:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.nomad.Variable;
+ * import com.pulumi.nomad.VariableArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new Variable("example", VariableArgs.builder()
+ *             .path("some/path/of/your/choosing")
+ *             .itemsWo(serializeJson(
+ *                 jsonObject(
+ *                     jsonProperty("example_key", "example_value")
+ *                 )))
+ *             .itemsWoVersion(1)
  *             .build());
  * 
  *     }
@@ -106,18 +149,48 @@ import javax.annotation.Nullable;
 @ResourceType(type="nomad:index/variable:Variable")
 public class Variable extends com.pulumi.resources.CustomResource {
     /**
-     * `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
+     * `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
      * 
      */
     @Export(name="items", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output<Map<String,String>> items;
+    private Output</* @Nullable */ Map<String,String>> items;
 
     /**
-     * @return `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
+     * @return `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
      * 
      */
-    public Output<Map<String,String>> items() {
-        return this.items;
+    public Output<Optional<Map<String,String>>> items() {
+        return Codegen.optional(this.items);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+     * 
+     */
+    @Export(name="itemsWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> itemsWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+     * 
+     */
+    public Output<Optional<String>> itemsWo() {
+        return Codegen.optional(this.itemsWo);
+    }
+    /**
+     * `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+     * 
+     */
+    @Export(name="itemsWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> itemsWoVersion;
+
+    /**
+     * @return `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+     * 
+     */
+    public Output<Optional<Integer>> itemsWoVersion() {
+        return Codegen.optional(this.itemsWoVersion);
     }
     /**
      * `(string: &#34;default&#34;)` - The namepsace to create the variable in.
@@ -188,7 +261,8 @@ public class Variable extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "items"
+                "items",
+                "itemsWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

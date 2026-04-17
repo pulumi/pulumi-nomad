@@ -180,7 +180,8 @@ class _AclTokenState:
         :param pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]] roles: `(set: [])` - The list of roles attached to the token. Each entry has
                `name` and `id` attributes. It may be used multiple times.
         :param pulumi.Input[_builtins.str] secret_id: `(string)` - The token value itself, which is presented for
-               access to the cluster.
+               access to the cluster. This attribute is deprecated and will be removed in a
+               future release.
         :param pulumi.Input[_builtins.str] type: `(string: <required>)` - The type of token this is. Use `client`
                for tokens that will have policies associated with them. Use `management`
                for tokens that can perform any action.
@@ -201,6 +202,9 @@ class _AclTokenState:
             pulumi.set(__self__, "policies", policies)
         if roles is not None:
             pulumi.set(__self__, "roles", roles)
+        if secret_id is not None:
+            warnings.warn("""Use the AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.""", DeprecationWarning)
+            pulumi.log.warn("""secret_id is deprecated: Use the AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.""")
         if secret_id is not None:
             pulumi.set(__self__, "secret_id", secret_id)
         if type is not None:
@@ -315,10 +319,12 @@ class _AclTokenState:
 
     @_builtins.property
     @pulumi.getter(name="secretId")
+    @_utilities.deprecated("""Use the AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.""")
     def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         `(string)` - The token value itself, which is presented for
-        access to the cluster.
+        access to the cluster. This attribute is deprecated and will be removed in a
+        future release.
         """
         return pulumi.get(self, "secret_id")
 
@@ -360,6 +366,10 @@ class AclToken(pulumi.CustomResource):
         > **Warning:** this resource will store any tokens it creates in
           Terraform's state file. Take care to
           [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
+        > **Note:** `secret_id` is deprecated on this resource. Use the `AclToken`
+        ephemeral resource when the token secret is needed during a run without
+        storing it in Terraform state.
 
         ## Example Usage
 
@@ -450,6 +460,10 @@ class AclToken(pulumi.CustomResource):
         > **Warning:** this resource will store any tokens it creates in
           Terraform's state file. Take care to
           [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
+        > **Note:** `secret_id` is deprecated on this resource. Use the `AclToken`
+        ephemeral resource when the token secret is needed during a run without
+        storing it in Terraform state.
 
         ## Example Usage
 
@@ -599,7 +613,8 @@ class AclToken(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]] roles: `(set: [])` - The list of roles attached to the token. Each entry has
                `name` and `id` attributes. It may be used multiple times.
         :param pulumi.Input[_builtins.str] secret_id: `(string)` - The token value itself, which is presented for
-               access to the cluster.
+               access to the cluster. This attribute is deprecated and will be removed in a
+               future release.
         :param pulumi.Input[_builtins.str] type: `(string: <required>)` - The type of token this is. Use `client`
                for tokens that will have policies associated with them. Use `management`
                for tokens that can perform any action.
@@ -697,10 +712,12 @@ class AclToken(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="secretId")
+    @_utilities.deprecated("""Use the AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.""")
     def secret_id(self) -> pulumi.Output[_builtins.str]:
         """
         `(string)` - The token value itself, which is presented for
-        access to the cluster.
+        access to the cluster. This attribute is deprecated and will be removed in a
+        future release.
         """
         return pulumi.get(self, "secret_id")
 

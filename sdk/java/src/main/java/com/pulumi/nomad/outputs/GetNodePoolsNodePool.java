@@ -30,6 +30,12 @@ public final class GetNodePoolsNodePool {
      */
     private String name;
     /**
+     * @return `(string)` - The TTL applied to node identities issued to
+     * nodes in this pool.
+     * 
+     */
+    private String nodeIdentityTtl;
+    /**
      * @return `(block)` - Scheduler configuration for the node pool.
      * 
      */
@@ -59,6 +65,14 @@ public final class GetNodePoolsNodePool {
         return this.name;
     }
     /**
+     * @return `(string)` - The TTL applied to node identities issued to
+     * nodes in this pool.
+     * 
+     */
+    public String nodeIdentityTtl() {
+        return this.nodeIdentityTtl;
+    }
+    /**
      * @return `(block)` - Scheduler configuration for the node pool.
      * 
      */
@@ -78,6 +92,7 @@ public final class GetNodePoolsNodePool {
         private String description;
         private Map<String,String> meta;
         private String name;
+        private String nodeIdentityTtl;
         private List<GetNodePoolsNodePoolSchedulerConfig> schedulerConfigs;
         public Builder() {}
         public Builder(GetNodePoolsNodePool defaults) {
@@ -85,6 +100,7 @@ public final class GetNodePoolsNodePool {
     	      this.description = defaults.description;
     	      this.meta = defaults.meta;
     	      this.name = defaults.name;
+    	      this.nodeIdentityTtl = defaults.nodeIdentityTtl;
     	      this.schedulerConfigs = defaults.schedulerConfigs;
         }
 
@@ -113,6 +129,14 @@ public final class GetNodePoolsNodePool {
             return this;
         }
         @CustomType.Setter
+        public Builder nodeIdentityTtl(String nodeIdentityTtl) {
+            if (nodeIdentityTtl == null) {
+              throw new MissingRequiredPropertyException("GetNodePoolsNodePool", "nodeIdentityTtl");
+            }
+            this.nodeIdentityTtl = nodeIdentityTtl;
+            return this;
+        }
+        @CustomType.Setter
         public Builder schedulerConfigs(List<GetNodePoolsNodePoolSchedulerConfig> schedulerConfigs) {
             if (schedulerConfigs == null) {
               throw new MissingRequiredPropertyException("GetNodePoolsNodePool", "schedulerConfigs");
@@ -128,6 +152,7 @@ public final class GetNodePoolsNodePool {
             _resultValue.description = description;
             _resultValue.meta = meta;
             _resultValue.name = name;
+            _resultValue.nodeIdentityTtl = nodeIdentityTtl;
             _resultValue.schedulerConfigs = schedulerConfigs;
             return _resultValue;
         }

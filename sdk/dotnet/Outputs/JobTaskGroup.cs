@@ -13,10 +13,29 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class JobTaskGroup
     {
+        /// <summary>
+        /// `(integer)` - Task group count.
+        /// </summary>
         public readonly int? Count;
+        /// <summary>
+        /// `(map of strings)` - Task group metadata.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Meta;
+        /// <summary>
+        /// `(string)` - Volume name.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// `(list of maps)` - Tasks in the task group.
+        /// </summary>
         public readonly ImmutableArray<Outputs.JobTaskGroupTask> Tasks;
+        /// <summary>
+        /// `(list of maps)` - Effective update strategy for the task group.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.JobTaskGroupUpdateStrategy> UpdateStrategies;
+        /// <summary>
+        /// `(list of maps)` - Volume requests for the task group.
+        /// </summary>
         public readonly ImmutableArray<Outputs.JobTaskGroupVolume> Volumes;
 
         [OutputConstructor]
@@ -29,12 +48,15 @@ namespace Pulumi.Nomad.Outputs
 
             ImmutableArray<Outputs.JobTaskGroupTask> tasks,
 
+            ImmutableArray<Outputs.JobTaskGroupUpdateStrategy> updateStrategies,
+
             ImmutableArray<Outputs.JobTaskGroupVolume> volumes)
         {
             Count = count;
             Meta = meta;
             Name = name;
             Tasks = tasks;
+            UpdateStrategies = updateStrategies;
             Volumes = volumes;
         }
     }

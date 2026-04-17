@@ -16,30 +16,62 @@ public final class JobTaskGroupVolumeArgs extends com.pulumi.resources.ResourceA
 
     public static final JobTaskGroupVolumeArgs Empty = new JobTaskGroupVolumeArgs();
 
+    /**
+     * `(string)` - Volume name.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * `(boolean)` - Whether the volume is read-only.
+     * 
+     */
     @Import(name="readOnly")
     private @Nullable Output<Boolean> readOnly;
 
+    /**
+     * @return `(boolean)` - Whether the volume is read-only.
+     * 
+     */
     public Optional<Output<Boolean>> readOnly() {
         return Optional.ofNullable(this.readOnly);
     }
 
+    /**
+     * `(string)` - Volume source.
+     * 
+     */
     @Import(name="source")
     private @Nullable Output<String> source;
 
+    /**
+     * @return `(string)` - Volume source.
+     * 
+     */
     public Optional<Output<String>> source() {
         return Optional.ofNullable(this.source);
     }
 
+    /**
+     * `(string)` - Volume type.
+     * 
+     */
     @Import(name="type")
     private @Nullable Output<String> type;
 
+    /**
+     * @return `(string)` - Volume type.
+     * 
+     */
     public Optional<Output<String>> type() {
         return Optional.ofNullable(this.type);
     }
@@ -71,38 +103,86 @@ public final class JobTaskGroupVolumeArgs extends com.pulumi.resources.ResourceA
             $ = new JobTaskGroupVolumeArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name `(string)` - Volume name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name `(string)` - Volume name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param readOnly `(boolean)` - Whether the volume is read-only.
+         * 
+         * @return builder
+         * 
+         */
         public Builder readOnly(@Nullable Output<Boolean> readOnly) {
             $.readOnly = readOnly;
             return this;
         }
 
+        /**
+         * @param readOnly `(boolean)` - Whether the volume is read-only.
+         * 
+         * @return builder
+         * 
+         */
         public Builder readOnly(Boolean readOnly) {
             return readOnly(Output.of(readOnly));
         }
 
+        /**
+         * @param source `(string)` - Volume source.
+         * 
+         * @return builder
+         * 
+         */
         public Builder source(@Nullable Output<String> source) {
             $.source = source;
             return this;
         }
 
+        /**
+         * @param source `(string)` - Volume source.
+         * 
+         * @return builder
+         * 
+         */
         public Builder source(String source) {
             return source(Output.of(source));
         }
 
+        /**
+         * @param type `(string)` - Volume type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(@Nullable Output<String> type) {
             $.type = type;
             return this;
         }
 
+        /**
+         * @param type `(string)` - Volume type.
+         * 
+         * @return builder
+         * 
+         */
         public Builder type(String type) {
             return type(Output.of(type));
         }

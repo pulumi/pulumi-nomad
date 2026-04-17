@@ -12,6 +12,10 @@ import * as utilities from "./utilities";
  * > **Warning:** this data source will store tokens in the Terraform state. Take care to
  *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
  *
+ * > **Note:** This data source is deprecated and may be removed in a future
+ * release. Use the `nomad.AclToken` ephemeral resource when the token secret is
+ * needed during a run without storing it in Terraform state.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -97,6 +101,10 @@ export interface GetAclTokenResult {
  *
  * > **Warning:** this data source will store tokens in the Terraform state. Take care to
  *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+ *
+ * > **Note:** This data source is deprecated and may be removed in a future
+ * release. Use the `nomad.AclToken` ephemeral resource when the token secret is
+ * needed during a run without storing it in Terraform state.
  *
  * ## Example Usage
  *

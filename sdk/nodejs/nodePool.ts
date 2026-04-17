@@ -69,6 +69,11 @@ export class NodePool extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
+     * `(string)` - The TTL applied to node identities issued to
+     * nodes in this pool.
+     */
+    declare public readonly nodeIdentityTtl: pulumi.Output<string>;
+    /**
      * `(block)` - Scheduler configuration for the node pool.
      */
     declare public readonly schedulerConfig: pulumi.Output<outputs.NodePoolSchedulerConfig | undefined>;
@@ -89,12 +94,14 @@ export class NodePool extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["meta"] = state?.meta;
             resourceInputs["name"] = state?.name;
+            resourceInputs["nodeIdentityTtl"] = state?.nodeIdentityTtl;
             resourceInputs["schedulerConfig"] = state?.schedulerConfig;
         } else {
             const args = argsOrState as NodePoolArgs | undefined;
             resourceInputs["description"] = args?.description;
             resourceInputs["meta"] = args?.meta;
             resourceInputs["name"] = args?.name;
+            resourceInputs["nodeIdentityTtl"] = args?.nodeIdentityTtl;
             resourceInputs["schedulerConfig"] = args?.schedulerConfig;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -120,6 +127,11 @@ export interface NodePoolState {
      */
     name?: pulumi.Input<string>;
     /**
+     * `(string)` - The TTL applied to node identities issued to
+     * nodes in this pool.
+     */
+    nodeIdentityTtl?: pulumi.Input<string>;
+    /**
      * `(block)` - Scheduler configuration for the node pool.
      */
     schedulerConfig?: pulumi.Input<inputs.NodePoolSchedulerConfig>;
@@ -142,6 +154,11 @@ export interface NodePoolArgs {
      * `(string)` - The name of the node pool.
      */
     name?: pulumi.Input<string>;
+    /**
+     * `(string)` - The TTL applied to node identities issued to
+     * nodes in this pool.
+     */
+    nodeIdentityTtl?: pulumi.Input<string>;
     /**
      * `(block)` - Scheduler configuration for the node pool.
      */

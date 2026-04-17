@@ -55,6 +55,9 @@ type NodePool struct {
 	Meta pulumi.StringMapOutput `pulumi:"meta"`
 	// `(string)` - The name of the node pool.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// `(string)` - The TTL applied to node identities issued to
+	// nodes in this pool.
+	NodeIdentityTtl pulumi.StringOutput `pulumi:"nodeIdentityTtl"`
 	// `(block)` - Scheduler configuration for the node pool.
 	SchedulerConfig NodePoolSchedulerConfigPtrOutput `pulumi:"schedulerConfig"`
 }
@@ -96,6 +99,9 @@ type nodePoolState struct {
 	Meta map[string]string `pulumi:"meta"`
 	// `(string)` - The name of the node pool.
 	Name *string `pulumi:"name"`
+	// `(string)` - The TTL applied to node identities issued to
+	// nodes in this pool.
+	NodeIdentityTtl *string `pulumi:"nodeIdentityTtl"`
 	// `(block)` - Scheduler configuration for the node pool.
 	SchedulerConfig *NodePoolSchedulerConfig `pulumi:"schedulerConfig"`
 }
@@ -108,6 +114,9 @@ type NodePoolState struct {
 	Meta pulumi.StringMapInput
 	// `(string)` - The name of the node pool.
 	Name pulumi.StringPtrInput
+	// `(string)` - The TTL applied to node identities issued to
+	// nodes in this pool.
+	NodeIdentityTtl pulumi.StringPtrInput
 	// `(block)` - Scheduler configuration for the node pool.
 	SchedulerConfig NodePoolSchedulerConfigPtrInput
 }
@@ -124,6 +133,9 @@ type nodePoolArgs struct {
 	Meta map[string]string `pulumi:"meta"`
 	// `(string)` - The name of the node pool.
 	Name *string `pulumi:"name"`
+	// `(string)` - The TTL applied to node identities issued to
+	// nodes in this pool.
+	NodeIdentityTtl *string `pulumi:"nodeIdentityTtl"`
 	// `(block)` - Scheduler configuration for the node pool.
 	SchedulerConfig *NodePoolSchedulerConfig `pulumi:"schedulerConfig"`
 }
@@ -137,6 +149,9 @@ type NodePoolArgs struct {
 	Meta pulumi.StringMapInput
 	// `(string)` - The name of the node pool.
 	Name pulumi.StringPtrInput
+	// `(string)` - The TTL applied to node identities issued to
+	// nodes in this pool.
+	NodeIdentityTtl pulumi.StringPtrInput
 	// `(block)` - Scheduler configuration for the node pool.
 	SchedulerConfig NodePoolSchedulerConfigPtrInput
 }
@@ -242,6 +257,12 @@ func (o NodePoolOutput) Meta() pulumi.StringMapOutput {
 // `(string)` - The name of the node pool.
 func (o NodePoolOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string)` - The TTL applied to node identities issued to
+// nodes in this pool.
+func (o NodePoolOutput) NodeIdentityTtl() pulumi.StringOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.NodeIdentityTtl }).(pulumi.StringOutput)
 }
 
 // `(block)` - Scheduler configuration for the node pool.

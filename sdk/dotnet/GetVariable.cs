@@ -14,6 +14,10 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Get the information about a Nomad variable.
         /// 
+        /// &gt; **Deprecated:** Use the `nomad.Variable` ephemeral resource instead when you
+        /// need to read variable items without storing them in Terraform state. This data
+        /// source will be removed in a future release.
+        /// 
         /// &gt; **Warning:** this data source will store the sensitive values from `Items`
         ///   in the Terraform's state file. Take care to
         ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
@@ -42,6 +46,10 @@ namespace Pulumi.Nomad
         /// <summary>
         /// Get the information about a Nomad variable.
         /// 
+        /// &gt; **Deprecated:** Use the `nomad.Variable` ephemeral resource instead when you
+        /// need to read variable items without storing them in Terraform state. This data
+        /// source will be removed in a future release.
+        /// 
         /// &gt; **Warning:** this data source will store the sensitive values from `Items`
         ///   in the Terraform's state file. Take care to
         ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
@@ -69,6 +77,10 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// Get the information about a Nomad variable.
+        /// 
+        /// &gt; **Deprecated:** Use the `nomad.Variable` ephemeral resource instead when you
+        /// need to read variable items without storing them in Terraform state. This data
+        /// source will be removed in a future release.
         /// 
         /// &gt; **Warning:** this data source will store the sensitive values from `Items`
         ///   in the Terraform's state file. Take care to

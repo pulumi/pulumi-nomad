@@ -4,7 +4,11 @@
 package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.nomad.outputs.QuoteSpecificationLimitRegionLimitDevice;
+import com.pulumi.nomad.outputs.QuoteSpecificationLimitRegionLimitNodePool;
+import com.pulumi.nomad.outputs.QuoteSpecificationLimitRegionLimitStorage;
 import java.lang.Integer;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -12,11 +16,32 @@ import javax.annotation.Nullable;
 @CustomType
 public final class QuoteSpecificationLimitRegionLimit {
     /**
+     * @return `(int: 0)` - The number of CPU cores to limit allocations to. A value
+     * of zero is treated as unlimited, and a negative value is treated as fully
+     * disallowed.
+     * 
+     */
+    private @Nullable Integer cores;
+    /**
      * @return `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
      * is treated as unlimited, and a negative value is treated as fully disallowed.
      * 
      */
     private @Nullable Integer cpu;
+    private @Nullable List<QuoteSpecificationLimitRegionLimitDevice> devices;
+    /**
+     * @return `(int: 0)` - The maximum amount of memory (in megabytes) to
+     * limit allocations to. A value of zero is treated as unlimited, and a negative
+     * value is treated as fully disallowed.
+     * - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+     *   repeated. See below for the structure of this block.
+     * - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+     *   repeated. See below for the structure of this block.
+     * - `storage` `(block: optional)` - Storage resource quota configuration. May only
+     *   be specified once. See below for the structure of this block.
+     * 
+     */
+    private @Nullable Integer memoryMaxMb;
     /**
      * @return `(int: 0)` - The amount of memory (in megabytes) to limit
      * allocations to. A value of zero is treated as unlimited, and a negative value
@@ -24,8 +49,19 @@ public final class QuoteSpecificationLimitRegionLimit {
      * 
      */
     private @Nullable Integer memoryMb;
+    private @Nullable List<QuoteSpecificationLimitRegionLimitNodePool> nodePools;
+    private @Nullable QuoteSpecificationLimitRegionLimitStorage storage;
 
     private QuoteSpecificationLimitRegionLimit() {}
+    /**
+     * @return `(int: 0)` - The number of CPU cores to limit allocations to. A value
+     * of zero is treated as unlimited, and a negative value is treated as fully
+     * disallowed.
+     * 
+     */
+    public Optional<Integer> cores() {
+        return Optional.ofNullable(this.cores);
+    }
     /**
      * @return `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
      * is treated as unlimited, and a negative value is treated as fully disallowed.
@@ -33,6 +69,24 @@ public final class QuoteSpecificationLimitRegionLimit {
      */
     public Optional<Integer> cpu() {
         return Optional.ofNullable(this.cpu);
+    }
+    public List<QuoteSpecificationLimitRegionLimitDevice> devices() {
+        return this.devices == null ? List.of() : this.devices;
+    }
+    /**
+     * @return `(int: 0)` - The maximum amount of memory (in megabytes) to
+     * limit allocations to. A value of zero is treated as unlimited, and a negative
+     * value is treated as fully disallowed.
+     * - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+     *   repeated. See below for the structure of this block.
+     * - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+     *   repeated. See below for the structure of this block.
+     * - `storage` `(block: optional)` - Storage resource quota configuration. May only
+     *   be specified once. See below for the structure of this block.
+     * 
+     */
+    public Optional<Integer> memoryMaxMb() {
+        return Optional.ofNullable(this.memoryMaxMb);
     }
     /**
      * @return `(int: 0)` - The amount of memory (in megabytes) to limit
@@ -42,6 +96,12 @@ public final class QuoteSpecificationLimitRegionLimit {
      */
     public Optional<Integer> memoryMb() {
         return Optional.ofNullable(this.memoryMb);
+    }
+    public List<QuoteSpecificationLimitRegionLimitNodePool> nodePools() {
+        return this.nodePools == null ? List.of() : this.nodePools;
+    }
+    public Optional<QuoteSpecificationLimitRegionLimitStorage> storage() {
+        return Optional.ofNullable(this.storage);
     }
 
     public static Builder builder() {
@@ -53,19 +113,50 @@ public final class QuoteSpecificationLimitRegionLimit {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Integer cores;
         private @Nullable Integer cpu;
+        private @Nullable List<QuoteSpecificationLimitRegionLimitDevice> devices;
+        private @Nullable Integer memoryMaxMb;
         private @Nullable Integer memoryMb;
+        private @Nullable List<QuoteSpecificationLimitRegionLimitNodePool> nodePools;
+        private @Nullable QuoteSpecificationLimitRegionLimitStorage storage;
         public Builder() {}
         public Builder(QuoteSpecificationLimitRegionLimit defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.cores = defaults.cores;
     	      this.cpu = defaults.cpu;
+    	      this.devices = defaults.devices;
+    	      this.memoryMaxMb = defaults.memoryMaxMb;
     	      this.memoryMb = defaults.memoryMb;
+    	      this.nodePools = defaults.nodePools;
+    	      this.storage = defaults.storage;
         }
 
+        @CustomType.Setter
+        public Builder cores(@Nullable Integer cores) {
+
+            this.cores = cores;
+            return this;
+        }
         @CustomType.Setter
         public Builder cpu(@Nullable Integer cpu) {
 
             this.cpu = cpu;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder devices(@Nullable List<QuoteSpecificationLimitRegionLimitDevice> devices) {
+
+            this.devices = devices;
+            return this;
+        }
+        public Builder devices(QuoteSpecificationLimitRegionLimitDevice... devices) {
+            return devices(List.of(devices));
+        }
+        @CustomType.Setter
+        public Builder memoryMaxMb(@Nullable Integer memoryMaxMb) {
+
+            this.memoryMaxMb = memoryMaxMb;
             return this;
         }
         @CustomType.Setter
@@ -74,10 +165,30 @@ public final class QuoteSpecificationLimitRegionLimit {
             this.memoryMb = memoryMb;
             return this;
         }
+        @CustomType.Setter
+        public Builder nodePools(@Nullable List<QuoteSpecificationLimitRegionLimitNodePool> nodePools) {
+
+            this.nodePools = nodePools;
+            return this;
+        }
+        public Builder nodePools(QuoteSpecificationLimitRegionLimitNodePool... nodePools) {
+            return nodePools(List.of(nodePools));
+        }
+        @CustomType.Setter
+        public Builder storage(@Nullable QuoteSpecificationLimitRegionLimitStorage storage) {
+
+            this.storage = storage;
+            return this;
+        }
         public QuoteSpecificationLimitRegionLimit build() {
             final var _resultValue = new QuoteSpecificationLimitRegionLimit();
+            _resultValue.cores = cores;
             _resultValue.cpu = cpu;
+            _resultValue.devices = devices;
+            _resultValue.memoryMaxMb = memoryMaxMb;
             _resultValue.memoryMb = memoryMb;
+            _resultValue.nodePools = nodePools;
+            _resultValue.storage = storage;
             return _resultValue;
         }
     }

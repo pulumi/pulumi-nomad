@@ -13,9 +13,21 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class JobTaskGroupVolume
     {
+        /// <summary>
+        /// `(string)` - Volume name.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// `(boolean)` - Whether the volume is read-only.
+        /// </summary>
         public readonly bool? ReadOnly;
+        /// <summary>
+        /// `(string)` - Volume source.
+        /// </summary>
         public readonly string? Source;
+        /// <summary>
+        /// `(string)` - Volume type.
+        /// </summary>
         public readonly string? Type;
 
         [OutputConstructor]

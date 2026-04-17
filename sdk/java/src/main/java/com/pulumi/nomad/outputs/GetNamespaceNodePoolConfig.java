@@ -11,17 +11,41 @@ import java.util.Objects;
 
 @CustomType
 public final class GetNamespaceNodePoolConfig {
+    /**
+     * @return `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+     * 
+     */
     private List<String> alloweds;
+    /**
+     * @return `(string)` - The Consul cluster to use when none is specified in the job.
+     * 
+     */
     private String default_;
+    /**
+     * @return `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+     * 
+     */
     private List<String> denieds;
 
     private GetNamespaceNodePoolConfig() {}
+    /**
+     * @return `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+     * 
+     */
     public List<String> alloweds() {
         return this.alloweds;
     }
+    /**
+     * @return `(string)` - The Consul cluster to use when none is specified in the job.
+     * 
+     */
     public String default_() {
         return this.default_;
     }
+    /**
+     * @return `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+     * 
+     */
     public List<String> denieds() {
         return this.denieds;
     }

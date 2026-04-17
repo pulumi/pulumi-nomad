@@ -107,6 +107,22 @@ public class NodePool extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
+     * `(string)` - The TTL applied to node identities issued to
+     * nodes in this pool.
+     * 
+     */
+    @Export(name="nodeIdentityTtl", refs={String.class}, tree="[0]")
+    private Output<String> nodeIdentityTtl;
+
+    /**
+     * @return `(string)` - The TTL applied to node identities issued to
+     * nodes in this pool.
+     * 
+     */
+    public Output<String> nodeIdentityTtl() {
+        return this.nodeIdentityTtl;
+    }
+    /**
      * `(block)` - Scheduler configuration for the node pool.
      * 
      */

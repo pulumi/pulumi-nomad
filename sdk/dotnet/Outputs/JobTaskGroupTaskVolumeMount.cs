@@ -13,8 +13,17 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class JobTaskGroupTaskVolumeMount
     {
+        /// <summary>
+        /// `(string)` - Destination path inside the task.
+        /// </summary>
         public readonly string? Destination;
+        /// <summary>
+        /// `(boolean)` - Whether the volume is read-only.
+        /// </summary>
         public readonly bool? ReadOnly;
+        /// <summary>
+        /// `(string)` - Volume name.
+        /// </summary>
         public readonly string? Volume;
 
         [OutputConstructor]

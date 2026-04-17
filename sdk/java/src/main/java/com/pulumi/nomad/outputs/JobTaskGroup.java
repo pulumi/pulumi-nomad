@@ -5,6 +5,7 @@ package com.pulumi.nomad.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.nomad.outputs.JobTaskGroupTask;
+import com.pulumi.nomad.outputs.JobTaskGroupUpdateStrategy;
 import com.pulumi.nomad.outputs.JobTaskGroupVolume;
 import java.lang.Integer;
 import java.lang.String;
@@ -16,25 +17,77 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class JobTaskGroup {
+    /**
+     * @return `(integer)` - Task group count.
+     * 
+     */
     private @Nullable Integer count;
+    /**
+     * @return `(map of strings)` - Task group metadata.
+     * 
+     */
     private @Nullable Map<String,String> meta;
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return `(list of maps)` - Tasks in the task group.
+     * 
+     */
     private @Nullable List<JobTaskGroupTask> tasks;
+    /**
+     * @return `(list of maps)` - Effective update strategy for the task group.
+     * 
+     */
+    private @Nullable List<JobTaskGroupUpdateStrategy> updateStrategies;
+    /**
+     * @return `(list of maps)` - Volume requests for the task group.
+     * 
+     */
     private @Nullable List<JobTaskGroupVolume> volumes;
 
     private JobTaskGroup() {}
+    /**
+     * @return `(integer)` - Task group count.
+     * 
+     */
     public Optional<Integer> count() {
         return Optional.ofNullable(this.count);
     }
+    /**
+     * @return `(map of strings)` - Task group metadata.
+     * 
+     */
     public Map<String,String> meta() {
         return this.meta == null ? Map.of() : this.meta;
     }
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return `(list of maps)` - Tasks in the task group.
+     * 
+     */
     public List<JobTaskGroupTask> tasks() {
         return this.tasks == null ? List.of() : this.tasks;
     }
+    /**
+     * @return `(list of maps)` - Effective update strategy for the task group.
+     * 
+     */
+    public List<JobTaskGroupUpdateStrategy> updateStrategies() {
+        return this.updateStrategies == null ? List.of() : this.updateStrategies;
+    }
+    /**
+     * @return `(list of maps)` - Volume requests for the task group.
+     * 
+     */
     public List<JobTaskGroupVolume> volumes() {
         return this.volumes == null ? List.of() : this.volumes;
     }
@@ -52,6 +105,7 @@ public final class JobTaskGroup {
         private @Nullable Map<String,String> meta;
         private @Nullable String name;
         private @Nullable List<JobTaskGroupTask> tasks;
+        private @Nullable List<JobTaskGroupUpdateStrategy> updateStrategies;
         private @Nullable List<JobTaskGroupVolume> volumes;
         public Builder() {}
         public Builder(JobTaskGroup defaults) {
@@ -60,6 +114,7 @@ public final class JobTaskGroup {
     	      this.meta = defaults.meta;
     	      this.name = defaults.name;
     	      this.tasks = defaults.tasks;
+    	      this.updateStrategies = defaults.updateStrategies;
     	      this.volumes = defaults.volumes;
         }
 
@@ -91,6 +146,15 @@ public final class JobTaskGroup {
             return tasks(List.of(tasks));
         }
         @CustomType.Setter
+        public Builder updateStrategies(@Nullable List<JobTaskGroupUpdateStrategy> updateStrategies) {
+
+            this.updateStrategies = updateStrategies;
+            return this;
+        }
+        public Builder updateStrategies(JobTaskGroupUpdateStrategy... updateStrategies) {
+            return updateStrategies(List.of(updateStrategies));
+        }
+        @CustomType.Setter
         public Builder volumes(@Nullable List<JobTaskGroupVolume> volumes) {
 
             this.volumes = volumes;
@@ -105,6 +169,7 @@ public final class JobTaskGroup {
             _resultValue.meta = meta;
             _resultValue.name = name;
             _resultValue.tasks = tasks;
+            _resultValue.updateStrategies = updateStrategies;
             _resultValue.volumes = volumes;
             return _resultValue;
         }

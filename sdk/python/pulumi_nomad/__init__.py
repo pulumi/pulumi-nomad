@@ -31,8 +31,10 @@ from .get_job_parser import *
 from .get_jwks import *
 from .get_namespace import *
 from .get_namespaces import *
+from .get_node import *
 from .get_node_pool import *
 from .get_node_pools import *
+from .get_nodes import *
 from .get_plugin import *
 from .get_plugins import *
 from .get_regions import *

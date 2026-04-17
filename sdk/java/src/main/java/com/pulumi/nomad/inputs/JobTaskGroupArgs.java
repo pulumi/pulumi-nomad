@@ -6,6 +6,7 @@ package com.pulumi.nomad.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.nomad.inputs.JobTaskGroupTaskArgs;
+import com.pulumi.nomad.inputs.JobTaskGroupUpdateStrategyArgs;
 import com.pulumi.nomad.inputs.JobTaskGroupVolumeArgs;
 import java.lang.Integer;
 import java.lang.String;
@@ -20,37 +21,92 @@ public final class JobTaskGroupArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final JobTaskGroupArgs Empty = new JobTaskGroupArgs();
 
+    /**
+     * `(integer)` - Task group count.
+     * 
+     */
     @Import(name="count")
     private @Nullable Output<Integer> count;
 
+    /**
+     * @return `(integer)` - Task group count.
+     * 
+     */
     public Optional<Output<Integer>> count() {
         return Optional.ofNullable(this.count);
     }
 
+    /**
+     * `(map of strings)` - Task group metadata.
+     * 
+     */
     @Import(name="meta")
     private @Nullable Output<Map<String,String>> meta;
 
+    /**
+     * @return `(map of strings)` - Task group metadata.
+     * 
+     */
     public Optional<Output<Map<String,String>>> meta() {
         return Optional.ofNullable(this.meta);
     }
 
+    /**
+     * `(string)` - Volume name.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * `(list of maps)` - Tasks in the task group.
+     * 
+     */
     @Import(name="tasks")
     private @Nullable Output<List<JobTaskGroupTaskArgs>> tasks;
 
+    /**
+     * @return `(list of maps)` - Tasks in the task group.
+     * 
+     */
     public Optional<Output<List<JobTaskGroupTaskArgs>>> tasks() {
         return Optional.ofNullable(this.tasks);
     }
 
+    /**
+     * `(list of maps)` - Effective update strategy for the task group.
+     * 
+     */
+    @Import(name="updateStrategies")
+    private @Nullable Output<List<JobTaskGroupUpdateStrategyArgs>> updateStrategies;
+
+    /**
+     * @return `(list of maps)` - Effective update strategy for the task group.
+     * 
+     */
+    public Optional<Output<List<JobTaskGroupUpdateStrategyArgs>>> updateStrategies() {
+        return Optional.ofNullable(this.updateStrategies);
+    }
+
+    /**
+     * `(list of maps)` - Volume requests for the task group.
+     * 
+     */
     @Import(name="volumes")
     private @Nullable Output<List<JobTaskGroupVolumeArgs>> volumes;
 
+    /**
+     * @return `(list of maps)` - Volume requests for the task group.
+     * 
+     */
     public Optional<Output<List<JobTaskGroupVolumeArgs>>> volumes() {
         return Optional.ofNullable(this.volumes);
     }
@@ -62,6 +118,7 @@ public final class JobTaskGroupArgs extends com.pulumi.resources.ResourceArgs {
         this.meta = $.meta;
         this.name = $.name;
         this.tasks = $.tasks;
+        this.updateStrategies = $.updateStrategies;
         this.volumes = $.volumes;
     }
 
@@ -83,55 +140,158 @@ public final class JobTaskGroupArgs extends com.pulumi.resources.ResourceArgs {
             $ = new JobTaskGroupArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param count `(integer)` - Task group count.
+         * 
+         * @return builder
+         * 
+         */
         public Builder count(@Nullable Output<Integer> count) {
             $.count = count;
             return this;
         }
 
+        /**
+         * @param count `(integer)` - Task group count.
+         * 
+         * @return builder
+         * 
+         */
         public Builder count(Integer count) {
             return count(Output.of(count));
         }
 
+        /**
+         * @param meta `(map of strings)` - Task group metadata.
+         * 
+         * @return builder
+         * 
+         */
         public Builder meta(@Nullable Output<Map<String,String>> meta) {
             $.meta = meta;
             return this;
         }
 
+        /**
+         * @param meta `(map of strings)` - Task group metadata.
+         * 
+         * @return builder
+         * 
+         */
         public Builder meta(Map<String,String> meta) {
             return meta(Output.of(meta));
         }
 
+        /**
+         * @param name `(string)` - Volume name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name `(string)` - Volume name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param tasks `(list of maps)` - Tasks in the task group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tasks(@Nullable Output<List<JobTaskGroupTaskArgs>> tasks) {
             $.tasks = tasks;
             return this;
         }
 
+        /**
+         * @param tasks `(list of maps)` - Tasks in the task group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tasks(List<JobTaskGroupTaskArgs> tasks) {
             return tasks(Output.of(tasks));
         }
 
+        /**
+         * @param tasks `(list of maps)` - Tasks in the task group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder tasks(JobTaskGroupTaskArgs... tasks) {
             return tasks(List.of(tasks));
         }
 
+        /**
+         * @param updateStrategies `(list of maps)` - Effective update strategy for the task group.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updateStrategies(@Nullable Output<List<JobTaskGroupUpdateStrategyArgs>> updateStrategies) {
+            $.updateStrategies = updateStrategies;
+            return this;
+        }
+
+        /**
+         * @param updateStrategies `(list of maps)` - Effective update strategy for the task group.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updateStrategies(List<JobTaskGroupUpdateStrategyArgs> updateStrategies) {
+            return updateStrategies(Output.of(updateStrategies));
+        }
+
+        /**
+         * @param updateStrategies `(list of maps)` - Effective update strategy for the task group.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder updateStrategies(JobTaskGroupUpdateStrategyArgs... updateStrategies) {
+            return updateStrategies(List.of(updateStrategies));
+        }
+
+        /**
+         * @param volumes `(list of maps)` - Volume requests for the task group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder volumes(@Nullable Output<List<JobTaskGroupVolumeArgs>> volumes) {
             $.volumes = volumes;
             return this;
         }
 
+        /**
+         * @param volumes `(list of maps)` - Volume requests for the task group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder volumes(List<JobTaskGroupVolumeArgs> volumes) {
             return volumes(Output.of(volumes));
         }
 
+        /**
+         * @param volumes `(list of maps)` - Volume requests for the task group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder volumes(JobTaskGroupVolumeArgs... volumes) {
             return volumes(List.of(volumes));
         }

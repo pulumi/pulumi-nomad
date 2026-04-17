@@ -151,6 +151,9 @@ namespace Pulumi.Nomad
         /// `(boolean)`  If the scheduler can make partial placements on oversubscribed nodes.
         /// </summary>
         public readonly bool AllAtOnce;
+        /// <summary>
+        /// `(list of maps)` Job constraints.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetJobConstraintResult> Constraints;
         /// <summary>
         /// `(integer)` Creation Index.
@@ -174,7 +177,7 @@ namespace Pulumi.Nomad
         /// </summary>
         public readonly int ModifyIndex;
         /// <summary>
-        /// `(string)` Name of the job.
+        /// `(string)` Volume name.
         /// </summary>
         public readonly string Name;
         public readonly string? Namespace;
@@ -183,7 +186,7 @@ namespace Pulumi.Nomad
         /// </summary>
         public readonly string ParentId;
         /// <summary>
-        /// `(list of maps)` Job's periodic configuration (time based scheduling).
+        /// `(list of maps)` Job's periodic configuration.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetJobPeriodicConfigResult> PeriodicConfigs;
         /// <summary>
@@ -213,15 +216,19 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(integer)` Job submission date.
         /// </summary>
-        public readonly int SubmitTime;
+        public readonly string SubmitTime;
         /// <summary>
-        /// `(list of maps)` A list of of the job's task groups.
+        /// `(list of maps)` A list of the job's task groups.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetJobTaskGroupResult> TaskGroups;
         /// <summary>
-        /// `(string)` Scheduler type used during job creation.
+        /// `(string)` Volume type.
         /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// `(list of maps)` Job-level update strategy returned by Nomad.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetJobUpdateStrategyResult> UpdateStrategies;
         /// <summary>
         /// `(integer)` Version of the specified job.
         /// </summary>
@@ -265,11 +272,13 @@ namespace Pulumi.Nomad
 
             bool stop,
 
-            int submitTime,
+            string submitTime,
 
             ImmutableArray<Outputs.GetJobTaskGroupResult> taskGroups,
 
             string type,
+
+            ImmutableArray<Outputs.GetJobUpdateStrategyResult> updateStrategies,
 
             int version)
         {
@@ -294,6 +303,7 @@ namespace Pulumi.Nomad
             SubmitTime = submitTime;
             TaskGroups = taskGroups;
             Type = type;
+            UpdateStrategies = updateStrategies;
             Version = version;
         }
     }

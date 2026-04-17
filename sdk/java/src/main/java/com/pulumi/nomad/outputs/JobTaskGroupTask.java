@@ -14,21 +14,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class JobTaskGroupTask {
+    /**
+     * @return `(string)` - Task driver.
+     * 
+     */
     private @Nullable String driver;
+    /**
+     * @return `(map of strings)` - Task group metadata.
+     * 
+     */
     private @Nullable Map<String,String> meta;
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return `(list of maps)` - Task volume mounts.
+     * 
+     */
     private @Nullable List<JobTaskGroupTaskVolumeMount> volumeMounts;
 
     private JobTaskGroupTask() {}
+    /**
+     * @return `(string)` - Task driver.
+     * 
+     */
     public Optional<String> driver() {
         return Optional.ofNullable(this.driver);
     }
+    /**
+     * @return `(map of strings)` - Task group metadata.
+     * 
+     */
     public Map<String,String> meta() {
         return this.meta == null ? Map.of() : this.meta;
     }
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return `(list of maps)` - Task volume mounts.
+     * 
+     */
     public List<JobTaskGroupTaskVolumeMount> volumeMounts() {
         return this.volumeMounts == null ? List.of() : this.volumeMounts;
     }

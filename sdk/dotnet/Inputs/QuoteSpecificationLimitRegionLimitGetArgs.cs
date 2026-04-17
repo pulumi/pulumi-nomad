@@ -13,11 +13,41 @@ namespace Pulumi.Nomad.Inputs
     public sealed class QuoteSpecificationLimitRegionLimitGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// `(int: 0)` - The number of CPU cores to limit allocations to. A value
+        /// of zero is treated as unlimited, and a negative value is treated as fully
+        /// disallowed.
+        /// </summary>
+        [Input("cores")]
+        public Input<int>? Cores { get; set; }
+
+        /// <summary>
         /// `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
         /// is treated as unlimited, and a negative value is treated as fully disallowed.
         /// </summary>
         [Input("cpu")]
         public Input<int>? Cpu { get; set; }
+
+        [Input("devices")]
+        private InputList<Inputs.QuoteSpecificationLimitRegionLimitDeviceGetArgs>? _devices;
+        public InputList<Inputs.QuoteSpecificationLimitRegionLimitDeviceGetArgs> Devices
+        {
+            get => _devices ?? (_devices = new InputList<Inputs.QuoteSpecificationLimitRegionLimitDeviceGetArgs>());
+            set => _devices = value;
+        }
+
+        /// <summary>
+        /// `(int: 0)` - The maximum amount of memory (in megabytes) to
+        /// limit allocations to. A value of zero is treated as unlimited, and a negative
+        /// value is treated as fully disallowed.
+        /// - `Devices` `(block: optional)` - A list of device quotas to enforce. Can be
+        /// repeated. See below for the structure of this block.
+        /// - `NodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+        /// repeated. See below for the structure of this block.
+        /// - `Storage` `(block: optional)` - Storage resource quota configuration. May only
+        /// be specified once. See below for the structure of this block.
+        /// </summary>
+        [Input("memoryMaxMb")]
+        public Input<int>? MemoryMaxMb { get; set; }
 
         /// <summary>
         /// `(int: 0)` - The amount of memory (in megabytes) to limit
@@ -26,6 +56,17 @@ namespace Pulumi.Nomad.Inputs
         /// </summary>
         [Input("memoryMb")]
         public Input<int>? MemoryMb { get; set; }
+
+        [Input("nodePools")]
+        private InputList<Inputs.QuoteSpecificationLimitRegionLimitNodePoolGetArgs>? _nodePools;
+        public InputList<Inputs.QuoteSpecificationLimitRegionLimitNodePoolGetArgs> NodePools
+        {
+            get => _nodePools ?? (_nodePools = new InputList<Inputs.QuoteSpecificationLimitRegionLimitNodePoolGetArgs>());
+            set => _nodePools = value;
+        }
+
+        [Input("storage")]
+        public Input<Inputs.QuoteSpecificationLimitRegionLimitStorageGetArgs>? Storage { get; set; }
 
         public QuoteSpecificationLimitRegionLimitGetArgs()
         {

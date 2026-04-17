@@ -24,7 +24,32 @@ import * as utilities from "./utilities";
  *         region: "global",
  *         regionLimit: {
  *             cpu: 2400,
+ *             cores: 4,
  *             memoryMb: 1200,
+ *             memoryMaxMb: 2400,
+ *             devices: [{
+ *                 name: "nvidia/gpu",
+ *                 count: 2,
+ *             }],
+ *             nodePools: [{
+ *                 nodePool: "batch",
+ *                 cpu: 800,
+ *                 cores: 2,
+ *                 memoryMb: 1024,
+ *                 memoryMaxMb: 2048,
+ *                 devices: [{
+ *                     name: "fpga",
+ *                     count: 1,
+ *                 }],
+ *                 storage: {
+ *                     variablesMb: 25,
+ *                     hostVolumesMb: 50,
+ *                 },
+ *             }],
+ *             storage: {
+ *                 variablesMb: 500,
+ *                 hostVolumesMb: 1000,
+ *             },
  *         },
  *     }],
  * });
@@ -60,11 +85,12 @@ export class QuoteSpecification extends pulumi.CustomResource {
 
     /**
      * `(string: "")` - A description of the quota specification.
+     * - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+     * be repeated. See below for the structure of this block.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
-     * `(block: <required>)` - A block of quota limits to enforce. Can
-     * be repeated. See below for the structure of this block.
+     * Limits encapsulated by this quota specification.
      */
     declare public readonly limits: pulumi.Output<outputs.QuoteSpecificationLimit[]>;
     /**
@@ -108,11 +134,12 @@ export class QuoteSpecification extends pulumi.CustomResource {
 export interface QuoteSpecificationState {
     /**
      * `(string: "")` - A description of the quota specification.
+     * - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+     * be repeated. See below for the structure of this block.
      */
     description?: pulumi.Input<string>;
     /**
-     * `(block: <required>)` - A block of quota limits to enforce. Can
-     * be repeated. See below for the structure of this block.
+     * Limits encapsulated by this quota specification.
      */
     limits?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimit>[]>;
     /**
@@ -127,11 +154,12 @@ export interface QuoteSpecificationState {
 export interface QuoteSpecificationArgs {
     /**
      * `(string: "")` - A description of the quota specification.
+     * - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+     * be repeated. See below for the structure of this block.
      */
     description?: pulumi.Input<string>;
     /**
-     * `(block: <required>)` - A block of quota limits to enforce. Can
-     * be repeated. See below for the structure of this block.
+     * Limits encapsulated by this quota specification.
      */
     limits: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimit>[]>;
     /**

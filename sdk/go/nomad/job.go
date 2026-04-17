@@ -31,15 +31,21 @@ import (
 type Job struct {
 	pulumi.CustomResourceState
 
-	// The IDs for allocations associated with this job.
+	// `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+	AllAtOnce pulumi.BoolOutput `pulumi:"allAtOnce"`
+	// `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
 	//
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	AllocationIds pulumi.StringArrayOutput `pulumi:"allocationIds"`
-	// The target datacenters for the job, as derived from the jobspec.
+	// `(list of maps)` - Job constraints.
+	Constraints JobConstraintArrayOutput `pulumi:"constraints"`
+	// `(integer)` - The job creation index.
+	CreateIndex pulumi.IntOutput `pulumi:"createIndex"`
+	// `(set of strings)` - The target datacenters for the job.
 	Datacenters pulumi.StringArrayOutput `pulumi:"datacenters"`
-	// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+	// `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
 	DeploymentId pulumi.StringOutput `pulumi:"deploymentId"`
-	// If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+	// `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
 	DeploymentStatus pulumi.StringOutput `pulumi:"deploymentStatus"`
 	// `(boolean: true)` - Determines if the job will be
 	// deregistered when this resource is destroyed in Terraform.
@@ -57,30 +63,53 @@ type Job struct {
 	// `(boolean: false)` - Set this to `true` if your jobspec is structured with
 	// JSON instead of the default HCL.
 	Json pulumi.BoolPtrOutput `pulumi:"json"`
-	// Integer that increments for each change. Used to detect any changes between plan and apply.
+	// `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
 	ModifyIndex pulumi.StringOutput `pulumi:"modifyIndex"`
-	// The name of the job, as derived from the jobspec.
+	// `(string)` - Volume name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The namespace of the job, as derived from the jobspec.
+	// `(string)` - The namespace of the job, as derived from the jobspec.
 	Namespace pulumi.StringOutput `pulumi:"namespace"`
+	// `(string)` - The parent job ID, if applicable.
+	ParentId pulumi.StringOutput `pulumi:"parentId"`
+	// `(list of maps)` - The job's periodic configuration.
+	PeriodicConfigs JobPeriodicConfigArrayOutput `pulumi:"periodicConfigs"`
 	// `(boolean: false)` - Determines if the job will override any
 	// soft-mandatory Sentinel policies and register even if they fail.
 	PolicyOverride pulumi.BoolPtrOutput `pulumi:"policyOverride"`
+	// `(boolean: false)` - If true, preserves the current task
+	// group counts already stored in Nomad during job registration instead of
+	// applying the counts from the submitted jobspec.
+	PreserveCounts pulumi.BoolPtrOutput `pulumi:"preserveCounts"`
+	// `(integer)` - The job priority for scheduling and resource access.
+	Priority pulumi.IntOutput `pulumi:"priority"`
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy pulumi.BoolPtrOutput `pulumi:"purgeOnDestroy"`
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	ReadAllocationIds pulumi.BoolPtrOutput `pulumi:"readAllocationIds"`
-	// The target region for the job, as derived from the jobspec.
+	// `(string)` - The target region for the job.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// `(boolean: false)` - Set this to true to force the job to run
 	// again if its status is `dead`.
 	RerunIfDead pulumi.BoolPtrOutput `pulumi:"rerunIfDead"`
-	// The status of the job.
-	Status     pulumi.StringOutput     `pulumi:"status"`
+	// `(boolean)` - Whether the job is stable.
+	Stable pulumi.BoolOutput `pulumi:"stable"`
+	// `(string)` - The current status of the job.
+	Status pulumi.StringOutput `pulumi:"status"`
+	// `(string)` - Additional status information returned by Nomad.
+	StatusDescription pulumi.StringOutput `pulumi:"statusDescription"`
+	// `(boolean)` - Whether the job is stopped.
+	Stop pulumi.BoolOutput `pulumi:"stop"`
+	// `(integer)` - The Unix timestamp when the job was submitted.
+	SubmitTime pulumi.StringOutput `pulumi:"submitTime"`
+	// `(list of maps)` - A list of the job's task groups.
 	TaskGroups JobTaskGroupArrayOutput `pulumi:"taskGroups"`
-	// The type of the job, as derived from the jobspec.
+	// `(string)` - Volume type.
 	Type pulumi.StringOutput `pulumi:"type"`
+	// `(list of maps)` - Effective update strategy for the task group.
+	UpdateStrategies JobUpdateStrategyArrayOutput `pulumi:"updateStrategies"`
+	// `(integer)` - The current job version.
+	Version pulumi.IntOutput `pulumi:"version"`
 }
 
 // NewJob registers a new resource with the given unique name, arguments, and options.
@@ -116,15 +145,21 @@ func GetJob(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Job resources.
 type jobState struct {
-	// The IDs for allocations associated with this job.
+	// `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+	AllAtOnce *bool `pulumi:"allAtOnce"`
+	// `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
 	//
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	AllocationIds []string `pulumi:"allocationIds"`
-	// The target datacenters for the job, as derived from the jobspec.
+	// `(list of maps)` - Job constraints.
+	Constraints []JobConstraint `pulumi:"constraints"`
+	// `(integer)` - The job creation index.
+	CreateIndex *int `pulumi:"createIndex"`
+	// `(set of strings)` - The target datacenters for the job.
 	Datacenters []string `pulumi:"datacenters"`
-	// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+	// `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
 	DeploymentId *string `pulumi:"deploymentId"`
-	// If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+	// `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
 	DeploymentStatus *string `pulumi:"deploymentStatus"`
 	// `(boolean: true)` - Determines if the job will be
 	// deregistered when this resource is destroyed in Terraform.
@@ -142,42 +177,71 @@ type jobState struct {
 	// `(boolean: false)` - Set this to `true` if your jobspec is structured with
 	// JSON instead of the default HCL.
 	Json *bool `pulumi:"json"`
-	// Integer that increments for each change. Used to detect any changes between plan and apply.
+	// `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
 	ModifyIndex *string `pulumi:"modifyIndex"`
-	// The name of the job, as derived from the jobspec.
+	// `(string)` - Volume name.
 	Name *string `pulumi:"name"`
-	// The namespace of the job, as derived from the jobspec.
+	// `(string)` - The namespace of the job, as derived from the jobspec.
 	Namespace *string `pulumi:"namespace"`
+	// `(string)` - The parent job ID, if applicable.
+	ParentId *string `pulumi:"parentId"`
+	// `(list of maps)` - The job's periodic configuration.
+	PeriodicConfigs []JobPeriodicConfig `pulumi:"periodicConfigs"`
 	// `(boolean: false)` - Determines if the job will override any
 	// soft-mandatory Sentinel policies and register even if they fail.
 	PolicyOverride *bool `pulumi:"policyOverride"`
+	// `(boolean: false)` - If true, preserves the current task
+	// group counts already stored in Nomad during job registration instead of
+	// applying the counts from the submitted jobspec.
+	PreserveCounts *bool `pulumi:"preserveCounts"`
+	// `(integer)` - The job priority for scheduling and resource access.
+	Priority *int `pulumi:"priority"`
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy *bool `pulumi:"purgeOnDestroy"`
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	ReadAllocationIds *bool `pulumi:"readAllocationIds"`
-	// The target region for the job, as derived from the jobspec.
+	// `(string)` - The target region for the job.
 	Region *string `pulumi:"region"`
 	// `(boolean: false)` - Set this to true to force the job to run
 	// again if its status is `dead`.
 	RerunIfDead *bool `pulumi:"rerunIfDead"`
-	// The status of the job.
-	Status     *string        `pulumi:"status"`
+	// `(boolean)` - Whether the job is stable.
+	Stable *bool `pulumi:"stable"`
+	// `(string)` - The current status of the job.
+	Status *string `pulumi:"status"`
+	// `(string)` - Additional status information returned by Nomad.
+	StatusDescription *string `pulumi:"statusDescription"`
+	// `(boolean)` - Whether the job is stopped.
+	Stop *bool `pulumi:"stop"`
+	// `(integer)` - The Unix timestamp when the job was submitted.
+	SubmitTime *string `pulumi:"submitTime"`
+	// `(list of maps)` - A list of the job's task groups.
 	TaskGroups []JobTaskGroup `pulumi:"taskGroups"`
-	// The type of the job, as derived from the jobspec.
+	// `(string)` - Volume type.
 	Type *string `pulumi:"type"`
+	// `(list of maps)` - Effective update strategy for the task group.
+	UpdateStrategies []JobUpdateStrategy `pulumi:"updateStrategies"`
+	// `(integer)` - The current job version.
+	Version *int `pulumi:"version"`
 }
 
 type JobState struct {
-	// The IDs for allocations associated with this job.
+	// `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+	AllAtOnce pulumi.BoolPtrInput
+	// `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
 	//
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	AllocationIds pulumi.StringArrayInput
-	// The target datacenters for the job, as derived from the jobspec.
+	// `(list of maps)` - Job constraints.
+	Constraints JobConstraintArrayInput
+	// `(integer)` - The job creation index.
+	CreateIndex pulumi.IntPtrInput
+	// `(set of strings)` - The target datacenters for the job.
 	Datacenters pulumi.StringArrayInput
-	// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+	// `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
 	DeploymentId pulumi.StringPtrInput
-	// If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+	// `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
 	DeploymentStatus pulumi.StringPtrInput
 	// `(boolean: true)` - Determines if the job will be
 	// deregistered when this resource is destroyed in Terraform.
@@ -195,30 +259,53 @@ type JobState struct {
 	// `(boolean: false)` - Set this to `true` if your jobspec is structured with
 	// JSON instead of the default HCL.
 	Json pulumi.BoolPtrInput
-	// Integer that increments for each change. Used to detect any changes between plan and apply.
+	// `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
 	ModifyIndex pulumi.StringPtrInput
-	// The name of the job, as derived from the jobspec.
+	// `(string)` - Volume name.
 	Name pulumi.StringPtrInput
-	// The namespace of the job, as derived from the jobspec.
+	// `(string)` - The namespace of the job, as derived from the jobspec.
 	Namespace pulumi.StringPtrInput
+	// `(string)` - The parent job ID, if applicable.
+	ParentId pulumi.StringPtrInput
+	// `(list of maps)` - The job's periodic configuration.
+	PeriodicConfigs JobPeriodicConfigArrayInput
 	// `(boolean: false)` - Determines if the job will override any
 	// soft-mandatory Sentinel policies and register even if they fail.
 	PolicyOverride pulumi.BoolPtrInput
+	// `(boolean: false)` - If true, preserves the current task
+	// group counts already stored in Nomad during job registration instead of
+	// applying the counts from the submitted jobspec.
+	PreserveCounts pulumi.BoolPtrInput
+	// `(integer)` - The job priority for scheduling and resource access.
+	Priority pulumi.IntPtrInput
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy pulumi.BoolPtrInput
 	// Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 	ReadAllocationIds pulumi.BoolPtrInput
-	// The target region for the job, as derived from the jobspec.
+	// `(string)` - The target region for the job.
 	Region pulumi.StringPtrInput
 	// `(boolean: false)` - Set this to true to force the job to run
 	// again if its status is `dead`.
 	RerunIfDead pulumi.BoolPtrInput
-	// The status of the job.
-	Status     pulumi.StringPtrInput
+	// `(boolean)` - Whether the job is stable.
+	Stable pulumi.BoolPtrInput
+	// `(string)` - The current status of the job.
+	Status pulumi.StringPtrInput
+	// `(string)` - Additional status information returned by Nomad.
+	StatusDescription pulumi.StringPtrInput
+	// `(boolean)` - Whether the job is stopped.
+	Stop pulumi.BoolPtrInput
+	// `(integer)` - The Unix timestamp when the job was submitted.
+	SubmitTime pulumi.StringPtrInput
+	// `(list of maps)` - A list of the job's task groups.
 	TaskGroups JobTaskGroupArrayInput
-	// The type of the job, as derived from the jobspec.
+	// `(string)` - Volume type.
 	Type pulumi.StringPtrInput
+	// `(list of maps)` - Effective update strategy for the task group.
+	UpdateStrategies JobUpdateStrategyArrayInput
+	// `(integer)` - The current job version.
+	Version pulumi.IntPtrInput
 }
 
 func (JobState) ElementType() reflect.Type {
@@ -245,6 +332,10 @@ type jobArgs struct {
 	// `(boolean: false)` - Determines if the job will override any
 	// soft-mandatory Sentinel policies and register even if they fail.
 	PolicyOverride *bool `pulumi:"policyOverride"`
+	// `(boolean: false)` - If true, preserves the current task
+	// group counts already stored in Nomad during job registration instead of
+	// applying the counts from the submitted jobspec.
+	PreserveCounts *bool `pulumi:"preserveCounts"`
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy *bool `pulumi:"purgeOnDestroy"`
@@ -276,6 +367,10 @@ type JobArgs struct {
 	// `(boolean: false)` - Determines if the job will override any
 	// soft-mandatory Sentinel policies and register even if they fail.
 	PolicyOverride pulumi.BoolPtrInput
+	// `(boolean: false)` - If true, preserves the current task
+	// group counts already stored in Nomad during job registration instead of
+	// applying the counts from the submitted jobspec.
+	PreserveCounts pulumi.BoolPtrInput
 	// `(boolean: false)` - Set this to true if you want the job to
 	// be purged when the resource is destroyed.
 	PurgeOnDestroy pulumi.BoolPtrInput
@@ -373,24 +468,39 @@ func (o JobOutput) ToJobOutputWithContext(ctx context.Context) JobOutput {
 	return o
 }
 
-// The IDs for allocations associated with this job.
+// `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+func (o JobOutput) AllAtOnce() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.AllAtOnce }).(pulumi.BoolOutput)
+}
+
+// `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
 //
 // Deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the getAllocations data source instead.
 func (o JobOutput) AllocationIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.AllocationIds }).(pulumi.StringArrayOutput)
 }
 
-// The target datacenters for the job, as derived from the jobspec.
+// `(list of maps)` - Job constraints.
+func (o JobOutput) Constraints() JobConstraintArrayOutput {
+	return o.ApplyT(func(v *Job) JobConstraintArrayOutput { return v.Constraints }).(JobConstraintArrayOutput)
+}
+
+// `(integer)` - The job creation index.
+func (o JobOutput) CreateIndex() pulumi.IntOutput {
+	return o.ApplyT(func(v *Job) pulumi.IntOutput { return v.CreateIndex }).(pulumi.IntOutput)
+}
+
+// `(set of strings)` - The target datacenters for the job.
 func (o JobOutput) Datacenters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringArrayOutput { return v.Datacenters }).(pulumi.StringArrayOutput)
 }
 
-// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+// `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
 func (o JobOutput) DeploymentId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.DeploymentId }).(pulumi.StringOutput)
 }
 
-// If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+// `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
 func (o JobOutput) DeploymentStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.DeploymentStatus }).(pulumi.StringOutput)
 }
@@ -429,25 +539,47 @@ func (o JobOutput) Json() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.Json }).(pulumi.BoolPtrOutput)
 }
 
-// Integer that increments for each change. Used to detect any changes between plan and apply.
+// `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
 func (o JobOutput) ModifyIndex() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.ModifyIndex }).(pulumi.StringOutput)
 }
 
-// The name of the job, as derived from the jobspec.
+// `(string)` - Volume name.
 func (o JobOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The namespace of the job, as derived from the jobspec.
+// `(string)` - The namespace of the job, as derived from the jobspec.
 func (o JobOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Namespace }).(pulumi.StringOutput)
+}
+
+// `(string)` - The parent job ID, if applicable.
+func (o JobOutput) ParentId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.ParentId }).(pulumi.StringOutput)
+}
+
+// `(list of maps)` - The job's periodic configuration.
+func (o JobOutput) PeriodicConfigs() JobPeriodicConfigArrayOutput {
+	return o.ApplyT(func(v *Job) JobPeriodicConfigArrayOutput { return v.PeriodicConfigs }).(JobPeriodicConfigArrayOutput)
 }
 
 // `(boolean: false)` - Determines if the job will override any
 // soft-mandatory Sentinel policies and register even if they fail.
 func (o JobOutput) PolicyOverride() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.PolicyOverride }).(pulumi.BoolPtrOutput)
+}
+
+// `(boolean: false)` - If true, preserves the current task
+// group counts already stored in Nomad during job registration instead of
+// applying the counts from the submitted jobspec.
+func (o JobOutput) PreserveCounts() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.PreserveCounts }).(pulumi.BoolPtrOutput)
+}
+
+// `(integer)` - The job priority for scheduling and resource access.
+func (o JobOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v *Job) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
 }
 
 // `(boolean: false)` - Set this to true if you want the job to
@@ -461,7 +593,7 @@ func (o JobOutput) ReadAllocationIds() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.ReadAllocationIds }).(pulumi.BoolPtrOutput)
 }
 
-// The target region for the job, as derived from the jobspec.
+// `(string)` - The target region for the job.
 func (o JobOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
@@ -472,18 +604,49 @@ func (o JobOutput) RerunIfDead() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Job) pulumi.BoolPtrOutput { return v.RerunIfDead }).(pulumi.BoolPtrOutput)
 }
 
-// The status of the job.
+// `(boolean)` - Whether the job is stable.
+func (o JobOutput) Stable() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.Stable }).(pulumi.BoolOutput)
+}
+
+// `(string)` - The current status of the job.
 func (o JobOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
+// `(string)` - Additional status information returned by Nomad.
+func (o JobOutput) StatusDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.StatusDescription }).(pulumi.StringOutput)
+}
+
+// `(boolean)` - Whether the job is stopped.
+func (o JobOutput) Stop() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Job) pulumi.BoolOutput { return v.Stop }).(pulumi.BoolOutput)
+}
+
+// `(integer)` - The Unix timestamp when the job was submitted.
+func (o JobOutput) SubmitTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.SubmitTime }).(pulumi.StringOutput)
+}
+
+// `(list of maps)` - A list of the job's task groups.
 func (o JobOutput) TaskGroups() JobTaskGroupArrayOutput {
 	return o.ApplyT(func(v *Job) JobTaskGroupArrayOutput { return v.TaskGroups }).(JobTaskGroupArrayOutput)
 }
 
-// The type of the job, as derived from the jobspec.
+// `(string)` - Volume type.
 func (o JobOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// `(list of maps)` - Effective update strategy for the task group.
+func (o JobOutput) UpdateStrategies() JobUpdateStrategyArrayOutput {
+	return o.ApplyT(func(v *Job) JobUpdateStrategyArrayOutput { return v.UpdateStrategies }).(JobUpdateStrategyArrayOutput)
+}
+
+// `(integer)` - The current job version.
+func (o JobOutput) Version() pulumi.IntOutput {
+	return o.ApplyT(func(v *Job) pulumi.IntOutput { return v.Version }).(pulumi.IntOutput)
 }
 
 type JobArrayOutput struct{ *pulumi.OutputState }

@@ -12,62 +12,62 @@ import java.util.Objects;
 @CustomType
 public final class GetJobPeriodicConfig {
     /**
-     * @return `(boolean)` If periodic scheduling is enabled for the specified job.
+     * @return `(boolean)` Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
      * 
      */
     private Boolean enabled;
     /**
-     * @return `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+     * @return `(boolean)` Whether this job should wait until previous instances of the same job have completed before launching again.
      * 
      */
     private Boolean prohibitOverlap;
     /**
-     * @return `(string)`
+     * @return `(string)` Cron expression configuring the interval at which the job is launched.
      * 
      */
     private String spec;
     /**
-     * @return `(string)`
+     * @return `(string)` Type of periodic specification, such as `cron`.
      * 
      */
     private String specType;
     /**
-     * @return `(string)` Time zone to evaluate the next launch interval against.
+     * @return `(string)` Time zone used to evaluate the next launch interval.
      * 
      */
     private String timezone;
 
     private GetJobPeriodicConfig() {}
     /**
-     * @return `(boolean)` If periodic scheduling is enabled for the specified job.
+     * @return `(boolean)` Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
      * 
      */
     public Boolean enabled() {
         return this.enabled;
     }
     /**
-     * @return `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+     * @return `(boolean)` Whether this job should wait until previous instances of the same job have completed before launching again.
      * 
      */
     public Boolean prohibitOverlap() {
         return this.prohibitOverlap;
     }
     /**
-     * @return `(string)`
+     * @return `(string)` Cron expression configuring the interval at which the job is launched.
      * 
      */
     public String spec() {
         return this.spec;
     }
     /**
-     * @return `(string)`
+     * @return `(string)` Type of periodic specification, such as `cron`.
      * 
      */
     public String specType() {
         return this.specType;
     }
     /**
-     * @return `(string)` Time zone to evaluate the next launch interval against.
+     * @return `(string)` Time zone used to evaluate the next launch interval.
      * 
      */
     public String timezone() {

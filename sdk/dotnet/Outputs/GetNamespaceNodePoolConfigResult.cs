@@ -13,8 +13,17 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class GetNamespaceNodePoolConfigResult
     {
+        /// <summary>
+        /// `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+        /// </summary>
         public readonly ImmutableArray<string> Alloweds;
+        /// <summary>
+        /// `(string)` - The Consul cluster to use when none is specified in the job.
+        /// </summary>
         public readonly string Default;
+        /// <summary>
+        /// `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+        /// </summary>
         public readonly ImmutableArray<string> Denieds;
 
         [OutputConstructor]

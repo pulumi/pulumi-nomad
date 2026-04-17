@@ -130,6 +130,11 @@ export const getNamespaces: typeof import("./getNamespaces").getNamespaces = nul
 export const getNamespacesOutput: typeof import("./getNamespaces").getNamespacesOutput = null as any;
 utilities.lazyLoad(exports, ["getNamespaces","getNamespacesOutput"], () => require("./getNamespaces"));
 
+export { GetNodeArgs, GetNodeResult, GetNodeOutputArgs } from "./getNode";
+export const getNode: typeof import("./getNode").getNode = null as any;
+export const getNodeOutput: typeof import("./getNode").getNodeOutput = null as any;
+utilities.lazyLoad(exports, ["getNode","getNodeOutput"], () => require("./getNode"));
+
 export { GetNodePoolArgs, GetNodePoolResult, GetNodePoolOutputArgs } from "./getNodePool";
 export const getNodePool: typeof import("./getNodePool").getNodePool = null as any;
 export const getNodePoolOutput: typeof import("./getNodePool").getNodePoolOutput = null as any;
@@ -139,6 +144,11 @@ export { GetNodePoolsArgs, GetNodePoolsResult, GetNodePoolsOutputArgs } from "./
 export const getNodePools: typeof import("./getNodePools").getNodePools = null as any;
 export const getNodePoolsOutput: typeof import("./getNodePools").getNodePoolsOutput = null as any;
 utilities.lazyLoad(exports, ["getNodePools","getNodePoolsOutput"], () => require("./getNodePools"));
+
+export { GetNodesArgs, GetNodesResult, GetNodesOutputArgs } from "./getNodes";
+export const getNodes: typeof import("./getNodes").getNodes = null as any;
+export const getNodesOutput: typeof import("./getNodes").getNodesOutput = null as any;
+utilities.lazyLoad(exports, ["getNodes","getNodesOutput"], () => require("./getNodes"));
 
 export { GetPluginArgs, GetPluginResult, GetPluginOutputArgs } from "./getPlugin";
 export const getPlugin: typeof import("./getPlugin").getPlugin = null as any;

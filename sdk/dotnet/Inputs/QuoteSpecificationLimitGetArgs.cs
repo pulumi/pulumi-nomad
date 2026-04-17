@@ -14,14 +14,15 @@ namespace Pulumi.Nomad.Inputs
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - The region these limits should apply to.
+        /// - `RegionLimit` `(block: &lt;required&gt;)` - The limits to enforce. This block
+        /// may only be specified once in the `Limits` block. Its structure is
+        /// documented below.
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
-        /// `(block: &lt;required&gt;)` - The limits to enforce. This block
-        /// may only be specified once in the `Limits` block. Its structure is
-        /// documented below.
+        /// The limit applied to this region.
         /// </summary>
         [Input("regionLimit", required: true)]
         public Input<Inputs.QuoteSpecificationLimitRegionLimitGetArgs> RegionLimit { get; set; } = null!;

@@ -96,6 +96,12 @@ namespace Pulumi.Nomad
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "httpAuth",
+                    "keyPem",
+                    "secretId",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -164,11 +170,21 @@ namespace Pulumi.Nomad
             }
         }
 
+        [Input("httpAuth")]
+        private Input<string>? _httpAuth;
+
         /// <summary>
         /// HTTP basic auth configuration.
         /// </summary>
-        [Input("httpAuth")]
-        public Input<string>? HttpAuth { get; set; }
+        public Input<string>? HttpAuth
+        {
+            get => _httpAuth;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _httpAuth = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("ignoreEnvVars", json: true)]
         private InputMap<bool>? _ignoreEnvVars;
@@ -188,11 +204,21 @@ namespace Pulumi.Nomad
         [Input("keyFile")]
         public Input<string>? KeyFile { get; set; }
 
+        [Input("keyPem")]
+        private Input<string>? _keyPem;
+
         /// <summary>
         /// PEM-encoded private key, required if CertFile or CertPem is specified.
         /// </summary>
-        [Input("keyPem")]
-        public Input<string>? KeyPem { get; set; }
+        public Input<string>? KeyPem
+        {
+            get => _keyPem;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _keyPem = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Region of the target Nomad agent.
@@ -200,11 +226,21 @@ namespace Pulumi.Nomad
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("secretId")]
+        private Input<string>? _secretId;
+
         /// <summary>
         /// ACL token secret for API requests.
         /// </summary>
-        [Input("secretId")]
-        public Input<string>? SecretId { get; set; }
+        public Input<string>? SecretId
+        {
+            get => _secretId;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretId = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Skip TLS verification on client side.

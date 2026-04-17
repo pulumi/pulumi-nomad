@@ -17,14 +17,14 @@ public final class GetJobParserPlainArgs extends com.pulumi.resources.InvokeArgs
     public static final GetJobParserPlainArgs Empty = new GetJobParserPlainArgs();
 
     /**
-     * `(boolean: true)` - flag to enable setting any unset fields to their default values.
+     * `(boolean: false)` - Flag to enable setting any unset fields to their default values.
      * 
      */
     @Import(name="canonicalize")
     private @Nullable Boolean canonicalize;
 
     /**
-     * @return `(boolean: true)` - flag to enable setting any unset fields to their default values.
+     * @return `(boolean: false)` - Flag to enable setting any unset fields to their default values.
      * 
      */
     public Optional<Boolean> canonicalize() {
@@ -32,18 +32,33 @@ public final class GetJobParserPlainArgs extends com.pulumi.resources.InvokeArgs
     }
 
     /**
-     * `(string)` - the HCL definition of the job.
+     * `(string: &lt;required&gt;)` - The HCL definition of the job.
      * 
      */
     @Import(name="hcl", required=true)
     private String hcl;
 
     /**
-     * @return `(string)` - the HCL definition of the job.
+     * @return `(string: &lt;required&gt;)` - The HCL definition of the job.
      * 
      */
     public String hcl() {
         return this.hcl;
+    }
+
+    /**
+     * `(string: &#34;&#34;)` - HCL2 variables to pass to the job parser. Interpreted as the content of a variables file.
+     * 
+     */
+    @Import(name="variables")
+    private @Nullable String variables;
+
+    /**
+     * @return `(string: &#34;&#34;)` - HCL2 variables to pass to the job parser. Interpreted as the content of a variables file.
+     * 
+     */
+    public Optional<String> variables() {
+        return Optional.ofNullable(this.variables);
     }
 
     private GetJobParserPlainArgs() {}
@@ -51,6 +66,7 @@ public final class GetJobParserPlainArgs extends com.pulumi.resources.InvokeArgs
     private GetJobParserPlainArgs(GetJobParserPlainArgs $) {
         this.canonicalize = $.canonicalize;
         this.hcl = $.hcl;
+        this.variables = $.variables;
     }
 
     public static Builder builder() {
@@ -72,7 +88,7 @@ public final class GetJobParserPlainArgs extends com.pulumi.resources.InvokeArgs
         }
 
         /**
-         * @param canonicalize `(boolean: true)` - flag to enable setting any unset fields to their default values.
+         * @param canonicalize `(boolean: false)` - Flag to enable setting any unset fields to their default values.
          * 
          * @return builder
          * 
@@ -83,13 +99,24 @@ public final class GetJobParserPlainArgs extends com.pulumi.resources.InvokeArgs
         }
 
         /**
-         * @param hcl `(string)` - the HCL definition of the job.
+         * @param hcl `(string: &lt;required&gt;)` - The HCL definition of the job.
          * 
          * @return builder
          * 
          */
         public Builder hcl(String hcl) {
             $.hcl = hcl;
+            return this;
+        }
+
+        /**
+         * @param variables `(string: &#34;&#34;)` - HCL2 variables to pass to the job parser. Interpreted as the content of a variables file.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder variables(@Nullable String variables) {
+            $.variables = variables;
             return this;
         }
 

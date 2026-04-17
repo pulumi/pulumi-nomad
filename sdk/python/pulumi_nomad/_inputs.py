@@ -79,20 +79,32 @@ __all__ = [
     'ExternalVolumeTopologyRequestRequiredArgsDict',
     'ExternalVolumeTopologyRequestRequiredTopologyArgs',
     'ExternalVolumeTopologyRequestRequiredTopologyArgsDict',
+    'JobConstraintArgs',
+    'JobConstraintArgsDict',
     'JobHcl2Args',
     'JobHcl2ArgsDict',
+    'JobPeriodicConfigArgs',
+    'JobPeriodicConfigArgsDict',
     'JobTaskGroupArgs',
     'JobTaskGroupArgsDict',
     'JobTaskGroupTaskArgs',
     'JobTaskGroupTaskArgsDict',
     'JobTaskGroupTaskVolumeMountArgs',
     'JobTaskGroupTaskVolumeMountArgsDict',
+    'JobTaskGroupUpdateStrategyArgs',
+    'JobTaskGroupUpdateStrategyArgsDict',
     'JobTaskGroupVolumeArgs',
     'JobTaskGroupVolumeArgsDict',
+    'JobUpdateStrategyArgs',
+    'JobUpdateStrategyArgsDict',
     'NamespaceCapabilitiesArgs',
     'NamespaceCapabilitiesArgsDict',
+    'NamespaceConsulConfigArgs',
+    'NamespaceConsulConfigArgsDict',
     'NamespaceNodePoolConfigArgs',
     'NamespaceNodePoolConfigArgsDict',
+    'NamespaceVaultConfigArgs',
+    'NamespaceVaultConfigArgsDict',
     'NodePoolSchedulerConfigArgs',
     'NodePoolSchedulerConfigArgsDict',
     'ProviderAuthJwtArgs',
@@ -103,6 +115,16 @@ __all__ = [
     'QuoteSpecificationLimitArgsDict',
     'QuoteSpecificationLimitRegionLimitArgs',
     'QuoteSpecificationLimitRegionLimitArgsDict',
+    'QuoteSpecificationLimitRegionLimitDeviceArgs',
+    'QuoteSpecificationLimitRegionLimitDeviceArgsDict',
+    'QuoteSpecificationLimitRegionLimitNodePoolArgs',
+    'QuoteSpecificationLimitRegionLimitNodePoolArgsDict',
+    'QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs',
+    'QuoteSpecificationLimitRegionLimitNodePoolDeviceArgsDict',
+    'QuoteSpecificationLimitRegionLimitNodePoolStorageArgs',
+    'QuoteSpecificationLimitRegionLimitNodePoolStorageArgsDict',
+    'QuoteSpecificationLimitRegionLimitStorageArgs',
+    'QuoteSpecificationLimitRegionLimitStorageArgsDict',
     'VolumeCapabilityArgs',
     'VolumeCapabilityArgsDict',
     'VolumeMountOptionsArgs',
@@ -943,13 +965,13 @@ class AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs:
 
 
 class AclPolicyJobAclArgsDict(TypedDict):
-    job_id: pulumi.Input[_builtins.str]
-    """
-    Job
-    """
     group: NotRequired[pulumi.Input[_builtins.str]]
     """
     Group
+    """
+    job_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Job. If empty, the policy applies to all jobs in the namespace.
     """
     namespace: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -963,35 +985,24 @@ class AclPolicyJobAclArgsDict(TypedDict):
 @pulumi.input_type
 class AclPolicyJobAclArgs:
     def __init__(__self__, *,
-                 job_id: pulumi.Input[_builtins.str],
                  group: Optional[pulumi.Input[_builtins.str]] = None,
+                 job_id: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  task: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] job_id: Job
         :param pulumi.Input[_builtins.str] group: Group
+        :param pulumi.Input[_builtins.str] job_id: Job. If empty, the policy applies to all jobs in the namespace.
         :param pulumi.Input[_builtins.str] namespace: Namespace
         :param pulumi.Input[_builtins.str] task: Task
         """
-        pulumi.set(__self__, "job_id", job_id)
         if group is not None:
             pulumi.set(__self__, "group", group)
+        if job_id is not None:
+            pulumi.set(__self__, "job_id", job_id)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if task is not None:
             pulumi.set(__self__, "task", task)
-
-    @_builtins.property
-    @pulumi.getter(name="jobId")
-    def job_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        Job
-        """
-        return pulumi.get(self, "job_id")
-
-    @job_id.setter
-    def job_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "job_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1004,6 +1015,18 @@ class AclPolicyJobAclArgs:
     @group.setter
     def group(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "group", value)
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Job. If empty, the policy applies to all jobs in the namespace.
+        """
+        return pulumi.get(self, "job_id")
+
+    @job_id.setter
+    def job_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "job_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -2220,6 +2243,75 @@ class ExternalVolumeTopologyRequestRequiredTopologyArgs:
         pulumi.set(self, "segments", value)
 
 
+class JobConstraintArgsDict(TypedDict):
+    ltarget: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Attribute being constrained.
+    """
+    operand: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Operator used to compare the attribute to the constraint.
+    """
+    rtarget: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Constraint value.
+    """
+
+@pulumi.input_type
+class JobConstraintArgs:
+    def __init__(__self__, *,
+                 ltarget: Optional[pulumi.Input[_builtins.str]] = None,
+                 operand: Optional[pulumi.Input[_builtins.str]] = None,
+                 rtarget: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] ltarget: `(string)` - Attribute being constrained.
+        :param pulumi.Input[_builtins.str] operand: `(string)` - Operator used to compare the attribute to the constraint.
+        :param pulumi.Input[_builtins.str] rtarget: `(string)` - Constraint value.
+        """
+        if ltarget is not None:
+            pulumi.set(__self__, "ltarget", ltarget)
+        if operand is not None:
+            pulumi.set(__self__, "operand", operand)
+        if rtarget is not None:
+            pulumi.set(__self__, "rtarget", rtarget)
+
+    @_builtins.property
+    @pulumi.getter
+    def ltarget(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Attribute being constrained.
+        """
+        return pulumi.get(self, "ltarget")
+
+    @ltarget.setter
+    def ltarget(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "ltarget", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def operand(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Operator used to compare the attribute to the constraint.
+        """
+        return pulumi.get(self, "operand")
+
+    @operand.setter
+    def operand(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "operand", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def rtarget(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Constraint value.
+        """
+        return pulumi.get(self, "rtarget")
+
+    @rtarget.setter
+    def rtarget(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "rtarget", value)
+
+
 class JobHcl2ArgsDict(TypedDict):
     allow_fs: NotRequired[pulumi.Input[_builtins.bool]]
     """
@@ -2272,12 +2364,140 @@ class JobHcl2Args:
         pulumi.set(self, "vars", value)
 
 
+class JobPeriodicConfigArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    `(boolean)` - Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
+    """
+    prohibit_overlap: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    `(boolean)` - Whether this job should wait until previous instances of the same job have completed before launching again.
+    """
+    spec: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Cron expression configuring the interval at which the job is launched.
+    """
+    spec_type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Type of periodic specification, such as `cron`.
+    """
+    timezone: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Time zone used to evaluate the next launch interval.
+    """
+
+@pulumi.input_type
+class JobPeriodicConfigArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 prohibit_overlap: Optional[pulumi.Input[_builtins.bool]] = None,
+                 spec: Optional[pulumi.Input[_builtins.str]] = None,
+                 spec_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 timezone: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] enabled: `(boolean)` - Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
+        :param pulumi.Input[_builtins.bool] prohibit_overlap: `(boolean)` - Whether this job should wait until previous instances of the same job have completed before launching again.
+        :param pulumi.Input[_builtins.str] spec: `(string)` - Cron expression configuring the interval at which the job is launched.
+        :param pulumi.Input[_builtins.str] spec_type: `(string)` - Type of periodic specification, such as `cron`.
+        :param pulumi.Input[_builtins.str] timezone: `(string)` - Time zone used to evaluate the next launch interval.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if prohibit_overlap is not None:
+            pulumi.set(__self__, "prohibit_overlap", prohibit_overlap)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if spec_type is not None:
+            pulumi.set(__self__, "spec_type", spec_type)
+        if timezone is not None:
+            pulumi.set(__self__, "timezone", timezone)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        `(boolean)` - Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="prohibitOverlap")
+    def prohibit_overlap(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        `(boolean)` - Whether this job should wait until previous instances of the same job have completed before launching again.
+        """
+        return pulumi.get(self, "prohibit_overlap")
+
+    @prohibit_overlap.setter
+    def prohibit_overlap(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "prohibit_overlap", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def spec(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Cron expression configuring the interval at which the job is launched.
+        """
+        return pulumi.get(self, "spec")
+
+    @spec.setter
+    def spec(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "spec", value)
+
+    @_builtins.property
+    @pulumi.getter(name="specType")
+    def spec_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Type of periodic specification, such as `cron`.
+        """
+        return pulumi.get(self, "spec_type")
+
+    @spec_type.setter
+    def spec_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "spec_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timezone(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Time zone used to evaluate the next launch interval.
+        """
+        return pulumi.get(self, "timezone")
+
+    @timezone.setter
+    def timezone(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "timezone", value)
+
+
 class JobTaskGroupArgsDict(TypedDict):
     count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(integer)` - Task group count.
+    """
     meta: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    `(map of strings)` - Task group metadata.
+    """
     name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Volume name.
+    """
     tasks: NotRequired[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskArgsDict']]]]
+    """
+    `(list of maps)` - Tasks in the task group.
+    """
+    update_strategies: NotRequired[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupUpdateStrategyArgsDict']]]]
+    """
+    `(list of maps)` - Effective update strategy for the task group.
+    """
     volumes: NotRequired[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupVolumeArgsDict']]]]
+    """
+    `(list of maps)` - Volume requests for the task group.
+    """
 
 @pulumi.input_type
 class JobTaskGroupArgs:
@@ -2286,7 +2506,16 @@ class JobTaskGroupArgs:
                  meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  tasks: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskArgs']]]] = None,
+                 update_strategies: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupUpdateStrategyArgs']]]] = None,
                  volumes: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupVolumeArgs']]]] = None):
+        """
+        :param pulumi.Input[_builtins.int] count: `(integer)` - Task group count.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] meta: `(map of strings)` - Task group metadata.
+        :param pulumi.Input[_builtins.str] name: `(string)` - Volume name.
+        :param pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskArgs']]] tasks: `(list of maps)` - Tasks in the task group.
+        :param pulumi.Input[Sequence[pulumi.Input['JobTaskGroupUpdateStrategyArgs']]] update_strategies: `(list of maps)` - Effective update strategy for the task group.
+        :param pulumi.Input[Sequence[pulumi.Input['JobTaskGroupVolumeArgs']]] volumes: `(list of maps)` - Volume requests for the task group.
+        """
         if count is not None:
             pulumi.set(__self__, "count", count)
         if meta is not None:
@@ -2295,12 +2524,17 @@ class JobTaskGroupArgs:
             pulumi.set(__self__, "name", name)
         if tasks is not None:
             pulumi.set(__self__, "tasks", tasks)
+        if update_strategies is not None:
+            pulumi.set(__self__, "update_strategies", update_strategies)
         if volumes is not None:
             pulumi.set(__self__, "volumes", volumes)
 
     @_builtins.property
     @pulumi.getter
     def count(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(integer)` - Task group count.
+        """
         return pulumi.get(self, "count")
 
     @count.setter
@@ -2310,6 +2544,9 @@ class JobTaskGroupArgs:
     @_builtins.property
     @pulumi.getter
     def meta(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        `(map of strings)` - Task group metadata.
+        """
         return pulumi.get(self, "meta")
 
     @meta.setter
@@ -2319,6 +2556,9 @@ class JobTaskGroupArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Volume name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -2328,6 +2568,9 @@ class JobTaskGroupArgs:
     @_builtins.property
     @pulumi.getter
     def tasks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskArgs']]]]:
+        """
+        `(list of maps)` - Tasks in the task group.
+        """
         return pulumi.get(self, "tasks")
 
     @tasks.setter
@@ -2335,8 +2578,23 @@ class JobTaskGroupArgs:
         pulumi.set(self, "tasks", value)
 
     @_builtins.property
+    @pulumi.getter(name="updateStrategies")
+    def update_strategies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupUpdateStrategyArgs']]]]:
+        """
+        `(list of maps)` - Effective update strategy for the task group.
+        """
+        return pulumi.get(self, "update_strategies")
+
+    @update_strategies.setter
+    def update_strategies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupUpdateStrategyArgs']]]]):
+        pulumi.set(self, "update_strategies", value)
+
+    @_builtins.property
     @pulumi.getter
     def volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupVolumeArgs']]]]:
+        """
+        `(list of maps)` - Volume requests for the task group.
+        """
         return pulumi.get(self, "volumes")
 
     @volumes.setter
@@ -2346,9 +2604,21 @@ class JobTaskGroupArgs:
 
 class JobTaskGroupTaskArgsDict(TypedDict):
     driver: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Task driver.
+    """
     meta: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    `(map of strings)` - Task group metadata.
+    """
     name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Volume name.
+    """
     volume_mounts: NotRequired[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskVolumeMountArgsDict']]]]
+    """
+    `(list of maps)` - Task volume mounts.
+    """
 
 @pulumi.input_type
 class JobTaskGroupTaskArgs:
@@ -2357,6 +2627,12 @@ class JobTaskGroupTaskArgs:
                  meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  volume_mounts: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskVolumeMountArgs']]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] driver: `(string)` - Task driver.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] meta: `(map of strings)` - Task group metadata.
+        :param pulumi.Input[_builtins.str] name: `(string)` - Volume name.
+        :param pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskVolumeMountArgs']]] volume_mounts: `(list of maps)` - Task volume mounts.
+        """
         if driver is not None:
             pulumi.set(__self__, "driver", driver)
         if meta is not None:
@@ -2369,6 +2645,9 @@ class JobTaskGroupTaskArgs:
     @_builtins.property
     @pulumi.getter
     def driver(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Task driver.
+        """
         return pulumi.get(self, "driver")
 
     @driver.setter
@@ -2378,6 +2657,9 @@ class JobTaskGroupTaskArgs:
     @_builtins.property
     @pulumi.getter
     def meta(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        `(map of strings)` - Task group metadata.
+        """
         return pulumi.get(self, "meta")
 
     @meta.setter
@@ -2387,6 +2669,9 @@ class JobTaskGroupTaskArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Volume name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -2396,6 +2681,9 @@ class JobTaskGroupTaskArgs:
     @_builtins.property
     @pulumi.getter(name="volumeMounts")
     def volume_mounts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupTaskVolumeMountArgs']]]]:
+        """
+        `(list of maps)` - Task volume mounts.
+        """
         return pulumi.get(self, "volume_mounts")
 
     @volume_mounts.setter
@@ -2405,8 +2693,17 @@ class JobTaskGroupTaskArgs:
 
 class JobTaskGroupTaskVolumeMountArgsDict(TypedDict):
     destination: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Destination path inside the task.
+    """
     read_only: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    `(boolean)` - Whether the volume is read-only.
+    """
     volume: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Volume name.
+    """
 
 @pulumi.input_type
 class JobTaskGroupTaskVolumeMountArgs:
@@ -2414,6 +2711,11 @@ class JobTaskGroupTaskVolumeMountArgs:
                  destination: Optional[pulumi.Input[_builtins.str]] = None,
                  read_only: Optional[pulumi.Input[_builtins.bool]] = None,
                  volume: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] destination: `(string)` - Destination path inside the task.
+        :param pulumi.Input[_builtins.bool] read_only: `(boolean)` - Whether the volume is read-only.
+        :param pulumi.Input[_builtins.str] volume: `(string)` - Volume name.
+        """
         if destination is not None:
             pulumi.set(__self__, "destination", destination)
         if read_only is not None:
@@ -2424,6 +2726,9 @@ class JobTaskGroupTaskVolumeMountArgs:
     @_builtins.property
     @pulumi.getter
     def destination(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Destination path inside the task.
+        """
         return pulumi.get(self, "destination")
 
     @destination.setter
@@ -2433,6 +2738,9 @@ class JobTaskGroupTaskVolumeMountArgs:
     @_builtins.property
     @pulumi.getter(name="readOnly")
     def read_only(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        `(boolean)` - Whether the volume is read-only.
+        """
         return pulumi.get(self, "read_only")
 
     @read_only.setter
@@ -2442,6 +2750,9 @@ class JobTaskGroupTaskVolumeMountArgs:
     @_builtins.property
     @pulumi.getter
     def volume(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Volume name.
+        """
         return pulumi.get(self, "volume")
 
     @volume.setter
@@ -2449,11 +2760,172 @@ class JobTaskGroupTaskVolumeMountArgs:
         pulumi.set(self, "volume", value)
 
 
+class JobTaskGroupUpdateStrategyArgsDict(TypedDict):
+    auto_revert: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+    """
+    canary: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(integer)` - Number of canary allocations created before destructive updates continue.
+    """
+    health_check: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+    """
+    healthy_deadline: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+    """
+    max_parallel: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+    """
+    min_healthy_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+    """
+    stagger: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Delay between each set of `max_parallel` updates when updating system jobs.
+    """
+
+@pulumi.input_type
+class JobTaskGroupUpdateStrategyArgs:
+    def __init__(__self__, *,
+                 auto_revert: Optional[pulumi.Input[_builtins.bool]] = None,
+                 canary: Optional[pulumi.Input[_builtins.int]] = None,
+                 health_check: Optional[pulumi.Input[_builtins.str]] = None,
+                 healthy_deadline: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_parallel: Optional[pulumi.Input[_builtins.int]] = None,
+                 min_healthy_time: Optional[pulumi.Input[_builtins.str]] = None,
+                 stagger: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] auto_revert: `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+        :param pulumi.Input[_builtins.int] canary: `(integer)` - Number of canary allocations created before destructive updates continue.
+        :param pulumi.Input[_builtins.str] health_check: `(string)` - Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        :param pulumi.Input[_builtins.str] healthy_deadline: `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+        :param pulumi.Input[_builtins.int] max_parallel: `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        :param pulumi.Input[_builtins.str] min_healthy_time: `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+        :param pulumi.Input[_builtins.str] stagger: `(string)` - Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        if auto_revert is not None:
+            pulumi.set(__self__, "auto_revert", auto_revert)
+        if canary is not None:
+            pulumi.set(__self__, "canary", canary)
+        if health_check is not None:
+            pulumi.set(__self__, "health_check", health_check)
+        if healthy_deadline is not None:
+            pulumi.set(__self__, "healthy_deadline", healthy_deadline)
+        if max_parallel is not None:
+            pulumi.set(__self__, "max_parallel", max_parallel)
+        if min_healthy_time is not None:
+            pulumi.set(__self__, "min_healthy_time", min_healthy_time)
+        if stagger is not None:
+            pulumi.set(__self__, "stagger", stagger)
+
+    @_builtins.property
+    @pulumi.getter(name="autoRevert")
+    def auto_revert(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+        """
+        return pulumi.get(self, "auto_revert")
+
+    @auto_revert.setter
+    def auto_revert(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "auto_revert", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def canary(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(integer)` - Number of canary allocations created before destructive updates continue.
+        """
+        return pulumi.get(self, "canary")
+
+    @canary.setter
+    def canary(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "canary", value)
+
+    @_builtins.property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        """
+        return pulumi.get(self, "health_check")
+
+    @health_check.setter
+    def health_check(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "health_check", value)
+
+    @_builtins.property
+    @pulumi.getter(name="healthyDeadline")
+    def healthy_deadline(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+        """
+        return pulumi.get(self, "healthy_deadline")
+
+    @healthy_deadline.setter
+    def healthy_deadline(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "healthy_deadline", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxParallel")
+    def max_parallel(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        """
+        return pulumi.get(self, "max_parallel")
+
+    @max_parallel.setter
+    def max_parallel(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_parallel", value)
+
+    @_builtins.property
+    @pulumi.getter(name="minHealthyTime")
+    def min_healthy_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+        """
+        return pulumi.get(self, "min_healthy_time")
+
+    @min_healthy_time.setter
+    def min_healthy_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "min_healthy_time", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def stagger(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        return pulumi.get(self, "stagger")
+
+    @stagger.setter
+    def stagger(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "stagger", value)
+
+
 class JobTaskGroupVolumeArgsDict(TypedDict):
     name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Volume name.
+    """
     read_only: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    `(boolean)` - Whether the volume is read-only.
+    """
     source: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Volume source.
+    """
     type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Volume type.
+    """
 
 @pulumi.input_type
 class JobTaskGroupVolumeArgs:
@@ -2462,6 +2934,12 @@ class JobTaskGroupVolumeArgs:
                  read_only: Optional[pulumi.Input[_builtins.bool]] = None,
                  source: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: `(string)` - Volume name.
+        :param pulumi.Input[_builtins.bool] read_only: `(boolean)` - Whether the volume is read-only.
+        :param pulumi.Input[_builtins.str] source: `(string)` - Volume source.
+        :param pulumi.Input[_builtins.str] type: `(string)` - Volume type.
+        """
         if name is not None:
             pulumi.set(__self__, "name", name)
         if read_only is not None:
@@ -2474,6 +2952,9 @@ class JobTaskGroupVolumeArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Volume name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -2483,6 +2964,9 @@ class JobTaskGroupVolumeArgs:
     @_builtins.property
     @pulumi.getter(name="readOnly")
     def read_only(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        `(boolean)` - Whether the volume is read-only.
+        """
         return pulumi.get(self, "read_only")
 
     @read_only.setter
@@ -2492,6 +2976,9 @@ class JobTaskGroupVolumeArgs:
     @_builtins.property
     @pulumi.getter
     def source(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Volume source.
+        """
         return pulumi.get(self, "source")
 
     @source.setter
@@ -2501,11 +2988,163 @@ class JobTaskGroupVolumeArgs:
     @_builtins.property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Volume type.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "type", value)
+
+
+class JobUpdateStrategyArgsDict(TypedDict):
+    auto_revert: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+    """
+    canary: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(integer)` - Number of canary allocations created before destructive updates continue.
+    """
+    health_check: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+    """
+    healthy_deadline: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+    """
+    max_parallel: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+    """
+    min_healthy_time: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+    """
+    stagger: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string)` - Delay between each set of `max_parallel` updates when updating system jobs.
+    """
+
+@pulumi.input_type
+class JobUpdateStrategyArgs:
+    def __init__(__self__, *,
+                 auto_revert: Optional[pulumi.Input[_builtins.bool]] = None,
+                 canary: Optional[pulumi.Input[_builtins.int]] = None,
+                 health_check: Optional[pulumi.Input[_builtins.str]] = None,
+                 healthy_deadline: Optional[pulumi.Input[_builtins.str]] = None,
+                 max_parallel: Optional[pulumi.Input[_builtins.int]] = None,
+                 min_healthy_time: Optional[pulumi.Input[_builtins.str]] = None,
+                 stagger: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.bool] auto_revert: `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+        :param pulumi.Input[_builtins.int] canary: `(integer)` - Number of canary allocations created before destructive updates continue.
+        :param pulumi.Input[_builtins.str] health_check: `(string)` - Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        :param pulumi.Input[_builtins.str] healthy_deadline: `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+        :param pulumi.Input[_builtins.int] max_parallel: `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        :param pulumi.Input[_builtins.str] min_healthy_time: `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+        :param pulumi.Input[_builtins.str] stagger: `(string)` - Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        if auto_revert is not None:
+            pulumi.set(__self__, "auto_revert", auto_revert)
+        if canary is not None:
+            pulumi.set(__self__, "canary", canary)
+        if health_check is not None:
+            pulumi.set(__self__, "health_check", health_check)
+        if healthy_deadline is not None:
+            pulumi.set(__self__, "healthy_deadline", healthy_deadline)
+        if max_parallel is not None:
+            pulumi.set(__self__, "max_parallel", max_parallel)
+        if min_healthy_time is not None:
+            pulumi.set(__self__, "min_healthy_time", min_healthy_time)
+        if stagger is not None:
+            pulumi.set(__self__, "stagger", stagger)
+
+    @_builtins.property
+    @pulumi.getter(name="autoRevert")
+    def auto_revert(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+        """
+        return pulumi.get(self, "auto_revert")
+
+    @auto_revert.setter
+    def auto_revert(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "auto_revert", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def canary(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(integer)` - Number of canary allocations created before destructive updates continue.
+        """
+        return pulumi.get(self, "canary")
+
+    @canary.setter
+    def canary(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "canary", value)
+
+    @_builtins.property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        """
+        return pulumi.get(self, "health_check")
+
+    @health_check.setter
+    def health_check(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "health_check", value)
+
+    @_builtins.property
+    @pulumi.getter(name="healthyDeadline")
+    def healthy_deadline(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+        """
+        return pulumi.get(self, "healthy_deadline")
+
+    @healthy_deadline.setter
+    def healthy_deadline(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "healthy_deadline", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxParallel")
+    def max_parallel(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        """
+        return pulumi.get(self, "max_parallel")
+
+    @max_parallel.setter
+    def max_parallel(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_parallel", value)
+
+    @_builtins.property
+    @pulumi.getter(name="minHealthyTime")
+    def min_healthy_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+        """
+        return pulumi.get(self, "min_healthy_time")
+
+    @min_healthy_time.setter
+    def min_healthy_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "min_healthy_time", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def stagger(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        return pulumi.get(self, "stagger")
+
+    @stagger.setter
+    def stagger(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "stagger", value)
 
 
 class NamespaceCapabilitiesArgsDict(TypedDict):
@@ -2597,6 +3236,75 @@ class NamespaceCapabilitiesArgs:
         pulumi.set(self, "enabled_task_drivers", value)
 
 
+class NamespaceConsulConfigArgsDict(TypedDict):
+    alloweds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
+    """
+    default: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
+    """
+    denieds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+    """
+
+@pulumi.input_type
+class NamespaceConsulConfigArgs:
+    def __init__(__self__, *,
+                 alloweds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default: Optional[pulumi.Input[_builtins.str]] = None,
+                 denieds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alloweds: `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
+        :param pulumi.Input[_builtins.str] default: `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] denieds: `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+        """
+        if alloweds is not None:
+            pulumi.set(__self__, "alloweds", alloweds)
+        if default is not None:
+            pulumi.set(__self__, "default", default)
+        if denieds is not None:
+            pulumi.set(__self__, "denieds", denieds)
+
+    @_builtins.property
+    @pulumi.getter
+    def alloweds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
+        """
+        return pulumi.get(self, "alloweds")
+
+    @alloweds.setter
+    def alloweds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alloweds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def default(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
+        """
+        return pulumi.get(self, "default")
+
+    @default.setter
+    def default(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "default", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def denieds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+        """
+        return pulumi.get(self, "denieds")
+
+    @denieds.setter
+    def denieds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "denieds", value)
+
+
 class NamespaceNodePoolConfigArgsDict(TypedDict):
     alloweds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
     """
@@ -2658,6 +3366,75 @@ class NamespaceNodePoolConfigArgs:
     def denieds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+        """
+        return pulumi.get(self, "denieds")
+
+    @denieds.setter
+    def denieds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "denieds", value)
+
+
+class NamespaceVaultConfigArgsDict(TypedDict):
+    alloweds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
+    """
+    default: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
+    """
+    denieds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+    """
+
+@pulumi.input_type
+class NamespaceVaultConfigArgs:
+    def __init__(__self__, *,
+                 alloweds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default: Optional[pulumi.Input[_builtins.str]] = None,
+                 denieds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alloweds: `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
+        :param pulumi.Input[_builtins.str] default: `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] denieds: `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+        """
+        if alloweds is not None:
+            pulumi.set(__self__, "alloweds", alloweds)
+        if default is not None:
+            pulumi.set(__self__, "default", default)
+        if denieds is not None:
+            pulumi.set(__self__, "denieds", denieds)
+
+    @_builtins.property
+    @pulumi.getter
+    def alloweds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
+        """
+        return pulumi.get(self, "alloweds")
+
+    @alloweds.setter
+    def alloweds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "alloweds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def default(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
+        """
+        return pulumi.get(self, "default")
+
+    @default.setter
+    def default(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "default", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def denieds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
         """
         return pulumi.get(self, "denieds")
 
@@ -2840,12 +3617,13 @@ class QuoteSpecificationLimitArgsDict(TypedDict):
     region: pulumi.Input[_builtins.str]
     """
     `(string: <required>)` - The region these limits should apply to.
+    - `region_limit` `(block: <required>)` - The limits to enforce. This block
+    may only be specified once in the `limits` block. Its structure is
+    documented below.
     """
     region_limit: pulumi.Input['QuoteSpecificationLimitRegionLimitArgsDict']
     """
-    `(block: <required>)` - The limits to enforce. This block
-    may only be specified once in the `limits` block. Its structure is
-    documented below.
+    The limit applied to this region.
     """
 
 @pulumi.input_type
@@ -2855,9 +3633,10 @@ class QuoteSpecificationLimitArgs:
                  region_limit: pulumi.Input['QuoteSpecificationLimitRegionLimitArgs']):
         """
         :param pulumi.Input[_builtins.str] region: `(string: <required>)` - The region these limits should apply to.
-        :param pulumi.Input['QuoteSpecificationLimitRegionLimitArgs'] region_limit: `(block: <required>)` - The limits to enforce. This block
+               - `region_limit` `(block: <required>)` - The limits to enforce. This block
                may only be specified once in the `limits` block. Its structure is
                documented below.
+        :param pulumi.Input['QuoteSpecificationLimitRegionLimitArgs'] region_limit: The limit applied to this region.
         """
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "region_limit", region_limit)
@@ -2867,6 +3646,9 @@ class QuoteSpecificationLimitArgs:
     def region(self) -> pulumi.Input[_builtins.str]:
         """
         `(string: <required>)` - The region these limits should apply to.
+        - `region_limit` `(block: <required>)` - The limits to enforce. This block
+        may only be specified once in the `limits` block. Its structure is
+        documented below.
         """
         return pulumi.get(self, "region")
 
@@ -2878,9 +3660,7 @@ class QuoteSpecificationLimitArgs:
     @pulumi.getter(name="regionLimit")
     def region_limit(self) -> pulumi.Input['QuoteSpecificationLimitRegionLimitArgs']:
         """
-        `(block: <required>)` - The limits to enforce. This block
-        may only be specified once in the `limits` block. Its structure is
-        documented below.
+        The limit applied to this region.
         """
         return pulumi.get(self, "region_limit")
 
@@ -2890,10 +3670,29 @@ class QuoteSpecificationLimitArgs:
 
 
 class QuoteSpecificationLimitRegionLimitArgsDict(TypedDict):
+    cores: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The number of CPU cores to limit allocations to. A value
+    of zero is treated as unlimited, and a negative value is treated as fully
+    disallowed.
+    """
     cpu: NotRequired[pulumi.Input[_builtins.int]]
     """
     `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
     is treated as unlimited, and a negative value is treated as fully disallowed.
+    """
+    devices: NotRequired[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitDeviceArgsDict']]]]
+    memory_max_mb: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The maximum amount of memory (in megabytes) to
+    limit allocations to. A value of zero is treated as unlimited, and a negative
+    value is treated as fully disallowed.
+    - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+    repeated. See below for the structure of this block.
+    - `node_pools` `(block: optional)` - Per-node-pool quota limits. Can be
+    repeated. See below for the structure of this block.
+    - `storage` `(block: optional)` - Storage resource quota configuration. May only
+    be specified once. See below for the structure of this block.
     """
     memory_mb: NotRequired[pulumi.Input[_builtins.int]]
     """
@@ -2901,23 +3700,66 @@ class QuoteSpecificationLimitRegionLimitArgsDict(TypedDict):
     allocations to. A value of zero is treated as unlimited, and a negative value
     is treated as fully disallowed.
     """
+    node_pools: NotRequired[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolArgsDict']]]]
+    storage: NotRequired[pulumi.Input['QuoteSpecificationLimitRegionLimitStorageArgsDict']]
 
 @pulumi.input_type
 class QuoteSpecificationLimitRegionLimitArgs:
     def __init__(__self__, *,
+                 cores: Optional[pulumi.Input[_builtins.int]] = None,
                  cpu: Optional[pulumi.Input[_builtins.int]] = None,
-                 memory_mb: Optional[pulumi.Input[_builtins.int]] = None):
+                 devices: Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitDeviceArgs']]]] = None,
+                 memory_max_mb: Optional[pulumi.Input[_builtins.int]] = None,
+                 memory_mb: Optional[pulumi.Input[_builtins.int]] = None,
+                 node_pools: Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolArgs']]]] = None,
+                 storage: Optional[pulumi.Input['QuoteSpecificationLimitRegionLimitStorageArgs']] = None):
         """
+        :param pulumi.Input[_builtins.int] cores: `(int: 0)` - The number of CPU cores to limit allocations to. A value
+               of zero is treated as unlimited, and a negative value is treated as fully
+               disallowed.
         :param pulumi.Input[_builtins.int] cpu: `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
                is treated as unlimited, and a negative value is treated as fully disallowed.
+        :param pulumi.Input[_builtins.int] memory_max_mb: `(int: 0)` - The maximum amount of memory (in megabytes) to
+               limit allocations to. A value of zero is treated as unlimited, and a negative
+               value is treated as fully disallowed.
+               - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+               repeated. See below for the structure of this block.
+               - `node_pools` `(block: optional)` - Per-node-pool quota limits. Can be
+               repeated. See below for the structure of this block.
+               - `storage` `(block: optional)` - Storage resource quota configuration. May only
+               be specified once. See below for the structure of this block.
         :param pulumi.Input[_builtins.int] memory_mb: `(int: 0)` - The amount of memory (in megabytes) to limit
                allocations to. A value of zero is treated as unlimited, and a negative value
                is treated as fully disallowed.
         """
+        if cores is not None:
+            pulumi.set(__self__, "cores", cores)
         if cpu is not None:
             pulumi.set(__self__, "cpu", cpu)
+        if devices is not None:
+            pulumi.set(__self__, "devices", devices)
+        if memory_max_mb is not None:
+            pulumi.set(__self__, "memory_max_mb", memory_max_mb)
         if memory_mb is not None:
             pulumi.set(__self__, "memory_mb", memory_mb)
+        if node_pools is not None:
+            pulumi.set(__self__, "node_pools", node_pools)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The number of CPU cores to limit allocations to. A value
+        of zero is treated as unlimited, and a negative value is treated as fully
+        disallowed.
+        """
+        return pulumi.get(self, "cores")
+
+    @cores.setter
+    def cores(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "cores", value)
 
     @_builtins.property
     @pulumi.getter
@@ -2933,6 +3775,35 @@ class QuoteSpecificationLimitRegionLimitArgs:
         pulumi.set(self, "cpu", value)
 
     @_builtins.property
+    @pulumi.getter
+    def devices(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitDeviceArgs']]]]:
+        return pulumi.get(self, "devices")
+
+    @devices.setter
+    def devices(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitDeviceArgs']]]]):
+        pulumi.set(self, "devices", value)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMaxMb")
+    def memory_max_mb(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The maximum amount of memory (in megabytes) to
+        limit allocations to. A value of zero is treated as unlimited, and a negative
+        value is treated as fully disallowed.
+        - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+        repeated. See below for the structure of this block.
+        - `node_pools` `(block: optional)` - Per-node-pool quota limits. Can be
+        repeated. See below for the structure of this block.
+        - `storage` `(block: optional)` - Storage resource quota configuration. May only
+        be specified once. See below for the structure of this block.
+        """
+        return pulumi.get(self, "memory_max_mb")
+
+    @memory_max_mb.setter
+    def memory_max_mb(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "memory_max_mb", value)
+
+    @_builtins.property
     @pulumi.getter(name="memoryMb")
     def memory_mb(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -2945,6 +3816,403 @@ class QuoteSpecificationLimitRegionLimitArgs:
     @memory_mb.setter
     def memory_mb(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "memory_mb", value)
+
+    @_builtins.property
+    @pulumi.getter(name="nodePools")
+    def node_pools(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolArgs']]]]:
+        return pulumi.get(self, "node_pools")
+
+    @node_pools.setter
+    def node_pools(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolArgs']]]]):
+        pulumi.set(self, "node_pools", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def storage(self) -> Optional[pulumi.Input['QuoteSpecificationLimitRegionLimitStorageArgs']]:
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: Optional[pulumi.Input['QuoteSpecificationLimitRegionLimitStorageArgs']]):
+        pulumi.set(self, "storage", value)
+
+
+class QuoteSpecificationLimitRegionLimitDeviceArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    `(string: <required>)` - The name of the device, e.g.
+    `"nvidia/gpu"`.
+    """
+    count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The number of device instances to limit allocations to.
+    """
+
+@pulumi.input_type
+class QuoteSpecificationLimitRegionLimitDeviceArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 count: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: `(string: <required>)` - The name of the device, e.g.
+               `"nvidia/gpu"`.
+        :param pulumi.Input[_builtins.int] count: `(int: 0)` - The number of device instances to limit allocations to.
+        """
+        pulumi.set(__self__, "name", name)
+        if count is not None:
+            pulumi.set(__self__, "count", count)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        `(string: <required>)` - The name of the device, e.g.
+        `"nvidia/gpu"`.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The number of device instances to limit allocations to.
+        """
+        return pulumi.get(self, "count")
+
+    @count.setter
+    def count(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "count", value)
+
+
+class QuoteSpecificationLimitRegionLimitNodePoolArgsDict(TypedDict):
+    node_pool: pulumi.Input[_builtins.str]
+    """
+    `(string: <required>)` - The node pool name to apply limits to.
+    """
+    cores: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The number of CPU cores to limit allocations to. A value
+    of zero is treated as unlimited, and a negative value is treated as fully
+    disallowed.
+    """
+    cpu: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
+    is treated as unlimited, and a negative value is treated as fully disallowed.
+    """
+    devices: NotRequired[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolDeviceArgsDict']]]]
+    memory_max_mb: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The maximum amount of memory (in megabytes) to
+    limit allocations to. A value of zero is treated as unlimited, and a negative
+    value is treated as fully disallowed.
+    - `devices` `(block: optional)` - A list of device quotas to
+    enforce for the node pool. Can be repeated.
+    - `storage` `(block: optional)` - Storage resource quota
+    configuration for the node pool. May only be specified once.
+    """
+    memory_mb: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The amount of memory (in megabytes) to limit
+    allocations to. A value of zero is treated as unlimited, and a negative value
+    is treated as fully disallowed.
+    """
+    storage: NotRequired[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolStorageArgsDict']]
+
+@pulumi.input_type
+class QuoteSpecificationLimitRegionLimitNodePoolArgs:
+    def __init__(__self__, *,
+                 node_pool: pulumi.Input[_builtins.str],
+                 cores: Optional[pulumi.Input[_builtins.int]] = None,
+                 cpu: Optional[pulumi.Input[_builtins.int]] = None,
+                 devices: Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs']]]] = None,
+                 memory_max_mb: Optional[pulumi.Input[_builtins.int]] = None,
+                 memory_mb: Optional[pulumi.Input[_builtins.int]] = None,
+                 storage: Optional[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolStorageArgs']] = None):
+        """
+        :param pulumi.Input[_builtins.str] node_pool: `(string: <required>)` - The node pool name to apply limits to.
+        :param pulumi.Input[_builtins.int] cores: `(int: 0)` - The number of CPU cores to limit allocations to. A value
+               of zero is treated as unlimited, and a negative value is treated as fully
+               disallowed.
+        :param pulumi.Input[_builtins.int] cpu: `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
+               is treated as unlimited, and a negative value is treated as fully disallowed.
+        :param pulumi.Input[_builtins.int] memory_max_mb: `(int: 0)` - The maximum amount of memory (in megabytes) to
+               limit allocations to. A value of zero is treated as unlimited, and a negative
+               value is treated as fully disallowed.
+               - `devices` `(block: optional)` - A list of device quotas to
+               enforce for the node pool. Can be repeated.
+               - `storage` `(block: optional)` - Storage resource quota
+               configuration for the node pool. May only be specified once.
+        :param pulumi.Input[_builtins.int] memory_mb: `(int: 0)` - The amount of memory (in megabytes) to limit
+               allocations to. A value of zero is treated as unlimited, and a negative value
+               is treated as fully disallowed.
+        """
+        pulumi.set(__self__, "node_pool", node_pool)
+        if cores is not None:
+            pulumi.set(__self__, "cores", cores)
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if devices is not None:
+            pulumi.set(__self__, "devices", devices)
+        if memory_max_mb is not None:
+            pulumi.set(__self__, "memory_max_mb", memory_max_mb)
+        if memory_mb is not None:
+            pulumi.set(__self__, "memory_mb", memory_mb)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+
+    @_builtins.property
+    @pulumi.getter(name="nodePool")
+    def node_pool(self) -> pulumi.Input[_builtins.str]:
+        """
+        `(string: <required>)` - The node pool name to apply limits to.
+        """
+        return pulumi.get(self, "node_pool")
+
+    @node_pool.setter
+    def node_pool(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "node_pool", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The number of CPU cores to limit allocations to. A value
+        of zero is treated as unlimited, and a negative value is treated as fully
+        disallowed.
+        """
+        return pulumi.get(self, "cores")
+
+    @cores.setter
+    def cores(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "cores", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
+        is treated as unlimited, and a negative value is treated as fully disallowed.
+        """
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "cpu", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def devices(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs']]]]:
+        return pulumi.get(self, "devices")
+
+    @devices.setter
+    def devices(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs']]]]):
+        pulumi.set(self, "devices", value)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMaxMb")
+    def memory_max_mb(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The maximum amount of memory (in megabytes) to
+        limit allocations to. A value of zero is treated as unlimited, and a negative
+        value is treated as fully disallowed.
+        - `devices` `(block: optional)` - A list of device quotas to
+        enforce for the node pool. Can be repeated.
+        - `storage` `(block: optional)` - Storage resource quota
+        configuration for the node pool. May only be specified once.
+        """
+        return pulumi.get(self, "memory_max_mb")
+
+    @memory_max_mb.setter
+    def memory_max_mb(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "memory_max_mb", value)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMb")
+    def memory_mb(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The amount of memory (in megabytes) to limit
+        allocations to. A value of zero is treated as unlimited, and a negative value
+        is treated as fully disallowed.
+        """
+        return pulumi.get(self, "memory_mb")
+
+    @memory_mb.setter
+    def memory_mb(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "memory_mb", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def storage(self) -> Optional[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolStorageArgs']]:
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: Optional[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolStorageArgs']]):
+        pulumi.set(self, "storage", value)
+
+
+class QuoteSpecificationLimitRegionLimitNodePoolDeviceArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    `(string: <required>)` - The name of the device, e.g.
+    `"nvidia/gpu"`.
+    """
+    count: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The number of device instances to limit allocations to.
+    """
+
+@pulumi.input_type
+class QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 count: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: `(string: <required>)` - The name of the device, e.g.
+               `"nvidia/gpu"`.
+        :param pulumi.Input[_builtins.int] count: `(int: 0)` - The number of device instances to limit allocations to.
+        """
+        pulumi.set(__self__, "name", name)
+        if count is not None:
+            pulumi.set(__self__, "count", count)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        `(string: <required>)` - The name of the device, e.g.
+        `"nvidia/gpu"`.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The number of device instances to limit allocations to.
+        """
+        return pulumi.get(self, "count")
+
+    @count.setter
+    def count(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "count", value)
+
+
+class QuoteSpecificationLimitRegionLimitNodePoolStorageArgsDict(TypedDict):
+    host_volumes_mb: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The amount of storage (in megabytes) to limit
+    host volumes to.
+    """
+    variables_mb: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The amount of storage (in megabytes) to limit
+    Nomad variables to.
+    """
+
+@pulumi.input_type
+class QuoteSpecificationLimitRegionLimitNodePoolStorageArgs:
+    def __init__(__self__, *,
+                 host_volumes_mb: Optional[pulumi.Input[_builtins.int]] = None,
+                 variables_mb: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] host_volumes_mb: `(int: 0)` - The amount of storage (in megabytes) to limit
+               host volumes to.
+        :param pulumi.Input[_builtins.int] variables_mb: `(int: 0)` - The amount of storage (in megabytes) to limit
+               Nomad variables to.
+        """
+        if host_volumes_mb is not None:
+            pulumi.set(__self__, "host_volumes_mb", host_volumes_mb)
+        if variables_mb is not None:
+            pulumi.set(__self__, "variables_mb", variables_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="hostVolumesMb")
+    def host_volumes_mb(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The amount of storage (in megabytes) to limit
+        host volumes to.
+        """
+        return pulumi.get(self, "host_volumes_mb")
+
+    @host_volumes_mb.setter
+    def host_volumes_mb(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "host_volumes_mb", value)
+
+    @_builtins.property
+    @pulumi.getter(name="variablesMb")
+    def variables_mb(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The amount of storage (in megabytes) to limit
+        Nomad variables to.
+        """
+        return pulumi.get(self, "variables_mb")
+
+    @variables_mb.setter
+    def variables_mb(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "variables_mb", value)
+
+
+class QuoteSpecificationLimitRegionLimitStorageArgsDict(TypedDict):
+    host_volumes_mb: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The amount of storage (in megabytes) to limit
+    host volumes to.
+    """
+    variables_mb: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    `(int: 0)` - The amount of storage (in megabytes) to limit
+    Nomad variables to.
+    """
+
+@pulumi.input_type
+class QuoteSpecificationLimitRegionLimitStorageArgs:
+    def __init__(__self__, *,
+                 host_volumes_mb: Optional[pulumi.Input[_builtins.int]] = None,
+                 variables_mb: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] host_volumes_mb: `(int: 0)` - The amount of storage (in megabytes) to limit
+               host volumes to.
+        :param pulumi.Input[_builtins.int] variables_mb: `(int: 0)` - The amount of storage (in megabytes) to limit
+               Nomad variables to.
+        """
+        if host_volumes_mb is not None:
+            pulumi.set(__self__, "host_volumes_mb", host_volumes_mb)
+        if variables_mb is not None:
+            pulumi.set(__self__, "variables_mb", variables_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="hostVolumesMb")
+    def host_volumes_mb(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The amount of storage (in megabytes) to limit
+        host volumes to.
+        """
+        return pulumi.get(self, "host_volumes_mb")
+
+    @host_volumes_mb.setter
+    def host_volumes_mb(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "host_volumes_mb", value)
+
+    @_builtins.property
+    @pulumi.getter(name="variablesMb")
+    def variables_mb(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(int: 0)` - The amount of storage (in megabytes) to limit
+        Nomad variables to.
+        """
+        return pulumi.get(self, "variables_mb")
+
+    @variables_mb.setter
+    def variables_mb(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "variables_mb", value)
 
 
 class VolumeCapabilityArgsDict(TypedDict):

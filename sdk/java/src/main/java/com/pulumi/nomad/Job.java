@@ -10,9 +10,13 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.nomad.JobArgs;
 import com.pulumi.nomad.Utilities;
 import com.pulumi.nomad.inputs.JobState;
+import com.pulumi.nomad.outputs.JobConstraint;
 import com.pulumi.nomad.outputs.JobHcl2;
+import com.pulumi.nomad.outputs.JobPeriodicConfig;
 import com.pulumi.nomad.outputs.JobTaskGroup;
+import com.pulumi.nomad.outputs.JobUpdateStrategy;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +44,21 @@ import javax.annotation.Nullable;
 @ResourceType(type="nomad:index/job:Job")
 public class Job extends com.pulumi.resources.CustomResource {
     /**
-     * The IDs for allocations associated with this job.
+     * `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+     * 
+     */
+    @Export(name="allAtOnce", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> allAtOnce;
+
+    /**
+     * @return `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+     * 
+     */
+    public Output<Boolean> allAtOnce() {
+        return this.allAtOnce;
+    }
+    /**
+     * `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
      * 
      * @deprecated
      * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
@@ -51,49 +69,77 @@ public class Job extends com.pulumi.resources.CustomResource {
     private Output<List<String>> allocationIds;
 
     /**
-     * @return The IDs for allocations associated with this job.
+     * @return `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
      * 
      */
     public Output<List<String>> allocationIds() {
         return this.allocationIds;
     }
     /**
-     * The target datacenters for the job, as derived from the jobspec.
+     * `(list of maps)` - Job constraints.
+     * 
+     */
+    @Export(name="constraints", refs={List.class,JobConstraint.class}, tree="[0,1]")
+    private Output<List<JobConstraint>> constraints;
+
+    /**
+     * @return `(list of maps)` - Job constraints.
+     * 
+     */
+    public Output<List<JobConstraint>> constraints() {
+        return this.constraints;
+    }
+    /**
+     * `(integer)` - The job creation index.
+     * 
+     */
+    @Export(name="createIndex", refs={Integer.class}, tree="[0]")
+    private Output<Integer> createIndex;
+
+    /**
+     * @return `(integer)` - The job creation index.
+     * 
+     */
+    public Output<Integer> createIndex() {
+        return this.createIndex;
+    }
+    /**
+     * `(set of strings)` - The target datacenters for the job.
      * 
      */
     @Export(name="datacenters", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> datacenters;
 
     /**
-     * @return The target datacenters for the job, as derived from the jobspec.
+     * @return `(set of strings)` - The target datacenters for the job.
      * 
      */
     public Output<List<String>> datacenters() {
         return this.datacenters;
     }
     /**
-     * If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+     * `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
      * 
      */
     @Export(name="deploymentId", refs={String.class}, tree="[0]")
     private Output<String> deploymentId;
 
     /**
-     * @return If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+     * @return `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
      * 
      */
     public Output<String> deploymentId() {
         return this.deploymentId;
     }
     /**
-     * If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+     * `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
      * 
      */
     @Export(name="deploymentStatus", refs={String.class}, tree="[0]")
     private Output<String> deploymentStatus;
 
     /**
-     * @return If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+     * @return `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
      * 
      */
     public Output<String> deploymentStatus() {
@@ -192,46 +238,74 @@ public class Job extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.json);
     }
     /**
-     * Integer that increments for each change. Used to detect any changes between plan and apply.
+     * `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
      * 
      */
     @Export(name="modifyIndex", refs={String.class}, tree="[0]")
     private Output<String> modifyIndex;
 
     /**
-     * @return Integer that increments for each change. Used to detect any changes between plan and apply.
+     * @return `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
      * 
      */
     public Output<String> modifyIndex() {
         return this.modifyIndex;
     }
     /**
-     * The name of the job, as derived from the jobspec.
+     * `(string)` - Volume name.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of the job, as derived from the jobspec.
+     * @return `(string)` - Volume name.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The namespace of the job, as derived from the jobspec.
+     * `(string)` - The namespace of the job, as derived from the jobspec.
      * 
      */
     @Export(name="namespace", refs={String.class}, tree="[0]")
     private Output<String> namespace;
 
     /**
-     * @return The namespace of the job, as derived from the jobspec.
+     * @return `(string)` - The namespace of the job, as derived from the jobspec.
      * 
      */
     public Output<String> namespace() {
         return this.namespace;
+    }
+    /**
+     * `(string)` - The parent job ID, if applicable.
+     * 
+     */
+    @Export(name="parentId", refs={String.class}, tree="[0]")
+    private Output<String> parentId;
+
+    /**
+     * @return `(string)` - The parent job ID, if applicable.
+     * 
+     */
+    public Output<String> parentId() {
+        return this.parentId;
+    }
+    /**
+     * `(list of maps)` - The job&#39;s periodic configuration.
+     * 
+     */
+    @Export(name="periodicConfigs", refs={List.class,JobPeriodicConfig.class}, tree="[0,1]")
+    private Output<List<JobPeriodicConfig>> periodicConfigs;
+
+    /**
+     * @return `(list of maps)` - The job&#39;s periodic configuration.
+     * 
+     */
+    public Output<List<JobPeriodicConfig>> periodicConfigs() {
+        return this.periodicConfigs;
     }
     /**
      * `(boolean: false)` - Determines if the job will override any
@@ -248,6 +322,38 @@ public class Job extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> policyOverride() {
         return Codegen.optional(this.policyOverride);
+    }
+    /**
+     * `(boolean: false)` - If true, preserves the current task
+     * group counts already stored in Nomad during job registration instead of
+     * applying the counts from the submitted jobspec.
+     * 
+     */
+    @Export(name="preserveCounts", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> preserveCounts;
+
+    /**
+     * @return `(boolean: false)` - If true, preserves the current task
+     * group counts already stored in Nomad during job registration instead of
+     * applying the counts from the submitted jobspec.
+     * 
+     */
+    public Output<Optional<Boolean>> preserveCounts() {
+        return Codegen.optional(this.preserveCounts);
+    }
+    /**
+     * `(integer)` - The job priority for scheduling and resource access.
+     * 
+     */
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
+    private Output<Integer> priority;
+
+    /**
+     * @return `(integer)` - The job priority for scheduling and resource access.
+     * 
+     */
+    public Output<Integer> priority() {
+        return this.priority;
     }
     /**
      * `(boolean: false)` - Set this to true if you want the job to
@@ -278,14 +384,14 @@ public class Job extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.readAllocationIds);
     }
     /**
-     * The target region for the job, as derived from the jobspec.
+     * `(string)` - The target region for the job.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return The target region for the job, as derived from the jobspec.
+     * @return `(string)` - The target region for the job.
      * 
      */
     public Output<String> region() {
@@ -308,38 +414,130 @@ public class Job extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.rerunIfDead);
     }
     /**
-     * The status of the job.
+     * `(boolean)` - Whether the job is stable.
+     * 
+     */
+    @Export(name="stable", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> stable;
+
+    /**
+     * @return `(boolean)` - Whether the job is stable.
+     * 
+     */
+    public Output<Boolean> stable() {
+        return this.stable;
+    }
+    /**
+     * `(string)` - The current status of the job.
      * 
      */
     @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
-     * @return The status of the job.
+     * @return `(string)` - The current status of the job.
      * 
      */
     public Output<String> status() {
         return this.status;
     }
+    /**
+     * `(string)` - Additional status information returned by Nomad.
+     * 
+     */
+    @Export(name="statusDescription", refs={String.class}, tree="[0]")
+    private Output<String> statusDescription;
+
+    /**
+     * @return `(string)` - Additional status information returned by Nomad.
+     * 
+     */
+    public Output<String> statusDescription() {
+        return this.statusDescription;
+    }
+    /**
+     * `(boolean)` - Whether the job is stopped.
+     * 
+     */
+    @Export(name="stop", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> stop;
+
+    /**
+     * @return `(boolean)` - Whether the job is stopped.
+     * 
+     */
+    public Output<Boolean> stop() {
+        return this.stop;
+    }
+    /**
+     * `(integer)` - The Unix timestamp when the job was submitted.
+     * 
+     */
+    @Export(name="submitTime", refs={String.class}, tree="[0]")
+    private Output<String> submitTime;
+
+    /**
+     * @return `(integer)` - The Unix timestamp when the job was submitted.
+     * 
+     */
+    public Output<String> submitTime() {
+        return this.submitTime;
+    }
+    /**
+     * `(list of maps)` - A list of the job&#39;s task groups.
+     * 
+     */
     @Export(name="taskGroups", refs={List.class,JobTaskGroup.class}, tree="[0,1]")
     private Output<List<JobTaskGroup>> taskGroups;
 
+    /**
+     * @return `(list of maps)` - A list of the job&#39;s task groups.
+     * 
+     */
     public Output<List<JobTaskGroup>> taskGroups() {
         return this.taskGroups;
     }
     /**
-     * The type of the job, as derived from the jobspec.
+     * `(string)` - Volume type.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return The type of the job, as derived from the jobspec.
+     * @return `(string)` - Volume type.
      * 
      */
     public Output<String> type() {
         return this.type;
+    }
+    /**
+     * `(list of maps)` - Effective update strategy for the task group.
+     * 
+     */
+    @Export(name="updateStrategies", refs={List.class,JobUpdateStrategy.class}, tree="[0,1]")
+    private Output<List<JobUpdateStrategy>> updateStrategies;
+
+    /**
+     * @return `(list of maps)` - Effective update strategy for the task group.
+     * 
+     */
+    public Output<List<JobUpdateStrategy>> updateStrategies() {
+        return this.updateStrategies;
+    }
+    /**
+     * `(integer)` - The current job version.
+     * 
+     */
+    @Export(name="version", refs={Integer.class}, tree="[0]")
+    private Output<Integer> version;
+
+    /**
+     * @return `(integer)` - The current job version.
+     * 
+     */
+    public Output<Integer> version() {
+        return this.version;
     }
 
     /**

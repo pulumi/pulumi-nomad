@@ -11,12 +11,17 @@ import java.util.Objects;
 @CustomType
 public final class GetJwksKey {
     /**
-     * @return `(string)` - JWK field `alg`
+     * @return `(string)` - JWK field `alg` (e.g. `RS256`, `EdDSA`)
      * 
      */
     private String algorithm;
     /**
-     * @return `(string)` - JWK field `e`
+     * @return `(string)` - JWK field `crv` (EdDSA only, e.g. `Ed25519`)
+     * 
+     */
+    private String curve;
+    /**
+     * @return `(string)` - JWK field `e` (RSA only)
      * 
      */
     private String exponent;
@@ -26,7 +31,7 @@ public final class GetJwksKey {
      */
     private String keyId;
     /**
-     * @return `(string)` - JWK field `kty`
+     * @return `(string)` - JWK field `kty` (e.g. `RSA`, `OKP`)
      * 
      */
     private String keyType;
@@ -36,21 +41,33 @@ public final class GetJwksKey {
      */
     private String keyUse;
     /**
-     * @return `(string)` - JWK field `n`
+     * @return `(string)` - JWK field `n` (RSA only)
      * 
      */
     private String modulus;
+    /**
+     * @return `(string)` - JWK field `x` (EdDSA only, the public key)
+     * 
+     */
+    private String x;
 
     private GetJwksKey() {}
     /**
-     * @return `(string)` - JWK field `alg`
+     * @return `(string)` - JWK field `alg` (e.g. `RS256`, `EdDSA`)
      * 
      */
     public String algorithm() {
         return this.algorithm;
     }
     /**
-     * @return `(string)` - JWK field `e`
+     * @return `(string)` - JWK field `crv` (EdDSA only, e.g. `Ed25519`)
+     * 
+     */
+    public String curve() {
+        return this.curve;
+    }
+    /**
+     * @return `(string)` - JWK field `e` (RSA only)
      * 
      */
     public String exponent() {
@@ -64,7 +81,7 @@ public final class GetJwksKey {
         return this.keyId;
     }
     /**
-     * @return `(string)` - JWK field `kty`
+     * @return `(string)` - JWK field `kty` (e.g. `RSA`, `OKP`)
      * 
      */
     public String keyType() {
@@ -78,11 +95,18 @@ public final class GetJwksKey {
         return this.keyUse;
     }
     /**
-     * @return `(string)` - JWK field `n`
+     * @return `(string)` - JWK field `n` (RSA only)
      * 
      */
     public String modulus() {
         return this.modulus;
+    }
+    /**
+     * @return `(string)` - JWK field `x` (EdDSA only, the public key)
+     * 
+     */
+    public String x() {
+        return this.x;
     }
 
     public static Builder builder() {
@@ -95,20 +119,24 @@ public final class GetJwksKey {
     @CustomType.Builder
     public static final class Builder {
         private String algorithm;
+        private String curve;
         private String exponent;
         private String keyId;
         private String keyType;
         private String keyUse;
         private String modulus;
+        private String x;
         public Builder() {}
         public Builder(GetJwksKey defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.algorithm = defaults.algorithm;
+    	      this.curve = defaults.curve;
     	      this.exponent = defaults.exponent;
     	      this.keyId = defaults.keyId;
     	      this.keyType = defaults.keyType;
     	      this.keyUse = defaults.keyUse;
     	      this.modulus = defaults.modulus;
+    	      this.x = defaults.x;
         }
 
         @CustomType.Setter
@@ -117,6 +145,14 @@ public final class GetJwksKey {
               throw new MissingRequiredPropertyException("GetJwksKey", "algorithm");
             }
             this.algorithm = algorithm;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder curve(String curve) {
+            if (curve == null) {
+              throw new MissingRequiredPropertyException("GetJwksKey", "curve");
+            }
+            this.curve = curve;
             return this;
         }
         @CustomType.Setter
@@ -159,14 +195,24 @@ public final class GetJwksKey {
             this.modulus = modulus;
             return this;
         }
+        @CustomType.Setter
+        public Builder x(String x) {
+            if (x == null) {
+              throw new MissingRequiredPropertyException("GetJwksKey", "x");
+            }
+            this.x = x;
+            return this;
+        }
         public GetJwksKey build() {
             final var _resultValue = new GetJwksKey();
             _resultValue.algorithm = algorithm;
+            _resultValue.curve = curve;
             _resultValue.exponent = exponent;
             _resultValue.keyId = keyId;
             _resultValue.keyType = keyType;
             _resultValue.keyUse = keyUse;
             _resultValue.modulus = modulus;
+            _resultValue.x = x;
             return _resultValue;
         }
     }
