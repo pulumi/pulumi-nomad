@@ -181,6 +181,10 @@ def get_acl_token(accessor_id: Optional[_builtins.str] = None,
     > **Warning:** this data source will store tokens in the Terraform state. Take care to
       [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
 
+    > **Note:** This data source is deprecated and may be removed in a future
+    release. Use the `AclToken` ephemeral resource when the token secret is
+    needed during a run without storing it in Terraform state.
+
     ## Example Usage
 
     ```python
@@ -217,6 +221,10 @@ def get_acl_token_output(accessor_id: Optional[pulumi.Input[_builtins.str]] = No
 
     > **Warning:** this data source will store tokens in the Terraform state. Take care to
       [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
+    > **Note:** This data source is deprecated and may be removed in a future
+    release. Use the `AclToken` ephemeral resource when the token secret is
+    needed during a run without storing it in Terraform state.
 
     ## Example Usage
 

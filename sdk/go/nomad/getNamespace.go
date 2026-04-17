@@ -58,16 +58,21 @@ type LookupNamespaceArgs struct {
 type LookupNamespaceResult struct {
 	// `(block)` - Capabilities of the namespace
 	Capabilities []GetNamespaceCapability `pulumi:"capabilities"`
+	// `(block)` - Consul configuration for the namespace.
+	ConsulConfigs []GetNamespaceConsulConfig `pulumi:"consulConfigs"`
 	// `(string)` - The description of the namespace.
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// `(map[string]string)` -  Arbitrary KV metadata associated with the namespace.
-	Meta            map[string]string            `pulumi:"meta"`
-	Name            string                       `pulumi:"name"`
+	Meta map[string]string `pulumi:"meta"`
+	Name string            `pulumi:"name"`
+	// `(block)` - Node pool configuration for the namespace.
 	NodePoolConfigs []GetNamespaceNodePoolConfig `pulumi:"nodePoolConfigs"`
 	// `(string)` - The quota associated with the namespace.
 	Quota string `pulumi:"quota"`
+	// `(block)` - Vault configuration for the namespace.
+	VaultConfigs []GetNamespaceVaultConfig `pulumi:"vaultConfigs"`
 }
 
 func LookupNamespaceOutput(ctx *pulumi.Context, args LookupNamespaceOutputArgs, opts ...pulumi.InvokeOption) LookupNamespaceResultOutput {
@@ -109,6 +114,11 @@ func (o LookupNamespaceResultOutput) Capabilities() GetNamespaceCapabilityArrayO
 	return o.ApplyT(func(v LookupNamespaceResult) []GetNamespaceCapability { return v.Capabilities }).(GetNamespaceCapabilityArrayOutput)
 }
 
+// `(block)` - Consul configuration for the namespace.
+func (o LookupNamespaceResultOutput) ConsulConfigs() GetNamespaceConsulConfigArrayOutput {
+	return o.ApplyT(func(v LookupNamespaceResult) []GetNamespaceConsulConfig { return v.ConsulConfigs }).(GetNamespaceConsulConfigArrayOutput)
+}
+
 // `(string)` - The description of the namespace.
 func (o LookupNamespaceResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNamespaceResult) string { return v.Description }).(pulumi.StringOutput)
@@ -128,6 +138,7 @@ func (o LookupNamespaceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNamespaceResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// `(block)` - Node pool configuration for the namespace.
 func (o LookupNamespaceResultOutput) NodePoolConfigs() GetNamespaceNodePoolConfigArrayOutput {
 	return o.ApplyT(func(v LookupNamespaceResult) []GetNamespaceNodePoolConfig { return v.NodePoolConfigs }).(GetNamespaceNodePoolConfigArrayOutput)
 }
@@ -135,6 +146,11 @@ func (o LookupNamespaceResultOutput) NodePoolConfigs() GetNamespaceNodePoolConfi
 // `(string)` - The quota associated with the namespace.
 func (o LookupNamespaceResultOutput) Quota() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNamespaceResult) string { return v.Quota }).(pulumi.StringOutput)
+}
+
+// `(block)` - Vault configuration for the namespace.
+func (o LookupNamespaceResultOutput) VaultConfigs() GetNamespaceVaultConfigArrayOutput {
+	return o.ApplyT(func(v LookupNamespaceResult) []GetNamespaceVaultConfig { return v.VaultConfigs }).(GetNamespaceVaultConfigArrayOutput)
 }
 
 func init() {

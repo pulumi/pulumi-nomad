@@ -65,6 +65,23 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * `(string)` - The TTL applied to node identities issued to
+     * nodes in this pool.
+     * 
+     */
+    @Import(name="nodeIdentityTtl")
+    private @Nullable Output<String> nodeIdentityTtl;
+
+    /**
+     * @return `(string)` - The TTL applied to node identities issued to
+     * nodes in this pool.
+     * 
+     */
+    public Optional<Output<String>> nodeIdentityTtl() {
+        return Optional.ofNullable(this.nodeIdentityTtl);
+    }
+
+    /**
      * `(block)` - Scheduler configuration for the node pool.
      * 
      */
@@ -85,6 +102,7 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.meta = $.meta;
         this.name = $.name;
+        this.nodeIdentityTtl = $.nodeIdentityTtl;
         this.schedulerConfig = $.schedulerConfig;
     }
 
@@ -169,6 +187,29 @@ public final class NodePoolState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param nodeIdentityTtl `(string)` - The TTL applied to node identities issued to
+         * nodes in this pool.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodeIdentityTtl(@Nullable Output<String> nodeIdentityTtl) {
+            $.nodeIdentityTtl = nodeIdentityTtl;
+            return this;
+        }
+
+        /**
+         * @param nodeIdentityTtl `(string)` - The TTL applied to node identities issued to
+         * nodes in this pool.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nodeIdentityTtl(String nodeIdentityTtl) {
+            return nodeIdentityTtl(Output.of(nodeIdentityTtl));
         }
 
         /**

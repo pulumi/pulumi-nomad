@@ -27,9 +27,10 @@ class QuoteSpecificationArgs:
         """
         The set of arguments for constructing a QuoteSpecification resource.
 
-        :param pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]] limits: `(block: <required>)` - A block of quota limits to enforce. Can
-               be repeated. See below for the structure of this block.
+        :param pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]] limits: Limits encapsulated by this quota specification.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the quota specification.
+               - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+               be repeated. See below for the structure of this block.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - A unique name for the quota specification.
         """
         pulumi.set(__self__, "limits", limits)
@@ -42,8 +43,7 @@ class QuoteSpecificationArgs:
     @pulumi.getter
     def limits(self) -> pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]]:
         """
-        `(block: <required>)` - A block of quota limits to enforce. Can
-        be repeated. See below for the structure of this block.
+        Limits encapsulated by this quota specification.
         """
         return pulumi.get(self, "limits")
 
@@ -56,6 +56,8 @@ class QuoteSpecificationArgs:
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         `(string: "")` - A description of the quota specification.
+        - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+        be repeated. See below for the structure of this block.
         """
         return pulumi.get(self, "description")
 
@@ -86,8 +88,9 @@ class _QuoteSpecificationState:
         Input properties used for looking up and filtering QuoteSpecification resources.
 
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the quota specification.
-        :param pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]] limits: `(block: <required>)` - A block of quota limits to enforce. Can
+               - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
                be repeated. See below for the structure of this block.
+        :param pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]] limits: Limits encapsulated by this quota specification.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - A unique name for the quota specification.
         """
         if description is not None:
@@ -102,6 +105,8 @@ class _QuoteSpecificationState:
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         `(string: "")` - A description of the quota specification.
+        - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+        be repeated. See below for the structure of this block.
         """
         return pulumi.get(self, "description")
 
@@ -113,8 +118,7 @@ class _QuoteSpecificationState:
     @pulumi.getter
     def limits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]]]:
         """
-        `(block: <required>)` - A block of quota limits to enforce. Can
-        be repeated. See below for the structure of this block.
+        Limits encapsulated by this quota specification.
         """
         return pulumi.get(self, "limits")
 
@@ -163,7 +167,32 @@ class QuoteSpecification(pulumi.CustomResource):
                 "region": "global",
                 "region_limit": {
                     "cpu": 2400,
+                    "cores": 4,
                     "memory_mb": 1200,
+                    "memory_max_mb": 2400,
+                    "devices": [{
+                        "name": "nvidia/gpu",
+                        "count": 2,
+                    }],
+                    "node_pools": [{
+                        "node_pool": "batch",
+                        "cpu": 800,
+                        "cores": 2,
+                        "memory_mb": 1024,
+                        "memory_max_mb": 2048,
+                        "devices": [{
+                            "name": "fpga",
+                            "count": 1,
+                        }],
+                        "storage": {
+                            "variables_mb": 25,
+                            "host_volumes_mb": 50,
+                        },
+                    }],
+                    "storage": {
+                        "variables_mb": 500,
+                        "host_volumes_mb": 1000,
+                    },
                 },
             }])
         ```
@@ -172,8 +201,9 @@ class QuoteSpecification(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the quota specification.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]] limits: `(block: <required>)` - A block of quota limits to enforce. Can
+               - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
                be repeated. See below for the structure of this block.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]] limits: Limits encapsulated by this quota specification.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - A unique name for the quota specification.
         """
         ...
@@ -200,7 +230,32 @@ class QuoteSpecification(pulumi.CustomResource):
                 "region": "global",
                 "region_limit": {
                     "cpu": 2400,
+                    "cores": 4,
                     "memory_mb": 1200,
+                    "memory_max_mb": 2400,
+                    "devices": [{
+                        "name": "nvidia/gpu",
+                        "count": 2,
+                    }],
+                    "node_pools": [{
+                        "node_pool": "batch",
+                        "cpu": 800,
+                        "cores": 2,
+                        "memory_mb": 1024,
+                        "memory_max_mb": 2048,
+                        "devices": [{
+                            "name": "fpga",
+                            "count": 1,
+                        }],
+                        "storage": {
+                            "variables_mb": 25,
+                            "host_volumes_mb": 50,
+                        },
+                    }],
+                    "storage": {
+                        "variables_mb": 500,
+                        "host_volumes_mb": 1000,
+                    },
                 },
             }])
         ```
@@ -259,8 +314,9 @@ class QuoteSpecification(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the quota specification.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]] limits: `(block: <required>)` - A block of quota limits to enforce. Can
+               - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
                be repeated. See below for the structure of this block.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]] limits: Limits encapsulated by this quota specification.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - A unique name for the quota specification.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -277,6 +333,8 @@ class QuoteSpecification(pulumi.CustomResource):
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         `(string: "")` - A description of the quota specification.
+        - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
+        be repeated. See below for the structure of this block.
         """
         return pulumi.get(self, "description")
 
@@ -284,8 +342,7 @@ class QuoteSpecification(pulumi.CustomResource):
     @pulumi.getter
     def limits(self) -> pulumi.Output[Sequence['outputs.QuoteSpecificationLimit']]:
         """
-        `(block: <required>)` - A block of quota limits to enforce. Can
-        be repeated. See below for the structure of this block.
+        Limits encapsulated by this quota specification.
         """
         return pulumi.get(self, "limits")
 

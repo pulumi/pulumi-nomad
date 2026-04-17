@@ -132,6 +132,11 @@ namespace Pulumi.Nomad
         public readonly ImmutableDictionary<string, string> Meta;
         public readonly string Name;
         /// <summary>
+        /// `(string)` - The TTL applied to node identities issued to
+        /// nodes in this pool.
+        /// </summary>
+        public readonly string NodeIdentityTtl;
+        /// <summary>
         /// `(block)` - Scheduler configuration for the node pool.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetNodePoolSchedulerConfigResult> SchedulerConfigs;
@@ -146,12 +151,15 @@ namespace Pulumi.Nomad
 
             string name,
 
+            string nodeIdentityTtl,
+
             ImmutableArray<Outputs.GetNodePoolSchedulerConfigResult> schedulerConfigs)
         {
             Description = description;
             Id = id;
             Meta = meta;
             Name = name;
+            NodeIdentityTtl = nodeIdentityTtl;
             SchedulerConfigs = schedulerConfigs;
         }
     }

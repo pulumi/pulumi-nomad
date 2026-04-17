@@ -86,15 +86,17 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["certFile"] = args?.certFile;
             resourceInputs["certPem"] = args?.certPem;
             resourceInputs["headers"] = pulumi.output(args?.headers ? pulumi.secret(args.headers) : undefined).apply(JSON.stringify);
-            resourceInputs["httpAuth"] = args?.httpAuth;
+            resourceInputs["httpAuth"] = args?.httpAuth ? pulumi.secret(args.httpAuth) : undefined;
             resourceInputs["ignoreEnvVars"] = pulumi.output(args?.ignoreEnvVars).apply(JSON.stringify);
             resourceInputs["keyFile"] = args?.keyFile;
-            resourceInputs["keyPem"] = args?.keyPem;
+            resourceInputs["keyPem"] = args?.keyPem ? pulumi.secret(args.keyPem) : undefined;
             resourceInputs["region"] = args?.region;
-            resourceInputs["secretId"] = args?.secretId;
+            resourceInputs["secretId"] = args?.secretId ? pulumi.secret(args.secretId) : undefined;
             resourceInputs["skipVerify"] = pulumi.output(args?.skipVerify).apply(JSON.stringify);
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["httpAuth", "keyPem", "secretId"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 

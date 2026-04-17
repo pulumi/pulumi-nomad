@@ -48,16 +48,27 @@ __all__ = [
     'ExternalVolumeTopologyRequestPreferredTopology',
     'ExternalVolumeTopologyRequestRequired',
     'ExternalVolumeTopologyRequestRequiredTopology',
+    'JobConstraint',
     'JobHcl2',
+    'JobPeriodicConfig',
     'JobTaskGroup',
     'JobTaskGroupTask',
     'JobTaskGroupTaskVolumeMount',
+    'JobTaskGroupUpdateStrategy',
     'JobTaskGroupVolume',
+    'JobUpdateStrategy',
     'NamespaceCapabilities',
+    'NamespaceConsulConfig',
     'NamespaceNodePoolConfig',
+    'NamespaceVaultConfig',
     'NodePoolSchedulerConfig',
     'QuoteSpecificationLimit',
     'QuoteSpecificationLimitRegionLimit',
+    'QuoteSpecificationLimitRegionLimitDevice',
+    'QuoteSpecificationLimitRegionLimitNodePool',
+    'QuoteSpecificationLimitRegionLimitNodePoolDevice',
+    'QuoteSpecificationLimitRegionLimitNodePoolStorage',
+    'QuoteSpecificationLimitRegionLimitStorage',
     'VolumeCapability',
     'VolumeMountOptions',
     'VolumeTopology',
@@ -79,13 +90,41 @@ __all__ = [
     'GetJobTaskGroupResult',
     'GetJobTaskGroupTaskResult',
     'GetJobTaskGroupTaskVolumeMountResult',
+    'GetJobTaskGroupUpdateStrategyResult',
     'GetJobTaskGroupVolumeResult',
+    'GetJobUpdateStrategyResult',
     'GetJwksKeyResult',
     'GetNamespaceCapabilityResult',
+    'GetNamespaceConsulConfigResult',
     'GetNamespaceNodePoolConfigResult',
+    'GetNamespaceVaultConfigResult',
+    'GetNodeDriverResult',
+    'GetNodeHostVolumeResult',
+    'GetNodeNodeResourceResult',
+    'GetNodeNodeResourceCpusResult',
+    'GetNodeNodeResourceDeviceResult',
+    'GetNodeNodeResourceDiskResult',
+    'GetNodeNodeResourceMemoryResult',
+    'GetNodeNodeResourceNetworkResult',
     'GetNodePoolSchedulerConfigResult',
     'GetNodePoolsNodePoolResult',
     'GetNodePoolsNodePoolSchedulerConfigResult',
+    'GetNodeReservedResourceResult',
+    'GetNodeReservedResourceCpusResult',
+    'GetNodeReservedResourceDiskResult',
+    'GetNodeReservedResourceMemoryResult',
+    'GetNodesNodeResult',
+    'GetNodesNodeDriverResult',
+    'GetNodesNodeNodeResourceResult',
+    'GetNodesNodeNodeResourceCpusResult',
+    'GetNodesNodeNodeResourceDeviceResult',
+    'GetNodesNodeNodeResourceDiskResult',
+    'GetNodesNodeNodeResourceMemoryResult',
+    'GetNodesNodeNodeResourceNetworkResult',
+    'GetNodesNodeReservedResourceResult',
+    'GetNodesNodeReservedResourceCpusResult',
+    'GetNodesNodeReservedResourceDiskResult',
+    'GetNodesNodeReservedResourceMemoryResult',
     'GetPluginNodeResult',
     'GetScalingPoliciesPolicyResult',
 ]
@@ -727,31 +766,24 @@ class AclPolicyJobAcl(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 job_id: _builtins.str,
                  group: Optional[_builtins.str] = None,
+                 job_id: Optional[_builtins.str] = None,
                  namespace: Optional[_builtins.str] = None,
                  task: Optional[_builtins.str] = None):
         """
-        :param _builtins.str job_id: Job
         :param _builtins.str group: Group
+        :param _builtins.str job_id: Job. If empty, the policy applies to all jobs in the namespace.
         :param _builtins.str namespace: Namespace
         :param _builtins.str task: Task
         """
-        pulumi.set(__self__, "job_id", job_id)
         if group is not None:
             pulumi.set(__self__, "group", group)
+        if job_id is not None:
+            pulumi.set(__self__, "job_id", job_id)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if task is not None:
             pulumi.set(__self__, "task", task)
-
-    @_builtins.property
-    @pulumi.getter(name="jobId")
-    def job_id(self) -> _builtins.str:
-        """
-        Job
-        """
-        return pulumi.get(self, "job_id")
 
     @_builtins.property
     @pulumi.getter
@@ -760,6 +792,14 @@ class AclPolicyJobAcl(dict):
         Group
         """
         return pulumi.get(self, "group")
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> Optional[_builtins.str]:
+        """
+        Job. If empty, the policy applies to all jobs in the namespace.
+        """
+        return pulumi.get(self, "job_id")
 
     @_builtins.property
     @pulumi.getter
@@ -1687,6 +1727,49 @@ class ExternalVolumeTopologyRequestRequiredTopology(dict):
 
 
 @pulumi.output_type
+class JobConstraint(dict):
+    def __init__(__self__, *,
+                 ltarget: Optional[_builtins.str] = None,
+                 operand: Optional[_builtins.str] = None,
+                 rtarget: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str ltarget: `(string)` - Attribute being constrained.
+        :param _builtins.str operand: `(string)` - Operator used to compare the attribute to the constraint.
+        :param _builtins.str rtarget: `(string)` - Constraint value.
+        """
+        if ltarget is not None:
+            pulumi.set(__self__, "ltarget", ltarget)
+        if operand is not None:
+            pulumi.set(__self__, "operand", operand)
+        if rtarget is not None:
+            pulumi.set(__self__, "rtarget", rtarget)
+
+    @_builtins.property
+    @pulumi.getter
+    def ltarget(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Attribute being constrained.
+        """
+        return pulumi.get(self, "ltarget")
+
+    @_builtins.property
+    @pulumi.getter
+    def operand(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Operator used to compare the attribute to the constraint.
+        """
+        return pulumi.get(self, "operand")
+
+    @_builtins.property
+    @pulumi.getter
+    def rtarget(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Constraint value.
+        """
+        return pulumi.get(self, "rtarget")
+
+
+@pulumi.output_type
 class JobHcl2(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1737,13 +1820,125 @@ class JobHcl2(dict):
 
 
 @pulumi.output_type
+class JobPeriodicConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "prohibitOverlap":
+            suggest = "prohibit_overlap"
+        elif key == "specType":
+            suggest = "spec_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobPeriodicConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobPeriodicConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobPeriodicConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 enabled: Optional[_builtins.bool] = None,
+                 prohibit_overlap: Optional[_builtins.bool] = None,
+                 spec: Optional[_builtins.str] = None,
+                 spec_type: Optional[_builtins.str] = None,
+                 timezone: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool enabled: `(boolean)` - Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
+        :param _builtins.bool prohibit_overlap: `(boolean)` - Whether this job should wait until previous instances of the same job have completed before launching again.
+        :param _builtins.str spec: `(string)` - Cron expression configuring the interval at which the job is launched.
+        :param _builtins.str spec_type: `(string)` - Type of periodic specification, such as `cron`.
+        :param _builtins.str timezone: `(string)` - Time zone used to evaluate the next launch interval.
+        """
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if prohibit_overlap is not None:
+            pulumi.set(__self__, "prohibit_overlap", prohibit_overlap)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+        if spec_type is not None:
+            pulumi.set(__self__, "spec_type", spec_type)
+        if timezone is not None:
+            pulumi.set(__self__, "timezone", timezone)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> Optional[_builtins.bool]:
+        """
+        `(boolean)` - Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
+        """
+        return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="prohibitOverlap")
+    def prohibit_overlap(self) -> Optional[_builtins.bool]:
+        """
+        `(boolean)` - Whether this job should wait until previous instances of the same job have completed before launching again.
+        """
+        return pulumi.get(self, "prohibit_overlap")
+
+    @_builtins.property
+    @pulumi.getter
+    def spec(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Cron expression configuring the interval at which the job is launched.
+        """
+        return pulumi.get(self, "spec")
+
+    @_builtins.property
+    @pulumi.getter(name="specType")
+    def spec_type(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Type of periodic specification, such as `cron`.
+        """
+        return pulumi.get(self, "spec_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def timezone(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Time zone used to evaluate the next launch interval.
+        """
+        return pulumi.get(self, "timezone")
+
+
+@pulumi.output_type
 class JobTaskGroup(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "updateStrategies":
+            suggest = "update_strategies"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskGroup. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskGroup.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskGroup.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  count: Optional[_builtins.int] = None,
                  meta: Optional[Mapping[str, _builtins.str]] = None,
                  name: Optional[_builtins.str] = None,
                  tasks: Optional[Sequence['outputs.JobTaskGroupTask']] = None,
+                 update_strategies: Optional[Sequence['outputs.JobTaskGroupUpdateStrategy']] = None,
                  volumes: Optional[Sequence['outputs.JobTaskGroupVolume']] = None):
+        """
+        :param _builtins.int count: `(integer)` - Task group count.
+        :param Mapping[str, _builtins.str] meta: `(map of strings)` - Task group metadata.
+        :param _builtins.str name: `(string)` - Volume name.
+        :param Sequence['JobTaskGroupTaskArgs'] tasks: `(list of maps)` - Tasks in the task group.
+        :param Sequence['JobTaskGroupUpdateStrategyArgs'] update_strategies: `(list of maps)` - Effective update strategy for the task group.
+        :param Sequence['JobTaskGroupVolumeArgs'] volumes: `(list of maps)` - Volume requests for the task group.
+        """
         if count is not None:
             pulumi.set(__self__, "count", count)
         if meta is not None:
@@ -1752,32 +1947,57 @@ class JobTaskGroup(dict):
             pulumi.set(__self__, "name", name)
         if tasks is not None:
             pulumi.set(__self__, "tasks", tasks)
+        if update_strategies is not None:
+            pulumi.set(__self__, "update_strategies", update_strategies)
         if volumes is not None:
             pulumi.set(__self__, "volumes", volumes)
 
     @_builtins.property
     @pulumi.getter
     def count(self) -> Optional[_builtins.int]:
+        """
+        `(integer)` - Task group count.
+        """
         return pulumi.get(self, "count")
 
     @_builtins.property
     @pulumi.getter
     def meta(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        `(map of strings)` - Task group metadata.
+        """
         return pulumi.get(self, "meta")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Volume name.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter
     def tasks(self) -> Optional[Sequence['outputs.JobTaskGroupTask']]:
+        """
+        `(list of maps)` - Tasks in the task group.
+        """
         return pulumi.get(self, "tasks")
+
+    @_builtins.property
+    @pulumi.getter(name="updateStrategies")
+    def update_strategies(self) -> Optional[Sequence['outputs.JobTaskGroupUpdateStrategy']]:
+        """
+        `(list of maps)` - Effective update strategy for the task group.
+        """
+        return pulumi.get(self, "update_strategies")
 
     @_builtins.property
     @pulumi.getter
     def volumes(self) -> Optional[Sequence['outputs.JobTaskGroupVolume']]:
+        """
+        `(list of maps)` - Volume requests for the task group.
+        """
         return pulumi.get(self, "volumes")
 
 
@@ -1805,6 +2025,12 @@ class JobTaskGroupTask(dict):
                  meta: Optional[Mapping[str, _builtins.str]] = None,
                  name: Optional[_builtins.str] = None,
                  volume_mounts: Optional[Sequence['outputs.JobTaskGroupTaskVolumeMount']] = None):
+        """
+        :param _builtins.str driver: `(string)` - Task driver.
+        :param Mapping[str, _builtins.str] meta: `(map of strings)` - Task group metadata.
+        :param _builtins.str name: `(string)` - Volume name.
+        :param Sequence['JobTaskGroupTaskVolumeMountArgs'] volume_mounts: `(list of maps)` - Task volume mounts.
+        """
         if driver is not None:
             pulumi.set(__self__, "driver", driver)
         if meta is not None:
@@ -1817,21 +2043,33 @@ class JobTaskGroupTask(dict):
     @_builtins.property
     @pulumi.getter
     def driver(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Task driver.
+        """
         return pulumi.get(self, "driver")
 
     @_builtins.property
     @pulumi.getter
     def meta(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        `(map of strings)` - Task group metadata.
+        """
         return pulumi.get(self, "meta")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Volume name.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter(name="volumeMounts")
     def volume_mounts(self) -> Optional[Sequence['outputs.JobTaskGroupTaskVolumeMount']]:
+        """
+        `(list of maps)` - Task volume mounts.
+        """
         return pulumi.get(self, "volume_mounts")
 
 
@@ -1858,6 +2096,11 @@ class JobTaskGroupTaskVolumeMount(dict):
                  destination: Optional[_builtins.str] = None,
                  read_only: Optional[_builtins.bool] = None,
                  volume: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str destination: `(string)` - Destination path inside the task.
+        :param _builtins.bool read_only: `(boolean)` - Whether the volume is read-only.
+        :param _builtins.str volume: `(string)` - Volume name.
+        """
         if destination is not None:
             pulumi.set(__self__, "destination", destination)
         if read_only is not None:
@@ -1868,17 +2111,142 @@ class JobTaskGroupTaskVolumeMount(dict):
     @_builtins.property
     @pulumi.getter
     def destination(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Destination path inside the task.
+        """
         return pulumi.get(self, "destination")
 
     @_builtins.property
     @pulumi.getter(name="readOnly")
     def read_only(self) -> Optional[_builtins.bool]:
+        """
+        `(boolean)` - Whether the volume is read-only.
+        """
         return pulumi.get(self, "read_only")
 
     @_builtins.property
     @pulumi.getter
     def volume(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Volume name.
+        """
         return pulumi.get(self, "volume")
+
+
+@pulumi.output_type
+class JobTaskGroupUpdateStrategy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoRevert":
+            suggest = "auto_revert"
+        elif key == "healthCheck":
+            suggest = "health_check"
+        elif key == "healthyDeadline":
+            suggest = "healthy_deadline"
+        elif key == "maxParallel":
+            suggest = "max_parallel"
+        elif key == "minHealthyTime":
+            suggest = "min_healthy_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobTaskGroupUpdateStrategy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobTaskGroupUpdateStrategy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobTaskGroupUpdateStrategy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auto_revert: Optional[_builtins.bool] = None,
+                 canary: Optional[_builtins.int] = None,
+                 health_check: Optional[_builtins.str] = None,
+                 healthy_deadline: Optional[_builtins.str] = None,
+                 max_parallel: Optional[_builtins.int] = None,
+                 min_healthy_time: Optional[_builtins.str] = None,
+                 stagger: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool auto_revert: `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+        :param _builtins.int canary: `(integer)` - Number of canary allocations created before destructive updates continue.
+        :param _builtins.str health_check: `(string)` - Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        :param _builtins.str healthy_deadline: `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+        :param _builtins.int max_parallel: `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        :param _builtins.str min_healthy_time: `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+        :param _builtins.str stagger: `(string)` - Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        if auto_revert is not None:
+            pulumi.set(__self__, "auto_revert", auto_revert)
+        if canary is not None:
+            pulumi.set(__self__, "canary", canary)
+        if health_check is not None:
+            pulumi.set(__self__, "health_check", health_check)
+        if healthy_deadline is not None:
+            pulumi.set(__self__, "healthy_deadline", healthy_deadline)
+        if max_parallel is not None:
+            pulumi.set(__self__, "max_parallel", max_parallel)
+        if min_healthy_time is not None:
+            pulumi.set(__self__, "min_healthy_time", min_healthy_time)
+        if stagger is not None:
+            pulumi.set(__self__, "stagger", stagger)
+
+    @_builtins.property
+    @pulumi.getter(name="autoRevert")
+    def auto_revert(self) -> Optional[_builtins.bool]:
+        """
+        `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+        """
+        return pulumi.get(self, "auto_revert")
+
+    @_builtins.property
+    @pulumi.getter
+    def canary(self) -> Optional[_builtins.int]:
+        """
+        `(integer)` - Number of canary allocations created before destructive updates continue.
+        """
+        return pulumi.get(self, "canary")
+
+    @_builtins.property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        """
+        return pulumi.get(self, "health_check")
+
+    @_builtins.property
+    @pulumi.getter(name="healthyDeadline")
+    def healthy_deadline(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+        """
+        return pulumi.get(self, "healthy_deadline")
+
+    @_builtins.property
+    @pulumi.getter(name="maxParallel")
+    def max_parallel(self) -> Optional[_builtins.int]:
+        """
+        `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        """
+        return pulumi.get(self, "max_parallel")
+
+    @_builtins.property
+    @pulumi.getter(name="minHealthyTime")
+    def min_healthy_time(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+        """
+        return pulumi.get(self, "min_healthy_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def stagger(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        return pulumi.get(self, "stagger")
 
 
 @pulumi.output_type
@@ -1905,6 +2273,12 @@ class JobTaskGroupVolume(dict):
                  read_only: Optional[_builtins.bool] = None,
                  source: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: `(string)` - Volume name.
+        :param _builtins.bool read_only: `(boolean)` - Whether the volume is read-only.
+        :param _builtins.str source: `(string)` - Volume source.
+        :param _builtins.str type: `(string)` - Volume type.
+        """
         if name is not None:
             pulumi.set(__self__, "name", name)
         if read_only is not None:
@@ -1917,22 +2291,150 @@ class JobTaskGroupVolume(dict):
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Volume name.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter(name="readOnly")
     def read_only(self) -> Optional[_builtins.bool]:
+        """
+        `(boolean)` - Whether the volume is read-only.
+        """
         return pulumi.get(self, "read_only")
 
     @_builtins.property
     @pulumi.getter
     def source(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Volume source.
+        """
         return pulumi.get(self, "source")
 
     @_builtins.property
     @pulumi.getter
     def type(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Volume type.
+        """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class JobUpdateStrategy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoRevert":
+            suggest = "auto_revert"
+        elif key == "healthCheck":
+            suggest = "health_check"
+        elif key == "healthyDeadline":
+            suggest = "healthy_deadline"
+        elif key == "maxParallel":
+            suggest = "max_parallel"
+        elif key == "minHealthyTime":
+            suggest = "min_healthy_time"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in JobUpdateStrategy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        JobUpdateStrategy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        JobUpdateStrategy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auto_revert: Optional[_builtins.bool] = None,
+                 canary: Optional[_builtins.int] = None,
+                 health_check: Optional[_builtins.str] = None,
+                 healthy_deadline: Optional[_builtins.str] = None,
+                 max_parallel: Optional[_builtins.int] = None,
+                 min_healthy_time: Optional[_builtins.str] = None,
+                 stagger: Optional[_builtins.str] = None):
+        """
+        :param _builtins.bool auto_revert: `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+        :param _builtins.int canary: `(integer)` - Number of canary allocations created before destructive updates continue.
+        :param _builtins.str health_check: `(string)` - Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        :param _builtins.str healthy_deadline: `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+        :param _builtins.int max_parallel: `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        :param _builtins.str min_healthy_time: `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+        :param _builtins.str stagger: `(string)` - Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        if auto_revert is not None:
+            pulumi.set(__self__, "auto_revert", auto_revert)
+        if canary is not None:
+            pulumi.set(__self__, "canary", canary)
+        if health_check is not None:
+            pulumi.set(__self__, "health_check", health_check)
+        if healthy_deadline is not None:
+            pulumi.set(__self__, "healthy_deadline", healthy_deadline)
+        if max_parallel is not None:
+            pulumi.set(__self__, "max_parallel", max_parallel)
+        if min_healthy_time is not None:
+            pulumi.set(__self__, "min_healthy_time", min_healthy_time)
+        if stagger is not None:
+            pulumi.set(__self__, "stagger", stagger)
+
+    @_builtins.property
+    @pulumi.getter(name="autoRevert")
+    def auto_revert(self) -> Optional[_builtins.bool]:
+        """
+        `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+        """
+        return pulumi.get(self, "auto_revert")
+
+    @_builtins.property
+    @pulumi.getter
+    def canary(self) -> Optional[_builtins.int]:
+        """
+        `(integer)` - Number of canary allocations created before destructive updates continue.
+        """
+        return pulumi.get(self, "canary")
+
+    @_builtins.property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        """
+        return pulumi.get(self, "health_check")
+
+    @_builtins.property
+    @pulumi.getter(name="healthyDeadline")
+    def healthy_deadline(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+        """
+        return pulumi.get(self, "healthy_deadline")
+
+    @_builtins.property
+    @pulumi.getter(name="maxParallel")
+    def max_parallel(self) -> Optional[_builtins.int]:
+        """
+        `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        """
+        return pulumi.get(self, "max_parallel")
+
+    @_builtins.property
+    @pulumi.getter(name="minHealthyTime")
+    def min_healthy_time(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+        """
+        return pulumi.get(self, "min_healthy_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def stagger(self) -> Optional[_builtins.str]:
+        """
+        `(string)` - Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        return pulumi.get(self, "stagger")
 
 
 @pulumi.output_type
@@ -2014,6 +2516,49 @@ class NamespaceCapabilities(dict):
 
 
 @pulumi.output_type
+class NamespaceConsulConfig(dict):
+    def __init__(__self__, *,
+                 alloweds: Optional[Sequence[_builtins.str]] = None,
+                 default: Optional[_builtins.str] = None,
+                 denieds: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence[_builtins.str] alloweds: `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
+        :param _builtins.str default: `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
+        :param Sequence[_builtins.str] denieds: `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+        """
+        if alloweds is not None:
+            pulumi.set(__self__, "alloweds", alloweds)
+        if default is not None:
+            pulumi.set(__self__, "default", default)
+        if denieds is not None:
+            pulumi.set(__self__, "denieds", denieds)
+
+    @_builtins.property
+    @pulumi.getter
+    def alloweds(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
+        """
+        return pulumi.get(self, "alloweds")
+
+    @_builtins.property
+    @pulumi.getter
+    def default(self) -> Optional[_builtins.str]:
+        """
+        `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
+        """
+        return pulumi.get(self, "default")
+
+    @_builtins.property
+    @pulumi.getter
+    def denieds(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+        """
+        return pulumi.get(self, "denieds")
+
+
+@pulumi.output_type
 class NamespaceNodePoolConfig(dict):
     def __init__(__self__, *,
                  alloweds: Optional[Sequence[_builtins.str]] = None,
@@ -2052,6 +2597,49 @@ class NamespaceNodePoolConfig(dict):
     def denieds(self) -> Optional[Sequence[_builtins.str]]:
         """
         `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+        """
+        return pulumi.get(self, "denieds")
+
+
+@pulumi.output_type
+class NamespaceVaultConfig(dict):
+    def __init__(__self__, *,
+                 alloweds: Optional[Sequence[_builtins.str]] = None,
+                 default: Optional[_builtins.str] = None,
+                 denieds: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param Sequence[_builtins.str] alloweds: `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
+        :param _builtins.str default: `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
+        :param Sequence[_builtins.str] denieds: `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+        """
+        if alloweds is not None:
+            pulumi.set(__self__, "alloweds", alloweds)
+        if default is not None:
+            pulumi.set(__self__, "default", default)
+        if denieds is not None:
+            pulumi.set(__self__, "denieds", denieds)
+
+    @_builtins.property
+    @pulumi.getter
+    def alloweds(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
+        """
+        return pulumi.get(self, "alloweds")
+
+    @_builtins.property
+    @pulumi.getter
+    def default(self) -> Optional[_builtins.str]:
+        """
+        `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
+        """
+        return pulumi.get(self, "default")
+
+    @_builtins.property
+    @pulumi.getter
+    def denieds(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
         """
         return pulumi.get(self, "denieds")
 
@@ -2148,9 +2736,10 @@ class QuoteSpecificationLimit(dict):
                  region_limit: 'outputs.QuoteSpecificationLimitRegionLimit'):
         """
         :param _builtins.str region: `(string: <required>)` - The region these limits should apply to.
-        :param 'QuoteSpecificationLimitRegionLimitArgs' region_limit: `(block: <required>)` - The limits to enforce. This block
+               - `region_limit` `(block: <required>)` - The limits to enforce. This block
                may only be specified once in the `limits` block. Its structure is
                documented below.
+        :param 'QuoteSpecificationLimitRegionLimitArgs' region_limit: The limit applied to this region.
         """
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "region_limit", region_limit)
@@ -2160,6 +2749,9 @@ class QuoteSpecificationLimit(dict):
     def region(self) -> _builtins.str:
         """
         `(string: <required>)` - The region these limits should apply to.
+        - `region_limit` `(block: <required>)` - The limits to enforce. This block
+        may only be specified once in the `limits` block. Its structure is
+        documented below.
         """
         return pulumi.get(self, "region")
 
@@ -2167,9 +2759,7 @@ class QuoteSpecificationLimit(dict):
     @pulumi.getter(name="regionLimit")
     def region_limit(self) -> 'outputs.QuoteSpecificationLimitRegionLimit':
         """
-        `(block: <required>)` - The limits to enforce. This block
-        may only be specified once in the `limits` block. Its structure is
-        documented below.
+        The limit applied to this region.
         """
         return pulumi.get(self, "region_limit")
 
@@ -2179,8 +2769,12 @@ class QuoteSpecificationLimitRegionLimit(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "memoryMb":
+        if key == "memoryMaxMb":
+            suggest = "memory_max_mb"
+        elif key == "memoryMb":
             suggest = "memory_mb"
+        elif key == "nodePools":
+            suggest = "node_pools"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in QuoteSpecificationLimitRegionLimit. Access the value via the '{suggest}' property getter instead.")
@@ -2194,19 +2788,56 @@ class QuoteSpecificationLimitRegionLimit(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 cores: Optional[_builtins.int] = None,
                  cpu: Optional[_builtins.int] = None,
-                 memory_mb: Optional[_builtins.int] = None):
+                 devices: Optional[Sequence['outputs.QuoteSpecificationLimitRegionLimitDevice']] = None,
+                 memory_max_mb: Optional[_builtins.int] = None,
+                 memory_mb: Optional[_builtins.int] = None,
+                 node_pools: Optional[Sequence['outputs.QuoteSpecificationLimitRegionLimitNodePool']] = None,
+                 storage: Optional['outputs.QuoteSpecificationLimitRegionLimitStorage'] = None):
         """
+        :param _builtins.int cores: `(int: 0)` - The number of CPU cores to limit allocations to. A value
+               of zero is treated as unlimited, and a negative value is treated as fully
+               disallowed.
         :param _builtins.int cpu: `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
                is treated as unlimited, and a negative value is treated as fully disallowed.
+        :param _builtins.int memory_max_mb: `(int: 0)` - The maximum amount of memory (in megabytes) to
+               limit allocations to. A value of zero is treated as unlimited, and a negative
+               value is treated as fully disallowed.
+               - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+               repeated. See below for the structure of this block.
+               - `node_pools` `(block: optional)` - Per-node-pool quota limits. Can be
+               repeated. See below for the structure of this block.
+               - `storage` `(block: optional)` - Storage resource quota configuration. May only
+               be specified once. See below for the structure of this block.
         :param _builtins.int memory_mb: `(int: 0)` - The amount of memory (in megabytes) to limit
                allocations to. A value of zero is treated as unlimited, and a negative value
                is treated as fully disallowed.
         """
+        if cores is not None:
+            pulumi.set(__self__, "cores", cores)
         if cpu is not None:
             pulumi.set(__self__, "cpu", cpu)
+        if devices is not None:
+            pulumi.set(__self__, "devices", devices)
+        if memory_max_mb is not None:
+            pulumi.set(__self__, "memory_max_mb", memory_max_mb)
         if memory_mb is not None:
             pulumi.set(__self__, "memory_mb", memory_mb)
+        if node_pools is not None:
+            pulumi.set(__self__, "node_pools", node_pools)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The number of CPU cores to limit allocations to. A value
+        of zero is treated as unlimited, and a negative value is treated as fully
+        disallowed.
+        """
+        return pulumi.get(self, "cores")
 
     @_builtins.property
     @pulumi.getter
@@ -2218,6 +2849,27 @@ class QuoteSpecificationLimitRegionLimit(dict):
         return pulumi.get(self, "cpu")
 
     @_builtins.property
+    @pulumi.getter
+    def devices(self) -> Optional[Sequence['outputs.QuoteSpecificationLimitRegionLimitDevice']]:
+        return pulumi.get(self, "devices")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMaxMb")
+    def memory_max_mb(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The maximum amount of memory (in megabytes) to
+        limit allocations to. A value of zero is treated as unlimited, and a negative
+        value is treated as fully disallowed.
+        - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+        repeated. See below for the structure of this block.
+        - `node_pools` `(block: optional)` - Per-node-pool quota limits. Can be
+        repeated. See below for the structure of this block.
+        - `storage` `(block: optional)` - Storage resource quota configuration. May only
+        be specified once. See below for the structure of this block.
+        """
+        return pulumi.get(self, "memory_max_mb")
+
+    @_builtins.property
     @pulumi.getter(name="memoryMb")
     def memory_mb(self) -> Optional[_builtins.int]:
         """
@@ -2226,6 +2878,313 @@ class QuoteSpecificationLimitRegionLimit(dict):
         is treated as fully disallowed.
         """
         return pulumi.get(self, "memory_mb")
+
+    @_builtins.property
+    @pulumi.getter(name="nodePools")
+    def node_pools(self) -> Optional[Sequence['outputs.QuoteSpecificationLimitRegionLimitNodePool']]:
+        return pulumi.get(self, "node_pools")
+
+    @_builtins.property
+    @pulumi.getter
+    def storage(self) -> Optional['outputs.QuoteSpecificationLimitRegionLimitStorage']:
+        return pulumi.get(self, "storage")
+
+
+@pulumi.output_type
+class QuoteSpecificationLimitRegionLimitDevice(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 count: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str name: `(string: <required>)` - The name of the device, e.g.
+               `"nvidia/gpu"`.
+        :param _builtins.int count: `(int: 0)` - The number of device instances to limit allocations to.
+        """
+        pulumi.set(__self__, "name", name)
+        if count is not None:
+            pulumi.set(__self__, "count", count)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        `(string: <required>)` - The name of the device, e.g.
+        `"nvidia/gpu"`.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The number of device instances to limit allocations to.
+        """
+        return pulumi.get(self, "count")
+
+
+@pulumi.output_type
+class QuoteSpecificationLimitRegionLimitNodePool(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "nodePool":
+            suggest = "node_pool"
+        elif key == "memoryMaxMb":
+            suggest = "memory_max_mb"
+        elif key == "memoryMb":
+            suggest = "memory_mb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in QuoteSpecificationLimitRegionLimitNodePool. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        QuoteSpecificationLimitRegionLimitNodePool.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        QuoteSpecificationLimitRegionLimitNodePool.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 node_pool: _builtins.str,
+                 cores: Optional[_builtins.int] = None,
+                 cpu: Optional[_builtins.int] = None,
+                 devices: Optional[Sequence['outputs.QuoteSpecificationLimitRegionLimitNodePoolDevice']] = None,
+                 memory_max_mb: Optional[_builtins.int] = None,
+                 memory_mb: Optional[_builtins.int] = None,
+                 storage: Optional['outputs.QuoteSpecificationLimitRegionLimitNodePoolStorage'] = None):
+        """
+        :param _builtins.str node_pool: `(string: <required>)` - The node pool name to apply limits to.
+        :param _builtins.int cores: `(int: 0)` - The number of CPU cores to limit allocations to. A value
+               of zero is treated as unlimited, and a negative value is treated as fully
+               disallowed.
+        :param _builtins.int cpu: `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
+               is treated as unlimited, and a negative value is treated as fully disallowed.
+        :param _builtins.int memory_max_mb: `(int: 0)` - The maximum amount of memory (in megabytes) to
+               limit allocations to. A value of zero is treated as unlimited, and a negative
+               value is treated as fully disallowed.
+               - `devices` `(block: optional)` - A list of device quotas to
+               enforce for the node pool. Can be repeated.
+               - `storage` `(block: optional)` - Storage resource quota
+               configuration for the node pool. May only be specified once.
+        :param _builtins.int memory_mb: `(int: 0)` - The amount of memory (in megabytes) to limit
+               allocations to. A value of zero is treated as unlimited, and a negative value
+               is treated as fully disallowed.
+        """
+        pulumi.set(__self__, "node_pool", node_pool)
+        if cores is not None:
+            pulumi.set(__self__, "cores", cores)
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if devices is not None:
+            pulumi.set(__self__, "devices", devices)
+        if memory_max_mb is not None:
+            pulumi.set(__self__, "memory_max_mb", memory_max_mb)
+        if memory_mb is not None:
+            pulumi.set(__self__, "memory_mb", memory_mb)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+
+    @_builtins.property
+    @pulumi.getter(name="nodePool")
+    def node_pool(self) -> _builtins.str:
+        """
+        `(string: <required>)` - The node pool name to apply limits to.
+        """
+        return pulumi.get(self, "node_pool")
+
+    @_builtins.property
+    @pulumi.getter
+    def cores(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The number of CPU cores to limit allocations to. A value
+        of zero is treated as unlimited, and a negative value is treated as fully
+        disallowed.
+        """
+        return pulumi.get(self, "cores")
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
+        is treated as unlimited, and a negative value is treated as fully disallowed.
+        """
+        return pulumi.get(self, "cpu")
+
+    @_builtins.property
+    @pulumi.getter
+    def devices(self) -> Optional[Sequence['outputs.QuoteSpecificationLimitRegionLimitNodePoolDevice']]:
+        return pulumi.get(self, "devices")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMaxMb")
+    def memory_max_mb(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The maximum amount of memory (in megabytes) to
+        limit allocations to. A value of zero is treated as unlimited, and a negative
+        value is treated as fully disallowed.
+        - `devices` `(block: optional)` - A list of device quotas to
+        enforce for the node pool. Can be repeated.
+        - `storage` `(block: optional)` - Storage resource quota
+        configuration for the node pool. May only be specified once.
+        """
+        return pulumi.get(self, "memory_max_mb")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMb")
+    def memory_mb(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The amount of memory (in megabytes) to limit
+        allocations to. A value of zero is treated as unlimited, and a negative value
+        is treated as fully disallowed.
+        """
+        return pulumi.get(self, "memory_mb")
+
+    @_builtins.property
+    @pulumi.getter
+    def storage(self) -> Optional['outputs.QuoteSpecificationLimitRegionLimitNodePoolStorage']:
+        return pulumi.get(self, "storage")
+
+
+@pulumi.output_type
+class QuoteSpecificationLimitRegionLimitNodePoolDevice(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 count: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str name: `(string: <required>)` - The name of the device, e.g.
+               `"nvidia/gpu"`.
+        :param _builtins.int count: `(int: 0)` - The number of device instances to limit allocations to.
+        """
+        pulumi.set(__self__, "name", name)
+        if count is not None:
+            pulumi.set(__self__, "count", count)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        `(string: <required>)` - The name of the device, e.g.
+        `"nvidia/gpu"`.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The number of device instances to limit allocations to.
+        """
+        return pulumi.get(self, "count")
+
+
+@pulumi.output_type
+class QuoteSpecificationLimitRegionLimitNodePoolStorage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "hostVolumesMb":
+            suggest = "host_volumes_mb"
+        elif key == "variablesMb":
+            suggest = "variables_mb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in QuoteSpecificationLimitRegionLimitNodePoolStorage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        QuoteSpecificationLimitRegionLimitNodePoolStorage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        QuoteSpecificationLimitRegionLimitNodePoolStorage.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 host_volumes_mb: Optional[_builtins.int] = None,
+                 variables_mb: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int host_volumes_mb: `(int: 0)` - The amount of storage (in megabytes) to limit
+               host volumes to.
+        :param _builtins.int variables_mb: `(int: 0)` - The amount of storage (in megabytes) to limit
+               Nomad variables to.
+        """
+        if host_volumes_mb is not None:
+            pulumi.set(__self__, "host_volumes_mb", host_volumes_mb)
+        if variables_mb is not None:
+            pulumi.set(__self__, "variables_mb", variables_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="hostVolumesMb")
+    def host_volumes_mb(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The amount of storage (in megabytes) to limit
+        host volumes to.
+        """
+        return pulumi.get(self, "host_volumes_mb")
+
+    @_builtins.property
+    @pulumi.getter(name="variablesMb")
+    def variables_mb(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The amount of storage (in megabytes) to limit
+        Nomad variables to.
+        """
+        return pulumi.get(self, "variables_mb")
+
+
+@pulumi.output_type
+class QuoteSpecificationLimitRegionLimitStorage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "hostVolumesMb":
+            suggest = "host_volumes_mb"
+        elif key == "variablesMb":
+            suggest = "variables_mb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in QuoteSpecificationLimitRegionLimitStorage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        QuoteSpecificationLimitRegionLimitStorage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        QuoteSpecificationLimitRegionLimitStorage.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 host_volumes_mb: Optional[_builtins.int] = None,
+                 variables_mb: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int host_volumes_mb: `(int: 0)` - The amount of storage (in megabytes) to limit
+               host volumes to.
+        :param _builtins.int variables_mb: `(int: 0)` - The amount of storage (in megabytes) to limit
+               Nomad variables to.
+        """
+        if host_volumes_mb is not None:
+            pulumi.set(__self__, "host_volumes_mb", host_volumes_mb)
+        if variables_mb is not None:
+            pulumi.set(__self__, "variables_mb", variables_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="hostVolumesMb")
+    def host_volumes_mb(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The amount of storage (in megabytes) to limit
+        host volumes to.
+        """
+        return pulumi.get(self, "host_volumes_mb")
+
+    @_builtins.property
+    @pulumi.getter(name="variablesMb")
+    def variables_mb(self) -> Optional[_builtins.int]:
+        """
+        `(int: 0)` - The amount of storage (in megabytes) to limit
+        Nomad variables to.
+        """
+        return pulumi.get(self, "variables_mb")
 
 
 @pulumi.output_type
@@ -3033,11 +3992,11 @@ class GetJobPeriodicConfigResult(dict):
                  spec_type: _builtins.str,
                  timezone: _builtins.str):
         """
-        :param _builtins.bool enabled: `(boolean)` If periodic scheduling is enabled for the specified job.
-        :param _builtins.bool prohibit_overlap: `(boolean)`  If the specified job should wait until previous instances of the job have completed.
-        :param _builtins.str spec: `(string)`
-        :param _builtins.str spec_type: `(string)`
-        :param _builtins.str timezone: `(string)` Time zone to evaluate the next launch interval against.
+        :param _builtins.bool enabled: `(boolean)` Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
+        :param _builtins.bool prohibit_overlap: `(boolean)` Whether this job should wait until previous instances of the same job have completed before launching again.
+        :param _builtins.str spec: `(string)` Cron expression configuring the interval at which the job is launched.
+        :param _builtins.str spec_type: `(string)` Type of periodic specification, such as `cron`.
+        :param _builtins.str timezone: `(string)` Time zone used to evaluate the next launch interval.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "prohibit_overlap", prohibit_overlap)
@@ -3049,7 +4008,7 @@ class GetJobPeriodicConfigResult(dict):
     @pulumi.getter
     def enabled(self) -> _builtins.bool:
         """
-        `(boolean)` If periodic scheduling is enabled for the specified job.
+        `(boolean)` Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
         """
         return pulumi.get(self, "enabled")
 
@@ -3057,7 +4016,7 @@ class GetJobPeriodicConfigResult(dict):
     @pulumi.getter(name="prohibitOverlap")
     def prohibit_overlap(self) -> _builtins.bool:
         """
-        `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+        `(boolean)` Whether this job should wait until previous instances of the same job have completed before launching again.
         """
         return pulumi.get(self, "prohibit_overlap")
 
@@ -3065,7 +4024,7 @@ class GetJobPeriodicConfigResult(dict):
     @pulumi.getter
     def spec(self) -> _builtins.str:
         """
-        `(string)`
+        `(string)` Cron expression configuring the interval at which the job is launched.
         """
         return pulumi.get(self, "spec")
 
@@ -3073,7 +4032,7 @@ class GetJobPeriodicConfigResult(dict):
     @pulumi.getter(name="specType")
     def spec_type(self) -> _builtins.str:
         """
-        `(string)`
+        `(string)` Type of periodic specification, such as `cron`.
         """
         return pulumi.get(self, "spec_type")
 
@@ -3081,7 +4040,7 @@ class GetJobPeriodicConfigResult(dict):
     @pulumi.getter
     def timezone(self) -> _builtins.str:
         """
-        `(string)` Time zone to evaluate the next launch interval against.
+        `(string)` Time zone used to evaluate the next launch interval.
         """
         return pulumi.get(self, "timezone")
 
@@ -3093,42 +4052,69 @@ class GetJobTaskGroupResult(dict):
                  meta: Mapping[str, _builtins.str],
                  name: _builtins.str,
                  tasks: Sequence['outputs.GetJobTaskGroupTaskResult'],
+                 update_strategies: Sequence['outputs.GetJobTaskGroupUpdateStrategyResult'],
                  volumes: Sequence['outputs.GetJobTaskGroupVolumeResult']):
         """
-        :param _builtins.str name: `(string)` Name of the job.
+        :param _builtins.int count: `(integer)` Task group count.
+        :param Mapping[str, _builtins.str] meta: `(map of strings)` Task group metadata.
+        :param _builtins.str name: `(string)` Volume name.
+        :param Sequence['GetJobTaskGroupTaskArgs'] tasks: `(list of maps)` Tasks in the task group.
+        :param Sequence['GetJobTaskGroupUpdateStrategyArgs'] update_strategies: `(list of maps)` Job-level update strategy returned by Nomad.
+        :param Sequence['GetJobTaskGroupVolumeArgs'] volumes: `(list of maps)` Volume requests for the task group.
         """
         pulumi.set(__self__, "count", count)
         pulumi.set(__self__, "meta", meta)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "tasks", tasks)
+        pulumi.set(__self__, "update_strategies", update_strategies)
         pulumi.set(__self__, "volumes", volumes)
 
     @_builtins.property
     @pulumi.getter
     def count(self) -> _builtins.int:
+        """
+        `(integer)` Task group count.
+        """
         return pulumi.get(self, "count")
 
     @_builtins.property
     @pulumi.getter
     def meta(self) -> Mapping[str, _builtins.str]:
+        """
+        `(map of strings)` Task group metadata.
+        """
         return pulumi.get(self, "meta")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        `(string)` Name of the job.
+        `(string)` Volume name.
         """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter
     def tasks(self) -> Sequence['outputs.GetJobTaskGroupTaskResult']:
+        """
+        `(list of maps)` Tasks in the task group.
+        """
         return pulumi.get(self, "tasks")
+
+    @_builtins.property
+    @pulumi.getter(name="updateStrategies")
+    def update_strategies(self) -> Sequence['outputs.GetJobTaskGroupUpdateStrategyResult']:
+        """
+        `(list of maps)` Job-level update strategy returned by Nomad.
+        """
+        return pulumi.get(self, "update_strategies")
 
     @_builtins.property
     @pulumi.getter
     def volumes(self) -> Sequence['outputs.GetJobTaskGroupVolumeResult']:
+        """
+        `(list of maps)` Volume requests for the task group.
+        """
         return pulumi.get(self, "volumes")
 
 
@@ -3140,7 +4126,10 @@ class GetJobTaskGroupTaskResult(dict):
                  name: _builtins.str,
                  volume_mounts: Sequence['outputs.GetJobTaskGroupTaskVolumeMountResult']):
         """
-        :param _builtins.str name: `(string)` Name of the job.
+        :param _builtins.str driver: `(string)` Task driver.
+        :param Mapping[str, _builtins.str] meta: `(map of strings)` Task group metadata.
+        :param _builtins.str name: `(string)` Volume name.
+        :param Sequence['GetJobTaskGroupTaskVolumeMountArgs'] volume_mounts: `(list of maps)` Task volume mounts.
         """
         pulumi.set(__self__, "driver", driver)
         pulumi.set(__self__, "meta", meta)
@@ -3150,24 +4139,33 @@ class GetJobTaskGroupTaskResult(dict):
     @_builtins.property
     @pulumi.getter
     def driver(self) -> _builtins.str:
+        """
+        `(string)` Task driver.
+        """
         return pulumi.get(self, "driver")
 
     @_builtins.property
     @pulumi.getter
     def meta(self) -> Mapping[str, _builtins.str]:
+        """
+        `(map of strings)` Task group metadata.
+        """
         return pulumi.get(self, "meta")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        `(string)` Name of the job.
+        `(string)` Volume name.
         """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter(name="volumeMounts")
     def volume_mounts(self) -> Sequence['outputs.GetJobTaskGroupTaskVolumeMountResult']:
+        """
+        `(list of maps)` Task volume mounts.
+        """
         return pulumi.get(self, "volume_mounts")
 
 
@@ -3177,6 +4175,11 @@ class GetJobTaskGroupTaskVolumeMountResult(dict):
                  destination: _builtins.str,
                  read_only: _builtins.bool,
                  volume: _builtins.str):
+        """
+        :param _builtins.str destination: `(string)` Destination path inside the task.
+        :param _builtins.bool read_only: `(boolean)` Whether the volume is read-only.
+        :param _builtins.str volume: `(string)` Volume name.
+        """
         pulumi.set(__self__, "destination", destination)
         pulumi.set(__self__, "read_only", read_only)
         pulumi.set(__self__, "volume", volume)
@@ -3184,17 +4187,110 @@ class GetJobTaskGroupTaskVolumeMountResult(dict):
     @_builtins.property
     @pulumi.getter
     def destination(self) -> _builtins.str:
+        """
+        `(string)` Destination path inside the task.
+        """
         return pulumi.get(self, "destination")
 
     @_builtins.property
     @pulumi.getter(name="readOnly")
     def read_only(self) -> _builtins.bool:
+        """
+        `(boolean)` Whether the volume is read-only.
+        """
         return pulumi.get(self, "read_only")
 
     @_builtins.property
     @pulumi.getter
     def volume(self) -> _builtins.str:
+        """
+        `(string)` Volume name.
+        """
         return pulumi.get(self, "volume")
+
+
+@pulumi.output_type
+class GetJobTaskGroupUpdateStrategyResult(dict):
+    def __init__(__self__, *,
+                 auto_revert: _builtins.bool,
+                 canary: _builtins.int,
+                 health_check: _builtins.str,
+                 healthy_deadline: _builtins.str,
+                 max_parallel: _builtins.int,
+                 min_healthy_time: _builtins.str,
+                 stagger: _builtins.str):
+        """
+        :param _builtins.bool auto_revert: `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+        :param _builtins.int canary: `(integer)` Number of canary allocations created before destructive updates continue.
+        :param _builtins.str health_check: `(string)` Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        :param _builtins.str healthy_deadline: `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+        :param _builtins.int max_parallel: `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        :param _builtins.str min_healthy_time: `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+        :param _builtins.str stagger: `(string)` Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        pulumi.set(__self__, "auto_revert", auto_revert)
+        pulumi.set(__self__, "canary", canary)
+        pulumi.set(__self__, "health_check", health_check)
+        pulumi.set(__self__, "healthy_deadline", healthy_deadline)
+        pulumi.set(__self__, "max_parallel", max_parallel)
+        pulumi.set(__self__, "min_healthy_time", min_healthy_time)
+        pulumi.set(__self__, "stagger", stagger)
+
+    @_builtins.property
+    @pulumi.getter(name="autoRevert")
+    def auto_revert(self) -> _builtins.bool:
+        """
+        `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+        """
+        return pulumi.get(self, "auto_revert")
+
+    @_builtins.property
+    @pulumi.getter
+    def canary(self) -> _builtins.int:
+        """
+        `(integer)` Number of canary allocations created before destructive updates continue.
+        """
+        return pulumi.get(self, "canary")
+
+    @_builtins.property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> _builtins.str:
+        """
+        `(string)` Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        """
+        return pulumi.get(self, "health_check")
+
+    @_builtins.property
+    @pulumi.getter(name="healthyDeadline")
+    def healthy_deadline(self) -> _builtins.str:
+        """
+        `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+        """
+        return pulumi.get(self, "healthy_deadline")
+
+    @_builtins.property
+    @pulumi.getter(name="maxParallel")
+    def max_parallel(self) -> _builtins.int:
+        """
+        `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        """
+        return pulumi.get(self, "max_parallel")
+
+    @_builtins.property
+    @pulumi.getter(name="minHealthyTime")
+    def min_healthy_time(self) -> _builtins.str:
+        """
+        `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+        """
+        return pulumi.get(self, "min_healthy_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def stagger(self) -> _builtins.str:
+        """
+        `(string)` Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        return pulumi.get(self, "stagger")
 
 
 @pulumi.output_type
@@ -3205,8 +4301,10 @@ class GetJobTaskGroupVolumeResult(dict):
                  source: _builtins.str,
                  type: _builtins.str):
         """
-        :param _builtins.str name: `(string)` Name of the job.
-        :param _builtins.str type: `(string)` Scheduler type used during job creation.
+        :param _builtins.str name: `(string)` Volume name.
+        :param _builtins.bool read_only: `(boolean)` Whether the volume is read-only.
+        :param _builtins.str source: `(string)` Volume source.
+        :param _builtins.str type: `(string)` Volume type.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "read_only", read_only)
@@ -3217,66 +4315,170 @@ class GetJobTaskGroupVolumeResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        `(string)` Name of the job.
+        `(string)` Volume name.
         """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter(name="readOnly")
     def read_only(self) -> _builtins.bool:
+        """
+        `(boolean)` Whether the volume is read-only.
+        """
         return pulumi.get(self, "read_only")
 
     @_builtins.property
     @pulumi.getter
     def source(self) -> _builtins.str:
+        """
+        `(string)` Volume source.
+        """
         return pulumi.get(self, "source")
 
     @_builtins.property
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        `(string)` Scheduler type used during job creation.
+        `(string)` Volume type.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetJobUpdateStrategyResult(dict):
+    def __init__(__self__, *,
+                 auto_revert: _builtins.bool,
+                 canary: _builtins.int,
+                 health_check: _builtins.str,
+                 healthy_deadline: _builtins.str,
+                 max_parallel: _builtins.int,
+                 min_healthy_time: _builtins.str,
+                 stagger: _builtins.str):
+        """
+        :param _builtins.bool auto_revert: `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+        :param _builtins.int canary: `(integer)` Number of canary allocations created before destructive updates continue.
+        :param _builtins.str health_check: `(string)` Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        :param _builtins.str healthy_deadline: `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+        :param _builtins.int max_parallel: `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        :param _builtins.str min_healthy_time: `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+        :param _builtins.str stagger: `(string)` Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        pulumi.set(__self__, "auto_revert", auto_revert)
+        pulumi.set(__self__, "canary", canary)
+        pulumi.set(__self__, "health_check", health_check)
+        pulumi.set(__self__, "healthy_deadline", healthy_deadline)
+        pulumi.set(__self__, "max_parallel", max_parallel)
+        pulumi.set(__self__, "min_healthy_time", min_healthy_time)
+        pulumi.set(__self__, "stagger", stagger)
+
+    @_builtins.property
+    @pulumi.getter(name="autoRevert")
+    def auto_revert(self) -> _builtins.bool:
+        """
+        `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+        """
+        return pulumi.get(self, "auto_revert")
+
+    @_builtins.property
+    @pulumi.getter
+    def canary(self) -> _builtins.int:
+        """
+        `(integer)` Number of canary allocations created before destructive updates continue.
+        """
+        return pulumi.get(self, "canary")
+
+    @_builtins.property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> _builtins.str:
+        """
+        `(string)` Mechanism used to determine allocation health: `checks`, `task_states`, or `manual`.
+        """
+        return pulumi.get(self, "health_check")
+
+    @_builtins.property
+    @pulumi.getter(name="healthyDeadline")
+    def healthy_deadline(self) -> _builtins.str:
+        """
+        `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+        """
+        return pulumi.get(self, "healthy_deadline")
+
+    @_builtins.property
+    @pulumi.getter(name="maxParallel")
+    def max_parallel(self) -> _builtins.int:
+        """
+        `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+        """
+        return pulumi.get(self, "max_parallel")
+
+    @_builtins.property
+    @pulumi.getter(name="minHealthyTime")
+    def min_healthy_time(self) -> _builtins.str:
+        """
+        `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+        """
+        return pulumi.get(self, "min_healthy_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def stagger(self) -> _builtins.str:
+        """
+        `(string)` Delay between each set of `max_parallel` updates when updating system jobs.
+        """
+        return pulumi.get(self, "stagger")
 
 
 @pulumi.output_type
 class GetJwksKeyResult(dict):
     def __init__(__self__, *,
                  algorithm: _builtins.str,
+                 curve: _builtins.str,
                  exponent: _builtins.str,
                  key_id: _builtins.str,
                  key_type: _builtins.str,
                  key_use: _builtins.str,
-                 modulus: _builtins.str):
+                 modulus: _builtins.str,
+                 x: _builtins.str):
         """
-        :param _builtins.str algorithm: `(string)` - JWK field `alg`
-        :param _builtins.str exponent: `(string)` - JWK field `e`
+        :param _builtins.str algorithm: `(string)` - JWK field `alg` (e.g. `RS256`, `EdDSA`)
+        :param _builtins.str curve: `(string)` - JWK field `crv` (EdDSA only, e.g. `Ed25519`)
+        :param _builtins.str exponent: `(string)` - JWK field `e` (RSA only)
         :param _builtins.str key_id: `(string)` - JWK field `kid`
-        :param _builtins.str key_type: `(string)` - JWK field `kty`
+        :param _builtins.str key_type: `(string)` - JWK field `kty` (e.g. `RSA`, `OKP`)
         :param _builtins.str key_use: `(string)` - JWK field `use`
-        :param _builtins.str modulus: `(string)` - JWK field `n`
+        :param _builtins.str modulus: `(string)` - JWK field `n` (RSA only)
+        :param _builtins.str x: `(string)` - JWK field `x` (EdDSA only, the public key)
         """
         pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "curve", curve)
         pulumi.set(__self__, "exponent", exponent)
         pulumi.set(__self__, "key_id", key_id)
         pulumi.set(__self__, "key_type", key_type)
         pulumi.set(__self__, "key_use", key_use)
         pulumi.set(__self__, "modulus", modulus)
+        pulumi.set(__self__, "x", x)
 
     @_builtins.property
     @pulumi.getter
     def algorithm(self) -> _builtins.str:
         """
-        `(string)` - JWK field `alg`
+        `(string)` - JWK field `alg` (e.g. `RS256`, `EdDSA`)
         """
         return pulumi.get(self, "algorithm")
 
     @_builtins.property
     @pulumi.getter
+    def curve(self) -> _builtins.str:
+        """
+        `(string)` - JWK field `crv` (EdDSA only, e.g. `Ed25519`)
+        """
+        return pulumi.get(self, "curve")
+
+    @_builtins.property
+    @pulumi.getter
     def exponent(self) -> _builtins.str:
         """
-        `(string)` - JWK field `e`
+        `(string)` - JWK field `e` (RSA only)
         """
         return pulumi.get(self, "exponent")
 
@@ -3292,7 +4494,7 @@ class GetJwksKeyResult(dict):
     @pulumi.getter(name="keyType")
     def key_type(self) -> _builtins.str:
         """
-        `(string)` - JWK field `kty`
+        `(string)` - JWK field `kty` (e.g. `RSA`, `OKP`)
         """
         return pulumi.get(self, "key_type")
 
@@ -3308,9 +4510,17 @@ class GetJwksKeyResult(dict):
     @pulumi.getter
     def modulus(self) -> _builtins.str:
         """
-        `(string)` - JWK field `n`
+        `(string)` - JWK field `n` (RSA only)
         """
         return pulumi.get(self, "modulus")
+
+    @_builtins.property
+    @pulumi.getter
+    def x(self) -> _builtins.str:
+        """
+        `(string)` - JWK field `x` (EdDSA only, the public key)
+        """
+        return pulumi.get(self, "x")
 
 
 @pulumi.output_type
@@ -3369,11 +4579,16 @@ class GetNamespaceCapabilityResult(dict):
 
 
 @pulumi.output_type
-class GetNamespaceNodePoolConfigResult(dict):
+class GetNamespaceConsulConfigResult(dict):
     def __init__(__self__, *,
                  alloweds: Sequence[_builtins.str],
                  default: _builtins.str,
                  denieds: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] alloweds: `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+        :param _builtins.str default: `(string)` - The Consul cluster to use when none is specified in the job.
+        :param Sequence[_builtins.str] denieds: `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+        """
         pulumi.set(__self__, "alloweds", alloweds)
         pulumi.set(__self__, "default", default)
         pulumi.set(__self__, "denieds", denieds)
@@ -3381,17 +4596,470 @@ class GetNamespaceNodePoolConfigResult(dict):
     @_builtins.property
     @pulumi.getter
     def alloweds(self) -> Sequence[_builtins.str]:
+        """
+        `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+        """
         return pulumi.get(self, "alloweds")
 
     @_builtins.property
     @pulumi.getter
     def default(self) -> _builtins.str:
+        """
+        `(string)` - The Consul cluster to use when none is specified in the job.
+        """
         return pulumi.get(self, "default")
 
     @_builtins.property
     @pulumi.getter
     def denieds(self) -> Sequence[_builtins.str]:
+        """
+        `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+        """
         return pulumi.get(self, "denieds")
+
+
+@pulumi.output_type
+class GetNamespaceNodePoolConfigResult(dict):
+    def __init__(__self__, *,
+                 alloweds: Sequence[_builtins.str],
+                 default: _builtins.str,
+                 denieds: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] alloweds: `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+        :param _builtins.str default: `(string)` - The Consul cluster to use when none is specified in the job.
+        :param Sequence[_builtins.str] denieds: `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+        """
+        pulumi.set(__self__, "alloweds", alloweds)
+        pulumi.set(__self__, "default", default)
+        pulumi.set(__self__, "denieds", denieds)
+
+    @_builtins.property
+    @pulumi.getter
+    def alloweds(self) -> Sequence[_builtins.str]:
+        """
+        `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+        """
+        return pulumi.get(self, "alloweds")
+
+    @_builtins.property
+    @pulumi.getter
+    def default(self) -> _builtins.str:
+        """
+        `(string)` - The Consul cluster to use when none is specified in the job.
+        """
+        return pulumi.get(self, "default")
+
+    @_builtins.property
+    @pulumi.getter
+    def denieds(self) -> Sequence[_builtins.str]:
+        """
+        `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+        """
+        return pulumi.get(self, "denieds")
+
+
+@pulumi.output_type
+class GetNamespaceVaultConfigResult(dict):
+    def __init__(__self__, *,
+                 alloweds: Sequence[_builtins.str],
+                 default: _builtins.str,
+                 denieds: Sequence[_builtins.str]):
+        """
+        :param Sequence[_builtins.str] alloweds: `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+        :param _builtins.str default: `(string)` - The Consul cluster to use when none is specified in the job.
+        :param Sequence[_builtins.str] denieds: `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+        """
+        pulumi.set(__self__, "alloweds", alloweds)
+        pulumi.set(__self__, "default", default)
+        pulumi.set(__self__, "denieds", denieds)
+
+    @_builtins.property
+    @pulumi.getter
+    def alloweds(self) -> Sequence[_builtins.str]:
+        """
+        `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+        """
+        return pulumi.get(self, "alloweds")
+
+    @_builtins.property
+    @pulumi.getter
+    def default(self) -> _builtins.str:
+        """
+        `(string)` - The Consul cluster to use when none is specified in the job.
+        """
+        return pulumi.get(self, "default")
+
+    @_builtins.property
+    @pulumi.getter
+    def denieds(self) -> Sequence[_builtins.str]:
+        """
+        `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+        """
+        return pulumi.get(self, "denieds")
+
+
+@pulumi.output_type
+class GetNodeDriverResult(dict):
+    def __init__(__self__, *,
+                 attributes: Mapping[str, _builtins.str],
+                 detected: _builtins.bool,
+                 healthy: _builtins.bool,
+                 name: _builtins.str):
+        """
+        :param Mapping[str, _builtins.str] attributes: `(map of string)` - Driver-specific attributes.
+        :param _builtins.bool detected: `(bool)` - Whether the driver is detected.
+        :param _builtins.bool healthy: `(bool)` - Whether the driver is healthy.
+        :param _builtins.str name: `(string)` - The device name.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+        pulumi.set(__self__, "detected", detected)
+        pulumi.set(__self__, "healthy", healthy)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def attributes(self) -> Mapping[str, _builtins.str]:
+        """
+        `(map of string)` - Driver-specific attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @_builtins.property
+    @pulumi.getter
+    def detected(self) -> _builtins.bool:
+        """
+        `(bool)` - Whether the driver is detected.
+        """
+        return pulumi.get(self, "detected")
+
+    @_builtins.property
+    @pulumi.getter
+    def healthy(self) -> _builtins.bool:
+        """
+        `(bool)` - Whether the driver is healthy.
+        """
+        return pulumi.get(self, "healthy")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        `(string)` - The device name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetNodeHostVolumeResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 path: _builtins.str,
+                 read_only: _builtins.bool):
+        """
+        :param _builtins.str id: `(string)` - The ID of the host volume (set for dynamic host volumes only).
+        :param _builtins.str name: `(string)` - The device name.
+        :param _builtins.str path: `(string)` - The path of the host volume.
+        :param _builtins.bool read_only: `(bool)` - Whether the host volume is read-only.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "read_only", read_only)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        `(string)` - The ID of the host volume (set for dynamic host volumes only).
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        `(string)` - The device name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> _builtins.str:
+        """
+        `(string)` - The path of the host volume.
+        """
+        return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter(name="readOnly")
+    def read_only(self) -> _builtins.bool:
+        """
+        `(bool)` - Whether the host volume is read-only.
+        """
+        return pulumi.get(self, "read_only")
+
+
+@pulumi.output_type
+class GetNodeNodeResourceResult(dict):
+    def __init__(__self__, *,
+                 cpus: Sequence['outputs.GetNodeNodeResourceCpusResult'],
+                 devices: Sequence['outputs.GetNodeNodeResourceDeviceResult'],
+                 disks: Sequence['outputs.GetNodeNodeResourceDiskResult'],
+                 max_dynamic_port: _builtins.int,
+                 memories: Sequence['outputs.GetNodeNodeResourceMemoryResult'],
+                 min_dynamic_port: _builtins.int,
+                 networks: Sequence['outputs.GetNodeNodeResourceNetworkResult']):
+        """
+        :param Sequence['GetNodeNodeResourceCpusArgs'] cpus: `(list)` - Reserved CPU resources.
+        :param Sequence['GetNodeNodeResourceDeviceArgs'] devices: `(list)` - Device resources on the node (GPUs, etc.).
+        :param Sequence['GetNodeNodeResourceDiskArgs'] disks: `(list)` - Reserved disk resources.
+        :param _builtins.int max_dynamic_port: `(int)` - Maximum dynamic port for this node.
+        :param Sequence['GetNodeNodeResourceMemoryArgs'] memories: `(list)` - Reserved memory resources.
+        :param _builtins.int min_dynamic_port: `(int)` - Minimum dynamic port for this node.
+        :param Sequence['GetNodeNodeResourceNetworkArgs'] networks: `(map of string)` - Reserved network resources.
+        """
+        pulumi.set(__self__, "cpus", cpus)
+        pulumi.set(__self__, "devices", devices)
+        pulumi.set(__self__, "disks", disks)
+        pulumi.set(__self__, "max_dynamic_port", max_dynamic_port)
+        pulumi.set(__self__, "memories", memories)
+        pulumi.set(__self__, "min_dynamic_port", min_dynamic_port)
+        pulumi.set(__self__, "networks", networks)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpus(self) -> Sequence['outputs.GetNodeNodeResourceCpusResult']:
+        """
+        `(list)` - Reserved CPU resources.
+        """
+        return pulumi.get(self, "cpus")
+
+    @_builtins.property
+    @pulumi.getter
+    def devices(self) -> Sequence['outputs.GetNodeNodeResourceDeviceResult']:
+        """
+        `(list)` - Device resources on the node (GPUs, etc.).
+        """
+        return pulumi.get(self, "devices")
+
+    @_builtins.property
+    @pulumi.getter
+    def disks(self) -> Sequence['outputs.GetNodeNodeResourceDiskResult']:
+        """
+        `(list)` - Reserved disk resources.
+        """
+        return pulumi.get(self, "disks")
+
+    @_builtins.property
+    @pulumi.getter(name="maxDynamicPort")
+    def max_dynamic_port(self) -> _builtins.int:
+        """
+        `(int)` - Maximum dynamic port for this node.
+        """
+        return pulumi.get(self, "max_dynamic_port")
+
+    @_builtins.property
+    @pulumi.getter
+    def memories(self) -> Sequence['outputs.GetNodeNodeResourceMemoryResult']:
+        """
+        `(list)` - Reserved memory resources.
+        """
+        return pulumi.get(self, "memories")
+
+    @_builtins.property
+    @pulumi.getter(name="minDynamicPort")
+    def min_dynamic_port(self) -> _builtins.int:
+        """
+        `(int)` - Minimum dynamic port for this node.
+        """
+        return pulumi.get(self, "min_dynamic_port")
+
+    @_builtins.property
+    @pulumi.getter
+    def networks(self) -> Sequence['outputs.GetNodeNodeResourceNetworkResult']:
+        """
+        `(map of string)` - Reserved network resources.
+        """
+        return pulumi.get(self, "networks")
+
+
+@pulumi.output_type
+class GetNodeNodeResourceCpusResult(dict):
+    def __init__(__self__, *,
+                 cpu_shares: _builtins.int,
+                 reservable_cpu_cores: Sequence[_builtins.int],
+                 total_cpu_cores: _builtins.int):
+        """
+        :param _builtins.int cpu_shares: `(int)` - Reserved CPU shares.
+        :param Sequence[_builtins.int] reservable_cpu_cores: `(list of int)` - List of reservable CPU core IDs.
+        :param _builtins.int total_cpu_cores: `(int)` - Total number of CPU cores.
+        """
+        pulumi.set(__self__, "cpu_shares", cpu_shares)
+        pulumi.set(__self__, "reservable_cpu_cores", reservable_cpu_cores)
+        pulumi.set(__self__, "total_cpu_cores", total_cpu_cores)
+
+    @_builtins.property
+    @pulumi.getter(name="cpuShares")
+    def cpu_shares(self) -> _builtins.int:
+        """
+        `(int)` - Reserved CPU shares.
+        """
+        return pulumi.get(self, "cpu_shares")
+
+    @_builtins.property
+    @pulumi.getter(name="reservableCpuCores")
+    def reservable_cpu_cores(self) -> Sequence[_builtins.int]:
+        """
+        `(list of int)` - List of reservable CPU core IDs.
+        """
+        return pulumi.get(self, "reservable_cpu_cores")
+
+    @_builtins.property
+    @pulumi.getter(name="totalCpuCores")
+    def total_cpu_cores(self) -> _builtins.int:
+        """
+        `(int)` - Total number of CPU cores.
+        """
+        return pulumi.get(self, "total_cpu_cores")
+
+
+@pulumi.output_type
+class GetNodeNodeResourceDeviceResult(dict):
+    def __init__(__self__, *,
+                 count: _builtins.int,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 vendor: _builtins.str):
+        """
+        :param _builtins.int count: `(int)` - The number of device instances.
+        :param _builtins.str name: `(string)` - The device name.
+        :param _builtins.str type: `(string)` - The device type.
+        :param _builtins.str vendor: `(string)` - The device vendor.
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "vendor", vendor)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        `(int)` - The number of device instances.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        `(string)` - The device name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        `(string)` - The device type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> _builtins.str:
+        """
+        `(string)` - The device vendor.
+        """
+        return pulumi.get(self, "vendor")
+
+
+@pulumi.output_type
+class GetNodeNodeResourceDiskResult(dict):
+    def __init__(__self__, *,
+                 disk_mb: _builtins.int):
+        """
+        :param _builtins.int disk_mb: `(int)` - Reserved disk space in MB.
+        """
+        pulumi.set(__self__, "disk_mb", disk_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="diskMb")
+    def disk_mb(self) -> _builtins.int:
+        """
+        `(int)` - Reserved disk space in MB.
+        """
+        return pulumi.get(self, "disk_mb")
+
+
+@pulumi.output_type
+class GetNodeNodeResourceMemoryResult(dict):
+    def __init__(__self__, *,
+                 memory_mb: _builtins.int):
+        """
+        :param _builtins.int memory_mb: `(int)` - Reserved memory in MB.
+        """
+        pulumi.set(__self__, "memory_mb", memory_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMb")
+    def memory_mb(self) -> _builtins.int:
+        """
+        `(int)` - Reserved memory in MB.
+        """
+        return pulumi.get(self, "memory_mb")
+
+
+@pulumi.output_type
+class GetNodeNodeResourceNetworkResult(dict):
+    def __init__(__self__, *,
+                 cidr: _builtins.str,
+                 device: _builtins.str,
+                 ip: _builtins.str,
+                 mode: _builtins.str):
+        """
+        :param _builtins.str cidr: `(string)` - The CIDR of the network.
+        :param _builtins.str device: `(string)` - The network device.
+        :param _builtins.str ip: `(string)` - The IP address of the network.
+        :param _builtins.str mode: `(string)` - The network mode.
+        """
+        pulumi.set(__self__, "cidr", cidr)
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "mode", mode)
+
+    @_builtins.property
+    @pulumi.getter
+    def cidr(self) -> _builtins.str:
+        """
+        `(string)` - The CIDR of the network.
+        """
+        return pulumi.get(self, "cidr")
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> _builtins.str:
+        """
+        `(string)` - The network device.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter
+    def ip(self) -> _builtins.str:
+        """
+        `(string)` - The IP address of the network.
+        """
+        return pulumi.get(self, "ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        `(string)` - The network mode.
+        """
+        return pulumi.get(self, "mode")
 
 
 @pulumi.output_type
@@ -3435,17 +5103,21 @@ class GetNodePoolsNodePoolResult(dict):
                  description: _builtins.str,
                  meta: Mapping[str, _builtins.str],
                  name: _builtins.str,
+                 node_identity_ttl: _builtins.str,
                  scheduler_configs: Sequence['outputs.GetNodePoolsNodePoolSchedulerConfigResult']):
         """
         :param _builtins.str description: `(string)` - The description of the node pool.
         :param Mapping[str, _builtins.str] meta: `(map[string]string)` - Arbitrary KV metadata associated with the
                node pool.
         :param _builtins.str name: `(string)` - The name of the node pool.
+        :param _builtins.str node_identity_ttl: `(string)` - The TTL applied to node identities issued to
+               nodes in this pool.
         :param Sequence['GetNodePoolsNodePoolSchedulerConfigArgs'] scheduler_configs: `(block)` - Scheduler configuration for the node pool.
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "meta", meta)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "node_identity_ttl", node_identity_ttl)
         pulumi.set(__self__, "scheduler_configs", scheduler_configs)
 
     @_builtins.property
@@ -3472,6 +5144,15 @@ class GetNodePoolsNodePoolResult(dict):
         `(string)` - The name of the node pool.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeIdentityTtl")
+    def node_identity_ttl(self) -> _builtins.str:
+        """
+        `(string)` - The TTL applied to node identities issued to
+        nodes in this pool.
+        """
+        return pulumi.get(self, "node_identity_ttl")
 
     @_builtins.property
     @pulumi.getter(name="schedulerConfigs")
@@ -3515,6 +5196,713 @@ class GetNodePoolsNodePoolSchedulerConfigResult(dict):
         pool. If empty or not defined the global cluster configuration is used.
         """
         return pulumi.get(self, "scheduler_algorithm")
+
+
+@pulumi.output_type
+class GetNodeReservedResourceResult(dict):
+    def __init__(__self__, *,
+                 cpus: Sequence['outputs.GetNodeReservedResourceCpusResult'],
+                 disks: Sequence['outputs.GetNodeReservedResourceDiskResult'],
+                 memories: Sequence['outputs.GetNodeReservedResourceMemoryResult'],
+                 networks: Mapping[str, _builtins.str]):
+        """
+        :param Sequence['GetNodeReservedResourceCpusArgs'] cpus: `(list)` - Reserved CPU resources.
+        :param Sequence['GetNodeReservedResourceDiskArgs'] disks: `(list)` - Reserved disk resources.
+        :param Sequence['GetNodeReservedResourceMemoryArgs'] memories: `(list)` - Reserved memory resources.
+        :param Mapping[str, _builtins.str] networks: `(map of string)` - Reserved network resources.
+        """
+        pulumi.set(__self__, "cpus", cpus)
+        pulumi.set(__self__, "disks", disks)
+        pulumi.set(__self__, "memories", memories)
+        pulumi.set(__self__, "networks", networks)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpus(self) -> Sequence['outputs.GetNodeReservedResourceCpusResult']:
+        """
+        `(list)` - Reserved CPU resources.
+        """
+        return pulumi.get(self, "cpus")
+
+    @_builtins.property
+    @pulumi.getter
+    def disks(self) -> Sequence['outputs.GetNodeReservedResourceDiskResult']:
+        """
+        `(list)` - Reserved disk resources.
+        """
+        return pulumi.get(self, "disks")
+
+    @_builtins.property
+    @pulumi.getter
+    def memories(self) -> Sequence['outputs.GetNodeReservedResourceMemoryResult']:
+        """
+        `(list)` - Reserved memory resources.
+        """
+        return pulumi.get(self, "memories")
+
+    @_builtins.property
+    @pulumi.getter
+    def networks(self) -> Mapping[str, _builtins.str]:
+        """
+        `(map of string)` - Reserved network resources.
+        """
+        return pulumi.get(self, "networks")
+
+
+@pulumi.output_type
+class GetNodeReservedResourceCpusResult(dict):
+    def __init__(__self__, *,
+                 cpu_shares: _builtins.int):
+        """
+        :param _builtins.int cpu_shares: `(int)` - Reserved CPU shares.
+        """
+        pulumi.set(__self__, "cpu_shares", cpu_shares)
+
+    @_builtins.property
+    @pulumi.getter(name="cpuShares")
+    def cpu_shares(self) -> _builtins.int:
+        """
+        `(int)` - Reserved CPU shares.
+        """
+        return pulumi.get(self, "cpu_shares")
+
+
+@pulumi.output_type
+class GetNodeReservedResourceDiskResult(dict):
+    def __init__(__self__, *,
+                 disk_mb: _builtins.int):
+        """
+        :param _builtins.int disk_mb: `(int)` - Reserved disk space in MB.
+        """
+        pulumi.set(__self__, "disk_mb", disk_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="diskMb")
+    def disk_mb(self) -> _builtins.int:
+        """
+        `(int)` - Reserved disk space in MB.
+        """
+        return pulumi.get(self, "disk_mb")
+
+
+@pulumi.output_type
+class GetNodeReservedResourceMemoryResult(dict):
+    def __init__(__self__, *,
+                 memory_mb: _builtins.int):
+        """
+        :param _builtins.int memory_mb: `(int)` - Reserved memory in MB.
+        """
+        pulumi.set(__self__, "memory_mb", memory_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMb")
+    def memory_mb(self) -> _builtins.int:
+        """
+        `(int)` - Reserved memory in MB.
+        """
+        return pulumi.get(self, "memory_mb")
+
+
+@pulumi.output_type
+class GetNodesNodeResult(dict):
+    def __init__(__self__, *,
+                 address: _builtins.str,
+                 attributes: Mapping[str, _builtins.str],
+                 datacenter: _builtins.str,
+                 drain: _builtins.bool,
+                 drivers: Sequence['outputs.GetNodesNodeDriverResult'],
+                 id: _builtins.str,
+                 name: _builtins.str,
+                 node_class: _builtins.str,
+                 node_pool: _builtins.str,
+                 node_resources: Sequence['outputs.GetNodesNodeNodeResourceResult'],
+                 reserved_resources: Sequence['outputs.GetNodesNodeReservedResourceResult'],
+                 scheduling_eligibility: _builtins.str,
+                 status: _builtins.str,
+                 status_description: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str address: `(string)` - The address of the node.
+        :param Mapping[str, _builtins.str] attributes: `(map of string)` - Driver-specific attributes.
+        :param _builtins.str datacenter: `(string)` - The datacenter of the node.
+        :param _builtins.bool drain: `(bool)` - Whether the node is in drain mode. This value is ephemeral
+               and can change without an agent restart.
+        :param Sequence['GetNodesNodeDriverArgs'] drivers: `(list of drivers)` - A list of driver information for the node.
+        :param _builtins.str id: `(string)` - The ID of the node.
+        :param _builtins.str name: `(string)` - The device name.
+        :param _builtins.str node_class: `(string)` - The node class of the node.
+        :param _builtins.str node_pool: `(string)` - The node pool of the node.
+        :param Sequence['GetNodesNodeNodeResourceArgs'] node_resources: `(list)` - Resources available on the node. Only populated
+               when the `resources` parameter is set to true.
+        :param Sequence['GetNodesNodeReservedResourceArgs'] reserved_resources: `(list)` - Resources reserved on the node. Only populated
+               when the `resources` parameter is set to true.
+        :param _builtins.str scheduling_eligibility: `(string)` - The scheduling eligibility of the node.
+               This value is ephemeral and can change without an agent restart.
+        :param _builtins.str status: `(string)` - The status of the node. This value is ephemeral and
+               can change without an agent restart.
+        :param _builtins.str status_description: `(string)` - The status description of the node. This
+               value is ephemeral and can change without an agent restart.
+        :param _builtins.str version: `(string)` - The Nomad version of the node.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "attributes", attributes)
+        pulumi.set(__self__, "datacenter", datacenter)
+        pulumi.set(__self__, "drain", drain)
+        pulumi.set(__self__, "drivers", drivers)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "node_class", node_class)
+        pulumi.set(__self__, "node_pool", node_pool)
+        pulumi.set(__self__, "node_resources", node_resources)
+        pulumi.set(__self__, "reserved_resources", reserved_resources)
+        pulumi.set(__self__, "scheduling_eligibility", scheduling_eligibility)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "status_description", status_description)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def address(self) -> _builtins.str:
+        """
+        `(string)` - The address of the node.
+        """
+        return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter
+    def attributes(self) -> Mapping[str, _builtins.str]:
+        """
+        `(map of string)` - Driver-specific attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @_builtins.property
+    @pulumi.getter
+    def datacenter(self) -> _builtins.str:
+        """
+        `(string)` - The datacenter of the node.
+        """
+        return pulumi.get(self, "datacenter")
+
+    @_builtins.property
+    @pulumi.getter
+    def drain(self) -> _builtins.bool:
+        """
+        `(bool)` - Whether the node is in drain mode. This value is ephemeral
+        and can change without an agent restart.
+        """
+        return pulumi.get(self, "drain")
+
+    @_builtins.property
+    @pulumi.getter
+    def drivers(self) -> Sequence['outputs.GetNodesNodeDriverResult']:
+        """
+        `(list of drivers)` - A list of driver information for the node.
+        """
+        return pulumi.get(self, "drivers")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        `(string)` - The ID of the node.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        `(string)` - The device name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeClass")
+    def node_class(self) -> _builtins.str:
+        """
+        `(string)` - The node class of the node.
+        """
+        return pulumi.get(self, "node_class")
+
+    @_builtins.property
+    @pulumi.getter(name="nodePool")
+    def node_pool(self) -> _builtins.str:
+        """
+        `(string)` - The node pool of the node.
+        """
+        return pulumi.get(self, "node_pool")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeResources")
+    def node_resources(self) -> Sequence['outputs.GetNodesNodeNodeResourceResult']:
+        """
+        `(list)` - Resources available on the node. Only populated
+        when the `resources` parameter is set to true.
+        """
+        return pulumi.get(self, "node_resources")
+
+    @_builtins.property
+    @pulumi.getter(name="reservedResources")
+    def reserved_resources(self) -> Sequence['outputs.GetNodesNodeReservedResourceResult']:
+        """
+        `(list)` - Resources reserved on the node. Only populated
+        when the `resources` parameter is set to true.
+        """
+        return pulumi.get(self, "reserved_resources")
+
+    @_builtins.property
+    @pulumi.getter(name="schedulingEligibility")
+    def scheduling_eligibility(self) -> _builtins.str:
+        """
+        `(string)` - The scheduling eligibility of the node.
+        This value is ephemeral and can change without an agent restart.
+        """
+        return pulumi.get(self, "scheduling_eligibility")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        `(string)` - The status of the node. This value is ephemeral and
+        can change without an agent restart.
+        """
+        return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="statusDescription")
+    def status_description(self) -> _builtins.str:
+        """
+        `(string)` - The status description of the node. This
+        value is ephemeral and can change without an agent restart.
+        """
+        return pulumi.get(self, "status_description")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        `(string)` - The Nomad version of the node.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetNodesNodeDriverResult(dict):
+    def __init__(__self__, *,
+                 attributes: Mapping[str, _builtins.str],
+                 detected: _builtins.bool,
+                 healthy: _builtins.bool,
+                 name: _builtins.str):
+        """
+        :param Mapping[str, _builtins.str] attributes: `(map of string)` - Driver-specific attributes.
+        :param _builtins.bool detected: `(bool)` - Whether the driver is detected.
+        :param _builtins.bool healthy: `(bool)` - Whether the driver is healthy.
+        :param _builtins.str name: `(string)` - The device name.
+        """
+        pulumi.set(__self__, "attributes", attributes)
+        pulumi.set(__self__, "detected", detected)
+        pulumi.set(__self__, "healthy", healthy)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def attributes(self) -> Mapping[str, _builtins.str]:
+        """
+        `(map of string)` - Driver-specific attributes.
+        """
+        return pulumi.get(self, "attributes")
+
+    @_builtins.property
+    @pulumi.getter
+    def detected(self) -> _builtins.bool:
+        """
+        `(bool)` - Whether the driver is detected.
+        """
+        return pulumi.get(self, "detected")
+
+    @_builtins.property
+    @pulumi.getter
+    def healthy(self) -> _builtins.bool:
+        """
+        `(bool)` - Whether the driver is healthy.
+        """
+        return pulumi.get(self, "healthy")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        `(string)` - The device name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetNodesNodeNodeResourceResult(dict):
+    def __init__(__self__, *,
+                 cpus: Sequence['outputs.GetNodesNodeNodeResourceCpusResult'],
+                 devices: Sequence['outputs.GetNodesNodeNodeResourceDeviceResult'],
+                 disks: Sequence['outputs.GetNodesNodeNodeResourceDiskResult'],
+                 max_dynamic_port: _builtins.int,
+                 memories: Sequence['outputs.GetNodesNodeNodeResourceMemoryResult'],
+                 min_dynamic_port: _builtins.int,
+                 networks: Sequence['outputs.GetNodesNodeNodeResourceNetworkResult']):
+        """
+        :param Sequence['GetNodesNodeNodeResourceCpusArgs'] cpus: `(list)` - Reserved CPU resources.
+        :param Sequence['GetNodesNodeNodeResourceDeviceArgs'] devices: `(list)` - Device resources on the node (GPUs, etc.).
+        :param Sequence['GetNodesNodeNodeResourceDiskArgs'] disks: `(list)` - Reserved disk resources.
+        :param _builtins.int max_dynamic_port: `(int)` - Maximum dynamic port for this node.
+        :param Sequence['GetNodesNodeNodeResourceMemoryArgs'] memories: `(list)` - Reserved memory resources.
+        :param _builtins.int min_dynamic_port: `(int)` - Minimum dynamic port for this node.
+        :param Sequence['GetNodesNodeNodeResourceNetworkArgs'] networks: `(map of string)` - Reserved network resources.
+        """
+        pulumi.set(__self__, "cpus", cpus)
+        pulumi.set(__self__, "devices", devices)
+        pulumi.set(__self__, "disks", disks)
+        pulumi.set(__self__, "max_dynamic_port", max_dynamic_port)
+        pulumi.set(__self__, "memories", memories)
+        pulumi.set(__self__, "min_dynamic_port", min_dynamic_port)
+        pulumi.set(__self__, "networks", networks)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpus(self) -> Sequence['outputs.GetNodesNodeNodeResourceCpusResult']:
+        """
+        `(list)` - Reserved CPU resources.
+        """
+        return pulumi.get(self, "cpus")
+
+    @_builtins.property
+    @pulumi.getter
+    def devices(self) -> Sequence['outputs.GetNodesNodeNodeResourceDeviceResult']:
+        """
+        `(list)` - Device resources on the node (GPUs, etc.).
+        """
+        return pulumi.get(self, "devices")
+
+    @_builtins.property
+    @pulumi.getter
+    def disks(self) -> Sequence['outputs.GetNodesNodeNodeResourceDiskResult']:
+        """
+        `(list)` - Reserved disk resources.
+        """
+        return pulumi.get(self, "disks")
+
+    @_builtins.property
+    @pulumi.getter(name="maxDynamicPort")
+    def max_dynamic_port(self) -> _builtins.int:
+        """
+        `(int)` - Maximum dynamic port for this node.
+        """
+        return pulumi.get(self, "max_dynamic_port")
+
+    @_builtins.property
+    @pulumi.getter
+    def memories(self) -> Sequence['outputs.GetNodesNodeNodeResourceMemoryResult']:
+        """
+        `(list)` - Reserved memory resources.
+        """
+        return pulumi.get(self, "memories")
+
+    @_builtins.property
+    @pulumi.getter(name="minDynamicPort")
+    def min_dynamic_port(self) -> _builtins.int:
+        """
+        `(int)` - Minimum dynamic port for this node.
+        """
+        return pulumi.get(self, "min_dynamic_port")
+
+    @_builtins.property
+    @pulumi.getter
+    def networks(self) -> Sequence['outputs.GetNodesNodeNodeResourceNetworkResult']:
+        """
+        `(map of string)` - Reserved network resources.
+        """
+        return pulumi.get(self, "networks")
+
+
+@pulumi.output_type
+class GetNodesNodeNodeResourceCpusResult(dict):
+    def __init__(__self__, *,
+                 cpu_shares: _builtins.int,
+                 reservable_cpu_cores: Sequence[_builtins.int],
+                 total_cpu_cores: _builtins.int):
+        """
+        :param _builtins.int cpu_shares: `(int)` - Reserved CPU shares.
+        :param Sequence[_builtins.int] reservable_cpu_cores: `(list of int)` - List of reservable CPU core IDs.
+        :param _builtins.int total_cpu_cores: `(int)` - Total number of CPU cores.
+        """
+        pulumi.set(__self__, "cpu_shares", cpu_shares)
+        pulumi.set(__self__, "reservable_cpu_cores", reservable_cpu_cores)
+        pulumi.set(__self__, "total_cpu_cores", total_cpu_cores)
+
+    @_builtins.property
+    @pulumi.getter(name="cpuShares")
+    def cpu_shares(self) -> _builtins.int:
+        """
+        `(int)` - Reserved CPU shares.
+        """
+        return pulumi.get(self, "cpu_shares")
+
+    @_builtins.property
+    @pulumi.getter(name="reservableCpuCores")
+    def reservable_cpu_cores(self) -> Sequence[_builtins.int]:
+        """
+        `(list of int)` - List of reservable CPU core IDs.
+        """
+        return pulumi.get(self, "reservable_cpu_cores")
+
+    @_builtins.property
+    @pulumi.getter(name="totalCpuCores")
+    def total_cpu_cores(self) -> _builtins.int:
+        """
+        `(int)` - Total number of CPU cores.
+        """
+        return pulumi.get(self, "total_cpu_cores")
+
+
+@pulumi.output_type
+class GetNodesNodeNodeResourceDeviceResult(dict):
+    def __init__(__self__, *,
+                 count: _builtins.int,
+                 name: _builtins.str,
+                 type: _builtins.str,
+                 vendor: _builtins.str):
+        """
+        :param _builtins.int count: `(int)` - The number of device instances.
+        :param _builtins.str name: `(string)` - The device name.
+        :param _builtins.str type: `(string)` - The device type.
+        :param _builtins.str vendor: `(string)` - The device vendor.
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "vendor", vendor)
+
+    @_builtins.property
+    @pulumi.getter
+    def count(self) -> _builtins.int:
+        """
+        `(int)` - The number of device instances.
+        """
+        return pulumi.get(self, "count")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        `(string)` - The device name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        `(string)` - The device type.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def vendor(self) -> _builtins.str:
+        """
+        `(string)` - The device vendor.
+        """
+        return pulumi.get(self, "vendor")
+
+
+@pulumi.output_type
+class GetNodesNodeNodeResourceDiskResult(dict):
+    def __init__(__self__, *,
+                 disk_mb: _builtins.int):
+        """
+        :param _builtins.int disk_mb: `(int)` - Reserved disk space in MB.
+        """
+        pulumi.set(__self__, "disk_mb", disk_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="diskMb")
+    def disk_mb(self) -> _builtins.int:
+        """
+        `(int)` - Reserved disk space in MB.
+        """
+        return pulumi.get(self, "disk_mb")
+
+
+@pulumi.output_type
+class GetNodesNodeNodeResourceMemoryResult(dict):
+    def __init__(__self__, *,
+                 memory_mb: _builtins.int):
+        """
+        :param _builtins.int memory_mb: `(int)` - Reserved memory in MB.
+        """
+        pulumi.set(__self__, "memory_mb", memory_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMb")
+    def memory_mb(self) -> _builtins.int:
+        """
+        `(int)` - Reserved memory in MB.
+        """
+        return pulumi.get(self, "memory_mb")
+
+
+@pulumi.output_type
+class GetNodesNodeNodeResourceNetworkResult(dict):
+    def __init__(__self__, *,
+                 cidr: _builtins.str,
+                 device: _builtins.str,
+                 ip: _builtins.str,
+                 mode: _builtins.str):
+        """
+        :param _builtins.str cidr: `(string)` - The CIDR of the network.
+        :param _builtins.str device: `(string)` - The network device.
+        :param _builtins.str ip: `(string)` - The IP address of the network.
+        :param _builtins.str mode: `(string)` - The network mode.
+        """
+        pulumi.set(__self__, "cidr", cidr)
+        pulumi.set(__self__, "device", device)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "mode", mode)
+
+    @_builtins.property
+    @pulumi.getter
+    def cidr(self) -> _builtins.str:
+        """
+        `(string)` - The CIDR of the network.
+        """
+        return pulumi.get(self, "cidr")
+
+    @_builtins.property
+    @pulumi.getter
+    def device(self) -> _builtins.str:
+        """
+        `(string)` - The network device.
+        """
+        return pulumi.get(self, "device")
+
+    @_builtins.property
+    @pulumi.getter
+    def ip(self) -> _builtins.str:
+        """
+        `(string)` - The IP address of the network.
+        """
+        return pulumi.get(self, "ip")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        `(string)` - The network mode.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class GetNodesNodeReservedResourceResult(dict):
+    def __init__(__self__, *,
+                 cpus: Sequence['outputs.GetNodesNodeReservedResourceCpusResult'],
+                 disks: Sequence['outputs.GetNodesNodeReservedResourceDiskResult'],
+                 memories: Sequence['outputs.GetNodesNodeReservedResourceMemoryResult'],
+                 networks: Mapping[str, _builtins.str]):
+        """
+        :param Sequence['GetNodesNodeReservedResourceCpusArgs'] cpus: `(list)` - Reserved CPU resources.
+        :param Sequence['GetNodesNodeReservedResourceDiskArgs'] disks: `(list)` - Reserved disk resources.
+        :param Sequence['GetNodesNodeReservedResourceMemoryArgs'] memories: `(list)` - Reserved memory resources.
+        :param Mapping[str, _builtins.str] networks: `(map of string)` - Reserved network resources.
+        """
+        pulumi.set(__self__, "cpus", cpus)
+        pulumi.set(__self__, "disks", disks)
+        pulumi.set(__self__, "memories", memories)
+        pulumi.set(__self__, "networks", networks)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpus(self) -> Sequence['outputs.GetNodesNodeReservedResourceCpusResult']:
+        """
+        `(list)` - Reserved CPU resources.
+        """
+        return pulumi.get(self, "cpus")
+
+    @_builtins.property
+    @pulumi.getter
+    def disks(self) -> Sequence['outputs.GetNodesNodeReservedResourceDiskResult']:
+        """
+        `(list)` - Reserved disk resources.
+        """
+        return pulumi.get(self, "disks")
+
+    @_builtins.property
+    @pulumi.getter
+    def memories(self) -> Sequence['outputs.GetNodesNodeReservedResourceMemoryResult']:
+        """
+        `(list)` - Reserved memory resources.
+        """
+        return pulumi.get(self, "memories")
+
+    @_builtins.property
+    @pulumi.getter
+    def networks(self) -> Mapping[str, _builtins.str]:
+        """
+        `(map of string)` - Reserved network resources.
+        """
+        return pulumi.get(self, "networks")
+
+
+@pulumi.output_type
+class GetNodesNodeReservedResourceCpusResult(dict):
+    def __init__(__self__, *,
+                 cpu_shares: _builtins.int):
+        """
+        :param _builtins.int cpu_shares: `(int)` - Reserved CPU shares.
+        """
+        pulumi.set(__self__, "cpu_shares", cpu_shares)
+
+    @_builtins.property
+    @pulumi.getter(name="cpuShares")
+    def cpu_shares(self) -> _builtins.int:
+        """
+        `(int)` - Reserved CPU shares.
+        """
+        return pulumi.get(self, "cpu_shares")
+
+
+@pulumi.output_type
+class GetNodesNodeReservedResourceDiskResult(dict):
+    def __init__(__self__, *,
+                 disk_mb: _builtins.int):
+        """
+        :param _builtins.int disk_mb: `(int)` - Reserved disk space in MB.
+        """
+        pulumi.set(__self__, "disk_mb", disk_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="diskMb")
+    def disk_mb(self) -> _builtins.int:
+        """
+        `(int)` - Reserved disk space in MB.
+        """
+        return pulumi.get(self, "disk_mb")
+
+
+@pulumi.output_type
+class GetNodesNodeReservedResourceMemoryResult(dict):
+    def __init__(__self__, *,
+                 memory_mb: _builtins.int):
+        """
+        :param _builtins.int memory_mb: `(int)` - Reserved memory in MB.
+        """
+        pulumi.set(__self__, "memory_mb", memory_mb)
+
+    @_builtins.property
+    @pulumi.getter(name="memoryMb")
+    def memory_mb(self) -> _builtins.int:
+        """
+        `(int)` - Reserved memory in MB.
+        """
+        return pulumi.get(self, "memory_mb")
 
 
 @pulumi.output_type

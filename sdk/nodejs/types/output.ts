@@ -201,9 +201,9 @@ export interface AclPolicyJobAcl {
      */
     group?: string;
     /**
-     * Job
+     * Job. If empty, the policy applies to all jobs in the namespace.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Namespace
      */
@@ -732,74 +732,180 @@ export interface GetJobConstraint {
 
 export interface GetJobPeriodicConfig {
     /**
-     * `(boolean)` If periodic scheduling is enabled for the specified job.
+     * `(boolean)` Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
      */
     enabled: boolean;
     /**
-     * `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+     * `(boolean)` Whether this job should wait until previous instances of the same job have completed before launching again.
      */
     prohibitOverlap: boolean;
     /**
-     * `(string)`
+     * `(string)` Cron expression configuring the interval at which the job is launched.
      */
     spec: string;
     /**
-     * `(string)`
+     * `(string)` Type of periodic specification, such as `cron`.
      */
     specType: string;
     /**
-     * `(string)` Time zone to evaluate the next launch interval against.
+     * `(string)` Time zone used to evaluate the next launch interval.
      */
     timezone: string;
 }
 
 export interface GetJobTaskGroup {
+    /**
+     * `(integer)` Task group count.
+     */
     count: number;
+    /**
+     * `(map of strings)` Task group metadata.
+     */
     meta: {[key: string]: string};
     /**
-     * `(string)` Name of the job.
+     * `(string)` Volume name.
      */
     name: string;
+    /**
+     * `(list of maps)` Tasks in the task group.
+     */
     tasks: outputs.GetJobTaskGroupTask[];
+    /**
+     * `(list of maps)` Job-level update strategy returned by Nomad.
+     */
+    updateStrategies: outputs.GetJobTaskGroupUpdateStrategy[];
+    /**
+     * `(list of maps)` Volume requests for the task group.
+     */
     volumes: outputs.GetJobTaskGroupVolume[];
 }
 
 export interface GetJobTaskGroupTask {
+    /**
+     * `(string)` Task driver.
+     */
     driver: string;
+    /**
+     * `(map of strings)` Task group metadata.
+     */
     meta: {[key: string]: string};
     /**
-     * `(string)` Name of the job.
+     * `(string)` Volume name.
      */
     name: string;
+    /**
+     * `(list of maps)` Task volume mounts.
+     */
     volumeMounts: outputs.GetJobTaskGroupTaskVolumeMount[];
 }
 
 export interface GetJobTaskGroupTaskVolumeMount {
+    /**
+     * `(string)` Destination path inside the task.
+     */
     destination: string;
+    /**
+     * `(boolean)` Whether the volume is read-only.
+     */
     readOnly: boolean;
+    /**
+     * `(string)` Volume name.
+     */
     volume: string;
+}
+
+export interface GetJobTaskGroupUpdateStrategy {
+    /**
+     * `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+     */
+    autoRevert: boolean;
+    /**
+     * `(integer)` Number of canary allocations created before destructive updates continue.
+     */
+    canary: number;
+    /**
+     * `(string)` Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+     */
+    healthCheck: string;
+    /**
+     * `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+     */
+    healthyDeadline: string;
+    /**
+     * `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+     */
+    maxParallel: number;
+    /**
+     * `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+     */
+    minHealthyTime: string;
+    /**
+     * `(string)` Delay between each set of `maxParallel` updates when updating system jobs.
+     */
+    stagger: string;
 }
 
 export interface GetJobTaskGroupVolume {
     /**
-     * `(string)` Name of the job.
+     * `(string)` Volume name.
      */
     name: string;
+    /**
+     * `(boolean)` Whether the volume is read-only.
+     */
     readOnly: boolean;
+    /**
+     * `(string)` Volume source.
+     */
     source: string;
     /**
-     * `(string)` Scheduler type used during job creation.
+     * `(string)` Volume type.
      */
     type: string;
 }
 
+export interface GetJobUpdateStrategy {
+    /**
+     * `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+     */
+    autoRevert: boolean;
+    /**
+     * `(integer)` Number of canary allocations created before destructive updates continue.
+     */
+    canary: number;
+    /**
+     * `(string)` Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+     */
+    healthCheck: string;
+    /**
+     * `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+     */
+    healthyDeadline: string;
+    /**
+     * `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+     */
+    maxParallel: number;
+    /**
+     * `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+     */
+    minHealthyTime: string;
+    /**
+     * `(string)` Delay between each set of `maxParallel` updates when updating system jobs.
+     */
+    stagger: string;
+}
+
 export interface GetJwksKey {
     /**
-     * `(string)` - JWK field `alg`
+     * `(string)` - JWK field `alg` (e.g. `RS256`, `EdDSA`)
      */
     algorithm: string;
     /**
-     * `(string)` - JWK field `e`
+     * `(string)` - JWK field `crv` (EdDSA only, e.g. `Ed25519`)
+     */
+    curve: string;
+    /**
+     * `(string)` - JWK field `e` (RSA only)
      */
     exponent: string;
     /**
@@ -807,7 +913,7 @@ export interface GetJwksKey {
      */
     keyId: string;
     /**
-     * `(string)` - JWK field `kty`
+     * `(string)` - JWK field `kty` (e.g. `RSA`, `OKP`)
      */
     keyType: string;
     /**
@@ -815,9 +921,13 @@ export interface GetJwksKey {
      */
     keyUse: string;
     /**
-     * `(string)` - JWK field `n`
+     * `(string)` - JWK field `n` (RSA only)
      */
     modulus: string;
+    /**
+     * `(string)` - JWK field `x` (EdDSA only, the public key)
+     */
+    x: string;
 }
 
 export interface GetNamespaceCapability {
@@ -839,10 +949,185 @@ export interface GetNamespaceCapability {
     enabledTaskDrivers?: string[];
 }
 
-export interface GetNamespaceNodePoolConfig {
+export interface GetNamespaceConsulConfig {
+    /**
+     * `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+     */
     alloweds: string[];
+    /**
+     * `(string)` - The Consul cluster to use when none is specified in the job.
+     */
     default: string;
+    /**
+     * `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+     */
     denieds: string[];
+}
+
+export interface GetNamespaceNodePoolConfig {
+    /**
+     * `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+     */
+    alloweds: string[];
+    /**
+     * `(string)` - The Consul cluster to use when none is specified in the job.
+     */
+    default: string;
+    /**
+     * `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+     */
+    denieds: string[];
+}
+
+export interface GetNamespaceVaultConfig {
+    /**
+     * `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+     */
+    alloweds: string[];
+    /**
+     * `(string)` - The Consul cluster to use when none is specified in the job.
+     */
+    default: string;
+    /**
+     * `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+     */
+    denieds: string[];
+}
+
+export interface GetNodeDriver {
+    /**
+     * `(map of string)` - Driver-specific attributes.
+     */
+    attributes: {[key: string]: string};
+    /**
+     * `(bool)` - Whether the driver is detected.
+     */
+    detected: boolean;
+    /**
+     * `(bool)` - Whether the driver is healthy.
+     */
+    healthy: boolean;
+    /**
+     * `(string)` - The device name.
+     */
+    name: string;
+}
+
+export interface GetNodeHostVolume {
+    /**
+     * `(string)` - The ID of the host volume (set for dynamic host volumes only).
+     */
+    id: string;
+    /**
+     * `(string)` - The device name.
+     */
+    name: string;
+    /**
+     * `(string)` - The path of the host volume.
+     */
+    path: string;
+    /**
+     * `(bool)` - Whether the host volume is read-only.
+     */
+    readOnly: boolean;
+}
+
+export interface GetNodeNodeResource {
+    /**
+     * `(list)` - Reserved CPU resources.
+     */
+    cpus: outputs.GetNodeNodeResourceCpus[];
+    /**
+     * `(list)` - Device resources on the node (GPUs, etc.).
+     */
+    devices: outputs.GetNodeNodeResourceDevice[];
+    /**
+     * `(list)` - Reserved disk resources.
+     */
+    disks: outputs.GetNodeNodeResourceDisk[];
+    /**
+     * `(int)` - Maximum dynamic port for this node.
+     */
+    maxDynamicPort: number;
+    /**
+     * `(list)` - Reserved memory resources.
+     */
+    memories: outputs.GetNodeNodeResourceMemory[];
+    /**
+     * `(int)` - Minimum dynamic port for this node.
+     */
+    minDynamicPort: number;
+    /**
+     * `(map of string)` - Reserved network resources.
+     */
+    networks: outputs.GetNodeNodeResourceNetwork[];
+}
+
+export interface GetNodeNodeResourceCpus {
+    /**
+     * `(int)` - Reserved CPU shares.
+     */
+    cpuShares: number;
+    /**
+     * `(list of int)` - List of reservable CPU core IDs.
+     */
+    reservableCpuCores: number[];
+    /**
+     * `(int)` - Total number of CPU cores.
+     */
+    totalCpuCores: number;
+}
+
+export interface GetNodeNodeResourceDevice {
+    /**
+     * `(int)` - The number of device instances.
+     */
+    count: number;
+    /**
+     * `(string)` - The device name.
+     */
+    name: string;
+    /**
+     * `(string)` - The device type.
+     */
+    type: string;
+    /**
+     * `(string)` - The device vendor.
+     */
+    vendor: string;
+}
+
+export interface GetNodeNodeResourceDisk {
+    /**
+     * `(int)` - Reserved disk space in MB.
+     */
+    diskMb: number;
+}
+
+export interface GetNodeNodeResourceMemory {
+    /**
+     * `(int)` - Reserved memory in MB.
+     */
+    memoryMb: number;
+}
+
+export interface GetNodeNodeResourceNetwork {
+    /**
+     * `(string)` - The CIDR of the network.
+     */
+    cidr: string;
+    /**
+     * `(string)` - The network device.
+     */
+    device: string;
+    /**
+     * `(string)` - The IP address of the network.
+     */
+    ip: string;
+    /**
+     * `(string)` - The network mode.
+     */
+    mode: string;
 }
 
 export interface GetNodePoolSchedulerConfig {
@@ -874,6 +1159,11 @@ export interface GetNodePoolsNodePool {
      */
     name: string;
     /**
+     * `(string)` - The TTL applied to node identities issued to
+     * nodes in this pool.
+     */
+    nodeIdentityTtl: string;
+    /**
      * `(block)` - Scheduler configuration for the node pool.
      */
     schedulerConfigs: outputs.GetNodePoolsNodePoolSchedulerConfig[];
@@ -891,6 +1181,272 @@ export interface GetNodePoolsNodePoolSchedulerConfig {
      * pool. If empty or not defined the global cluster configuration is used.
      */
     schedulerAlgorithm: string;
+}
+
+export interface GetNodeReservedResource {
+    /**
+     * `(list)` - Reserved CPU resources.
+     */
+    cpus: outputs.GetNodeReservedResourceCpus[];
+    /**
+     * `(list)` - Reserved disk resources.
+     */
+    disks: outputs.GetNodeReservedResourceDisk[];
+    /**
+     * `(list)` - Reserved memory resources.
+     */
+    memories: outputs.GetNodeReservedResourceMemory[];
+    /**
+     * `(map of string)` - Reserved network resources.
+     */
+    networks: {[key: string]: string};
+}
+
+export interface GetNodeReservedResourceCpus {
+    /**
+     * `(int)` - Reserved CPU shares.
+     */
+    cpuShares: number;
+}
+
+export interface GetNodeReservedResourceDisk {
+    /**
+     * `(int)` - Reserved disk space in MB.
+     */
+    diskMb: number;
+}
+
+export interface GetNodeReservedResourceMemory {
+    /**
+     * `(int)` - Reserved memory in MB.
+     */
+    memoryMb: number;
+}
+
+export interface GetNodesNode {
+    /**
+     * `(string)` - The address of the node.
+     */
+    address: string;
+    /**
+     * `(map of string)` - Driver-specific attributes.
+     */
+    attributes: {[key: string]: string};
+    /**
+     * `(string)` - The datacenter of the node.
+     */
+    datacenter: string;
+    /**
+     * `(bool)` - Whether the node is in drain mode. This value is ephemeral
+     * and can change without an agent restart.
+     */
+    drain: boolean;
+    /**
+     * `(list of drivers)` - A list of driver information for the node.
+     */
+    drivers: outputs.GetNodesNodeDriver[];
+    /**
+     * `(string)` - The ID of the node.
+     */
+    id: string;
+    /**
+     * `(string)` - The device name.
+     */
+    name: string;
+    /**
+     * `(string)` - The node class of the node.
+     */
+    nodeClass: string;
+    /**
+     * `(string)` - The node pool of the node.
+     */
+    nodePool: string;
+    /**
+     * `(list)` - Resources available on the node. Only populated
+     * when the `resources` parameter is set to true.
+     */
+    nodeResources: outputs.GetNodesNodeNodeResource[];
+    /**
+     * `(list)` - Resources reserved on the node. Only populated
+     * when the `resources` parameter is set to true.
+     */
+    reservedResources: outputs.GetNodesNodeReservedResource[];
+    /**
+     * `(string)` - The scheduling eligibility of the node.
+     * This value is ephemeral and can change without an agent restart.
+     */
+    schedulingEligibility: string;
+    /**
+     * `(string)` - The status of the node. This value is ephemeral and
+     * can change without an agent restart.
+     */
+    status: string;
+    /**
+     * `(string)` - The status description of the node. This
+     * value is ephemeral and can change without an agent restart.
+     */
+    statusDescription: string;
+    /**
+     * `(string)` - The Nomad version of the node.
+     */
+    version: string;
+}
+
+export interface GetNodesNodeDriver {
+    /**
+     * `(map of string)` - Driver-specific attributes.
+     */
+    attributes: {[key: string]: string};
+    /**
+     * `(bool)` - Whether the driver is detected.
+     */
+    detected: boolean;
+    /**
+     * `(bool)` - Whether the driver is healthy.
+     */
+    healthy: boolean;
+    /**
+     * `(string)` - The device name.
+     */
+    name: string;
+}
+
+export interface GetNodesNodeNodeResource {
+    /**
+     * `(list)` - Reserved CPU resources.
+     */
+    cpus: outputs.GetNodesNodeNodeResourceCpus[];
+    /**
+     * `(list)` - Device resources on the node (GPUs, etc.).
+     */
+    devices: outputs.GetNodesNodeNodeResourceDevice[];
+    /**
+     * `(list)` - Reserved disk resources.
+     */
+    disks: outputs.GetNodesNodeNodeResourceDisk[];
+    /**
+     * `(int)` - Maximum dynamic port for this node.
+     */
+    maxDynamicPort: number;
+    /**
+     * `(list)` - Reserved memory resources.
+     */
+    memories: outputs.GetNodesNodeNodeResourceMemory[];
+    /**
+     * `(int)` - Minimum dynamic port for this node.
+     */
+    minDynamicPort: number;
+    /**
+     * `(map of string)` - Reserved network resources.
+     */
+    networks: outputs.GetNodesNodeNodeResourceNetwork[];
+}
+
+export interface GetNodesNodeNodeResourceCpus {
+    /**
+     * `(int)` - Reserved CPU shares.
+     */
+    cpuShares: number;
+    /**
+     * `(list of int)` - List of reservable CPU core IDs.
+     */
+    reservableCpuCores: number[];
+    /**
+     * `(int)` - Total number of CPU cores.
+     */
+    totalCpuCores: number;
+}
+
+export interface GetNodesNodeNodeResourceDevice {
+    /**
+     * `(int)` - The number of device instances.
+     */
+    count: number;
+    /**
+     * `(string)` - The device name.
+     */
+    name: string;
+    /**
+     * `(string)` - The device type.
+     */
+    type: string;
+    /**
+     * `(string)` - The device vendor.
+     */
+    vendor: string;
+}
+
+export interface GetNodesNodeNodeResourceDisk {
+    /**
+     * `(int)` - Reserved disk space in MB.
+     */
+    diskMb: number;
+}
+
+export interface GetNodesNodeNodeResourceMemory {
+    /**
+     * `(int)` - Reserved memory in MB.
+     */
+    memoryMb: number;
+}
+
+export interface GetNodesNodeNodeResourceNetwork {
+    /**
+     * `(string)` - The CIDR of the network.
+     */
+    cidr: string;
+    /**
+     * `(string)` - The network device.
+     */
+    device: string;
+    /**
+     * `(string)` - The IP address of the network.
+     */
+    ip: string;
+    /**
+     * `(string)` - The network mode.
+     */
+    mode: string;
+}
+
+export interface GetNodesNodeReservedResource {
+    /**
+     * `(list)` - Reserved CPU resources.
+     */
+    cpus: outputs.GetNodesNodeReservedResourceCpus[];
+    /**
+     * `(list)` - Reserved disk resources.
+     */
+    disks: outputs.GetNodesNodeReservedResourceDisk[];
+    /**
+     * `(list)` - Reserved memory resources.
+     */
+    memories: outputs.GetNodesNodeReservedResourceMemory[];
+    /**
+     * `(map of string)` - Reserved network resources.
+     */
+    networks: {[key: string]: string};
+}
+
+export interface GetNodesNodeReservedResourceCpus {
+    /**
+     * `(int)` - Reserved CPU shares.
+     */
+    cpuShares: number;
+}
+
+export interface GetNodesNodeReservedResourceDisk {
+    /**
+     * `(int)` - Reserved disk space in MB.
+     */
+    diskMb: number;
+}
+
+export interface GetNodesNodeReservedResourceMemory {
+    /**
+     * `(int)` - Reserved memory in MB.
+     */
+    memoryMb: number;
 }
 
 export interface GetPluginNode {
@@ -918,6 +1474,21 @@ export interface GetScalingPoliciesPolicy {
     type: string;
 }
 
+export interface JobConstraint {
+    /**
+     * `(string)` - Attribute being constrained.
+     */
+    ltarget: string;
+    /**
+     * `(string)` - Operator used to compare the attribute to the constraint.
+     */
+    operand: string;
+    /**
+     * `(string)` - Constraint value.
+     */
+    rtarget: string;
+}
+
 export interface JobHcl2 {
     /**
      * `(boolean: false)` - Set this to `true` to be able to use
@@ -930,32 +1501,169 @@ export interface JobHcl2 {
     vars?: {[key: string]: string};
 }
 
+export interface JobPeriodicConfig {
+    /**
+     * `(boolean)` - Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
+     */
+    enabled: boolean;
+    /**
+     * `(boolean)` - Whether this job should wait until previous instances of the same job have completed before launching again.
+     */
+    prohibitOverlap: boolean;
+    /**
+     * `(string)` - Cron expression configuring the interval at which the job is launched.
+     */
+    spec: string;
+    /**
+     * `(string)` - Type of periodic specification, such as `cron`.
+     */
+    specType: string;
+    /**
+     * `(string)` - Time zone used to evaluate the next launch interval.
+     */
+    timezone: string;
+}
+
 export interface JobTaskGroup {
+    /**
+     * `(integer)` - Task group count.
+     */
     count: number;
+    /**
+     * `(map of strings)` - Task group metadata.
+     */
     meta: {[key: string]: string};
+    /**
+     * `(string)` - Volume name.
+     */
     name: string;
+    /**
+     * `(list of maps)` - Tasks in the task group.
+     */
     tasks: outputs.JobTaskGroupTask[];
+    /**
+     * `(list of maps)` - Effective update strategy for the task group.
+     */
+    updateStrategies: outputs.JobTaskGroupUpdateStrategy[];
+    /**
+     * `(list of maps)` - Volume requests for the task group.
+     */
     volumes: outputs.JobTaskGroupVolume[];
 }
 
 export interface JobTaskGroupTask {
+    /**
+     * `(string)` - Task driver.
+     */
     driver: string;
+    /**
+     * `(map of strings)` - Task group metadata.
+     */
     meta: {[key: string]: string};
+    /**
+     * `(string)` - Volume name.
+     */
     name: string;
+    /**
+     * `(list of maps)` - Task volume mounts.
+     */
     volumeMounts: outputs.JobTaskGroupTaskVolumeMount[];
 }
 
 export interface JobTaskGroupTaskVolumeMount {
+    /**
+     * `(string)` - Destination path inside the task.
+     */
     destination: string;
+    /**
+     * `(boolean)` - Whether the volume is read-only.
+     */
     readOnly: boolean;
+    /**
+     * `(string)` - Volume name.
+     */
     volume: string;
 }
 
+export interface JobTaskGroupUpdateStrategy {
+    /**
+     * `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+     */
+    autoRevert: boolean;
+    /**
+     * `(integer)` - Number of canary allocations created before destructive updates continue.
+     */
+    canary: number;
+    /**
+     * `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+     */
+    healthCheck: string;
+    /**
+     * `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+     */
+    healthyDeadline: string;
+    /**
+     * `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+     */
+    maxParallel: number;
+    /**
+     * `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+     */
+    minHealthyTime: string;
+    /**
+     * `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
+     */
+    stagger: string;
+}
+
 export interface JobTaskGroupVolume {
+    /**
+     * `(string)` - Volume name.
+     */
     name: string;
+    /**
+     * `(boolean)` - Whether the volume is read-only.
+     */
     readOnly: boolean;
+    /**
+     * `(string)` - Volume source.
+     */
     source: string;
+    /**
+     * `(string)` - Volume type.
+     */
     type: string;
+}
+
+export interface JobUpdateStrategy {
+    /**
+     * `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+     */
+    autoRevert: boolean;
+    /**
+     * `(integer)` - Number of canary allocations created before destructive updates continue.
+     */
+    canary: number;
+    /**
+     * `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+     */
+    healthCheck: string;
+    /**
+     * `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+     */
+    healthyDeadline: string;
+    /**
+     * `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+     */
+    maxParallel: number;
+    /**
+     * `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+     */
+    minHealthyTime: string;
+    /**
+     * `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
+     */
+    stagger: string;
 }
 
 export interface NamespaceCapabilities {
@@ -977,6 +1685,21 @@ export interface NamespaceCapabilities {
     enabledTaskDrivers?: string[];
 }
 
+export interface NamespaceConsulConfig {
+    /**
+     * `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
+     */
+    alloweds?: string[];
+    /**
+     * `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
+     */
+    default?: string;
+    /**
+     * `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+     */
+    denieds?: string[];
+}
+
 export interface NamespaceNodePoolConfig {
     /**
      * `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
@@ -988,6 +1711,21 @@ export interface NamespaceNodePoolConfig {
     default: string;
     /**
      * `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+     */
+    denieds?: string[];
+}
+
+export interface NamespaceVaultConfig {
+    /**
+     * `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
+     */
+    alloweds?: string[];
+    /**
+     * `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
+     */
+    default?: string;
+    /**
+     * `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
      */
     denieds?: string[];
 }
@@ -1015,28 +1753,136 @@ export interface NodePoolSchedulerConfig {
 export interface QuoteSpecificationLimit {
     /**
      * `(string: <required>)` - The region these limits should apply to.
+     * - `regionLimit` `(block: <required>)` - The limits to enforce. This block
+     * may only be specified once in the `limits` block. Its structure is
+     * documented below.
      */
     region: string;
     /**
-     * `(block: <required>)` - The limits to enforce. This block
-     * may only be specified once in the `limits` block. Its structure is
-     * documented below.
+     * The limit applied to this region.
      */
     regionLimit: outputs.QuoteSpecificationLimitRegionLimit;
 }
 
 export interface QuoteSpecificationLimitRegionLimit {
     /**
+     * `(int: 0)` - The number of CPU cores to limit allocations to. A value
+     * of zero is treated as unlimited, and a negative value is treated as fully
+     * disallowed.
+     */
+    cores?: number;
+    /**
      * `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
      * is treated as unlimited, and a negative value is treated as fully disallowed.
      */
     cpu?: number;
+    devices?: outputs.QuoteSpecificationLimitRegionLimitDevice[];
+    /**
+     * `(int: 0)` - The maximum amount of memory (in megabytes) to
+     * limit allocations to. A value of zero is treated as unlimited, and a negative
+     * value is treated as fully disallowed.
+     * - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+     * repeated. See below for the structure of this block.
+     * - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+     * repeated. See below for the structure of this block.
+     * - `storage` `(block: optional)` - Storage resource quota configuration. May only
+     * be specified once. See below for the structure of this block.
+     */
+    memoryMaxMb?: number;
     /**
      * `(int: 0)` - The amount of memory (in megabytes) to limit
      * allocations to. A value of zero is treated as unlimited, and a negative value
      * is treated as fully disallowed.
      */
     memoryMb?: number;
+    nodePools?: outputs.QuoteSpecificationLimitRegionLimitNodePool[];
+    storage?: outputs.QuoteSpecificationLimitRegionLimitStorage;
+}
+
+export interface QuoteSpecificationLimitRegionLimitDevice {
+    /**
+     * `(int: 0)` - The number of device instances to limit allocations to.
+     */
+    count?: number;
+    /**
+     * `(string: <required>)` - The name of the device, e.g.
+     * `"nvidia/gpu"`.
+     */
+    name: string;
+}
+
+export interface QuoteSpecificationLimitRegionLimitNodePool {
+    /**
+     * `(int: 0)` - The number of CPU cores to limit allocations to. A value
+     * of zero is treated as unlimited, and a negative value is treated as fully
+     * disallowed.
+     */
+    cores?: number;
+    /**
+     * `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
+     * is treated as unlimited, and a negative value is treated as fully disallowed.
+     */
+    cpu?: number;
+    devices?: outputs.QuoteSpecificationLimitRegionLimitNodePoolDevice[];
+    /**
+     * `(int: 0)` - The maximum amount of memory (in megabytes) to
+     * limit allocations to. A value of zero is treated as unlimited, and a negative
+     * value is treated as fully disallowed.
+     * - `devices` `(block: optional)` - A list of device quotas to
+     * enforce for the node pool. Can be repeated.
+     * - `storage` `(block: optional)` - Storage resource quota
+     * configuration for the node pool. May only be specified once.
+     */
+    memoryMaxMb?: number;
+    /**
+     * `(int: 0)` - The amount of memory (in megabytes) to limit
+     * allocations to. A value of zero is treated as unlimited, and a negative value
+     * is treated as fully disallowed.
+     */
+    memoryMb?: number;
+    /**
+     * `(string: <required>)` - The node pool name to apply limits to.
+     */
+    nodePool: string;
+    storage?: outputs.QuoteSpecificationLimitRegionLimitNodePoolStorage;
+}
+
+export interface QuoteSpecificationLimitRegionLimitNodePoolDevice {
+    /**
+     * `(int: 0)` - The number of device instances to limit allocations to.
+     */
+    count?: number;
+    /**
+     * `(string: <required>)` - The name of the device, e.g.
+     * `"nvidia/gpu"`.
+     */
+    name: string;
+}
+
+export interface QuoteSpecificationLimitRegionLimitNodePoolStorage {
+    /**
+     * `(int: 0)` - The amount of storage (in megabytes) to limit
+     * host volumes to.
+     */
+    hostVolumesMb?: number;
+    /**
+     * `(int: 0)` - The amount of storage (in megabytes) to limit
+     * Nomad variables to.
+     */
+    variablesMb?: number;
+}
+
+export interface QuoteSpecificationLimitRegionLimitStorage {
+    /**
+     * `(int: 0)` - The amount of storage (in megabytes) to limit
+     * host volumes to.
+     */
+    hostVolumesMb?: number;
+    /**
+     * `(int: 0)` - The amount of storage (in megabytes) to limit
+     * Nomad variables to.
+     */
+    variablesMb?: number;
 }
 
 export interface VolumeCapability {

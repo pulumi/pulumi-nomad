@@ -18,9 +18,9 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string? Group;
         /// <summary>
-        /// Job
+        /// Job. If empty, the policy applies to all jobs in the namespace.
         /// </summary>
-        public readonly string JobId;
+        public readonly string? JobId;
         /// <summary>
         /// Namespace
         /// </summary>
@@ -34,7 +34,7 @@ namespace Pulumi.Nomad.Outputs
         private AclPolicyJobAcl(
             string? group,
 
-            string jobId,
+            string? jobId,
 
             string? @namespace,
 

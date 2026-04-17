@@ -13,9 +13,21 @@ namespace Pulumi.Nomad.Outputs
     [OutputType]
     public sealed class JobTaskGroupTask
     {
+        /// <summary>
+        /// `(string)` - Task driver.
+        /// </summary>
         public readonly string? Driver;
+        /// <summary>
+        /// `(map of strings)` - Task group metadata.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Meta;
+        /// <summary>
+        /// `(string)` - Volume name.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// `(list of maps)` - Task volume mounts.
+        /// </summary>
         public readonly ImmutableArray<Outputs.JobTaskGroupTaskVolumeMount> VolumeMounts;
 
         [OutputConstructor]

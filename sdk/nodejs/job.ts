@@ -53,21 +53,33 @@ export class Job extends pulumi.CustomResource {
     }
 
     /**
-     * The IDs for allocations associated with this job.
+     * `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+     */
+    declare public /*out*/ readonly allAtOnce: pulumi.Output<boolean>;
+    /**
+     * `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
      *
      * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
     declare public /*out*/ readonly allocationIds: pulumi.Output<string[]>;
     /**
-     * The target datacenters for the job, as derived from the jobspec.
+     * `(list of maps)` - Job constraints.
+     */
+    declare public /*out*/ readonly constraints: pulumi.Output<outputs.JobConstraint[]>;
+    /**
+     * `(integer)` - The job creation index.
+     */
+    declare public /*out*/ readonly createIndex: pulumi.Output<number>;
+    /**
+     * `(set of strings)` - The target datacenters for the job.
      */
     declare public /*out*/ readonly datacenters: pulumi.Output<string[]>;
     /**
-     * If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+     * `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
      */
     declare public /*out*/ readonly deploymentId: pulumi.Output<string>;
     /**
-     * If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+     * `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
      */
     declare public /*out*/ readonly deploymentStatus: pulumi.Output<string>;
     /**
@@ -99,22 +111,40 @@ export class Job extends pulumi.CustomResource {
      */
     declare public readonly json: pulumi.Output<boolean | undefined>;
     /**
-     * Integer that increments for each change. Used to detect any changes between plan and apply.
+     * `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
      */
     declare public /*out*/ readonly modifyIndex: pulumi.Output<string>;
     /**
-     * The name of the job, as derived from the jobspec.
+     * `(string)` - Volume name.
      */
     declare public /*out*/ readonly name: pulumi.Output<string>;
     /**
-     * The namespace of the job, as derived from the jobspec.
+     * `(string)` - The namespace of the job, as derived from the jobspec.
      */
     declare public /*out*/ readonly namespace: pulumi.Output<string>;
+    /**
+     * `(string)` - The parent job ID, if applicable.
+     */
+    declare public /*out*/ readonly parentId: pulumi.Output<string>;
+    /**
+     * `(list of maps)` - The job's periodic configuration.
+     */
+    declare public /*out*/ readonly periodicConfigs: pulumi.Output<outputs.JobPeriodicConfig[]>;
     /**
      * `(boolean: false)` - Determines if the job will override any
      * soft-mandatory Sentinel policies and register even if they fail.
      */
     declare public readonly policyOverride: pulumi.Output<boolean | undefined>;
+    /**
+     * `(boolean: false)` - If true, preserves the current task
+     * group counts already stored in Nomad during job registration instead of
+     * applying the counts from the submitted jobspec.
+     */
+    declare public readonly preserveCounts: pulumi.Output<boolean | undefined>;
+    /**
+     * `(integer)` - The job priority for scheduling and resource access.
+     */
+    declare public /*out*/ readonly priority: pulumi.Output<number>;
     /**
      * `(boolean: false)` - Set this to true if you want the job to
      * be purged when the resource is destroyed.
@@ -125,7 +155,7 @@ export class Job extends pulumi.CustomResource {
      */
     declare public readonly readAllocationIds: pulumi.Output<boolean | undefined>;
     /**
-     * The target region for the job, as derived from the jobspec.
+     * `(string)` - The target region for the job.
      */
     declare public /*out*/ readonly region: pulumi.Output<string>;
     /**
@@ -134,14 +164,41 @@ export class Job extends pulumi.CustomResource {
      */
     declare public readonly rerunIfDead: pulumi.Output<boolean | undefined>;
     /**
-     * The status of the job.
+     * `(boolean)` - Whether the job is stable.
+     */
+    declare public /*out*/ readonly stable: pulumi.Output<boolean>;
+    /**
+     * `(string)` - The current status of the job.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
+    /**
+     * `(string)` - Additional status information returned by Nomad.
+     */
+    declare public /*out*/ readonly statusDescription: pulumi.Output<string>;
+    /**
+     * `(boolean)` - Whether the job is stopped.
+     */
+    declare public /*out*/ readonly stop: pulumi.Output<boolean>;
+    /**
+     * `(integer)` - The Unix timestamp when the job was submitted.
+     */
+    declare public /*out*/ readonly submitTime: pulumi.Output<string>;
+    /**
+     * `(list of maps)` - A list of the job's task groups.
+     */
     declare public /*out*/ readonly taskGroups: pulumi.Output<outputs.JobTaskGroup[]>;
     /**
-     * The type of the job, as derived from the jobspec.
+     * `(string)` - Volume type.
      */
     declare public /*out*/ readonly type: pulumi.Output<string>;
+    /**
+     * `(list of maps)` - Effective update strategy for the task group.
+     */
+    declare public /*out*/ readonly updateStrategies: pulumi.Output<outputs.JobUpdateStrategy[]>;
+    /**
+     * `(integer)` - The current job version.
+     */
+    declare public /*out*/ readonly version: pulumi.Output<number>;
 
     /**
      * Create a Job resource with the given unique name, arguments, and options.
@@ -156,7 +213,10 @@ export class Job extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as JobState | undefined;
+            resourceInputs["allAtOnce"] = state?.allAtOnce;
             resourceInputs["allocationIds"] = state?.allocationIds;
+            resourceInputs["constraints"] = state?.constraints;
+            resourceInputs["createIndex"] = state?.createIndex;
             resourceInputs["datacenters"] = state?.datacenters;
             resourceInputs["deploymentId"] = state?.deploymentId;
             resourceInputs["deploymentStatus"] = state?.deploymentStatus;
@@ -169,14 +229,24 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["modifyIndex"] = state?.modifyIndex;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["parentId"] = state?.parentId;
+            resourceInputs["periodicConfigs"] = state?.periodicConfigs;
             resourceInputs["policyOverride"] = state?.policyOverride;
+            resourceInputs["preserveCounts"] = state?.preserveCounts;
+            resourceInputs["priority"] = state?.priority;
             resourceInputs["purgeOnDestroy"] = state?.purgeOnDestroy;
             resourceInputs["readAllocationIds"] = state?.readAllocationIds;
             resourceInputs["region"] = state?.region;
             resourceInputs["rerunIfDead"] = state?.rerunIfDead;
+            resourceInputs["stable"] = state?.stable;
             resourceInputs["status"] = state?.status;
+            resourceInputs["statusDescription"] = state?.statusDescription;
+            resourceInputs["stop"] = state?.stop;
+            resourceInputs["submitTime"] = state?.submitTime;
             resourceInputs["taskGroups"] = state?.taskGroups;
             resourceInputs["type"] = state?.type;
+            resourceInputs["updateStrategies"] = state?.updateStrategies;
+            resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as JobArgs | undefined;
             if (args?.jobspec === undefined && !opts.urn) {
@@ -189,20 +259,33 @@ export class Job extends pulumi.CustomResource {
             resourceInputs["jobspec"] = args?.jobspec;
             resourceInputs["json"] = args?.json;
             resourceInputs["policyOverride"] = args?.policyOverride;
+            resourceInputs["preserveCounts"] = args?.preserveCounts;
             resourceInputs["purgeOnDestroy"] = args?.purgeOnDestroy;
             resourceInputs["readAllocationIds"] = args?.readAllocationIds;
             resourceInputs["rerunIfDead"] = args?.rerunIfDead;
+            resourceInputs["allAtOnce"] = undefined /*out*/;
             resourceInputs["allocationIds"] = undefined /*out*/;
+            resourceInputs["constraints"] = undefined /*out*/;
+            resourceInputs["createIndex"] = undefined /*out*/;
             resourceInputs["datacenters"] = undefined /*out*/;
             resourceInputs["deploymentId"] = undefined /*out*/;
             resourceInputs["deploymentStatus"] = undefined /*out*/;
             resourceInputs["modifyIndex"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["namespace"] = undefined /*out*/;
+            resourceInputs["parentId"] = undefined /*out*/;
+            resourceInputs["periodicConfigs"] = undefined /*out*/;
+            resourceInputs["priority"] = undefined /*out*/;
             resourceInputs["region"] = undefined /*out*/;
+            resourceInputs["stable"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["statusDescription"] = undefined /*out*/;
+            resourceInputs["stop"] = undefined /*out*/;
+            resourceInputs["submitTime"] = undefined /*out*/;
             resourceInputs["taskGroups"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
+            resourceInputs["updateStrategies"] = undefined /*out*/;
+            resourceInputs["version"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Job.__pulumiType, name, resourceInputs, opts);
@@ -214,21 +297,33 @@ export class Job extends pulumi.CustomResource {
  */
 export interface JobState {
     /**
-     * The IDs for allocations associated with this job.
+     * `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+     */
+    allAtOnce?: pulumi.Input<boolean>;
+    /**
+     * `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
      *
      * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
     allocationIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The target datacenters for the job, as derived from the jobspec.
+     * `(list of maps)` - Job constraints.
+     */
+    constraints?: pulumi.Input<pulumi.Input<inputs.JobConstraint>[]>;
+    /**
+     * `(integer)` - The job creation index.
+     */
+    createIndex?: pulumi.Input<number>;
+    /**
+     * `(set of strings)` - The target datacenters for the job.
      */
     datacenters?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+     * `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
      */
     deploymentId?: pulumi.Input<string>;
     /**
-     * If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+     * `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
      */
     deploymentStatus?: pulumi.Input<string>;
     /**
@@ -260,22 +355,40 @@ export interface JobState {
      */
     json?: pulumi.Input<boolean>;
     /**
-     * Integer that increments for each change. Used to detect any changes between plan and apply.
+     * `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
      */
     modifyIndex?: pulumi.Input<string>;
     /**
-     * The name of the job, as derived from the jobspec.
+     * `(string)` - Volume name.
      */
     name?: pulumi.Input<string>;
     /**
-     * The namespace of the job, as derived from the jobspec.
+     * `(string)` - The namespace of the job, as derived from the jobspec.
      */
     namespace?: pulumi.Input<string>;
+    /**
+     * `(string)` - The parent job ID, if applicable.
+     */
+    parentId?: pulumi.Input<string>;
+    /**
+     * `(list of maps)` - The job's periodic configuration.
+     */
+    periodicConfigs?: pulumi.Input<pulumi.Input<inputs.JobPeriodicConfig>[]>;
     /**
      * `(boolean: false)` - Determines if the job will override any
      * soft-mandatory Sentinel policies and register even if they fail.
      */
     policyOverride?: pulumi.Input<boolean>;
+    /**
+     * `(boolean: false)` - If true, preserves the current task
+     * group counts already stored in Nomad during job registration instead of
+     * applying the counts from the submitted jobspec.
+     */
+    preserveCounts?: pulumi.Input<boolean>;
+    /**
+     * `(integer)` - The job priority for scheduling and resource access.
+     */
+    priority?: pulumi.Input<number>;
     /**
      * `(boolean: false)` - Set this to true if you want the job to
      * be purged when the resource is destroyed.
@@ -286,7 +399,7 @@ export interface JobState {
      */
     readAllocationIds?: pulumi.Input<boolean>;
     /**
-     * The target region for the job, as derived from the jobspec.
+     * `(string)` - The target region for the job.
      */
     region?: pulumi.Input<string>;
     /**
@@ -295,14 +408,41 @@ export interface JobState {
      */
     rerunIfDead?: pulumi.Input<boolean>;
     /**
-     * The status of the job.
+     * `(boolean)` - Whether the job is stable.
+     */
+    stable?: pulumi.Input<boolean>;
+    /**
+     * `(string)` - The current status of the job.
      */
     status?: pulumi.Input<string>;
+    /**
+     * `(string)` - Additional status information returned by Nomad.
+     */
+    statusDescription?: pulumi.Input<string>;
+    /**
+     * `(boolean)` - Whether the job is stopped.
+     */
+    stop?: pulumi.Input<boolean>;
+    /**
+     * `(integer)` - The Unix timestamp when the job was submitted.
+     */
+    submitTime?: pulumi.Input<string>;
+    /**
+     * `(list of maps)` - A list of the job's task groups.
+     */
     taskGroups?: pulumi.Input<pulumi.Input<inputs.JobTaskGroup>[]>;
     /**
-     * The type of the job, as derived from the jobspec.
+     * `(string)` - Volume type.
      */
     type?: pulumi.Input<string>;
+    /**
+     * `(list of maps)` - Effective update strategy for the task group.
+     */
+    updateStrategies?: pulumi.Input<pulumi.Input<inputs.JobUpdateStrategy>[]>;
+    /**
+     * `(integer)` - The current job version.
+     */
+    version?: pulumi.Input<number>;
 }
 
 /**
@@ -342,6 +482,12 @@ export interface JobArgs {
      * soft-mandatory Sentinel policies and register even if they fail.
      */
     policyOverride?: pulumi.Input<boolean>;
+    /**
+     * `(boolean: false)` - If true, preserves the current task
+     * group counts already stored in Nomad during job registration instead of
+     * applying the counts from the submitted jobspec.
+     */
+    preserveCounts?: pulumi.Input<boolean>;
     /**
      * `(boolean: false)` - Set this to true if you want the job to
      * be purged when the resource is destroyed.

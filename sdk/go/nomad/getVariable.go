@@ -13,6 +13,10 @@ import (
 
 // Get the information about a Nomad variable.
 //
+// > **Deprecated:** Use the `Variable` ephemeral resource instead when you
+// need to read variable items without storing them in Terraform state. This data
+// source will be removed in a future release.
+//
 // > **Warning:** this data source will store the sensitive values from `items`
 //
 //	in the Terraform's state file. Take care to

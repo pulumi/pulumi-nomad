@@ -18,11 +18,21 @@ namespace Pulumi.Nomad.Inputs
         [Input("authMethod", required: true)]
         public Input<string> AuthMethod { get; set; } = null!;
 
+        [Input("loginToken", required: true)]
+        private Input<string>? _loginToken;
+
         /// <summary>
         /// The externally issued authentication token to be exchanged for a Nomad ACL Token.
         /// </summary>
-        [Input("loginToken", required: true)]
-        public Input<string> LoginToken { get; set; } = null!;
+        public Input<string>? LoginToken
+        {
+            get => _loginToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _loginToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public ProviderAuthJwtArgs()
         {

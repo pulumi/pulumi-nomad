@@ -5,7 +5,11 @@ package com.pulumi.nomad.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.nomad.inputs.QuoteSpecificationLimitRegionLimitDeviceArgs;
+import com.pulumi.nomad.inputs.QuoteSpecificationLimitRegionLimitNodePoolArgs;
+import com.pulumi.nomad.inputs.QuoteSpecificationLimitRegionLimitStorageArgs;
 import java.lang.Integer;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -14,6 +18,25 @@ import javax.annotation.Nullable;
 public final class QuoteSpecificationLimitRegionLimitArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final QuoteSpecificationLimitRegionLimitArgs Empty = new QuoteSpecificationLimitRegionLimitArgs();
+
+    /**
+     * `(int: 0)` - The number of CPU cores to limit allocations to. A value
+     * of zero is treated as unlimited, and a negative value is treated as fully
+     * disallowed.
+     * 
+     */
+    @Import(name="cores")
+    private @Nullable Output<Integer> cores;
+
+    /**
+     * @return `(int: 0)` - The number of CPU cores to limit allocations to. A value
+     * of zero is treated as unlimited, and a negative value is treated as fully
+     * disallowed.
+     * 
+     */
+    public Optional<Output<Integer>> cores() {
+        return Optional.ofNullable(this.cores);
+    }
 
     /**
      * `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
@@ -30,6 +53,44 @@ public final class QuoteSpecificationLimitRegionLimitArgs extends com.pulumi.res
      */
     public Optional<Output<Integer>> cpu() {
         return Optional.ofNullable(this.cpu);
+    }
+
+    @Import(name="devices")
+    private @Nullable Output<List<QuoteSpecificationLimitRegionLimitDeviceArgs>> devices;
+
+    public Optional<Output<List<QuoteSpecificationLimitRegionLimitDeviceArgs>>> devices() {
+        return Optional.ofNullable(this.devices);
+    }
+
+    /**
+     * `(int: 0)` - The maximum amount of memory (in megabytes) to
+     * limit allocations to. A value of zero is treated as unlimited, and a negative
+     * value is treated as fully disallowed.
+     * - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+     *   repeated. See below for the structure of this block.
+     * - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+     *   repeated. See below for the structure of this block.
+     * - `storage` `(block: optional)` - Storage resource quota configuration. May only
+     *   be specified once. See below for the structure of this block.
+     * 
+     */
+    @Import(name="memoryMaxMb")
+    private @Nullable Output<Integer> memoryMaxMb;
+
+    /**
+     * @return `(int: 0)` - The maximum amount of memory (in megabytes) to
+     * limit allocations to. A value of zero is treated as unlimited, and a negative
+     * value is treated as fully disallowed.
+     * - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+     *   repeated. See below for the structure of this block.
+     * - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+     *   repeated. See below for the structure of this block.
+     * - `storage` `(block: optional)` - Storage resource quota configuration. May only
+     *   be specified once. See below for the structure of this block.
+     * 
+     */
+    public Optional<Output<Integer>> memoryMaxMb() {
+        return Optional.ofNullable(this.memoryMaxMb);
     }
 
     /**
@@ -51,11 +112,30 @@ public final class QuoteSpecificationLimitRegionLimitArgs extends com.pulumi.res
         return Optional.ofNullable(this.memoryMb);
     }
 
+    @Import(name="nodePools")
+    private @Nullable Output<List<QuoteSpecificationLimitRegionLimitNodePoolArgs>> nodePools;
+
+    public Optional<Output<List<QuoteSpecificationLimitRegionLimitNodePoolArgs>>> nodePools() {
+        return Optional.ofNullable(this.nodePools);
+    }
+
+    @Import(name="storage")
+    private @Nullable Output<QuoteSpecificationLimitRegionLimitStorageArgs> storage;
+
+    public Optional<Output<QuoteSpecificationLimitRegionLimitStorageArgs>> storage() {
+        return Optional.ofNullable(this.storage);
+    }
+
     private QuoteSpecificationLimitRegionLimitArgs() {}
 
     private QuoteSpecificationLimitRegionLimitArgs(QuoteSpecificationLimitRegionLimitArgs $) {
+        this.cores = $.cores;
         this.cpu = $.cpu;
+        this.devices = $.devices;
+        this.memoryMaxMb = $.memoryMaxMb;
         this.memoryMb = $.memoryMb;
+        this.nodePools = $.nodePools;
+        this.storage = $.storage;
     }
 
     public static Builder builder() {
@@ -74,6 +154,31 @@ public final class QuoteSpecificationLimitRegionLimitArgs extends com.pulumi.res
 
         public Builder(QuoteSpecificationLimitRegionLimitArgs defaults) {
             $ = new QuoteSpecificationLimitRegionLimitArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param cores `(int: 0)` - The number of CPU cores to limit allocations to. A value
+         * of zero is treated as unlimited, and a negative value is treated as fully
+         * disallowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cores(@Nullable Output<Integer> cores) {
+            $.cores = cores;
+            return this;
+        }
+
+        /**
+         * @param cores `(int: 0)` - The number of CPU cores to limit allocations to. A value
+         * of zero is treated as unlimited, and a negative value is treated as fully
+         * disallowed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cores(Integer cores) {
+            return cores(Output.of(cores));
         }
 
         /**
@@ -99,6 +204,56 @@ public final class QuoteSpecificationLimitRegionLimitArgs extends com.pulumi.res
             return cpu(Output.of(cpu));
         }
 
+        public Builder devices(@Nullable Output<List<QuoteSpecificationLimitRegionLimitDeviceArgs>> devices) {
+            $.devices = devices;
+            return this;
+        }
+
+        public Builder devices(List<QuoteSpecificationLimitRegionLimitDeviceArgs> devices) {
+            return devices(Output.of(devices));
+        }
+
+        public Builder devices(QuoteSpecificationLimitRegionLimitDeviceArgs... devices) {
+            return devices(List.of(devices));
+        }
+
+        /**
+         * @param memoryMaxMb `(int: 0)` - The maximum amount of memory (in megabytes) to
+         * limit allocations to. A value of zero is treated as unlimited, and a negative
+         * value is treated as fully disallowed.
+         * - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+         *   repeated. See below for the structure of this block.
+         * - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+         *   repeated. See below for the structure of this block.
+         * - `storage` `(block: optional)` - Storage resource quota configuration. May only
+         *   be specified once. See below for the structure of this block.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder memoryMaxMb(@Nullable Output<Integer> memoryMaxMb) {
+            $.memoryMaxMb = memoryMaxMb;
+            return this;
+        }
+
+        /**
+         * @param memoryMaxMb `(int: 0)` - The maximum amount of memory (in megabytes) to
+         * limit allocations to. A value of zero is treated as unlimited, and a negative
+         * value is treated as fully disallowed.
+         * - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+         *   repeated. See below for the structure of this block.
+         * - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+         *   repeated. See below for the structure of this block.
+         * - `storage` `(block: optional)` - Storage resource quota configuration. May only
+         *   be specified once. See below for the structure of this block.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder memoryMaxMb(Integer memoryMaxMb) {
+            return memoryMaxMb(Output.of(memoryMaxMb));
+        }
+
         /**
          * @param memoryMb `(int: 0)` - The amount of memory (in megabytes) to limit
          * allocations to. A value of zero is treated as unlimited, and a negative value
@@ -122,6 +277,28 @@ public final class QuoteSpecificationLimitRegionLimitArgs extends com.pulumi.res
          */
         public Builder memoryMb(Integer memoryMb) {
             return memoryMb(Output.of(memoryMb));
+        }
+
+        public Builder nodePools(@Nullable Output<List<QuoteSpecificationLimitRegionLimitNodePoolArgs>> nodePools) {
+            $.nodePools = nodePools;
+            return this;
+        }
+
+        public Builder nodePools(List<QuoteSpecificationLimitRegionLimitNodePoolArgs> nodePools) {
+            return nodePools(Output.of(nodePools));
+        }
+
+        public Builder nodePools(QuoteSpecificationLimitRegionLimitNodePoolArgs... nodePools) {
+            return nodePools(List.of(nodePools));
+        }
+
+        public Builder storage(@Nullable Output<QuoteSpecificationLimitRegionLimitStorageArgs> storage) {
+            $.storage = storage;
+            return this;
+        }
+
+        public Builder storage(QuoteSpecificationLimitRegionLimitStorageArgs storage) {
+            return storage(Output.of(storage));
         }
 
         public QuoteSpecificationLimitRegionLimitArgs build() {

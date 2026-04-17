@@ -19,32 +19,30 @@ __all__ = ['VariableArgs', 'Variable']
 @pulumi.input_type
 class VariableArgs:
     def __init__(__self__, *,
-                 items: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]],
                  path: pulumi.Input[_builtins.str],
+                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 items_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 items_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Variable resource.
 
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
         :param pulumi.Input[_builtins.str] path: `(string: <required>)` - A unique path to create the variable at.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `items_wo` and `items_wo_version`.
+        :param pulumi.Input[_builtins.str] items_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `items_wo_version`.
+        :param pulumi.Input[_builtins.int] items_wo_version: `(number)` - A version marker for `items_wo`. Required when using `items_wo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
         :param pulumi.Input[_builtins.str] namespace: `(string: "default")` - The namepsace to create the variable in.
         """
-        pulumi.set(__self__, "items", items)
         pulumi.set(__self__, "path", path)
+        if items is not None:
+            pulumi.set(__self__, "items", items)
+        if items_wo is not None:
+            pulumi.set(__self__, "items_wo", items_wo)
+        if items_wo_version is not None:
+            pulumi.set(__self__, "items_wo_version", items_wo_version)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
-
-    @_builtins.property
-    @pulumi.getter
-    def items(self) -> pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]:
-        """
-        `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
-        """
-        return pulumi.get(self, "items")
-
-    @items.setter
-    def items(self, value: pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]):
-        pulumi.set(self, "items", value)
 
     @_builtins.property
     @pulumi.getter
@@ -57,6 +55,43 @@ class VariableArgs:
     @path.setter
     def path(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def items(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `items_wo` and `items_wo_version`.
+        """
+        return pulumi.get(self, "items")
+
+    @items.setter
+    def items(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "items", value)
+
+    @_builtins.property
+    @pulumi.getter(name="itemsWo")
+    def items_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `items_wo_version`.
+        """
+        return pulumi.get(self, "items_wo")
+
+    @items_wo.setter
+    def items_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "items_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="itemsWoVersion")
+    def items_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(number)` - A version marker for `items_wo`. Required when using `items_wo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+        """
+        return pulumi.get(self, "items_wo_version")
+
+    @items_wo_version.setter
+    def items_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "items_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -75,17 +110,26 @@ class VariableArgs:
 class _VariableState:
     def __init__(__self__, *,
                  items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 items_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 items_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Variable resources.
 
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `items_wo` and `items_wo_version`.
+        :param pulumi.Input[_builtins.str] items_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `items_wo_version`.
+        :param pulumi.Input[_builtins.int] items_wo_version: `(number)` - A version marker for `items_wo`. Required when using `items_wo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
         :param pulumi.Input[_builtins.str] namespace: `(string: "default")` - The namepsace to create the variable in.
         :param pulumi.Input[_builtins.str] path: `(string: <required>)` - A unique path to create the variable at.
         """
         if items is not None:
             pulumi.set(__self__, "items", items)
+        if items_wo is not None:
+            pulumi.set(__self__, "items_wo", items_wo)
+        if items_wo_version is not None:
+            pulumi.set(__self__, "items_wo_version", items_wo_version)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
@@ -95,13 +139,38 @@ class _VariableState:
     @pulumi.getter
     def items(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+        `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `items_wo` and `items_wo_version`.
         """
         return pulumi.get(self, "items")
 
     @items.setter
     def items(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "items", value)
+
+    @_builtins.property
+    @pulumi.getter(name="itemsWo")
+    def items_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `items_wo_version`.
+        """
+        return pulumi.get(self, "items_wo")
+
+    @items_wo.setter
+    def items_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "items_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="itemsWoVersion")
+    def items_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(number)` - A version marker for `items_wo`. Required when using `items_wo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+        """
+        return pulumi.get(self, "items_wo_version")
+
+    @items_wo_version.setter
+    def items_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "items_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -135,6 +204,8 @@ class Variable(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 items_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 items_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -145,6 +216,9 @@ class Variable(pulumi.CustomResource):
         > **Warning:** this resource will store the sensitive values placed in
           `items` in the Terraform's state file. Take care to
           [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
+
+        > **Note:** Use `items_wo` with `items_wo_version` when you want Terraform to
+          write variable items without storing those values in the state file.
 
         ## Example Usage
 
@@ -159,6 +233,21 @@ class Variable(pulumi.CustomResource):
             items={
                 "example_key": "example_value",
             })
+        ```
+
+        Creating a variable with write-only items:
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_nomad as nomad
+
+        example = nomad.Variable("example",
+            path="some/path/of/your/choosing",
+            items_wo=json.dumps({
+                "example_key": "example_value",
+            }),
+            items_wo_version=1)
         ```
 
         Creating a variable in a custom namespace:
@@ -181,7 +270,10 @@ class Variable(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `items_wo` and `items_wo_version`.
+        :param pulumi.Input[_builtins.str] items_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `items_wo_version`.
+        :param pulumi.Input[_builtins.int] items_wo_version: `(number)` - A version marker for `items_wo`. Required when using `items_wo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
         :param pulumi.Input[_builtins.str] namespace: `(string: "default")` - The namepsace to create the variable in.
         :param pulumi.Input[_builtins.str] path: `(string: <required>)` - A unique path to create the variable at.
         """
@@ -199,6 +291,9 @@ class Variable(pulumi.CustomResource):
           `items` in the Terraform's state file. Take care to
           [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
 
+        > **Note:** Use `items_wo` with `items_wo_version` when you want Terraform to
+          write variable items without storing those values in the state file.
+
         ## Example Usage
 
         Creating a variable in the default namespace:
@@ -212,6 +307,21 @@ class Variable(pulumi.CustomResource):
             items={
                 "example_key": "example_value",
             })
+        ```
+
+        Creating a variable with write-only items:
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_nomad as nomad
+
+        example = nomad.Variable("example",
+            path="some/path/of/your/choosing",
+            items_wo=json.dumps({
+                "example_key": "example_value",
+            }),
+            items_wo_version=1)
         ```
 
         Creating a variable in a custom namespace:
@@ -248,6 +358,8 @@ class Variable(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 items_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 items_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -259,14 +371,14 @@ class Variable(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VariableArgs.__new__(VariableArgs)
 
-            if items is None and not opts.urn:
-                raise TypeError("Missing required property 'items'")
             __props__.__dict__["items"] = None if items is None else pulumi.Output.secret(items)
+            __props__.__dict__["items_wo"] = None if items_wo is None else pulumi.Output.secret(items_wo)
+            __props__.__dict__["items_wo_version"] = items_wo_version
             __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["items"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["items", "itemsWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Variable, __self__).__init__(
             'nomad:index/variable:Variable',
@@ -279,6 +391,8 @@ class Variable(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            items_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            items_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
             path: Optional[pulumi.Input[_builtins.str]] = None) -> 'Variable':
         """
@@ -288,7 +402,10 @@ class Variable(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] items: `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `items_wo` and `items_wo_version`.
+        :param pulumi.Input[_builtins.str] items_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `items_wo_version`.
+        :param pulumi.Input[_builtins.int] items_wo_version: `(number)` - A version marker for `items_wo`. Required when using `items_wo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
         :param pulumi.Input[_builtins.str] namespace: `(string: "default")` - The namepsace to create the variable in.
         :param pulumi.Input[_builtins.str] path: `(string: <required>)` - A unique path to create the variable at.
         """
@@ -297,17 +414,36 @@ class Variable(pulumi.CustomResource):
         __props__ = _VariableState.__new__(_VariableState)
 
         __props__.__dict__["items"] = items
+        __props__.__dict__["items_wo"] = items_wo
+        __props__.__dict__["items_wo_version"] = items_wo_version
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
         return Variable(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
-    def items(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
+    def items(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
-        `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+        `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `items_wo` and `items_wo_version`.
         """
         return pulumi.get(self, "items")
+
+    @_builtins.property
+    @pulumi.getter(name="itemsWo")
+    def items_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `items_wo_version`.
+        """
+        return pulumi.get(self, "items_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="itemsWoVersion")
+    def items_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        `(number)` - A version marker for `items_wo`. Required when using `items_wo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+        """
+        return pulumi.get(self, "items_wo_version")
 
     @_builtins.property
     @pulumi.getter

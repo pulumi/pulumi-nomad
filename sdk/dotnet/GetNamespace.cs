@@ -122,6 +122,10 @@ namespace Pulumi.Nomad
         /// </summary>
         public readonly ImmutableArray<Outputs.GetNamespaceCapabilityResult> Capabilities;
         /// <summary>
+        /// `(block)` - Consul configuration for the namespace.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetNamespaceConsulConfigResult> ConsulConfigs;
+        /// <summary>
         /// `(string)` - The description of the namespace.
         /// </summary>
         public readonly string Description;
@@ -134,15 +138,24 @@ namespace Pulumi.Nomad
         /// </summary>
         public readonly ImmutableDictionary<string, string> Meta;
         public readonly string Name;
+        /// <summary>
+        /// `(block)` - Node pool configuration for the namespace.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetNamespaceNodePoolConfigResult> NodePoolConfigs;
         /// <summary>
         /// `(string)` - The quota associated with the namespace.
         /// </summary>
         public readonly string Quota;
+        /// <summary>
+        /// `(block)` - Vault configuration for the namespace.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetNamespaceVaultConfigResult> VaultConfigs;
 
         [OutputConstructor]
         private GetNamespaceResult(
             ImmutableArray<Outputs.GetNamespaceCapabilityResult> capabilities,
+
+            ImmutableArray<Outputs.GetNamespaceConsulConfigResult> consulConfigs,
 
             string description,
 
@@ -154,15 +167,19 @@ namespace Pulumi.Nomad
 
             ImmutableArray<Outputs.GetNamespaceNodePoolConfigResult> nodePoolConfigs,
 
-            string quota)
+            string quota,
+
+            ImmutableArray<Outputs.GetNamespaceVaultConfigResult> vaultConfigs)
         {
             Capabilities = capabilities;
+            ConsulConfigs = consulConfigs;
             Description = description;
             Id = id;
             Meta = meta;
             Name = name;
             NodePoolConfigs = nodePoolConfigs;
             Quota = quota;
+            VaultConfigs = vaultConfigs;
         }
     }
 }

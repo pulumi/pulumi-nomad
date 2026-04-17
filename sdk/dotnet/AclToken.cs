@@ -16,6 +16,10 @@ namespace Pulumi.Nomad
     ///   Terraform's state file. Take care to
     ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
     /// 
+    /// &gt; **Note:** `SecretId` is deprecated on this resource. Use the `nomad.AclToken`
+    /// ephemeral resource when the token secret is needed during a run without
+    /// storing it in Terraform state.
+    /// 
     /// ## Example Usage
     /// 
     /// Creating a token with limited policies:
@@ -176,7 +180,8 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(string)` - The token value itself, which is presented for
-        /// access to the cluster.
+        /// access to the cluster. This attribute is deprecated and will be removed in a
+        /// future release.
         /// </summary>
         [Output("secretId")]
         public Output<string> SecretId { get; private set; } = null!;
@@ -382,8 +387,10 @@ namespace Pulumi.Nomad
 
         /// <summary>
         /// `(string)` - The token value itself, which is presented for
-        /// access to the cluster.
+        /// access to the cluster. This attribute is deprecated and will be removed in a
+        /// future release.
         /// </summary>
+        [Obsolete(@"Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.")]
         public Input<string>? SecretId
         {
             get => _secretId;

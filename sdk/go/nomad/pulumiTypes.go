@@ -1192,8 +1192,8 @@ func (o AclAuthMethodConfigOidcClientAssertionPrivateKeyPtrOutput) PemKeyFile() 
 type AclPolicyJobAcl struct {
 	// Group
 	Group *string `pulumi:"group"`
-	// Job
-	JobId string `pulumi:"jobId"`
+	// Job. If empty, the policy applies to all jobs in the namespace.
+	JobId *string `pulumi:"jobId"`
 	// Namespace
 	Namespace *string `pulumi:"namespace"`
 	// Task
@@ -1214,8 +1214,8 @@ type AclPolicyJobAclInput interface {
 type AclPolicyJobAclArgs struct {
 	// Group
 	Group pulumi.StringPtrInput `pulumi:"group"`
-	// Job
-	JobId pulumi.StringInput `pulumi:"jobId"`
+	// Job. If empty, the policy applies to all jobs in the namespace.
+	JobId pulumi.StringPtrInput `pulumi:"jobId"`
 	// Namespace
 	Namespace pulumi.StringPtrInput `pulumi:"namespace"`
 	// Task
@@ -1304,9 +1304,9 @@ func (o AclPolicyJobAclOutput) Group() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AclPolicyJobAcl) *string { return v.Group }).(pulumi.StringPtrOutput)
 }
 
-// Job
-func (o AclPolicyJobAclOutput) JobId() pulumi.StringOutput {
-	return o.ApplyT(func(v AclPolicyJobAcl) string { return v.JobId }).(pulumi.StringOutput)
+// Job. If empty, the policy applies to all jobs in the namespace.
+func (o AclPolicyJobAclOutput) JobId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclPolicyJobAcl) *string { return v.JobId }).(pulumi.StringPtrOutput)
 }
 
 // Namespace
@@ -1353,13 +1353,13 @@ func (o AclPolicyJobAclPtrOutput) Group() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Job
+// Job. If empty, the policy applies to all jobs in the namespace.
 func (o AclPolicyJobAclPtrOutput) JobId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AclPolicyJobAcl) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.JobId
+		return v.JobId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -4838,6 +4838,121 @@ func (o ExternalVolumeTopologyRequestRequiredTopologyArrayOutput) Index(i pulumi
 	}).(ExternalVolumeTopologyRequestRequiredTopologyOutput)
 }
 
+type JobConstraint struct {
+	// `(string)` - Attribute being constrained.
+	Ltarget *string `pulumi:"ltarget"`
+	// `(string)` - Operator used to compare the attribute to the constraint.
+	Operand *string `pulumi:"operand"`
+	// `(string)` - Constraint value.
+	Rtarget *string `pulumi:"rtarget"`
+}
+
+// JobConstraintInput is an input type that accepts JobConstraintArgs and JobConstraintOutput values.
+// You can construct a concrete instance of `JobConstraintInput` via:
+//
+//	JobConstraintArgs{...}
+type JobConstraintInput interface {
+	pulumi.Input
+
+	ToJobConstraintOutput() JobConstraintOutput
+	ToJobConstraintOutputWithContext(context.Context) JobConstraintOutput
+}
+
+type JobConstraintArgs struct {
+	// `(string)` - Attribute being constrained.
+	Ltarget pulumi.StringPtrInput `pulumi:"ltarget"`
+	// `(string)` - Operator used to compare the attribute to the constraint.
+	Operand pulumi.StringPtrInput `pulumi:"operand"`
+	// `(string)` - Constraint value.
+	Rtarget pulumi.StringPtrInput `pulumi:"rtarget"`
+}
+
+func (JobConstraintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobConstraint)(nil)).Elem()
+}
+
+func (i JobConstraintArgs) ToJobConstraintOutput() JobConstraintOutput {
+	return i.ToJobConstraintOutputWithContext(context.Background())
+}
+
+func (i JobConstraintArgs) ToJobConstraintOutputWithContext(ctx context.Context) JobConstraintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobConstraintOutput)
+}
+
+// JobConstraintArrayInput is an input type that accepts JobConstraintArray and JobConstraintArrayOutput values.
+// You can construct a concrete instance of `JobConstraintArrayInput` via:
+//
+//	JobConstraintArray{ JobConstraintArgs{...} }
+type JobConstraintArrayInput interface {
+	pulumi.Input
+
+	ToJobConstraintArrayOutput() JobConstraintArrayOutput
+	ToJobConstraintArrayOutputWithContext(context.Context) JobConstraintArrayOutput
+}
+
+type JobConstraintArray []JobConstraintInput
+
+func (JobConstraintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]JobConstraint)(nil)).Elem()
+}
+
+func (i JobConstraintArray) ToJobConstraintArrayOutput() JobConstraintArrayOutput {
+	return i.ToJobConstraintArrayOutputWithContext(context.Background())
+}
+
+func (i JobConstraintArray) ToJobConstraintArrayOutputWithContext(ctx context.Context) JobConstraintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobConstraintArrayOutput)
+}
+
+type JobConstraintOutput struct{ *pulumi.OutputState }
+
+func (JobConstraintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobConstraint)(nil)).Elem()
+}
+
+func (o JobConstraintOutput) ToJobConstraintOutput() JobConstraintOutput {
+	return o
+}
+
+func (o JobConstraintOutput) ToJobConstraintOutputWithContext(ctx context.Context) JobConstraintOutput {
+	return o
+}
+
+// `(string)` - Attribute being constrained.
+func (o JobConstraintOutput) Ltarget() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobConstraint) *string { return v.Ltarget }).(pulumi.StringPtrOutput)
+}
+
+// `(string)` - Operator used to compare the attribute to the constraint.
+func (o JobConstraintOutput) Operand() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobConstraint) *string { return v.Operand }).(pulumi.StringPtrOutput)
+}
+
+// `(string)` - Constraint value.
+func (o JobConstraintOutput) Rtarget() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobConstraint) *string { return v.Rtarget }).(pulumi.StringPtrOutput)
+}
+
+type JobConstraintArrayOutput struct{ *pulumi.OutputState }
+
+func (JobConstraintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]JobConstraint)(nil)).Elem()
+}
+
+func (o JobConstraintArrayOutput) ToJobConstraintArrayOutput() JobConstraintArrayOutput {
+	return o
+}
+
+func (o JobConstraintArrayOutput) ToJobConstraintArrayOutputWithContext(ctx context.Context) JobConstraintArrayOutput {
+	return o
+}
+
+func (o JobConstraintArrayOutput) Index(i pulumi.IntInput) JobConstraintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) JobConstraint {
+		return vs[0].([]JobConstraint)[vs[1].(int)]
+	}).(JobConstraintOutput)
+}
+
 type JobHcl2 struct {
 	// `(boolean: false)` - Set this to `true` to be able to use
 	// HCL2 filesystem functions
@@ -4998,11 +5113,151 @@ func (o JobHcl2PtrOutput) Vars() pulumi.StringMapOutput {
 	}).(pulumi.StringMapOutput)
 }
 
+type JobPeriodicConfig struct {
+	// `(boolean)` - Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
+	Enabled *bool `pulumi:"enabled"`
+	// `(boolean)` - Whether this job should wait until previous instances of the same job have completed before launching again.
+	ProhibitOverlap *bool `pulumi:"prohibitOverlap"`
+	// `(string)` - Cron expression configuring the interval at which the job is launched.
+	Spec *string `pulumi:"spec"`
+	// `(string)` - Type of periodic specification, such as `cron`.
+	SpecType *string `pulumi:"specType"`
+	// `(string)` - Time zone used to evaluate the next launch interval.
+	Timezone *string `pulumi:"timezone"`
+}
+
+// JobPeriodicConfigInput is an input type that accepts JobPeriodicConfigArgs and JobPeriodicConfigOutput values.
+// You can construct a concrete instance of `JobPeriodicConfigInput` via:
+//
+//	JobPeriodicConfigArgs{...}
+type JobPeriodicConfigInput interface {
+	pulumi.Input
+
+	ToJobPeriodicConfigOutput() JobPeriodicConfigOutput
+	ToJobPeriodicConfigOutputWithContext(context.Context) JobPeriodicConfigOutput
+}
+
+type JobPeriodicConfigArgs struct {
+	// `(boolean)` - Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// `(boolean)` - Whether this job should wait until previous instances of the same job have completed before launching again.
+	ProhibitOverlap pulumi.BoolPtrInput `pulumi:"prohibitOverlap"`
+	// `(string)` - Cron expression configuring the interval at which the job is launched.
+	Spec pulumi.StringPtrInput `pulumi:"spec"`
+	// `(string)` - Type of periodic specification, such as `cron`.
+	SpecType pulumi.StringPtrInput `pulumi:"specType"`
+	// `(string)` - Time zone used to evaluate the next launch interval.
+	Timezone pulumi.StringPtrInput `pulumi:"timezone"`
+}
+
+func (JobPeriodicConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobPeriodicConfig)(nil)).Elem()
+}
+
+func (i JobPeriodicConfigArgs) ToJobPeriodicConfigOutput() JobPeriodicConfigOutput {
+	return i.ToJobPeriodicConfigOutputWithContext(context.Background())
+}
+
+func (i JobPeriodicConfigArgs) ToJobPeriodicConfigOutputWithContext(ctx context.Context) JobPeriodicConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobPeriodicConfigOutput)
+}
+
+// JobPeriodicConfigArrayInput is an input type that accepts JobPeriodicConfigArray and JobPeriodicConfigArrayOutput values.
+// You can construct a concrete instance of `JobPeriodicConfigArrayInput` via:
+//
+//	JobPeriodicConfigArray{ JobPeriodicConfigArgs{...} }
+type JobPeriodicConfigArrayInput interface {
+	pulumi.Input
+
+	ToJobPeriodicConfigArrayOutput() JobPeriodicConfigArrayOutput
+	ToJobPeriodicConfigArrayOutputWithContext(context.Context) JobPeriodicConfigArrayOutput
+}
+
+type JobPeriodicConfigArray []JobPeriodicConfigInput
+
+func (JobPeriodicConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]JobPeriodicConfig)(nil)).Elem()
+}
+
+func (i JobPeriodicConfigArray) ToJobPeriodicConfigArrayOutput() JobPeriodicConfigArrayOutput {
+	return i.ToJobPeriodicConfigArrayOutputWithContext(context.Background())
+}
+
+func (i JobPeriodicConfigArray) ToJobPeriodicConfigArrayOutputWithContext(ctx context.Context) JobPeriodicConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobPeriodicConfigArrayOutput)
+}
+
+type JobPeriodicConfigOutput struct{ *pulumi.OutputState }
+
+func (JobPeriodicConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobPeriodicConfig)(nil)).Elem()
+}
+
+func (o JobPeriodicConfigOutput) ToJobPeriodicConfigOutput() JobPeriodicConfigOutput {
+	return o
+}
+
+func (o JobPeriodicConfigOutput) ToJobPeriodicConfigOutputWithContext(ctx context.Context) JobPeriodicConfigOutput {
+	return o
+}
+
+// `(boolean)` - Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
+func (o JobPeriodicConfigOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v JobPeriodicConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// `(boolean)` - Whether this job should wait until previous instances of the same job have completed before launching again.
+func (o JobPeriodicConfigOutput) ProhibitOverlap() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v JobPeriodicConfig) *bool { return v.ProhibitOverlap }).(pulumi.BoolPtrOutput)
+}
+
+// `(string)` - Cron expression configuring the interval at which the job is launched.
+func (o JobPeriodicConfigOutput) Spec() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobPeriodicConfig) *string { return v.Spec }).(pulumi.StringPtrOutput)
+}
+
+// `(string)` - Type of periodic specification, such as `cron`.
+func (o JobPeriodicConfigOutput) SpecType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobPeriodicConfig) *string { return v.SpecType }).(pulumi.StringPtrOutput)
+}
+
+// `(string)` - Time zone used to evaluate the next launch interval.
+func (o JobPeriodicConfigOutput) Timezone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobPeriodicConfig) *string { return v.Timezone }).(pulumi.StringPtrOutput)
+}
+
+type JobPeriodicConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (JobPeriodicConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]JobPeriodicConfig)(nil)).Elem()
+}
+
+func (o JobPeriodicConfigArrayOutput) ToJobPeriodicConfigArrayOutput() JobPeriodicConfigArrayOutput {
+	return o
+}
+
+func (o JobPeriodicConfigArrayOutput) ToJobPeriodicConfigArrayOutputWithContext(ctx context.Context) JobPeriodicConfigArrayOutput {
+	return o
+}
+
+func (o JobPeriodicConfigArrayOutput) Index(i pulumi.IntInput) JobPeriodicConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) JobPeriodicConfig {
+		return vs[0].([]JobPeriodicConfig)[vs[1].(int)]
+	}).(JobPeriodicConfigOutput)
+}
+
 type JobTaskGroup struct {
-	Count   *int                 `pulumi:"count"`
-	Meta    map[string]string    `pulumi:"meta"`
-	Name    *string              `pulumi:"name"`
-	Tasks   []JobTaskGroupTask   `pulumi:"tasks"`
+	// `(integer)` - Task group count.
+	Count *int `pulumi:"count"`
+	// `(map of strings)` - Task group metadata.
+	Meta map[string]string `pulumi:"meta"`
+	// `(string)` - Volume name.
+	Name *string `pulumi:"name"`
+	// `(list of maps)` - Tasks in the task group.
+	Tasks []JobTaskGroupTask `pulumi:"tasks"`
+	// `(list of maps)` - Effective update strategy for the task group.
+	UpdateStrategies []JobTaskGroupUpdateStrategy `pulumi:"updateStrategies"`
+	// `(list of maps)` - Volume requests for the task group.
 	Volumes []JobTaskGroupVolume `pulumi:"volumes"`
 }
 
@@ -5018,10 +5273,17 @@ type JobTaskGroupInput interface {
 }
 
 type JobTaskGroupArgs struct {
-	Count   pulumi.IntPtrInput           `pulumi:"count"`
-	Meta    pulumi.StringMapInput        `pulumi:"meta"`
-	Name    pulumi.StringPtrInput        `pulumi:"name"`
-	Tasks   JobTaskGroupTaskArrayInput   `pulumi:"tasks"`
+	// `(integer)` - Task group count.
+	Count pulumi.IntPtrInput `pulumi:"count"`
+	// `(map of strings)` - Task group metadata.
+	Meta pulumi.StringMapInput `pulumi:"meta"`
+	// `(string)` - Volume name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `(list of maps)` - Tasks in the task group.
+	Tasks JobTaskGroupTaskArrayInput `pulumi:"tasks"`
+	// `(list of maps)` - Effective update strategy for the task group.
+	UpdateStrategies JobTaskGroupUpdateStrategyArrayInput `pulumi:"updateStrategies"`
+	// `(list of maps)` - Volume requests for the task group.
 	Volumes JobTaskGroupVolumeArrayInput `pulumi:"volumes"`
 }
 
@@ -5076,22 +5338,32 @@ func (o JobTaskGroupOutput) ToJobTaskGroupOutputWithContext(ctx context.Context)
 	return o
 }
 
+// `(integer)` - Task group count.
 func (o JobTaskGroupOutput) Count() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v JobTaskGroup) *int { return v.Count }).(pulumi.IntPtrOutput)
 }
 
+// `(map of strings)` - Task group metadata.
 func (o JobTaskGroupOutput) Meta() pulumi.StringMapOutput {
 	return o.ApplyT(func(v JobTaskGroup) map[string]string { return v.Meta }).(pulumi.StringMapOutput)
 }
 
+// `(string)` - Volume name.
 func (o JobTaskGroupOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobTaskGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// `(list of maps)` - Tasks in the task group.
 func (o JobTaskGroupOutput) Tasks() JobTaskGroupTaskArrayOutput {
 	return o.ApplyT(func(v JobTaskGroup) []JobTaskGroupTask { return v.Tasks }).(JobTaskGroupTaskArrayOutput)
 }
 
+// `(list of maps)` - Effective update strategy for the task group.
+func (o JobTaskGroupOutput) UpdateStrategies() JobTaskGroupUpdateStrategyArrayOutput {
+	return o.ApplyT(func(v JobTaskGroup) []JobTaskGroupUpdateStrategy { return v.UpdateStrategies }).(JobTaskGroupUpdateStrategyArrayOutput)
+}
+
+// `(list of maps)` - Volume requests for the task group.
 func (o JobTaskGroupOutput) Volumes() JobTaskGroupVolumeArrayOutput {
 	return o.ApplyT(func(v JobTaskGroup) []JobTaskGroupVolume { return v.Volumes }).(JobTaskGroupVolumeArrayOutput)
 }
@@ -5117,9 +5389,13 @@ func (o JobTaskGroupArrayOutput) Index(i pulumi.IntInput) JobTaskGroupOutput {
 }
 
 type JobTaskGroupTask struct {
-	Driver       *string                       `pulumi:"driver"`
-	Meta         map[string]string             `pulumi:"meta"`
-	Name         *string                       `pulumi:"name"`
+	// `(string)` - Task driver.
+	Driver *string `pulumi:"driver"`
+	// `(map of strings)` - Task group metadata.
+	Meta map[string]string `pulumi:"meta"`
+	// `(string)` - Volume name.
+	Name *string `pulumi:"name"`
+	// `(list of maps)` - Task volume mounts.
 	VolumeMounts []JobTaskGroupTaskVolumeMount `pulumi:"volumeMounts"`
 }
 
@@ -5135,9 +5411,13 @@ type JobTaskGroupTaskInput interface {
 }
 
 type JobTaskGroupTaskArgs struct {
-	Driver       pulumi.StringPtrInput                 `pulumi:"driver"`
-	Meta         pulumi.StringMapInput                 `pulumi:"meta"`
-	Name         pulumi.StringPtrInput                 `pulumi:"name"`
+	// `(string)` - Task driver.
+	Driver pulumi.StringPtrInput `pulumi:"driver"`
+	// `(map of strings)` - Task group metadata.
+	Meta pulumi.StringMapInput `pulumi:"meta"`
+	// `(string)` - Volume name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `(list of maps)` - Task volume mounts.
 	VolumeMounts JobTaskGroupTaskVolumeMountArrayInput `pulumi:"volumeMounts"`
 }
 
@@ -5192,18 +5472,22 @@ func (o JobTaskGroupTaskOutput) ToJobTaskGroupTaskOutputWithContext(ctx context.
 	return o
 }
 
+// `(string)` - Task driver.
 func (o JobTaskGroupTaskOutput) Driver() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobTaskGroupTask) *string { return v.Driver }).(pulumi.StringPtrOutput)
 }
 
+// `(map of strings)` - Task group metadata.
 func (o JobTaskGroupTaskOutput) Meta() pulumi.StringMapOutput {
 	return o.ApplyT(func(v JobTaskGroupTask) map[string]string { return v.Meta }).(pulumi.StringMapOutput)
 }
 
+// `(string)` - Volume name.
 func (o JobTaskGroupTaskOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobTaskGroupTask) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// `(list of maps)` - Task volume mounts.
 func (o JobTaskGroupTaskOutput) VolumeMounts() JobTaskGroupTaskVolumeMountArrayOutput {
 	return o.ApplyT(func(v JobTaskGroupTask) []JobTaskGroupTaskVolumeMount { return v.VolumeMounts }).(JobTaskGroupTaskVolumeMountArrayOutput)
 }
@@ -5229,9 +5513,12 @@ func (o JobTaskGroupTaskArrayOutput) Index(i pulumi.IntInput) JobTaskGroupTaskOu
 }
 
 type JobTaskGroupTaskVolumeMount struct {
+	// `(string)` - Destination path inside the task.
 	Destination *string `pulumi:"destination"`
-	ReadOnly    *bool   `pulumi:"readOnly"`
-	Volume      *string `pulumi:"volume"`
+	// `(boolean)` - Whether the volume is read-only.
+	ReadOnly *bool `pulumi:"readOnly"`
+	// `(string)` - Volume name.
+	Volume *string `pulumi:"volume"`
 }
 
 // JobTaskGroupTaskVolumeMountInput is an input type that accepts JobTaskGroupTaskVolumeMountArgs and JobTaskGroupTaskVolumeMountOutput values.
@@ -5246,9 +5533,12 @@ type JobTaskGroupTaskVolumeMountInput interface {
 }
 
 type JobTaskGroupTaskVolumeMountArgs struct {
+	// `(string)` - Destination path inside the task.
 	Destination pulumi.StringPtrInput `pulumi:"destination"`
-	ReadOnly    pulumi.BoolPtrInput   `pulumi:"readOnly"`
-	Volume      pulumi.StringPtrInput `pulumi:"volume"`
+	// `(boolean)` - Whether the volume is read-only.
+	ReadOnly pulumi.BoolPtrInput `pulumi:"readOnly"`
+	// `(string)` - Volume name.
+	Volume pulumi.StringPtrInput `pulumi:"volume"`
 }
 
 func (JobTaskGroupTaskVolumeMountArgs) ElementType() reflect.Type {
@@ -5302,14 +5592,17 @@ func (o JobTaskGroupTaskVolumeMountOutput) ToJobTaskGroupTaskVolumeMountOutputWi
 	return o
 }
 
+// `(string)` - Destination path inside the task.
 func (o JobTaskGroupTaskVolumeMountOutput) Destination() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobTaskGroupTaskVolumeMount) *string { return v.Destination }).(pulumi.StringPtrOutput)
 }
 
+// `(boolean)` - Whether the volume is read-only.
 func (o JobTaskGroupTaskVolumeMountOutput) ReadOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v JobTaskGroupTaskVolumeMount) *bool { return v.ReadOnly }).(pulumi.BoolPtrOutput)
 }
 
+// `(string)` - Volume name.
 func (o JobTaskGroupTaskVolumeMountOutput) Volume() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobTaskGroupTaskVolumeMount) *string { return v.Volume }).(pulumi.StringPtrOutput)
 }
@@ -5334,11 +5627,166 @@ func (o JobTaskGroupTaskVolumeMountArrayOutput) Index(i pulumi.IntInput) JobTask
 	}).(JobTaskGroupTaskVolumeMountOutput)
 }
 
+type JobTaskGroupUpdateStrategy struct {
+	// `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+	AutoRevert *bool `pulumi:"autoRevert"`
+	// `(integer)` - Number of canary allocations created before destructive updates continue.
+	Canary *int `pulumi:"canary"`
+	// `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+	HealthCheck *string `pulumi:"healthCheck"`
+	// `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+	HealthyDeadline *string `pulumi:"healthyDeadline"`
+	// `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+	MaxParallel *int `pulumi:"maxParallel"`
+	// `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+	MinHealthyTime *string `pulumi:"minHealthyTime"`
+	// `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
+	Stagger *string `pulumi:"stagger"`
+}
+
+// JobTaskGroupUpdateStrategyInput is an input type that accepts JobTaskGroupUpdateStrategyArgs and JobTaskGroupUpdateStrategyOutput values.
+// You can construct a concrete instance of `JobTaskGroupUpdateStrategyInput` via:
+//
+//	JobTaskGroupUpdateStrategyArgs{...}
+type JobTaskGroupUpdateStrategyInput interface {
+	pulumi.Input
+
+	ToJobTaskGroupUpdateStrategyOutput() JobTaskGroupUpdateStrategyOutput
+	ToJobTaskGroupUpdateStrategyOutputWithContext(context.Context) JobTaskGroupUpdateStrategyOutput
+}
+
+type JobTaskGroupUpdateStrategyArgs struct {
+	// `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+	AutoRevert pulumi.BoolPtrInput `pulumi:"autoRevert"`
+	// `(integer)` - Number of canary allocations created before destructive updates continue.
+	Canary pulumi.IntPtrInput `pulumi:"canary"`
+	// `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+	HealthCheck pulumi.StringPtrInput `pulumi:"healthCheck"`
+	// `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+	HealthyDeadline pulumi.StringPtrInput `pulumi:"healthyDeadline"`
+	// `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+	MaxParallel pulumi.IntPtrInput `pulumi:"maxParallel"`
+	// `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+	MinHealthyTime pulumi.StringPtrInput `pulumi:"minHealthyTime"`
+	// `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
+	Stagger pulumi.StringPtrInput `pulumi:"stagger"`
+}
+
+func (JobTaskGroupUpdateStrategyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobTaskGroupUpdateStrategy)(nil)).Elem()
+}
+
+func (i JobTaskGroupUpdateStrategyArgs) ToJobTaskGroupUpdateStrategyOutput() JobTaskGroupUpdateStrategyOutput {
+	return i.ToJobTaskGroupUpdateStrategyOutputWithContext(context.Background())
+}
+
+func (i JobTaskGroupUpdateStrategyArgs) ToJobTaskGroupUpdateStrategyOutputWithContext(ctx context.Context) JobTaskGroupUpdateStrategyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupUpdateStrategyOutput)
+}
+
+// JobTaskGroupUpdateStrategyArrayInput is an input type that accepts JobTaskGroupUpdateStrategyArray and JobTaskGroupUpdateStrategyArrayOutput values.
+// You can construct a concrete instance of `JobTaskGroupUpdateStrategyArrayInput` via:
+//
+//	JobTaskGroupUpdateStrategyArray{ JobTaskGroupUpdateStrategyArgs{...} }
+type JobTaskGroupUpdateStrategyArrayInput interface {
+	pulumi.Input
+
+	ToJobTaskGroupUpdateStrategyArrayOutput() JobTaskGroupUpdateStrategyArrayOutput
+	ToJobTaskGroupUpdateStrategyArrayOutputWithContext(context.Context) JobTaskGroupUpdateStrategyArrayOutput
+}
+
+type JobTaskGroupUpdateStrategyArray []JobTaskGroupUpdateStrategyInput
+
+func (JobTaskGroupUpdateStrategyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]JobTaskGroupUpdateStrategy)(nil)).Elem()
+}
+
+func (i JobTaskGroupUpdateStrategyArray) ToJobTaskGroupUpdateStrategyArrayOutput() JobTaskGroupUpdateStrategyArrayOutput {
+	return i.ToJobTaskGroupUpdateStrategyArrayOutputWithContext(context.Background())
+}
+
+func (i JobTaskGroupUpdateStrategyArray) ToJobTaskGroupUpdateStrategyArrayOutputWithContext(ctx context.Context) JobTaskGroupUpdateStrategyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobTaskGroupUpdateStrategyArrayOutput)
+}
+
+type JobTaskGroupUpdateStrategyOutput struct{ *pulumi.OutputState }
+
+func (JobTaskGroupUpdateStrategyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobTaskGroupUpdateStrategy)(nil)).Elem()
+}
+
+func (o JobTaskGroupUpdateStrategyOutput) ToJobTaskGroupUpdateStrategyOutput() JobTaskGroupUpdateStrategyOutput {
+	return o
+}
+
+func (o JobTaskGroupUpdateStrategyOutput) ToJobTaskGroupUpdateStrategyOutputWithContext(ctx context.Context) JobTaskGroupUpdateStrategyOutput {
+	return o
+}
+
+// `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+func (o JobTaskGroupUpdateStrategyOutput) AutoRevert() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v JobTaskGroupUpdateStrategy) *bool { return v.AutoRevert }).(pulumi.BoolPtrOutput)
+}
+
+// `(integer)` - Number of canary allocations created before destructive updates continue.
+func (o JobTaskGroupUpdateStrategyOutput) Canary() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v JobTaskGroupUpdateStrategy) *int { return v.Canary }).(pulumi.IntPtrOutput)
+}
+
+// `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+func (o JobTaskGroupUpdateStrategyOutput) HealthCheck() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobTaskGroupUpdateStrategy) *string { return v.HealthCheck }).(pulumi.StringPtrOutput)
+}
+
+// `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+func (o JobTaskGroupUpdateStrategyOutput) HealthyDeadline() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobTaskGroupUpdateStrategy) *string { return v.HealthyDeadline }).(pulumi.StringPtrOutput)
+}
+
+// `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+func (o JobTaskGroupUpdateStrategyOutput) MaxParallel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v JobTaskGroupUpdateStrategy) *int { return v.MaxParallel }).(pulumi.IntPtrOutput)
+}
+
+// `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+func (o JobTaskGroupUpdateStrategyOutput) MinHealthyTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobTaskGroupUpdateStrategy) *string { return v.MinHealthyTime }).(pulumi.StringPtrOutput)
+}
+
+// `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
+func (o JobTaskGroupUpdateStrategyOutput) Stagger() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobTaskGroupUpdateStrategy) *string { return v.Stagger }).(pulumi.StringPtrOutput)
+}
+
+type JobTaskGroupUpdateStrategyArrayOutput struct{ *pulumi.OutputState }
+
+func (JobTaskGroupUpdateStrategyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]JobTaskGroupUpdateStrategy)(nil)).Elem()
+}
+
+func (o JobTaskGroupUpdateStrategyArrayOutput) ToJobTaskGroupUpdateStrategyArrayOutput() JobTaskGroupUpdateStrategyArrayOutput {
+	return o
+}
+
+func (o JobTaskGroupUpdateStrategyArrayOutput) ToJobTaskGroupUpdateStrategyArrayOutputWithContext(ctx context.Context) JobTaskGroupUpdateStrategyArrayOutput {
+	return o
+}
+
+func (o JobTaskGroupUpdateStrategyArrayOutput) Index(i pulumi.IntInput) JobTaskGroupUpdateStrategyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) JobTaskGroupUpdateStrategy {
+		return vs[0].([]JobTaskGroupUpdateStrategy)[vs[1].(int)]
+	}).(JobTaskGroupUpdateStrategyOutput)
+}
+
 type JobTaskGroupVolume struct {
-	Name     *string `pulumi:"name"`
-	ReadOnly *bool   `pulumi:"readOnly"`
-	Source   *string `pulumi:"source"`
-	Type     *string `pulumi:"type"`
+	// `(string)` - Volume name.
+	Name *string `pulumi:"name"`
+	// `(boolean)` - Whether the volume is read-only.
+	ReadOnly *bool `pulumi:"readOnly"`
+	// `(string)` - Volume source.
+	Source *string `pulumi:"source"`
+	// `(string)` - Volume type.
+	Type *string `pulumi:"type"`
 }
 
 // JobTaskGroupVolumeInput is an input type that accepts JobTaskGroupVolumeArgs and JobTaskGroupVolumeOutput values.
@@ -5353,10 +5801,14 @@ type JobTaskGroupVolumeInput interface {
 }
 
 type JobTaskGroupVolumeArgs struct {
-	Name     pulumi.StringPtrInput `pulumi:"name"`
-	ReadOnly pulumi.BoolPtrInput   `pulumi:"readOnly"`
-	Source   pulumi.StringPtrInput `pulumi:"source"`
-	Type     pulumi.StringPtrInput `pulumi:"type"`
+	// `(string)` - Volume name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// `(boolean)` - Whether the volume is read-only.
+	ReadOnly pulumi.BoolPtrInput `pulumi:"readOnly"`
+	// `(string)` - Volume source.
+	Source pulumi.StringPtrInput `pulumi:"source"`
+	// `(string)` - Volume type.
+	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
 func (JobTaskGroupVolumeArgs) ElementType() reflect.Type {
@@ -5410,18 +5862,22 @@ func (o JobTaskGroupVolumeOutput) ToJobTaskGroupVolumeOutputWithContext(ctx cont
 	return o
 }
 
+// `(string)` - Volume name.
 func (o JobTaskGroupVolumeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobTaskGroupVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// `(boolean)` - Whether the volume is read-only.
 func (o JobTaskGroupVolumeOutput) ReadOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v JobTaskGroupVolume) *bool { return v.ReadOnly }).(pulumi.BoolPtrOutput)
 }
 
+// `(string)` - Volume source.
 func (o JobTaskGroupVolumeOutput) Source() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobTaskGroupVolume) *string { return v.Source }).(pulumi.StringPtrOutput)
 }
 
+// `(string)` - Volume type.
 func (o JobTaskGroupVolumeOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobTaskGroupVolume) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -5444,6 +5900,157 @@ func (o JobTaskGroupVolumeArrayOutput) Index(i pulumi.IntInput) JobTaskGroupVolu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) JobTaskGroupVolume {
 		return vs[0].([]JobTaskGroupVolume)[vs[1].(int)]
 	}).(JobTaskGroupVolumeOutput)
+}
+
+type JobUpdateStrategy struct {
+	// `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+	AutoRevert *bool `pulumi:"autoRevert"`
+	// `(integer)` - Number of canary allocations created before destructive updates continue.
+	Canary *int `pulumi:"canary"`
+	// `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+	HealthCheck *string `pulumi:"healthCheck"`
+	// `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+	HealthyDeadline *string `pulumi:"healthyDeadline"`
+	// `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+	MaxParallel *int `pulumi:"maxParallel"`
+	// `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+	MinHealthyTime *string `pulumi:"minHealthyTime"`
+	// `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
+	Stagger *string `pulumi:"stagger"`
+}
+
+// JobUpdateStrategyInput is an input type that accepts JobUpdateStrategyArgs and JobUpdateStrategyOutput values.
+// You can construct a concrete instance of `JobUpdateStrategyInput` via:
+//
+//	JobUpdateStrategyArgs{...}
+type JobUpdateStrategyInput interface {
+	pulumi.Input
+
+	ToJobUpdateStrategyOutput() JobUpdateStrategyOutput
+	ToJobUpdateStrategyOutputWithContext(context.Context) JobUpdateStrategyOutput
+}
+
+type JobUpdateStrategyArgs struct {
+	// `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+	AutoRevert pulumi.BoolPtrInput `pulumi:"autoRevert"`
+	// `(integer)` - Number of canary allocations created before destructive updates continue.
+	Canary pulumi.IntPtrInput `pulumi:"canary"`
+	// `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+	HealthCheck pulumi.StringPtrInput `pulumi:"healthCheck"`
+	// `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+	HealthyDeadline pulumi.StringPtrInput `pulumi:"healthyDeadline"`
+	// `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+	MaxParallel pulumi.IntPtrInput `pulumi:"maxParallel"`
+	// `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+	MinHealthyTime pulumi.StringPtrInput `pulumi:"minHealthyTime"`
+	// `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
+	Stagger pulumi.StringPtrInput `pulumi:"stagger"`
+}
+
+func (JobUpdateStrategyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobUpdateStrategy)(nil)).Elem()
+}
+
+func (i JobUpdateStrategyArgs) ToJobUpdateStrategyOutput() JobUpdateStrategyOutput {
+	return i.ToJobUpdateStrategyOutputWithContext(context.Background())
+}
+
+func (i JobUpdateStrategyArgs) ToJobUpdateStrategyOutputWithContext(ctx context.Context) JobUpdateStrategyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobUpdateStrategyOutput)
+}
+
+// JobUpdateStrategyArrayInput is an input type that accepts JobUpdateStrategyArray and JobUpdateStrategyArrayOutput values.
+// You can construct a concrete instance of `JobUpdateStrategyArrayInput` via:
+//
+//	JobUpdateStrategyArray{ JobUpdateStrategyArgs{...} }
+type JobUpdateStrategyArrayInput interface {
+	pulumi.Input
+
+	ToJobUpdateStrategyArrayOutput() JobUpdateStrategyArrayOutput
+	ToJobUpdateStrategyArrayOutputWithContext(context.Context) JobUpdateStrategyArrayOutput
+}
+
+type JobUpdateStrategyArray []JobUpdateStrategyInput
+
+func (JobUpdateStrategyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]JobUpdateStrategy)(nil)).Elem()
+}
+
+func (i JobUpdateStrategyArray) ToJobUpdateStrategyArrayOutput() JobUpdateStrategyArrayOutput {
+	return i.ToJobUpdateStrategyArrayOutputWithContext(context.Background())
+}
+
+func (i JobUpdateStrategyArray) ToJobUpdateStrategyArrayOutputWithContext(ctx context.Context) JobUpdateStrategyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobUpdateStrategyArrayOutput)
+}
+
+type JobUpdateStrategyOutput struct{ *pulumi.OutputState }
+
+func (JobUpdateStrategyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobUpdateStrategy)(nil)).Elem()
+}
+
+func (o JobUpdateStrategyOutput) ToJobUpdateStrategyOutput() JobUpdateStrategyOutput {
+	return o
+}
+
+func (o JobUpdateStrategyOutput) ToJobUpdateStrategyOutputWithContext(ctx context.Context) JobUpdateStrategyOutput {
+	return o
+}
+
+// `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+func (o JobUpdateStrategyOutput) AutoRevert() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v JobUpdateStrategy) *bool { return v.AutoRevert }).(pulumi.BoolPtrOutput)
+}
+
+// `(integer)` - Number of canary allocations created before destructive updates continue.
+func (o JobUpdateStrategyOutput) Canary() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v JobUpdateStrategy) *int { return v.Canary }).(pulumi.IntPtrOutput)
+}
+
+// `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+func (o JobUpdateStrategyOutput) HealthCheck() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobUpdateStrategy) *string { return v.HealthCheck }).(pulumi.StringPtrOutput)
+}
+
+// `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+func (o JobUpdateStrategyOutput) HealthyDeadline() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobUpdateStrategy) *string { return v.HealthyDeadline }).(pulumi.StringPtrOutput)
+}
+
+// `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+func (o JobUpdateStrategyOutput) MaxParallel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v JobUpdateStrategy) *int { return v.MaxParallel }).(pulumi.IntPtrOutput)
+}
+
+// `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+func (o JobUpdateStrategyOutput) MinHealthyTime() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobUpdateStrategy) *string { return v.MinHealthyTime }).(pulumi.StringPtrOutput)
+}
+
+// `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
+func (o JobUpdateStrategyOutput) Stagger() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v JobUpdateStrategy) *string { return v.Stagger }).(pulumi.StringPtrOutput)
+}
+
+type JobUpdateStrategyArrayOutput struct{ *pulumi.OutputState }
+
+func (JobUpdateStrategyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]JobUpdateStrategy)(nil)).Elem()
+}
+
+func (o JobUpdateStrategyArrayOutput) ToJobUpdateStrategyArrayOutput() JobUpdateStrategyArrayOutput {
+	return o
+}
+
+func (o JobUpdateStrategyArrayOutput) ToJobUpdateStrategyArrayOutputWithContext(ctx context.Context) JobUpdateStrategyArrayOutput {
+	return o
+}
+
+func (o JobUpdateStrategyArrayOutput) Index(i pulumi.IntInput) JobUpdateStrategyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) JobUpdateStrategy {
+		return vs[0].([]JobUpdateStrategy)[vs[1].(int)]
+	}).(JobUpdateStrategyOutput)
 }
 
 type NamespaceCapabilities struct {
@@ -5640,6 +6247,181 @@ func (o NamespaceCapabilitiesPtrOutput) EnabledTaskDrivers() pulumi.StringArrayO
 	}).(pulumi.StringArrayOutput)
 }
 
+type NamespaceConsulConfig struct {
+	// `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
+	Alloweds []string `pulumi:"alloweds"`
+	// `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
+	Default *string `pulumi:"default"`
+	// `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+	Denieds []string `pulumi:"denieds"`
+}
+
+// NamespaceConsulConfigInput is an input type that accepts NamespaceConsulConfigArgs and NamespaceConsulConfigOutput values.
+// You can construct a concrete instance of `NamespaceConsulConfigInput` via:
+//
+//	NamespaceConsulConfigArgs{...}
+type NamespaceConsulConfigInput interface {
+	pulumi.Input
+
+	ToNamespaceConsulConfigOutput() NamespaceConsulConfigOutput
+	ToNamespaceConsulConfigOutputWithContext(context.Context) NamespaceConsulConfigOutput
+}
+
+type NamespaceConsulConfigArgs struct {
+	// `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
+	Alloweds pulumi.StringArrayInput `pulumi:"alloweds"`
+	// `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
+	Default pulumi.StringPtrInput `pulumi:"default"`
+	// `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+	Denieds pulumi.StringArrayInput `pulumi:"denieds"`
+}
+
+func (NamespaceConsulConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceConsulConfig)(nil)).Elem()
+}
+
+func (i NamespaceConsulConfigArgs) ToNamespaceConsulConfigOutput() NamespaceConsulConfigOutput {
+	return i.ToNamespaceConsulConfigOutputWithContext(context.Background())
+}
+
+func (i NamespaceConsulConfigArgs) ToNamespaceConsulConfigOutputWithContext(ctx context.Context) NamespaceConsulConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceConsulConfigOutput)
+}
+
+func (i NamespaceConsulConfigArgs) ToNamespaceConsulConfigPtrOutput() NamespaceConsulConfigPtrOutput {
+	return i.ToNamespaceConsulConfigPtrOutputWithContext(context.Background())
+}
+
+func (i NamespaceConsulConfigArgs) ToNamespaceConsulConfigPtrOutputWithContext(ctx context.Context) NamespaceConsulConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceConsulConfigOutput).ToNamespaceConsulConfigPtrOutputWithContext(ctx)
+}
+
+// NamespaceConsulConfigPtrInput is an input type that accepts NamespaceConsulConfigArgs, NamespaceConsulConfigPtr and NamespaceConsulConfigPtrOutput values.
+// You can construct a concrete instance of `NamespaceConsulConfigPtrInput` via:
+//
+//	        NamespaceConsulConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type NamespaceConsulConfigPtrInput interface {
+	pulumi.Input
+
+	ToNamespaceConsulConfigPtrOutput() NamespaceConsulConfigPtrOutput
+	ToNamespaceConsulConfigPtrOutputWithContext(context.Context) NamespaceConsulConfigPtrOutput
+}
+
+type namespaceConsulConfigPtrType NamespaceConsulConfigArgs
+
+func NamespaceConsulConfigPtr(v *NamespaceConsulConfigArgs) NamespaceConsulConfigPtrInput {
+	return (*namespaceConsulConfigPtrType)(v)
+}
+
+func (*namespaceConsulConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceConsulConfig)(nil)).Elem()
+}
+
+func (i *namespaceConsulConfigPtrType) ToNamespaceConsulConfigPtrOutput() NamespaceConsulConfigPtrOutput {
+	return i.ToNamespaceConsulConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *namespaceConsulConfigPtrType) ToNamespaceConsulConfigPtrOutputWithContext(ctx context.Context) NamespaceConsulConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceConsulConfigPtrOutput)
+}
+
+type NamespaceConsulConfigOutput struct{ *pulumi.OutputState }
+
+func (NamespaceConsulConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceConsulConfig)(nil)).Elem()
+}
+
+func (o NamespaceConsulConfigOutput) ToNamespaceConsulConfigOutput() NamespaceConsulConfigOutput {
+	return o
+}
+
+func (o NamespaceConsulConfigOutput) ToNamespaceConsulConfigOutputWithContext(ctx context.Context) NamespaceConsulConfigOutput {
+	return o
+}
+
+func (o NamespaceConsulConfigOutput) ToNamespaceConsulConfigPtrOutput() NamespaceConsulConfigPtrOutput {
+	return o.ToNamespaceConsulConfigPtrOutputWithContext(context.Background())
+}
+
+func (o NamespaceConsulConfigOutput) ToNamespaceConsulConfigPtrOutputWithContext(ctx context.Context) NamespaceConsulConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NamespaceConsulConfig) *NamespaceConsulConfig {
+		return &v
+	}).(NamespaceConsulConfigPtrOutput)
+}
+
+// `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
+func (o NamespaceConsulConfigOutput) Alloweds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NamespaceConsulConfig) []string { return v.Alloweds }).(pulumi.StringArrayOutput)
+}
+
+// `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
+func (o NamespaceConsulConfigOutput) Default() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NamespaceConsulConfig) *string { return v.Default }).(pulumi.StringPtrOutput)
+}
+
+// `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+func (o NamespaceConsulConfigOutput) Denieds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NamespaceConsulConfig) []string { return v.Denieds }).(pulumi.StringArrayOutput)
+}
+
+type NamespaceConsulConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (NamespaceConsulConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceConsulConfig)(nil)).Elem()
+}
+
+func (o NamespaceConsulConfigPtrOutput) ToNamespaceConsulConfigPtrOutput() NamespaceConsulConfigPtrOutput {
+	return o
+}
+
+func (o NamespaceConsulConfigPtrOutput) ToNamespaceConsulConfigPtrOutputWithContext(ctx context.Context) NamespaceConsulConfigPtrOutput {
+	return o
+}
+
+func (o NamespaceConsulConfigPtrOutput) Elem() NamespaceConsulConfigOutput {
+	return o.ApplyT(func(v *NamespaceConsulConfig) NamespaceConsulConfig {
+		if v != nil {
+			return *v
+		}
+		var ret NamespaceConsulConfig
+		return ret
+	}).(NamespaceConsulConfigOutput)
+}
+
+// `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
+func (o NamespaceConsulConfigPtrOutput) Alloweds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NamespaceConsulConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Alloweds
+	}).(pulumi.StringArrayOutput)
+}
+
+// `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
+func (o NamespaceConsulConfigPtrOutput) Default() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NamespaceConsulConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Default
+	}).(pulumi.StringPtrOutput)
+}
+
+// `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+func (o NamespaceConsulConfigPtrOutput) Denieds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NamespaceConsulConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Denieds
+	}).(pulumi.StringArrayOutput)
+}
+
 type NamespaceNodePoolConfig struct {
 	// `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
 	Alloweds []string `pulumi:"alloweds"`
@@ -5808,6 +6590,181 @@ func (o NamespaceNodePoolConfigPtrOutput) Default() pulumi.StringPtrOutput {
 // `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
 func (o NamespaceNodePoolConfigPtrOutput) Denieds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NamespaceNodePoolConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Denieds
+	}).(pulumi.StringArrayOutput)
+}
+
+type NamespaceVaultConfig struct {
+	// `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
+	Alloweds []string `pulumi:"alloweds"`
+	// `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
+	Default *string `pulumi:"default"`
+	// `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+	Denieds []string `pulumi:"denieds"`
+}
+
+// NamespaceVaultConfigInput is an input type that accepts NamespaceVaultConfigArgs and NamespaceVaultConfigOutput values.
+// You can construct a concrete instance of `NamespaceVaultConfigInput` via:
+//
+//	NamespaceVaultConfigArgs{...}
+type NamespaceVaultConfigInput interface {
+	pulumi.Input
+
+	ToNamespaceVaultConfigOutput() NamespaceVaultConfigOutput
+	ToNamespaceVaultConfigOutputWithContext(context.Context) NamespaceVaultConfigOutput
+}
+
+type NamespaceVaultConfigArgs struct {
+	// `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
+	Alloweds pulumi.StringArrayInput `pulumi:"alloweds"`
+	// `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
+	Default pulumi.StringPtrInput `pulumi:"default"`
+	// `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+	Denieds pulumi.StringArrayInput `pulumi:"denieds"`
+}
+
+func (NamespaceVaultConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceVaultConfig)(nil)).Elem()
+}
+
+func (i NamespaceVaultConfigArgs) ToNamespaceVaultConfigOutput() NamespaceVaultConfigOutput {
+	return i.ToNamespaceVaultConfigOutputWithContext(context.Background())
+}
+
+func (i NamespaceVaultConfigArgs) ToNamespaceVaultConfigOutputWithContext(ctx context.Context) NamespaceVaultConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceVaultConfigOutput)
+}
+
+func (i NamespaceVaultConfigArgs) ToNamespaceVaultConfigPtrOutput() NamespaceVaultConfigPtrOutput {
+	return i.ToNamespaceVaultConfigPtrOutputWithContext(context.Background())
+}
+
+func (i NamespaceVaultConfigArgs) ToNamespaceVaultConfigPtrOutputWithContext(ctx context.Context) NamespaceVaultConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceVaultConfigOutput).ToNamespaceVaultConfigPtrOutputWithContext(ctx)
+}
+
+// NamespaceVaultConfigPtrInput is an input type that accepts NamespaceVaultConfigArgs, NamespaceVaultConfigPtr and NamespaceVaultConfigPtrOutput values.
+// You can construct a concrete instance of `NamespaceVaultConfigPtrInput` via:
+//
+//	        NamespaceVaultConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type NamespaceVaultConfigPtrInput interface {
+	pulumi.Input
+
+	ToNamespaceVaultConfigPtrOutput() NamespaceVaultConfigPtrOutput
+	ToNamespaceVaultConfigPtrOutputWithContext(context.Context) NamespaceVaultConfigPtrOutput
+}
+
+type namespaceVaultConfigPtrType NamespaceVaultConfigArgs
+
+func NamespaceVaultConfigPtr(v *NamespaceVaultConfigArgs) NamespaceVaultConfigPtrInput {
+	return (*namespaceVaultConfigPtrType)(v)
+}
+
+func (*namespaceVaultConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceVaultConfig)(nil)).Elem()
+}
+
+func (i *namespaceVaultConfigPtrType) ToNamespaceVaultConfigPtrOutput() NamespaceVaultConfigPtrOutput {
+	return i.ToNamespaceVaultConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *namespaceVaultConfigPtrType) ToNamespaceVaultConfigPtrOutputWithContext(ctx context.Context) NamespaceVaultConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NamespaceVaultConfigPtrOutput)
+}
+
+type NamespaceVaultConfigOutput struct{ *pulumi.OutputState }
+
+func (NamespaceVaultConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NamespaceVaultConfig)(nil)).Elem()
+}
+
+func (o NamespaceVaultConfigOutput) ToNamespaceVaultConfigOutput() NamespaceVaultConfigOutput {
+	return o
+}
+
+func (o NamespaceVaultConfigOutput) ToNamespaceVaultConfigOutputWithContext(ctx context.Context) NamespaceVaultConfigOutput {
+	return o
+}
+
+func (o NamespaceVaultConfigOutput) ToNamespaceVaultConfigPtrOutput() NamespaceVaultConfigPtrOutput {
+	return o.ToNamespaceVaultConfigPtrOutputWithContext(context.Background())
+}
+
+func (o NamespaceVaultConfigOutput) ToNamespaceVaultConfigPtrOutputWithContext(ctx context.Context) NamespaceVaultConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NamespaceVaultConfig) *NamespaceVaultConfig {
+		return &v
+	}).(NamespaceVaultConfigPtrOutput)
+}
+
+// `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
+func (o NamespaceVaultConfigOutput) Alloweds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NamespaceVaultConfig) []string { return v.Alloweds }).(pulumi.StringArrayOutput)
+}
+
+// `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
+func (o NamespaceVaultConfigOutput) Default() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NamespaceVaultConfig) *string { return v.Default }).(pulumi.StringPtrOutput)
+}
+
+// `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+func (o NamespaceVaultConfigOutput) Denieds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NamespaceVaultConfig) []string { return v.Denieds }).(pulumi.StringArrayOutput)
+}
+
+type NamespaceVaultConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (NamespaceVaultConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NamespaceVaultConfig)(nil)).Elem()
+}
+
+func (o NamespaceVaultConfigPtrOutput) ToNamespaceVaultConfigPtrOutput() NamespaceVaultConfigPtrOutput {
+	return o
+}
+
+func (o NamespaceVaultConfigPtrOutput) ToNamespaceVaultConfigPtrOutputWithContext(ctx context.Context) NamespaceVaultConfigPtrOutput {
+	return o
+}
+
+func (o NamespaceVaultConfigPtrOutput) Elem() NamespaceVaultConfigOutput {
+	return o.ApplyT(func(v *NamespaceVaultConfig) NamespaceVaultConfig {
+		if v != nil {
+			return *v
+		}
+		var ret NamespaceVaultConfig
+		return ret
+	}).(NamespaceVaultConfigOutput)
+}
+
+// `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
+func (o NamespaceVaultConfigPtrOutput) Alloweds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NamespaceVaultConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Alloweds
+	}).(pulumi.StringArrayOutput)
+}
+
+// `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
+func (o NamespaceVaultConfigPtrOutput) Default() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NamespaceVaultConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Default
+	}).(pulumi.StringPtrOutput)
+}
+
+// `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+func (o NamespaceVaultConfigPtrOutput) Denieds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NamespaceVaultConfig) []string {
 		if v == nil {
 			return nil
 		}
@@ -6271,10 +7228,11 @@ func (o ProviderHeaderArrayOutput) Index(i pulumi.IntInput) ProviderHeaderOutput
 
 type QuoteSpecificationLimit struct {
 	// `(string: <required>)` - The region these limits should apply to.
+	// - `regionLimit` `(block: <required>)` - The limits to enforce. This block
+	//   may only be specified once in the `limits` block. Its structure is
+	//   documented below.
 	Region string `pulumi:"region"`
-	// `(block: <required>)` - The limits to enforce. This block
-	// may only be specified once in the `limits` block. Its structure is
-	// documented below.
+	// The limit applied to this region.
 	RegionLimit QuoteSpecificationLimitRegionLimit `pulumi:"regionLimit"`
 }
 
@@ -6291,10 +7249,11 @@ type QuoteSpecificationLimitInput interface {
 
 type QuoteSpecificationLimitArgs struct {
 	// `(string: <required>)` - The region these limits should apply to.
+	// - `regionLimit` `(block: <required>)` - The limits to enforce. This block
+	//   may only be specified once in the `limits` block. Its structure is
+	//   documented below.
 	Region pulumi.StringInput `pulumi:"region"`
-	// `(block: <required>)` - The limits to enforce. This block
-	// may only be specified once in the `limits` block. Its structure is
-	// documented below.
+	// The limit applied to this region.
 	RegionLimit QuoteSpecificationLimitRegionLimitInput `pulumi:"regionLimit"`
 }
 
@@ -6350,13 +7309,14 @@ func (o QuoteSpecificationLimitOutput) ToQuoteSpecificationLimitOutputWithContex
 }
 
 // `(string: <required>)` - The region these limits should apply to.
+//   - `regionLimit` `(block: <required>)` - The limits to enforce. This block
+//     may only be specified once in the `limits` block. Its structure is
+//     documented below.
 func (o QuoteSpecificationLimitOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v QuoteSpecificationLimit) string { return v.Region }).(pulumi.StringOutput)
 }
 
-// `(block: <required>)` - The limits to enforce. This block
-// may only be specified once in the `limits` block. Its structure is
-// documented below.
+// The limit applied to this region.
 func (o QuoteSpecificationLimitOutput) RegionLimit() QuoteSpecificationLimitRegionLimitOutput {
 	return o.ApplyT(func(v QuoteSpecificationLimit) QuoteSpecificationLimitRegionLimit { return v.RegionLimit }).(QuoteSpecificationLimitRegionLimitOutput)
 }
@@ -6382,13 +7342,30 @@ func (o QuoteSpecificationLimitArrayOutput) Index(i pulumi.IntInput) QuoteSpecif
 }
 
 type QuoteSpecificationLimitRegionLimit struct {
+	// `(int: 0)` - The number of CPU cores to limit allocations to. A value
+	// of zero is treated as unlimited, and a negative value is treated as fully
+	// disallowed.
+	Cores *int `pulumi:"cores"`
 	// `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
 	// is treated as unlimited, and a negative value is treated as fully disallowed.
-	Cpu *int `pulumi:"cpu"`
+	Cpu     *int                                       `pulumi:"cpu"`
+	Devices []QuoteSpecificationLimitRegionLimitDevice `pulumi:"devices"`
+	// `(int: 0)` - The maximum amount of memory (in megabytes) to
+	// limit allocations to. A value of zero is treated as unlimited, and a negative
+	// value is treated as fully disallowed.
+	// - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+	//   repeated. See below for the structure of this block.
+	// - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+	//   repeated. See below for the structure of this block.
+	// - `storage` `(block: optional)` - Storage resource quota configuration. May only
+	//   be specified once. See below for the structure of this block.
+	MemoryMaxMb *int `pulumi:"memoryMaxMb"`
 	// `(int: 0)` - The amount of memory (in megabytes) to limit
 	// allocations to. A value of zero is treated as unlimited, and a negative value
 	// is treated as fully disallowed.
-	MemoryMb *int `pulumi:"memoryMb"`
+	MemoryMb  *int                                         `pulumi:"memoryMb"`
+	NodePools []QuoteSpecificationLimitRegionLimitNodePool `pulumi:"nodePools"`
+	Storage   *QuoteSpecificationLimitRegionLimitStorage   `pulumi:"storage"`
 }
 
 // QuoteSpecificationLimitRegionLimitInput is an input type that accepts QuoteSpecificationLimitRegionLimitArgs and QuoteSpecificationLimitRegionLimitOutput values.
@@ -6403,13 +7380,30 @@ type QuoteSpecificationLimitRegionLimitInput interface {
 }
 
 type QuoteSpecificationLimitRegionLimitArgs struct {
+	// `(int: 0)` - The number of CPU cores to limit allocations to. A value
+	// of zero is treated as unlimited, and a negative value is treated as fully
+	// disallowed.
+	Cores pulumi.IntPtrInput `pulumi:"cores"`
 	// `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
 	// is treated as unlimited, and a negative value is treated as fully disallowed.
-	Cpu pulumi.IntPtrInput `pulumi:"cpu"`
+	Cpu     pulumi.IntPtrInput                                 `pulumi:"cpu"`
+	Devices QuoteSpecificationLimitRegionLimitDeviceArrayInput `pulumi:"devices"`
+	// `(int: 0)` - The maximum amount of memory (in megabytes) to
+	// limit allocations to. A value of zero is treated as unlimited, and a negative
+	// value is treated as fully disallowed.
+	// - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+	//   repeated. See below for the structure of this block.
+	// - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+	//   repeated. See below for the structure of this block.
+	// - `storage` `(block: optional)` - Storage resource quota configuration. May only
+	//   be specified once. See below for the structure of this block.
+	MemoryMaxMb pulumi.IntPtrInput `pulumi:"memoryMaxMb"`
 	// `(int: 0)` - The amount of memory (in megabytes) to limit
 	// allocations to. A value of zero is treated as unlimited, and a negative value
 	// is treated as fully disallowed.
-	MemoryMb pulumi.IntPtrInput `pulumi:"memoryMb"`
+	MemoryMb  pulumi.IntPtrInput                                   `pulumi:"memoryMb"`
+	NodePools QuoteSpecificationLimitRegionLimitNodePoolArrayInput `pulumi:"nodePools"`
+	Storage   QuoteSpecificationLimitRegionLimitStoragePtrInput    `pulumi:"storage"`
 }
 
 func (QuoteSpecificationLimitRegionLimitArgs) ElementType() reflect.Type {
@@ -6438,10 +7432,36 @@ func (o QuoteSpecificationLimitRegionLimitOutput) ToQuoteSpecificationLimitRegio
 	return o
 }
 
+// `(int: 0)` - The number of CPU cores to limit allocations to. A value
+// of zero is treated as unlimited, and a negative value is treated as fully
+// disallowed.
+func (o QuoteSpecificationLimitRegionLimitOutput) Cores() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimit) *int { return v.Cores }).(pulumi.IntPtrOutput)
+}
+
 // `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
 // is treated as unlimited, and a negative value is treated as fully disallowed.
 func (o QuoteSpecificationLimitRegionLimitOutput) Cpu() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimit) *int { return v.Cpu }).(pulumi.IntPtrOutput)
+}
+
+func (o QuoteSpecificationLimitRegionLimitOutput) Devices() QuoteSpecificationLimitRegionLimitDeviceArrayOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimit) []QuoteSpecificationLimitRegionLimitDevice {
+		return v.Devices
+	}).(QuoteSpecificationLimitRegionLimitDeviceArrayOutput)
+}
+
+// `(int: 0)` - The maximum amount of memory (in megabytes) to
+// limit allocations to. A value of zero is treated as unlimited, and a negative
+// value is treated as fully disallowed.
+//   - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+//     repeated. See below for the structure of this block.
+//   - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+//     repeated. See below for the structure of this block.
+//   - `storage` `(block: optional)` - Storage resource quota configuration. May only
+//     be specified once. See below for the structure of this block.
+func (o QuoteSpecificationLimitRegionLimitOutput) MemoryMaxMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimit) *int { return v.MemoryMaxMb }).(pulumi.IntPtrOutput)
 }
 
 // `(int: 0)` - The amount of memory (in megabytes) to limit
@@ -6449,6 +7469,746 @@ func (o QuoteSpecificationLimitRegionLimitOutput) Cpu() pulumi.IntPtrOutput {
 // is treated as fully disallowed.
 func (o QuoteSpecificationLimitRegionLimitOutput) MemoryMb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimit) *int { return v.MemoryMb }).(pulumi.IntPtrOutput)
+}
+
+func (o QuoteSpecificationLimitRegionLimitOutput) NodePools() QuoteSpecificationLimitRegionLimitNodePoolArrayOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimit) []QuoteSpecificationLimitRegionLimitNodePool {
+		return v.NodePools
+	}).(QuoteSpecificationLimitRegionLimitNodePoolArrayOutput)
+}
+
+func (o QuoteSpecificationLimitRegionLimitOutput) Storage() QuoteSpecificationLimitRegionLimitStoragePtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimit) *QuoteSpecificationLimitRegionLimitStorage {
+		return v.Storage
+	}).(QuoteSpecificationLimitRegionLimitStoragePtrOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitDevice struct {
+	// `(int: 0)` - The number of device instances to limit allocations to.
+	Count *int `pulumi:"count"`
+	// `(string: <required>)` - The name of the device, e.g.
+	// `"nvidia/gpu"`.
+	Name string `pulumi:"name"`
+}
+
+// QuoteSpecificationLimitRegionLimitDeviceInput is an input type that accepts QuoteSpecificationLimitRegionLimitDeviceArgs and QuoteSpecificationLimitRegionLimitDeviceOutput values.
+// You can construct a concrete instance of `QuoteSpecificationLimitRegionLimitDeviceInput` via:
+//
+//	QuoteSpecificationLimitRegionLimitDeviceArgs{...}
+type QuoteSpecificationLimitRegionLimitDeviceInput interface {
+	pulumi.Input
+
+	ToQuoteSpecificationLimitRegionLimitDeviceOutput() QuoteSpecificationLimitRegionLimitDeviceOutput
+	ToQuoteSpecificationLimitRegionLimitDeviceOutputWithContext(context.Context) QuoteSpecificationLimitRegionLimitDeviceOutput
+}
+
+type QuoteSpecificationLimitRegionLimitDeviceArgs struct {
+	// `(int: 0)` - The number of device instances to limit allocations to.
+	Count pulumi.IntPtrInput `pulumi:"count"`
+	// `(string: <required>)` - The name of the device, e.g.
+	// `"nvidia/gpu"`.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (QuoteSpecificationLimitRegionLimitDeviceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuoteSpecificationLimitRegionLimitDevice)(nil)).Elem()
+}
+
+func (i QuoteSpecificationLimitRegionLimitDeviceArgs) ToQuoteSpecificationLimitRegionLimitDeviceOutput() QuoteSpecificationLimitRegionLimitDeviceOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitDeviceOutputWithContext(context.Background())
+}
+
+func (i QuoteSpecificationLimitRegionLimitDeviceArgs) ToQuoteSpecificationLimitRegionLimitDeviceOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitDeviceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitDeviceOutput)
+}
+
+// QuoteSpecificationLimitRegionLimitDeviceArrayInput is an input type that accepts QuoteSpecificationLimitRegionLimitDeviceArray and QuoteSpecificationLimitRegionLimitDeviceArrayOutput values.
+// You can construct a concrete instance of `QuoteSpecificationLimitRegionLimitDeviceArrayInput` via:
+//
+//	QuoteSpecificationLimitRegionLimitDeviceArray{ QuoteSpecificationLimitRegionLimitDeviceArgs{...} }
+type QuoteSpecificationLimitRegionLimitDeviceArrayInput interface {
+	pulumi.Input
+
+	ToQuoteSpecificationLimitRegionLimitDeviceArrayOutput() QuoteSpecificationLimitRegionLimitDeviceArrayOutput
+	ToQuoteSpecificationLimitRegionLimitDeviceArrayOutputWithContext(context.Context) QuoteSpecificationLimitRegionLimitDeviceArrayOutput
+}
+
+type QuoteSpecificationLimitRegionLimitDeviceArray []QuoteSpecificationLimitRegionLimitDeviceInput
+
+func (QuoteSpecificationLimitRegionLimitDeviceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QuoteSpecificationLimitRegionLimitDevice)(nil)).Elem()
+}
+
+func (i QuoteSpecificationLimitRegionLimitDeviceArray) ToQuoteSpecificationLimitRegionLimitDeviceArrayOutput() QuoteSpecificationLimitRegionLimitDeviceArrayOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitDeviceArrayOutputWithContext(context.Background())
+}
+
+func (i QuoteSpecificationLimitRegionLimitDeviceArray) ToQuoteSpecificationLimitRegionLimitDeviceArrayOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitDeviceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitDeviceArrayOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitDeviceOutput struct{ *pulumi.OutputState }
+
+func (QuoteSpecificationLimitRegionLimitDeviceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuoteSpecificationLimitRegionLimitDevice)(nil)).Elem()
+}
+
+func (o QuoteSpecificationLimitRegionLimitDeviceOutput) ToQuoteSpecificationLimitRegionLimitDeviceOutput() QuoteSpecificationLimitRegionLimitDeviceOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitDeviceOutput) ToQuoteSpecificationLimitRegionLimitDeviceOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitDeviceOutput {
+	return o
+}
+
+// `(int: 0)` - The number of device instances to limit allocations to.
+func (o QuoteSpecificationLimitRegionLimitDeviceOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitDevice) *int { return v.Count }).(pulumi.IntPtrOutput)
+}
+
+// `(string: <required>)` - The name of the device, e.g.
+// `"nvidia/gpu"`.
+func (o QuoteSpecificationLimitRegionLimitDeviceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitDevice) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitDeviceArrayOutput struct{ *pulumi.OutputState }
+
+func (QuoteSpecificationLimitRegionLimitDeviceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QuoteSpecificationLimitRegionLimitDevice)(nil)).Elem()
+}
+
+func (o QuoteSpecificationLimitRegionLimitDeviceArrayOutput) ToQuoteSpecificationLimitRegionLimitDeviceArrayOutput() QuoteSpecificationLimitRegionLimitDeviceArrayOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitDeviceArrayOutput) ToQuoteSpecificationLimitRegionLimitDeviceArrayOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitDeviceArrayOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitDeviceArrayOutput) Index(i pulumi.IntInput) QuoteSpecificationLimitRegionLimitDeviceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QuoteSpecificationLimitRegionLimitDevice {
+		return vs[0].([]QuoteSpecificationLimitRegionLimitDevice)[vs[1].(int)]
+	}).(QuoteSpecificationLimitRegionLimitDeviceOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitNodePool struct {
+	// `(int: 0)` - The number of CPU cores to limit allocations to. A value
+	// of zero is treated as unlimited, and a negative value is treated as fully
+	// disallowed.
+	Cores *int `pulumi:"cores"`
+	// `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
+	// is treated as unlimited, and a negative value is treated as fully disallowed.
+	Cpu     *int                                               `pulumi:"cpu"`
+	Devices []QuoteSpecificationLimitRegionLimitNodePoolDevice `pulumi:"devices"`
+	// `(int: 0)` - The maximum amount of memory (in megabytes) to
+	// limit allocations to. A value of zero is treated as unlimited, and a negative
+	// value is treated as fully disallowed.
+	// - `devices` `(block: optional)` - A list of device quotas to
+	//   enforce for the node pool. Can be repeated.
+	// - `storage` `(block: optional)` - Storage resource quota
+	//   configuration for the node pool. May only be specified once.
+	MemoryMaxMb *int `pulumi:"memoryMaxMb"`
+	// `(int: 0)` - The amount of memory (in megabytes) to limit
+	// allocations to. A value of zero is treated as unlimited, and a negative value
+	// is treated as fully disallowed.
+	MemoryMb *int `pulumi:"memoryMb"`
+	// `(string: <required>)` - The node pool name to apply limits to.
+	NodePool string                                             `pulumi:"nodePool"`
+	Storage  *QuoteSpecificationLimitRegionLimitNodePoolStorage `pulumi:"storage"`
+}
+
+// QuoteSpecificationLimitRegionLimitNodePoolInput is an input type that accepts QuoteSpecificationLimitRegionLimitNodePoolArgs and QuoteSpecificationLimitRegionLimitNodePoolOutput values.
+// You can construct a concrete instance of `QuoteSpecificationLimitRegionLimitNodePoolInput` via:
+//
+//	QuoteSpecificationLimitRegionLimitNodePoolArgs{...}
+type QuoteSpecificationLimitRegionLimitNodePoolInput interface {
+	pulumi.Input
+
+	ToQuoteSpecificationLimitRegionLimitNodePoolOutput() QuoteSpecificationLimitRegionLimitNodePoolOutput
+	ToQuoteSpecificationLimitRegionLimitNodePoolOutputWithContext(context.Context) QuoteSpecificationLimitRegionLimitNodePoolOutput
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolArgs struct {
+	// `(int: 0)` - The number of CPU cores to limit allocations to. A value
+	// of zero is treated as unlimited, and a negative value is treated as fully
+	// disallowed.
+	Cores pulumi.IntPtrInput `pulumi:"cores"`
+	// `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
+	// is treated as unlimited, and a negative value is treated as fully disallowed.
+	Cpu     pulumi.IntPtrInput                                         `pulumi:"cpu"`
+	Devices QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayInput `pulumi:"devices"`
+	// `(int: 0)` - The maximum amount of memory (in megabytes) to
+	// limit allocations to. A value of zero is treated as unlimited, and a negative
+	// value is treated as fully disallowed.
+	// - `devices` `(block: optional)` - A list of device quotas to
+	//   enforce for the node pool. Can be repeated.
+	// - `storage` `(block: optional)` - Storage resource quota
+	//   configuration for the node pool. May only be specified once.
+	MemoryMaxMb pulumi.IntPtrInput `pulumi:"memoryMaxMb"`
+	// `(int: 0)` - The amount of memory (in megabytes) to limit
+	// allocations to. A value of zero is treated as unlimited, and a negative value
+	// is treated as fully disallowed.
+	MemoryMb pulumi.IntPtrInput `pulumi:"memoryMb"`
+	// `(string: <required>)` - The node pool name to apply limits to.
+	NodePool pulumi.StringInput                                        `pulumi:"nodePool"`
+	Storage  QuoteSpecificationLimitRegionLimitNodePoolStoragePtrInput `pulumi:"storage"`
+}
+
+func (QuoteSpecificationLimitRegionLimitNodePoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePool)(nil)).Elem()
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolArgs) ToQuoteSpecificationLimitRegionLimitNodePoolOutput() QuoteSpecificationLimitRegionLimitNodePoolOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitNodePoolOutputWithContext(context.Background())
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolArgs) ToQuoteSpecificationLimitRegionLimitNodePoolOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitNodePoolOutput)
+}
+
+// QuoteSpecificationLimitRegionLimitNodePoolArrayInput is an input type that accepts QuoteSpecificationLimitRegionLimitNodePoolArray and QuoteSpecificationLimitRegionLimitNodePoolArrayOutput values.
+// You can construct a concrete instance of `QuoteSpecificationLimitRegionLimitNodePoolArrayInput` via:
+//
+//	QuoteSpecificationLimitRegionLimitNodePoolArray{ QuoteSpecificationLimitRegionLimitNodePoolArgs{...} }
+type QuoteSpecificationLimitRegionLimitNodePoolArrayInput interface {
+	pulumi.Input
+
+	ToQuoteSpecificationLimitRegionLimitNodePoolArrayOutput() QuoteSpecificationLimitRegionLimitNodePoolArrayOutput
+	ToQuoteSpecificationLimitRegionLimitNodePoolArrayOutputWithContext(context.Context) QuoteSpecificationLimitRegionLimitNodePoolArrayOutput
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolArray []QuoteSpecificationLimitRegionLimitNodePoolInput
+
+func (QuoteSpecificationLimitRegionLimitNodePoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QuoteSpecificationLimitRegionLimitNodePool)(nil)).Elem()
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolArray) ToQuoteSpecificationLimitRegionLimitNodePoolArrayOutput() QuoteSpecificationLimitRegionLimitNodePoolArrayOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitNodePoolArrayOutputWithContext(context.Background())
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolArray) ToQuoteSpecificationLimitRegionLimitNodePoolArrayOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitNodePoolArrayOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolOutput struct{ *pulumi.OutputState }
+
+func (QuoteSpecificationLimitRegionLimitNodePoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePool)(nil)).Elem()
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolOutput) ToQuoteSpecificationLimitRegionLimitNodePoolOutput() QuoteSpecificationLimitRegionLimitNodePoolOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolOutput) ToQuoteSpecificationLimitRegionLimitNodePoolOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolOutput {
+	return o
+}
+
+// `(int: 0)` - The number of CPU cores to limit allocations to. A value
+// of zero is treated as unlimited, and a negative value is treated as fully
+// disallowed.
+func (o QuoteSpecificationLimitRegionLimitNodePoolOutput) Cores() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitNodePool) *int { return v.Cores }).(pulumi.IntPtrOutput)
+}
+
+// `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
+// is treated as unlimited, and a negative value is treated as fully disallowed.
+func (o QuoteSpecificationLimitRegionLimitNodePoolOutput) Cpu() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitNodePool) *int { return v.Cpu }).(pulumi.IntPtrOutput)
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolOutput) Devices() QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitNodePool) []QuoteSpecificationLimitRegionLimitNodePoolDevice {
+		return v.Devices
+	}).(QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput)
+}
+
+// `(int: 0)` - The maximum amount of memory (in megabytes) to
+// limit allocations to. A value of zero is treated as unlimited, and a negative
+// value is treated as fully disallowed.
+//   - `devices` `(block: optional)` - A list of device quotas to
+//     enforce for the node pool. Can be repeated.
+//   - `storage` `(block: optional)` - Storage resource quota
+//     configuration for the node pool. May only be specified once.
+func (o QuoteSpecificationLimitRegionLimitNodePoolOutput) MemoryMaxMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitNodePool) *int { return v.MemoryMaxMb }).(pulumi.IntPtrOutput)
+}
+
+// `(int: 0)` - The amount of memory (in megabytes) to limit
+// allocations to. A value of zero is treated as unlimited, and a negative value
+// is treated as fully disallowed.
+func (o QuoteSpecificationLimitRegionLimitNodePoolOutput) MemoryMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitNodePool) *int { return v.MemoryMb }).(pulumi.IntPtrOutput)
+}
+
+// `(string: <required>)` - The node pool name to apply limits to.
+func (o QuoteSpecificationLimitRegionLimitNodePoolOutput) NodePool() pulumi.StringOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitNodePool) string { return v.NodePool }).(pulumi.StringOutput)
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolOutput) Storage() QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitNodePool) *QuoteSpecificationLimitRegionLimitNodePoolStorage {
+		return v.Storage
+	}).(QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolArrayOutput struct{ *pulumi.OutputState }
+
+func (QuoteSpecificationLimitRegionLimitNodePoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QuoteSpecificationLimitRegionLimitNodePool)(nil)).Elem()
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolArrayOutput) ToQuoteSpecificationLimitRegionLimitNodePoolArrayOutput() QuoteSpecificationLimitRegionLimitNodePoolArrayOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolArrayOutput) ToQuoteSpecificationLimitRegionLimitNodePoolArrayOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolArrayOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolArrayOutput) Index(i pulumi.IntInput) QuoteSpecificationLimitRegionLimitNodePoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QuoteSpecificationLimitRegionLimitNodePool {
+		return vs[0].([]QuoteSpecificationLimitRegionLimitNodePool)[vs[1].(int)]
+	}).(QuoteSpecificationLimitRegionLimitNodePoolOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolDevice struct {
+	// `(int: 0)` - The number of device instances to limit allocations to.
+	Count *int `pulumi:"count"`
+	// `(string: <required>)` - The name of the device, e.g.
+	// `"nvidia/gpu"`.
+	Name string `pulumi:"name"`
+}
+
+// QuoteSpecificationLimitRegionLimitNodePoolDeviceInput is an input type that accepts QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs and QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput values.
+// You can construct a concrete instance of `QuoteSpecificationLimitRegionLimitNodePoolDeviceInput` via:
+//
+//	QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs{...}
+type QuoteSpecificationLimitRegionLimitNodePoolDeviceInput interface {
+	pulumi.Input
+
+	ToQuoteSpecificationLimitRegionLimitNodePoolDeviceOutput() QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput
+	ToQuoteSpecificationLimitRegionLimitNodePoolDeviceOutputWithContext(context.Context) QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs struct {
+	// `(int: 0)` - The number of device instances to limit allocations to.
+	Count pulumi.IntPtrInput `pulumi:"count"`
+	// `(string: <required>)` - The name of the device, e.g.
+	// `"nvidia/gpu"`.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePoolDevice)(nil)).Elem()
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs) ToQuoteSpecificationLimitRegionLimitNodePoolDeviceOutput() QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitNodePoolDeviceOutputWithContext(context.Background())
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs) ToQuoteSpecificationLimitRegionLimitNodePoolDeviceOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput)
+}
+
+// QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayInput is an input type that accepts QuoteSpecificationLimitRegionLimitNodePoolDeviceArray and QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput values.
+// You can construct a concrete instance of `QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayInput` via:
+//
+//	QuoteSpecificationLimitRegionLimitNodePoolDeviceArray{ QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs{...} }
+type QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayInput interface {
+	pulumi.Input
+
+	ToQuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput() QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput
+	ToQuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutputWithContext(context.Context) QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolDeviceArray []QuoteSpecificationLimitRegionLimitNodePoolDeviceInput
+
+func (QuoteSpecificationLimitRegionLimitNodePoolDeviceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QuoteSpecificationLimitRegionLimitNodePoolDevice)(nil)).Elem()
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolDeviceArray) ToQuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput() QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutputWithContext(context.Background())
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolDeviceArray) ToQuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput struct{ *pulumi.OutputState }
+
+func (QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePoolDevice)(nil)).Elem()
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput) ToQuoteSpecificationLimitRegionLimitNodePoolDeviceOutput() QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput) ToQuoteSpecificationLimitRegionLimitNodePoolDeviceOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput {
+	return o
+}
+
+// `(int: 0)` - The number of device instances to limit allocations to.
+func (o QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitNodePoolDevice) *int { return v.Count }).(pulumi.IntPtrOutput)
+}
+
+// `(string: <required>)` - The name of the device, e.g.
+// `"nvidia/gpu"`.
+func (o QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitNodePoolDevice) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput struct{ *pulumi.OutputState }
+
+func (QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]QuoteSpecificationLimitRegionLimitNodePoolDevice)(nil)).Elem()
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput) ToQuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput() QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput) ToQuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput) Index(i pulumi.IntInput) QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) QuoteSpecificationLimitRegionLimitNodePoolDevice {
+		return vs[0].([]QuoteSpecificationLimitRegionLimitNodePoolDevice)[vs[1].(int)]
+	}).(QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolStorage struct {
+	// `(int: 0)` - The amount of storage (in megabytes) to limit
+	// host volumes to.
+	HostVolumesMb *int `pulumi:"hostVolumesMb"`
+	// `(int: 0)` - The amount of storage (in megabytes) to limit
+	// Nomad variables to.
+	VariablesMb *int `pulumi:"variablesMb"`
+}
+
+// QuoteSpecificationLimitRegionLimitNodePoolStorageInput is an input type that accepts QuoteSpecificationLimitRegionLimitNodePoolStorageArgs and QuoteSpecificationLimitRegionLimitNodePoolStorageOutput values.
+// You can construct a concrete instance of `QuoteSpecificationLimitRegionLimitNodePoolStorageInput` via:
+//
+//	QuoteSpecificationLimitRegionLimitNodePoolStorageArgs{...}
+type QuoteSpecificationLimitRegionLimitNodePoolStorageInput interface {
+	pulumi.Input
+
+	ToQuoteSpecificationLimitRegionLimitNodePoolStorageOutput() QuoteSpecificationLimitRegionLimitNodePoolStorageOutput
+	ToQuoteSpecificationLimitRegionLimitNodePoolStorageOutputWithContext(context.Context) QuoteSpecificationLimitRegionLimitNodePoolStorageOutput
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolStorageArgs struct {
+	// `(int: 0)` - The amount of storage (in megabytes) to limit
+	// host volumes to.
+	HostVolumesMb pulumi.IntPtrInput `pulumi:"hostVolumesMb"`
+	// `(int: 0)` - The amount of storage (in megabytes) to limit
+	// Nomad variables to.
+	VariablesMb pulumi.IntPtrInput `pulumi:"variablesMb"`
+}
+
+func (QuoteSpecificationLimitRegionLimitNodePoolStorageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePoolStorage)(nil)).Elem()
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolStorageArgs) ToQuoteSpecificationLimitRegionLimitNodePoolStorageOutput() QuoteSpecificationLimitRegionLimitNodePoolStorageOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitNodePoolStorageOutputWithContext(context.Background())
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolStorageArgs) ToQuoteSpecificationLimitRegionLimitNodePoolStorageOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolStorageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitNodePoolStorageOutput)
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolStorageArgs) ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput() QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutputWithContext(context.Background())
+}
+
+func (i QuoteSpecificationLimitRegionLimitNodePoolStorageArgs) ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitNodePoolStorageOutput).ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutputWithContext(ctx)
+}
+
+// QuoteSpecificationLimitRegionLimitNodePoolStoragePtrInput is an input type that accepts QuoteSpecificationLimitRegionLimitNodePoolStorageArgs, QuoteSpecificationLimitRegionLimitNodePoolStoragePtr and QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput values.
+// You can construct a concrete instance of `QuoteSpecificationLimitRegionLimitNodePoolStoragePtrInput` via:
+//
+//	        QuoteSpecificationLimitRegionLimitNodePoolStorageArgs{...}
+//
+//	or:
+//
+//	        nil
+type QuoteSpecificationLimitRegionLimitNodePoolStoragePtrInput interface {
+	pulumi.Input
+
+	ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput() QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput
+	ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutputWithContext(context.Context) QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput
+}
+
+type quoteSpecificationLimitRegionLimitNodePoolStoragePtrType QuoteSpecificationLimitRegionLimitNodePoolStorageArgs
+
+func QuoteSpecificationLimitRegionLimitNodePoolStoragePtr(v *QuoteSpecificationLimitRegionLimitNodePoolStorageArgs) QuoteSpecificationLimitRegionLimitNodePoolStoragePtrInput {
+	return (*quoteSpecificationLimitRegionLimitNodePoolStoragePtrType)(v)
+}
+
+func (*quoteSpecificationLimitRegionLimitNodePoolStoragePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**QuoteSpecificationLimitRegionLimitNodePoolStorage)(nil)).Elem()
+}
+
+func (i *quoteSpecificationLimitRegionLimitNodePoolStoragePtrType) ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput() QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutputWithContext(context.Background())
+}
+
+func (i *quoteSpecificationLimitRegionLimitNodePoolStoragePtrType) ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolStorageOutput struct{ *pulumi.OutputState }
+
+func (QuoteSpecificationLimitRegionLimitNodePoolStorageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePoolStorage)(nil)).Elem()
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolStorageOutput) ToQuoteSpecificationLimitRegionLimitNodePoolStorageOutput() QuoteSpecificationLimitRegionLimitNodePoolStorageOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolStorageOutput) ToQuoteSpecificationLimitRegionLimitNodePoolStorageOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolStorageOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolStorageOutput) ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput() QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput {
+	return o.ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutputWithContext(context.Background())
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolStorageOutput) ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v QuoteSpecificationLimitRegionLimitNodePoolStorage) *QuoteSpecificationLimitRegionLimitNodePoolStorage {
+		return &v
+	}).(QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput)
+}
+
+// `(int: 0)` - The amount of storage (in megabytes) to limit
+// host volumes to.
+func (o QuoteSpecificationLimitRegionLimitNodePoolStorageOutput) HostVolumesMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitNodePoolStorage) *int { return v.HostVolumesMb }).(pulumi.IntPtrOutput)
+}
+
+// `(int: 0)` - The amount of storage (in megabytes) to limit
+// Nomad variables to.
+func (o QuoteSpecificationLimitRegionLimitNodePoolStorageOutput) VariablesMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitNodePoolStorage) *int { return v.VariablesMb }).(pulumi.IntPtrOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput struct{ *pulumi.OutputState }
+
+func (QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**QuoteSpecificationLimitRegionLimitNodePoolStorage)(nil)).Elem()
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput) ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput() QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput) ToQuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput) Elem() QuoteSpecificationLimitRegionLimitNodePoolStorageOutput {
+	return o.ApplyT(func(v *QuoteSpecificationLimitRegionLimitNodePoolStorage) QuoteSpecificationLimitRegionLimitNodePoolStorage {
+		if v != nil {
+			return *v
+		}
+		var ret QuoteSpecificationLimitRegionLimitNodePoolStorage
+		return ret
+	}).(QuoteSpecificationLimitRegionLimitNodePoolStorageOutput)
+}
+
+// `(int: 0)` - The amount of storage (in megabytes) to limit
+// host volumes to.
+func (o QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput) HostVolumesMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *QuoteSpecificationLimitRegionLimitNodePoolStorage) *int {
+		if v == nil {
+			return nil
+		}
+		return v.HostVolumesMb
+	}).(pulumi.IntPtrOutput)
+}
+
+// `(int: 0)` - The amount of storage (in megabytes) to limit
+// Nomad variables to.
+func (o QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput) VariablesMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *QuoteSpecificationLimitRegionLimitNodePoolStorage) *int {
+		if v == nil {
+			return nil
+		}
+		return v.VariablesMb
+	}).(pulumi.IntPtrOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitStorage struct {
+	// `(int: 0)` - The amount of storage (in megabytes) to limit
+	// host volumes to.
+	HostVolumesMb *int `pulumi:"hostVolumesMb"`
+	// `(int: 0)` - The amount of storage (in megabytes) to limit
+	// Nomad variables to.
+	VariablesMb *int `pulumi:"variablesMb"`
+}
+
+// QuoteSpecificationLimitRegionLimitStorageInput is an input type that accepts QuoteSpecificationLimitRegionLimitStorageArgs and QuoteSpecificationLimitRegionLimitStorageOutput values.
+// You can construct a concrete instance of `QuoteSpecificationLimitRegionLimitStorageInput` via:
+//
+//	QuoteSpecificationLimitRegionLimitStorageArgs{...}
+type QuoteSpecificationLimitRegionLimitStorageInput interface {
+	pulumi.Input
+
+	ToQuoteSpecificationLimitRegionLimitStorageOutput() QuoteSpecificationLimitRegionLimitStorageOutput
+	ToQuoteSpecificationLimitRegionLimitStorageOutputWithContext(context.Context) QuoteSpecificationLimitRegionLimitStorageOutput
+}
+
+type QuoteSpecificationLimitRegionLimitStorageArgs struct {
+	// `(int: 0)` - The amount of storage (in megabytes) to limit
+	// host volumes to.
+	HostVolumesMb pulumi.IntPtrInput `pulumi:"hostVolumesMb"`
+	// `(int: 0)` - The amount of storage (in megabytes) to limit
+	// Nomad variables to.
+	VariablesMb pulumi.IntPtrInput `pulumi:"variablesMb"`
+}
+
+func (QuoteSpecificationLimitRegionLimitStorageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuoteSpecificationLimitRegionLimitStorage)(nil)).Elem()
+}
+
+func (i QuoteSpecificationLimitRegionLimitStorageArgs) ToQuoteSpecificationLimitRegionLimitStorageOutput() QuoteSpecificationLimitRegionLimitStorageOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitStorageOutputWithContext(context.Background())
+}
+
+func (i QuoteSpecificationLimitRegionLimitStorageArgs) ToQuoteSpecificationLimitRegionLimitStorageOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitStorageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitStorageOutput)
+}
+
+func (i QuoteSpecificationLimitRegionLimitStorageArgs) ToQuoteSpecificationLimitRegionLimitStoragePtrOutput() QuoteSpecificationLimitRegionLimitStoragePtrOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitStoragePtrOutputWithContext(context.Background())
+}
+
+func (i QuoteSpecificationLimitRegionLimitStorageArgs) ToQuoteSpecificationLimitRegionLimitStoragePtrOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitStoragePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitStorageOutput).ToQuoteSpecificationLimitRegionLimitStoragePtrOutputWithContext(ctx)
+}
+
+// QuoteSpecificationLimitRegionLimitStoragePtrInput is an input type that accepts QuoteSpecificationLimitRegionLimitStorageArgs, QuoteSpecificationLimitRegionLimitStoragePtr and QuoteSpecificationLimitRegionLimitStoragePtrOutput values.
+// You can construct a concrete instance of `QuoteSpecificationLimitRegionLimitStoragePtrInput` via:
+//
+//	        QuoteSpecificationLimitRegionLimitStorageArgs{...}
+//
+//	or:
+//
+//	        nil
+type QuoteSpecificationLimitRegionLimitStoragePtrInput interface {
+	pulumi.Input
+
+	ToQuoteSpecificationLimitRegionLimitStoragePtrOutput() QuoteSpecificationLimitRegionLimitStoragePtrOutput
+	ToQuoteSpecificationLimitRegionLimitStoragePtrOutputWithContext(context.Context) QuoteSpecificationLimitRegionLimitStoragePtrOutput
+}
+
+type quoteSpecificationLimitRegionLimitStoragePtrType QuoteSpecificationLimitRegionLimitStorageArgs
+
+func QuoteSpecificationLimitRegionLimitStoragePtr(v *QuoteSpecificationLimitRegionLimitStorageArgs) QuoteSpecificationLimitRegionLimitStoragePtrInput {
+	return (*quoteSpecificationLimitRegionLimitStoragePtrType)(v)
+}
+
+func (*quoteSpecificationLimitRegionLimitStoragePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**QuoteSpecificationLimitRegionLimitStorage)(nil)).Elem()
+}
+
+func (i *quoteSpecificationLimitRegionLimitStoragePtrType) ToQuoteSpecificationLimitRegionLimitStoragePtrOutput() QuoteSpecificationLimitRegionLimitStoragePtrOutput {
+	return i.ToQuoteSpecificationLimitRegionLimitStoragePtrOutputWithContext(context.Background())
+}
+
+func (i *quoteSpecificationLimitRegionLimitStoragePtrType) ToQuoteSpecificationLimitRegionLimitStoragePtrOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitStoragePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(QuoteSpecificationLimitRegionLimitStoragePtrOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitStorageOutput struct{ *pulumi.OutputState }
+
+func (QuoteSpecificationLimitRegionLimitStorageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*QuoteSpecificationLimitRegionLimitStorage)(nil)).Elem()
+}
+
+func (o QuoteSpecificationLimitRegionLimitStorageOutput) ToQuoteSpecificationLimitRegionLimitStorageOutput() QuoteSpecificationLimitRegionLimitStorageOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitStorageOutput) ToQuoteSpecificationLimitRegionLimitStorageOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitStorageOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitStorageOutput) ToQuoteSpecificationLimitRegionLimitStoragePtrOutput() QuoteSpecificationLimitRegionLimitStoragePtrOutput {
+	return o.ToQuoteSpecificationLimitRegionLimitStoragePtrOutputWithContext(context.Background())
+}
+
+func (o QuoteSpecificationLimitRegionLimitStorageOutput) ToQuoteSpecificationLimitRegionLimitStoragePtrOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitStoragePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v QuoteSpecificationLimitRegionLimitStorage) *QuoteSpecificationLimitRegionLimitStorage {
+		return &v
+	}).(QuoteSpecificationLimitRegionLimitStoragePtrOutput)
+}
+
+// `(int: 0)` - The amount of storage (in megabytes) to limit
+// host volumes to.
+func (o QuoteSpecificationLimitRegionLimitStorageOutput) HostVolumesMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitStorage) *int { return v.HostVolumesMb }).(pulumi.IntPtrOutput)
+}
+
+// `(int: 0)` - The amount of storage (in megabytes) to limit
+// Nomad variables to.
+func (o QuoteSpecificationLimitRegionLimitStorageOutput) VariablesMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v QuoteSpecificationLimitRegionLimitStorage) *int { return v.VariablesMb }).(pulumi.IntPtrOutput)
+}
+
+type QuoteSpecificationLimitRegionLimitStoragePtrOutput struct{ *pulumi.OutputState }
+
+func (QuoteSpecificationLimitRegionLimitStoragePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**QuoteSpecificationLimitRegionLimitStorage)(nil)).Elem()
+}
+
+func (o QuoteSpecificationLimitRegionLimitStoragePtrOutput) ToQuoteSpecificationLimitRegionLimitStoragePtrOutput() QuoteSpecificationLimitRegionLimitStoragePtrOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitStoragePtrOutput) ToQuoteSpecificationLimitRegionLimitStoragePtrOutputWithContext(ctx context.Context) QuoteSpecificationLimitRegionLimitStoragePtrOutput {
+	return o
+}
+
+func (o QuoteSpecificationLimitRegionLimitStoragePtrOutput) Elem() QuoteSpecificationLimitRegionLimitStorageOutput {
+	return o.ApplyT(func(v *QuoteSpecificationLimitRegionLimitStorage) QuoteSpecificationLimitRegionLimitStorage {
+		if v != nil {
+			return *v
+		}
+		var ret QuoteSpecificationLimitRegionLimitStorage
+		return ret
+	}).(QuoteSpecificationLimitRegionLimitStorageOutput)
+}
+
+// `(int: 0)` - The amount of storage (in megabytes) to limit
+// host volumes to.
+func (o QuoteSpecificationLimitRegionLimitStoragePtrOutput) HostVolumesMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *QuoteSpecificationLimitRegionLimitStorage) *int {
+		if v == nil {
+			return nil
+		}
+		return v.HostVolumesMb
+	}).(pulumi.IntPtrOutput)
+}
+
+// `(int: 0)` - The amount of storage (in megabytes) to limit
+// Nomad variables to.
+func (o QuoteSpecificationLimitRegionLimitStoragePtrOutput) VariablesMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *QuoteSpecificationLimitRegionLimitStorage) *int {
+		if v == nil {
+			return nil
+		}
+		return v.VariablesMb
+	}).(pulumi.IntPtrOutput)
 }
 
 type VolumeCapability struct {
@@ -8618,15 +10378,15 @@ func (o GetJobConstraintArrayOutput) Index(i pulumi.IntInput) GetJobConstraintOu
 }
 
 type GetJobPeriodicConfig struct {
-	// `(boolean)` If periodic scheduling is enabled for the specified job.
+	// `(boolean)` Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
 	Enabled bool `pulumi:"enabled"`
-	// `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+	// `(boolean)` Whether this job should wait until previous instances of the same job have completed before launching again.
 	ProhibitOverlap bool `pulumi:"prohibitOverlap"`
-	// `(string)`
+	// `(string)` Cron expression configuring the interval at which the job is launched.
 	Spec string `pulumi:"spec"`
-	// `(string)`
+	// `(string)` Type of periodic specification, such as `cron`.
 	SpecType string `pulumi:"specType"`
-	// `(string)` Time zone to evaluate the next launch interval against.
+	// `(string)` Time zone used to evaluate the next launch interval.
 	Timezone string `pulumi:"timezone"`
 }
 
@@ -8642,15 +10402,15 @@ type GetJobPeriodicConfigInput interface {
 }
 
 type GetJobPeriodicConfigArgs struct {
-	// `(boolean)` If periodic scheduling is enabled for the specified job.
+	// `(boolean)` Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+	// `(boolean)` Whether this job should wait until previous instances of the same job have completed before launching again.
 	ProhibitOverlap pulumi.BoolInput `pulumi:"prohibitOverlap"`
-	// `(string)`
+	// `(string)` Cron expression configuring the interval at which the job is launched.
 	Spec pulumi.StringInput `pulumi:"spec"`
-	// `(string)`
+	// `(string)` Type of periodic specification, such as `cron`.
 	SpecType pulumi.StringInput `pulumi:"specType"`
-	// `(string)` Time zone to evaluate the next launch interval against.
+	// `(string)` Time zone used to evaluate the next launch interval.
 	Timezone pulumi.StringInput `pulumi:"timezone"`
 }
 
@@ -8705,27 +10465,27 @@ func (o GetJobPeriodicConfigOutput) ToGetJobPeriodicConfigOutputWithContext(ctx 
 	return o
 }
 
-// `(boolean)` If periodic scheduling is enabled for the specified job.
+// `(boolean)` Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
 func (o GetJobPeriodicConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetJobPeriodicConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+// `(boolean)` Whether this job should wait until previous instances of the same job have completed before launching again.
 func (o GetJobPeriodicConfigOutput) ProhibitOverlap() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetJobPeriodicConfig) bool { return v.ProhibitOverlap }).(pulumi.BoolOutput)
 }
 
-// `(string)`
+// `(string)` Cron expression configuring the interval at which the job is launched.
 func (o GetJobPeriodicConfigOutput) Spec() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobPeriodicConfig) string { return v.Spec }).(pulumi.StringOutput)
 }
 
-// `(string)`
+// `(string)` Type of periodic specification, such as `cron`.
 func (o GetJobPeriodicConfigOutput) SpecType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobPeriodicConfig) string { return v.SpecType }).(pulumi.StringOutput)
 }
 
-// `(string)` Time zone to evaluate the next launch interval against.
+// `(string)` Time zone used to evaluate the next launch interval.
 func (o GetJobPeriodicConfigOutput) Timezone() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobPeriodicConfig) string { return v.Timezone }).(pulumi.StringOutput)
 }
@@ -8751,11 +10511,17 @@ func (o GetJobPeriodicConfigArrayOutput) Index(i pulumi.IntInput) GetJobPeriodic
 }
 
 type GetJobTaskGroup struct {
-	Count int               `pulumi:"count"`
-	Meta  map[string]string `pulumi:"meta"`
-	// `(string)` Name of the job.
-	Name    string                  `pulumi:"name"`
-	Tasks   []GetJobTaskGroupTask   `pulumi:"tasks"`
+	// `(integer)` Task group count.
+	Count int `pulumi:"count"`
+	// `(map of strings)` Task group metadata.
+	Meta map[string]string `pulumi:"meta"`
+	// `(string)` Volume name.
+	Name string `pulumi:"name"`
+	// `(list of maps)` Tasks in the task group.
+	Tasks []GetJobTaskGroupTask `pulumi:"tasks"`
+	// `(list of maps)` Job-level update strategy returned by Nomad.
+	UpdateStrategies []GetJobTaskGroupUpdateStrategy `pulumi:"updateStrategies"`
+	// `(list of maps)` Volume requests for the task group.
 	Volumes []GetJobTaskGroupVolume `pulumi:"volumes"`
 }
 
@@ -8771,11 +10537,17 @@ type GetJobTaskGroupInput interface {
 }
 
 type GetJobTaskGroupArgs struct {
-	Count pulumi.IntInput       `pulumi:"count"`
-	Meta  pulumi.StringMapInput `pulumi:"meta"`
-	// `(string)` Name of the job.
-	Name    pulumi.StringInput              `pulumi:"name"`
-	Tasks   GetJobTaskGroupTaskArrayInput   `pulumi:"tasks"`
+	// `(integer)` Task group count.
+	Count pulumi.IntInput `pulumi:"count"`
+	// `(map of strings)` Task group metadata.
+	Meta pulumi.StringMapInput `pulumi:"meta"`
+	// `(string)` Volume name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `(list of maps)` Tasks in the task group.
+	Tasks GetJobTaskGroupTaskArrayInput `pulumi:"tasks"`
+	// `(list of maps)` Job-level update strategy returned by Nomad.
+	UpdateStrategies GetJobTaskGroupUpdateStrategyArrayInput `pulumi:"updateStrategies"`
+	// `(list of maps)` Volume requests for the task group.
 	Volumes GetJobTaskGroupVolumeArrayInput `pulumi:"volumes"`
 }
 
@@ -8830,23 +10602,32 @@ func (o GetJobTaskGroupOutput) ToGetJobTaskGroupOutputWithContext(ctx context.Co
 	return o
 }
 
+// `(integer)` Task group count.
 func (o GetJobTaskGroupOutput) Count() pulumi.IntOutput {
 	return o.ApplyT(func(v GetJobTaskGroup) int { return v.Count }).(pulumi.IntOutput)
 }
 
+// `(map of strings)` Task group metadata.
 func (o GetJobTaskGroupOutput) Meta() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetJobTaskGroup) map[string]string { return v.Meta }).(pulumi.StringMapOutput)
 }
 
-// `(string)` Name of the job.
+// `(string)` Volume name.
 func (o GetJobTaskGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroup) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// `(list of maps)` Tasks in the task group.
 func (o GetJobTaskGroupOutput) Tasks() GetJobTaskGroupTaskArrayOutput {
 	return o.ApplyT(func(v GetJobTaskGroup) []GetJobTaskGroupTask { return v.Tasks }).(GetJobTaskGroupTaskArrayOutput)
 }
 
+// `(list of maps)` Job-level update strategy returned by Nomad.
+func (o GetJobTaskGroupOutput) UpdateStrategies() GetJobTaskGroupUpdateStrategyArrayOutput {
+	return o.ApplyT(func(v GetJobTaskGroup) []GetJobTaskGroupUpdateStrategy { return v.UpdateStrategies }).(GetJobTaskGroupUpdateStrategyArrayOutput)
+}
+
+// `(list of maps)` Volume requests for the task group.
 func (o GetJobTaskGroupOutput) Volumes() GetJobTaskGroupVolumeArrayOutput {
 	return o.ApplyT(func(v GetJobTaskGroup) []GetJobTaskGroupVolume { return v.Volumes }).(GetJobTaskGroupVolumeArrayOutput)
 }
@@ -8872,10 +10653,13 @@ func (o GetJobTaskGroupArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupOutp
 }
 
 type GetJobTaskGroupTask struct {
-	Driver string            `pulumi:"driver"`
-	Meta   map[string]string `pulumi:"meta"`
-	// `(string)` Name of the job.
-	Name         string                           `pulumi:"name"`
+	// `(string)` Task driver.
+	Driver string `pulumi:"driver"`
+	// `(map of strings)` Task group metadata.
+	Meta map[string]string `pulumi:"meta"`
+	// `(string)` Volume name.
+	Name string `pulumi:"name"`
+	// `(list of maps)` Task volume mounts.
 	VolumeMounts []GetJobTaskGroupTaskVolumeMount `pulumi:"volumeMounts"`
 }
 
@@ -8891,10 +10675,13 @@ type GetJobTaskGroupTaskInput interface {
 }
 
 type GetJobTaskGroupTaskArgs struct {
-	Driver pulumi.StringInput    `pulumi:"driver"`
-	Meta   pulumi.StringMapInput `pulumi:"meta"`
-	// `(string)` Name of the job.
-	Name         pulumi.StringInput                       `pulumi:"name"`
+	// `(string)` Task driver.
+	Driver pulumi.StringInput `pulumi:"driver"`
+	// `(map of strings)` Task group metadata.
+	Meta pulumi.StringMapInput `pulumi:"meta"`
+	// `(string)` Volume name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `(list of maps)` Task volume mounts.
 	VolumeMounts GetJobTaskGroupTaskVolumeMountArrayInput `pulumi:"volumeMounts"`
 }
 
@@ -8949,19 +10736,22 @@ func (o GetJobTaskGroupTaskOutput) ToGetJobTaskGroupTaskOutputWithContext(ctx co
 	return o
 }
 
+// `(string)` Task driver.
 func (o GetJobTaskGroupTaskOutput) Driver() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupTask) string { return v.Driver }).(pulumi.StringOutput)
 }
 
+// `(map of strings)` Task group metadata.
 func (o GetJobTaskGroupTaskOutput) Meta() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetJobTaskGroupTask) map[string]string { return v.Meta }).(pulumi.StringMapOutput)
 }
 
-// `(string)` Name of the job.
+// `(string)` Volume name.
 func (o GetJobTaskGroupTaskOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupTask) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// `(list of maps)` Task volume mounts.
 func (o GetJobTaskGroupTaskOutput) VolumeMounts() GetJobTaskGroupTaskVolumeMountArrayOutput {
 	return o.ApplyT(func(v GetJobTaskGroupTask) []GetJobTaskGroupTaskVolumeMount { return v.VolumeMounts }).(GetJobTaskGroupTaskVolumeMountArrayOutput)
 }
@@ -8987,9 +10777,12 @@ func (o GetJobTaskGroupTaskArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroup
 }
 
 type GetJobTaskGroupTaskVolumeMount struct {
+	// `(string)` Destination path inside the task.
 	Destination string `pulumi:"destination"`
-	ReadOnly    bool   `pulumi:"readOnly"`
-	Volume      string `pulumi:"volume"`
+	// `(boolean)` Whether the volume is read-only.
+	ReadOnly bool `pulumi:"readOnly"`
+	// `(string)` Volume name.
+	Volume string `pulumi:"volume"`
 }
 
 // GetJobTaskGroupTaskVolumeMountInput is an input type that accepts GetJobTaskGroupTaskVolumeMountArgs and GetJobTaskGroupTaskVolumeMountOutput values.
@@ -9004,9 +10797,12 @@ type GetJobTaskGroupTaskVolumeMountInput interface {
 }
 
 type GetJobTaskGroupTaskVolumeMountArgs struct {
+	// `(string)` Destination path inside the task.
 	Destination pulumi.StringInput `pulumi:"destination"`
-	ReadOnly    pulumi.BoolInput   `pulumi:"readOnly"`
-	Volume      pulumi.StringInput `pulumi:"volume"`
+	// `(boolean)` Whether the volume is read-only.
+	ReadOnly pulumi.BoolInput `pulumi:"readOnly"`
+	// `(string)` Volume name.
+	Volume pulumi.StringInput `pulumi:"volume"`
 }
 
 func (GetJobTaskGroupTaskVolumeMountArgs) ElementType() reflect.Type {
@@ -9060,14 +10856,17 @@ func (o GetJobTaskGroupTaskVolumeMountOutput) ToGetJobTaskGroupTaskVolumeMountOu
 	return o
 }
 
+// `(string)` Destination path inside the task.
 func (o GetJobTaskGroupTaskVolumeMountOutput) Destination() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupTaskVolumeMount) string { return v.Destination }).(pulumi.StringOutput)
 }
 
+// `(boolean)` Whether the volume is read-only.
 func (o GetJobTaskGroupTaskVolumeMountOutput) ReadOnly() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetJobTaskGroupTaskVolumeMount) bool { return v.ReadOnly }).(pulumi.BoolOutput)
 }
 
+// `(string)` Volume name.
 func (o GetJobTaskGroupTaskVolumeMountOutput) Volume() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupTaskVolumeMount) string { return v.Volume }).(pulumi.StringOutput)
 }
@@ -9092,12 +10891,165 @@ func (o GetJobTaskGroupTaskVolumeMountArrayOutput) Index(i pulumi.IntInput) GetJ
 	}).(GetJobTaskGroupTaskVolumeMountOutput)
 }
 
+type GetJobTaskGroupUpdateStrategy struct {
+	// `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+	AutoRevert bool `pulumi:"autoRevert"`
+	// `(integer)` Number of canary allocations created before destructive updates continue.
+	Canary int `pulumi:"canary"`
+	// `(string)` Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+	HealthCheck string `pulumi:"healthCheck"`
+	// `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+	HealthyDeadline string `pulumi:"healthyDeadline"`
+	// `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+	MaxParallel int `pulumi:"maxParallel"`
+	// `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+	MinHealthyTime string `pulumi:"minHealthyTime"`
+	// `(string)` Delay between each set of `maxParallel` updates when updating system jobs.
+	Stagger string `pulumi:"stagger"`
+}
+
+// GetJobTaskGroupUpdateStrategyInput is an input type that accepts GetJobTaskGroupUpdateStrategyArgs and GetJobTaskGroupUpdateStrategyOutput values.
+// You can construct a concrete instance of `GetJobTaskGroupUpdateStrategyInput` via:
+//
+//	GetJobTaskGroupUpdateStrategyArgs{...}
+type GetJobTaskGroupUpdateStrategyInput interface {
+	pulumi.Input
+
+	ToGetJobTaskGroupUpdateStrategyOutput() GetJobTaskGroupUpdateStrategyOutput
+	ToGetJobTaskGroupUpdateStrategyOutputWithContext(context.Context) GetJobTaskGroupUpdateStrategyOutput
+}
+
+type GetJobTaskGroupUpdateStrategyArgs struct {
+	// `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+	AutoRevert pulumi.BoolInput `pulumi:"autoRevert"`
+	// `(integer)` Number of canary allocations created before destructive updates continue.
+	Canary pulumi.IntInput `pulumi:"canary"`
+	// `(string)` Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+	HealthCheck pulumi.StringInput `pulumi:"healthCheck"`
+	// `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+	HealthyDeadline pulumi.StringInput `pulumi:"healthyDeadline"`
+	// `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+	MaxParallel pulumi.IntInput `pulumi:"maxParallel"`
+	// `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+	MinHealthyTime pulumi.StringInput `pulumi:"minHealthyTime"`
+	// `(string)` Delay between each set of `maxParallel` updates when updating system jobs.
+	Stagger pulumi.StringInput `pulumi:"stagger"`
+}
+
+func (GetJobTaskGroupUpdateStrategyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobTaskGroupUpdateStrategy)(nil)).Elem()
+}
+
+func (i GetJobTaskGroupUpdateStrategyArgs) ToGetJobTaskGroupUpdateStrategyOutput() GetJobTaskGroupUpdateStrategyOutput {
+	return i.ToGetJobTaskGroupUpdateStrategyOutputWithContext(context.Background())
+}
+
+func (i GetJobTaskGroupUpdateStrategyArgs) ToGetJobTaskGroupUpdateStrategyOutputWithContext(ctx context.Context) GetJobTaskGroupUpdateStrategyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupUpdateStrategyOutput)
+}
+
+// GetJobTaskGroupUpdateStrategyArrayInput is an input type that accepts GetJobTaskGroupUpdateStrategyArray and GetJobTaskGroupUpdateStrategyArrayOutput values.
+// You can construct a concrete instance of `GetJobTaskGroupUpdateStrategyArrayInput` via:
+//
+//	GetJobTaskGroupUpdateStrategyArray{ GetJobTaskGroupUpdateStrategyArgs{...} }
+type GetJobTaskGroupUpdateStrategyArrayInput interface {
+	pulumi.Input
+
+	ToGetJobTaskGroupUpdateStrategyArrayOutput() GetJobTaskGroupUpdateStrategyArrayOutput
+	ToGetJobTaskGroupUpdateStrategyArrayOutputWithContext(context.Context) GetJobTaskGroupUpdateStrategyArrayOutput
+}
+
+type GetJobTaskGroupUpdateStrategyArray []GetJobTaskGroupUpdateStrategyInput
+
+func (GetJobTaskGroupUpdateStrategyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetJobTaskGroupUpdateStrategy)(nil)).Elem()
+}
+
+func (i GetJobTaskGroupUpdateStrategyArray) ToGetJobTaskGroupUpdateStrategyArrayOutput() GetJobTaskGroupUpdateStrategyArrayOutput {
+	return i.ToGetJobTaskGroupUpdateStrategyArrayOutputWithContext(context.Background())
+}
+
+func (i GetJobTaskGroupUpdateStrategyArray) ToGetJobTaskGroupUpdateStrategyArrayOutputWithContext(ctx context.Context) GetJobTaskGroupUpdateStrategyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobTaskGroupUpdateStrategyArrayOutput)
+}
+
+type GetJobTaskGroupUpdateStrategyOutput struct{ *pulumi.OutputState }
+
+func (GetJobTaskGroupUpdateStrategyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobTaskGroupUpdateStrategy)(nil)).Elem()
+}
+
+func (o GetJobTaskGroupUpdateStrategyOutput) ToGetJobTaskGroupUpdateStrategyOutput() GetJobTaskGroupUpdateStrategyOutput {
+	return o
+}
+
+func (o GetJobTaskGroupUpdateStrategyOutput) ToGetJobTaskGroupUpdateStrategyOutputWithContext(ctx context.Context) GetJobTaskGroupUpdateStrategyOutput {
+	return o
+}
+
+// `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+func (o GetJobTaskGroupUpdateStrategyOutput) AutoRevert() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobTaskGroupUpdateStrategy) bool { return v.AutoRevert }).(pulumi.BoolOutput)
+}
+
+// `(integer)` Number of canary allocations created before destructive updates continue.
+func (o GetJobTaskGroupUpdateStrategyOutput) Canary() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobTaskGroupUpdateStrategy) int { return v.Canary }).(pulumi.IntOutput)
+}
+
+// `(string)` Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+func (o GetJobTaskGroupUpdateStrategyOutput) HealthCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobTaskGroupUpdateStrategy) string { return v.HealthCheck }).(pulumi.StringOutput)
+}
+
+// `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+func (o GetJobTaskGroupUpdateStrategyOutput) HealthyDeadline() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobTaskGroupUpdateStrategy) string { return v.HealthyDeadline }).(pulumi.StringOutput)
+}
+
+// `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+func (o GetJobTaskGroupUpdateStrategyOutput) MaxParallel() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobTaskGroupUpdateStrategy) int { return v.MaxParallel }).(pulumi.IntOutput)
+}
+
+// `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+func (o GetJobTaskGroupUpdateStrategyOutput) MinHealthyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobTaskGroupUpdateStrategy) string { return v.MinHealthyTime }).(pulumi.StringOutput)
+}
+
+// `(string)` Delay between each set of `maxParallel` updates when updating system jobs.
+func (o GetJobTaskGroupUpdateStrategyOutput) Stagger() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobTaskGroupUpdateStrategy) string { return v.Stagger }).(pulumi.StringOutput)
+}
+
+type GetJobTaskGroupUpdateStrategyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetJobTaskGroupUpdateStrategyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetJobTaskGroupUpdateStrategy)(nil)).Elem()
+}
+
+func (o GetJobTaskGroupUpdateStrategyArrayOutput) ToGetJobTaskGroupUpdateStrategyArrayOutput() GetJobTaskGroupUpdateStrategyArrayOutput {
+	return o
+}
+
+func (o GetJobTaskGroupUpdateStrategyArrayOutput) ToGetJobTaskGroupUpdateStrategyArrayOutputWithContext(ctx context.Context) GetJobTaskGroupUpdateStrategyArrayOutput {
+	return o
+}
+
+func (o GetJobTaskGroupUpdateStrategyArrayOutput) Index(i pulumi.IntInput) GetJobTaskGroupUpdateStrategyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetJobTaskGroupUpdateStrategy {
+		return vs[0].([]GetJobTaskGroupUpdateStrategy)[vs[1].(int)]
+	}).(GetJobTaskGroupUpdateStrategyOutput)
+}
+
 type GetJobTaskGroupVolume struct {
-	// `(string)` Name of the job.
-	Name     string `pulumi:"name"`
-	ReadOnly bool   `pulumi:"readOnly"`
-	Source   string `pulumi:"source"`
-	// `(string)` Scheduler type used during job creation.
+	// `(string)` Volume name.
+	Name string `pulumi:"name"`
+	// `(boolean)` Whether the volume is read-only.
+	ReadOnly bool `pulumi:"readOnly"`
+	// `(string)` Volume source.
+	Source string `pulumi:"source"`
+	// `(string)` Volume type.
 	Type string `pulumi:"type"`
 }
 
@@ -9113,11 +11065,13 @@ type GetJobTaskGroupVolumeInput interface {
 }
 
 type GetJobTaskGroupVolumeArgs struct {
-	// `(string)` Name of the job.
-	Name     pulumi.StringInput `pulumi:"name"`
-	ReadOnly pulumi.BoolInput   `pulumi:"readOnly"`
-	Source   pulumi.StringInput `pulumi:"source"`
-	// `(string)` Scheduler type used during job creation.
+	// `(string)` Volume name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `(boolean)` Whether the volume is read-only.
+	ReadOnly pulumi.BoolInput `pulumi:"readOnly"`
+	// `(string)` Volume source.
+	Source pulumi.StringInput `pulumi:"source"`
+	// `(string)` Volume type.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -9172,20 +11126,22 @@ func (o GetJobTaskGroupVolumeOutput) ToGetJobTaskGroupVolumeOutputWithContext(ct
 	return o
 }
 
-// `(string)` Name of the job.
+// `(string)` Volume name.
 func (o GetJobTaskGroupVolumeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupVolume) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// `(boolean)` Whether the volume is read-only.
 func (o GetJobTaskGroupVolumeOutput) ReadOnly() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetJobTaskGroupVolume) bool { return v.ReadOnly }).(pulumi.BoolOutput)
 }
 
+// `(string)` Volume source.
 func (o GetJobTaskGroupVolumeOutput) Source() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupVolume) string { return v.Source }).(pulumi.StringOutput)
 }
 
-// `(string)` Scheduler type used during job creation.
+// `(string)` Volume type.
 func (o GetJobTaskGroupVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobTaskGroupVolume) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -9210,19 +11166,174 @@ func (o GetJobTaskGroupVolumeArrayOutput) Index(i pulumi.IntInput) GetJobTaskGro
 	}).(GetJobTaskGroupVolumeOutput)
 }
 
+type GetJobUpdateStrategy struct {
+	// `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+	AutoRevert bool `pulumi:"autoRevert"`
+	// `(integer)` Number of canary allocations created before destructive updates continue.
+	Canary int `pulumi:"canary"`
+	// `(string)` Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+	HealthCheck string `pulumi:"healthCheck"`
+	// `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+	HealthyDeadline string `pulumi:"healthyDeadline"`
+	// `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+	MaxParallel int `pulumi:"maxParallel"`
+	// `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+	MinHealthyTime string `pulumi:"minHealthyTime"`
+	// `(string)` Delay between each set of `maxParallel` updates when updating system jobs.
+	Stagger string `pulumi:"stagger"`
+}
+
+// GetJobUpdateStrategyInput is an input type that accepts GetJobUpdateStrategyArgs and GetJobUpdateStrategyOutput values.
+// You can construct a concrete instance of `GetJobUpdateStrategyInput` via:
+//
+//	GetJobUpdateStrategyArgs{...}
+type GetJobUpdateStrategyInput interface {
+	pulumi.Input
+
+	ToGetJobUpdateStrategyOutput() GetJobUpdateStrategyOutput
+	ToGetJobUpdateStrategyOutputWithContext(context.Context) GetJobUpdateStrategyOutput
+}
+
+type GetJobUpdateStrategyArgs struct {
+	// `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+	AutoRevert pulumi.BoolInput `pulumi:"autoRevert"`
+	// `(integer)` Number of canary allocations created before destructive updates continue.
+	Canary pulumi.IntInput `pulumi:"canary"`
+	// `(string)` Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+	HealthCheck pulumi.StringInput `pulumi:"healthCheck"`
+	// `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+	HealthyDeadline pulumi.StringInput `pulumi:"healthyDeadline"`
+	// `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+	MaxParallel pulumi.IntInput `pulumi:"maxParallel"`
+	// `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+	MinHealthyTime pulumi.StringInput `pulumi:"minHealthyTime"`
+	// `(string)` Delay between each set of `maxParallel` updates when updating system jobs.
+	Stagger pulumi.StringInput `pulumi:"stagger"`
+}
+
+func (GetJobUpdateStrategyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobUpdateStrategy)(nil)).Elem()
+}
+
+func (i GetJobUpdateStrategyArgs) ToGetJobUpdateStrategyOutput() GetJobUpdateStrategyOutput {
+	return i.ToGetJobUpdateStrategyOutputWithContext(context.Background())
+}
+
+func (i GetJobUpdateStrategyArgs) ToGetJobUpdateStrategyOutputWithContext(ctx context.Context) GetJobUpdateStrategyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobUpdateStrategyOutput)
+}
+
+// GetJobUpdateStrategyArrayInput is an input type that accepts GetJobUpdateStrategyArray and GetJobUpdateStrategyArrayOutput values.
+// You can construct a concrete instance of `GetJobUpdateStrategyArrayInput` via:
+//
+//	GetJobUpdateStrategyArray{ GetJobUpdateStrategyArgs{...} }
+type GetJobUpdateStrategyArrayInput interface {
+	pulumi.Input
+
+	ToGetJobUpdateStrategyArrayOutput() GetJobUpdateStrategyArrayOutput
+	ToGetJobUpdateStrategyArrayOutputWithContext(context.Context) GetJobUpdateStrategyArrayOutput
+}
+
+type GetJobUpdateStrategyArray []GetJobUpdateStrategyInput
+
+func (GetJobUpdateStrategyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetJobUpdateStrategy)(nil)).Elem()
+}
+
+func (i GetJobUpdateStrategyArray) ToGetJobUpdateStrategyArrayOutput() GetJobUpdateStrategyArrayOutput {
+	return i.ToGetJobUpdateStrategyArrayOutputWithContext(context.Background())
+}
+
+func (i GetJobUpdateStrategyArray) ToGetJobUpdateStrategyArrayOutputWithContext(ctx context.Context) GetJobUpdateStrategyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobUpdateStrategyArrayOutput)
+}
+
+type GetJobUpdateStrategyOutput struct{ *pulumi.OutputState }
+
+func (GetJobUpdateStrategyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobUpdateStrategy)(nil)).Elem()
+}
+
+func (o GetJobUpdateStrategyOutput) ToGetJobUpdateStrategyOutput() GetJobUpdateStrategyOutput {
+	return o
+}
+
+func (o GetJobUpdateStrategyOutput) ToGetJobUpdateStrategyOutputWithContext(ctx context.Context) GetJobUpdateStrategyOutput {
+	return o
+}
+
+// `(boolean)` Whether the job should automatically revert to the last stable job on deployment failure.
+func (o GetJobUpdateStrategyOutput) AutoRevert() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetJobUpdateStrategy) bool { return v.AutoRevert }).(pulumi.BoolOutput)
+}
+
+// `(integer)` Number of canary allocations created before destructive updates continue.
+func (o GetJobUpdateStrategyOutput) Canary() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobUpdateStrategy) int { return v.Canary }).(pulumi.IntOutput)
+}
+
+// `(string)` Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+func (o GetJobUpdateStrategyOutput) HealthCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobUpdateStrategy) string { return v.HealthCheck }).(pulumi.StringOutput)
+}
+
+// `(string)` Deadline by which the allocation must become healthy before it is marked unhealthy.
+func (o GetJobUpdateStrategyOutput) HealthyDeadline() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobUpdateStrategy) string { return v.HealthyDeadline }).(pulumi.StringOutput)
+}
+
+// `(integer)` Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+func (o GetJobUpdateStrategyOutput) MaxParallel() pulumi.IntOutput {
+	return o.ApplyT(func(v GetJobUpdateStrategy) int { return v.MaxParallel }).(pulumi.IntOutput)
+}
+
+// `(string)` Minimum time the allocation must be in the healthy state before further updates can proceed.
+func (o GetJobUpdateStrategyOutput) MinHealthyTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobUpdateStrategy) string { return v.MinHealthyTime }).(pulumi.StringOutput)
+}
+
+// `(string)` Delay between each set of `maxParallel` updates when updating system jobs.
+func (o GetJobUpdateStrategyOutput) Stagger() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJobUpdateStrategy) string { return v.Stagger }).(pulumi.StringOutput)
+}
+
+type GetJobUpdateStrategyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetJobUpdateStrategyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetJobUpdateStrategy)(nil)).Elem()
+}
+
+func (o GetJobUpdateStrategyArrayOutput) ToGetJobUpdateStrategyArrayOutput() GetJobUpdateStrategyArrayOutput {
+	return o
+}
+
+func (o GetJobUpdateStrategyArrayOutput) ToGetJobUpdateStrategyArrayOutputWithContext(ctx context.Context) GetJobUpdateStrategyArrayOutput {
+	return o
+}
+
+func (o GetJobUpdateStrategyArrayOutput) Index(i pulumi.IntInput) GetJobUpdateStrategyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetJobUpdateStrategy {
+		return vs[0].([]GetJobUpdateStrategy)[vs[1].(int)]
+	}).(GetJobUpdateStrategyOutput)
+}
+
 type GetJwksKey struct {
-	// `(string)` - JWK field `alg`
+	// `(string)` - JWK field `alg` (e.g. `RS256`, `EdDSA`)
 	Algorithm string `pulumi:"algorithm"`
-	// `(string)` - JWK field `e`
+	// `(string)` - JWK field `crv` (EdDSA only, e.g. `Ed25519`)
+	Curve string `pulumi:"curve"`
+	// `(string)` - JWK field `e` (RSA only)
 	Exponent string `pulumi:"exponent"`
 	// `(string)` - JWK field `kid`
 	KeyId string `pulumi:"keyId"`
-	// `(string)` - JWK field `kty`
+	// `(string)` - JWK field `kty` (e.g. `RSA`, `OKP`)
 	KeyType string `pulumi:"keyType"`
 	// `(string)` - JWK field `use`
 	KeyUse string `pulumi:"keyUse"`
-	// `(string)` - JWK field `n`
+	// `(string)` - JWK field `n` (RSA only)
 	Modulus string `pulumi:"modulus"`
+	// `(string)` - JWK field `x` (EdDSA only, the public key)
+	X string `pulumi:"x"`
 }
 
 // GetJwksKeyInput is an input type that accepts GetJwksKeyArgs and GetJwksKeyOutput values.
@@ -9237,18 +11348,22 @@ type GetJwksKeyInput interface {
 }
 
 type GetJwksKeyArgs struct {
-	// `(string)` - JWK field `alg`
+	// `(string)` - JWK field `alg` (e.g. `RS256`, `EdDSA`)
 	Algorithm pulumi.StringInput `pulumi:"algorithm"`
-	// `(string)` - JWK field `e`
+	// `(string)` - JWK field `crv` (EdDSA only, e.g. `Ed25519`)
+	Curve pulumi.StringInput `pulumi:"curve"`
+	// `(string)` - JWK field `e` (RSA only)
 	Exponent pulumi.StringInput `pulumi:"exponent"`
 	// `(string)` - JWK field `kid`
 	KeyId pulumi.StringInput `pulumi:"keyId"`
-	// `(string)` - JWK field `kty`
+	// `(string)` - JWK field `kty` (e.g. `RSA`, `OKP`)
 	KeyType pulumi.StringInput `pulumi:"keyType"`
 	// `(string)` - JWK field `use`
 	KeyUse pulumi.StringInput `pulumi:"keyUse"`
-	// `(string)` - JWK field `n`
+	// `(string)` - JWK field `n` (RSA only)
 	Modulus pulumi.StringInput `pulumi:"modulus"`
+	// `(string)` - JWK field `x` (EdDSA only, the public key)
+	X pulumi.StringInput `pulumi:"x"`
 }
 
 func (GetJwksKeyArgs) ElementType() reflect.Type {
@@ -9302,12 +11417,17 @@ func (o GetJwksKeyOutput) ToGetJwksKeyOutputWithContext(ctx context.Context) Get
 	return o
 }
 
-// `(string)` - JWK field `alg`
+// `(string)` - JWK field `alg` (e.g. `RS256`, `EdDSA`)
 func (o GetJwksKeyOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJwksKey) string { return v.Algorithm }).(pulumi.StringOutput)
 }
 
-// `(string)` - JWK field `e`
+// `(string)` - JWK field `crv` (EdDSA only, e.g. `Ed25519`)
+func (o GetJwksKeyOutput) Curve() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJwksKey) string { return v.Curve }).(pulumi.StringOutput)
+}
+
+// `(string)` - JWK field `e` (RSA only)
 func (o GetJwksKeyOutput) Exponent() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJwksKey) string { return v.Exponent }).(pulumi.StringOutput)
 }
@@ -9317,7 +11437,7 @@ func (o GetJwksKeyOutput) KeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJwksKey) string { return v.KeyId }).(pulumi.StringOutput)
 }
 
-// `(string)` - JWK field `kty`
+// `(string)` - JWK field `kty` (e.g. `RSA`, `OKP`)
 func (o GetJwksKeyOutput) KeyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJwksKey) string { return v.KeyType }).(pulumi.StringOutput)
 }
@@ -9327,9 +11447,14 @@ func (o GetJwksKeyOutput) KeyUse() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJwksKey) string { return v.KeyUse }).(pulumi.StringOutput)
 }
 
-// `(string)` - JWK field `n`
+// `(string)` - JWK field `n` (RSA only)
 func (o GetJwksKeyOutput) Modulus() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJwksKey) string { return v.Modulus }).(pulumi.StringOutput)
+}
+
+// `(string)` - JWK field `x` (EdDSA only, the public key)
+func (o GetJwksKeyOutput) X() pulumi.StringOutput {
+	return o.ApplyT(func(v GetJwksKey) string { return v.X }).(pulumi.StringOutput)
 }
 
 type GetJwksKeyArrayOutput struct{ *pulumi.OutputState }
@@ -9476,10 +11601,128 @@ func (o GetNamespaceCapabilityArrayOutput) Index(i pulumi.IntInput) GetNamespace
 	}).(GetNamespaceCapabilityOutput)
 }
 
-type GetNamespaceNodePoolConfig struct {
+type GetNamespaceConsulConfig struct {
+	// `([]string)` - The list of Consul clusters allowed to be used in this namespace.
 	Alloweds []string `pulumi:"alloweds"`
-	Default  string   `pulumi:"default"`
-	Denieds  []string `pulumi:"denieds"`
+	// `(string)` - The Consul cluster to use when none is specified in the job.
+	Default string `pulumi:"default"`
+	// `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+	Denieds []string `pulumi:"denieds"`
+}
+
+// GetNamespaceConsulConfigInput is an input type that accepts GetNamespaceConsulConfigArgs and GetNamespaceConsulConfigOutput values.
+// You can construct a concrete instance of `GetNamespaceConsulConfigInput` via:
+//
+//	GetNamespaceConsulConfigArgs{...}
+type GetNamespaceConsulConfigInput interface {
+	pulumi.Input
+
+	ToGetNamespaceConsulConfigOutput() GetNamespaceConsulConfigOutput
+	ToGetNamespaceConsulConfigOutputWithContext(context.Context) GetNamespaceConsulConfigOutput
+}
+
+type GetNamespaceConsulConfigArgs struct {
+	// `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+	Alloweds pulumi.StringArrayInput `pulumi:"alloweds"`
+	// `(string)` - The Consul cluster to use when none is specified in the job.
+	Default pulumi.StringInput `pulumi:"default"`
+	// `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+	Denieds pulumi.StringArrayInput `pulumi:"denieds"`
+}
+
+func (GetNamespaceConsulConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespaceConsulConfig)(nil)).Elem()
+}
+
+func (i GetNamespaceConsulConfigArgs) ToGetNamespaceConsulConfigOutput() GetNamespaceConsulConfigOutput {
+	return i.ToGetNamespaceConsulConfigOutputWithContext(context.Background())
+}
+
+func (i GetNamespaceConsulConfigArgs) ToGetNamespaceConsulConfigOutputWithContext(ctx context.Context) GetNamespaceConsulConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceConsulConfigOutput)
+}
+
+// GetNamespaceConsulConfigArrayInput is an input type that accepts GetNamespaceConsulConfigArray and GetNamespaceConsulConfigArrayOutput values.
+// You can construct a concrete instance of `GetNamespaceConsulConfigArrayInput` via:
+//
+//	GetNamespaceConsulConfigArray{ GetNamespaceConsulConfigArgs{...} }
+type GetNamespaceConsulConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetNamespaceConsulConfigArrayOutput() GetNamespaceConsulConfigArrayOutput
+	ToGetNamespaceConsulConfigArrayOutputWithContext(context.Context) GetNamespaceConsulConfigArrayOutput
+}
+
+type GetNamespaceConsulConfigArray []GetNamespaceConsulConfigInput
+
+func (GetNamespaceConsulConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespaceConsulConfig)(nil)).Elem()
+}
+
+func (i GetNamespaceConsulConfigArray) ToGetNamespaceConsulConfigArrayOutput() GetNamespaceConsulConfigArrayOutput {
+	return i.ToGetNamespaceConsulConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetNamespaceConsulConfigArray) ToGetNamespaceConsulConfigArrayOutputWithContext(ctx context.Context) GetNamespaceConsulConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceConsulConfigArrayOutput)
+}
+
+type GetNamespaceConsulConfigOutput struct{ *pulumi.OutputState }
+
+func (GetNamespaceConsulConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespaceConsulConfig)(nil)).Elem()
+}
+
+func (o GetNamespaceConsulConfigOutput) ToGetNamespaceConsulConfigOutput() GetNamespaceConsulConfigOutput {
+	return o
+}
+
+func (o GetNamespaceConsulConfigOutput) ToGetNamespaceConsulConfigOutputWithContext(ctx context.Context) GetNamespaceConsulConfigOutput {
+	return o
+}
+
+// `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+func (o GetNamespaceConsulConfigOutput) Alloweds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespaceConsulConfig) []string { return v.Alloweds }).(pulumi.StringArrayOutput)
+}
+
+// `(string)` - The Consul cluster to use when none is specified in the job.
+func (o GetNamespaceConsulConfigOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespaceConsulConfig) string { return v.Default }).(pulumi.StringOutput)
+}
+
+// `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+func (o GetNamespaceConsulConfigOutput) Denieds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespaceConsulConfig) []string { return v.Denieds }).(pulumi.StringArrayOutput)
+}
+
+type GetNamespaceConsulConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNamespaceConsulConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespaceConsulConfig)(nil)).Elem()
+}
+
+func (o GetNamespaceConsulConfigArrayOutput) ToGetNamespaceConsulConfigArrayOutput() GetNamespaceConsulConfigArrayOutput {
+	return o
+}
+
+func (o GetNamespaceConsulConfigArrayOutput) ToGetNamespaceConsulConfigArrayOutputWithContext(ctx context.Context) GetNamespaceConsulConfigArrayOutput {
+	return o
+}
+
+func (o GetNamespaceConsulConfigArrayOutput) Index(i pulumi.IntInput) GetNamespaceConsulConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNamespaceConsulConfig {
+		return vs[0].([]GetNamespaceConsulConfig)[vs[1].(int)]
+	}).(GetNamespaceConsulConfigOutput)
+}
+
+type GetNamespaceNodePoolConfig struct {
+	// `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+	Alloweds []string `pulumi:"alloweds"`
+	// `(string)` - The Consul cluster to use when none is specified in the job.
+	Default string `pulumi:"default"`
+	// `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+	Denieds []string `pulumi:"denieds"`
 }
 
 // GetNamespaceNodePoolConfigInput is an input type that accepts GetNamespaceNodePoolConfigArgs and GetNamespaceNodePoolConfigOutput values.
@@ -9494,9 +11737,12 @@ type GetNamespaceNodePoolConfigInput interface {
 }
 
 type GetNamespaceNodePoolConfigArgs struct {
+	// `([]string)` - The list of Consul clusters allowed to be used in this namespace.
 	Alloweds pulumi.StringArrayInput `pulumi:"alloweds"`
-	Default  pulumi.StringInput      `pulumi:"default"`
-	Denieds  pulumi.StringArrayInput `pulumi:"denieds"`
+	// `(string)` - The Consul cluster to use when none is specified in the job.
+	Default pulumi.StringInput `pulumi:"default"`
+	// `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+	Denieds pulumi.StringArrayInput `pulumi:"denieds"`
 }
 
 func (GetNamespaceNodePoolConfigArgs) ElementType() reflect.Type {
@@ -9550,14 +11796,17 @@ func (o GetNamespaceNodePoolConfigOutput) ToGetNamespaceNodePoolConfigOutputWith
 	return o
 }
 
+// `([]string)` - The list of Consul clusters allowed to be used in this namespace.
 func (o GetNamespaceNodePoolConfigOutput) Alloweds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetNamespaceNodePoolConfig) []string { return v.Alloweds }).(pulumi.StringArrayOutput)
 }
 
+// `(string)` - The Consul cluster to use when none is specified in the job.
 func (o GetNamespaceNodePoolConfigOutput) Default() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNamespaceNodePoolConfig) string { return v.Default }).(pulumi.StringOutput)
 }
 
+// `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
 func (o GetNamespaceNodePoolConfigOutput) Denieds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetNamespaceNodePoolConfig) []string { return v.Denieds }).(pulumi.StringArrayOutput)
 }
@@ -9580,6 +11829,1077 @@ func (o GetNamespaceNodePoolConfigArrayOutput) Index(i pulumi.IntInput) GetNames
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNamespaceNodePoolConfig {
 		return vs[0].([]GetNamespaceNodePoolConfig)[vs[1].(int)]
 	}).(GetNamespaceNodePoolConfigOutput)
+}
+
+type GetNamespaceVaultConfig struct {
+	// `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+	Alloweds []string `pulumi:"alloweds"`
+	// `(string)` - The Consul cluster to use when none is specified in the job.
+	Default string `pulumi:"default"`
+	// `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+	Denieds []string `pulumi:"denieds"`
+}
+
+// GetNamespaceVaultConfigInput is an input type that accepts GetNamespaceVaultConfigArgs and GetNamespaceVaultConfigOutput values.
+// You can construct a concrete instance of `GetNamespaceVaultConfigInput` via:
+//
+//	GetNamespaceVaultConfigArgs{...}
+type GetNamespaceVaultConfigInput interface {
+	pulumi.Input
+
+	ToGetNamespaceVaultConfigOutput() GetNamespaceVaultConfigOutput
+	ToGetNamespaceVaultConfigOutputWithContext(context.Context) GetNamespaceVaultConfigOutput
+}
+
+type GetNamespaceVaultConfigArgs struct {
+	// `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+	Alloweds pulumi.StringArrayInput `pulumi:"alloweds"`
+	// `(string)` - The Consul cluster to use when none is specified in the job.
+	Default pulumi.StringInput `pulumi:"default"`
+	// `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+	Denieds pulumi.StringArrayInput `pulumi:"denieds"`
+}
+
+func (GetNamespaceVaultConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespaceVaultConfig)(nil)).Elem()
+}
+
+func (i GetNamespaceVaultConfigArgs) ToGetNamespaceVaultConfigOutput() GetNamespaceVaultConfigOutput {
+	return i.ToGetNamespaceVaultConfigOutputWithContext(context.Background())
+}
+
+func (i GetNamespaceVaultConfigArgs) ToGetNamespaceVaultConfigOutputWithContext(ctx context.Context) GetNamespaceVaultConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceVaultConfigOutput)
+}
+
+// GetNamespaceVaultConfigArrayInput is an input type that accepts GetNamespaceVaultConfigArray and GetNamespaceVaultConfigArrayOutput values.
+// You can construct a concrete instance of `GetNamespaceVaultConfigArrayInput` via:
+//
+//	GetNamespaceVaultConfigArray{ GetNamespaceVaultConfigArgs{...} }
+type GetNamespaceVaultConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetNamespaceVaultConfigArrayOutput() GetNamespaceVaultConfigArrayOutput
+	ToGetNamespaceVaultConfigArrayOutputWithContext(context.Context) GetNamespaceVaultConfigArrayOutput
+}
+
+type GetNamespaceVaultConfigArray []GetNamespaceVaultConfigInput
+
+func (GetNamespaceVaultConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespaceVaultConfig)(nil)).Elem()
+}
+
+func (i GetNamespaceVaultConfigArray) ToGetNamespaceVaultConfigArrayOutput() GetNamespaceVaultConfigArrayOutput {
+	return i.ToGetNamespaceVaultConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetNamespaceVaultConfigArray) ToGetNamespaceVaultConfigArrayOutputWithContext(ctx context.Context) GetNamespaceVaultConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNamespaceVaultConfigArrayOutput)
+}
+
+type GetNamespaceVaultConfigOutput struct{ *pulumi.OutputState }
+
+func (GetNamespaceVaultConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNamespaceVaultConfig)(nil)).Elem()
+}
+
+func (o GetNamespaceVaultConfigOutput) ToGetNamespaceVaultConfigOutput() GetNamespaceVaultConfigOutput {
+	return o
+}
+
+func (o GetNamespaceVaultConfigOutput) ToGetNamespaceVaultConfigOutputWithContext(ctx context.Context) GetNamespaceVaultConfigOutput {
+	return o
+}
+
+// `([]string)` - The list of Consul clusters allowed to be used in this namespace.
+func (o GetNamespaceVaultConfigOutput) Alloweds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespaceVaultConfig) []string { return v.Alloweds }).(pulumi.StringArrayOutput)
+}
+
+// `(string)` - The Consul cluster to use when none is specified in the job.
+func (o GetNamespaceVaultConfigOutput) Default() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNamespaceVaultConfig) string { return v.Default }).(pulumi.StringOutput)
+}
+
+// `([]string)` - The list of Consul clusters not allowed to be used in this namespace.
+func (o GetNamespaceVaultConfigOutput) Denieds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetNamespaceVaultConfig) []string { return v.Denieds }).(pulumi.StringArrayOutput)
+}
+
+type GetNamespaceVaultConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNamespaceVaultConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNamespaceVaultConfig)(nil)).Elem()
+}
+
+func (o GetNamespaceVaultConfigArrayOutput) ToGetNamespaceVaultConfigArrayOutput() GetNamespaceVaultConfigArrayOutput {
+	return o
+}
+
+func (o GetNamespaceVaultConfigArrayOutput) ToGetNamespaceVaultConfigArrayOutputWithContext(ctx context.Context) GetNamespaceVaultConfigArrayOutput {
+	return o
+}
+
+func (o GetNamespaceVaultConfigArrayOutput) Index(i pulumi.IntInput) GetNamespaceVaultConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNamespaceVaultConfig {
+		return vs[0].([]GetNamespaceVaultConfig)[vs[1].(int)]
+	}).(GetNamespaceVaultConfigOutput)
+}
+
+type GetNodeDriver struct {
+	// `(map of string)` - Driver-specific attributes.
+	Attributes map[string]string `pulumi:"attributes"`
+	// `(bool)` - Whether the driver is detected.
+	Detected bool `pulumi:"detected"`
+	// `(bool)` - Whether the driver is healthy.
+	Healthy bool `pulumi:"healthy"`
+	// `(string)` - The device name.
+	Name string `pulumi:"name"`
+}
+
+// GetNodeDriverInput is an input type that accepts GetNodeDriverArgs and GetNodeDriverOutput values.
+// You can construct a concrete instance of `GetNodeDriverInput` via:
+//
+//	GetNodeDriverArgs{...}
+type GetNodeDriverInput interface {
+	pulumi.Input
+
+	ToGetNodeDriverOutput() GetNodeDriverOutput
+	ToGetNodeDriverOutputWithContext(context.Context) GetNodeDriverOutput
+}
+
+type GetNodeDriverArgs struct {
+	// `(map of string)` - Driver-specific attributes.
+	Attributes pulumi.StringMapInput `pulumi:"attributes"`
+	// `(bool)` - Whether the driver is detected.
+	Detected pulumi.BoolInput `pulumi:"detected"`
+	// `(bool)` - Whether the driver is healthy.
+	Healthy pulumi.BoolInput `pulumi:"healthy"`
+	// `(string)` - The device name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetNodeDriverArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeDriver)(nil)).Elem()
+}
+
+func (i GetNodeDriverArgs) ToGetNodeDriverOutput() GetNodeDriverOutput {
+	return i.ToGetNodeDriverOutputWithContext(context.Background())
+}
+
+func (i GetNodeDriverArgs) ToGetNodeDriverOutputWithContext(ctx context.Context) GetNodeDriverOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeDriverOutput)
+}
+
+// GetNodeDriverArrayInput is an input type that accepts GetNodeDriverArray and GetNodeDriverArrayOutput values.
+// You can construct a concrete instance of `GetNodeDriverArrayInput` via:
+//
+//	GetNodeDriverArray{ GetNodeDriverArgs{...} }
+type GetNodeDriverArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeDriverArrayOutput() GetNodeDriverArrayOutput
+	ToGetNodeDriverArrayOutputWithContext(context.Context) GetNodeDriverArrayOutput
+}
+
+type GetNodeDriverArray []GetNodeDriverInput
+
+func (GetNodeDriverArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeDriver)(nil)).Elem()
+}
+
+func (i GetNodeDriverArray) ToGetNodeDriverArrayOutput() GetNodeDriverArrayOutput {
+	return i.ToGetNodeDriverArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeDriverArray) ToGetNodeDriverArrayOutputWithContext(ctx context.Context) GetNodeDriverArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeDriverArrayOutput)
+}
+
+type GetNodeDriverOutput struct{ *pulumi.OutputState }
+
+func (GetNodeDriverOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeDriver)(nil)).Elem()
+}
+
+func (o GetNodeDriverOutput) ToGetNodeDriverOutput() GetNodeDriverOutput {
+	return o
+}
+
+func (o GetNodeDriverOutput) ToGetNodeDriverOutputWithContext(ctx context.Context) GetNodeDriverOutput {
+	return o
+}
+
+// `(map of string)` - Driver-specific attributes.
+func (o GetNodeDriverOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodeDriver) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
+}
+
+// `(bool)` - Whether the driver is detected.
+func (o GetNodeDriverOutput) Detected() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodeDriver) bool { return v.Detected }).(pulumi.BoolOutput)
+}
+
+// `(bool)` - Whether the driver is healthy.
+func (o GetNodeDriverOutput) Healthy() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodeDriver) bool { return v.Healthy }).(pulumi.BoolOutput)
+}
+
+// `(string)` - The device name.
+func (o GetNodeDriverOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeDriver) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetNodeDriverArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeDriverArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeDriver)(nil)).Elem()
+}
+
+func (o GetNodeDriverArrayOutput) ToGetNodeDriverArrayOutput() GetNodeDriverArrayOutput {
+	return o
+}
+
+func (o GetNodeDriverArrayOutput) ToGetNodeDriverArrayOutputWithContext(ctx context.Context) GetNodeDriverArrayOutput {
+	return o
+}
+
+func (o GetNodeDriverArrayOutput) Index(i pulumi.IntInput) GetNodeDriverOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeDriver {
+		return vs[0].([]GetNodeDriver)[vs[1].(int)]
+	}).(GetNodeDriverOutput)
+}
+
+type GetNodeHostVolume struct {
+	// `(string)` - The ID of the host volume (set for dynamic host volumes only).
+	Id string `pulumi:"id"`
+	// `(string)` - The device name.
+	Name string `pulumi:"name"`
+	// `(string)` - The path of the host volume.
+	Path string `pulumi:"path"`
+	// `(bool)` - Whether the host volume is read-only.
+	ReadOnly bool `pulumi:"readOnly"`
+}
+
+// GetNodeHostVolumeInput is an input type that accepts GetNodeHostVolumeArgs and GetNodeHostVolumeOutput values.
+// You can construct a concrete instance of `GetNodeHostVolumeInput` via:
+//
+//	GetNodeHostVolumeArgs{...}
+type GetNodeHostVolumeInput interface {
+	pulumi.Input
+
+	ToGetNodeHostVolumeOutput() GetNodeHostVolumeOutput
+	ToGetNodeHostVolumeOutputWithContext(context.Context) GetNodeHostVolumeOutput
+}
+
+type GetNodeHostVolumeArgs struct {
+	// `(string)` - The ID of the host volume (set for dynamic host volumes only).
+	Id pulumi.StringInput `pulumi:"id"`
+	// `(string)` - The device name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `(string)` - The path of the host volume.
+	Path pulumi.StringInput `pulumi:"path"`
+	// `(bool)` - Whether the host volume is read-only.
+	ReadOnly pulumi.BoolInput `pulumi:"readOnly"`
+}
+
+func (GetNodeHostVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeHostVolume)(nil)).Elem()
+}
+
+func (i GetNodeHostVolumeArgs) ToGetNodeHostVolumeOutput() GetNodeHostVolumeOutput {
+	return i.ToGetNodeHostVolumeOutputWithContext(context.Background())
+}
+
+func (i GetNodeHostVolumeArgs) ToGetNodeHostVolumeOutputWithContext(ctx context.Context) GetNodeHostVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeHostVolumeOutput)
+}
+
+// GetNodeHostVolumeArrayInput is an input type that accepts GetNodeHostVolumeArray and GetNodeHostVolumeArrayOutput values.
+// You can construct a concrete instance of `GetNodeHostVolumeArrayInput` via:
+//
+//	GetNodeHostVolumeArray{ GetNodeHostVolumeArgs{...} }
+type GetNodeHostVolumeArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeHostVolumeArrayOutput() GetNodeHostVolumeArrayOutput
+	ToGetNodeHostVolumeArrayOutputWithContext(context.Context) GetNodeHostVolumeArrayOutput
+}
+
+type GetNodeHostVolumeArray []GetNodeHostVolumeInput
+
+func (GetNodeHostVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeHostVolume)(nil)).Elem()
+}
+
+func (i GetNodeHostVolumeArray) ToGetNodeHostVolumeArrayOutput() GetNodeHostVolumeArrayOutput {
+	return i.ToGetNodeHostVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeHostVolumeArray) ToGetNodeHostVolumeArrayOutputWithContext(ctx context.Context) GetNodeHostVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeHostVolumeArrayOutput)
+}
+
+type GetNodeHostVolumeOutput struct{ *pulumi.OutputState }
+
+func (GetNodeHostVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeHostVolume)(nil)).Elem()
+}
+
+func (o GetNodeHostVolumeOutput) ToGetNodeHostVolumeOutput() GetNodeHostVolumeOutput {
+	return o
+}
+
+func (o GetNodeHostVolumeOutput) ToGetNodeHostVolumeOutputWithContext(ctx context.Context) GetNodeHostVolumeOutput {
+	return o
+}
+
+// `(string)` - The ID of the host volume (set for dynamic host volumes only).
+func (o GetNodeHostVolumeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeHostVolume) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// `(string)` - The device name.
+func (o GetNodeHostVolumeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeHostVolume) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string)` - The path of the host volume.
+func (o GetNodeHostVolumeOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeHostVolume) string { return v.Path }).(pulumi.StringOutput)
+}
+
+// `(bool)` - Whether the host volume is read-only.
+func (o GetNodeHostVolumeOutput) ReadOnly() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodeHostVolume) bool { return v.ReadOnly }).(pulumi.BoolOutput)
+}
+
+type GetNodeHostVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeHostVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeHostVolume)(nil)).Elem()
+}
+
+func (o GetNodeHostVolumeArrayOutput) ToGetNodeHostVolumeArrayOutput() GetNodeHostVolumeArrayOutput {
+	return o
+}
+
+func (o GetNodeHostVolumeArrayOutput) ToGetNodeHostVolumeArrayOutputWithContext(ctx context.Context) GetNodeHostVolumeArrayOutput {
+	return o
+}
+
+func (o GetNodeHostVolumeArrayOutput) Index(i pulumi.IntInput) GetNodeHostVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeHostVolume {
+		return vs[0].([]GetNodeHostVolume)[vs[1].(int)]
+	}).(GetNodeHostVolumeOutput)
+}
+
+type GetNodeNodeResource struct {
+	// `(list)` - Reserved CPU resources.
+	Cpus []GetNodeNodeResourceCpus `pulumi:"cpus"`
+	// `(list)` - Device resources on the node (GPUs, etc.).
+	Devices []GetNodeNodeResourceDevice `pulumi:"devices"`
+	// `(list)` - Reserved disk resources.
+	Disks []GetNodeNodeResourceDisk `pulumi:"disks"`
+	// `(int)` - Maximum dynamic port for this node.
+	MaxDynamicPort int `pulumi:"maxDynamicPort"`
+	// `(list)` - Reserved memory resources.
+	Memories []GetNodeNodeResourceMemory `pulumi:"memories"`
+	// `(int)` - Minimum dynamic port for this node.
+	MinDynamicPort int `pulumi:"minDynamicPort"`
+	// `(map of string)` - Reserved network resources.
+	Networks []GetNodeNodeResourceNetwork `pulumi:"networks"`
+}
+
+// GetNodeNodeResourceInput is an input type that accepts GetNodeNodeResourceArgs and GetNodeNodeResourceOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceInput` via:
+//
+//	GetNodeNodeResourceArgs{...}
+type GetNodeNodeResourceInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceOutput() GetNodeNodeResourceOutput
+	ToGetNodeNodeResourceOutputWithContext(context.Context) GetNodeNodeResourceOutput
+}
+
+type GetNodeNodeResourceArgs struct {
+	// `(list)` - Reserved CPU resources.
+	Cpus GetNodeNodeResourceCpusArrayInput `pulumi:"cpus"`
+	// `(list)` - Device resources on the node (GPUs, etc.).
+	Devices GetNodeNodeResourceDeviceArrayInput `pulumi:"devices"`
+	// `(list)` - Reserved disk resources.
+	Disks GetNodeNodeResourceDiskArrayInput `pulumi:"disks"`
+	// `(int)` - Maximum dynamic port for this node.
+	MaxDynamicPort pulumi.IntInput `pulumi:"maxDynamicPort"`
+	// `(list)` - Reserved memory resources.
+	Memories GetNodeNodeResourceMemoryArrayInput `pulumi:"memories"`
+	// `(int)` - Minimum dynamic port for this node.
+	MinDynamicPort pulumi.IntInput `pulumi:"minDynamicPort"`
+	// `(map of string)` - Reserved network resources.
+	Networks GetNodeNodeResourceNetworkArrayInput `pulumi:"networks"`
+}
+
+func (GetNodeNodeResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResource)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceArgs) ToGetNodeNodeResourceOutput() GetNodeNodeResourceOutput {
+	return i.ToGetNodeNodeResourceOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceArgs) ToGetNodeNodeResourceOutputWithContext(ctx context.Context) GetNodeNodeResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceOutput)
+}
+
+// GetNodeNodeResourceArrayInput is an input type that accepts GetNodeNodeResourceArray and GetNodeNodeResourceArrayOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceArrayInput` via:
+//
+//	GetNodeNodeResourceArray{ GetNodeNodeResourceArgs{...} }
+type GetNodeNodeResourceArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceArrayOutput() GetNodeNodeResourceArrayOutput
+	ToGetNodeNodeResourceArrayOutputWithContext(context.Context) GetNodeNodeResourceArrayOutput
+}
+
+type GetNodeNodeResourceArray []GetNodeNodeResourceInput
+
+func (GetNodeNodeResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResource)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceArray) ToGetNodeNodeResourceArrayOutput() GetNodeNodeResourceArrayOutput {
+	return i.ToGetNodeNodeResourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceArray) ToGetNodeNodeResourceArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceArrayOutput)
+}
+
+type GetNodeNodeResourceOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResource)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceOutput) ToGetNodeNodeResourceOutput() GetNodeNodeResourceOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceOutput) ToGetNodeNodeResourceOutputWithContext(ctx context.Context) GetNodeNodeResourceOutput {
+	return o
+}
+
+// `(list)` - Reserved CPU resources.
+func (o GetNodeNodeResourceOutput) Cpus() GetNodeNodeResourceCpusArrayOutput {
+	return o.ApplyT(func(v GetNodeNodeResource) []GetNodeNodeResourceCpus { return v.Cpus }).(GetNodeNodeResourceCpusArrayOutput)
+}
+
+// `(list)` - Device resources on the node (GPUs, etc.).
+func (o GetNodeNodeResourceOutput) Devices() GetNodeNodeResourceDeviceArrayOutput {
+	return o.ApplyT(func(v GetNodeNodeResource) []GetNodeNodeResourceDevice { return v.Devices }).(GetNodeNodeResourceDeviceArrayOutput)
+}
+
+// `(list)` - Reserved disk resources.
+func (o GetNodeNodeResourceOutput) Disks() GetNodeNodeResourceDiskArrayOutput {
+	return o.ApplyT(func(v GetNodeNodeResource) []GetNodeNodeResourceDisk { return v.Disks }).(GetNodeNodeResourceDiskArrayOutput)
+}
+
+// `(int)` - Maximum dynamic port for this node.
+func (o GetNodeNodeResourceOutput) MaxDynamicPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeNodeResource) int { return v.MaxDynamicPort }).(pulumi.IntOutput)
+}
+
+// `(list)` - Reserved memory resources.
+func (o GetNodeNodeResourceOutput) Memories() GetNodeNodeResourceMemoryArrayOutput {
+	return o.ApplyT(func(v GetNodeNodeResource) []GetNodeNodeResourceMemory { return v.Memories }).(GetNodeNodeResourceMemoryArrayOutput)
+}
+
+// `(int)` - Minimum dynamic port for this node.
+func (o GetNodeNodeResourceOutput) MinDynamicPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeNodeResource) int { return v.MinDynamicPort }).(pulumi.IntOutput)
+}
+
+// `(map of string)` - Reserved network resources.
+func (o GetNodeNodeResourceOutput) Networks() GetNodeNodeResourceNetworkArrayOutput {
+	return o.ApplyT(func(v GetNodeNodeResource) []GetNodeNodeResourceNetwork { return v.Networks }).(GetNodeNodeResourceNetworkArrayOutput)
+}
+
+type GetNodeNodeResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResource)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceArrayOutput) ToGetNodeNodeResourceArrayOutput() GetNodeNodeResourceArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceArrayOutput) ToGetNodeNodeResourceArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceArrayOutput) Index(i pulumi.IntInput) GetNodeNodeResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeNodeResource {
+		return vs[0].([]GetNodeNodeResource)[vs[1].(int)]
+	}).(GetNodeNodeResourceOutput)
+}
+
+type GetNodeNodeResourceCpus struct {
+	// `(int)` - Reserved CPU shares.
+	CpuShares int `pulumi:"cpuShares"`
+	// `(list of int)` - List of reservable CPU core IDs.
+	ReservableCpuCores []int `pulumi:"reservableCpuCores"`
+	// `(int)` - Total number of CPU cores.
+	TotalCpuCores int `pulumi:"totalCpuCores"`
+}
+
+// GetNodeNodeResourceCpusInput is an input type that accepts GetNodeNodeResourceCpusArgs and GetNodeNodeResourceCpusOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceCpusInput` via:
+//
+//	GetNodeNodeResourceCpusArgs{...}
+type GetNodeNodeResourceCpusInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceCpusOutput() GetNodeNodeResourceCpusOutput
+	ToGetNodeNodeResourceCpusOutputWithContext(context.Context) GetNodeNodeResourceCpusOutput
+}
+
+type GetNodeNodeResourceCpusArgs struct {
+	// `(int)` - Reserved CPU shares.
+	CpuShares pulumi.IntInput `pulumi:"cpuShares"`
+	// `(list of int)` - List of reservable CPU core IDs.
+	ReservableCpuCores pulumi.IntArrayInput `pulumi:"reservableCpuCores"`
+	// `(int)` - Total number of CPU cores.
+	TotalCpuCores pulumi.IntInput `pulumi:"totalCpuCores"`
+}
+
+func (GetNodeNodeResourceCpusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResourceCpus)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceCpusArgs) ToGetNodeNodeResourceCpusOutput() GetNodeNodeResourceCpusOutput {
+	return i.ToGetNodeNodeResourceCpusOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceCpusArgs) ToGetNodeNodeResourceCpusOutputWithContext(ctx context.Context) GetNodeNodeResourceCpusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceCpusOutput)
+}
+
+// GetNodeNodeResourceCpusArrayInput is an input type that accepts GetNodeNodeResourceCpusArray and GetNodeNodeResourceCpusArrayOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceCpusArrayInput` via:
+//
+//	GetNodeNodeResourceCpusArray{ GetNodeNodeResourceCpusArgs{...} }
+type GetNodeNodeResourceCpusArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceCpusArrayOutput() GetNodeNodeResourceCpusArrayOutput
+	ToGetNodeNodeResourceCpusArrayOutputWithContext(context.Context) GetNodeNodeResourceCpusArrayOutput
+}
+
+type GetNodeNodeResourceCpusArray []GetNodeNodeResourceCpusInput
+
+func (GetNodeNodeResourceCpusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResourceCpus)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceCpusArray) ToGetNodeNodeResourceCpusArrayOutput() GetNodeNodeResourceCpusArrayOutput {
+	return i.ToGetNodeNodeResourceCpusArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceCpusArray) ToGetNodeNodeResourceCpusArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceCpusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceCpusArrayOutput)
+}
+
+type GetNodeNodeResourceCpusOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceCpusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResourceCpus)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceCpusOutput) ToGetNodeNodeResourceCpusOutput() GetNodeNodeResourceCpusOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceCpusOutput) ToGetNodeNodeResourceCpusOutputWithContext(ctx context.Context) GetNodeNodeResourceCpusOutput {
+	return o
+}
+
+// `(int)` - Reserved CPU shares.
+func (o GetNodeNodeResourceCpusOutput) CpuShares() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceCpus) int { return v.CpuShares }).(pulumi.IntOutput)
+}
+
+// `(list of int)` - List of reservable CPU core IDs.
+func (o GetNodeNodeResourceCpusOutput) ReservableCpuCores() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceCpus) []int { return v.ReservableCpuCores }).(pulumi.IntArrayOutput)
+}
+
+// `(int)` - Total number of CPU cores.
+func (o GetNodeNodeResourceCpusOutput) TotalCpuCores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceCpus) int { return v.TotalCpuCores }).(pulumi.IntOutput)
+}
+
+type GetNodeNodeResourceCpusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceCpusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResourceCpus)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceCpusArrayOutput) ToGetNodeNodeResourceCpusArrayOutput() GetNodeNodeResourceCpusArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceCpusArrayOutput) ToGetNodeNodeResourceCpusArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceCpusArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceCpusArrayOutput) Index(i pulumi.IntInput) GetNodeNodeResourceCpusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeNodeResourceCpus {
+		return vs[0].([]GetNodeNodeResourceCpus)[vs[1].(int)]
+	}).(GetNodeNodeResourceCpusOutput)
+}
+
+type GetNodeNodeResourceDevice struct {
+	// `(int)` - The number of device instances.
+	Count int `pulumi:"count"`
+	// `(string)` - The device name.
+	Name string `pulumi:"name"`
+	// `(string)` - The device type.
+	Type string `pulumi:"type"`
+	// `(string)` - The device vendor.
+	Vendor string `pulumi:"vendor"`
+}
+
+// GetNodeNodeResourceDeviceInput is an input type that accepts GetNodeNodeResourceDeviceArgs and GetNodeNodeResourceDeviceOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceDeviceInput` via:
+//
+//	GetNodeNodeResourceDeviceArgs{...}
+type GetNodeNodeResourceDeviceInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceDeviceOutput() GetNodeNodeResourceDeviceOutput
+	ToGetNodeNodeResourceDeviceOutputWithContext(context.Context) GetNodeNodeResourceDeviceOutput
+}
+
+type GetNodeNodeResourceDeviceArgs struct {
+	// `(int)` - The number of device instances.
+	Count pulumi.IntInput `pulumi:"count"`
+	// `(string)` - The device name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `(string)` - The device type.
+	Type pulumi.StringInput `pulumi:"type"`
+	// `(string)` - The device vendor.
+	Vendor pulumi.StringInput `pulumi:"vendor"`
+}
+
+func (GetNodeNodeResourceDeviceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResourceDevice)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceDeviceArgs) ToGetNodeNodeResourceDeviceOutput() GetNodeNodeResourceDeviceOutput {
+	return i.ToGetNodeNodeResourceDeviceOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceDeviceArgs) ToGetNodeNodeResourceDeviceOutputWithContext(ctx context.Context) GetNodeNodeResourceDeviceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceDeviceOutput)
+}
+
+// GetNodeNodeResourceDeviceArrayInput is an input type that accepts GetNodeNodeResourceDeviceArray and GetNodeNodeResourceDeviceArrayOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceDeviceArrayInput` via:
+//
+//	GetNodeNodeResourceDeviceArray{ GetNodeNodeResourceDeviceArgs{...} }
+type GetNodeNodeResourceDeviceArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceDeviceArrayOutput() GetNodeNodeResourceDeviceArrayOutput
+	ToGetNodeNodeResourceDeviceArrayOutputWithContext(context.Context) GetNodeNodeResourceDeviceArrayOutput
+}
+
+type GetNodeNodeResourceDeviceArray []GetNodeNodeResourceDeviceInput
+
+func (GetNodeNodeResourceDeviceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResourceDevice)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceDeviceArray) ToGetNodeNodeResourceDeviceArrayOutput() GetNodeNodeResourceDeviceArrayOutput {
+	return i.ToGetNodeNodeResourceDeviceArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceDeviceArray) ToGetNodeNodeResourceDeviceArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceDeviceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceDeviceArrayOutput)
+}
+
+type GetNodeNodeResourceDeviceOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceDeviceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResourceDevice)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceDeviceOutput) ToGetNodeNodeResourceDeviceOutput() GetNodeNodeResourceDeviceOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceDeviceOutput) ToGetNodeNodeResourceDeviceOutputWithContext(ctx context.Context) GetNodeNodeResourceDeviceOutput {
+	return o
+}
+
+// `(int)` - The number of device instances.
+func (o GetNodeNodeResourceDeviceOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceDevice) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// `(string)` - The device name.
+func (o GetNodeNodeResourceDeviceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceDevice) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string)` - The device type.
+func (o GetNodeNodeResourceDeviceOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceDevice) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// `(string)` - The device vendor.
+func (o GetNodeNodeResourceDeviceOutput) Vendor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceDevice) string { return v.Vendor }).(pulumi.StringOutput)
+}
+
+type GetNodeNodeResourceDeviceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceDeviceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResourceDevice)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceDeviceArrayOutput) ToGetNodeNodeResourceDeviceArrayOutput() GetNodeNodeResourceDeviceArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceDeviceArrayOutput) ToGetNodeNodeResourceDeviceArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceDeviceArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceDeviceArrayOutput) Index(i pulumi.IntInput) GetNodeNodeResourceDeviceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeNodeResourceDevice {
+		return vs[0].([]GetNodeNodeResourceDevice)[vs[1].(int)]
+	}).(GetNodeNodeResourceDeviceOutput)
+}
+
+type GetNodeNodeResourceDisk struct {
+	// `(int)` - Reserved disk space in MB.
+	DiskMb int `pulumi:"diskMb"`
+}
+
+// GetNodeNodeResourceDiskInput is an input type that accepts GetNodeNodeResourceDiskArgs and GetNodeNodeResourceDiskOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceDiskInput` via:
+//
+//	GetNodeNodeResourceDiskArgs{...}
+type GetNodeNodeResourceDiskInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceDiskOutput() GetNodeNodeResourceDiskOutput
+	ToGetNodeNodeResourceDiskOutputWithContext(context.Context) GetNodeNodeResourceDiskOutput
+}
+
+type GetNodeNodeResourceDiskArgs struct {
+	// `(int)` - Reserved disk space in MB.
+	DiskMb pulumi.IntInput `pulumi:"diskMb"`
+}
+
+func (GetNodeNodeResourceDiskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResourceDisk)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceDiskArgs) ToGetNodeNodeResourceDiskOutput() GetNodeNodeResourceDiskOutput {
+	return i.ToGetNodeNodeResourceDiskOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceDiskArgs) ToGetNodeNodeResourceDiskOutputWithContext(ctx context.Context) GetNodeNodeResourceDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceDiskOutput)
+}
+
+// GetNodeNodeResourceDiskArrayInput is an input type that accepts GetNodeNodeResourceDiskArray and GetNodeNodeResourceDiskArrayOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceDiskArrayInput` via:
+//
+//	GetNodeNodeResourceDiskArray{ GetNodeNodeResourceDiskArgs{...} }
+type GetNodeNodeResourceDiskArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceDiskArrayOutput() GetNodeNodeResourceDiskArrayOutput
+	ToGetNodeNodeResourceDiskArrayOutputWithContext(context.Context) GetNodeNodeResourceDiskArrayOutput
+}
+
+type GetNodeNodeResourceDiskArray []GetNodeNodeResourceDiskInput
+
+func (GetNodeNodeResourceDiskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResourceDisk)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceDiskArray) ToGetNodeNodeResourceDiskArrayOutput() GetNodeNodeResourceDiskArrayOutput {
+	return i.ToGetNodeNodeResourceDiskArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceDiskArray) ToGetNodeNodeResourceDiskArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceDiskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceDiskArrayOutput)
+}
+
+type GetNodeNodeResourceDiskOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResourceDisk)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceDiskOutput) ToGetNodeNodeResourceDiskOutput() GetNodeNodeResourceDiskOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceDiskOutput) ToGetNodeNodeResourceDiskOutputWithContext(ctx context.Context) GetNodeNodeResourceDiskOutput {
+	return o
+}
+
+// `(int)` - Reserved disk space in MB.
+func (o GetNodeNodeResourceDiskOutput) DiskMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceDisk) int { return v.DiskMb }).(pulumi.IntOutput)
+}
+
+type GetNodeNodeResourceDiskArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceDiskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResourceDisk)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceDiskArrayOutput) ToGetNodeNodeResourceDiskArrayOutput() GetNodeNodeResourceDiskArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceDiskArrayOutput) ToGetNodeNodeResourceDiskArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceDiskArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceDiskArrayOutput) Index(i pulumi.IntInput) GetNodeNodeResourceDiskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeNodeResourceDisk {
+		return vs[0].([]GetNodeNodeResourceDisk)[vs[1].(int)]
+	}).(GetNodeNodeResourceDiskOutput)
+}
+
+type GetNodeNodeResourceMemory struct {
+	// `(int)` - Reserved memory in MB.
+	MemoryMb int `pulumi:"memoryMb"`
+}
+
+// GetNodeNodeResourceMemoryInput is an input type that accepts GetNodeNodeResourceMemoryArgs and GetNodeNodeResourceMemoryOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceMemoryInput` via:
+//
+//	GetNodeNodeResourceMemoryArgs{...}
+type GetNodeNodeResourceMemoryInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceMemoryOutput() GetNodeNodeResourceMemoryOutput
+	ToGetNodeNodeResourceMemoryOutputWithContext(context.Context) GetNodeNodeResourceMemoryOutput
+}
+
+type GetNodeNodeResourceMemoryArgs struct {
+	// `(int)` - Reserved memory in MB.
+	MemoryMb pulumi.IntInput `pulumi:"memoryMb"`
+}
+
+func (GetNodeNodeResourceMemoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResourceMemory)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceMemoryArgs) ToGetNodeNodeResourceMemoryOutput() GetNodeNodeResourceMemoryOutput {
+	return i.ToGetNodeNodeResourceMemoryOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceMemoryArgs) ToGetNodeNodeResourceMemoryOutputWithContext(ctx context.Context) GetNodeNodeResourceMemoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceMemoryOutput)
+}
+
+// GetNodeNodeResourceMemoryArrayInput is an input type that accepts GetNodeNodeResourceMemoryArray and GetNodeNodeResourceMemoryArrayOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceMemoryArrayInput` via:
+//
+//	GetNodeNodeResourceMemoryArray{ GetNodeNodeResourceMemoryArgs{...} }
+type GetNodeNodeResourceMemoryArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceMemoryArrayOutput() GetNodeNodeResourceMemoryArrayOutput
+	ToGetNodeNodeResourceMemoryArrayOutputWithContext(context.Context) GetNodeNodeResourceMemoryArrayOutput
+}
+
+type GetNodeNodeResourceMemoryArray []GetNodeNodeResourceMemoryInput
+
+func (GetNodeNodeResourceMemoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResourceMemory)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceMemoryArray) ToGetNodeNodeResourceMemoryArrayOutput() GetNodeNodeResourceMemoryArrayOutput {
+	return i.ToGetNodeNodeResourceMemoryArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceMemoryArray) ToGetNodeNodeResourceMemoryArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceMemoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceMemoryArrayOutput)
+}
+
+type GetNodeNodeResourceMemoryOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceMemoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResourceMemory)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceMemoryOutput) ToGetNodeNodeResourceMemoryOutput() GetNodeNodeResourceMemoryOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceMemoryOutput) ToGetNodeNodeResourceMemoryOutputWithContext(ctx context.Context) GetNodeNodeResourceMemoryOutput {
+	return o
+}
+
+// `(int)` - Reserved memory in MB.
+func (o GetNodeNodeResourceMemoryOutput) MemoryMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceMemory) int { return v.MemoryMb }).(pulumi.IntOutput)
+}
+
+type GetNodeNodeResourceMemoryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceMemoryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResourceMemory)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceMemoryArrayOutput) ToGetNodeNodeResourceMemoryArrayOutput() GetNodeNodeResourceMemoryArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceMemoryArrayOutput) ToGetNodeNodeResourceMemoryArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceMemoryArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceMemoryArrayOutput) Index(i pulumi.IntInput) GetNodeNodeResourceMemoryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeNodeResourceMemory {
+		return vs[0].([]GetNodeNodeResourceMemory)[vs[1].(int)]
+	}).(GetNodeNodeResourceMemoryOutput)
+}
+
+type GetNodeNodeResourceNetwork struct {
+	// `(string)` - The CIDR of the network.
+	Cidr string `pulumi:"cidr"`
+	// `(string)` - The network device.
+	Device string `pulumi:"device"`
+	// `(string)` - The IP address of the network.
+	Ip string `pulumi:"ip"`
+	// `(string)` - The network mode.
+	Mode string `pulumi:"mode"`
+}
+
+// GetNodeNodeResourceNetworkInput is an input type that accepts GetNodeNodeResourceNetworkArgs and GetNodeNodeResourceNetworkOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceNetworkInput` via:
+//
+//	GetNodeNodeResourceNetworkArgs{...}
+type GetNodeNodeResourceNetworkInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceNetworkOutput() GetNodeNodeResourceNetworkOutput
+	ToGetNodeNodeResourceNetworkOutputWithContext(context.Context) GetNodeNodeResourceNetworkOutput
+}
+
+type GetNodeNodeResourceNetworkArgs struct {
+	// `(string)` - The CIDR of the network.
+	Cidr pulumi.StringInput `pulumi:"cidr"`
+	// `(string)` - The network device.
+	Device pulumi.StringInput `pulumi:"device"`
+	// `(string)` - The IP address of the network.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// `(string)` - The network mode.
+	Mode pulumi.StringInput `pulumi:"mode"`
+}
+
+func (GetNodeNodeResourceNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResourceNetwork)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceNetworkArgs) ToGetNodeNodeResourceNetworkOutput() GetNodeNodeResourceNetworkOutput {
+	return i.ToGetNodeNodeResourceNetworkOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceNetworkArgs) ToGetNodeNodeResourceNetworkOutputWithContext(ctx context.Context) GetNodeNodeResourceNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceNetworkOutput)
+}
+
+// GetNodeNodeResourceNetworkArrayInput is an input type that accepts GetNodeNodeResourceNetworkArray and GetNodeNodeResourceNetworkArrayOutput values.
+// You can construct a concrete instance of `GetNodeNodeResourceNetworkArrayInput` via:
+//
+//	GetNodeNodeResourceNetworkArray{ GetNodeNodeResourceNetworkArgs{...} }
+type GetNodeNodeResourceNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeNodeResourceNetworkArrayOutput() GetNodeNodeResourceNetworkArrayOutput
+	ToGetNodeNodeResourceNetworkArrayOutputWithContext(context.Context) GetNodeNodeResourceNetworkArrayOutput
+}
+
+type GetNodeNodeResourceNetworkArray []GetNodeNodeResourceNetworkInput
+
+func (GetNodeNodeResourceNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResourceNetwork)(nil)).Elem()
+}
+
+func (i GetNodeNodeResourceNetworkArray) ToGetNodeNodeResourceNetworkArrayOutput() GetNodeNodeResourceNetworkArrayOutput {
+	return i.ToGetNodeNodeResourceNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeNodeResourceNetworkArray) ToGetNodeNodeResourceNetworkArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeNodeResourceNetworkArrayOutput)
+}
+
+type GetNodeNodeResourceNetworkOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeNodeResourceNetwork)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceNetworkOutput) ToGetNodeNodeResourceNetworkOutput() GetNodeNodeResourceNetworkOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceNetworkOutput) ToGetNodeNodeResourceNetworkOutputWithContext(ctx context.Context) GetNodeNodeResourceNetworkOutput {
+	return o
+}
+
+// `(string)` - The CIDR of the network.
+func (o GetNodeNodeResourceNetworkOutput) Cidr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceNetwork) string { return v.Cidr }).(pulumi.StringOutput)
+}
+
+// `(string)` - The network device.
+func (o GetNodeNodeResourceNetworkOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceNetwork) string { return v.Device }).(pulumi.StringOutput)
+}
+
+// `(string)` - The IP address of the network.
+func (o GetNodeNodeResourceNetworkOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceNetwork) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// `(string)` - The network mode.
+func (o GetNodeNodeResourceNetworkOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodeNodeResourceNetwork) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+type GetNodeNodeResourceNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeNodeResourceNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeNodeResourceNetwork)(nil)).Elem()
+}
+
+func (o GetNodeNodeResourceNetworkArrayOutput) ToGetNodeNodeResourceNetworkArrayOutput() GetNodeNodeResourceNetworkArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceNetworkArrayOutput) ToGetNodeNodeResourceNetworkArrayOutputWithContext(ctx context.Context) GetNodeNodeResourceNetworkArrayOutput {
+	return o
+}
+
+func (o GetNodeNodeResourceNetworkArrayOutput) Index(i pulumi.IntInput) GetNodeNodeResourceNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeNodeResourceNetwork {
+		return vs[0].([]GetNodeNodeResourceNetwork)[vs[1].(int)]
+	}).(GetNodeNodeResourceNetworkOutput)
 }
 
 type GetNodePoolSchedulerConfig struct {
@@ -9705,6 +13025,9 @@ type GetNodePoolsNodePool struct {
 	Meta map[string]string `pulumi:"meta"`
 	// `(string)` - The name of the node pool.
 	Name string `pulumi:"name"`
+	// `(string)` - The TTL applied to node identities issued to
+	// nodes in this pool.
+	NodeIdentityTtl string `pulumi:"nodeIdentityTtl"`
 	// `(block)` - Scheduler configuration for the node pool.
 	SchedulerConfigs []GetNodePoolsNodePoolSchedulerConfig `pulumi:"schedulerConfigs"`
 }
@@ -9728,6 +13051,9 @@ type GetNodePoolsNodePoolArgs struct {
 	Meta pulumi.StringMapInput `pulumi:"meta"`
 	// `(string)` - The name of the node pool.
 	Name pulumi.StringInput `pulumi:"name"`
+	// `(string)` - The TTL applied to node identities issued to
+	// nodes in this pool.
+	NodeIdentityTtl pulumi.StringInput `pulumi:"nodeIdentityTtl"`
 	// `(block)` - Scheduler configuration for the node pool.
 	SchedulerConfigs GetNodePoolsNodePoolSchedulerConfigArrayInput `pulumi:"schedulerConfigs"`
 }
@@ -9797,6 +13123,12 @@ func (o GetNodePoolsNodePoolOutput) Meta() pulumi.StringMapOutput {
 // `(string)` - The name of the node pool.
 func (o GetNodePoolsNodePoolOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string)` - The TTL applied to node identities issued to
+// nodes in this pool.
+func (o GetNodePoolsNodePoolOutput) NodeIdentityTtl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodePoolsNodePool) string { return v.NodeIdentityTtl }).(pulumi.StringOutput)
 }
 
 // `(block)` - Scheduler configuration for the node pool.
@@ -9937,6 +13269,1909 @@ func (o GetNodePoolsNodePoolSchedulerConfigArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodePoolsNodePoolSchedulerConfig {
 		return vs[0].([]GetNodePoolsNodePoolSchedulerConfig)[vs[1].(int)]
 	}).(GetNodePoolsNodePoolSchedulerConfigOutput)
+}
+
+type GetNodeReservedResource struct {
+	// `(list)` - Reserved CPU resources.
+	Cpus []GetNodeReservedResourceCpus `pulumi:"cpus"`
+	// `(list)` - Reserved disk resources.
+	Disks []GetNodeReservedResourceDisk `pulumi:"disks"`
+	// `(list)` - Reserved memory resources.
+	Memories []GetNodeReservedResourceMemory `pulumi:"memories"`
+	// `(map of string)` - Reserved network resources.
+	Networks map[string]string `pulumi:"networks"`
+}
+
+// GetNodeReservedResourceInput is an input type that accepts GetNodeReservedResourceArgs and GetNodeReservedResourceOutput values.
+// You can construct a concrete instance of `GetNodeReservedResourceInput` via:
+//
+//	GetNodeReservedResourceArgs{...}
+type GetNodeReservedResourceInput interface {
+	pulumi.Input
+
+	ToGetNodeReservedResourceOutput() GetNodeReservedResourceOutput
+	ToGetNodeReservedResourceOutputWithContext(context.Context) GetNodeReservedResourceOutput
+}
+
+type GetNodeReservedResourceArgs struct {
+	// `(list)` - Reserved CPU resources.
+	Cpus GetNodeReservedResourceCpusArrayInput `pulumi:"cpus"`
+	// `(list)` - Reserved disk resources.
+	Disks GetNodeReservedResourceDiskArrayInput `pulumi:"disks"`
+	// `(list)` - Reserved memory resources.
+	Memories GetNodeReservedResourceMemoryArrayInput `pulumi:"memories"`
+	// `(map of string)` - Reserved network resources.
+	Networks pulumi.StringMapInput `pulumi:"networks"`
+}
+
+func (GetNodeReservedResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeReservedResource)(nil)).Elem()
+}
+
+func (i GetNodeReservedResourceArgs) ToGetNodeReservedResourceOutput() GetNodeReservedResourceOutput {
+	return i.ToGetNodeReservedResourceOutputWithContext(context.Background())
+}
+
+func (i GetNodeReservedResourceArgs) ToGetNodeReservedResourceOutputWithContext(ctx context.Context) GetNodeReservedResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeReservedResourceOutput)
+}
+
+// GetNodeReservedResourceArrayInput is an input type that accepts GetNodeReservedResourceArray and GetNodeReservedResourceArrayOutput values.
+// You can construct a concrete instance of `GetNodeReservedResourceArrayInput` via:
+//
+//	GetNodeReservedResourceArray{ GetNodeReservedResourceArgs{...} }
+type GetNodeReservedResourceArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeReservedResourceArrayOutput() GetNodeReservedResourceArrayOutput
+	ToGetNodeReservedResourceArrayOutputWithContext(context.Context) GetNodeReservedResourceArrayOutput
+}
+
+type GetNodeReservedResourceArray []GetNodeReservedResourceInput
+
+func (GetNodeReservedResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeReservedResource)(nil)).Elem()
+}
+
+func (i GetNodeReservedResourceArray) ToGetNodeReservedResourceArrayOutput() GetNodeReservedResourceArrayOutput {
+	return i.ToGetNodeReservedResourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeReservedResourceArray) ToGetNodeReservedResourceArrayOutputWithContext(ctx context.Context) GetNodeReservedResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeReservedResourceArrayOutput)
+}
+
+type GetNodeReservedResourceOutput struct{ *pulumi.OutputState }
+
+func (GetNodeReservedResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeReservedResource)(nil)).Elem()
+}
+
+func (o GetNodeReservedResourceOutput) ToGetNodeReservedResourceOutput() GetNodeReservedResourceOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceOutput) ToGetNodeReservedResourceOutputWithContext(ctx context.Context) GetNodeReservedResourceOutput {
+	return o
+}
+
+// `(list)` - Reserved CPU resources.
+func (o GetNodeReservedResourceOutput) Cpus() GetNodeReservedResourceCpusArrayOutput {
+	return o.ApplyT(func(v GetNodeReservedResource) []GetNodeReservedResourceCpus { return v.Cpus }).(GetNodeReservedResourceCpusArrayOutput)
+}
+
+// `(list)` - Reserved disk resources.
+func (o GetNodeReservedResourceOutput) Disks() GetNodeReservedResourceDiskArrayOutput {
+	return o.ApplyT(func(v GetNodeReservedResource) []GetNodeReservedResourceDisk { return v.Disks }).(GetNodeReservedResourceDiskArrayOutput)
+}
+
+// `(list)` - Reserved memory resources.
+func (o GetNodeReservedResourceOutput) Memories() GetNodeReservedResourceMemoryArrayOutput {
+	return o.ApplyT(func(v GetNodeReservedResource) []GetNodeReservedResourceMemory { return v.Memories }).(GetNodeReservedResourceMemoryArrayOutput)
+}
+
+// `(map of string)` - Reserved network resources.
+func (o GetNodeReservedResourceOutput) Networks() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodeReservedResource) map[string]string { return v.Networks }).(pulumi.StringMapOutput)
+}
+
+type GetNodeReservedResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeReservedResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeReservedResource)(nil)).Elem()
+}
+
+func (o GetNodeReservedResourceArrayOutput) ToGetNodeReservedResourceArrayOutput() GetNodeReservedResourceArrayOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceArrayOutput) ToGetNodeReservedResourceArrayOutputWithContext(ctx context.Context) GetNodeReservedResourceArrayOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceArrayOutput) Index(i pulumi.IntInput) GetNodeReservedResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeReservedResource {
+		return vs[0].([]GetNodeReservedResource)[vs[1].(int)]
+	}).(GetNodeReservedResourceOutput)
+}
+
+type GetNodeReservedResourceCpus struct {
+	// `(int)` - Reserved CPU shares.
+	CpuShares int `pulumi:"cpuShares"`
+}
+
+// GetNodeReservedResourceCpusInput is an input type that accepts GetNodeReservedResourceCpusArgs and GetNodeReservedResourceCpusOutput values.
+// You can construct a concrete instance of `GetNodeReservedResourceCpusInput` via:
+//
+//	GetNodeReservedResourceCpusArgs{...}
+type GetNodeReservedResourceCpusInput interface {
+	pulumi.Input
+
+	ToGetNodeReservedResourceCpusOutput() GetNodeReservedResourceCpusOutput
+	ToGetNodeReservedResourceCpusOutputWithContext(context.Context) GetNodeReservedResourceCpusOutput
+}
+
+type GetNodeReservedResourceCpusArgs struct {
+	// `(int)` - Reserved CPU shares.
+	CpuShares pulumi.IntInput `pulumi:"cpuShares"`
+}
+
+func (GetNodeReservedResourceCpusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeReservedResourceCpus)(nil)).Elem()
+}
+
+func (i GetNodeReservedResourceCpusArgs) ToGetNodeReservedResourceCpusOutput() GetNodeReservedResourceCpusOutput {
+	return i.ToGetNodeReservedResourceCpusOutputWithContext(context.Background())
+}
+
+func (i GetNodeReservedResourceCpusArgs) ToGetNodeReservedResourceCpusOutputWithContext(ctx context.Context) GetNodeReservedResourceCpusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeReservedResourceCpusOutput)
+}
+
+// GetNodeReservedResourceCpusArrayInput is an input type that accepts GetNodeReservedResourceCpusArray and GetNodeReservedResourceCpusArrayOutput values.
+// You can construct a concrete instance of `GetNodeReservedResourceCpusArrayInput` via:
+//
+//	GetNodeReservedResourceCpusArray{ GetNodeReservedResourceCpusArgs{...} }
+type GetNodeReservedResourceCpusArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeReservedResourceCpusArrayOutput() GetNodeReservedResourceCpusArrayOutput
+	ToGetNodeReservedResourceCpusArrayOutputWithContext(context.Context) GetNodeReservedResourceCpusArrayOutput
+}
+
+type GetNodeReservedResourceCpusArray []GetNodeReservedResourceCpusInput
+
+func (GetNodeReservedResourceCpusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeReservedResourceCpus)(nil)).Elem()
+}
+
+func (i GetNodeReservedResourceCpusArray) ToGetNodeReservedResourceCpusArrayOutput() GetNodeReservedResourceCpusArrayOutput {
+	return i.ToGetNodeReservedResourceCpusArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeReservedResourceCpusArray) ToGetNodeReservedResourceCpusArrayOutputWithContext(ctx context.Context) GetNodeReservedResourceCpusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeReservedResourceCpusArrayOutput)
+}
+
+type GetNodeReservedResourceCpusOutput struct{ *pulumi.OutputState }
+
+func (GetNodeReservedResourceCpusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeReservedResourceCpus)(nil)).Elem()
+}
+
+func (o GetNodeReservedResourceCpusOutput) ToGetNodeReservedResourceCpusOutput() GetNodeReservedResourceCpusOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceCpusOutput) ToGetNodeReservedResourceCpusOutputWithContext(ctx context.Context) GetNodeReservedResourceCpusOutput {
+	return o
+}
+
+// `(int)` - Reserved CPU shares.
+func (o GetNodeReservedResourceCpusOutput) CpuShares() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeReservedResourceCpus) int { return v.CpuShares }).(pulumi.IntOutput)
+}
+
+type GetNodeReservedResourceCpusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeReservedResourceCpusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeReservedResourceCpus)(nil)).Elem()
+}
+
+func (o GetNodeReservedResourceCpusArrayOutput) ToGetNodeReservedResourceCpusArrayOutput() GetNodeReservedResourceCpusArrayOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceCpusArrayOutput) ToGetNodeReservedResourceCpusArrayOutputWithContext(ctx context.Context) GetNodeReservedResourceCpusArrayOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceCpusArrayOutput) Index(i pulumi.IntInput) GetNodeReservedResourceCpusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeReservedResourceCpus {
+		return vs[0].([]GetNodeReservedResourceCpus)[vs[1].(int)]
+	}).(GetNodeReservedResourceCpusOutput)
+}
+
+type GetNodeReservedResourceDisk struct {
+	// `(int)` - Reserved disk space in MB.
+	DiskMb int `pulumi:"diskMb"`
+}
+
+// GetNodeReservedResourceDiskInput is an input type that accepts GetNodeReservedResourceDiskArgs and GetNodeReservedResourceDiskOutput values.
+// You can construct a concrete instance of `GetNodeReservedResourceDiskInput` via:
+//
+//	GetNodeReservedResourceDiskArgs{...}
+type GetNodeReservedResourceDiskInput interface {
+	pulumi.Input
+
+	ToGetNodeReservedResourceDiskOutput() GetNodeReservedResourceDiskOutput
+	ToGetNodeReservedResourceDiskOutputWithContext(context.Context) GetNodeReservedResourceDiskOutput
+}
+
+type GetNodeReservedResourceDiskArgs struct {
+	// `(int)` - Reserved disk space in MB.
+	DiskMb pulumi.IntInput `pulumi:"diskMb"`
+}
+
+func (GetNodeReservedResourceDiskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeReservedResourceDisk)(nil)).Elem()
+}
+
+func (i GetNodeReservedResourceDiskArgs) ToGetNodeReservedResourceDiskOutput() GetNodeReservedResourceDiskOutput {
+	return i.ToGetNodeReservedResourceDiskOutputWithContext(context.Background())
+}
+
+func (i GetNodeReservedResourceDiskArgs) ToGetNodeReservedResourceDiskOutputWithContext(ctx context.Context) GetNodeReservedResourceDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeReservedResourceDiskOutput)
+}
+
+// GetNodeReservedResourceDiskArrayInput is an input type that accepts GetNodeReservedResourceDiskArray and GetNodeReservedResourceDiskArrayOutput values.
+// You can construct a concrete instance of `GetNodeReservedResourceDiskArrayInput` via:
+//
+//	GetNodeReservedResourceDiskArray{ GetNodeReservedResourceDiskArgs{...} }
+type GetNodeReservedResourceDiskArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeReservedResourceDiskArrayOutput() GetNodeReservedResourceDiskArrayOutput
+	ToGetNodeReservedResourceDiskArrayOutputWithContext(context.Context) GetNodeReservedResourceDiskArrayOutput
+}
+
+type GetNodeReservedResourceDiskArray []GetNodeReservedResourceDiskInput
+
+func (GetNodeReservedResourceDiskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeReservedResourceDisk)(nil)).Elem()
+}
+
+func (i GetNodeReservedResourceDiskArray) ToGetNodeReservedResourceDiskArrayOutput() GetNodeReservedResourceDiskArrayOutput {
+	return i.ToGetNodeReservedResourceDiskArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeReservedResourceDiskArray) ToGetNodeReservedResourceDiskArrayOutputWithContext(ctx context.Context) GetNodeReservedResourceDiskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeReservedResourceDiskArrayOutput)
+}
+
+type GetNodeReservedResourceDiskOutput struct{ *pulumi.OutputState }
+
+func (GetNodeReservedResourceDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeReservedResourceDisk)(nil)).Elem()
+}
+
+func (o GetNodeReservedResourceDiskOutput) ToGetNodeReservedResourceDiskOutput() GetNodeReservedResourceDiskOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceDiskOutput) ToGetNodeReservedResourceDiskOutputWithContext(ctx context.Context) GetNodeReservedResourceDiskOutput {
+	return o
+}
+
+// `(int)` - Reserved disk space in MB.
+func (o GetNodeReservedResourceDiskOutput) DiskMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeReservedResourceDisk) int { return v.DiskMb }).(pulumi.IntOutput)
+}
+
+type GetNodeReservedResourceDiskArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeReservedResourceDiskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeReservedResourceDisk)(nil)).Elem()
+}
+
+func (o GetNodeReservedResourceDiskArrayOutput) ToGetNodeReservedResourceDiskArrayOutput() GetNodeReservedResourceDiskArrayOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceDiskArrayOutput) ToGetNodeReservedResourceDiskArrayOutputWithContext(ctx context.Context) GetNodeReservedResourceDiskArrayOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceDiskArrayOutput) Index(i pulumi.IntInput) GetNodeReservedResourceDiskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeReservedResourceDisk {
+		return vs[0].([]GetNodeReservedResourceDisk)[vs[1].(int)]
+	}).(GetNodeReservedResourceDiskOutput)
+}
+
+type GetNodeReservedResourceMemory struct {
+	// `(int)` - Reserved memory in MB.
+	MemoryMb int `pulumi:"memoryMb"`
+}
+
+// GetNodeReservedResourceMemoryInput is an input type that accepts GetNodeReservedResourceMemoryArgs and GetNodeReservedResourceMemoryOutput values.
+// You can construct a concrete instance of `GetNodeReservedResourceMemoryInput` via:
+//
+//	GetNodeReservedResourceMemoryArgs{...}
+type GetNodeReservedResourceMemoryInput interface {
+	pulumi.Input
+
+	ToGetNodeReservedResourceMemoryOutput() GetNodeReservedResourceMemoryOutput
+	ToGetNodeReservedResourceMemoryOutputWithContext(context.Context) GetNodeReservedResourceMemoryOutput
+}
+
+type GetNodeReservedResourceMemoryArgs struct {
+	// `(int)` - Reserved memory in MB.
+	MemoryMb pulumi.IntInput `pulumi:"memoryMb"`
+}
+
+func (GetNodeReservedResourceMemoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeReservedResourceMemory)(nil)).Elem()
+}
+
+func (i GetNodeReservedResourceMemoryArgs) ToGetNodeReservedResourceMemoryOutput() GetNodeReservedResourceMemoryOutput {
+	return i.ToGetNodeReservedResourceMemoryOutputWithContext(context.Background())
+}
+
+func (i GetNodeReservedResourceMemoryArgs) ToGetNodeReservedResourceMemoryOutputWithContext(ctx context.Context) GetNodeReservedResourceMemoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeReservedResourceMemoryOutput)
+}
+
+// GetNodeReservedResourceMemoryArrayInput is an input type that accepts GetNodeReservedResourceMemoryArray and GetNodeReservedResourceMemoryArrayOutput values.
+// You can construct a concrete instance of `GetNodeReservedResourceMemoryArrayInput` via:
+//
+//	GetNodeReservedResourceMemoryArray{ GetNodeReservedResourceMemoryArgs{...} }
+type GetNodeReservedResourceMemoryArrayInput interface {
+	pulumi.Input
+
+	ToGetNodeReservedResourceMemoryArrayOutput() GetNodeReservedResourceMemoryArrayOutput
+	ToGetNodeReservedResourceMemoryArrayOutputWithContext(context.Context) GetNodeReservedResourceMemoryArrayOutput
+}
+
+type GetNodeReservedResourceMemoryArray []GetNodeReservedResourceMemoryInput
+
+func (GetNodeReservedResourceMemoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeReservedResourceMemory)(nil)).Elem()
+}
+
+func (i GetNodeReservedResourceMemoryArray) ToGetNodeReservedResourceMemoryArrayOutput() GetNodeReservedResourceMemoryArrayOutput {
+	return i.ToGetNodeReservedResourceMemoryArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodeReservedResourceMemoryArray) ToGetNodeReservedResourceMemoryArrayOutputWithContext(ctx context.Context) GetNodeReservedResourceMemoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodeReservedResourceMemoryArrayOutput)
+}
+
+type GetNodeReservedResourceMemoryOutput struct{ *pulumi.OutputState }
+
+func (GetNodeReservedResourceMemoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodeReservedResourceMemory)(nil)).Elem()
+}
+
+func (o GetNodeReservedResourceMemoryOutput) ToGetNodeReservedResourceMemoryOutput() GetNodeReservedResourceMemoryOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceMemoryOutput) ToGetNodeReservedResourceMemoryOutputWithContext(ctx context.Context) GetNodeReservedResourceMemoryOutput {
+	return o
+}
+
+// `(int)` - Reserved memory in MB.
+func (o GetNodeReservedResourceMemoryOutput) MemoryMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodeReservedResourceMemory) int { return v.MemoryMb }).(pulumi.IntOutput)
+}
+
+type GetNodeReservedResourceMemoryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodeReservedResourceMemoryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodeReservedResourceMemory)(nil)).Elem()
+}
+
+func (o GetNodeReservedResourceMemoryArrayOutput) ToGetNodeReservedResourceMemoryArrayOutput() GetNodeReservedResourceMemoryArrayOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceMemoryArrayOutput) ToGetNodeReservedResourceMemoryArrayOutputWithContext(ctx context.Context) GetNodeReservedResourceMemoryArrayOutput {
+	return o
+}
+
+func (o GetNodeReservedResourceMemoryArrayOutput) Index(i pulumi.IntInput) GetNodeReservedResourceMemoryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodeReservedResourceMemory {
+		return vs[0].([]GetNodeReservedResourceMemory)[vs[1].(int)]
+	}).(GetNodeReservedResourceMemoryOutput)
+}
+
+type GetNodesNode struct {
+	// `(string)` - The address of the node.
+	Address string `pulumi:"address"`
+	// `(map of string)` - Driver-specific attributes.
+	Attributes map[string]string `pulumi:"attributes"`
+	// `(string)` - The datacenter of the node.
+	Datacenter string `pulumi:"datacenter"`
+	// `(bool)` - Whether the node is in drain mode. This value is ephemeral
+	// and can change without an agent restart.
+	Drain bool `pulumi:"drain"`
+	// `(list of drivers)` - A list of driver information for the node.
+	Drivers []GetNodesNodeDriver `pulumi:"drivers"`
+	// `(string)` - The ID of the node.
+	Id string `pulumi:"id"`
+	// `(string)` - The device name.
+	Name string `pulumi:"name"`
+	// `(string)` - The node class of the node.
+	NodeClass string `pulumi:"nodeClass"`
+	// `(string)` - The node pool of the node.
+	NodePool string `pulumi:"nodePool"`
+	// `(list)` - Resources available on the node. Only populated
+	// when the `resources` parameter is set to true.
+	NodeResources []GetNodesNodeNodeResource `pulumi:"nodeResources"`
+	// `(list)` - Resources reserved on the node. Only populated
+	// when the `resources` parameter is set to true.
+	ReservedResources []GetNodesNodeReservedResource `pulumi:"reservedResources"`
+	// `(string)` - The scheduling eligibility of the node.
+	// This value is ephemeral and can change without an agent restart.
+	SchedulingEligibility string `pulumi:"schedulingEligibility"`
+	// `(string)` - The status of the node. This value is ephemeral and
+	// can change without an agent restart.
+	Status string `pulumi:"status"`
+	// `(string)` - The status description of the node. This
+	// value is ephemeral and can change without an agent restart.
+	StatusDescription string `pulumi:"statusDescription"`
+	// `(string)` - The Nomad version of the node.
+	Version string `pulumi:"version"`
+}
+
+// GetNodesNodeInput is an input type that accepts GetNodesNodeArgs and GetNodesNodeOutput values.
+// You can construct a concrete instance of `GetNodesNodeInput` via:
+//
+//	GetNodesNodeArgs{...}
+type GetNodesNodeInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeOutput() GetNodesNodeOutput
+	ToGetNodesNodeOutputWithContext(context.Context) GetNodesNodeOutput
+}
+
+type GetNodesNodeArgs struct {
+	// `(string)` - The address of the node.
+	Address pulumi.StringInput `pulumi:"address"`
+	// `(map of string)` - Driver-specific attributes.
+	Attributes pulumi.StringMapInput `pulumi:"attributes"`
+	// `(string)` - The datacenter of the node.
+	Datacenter pulumi.StringInput `pulumi:"datacenter"`
+	// `(bool)` - Whether the node is in drain mode. This value is ephemeral
+	// and can change without an agent restart.
+	Drain pulumi.BoolInput `pulumi:"drain"`
+	// `(list of drivers)` - A list of driver information for the node.
+	Drivers GetNodesNodeDriverArrayInput `pulumi:"drivers"`
+	// `(string)` - The ID of the node.
+	Id pulumi.StringInput `pulumi:"id"`
+	// `(string)` - The device name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `(string)` - The node class of the node.
+	NodeClass pulumi.StringInput `pulumi:"nodeClass"`
+	// `(string)` - The node pool of the node.
+	NodePool pulumi.StringInput `pulumi:"nodePool"`
+	// `(list)` - Resources available on the node. Only populated
+	// when the `resources` parameter is set to true.
+	NodeResources GetNodesNodeNodeResourceArrayInput `pulumi:"nodeResources"`
+	// `(list)` - Resources reserved on the node. Only populated
+	// when the `resources` parameter is set to true.
+	ReservedResources GetNodesNodeReservedResourceArrayInput `pulumi:"reservedResources"`
+	// `(string)` - The scheduling eligibility of the node.
+	// This value is ephemeral and can change without an agent restart.
+	SchedulingEligibility pulumi.StringInput `pulumi:"schedulingEligibility"`
+	// `(string)` - The status of the node. This value is ephemeral and
+	// can change without an agent restart.
+	Status pulumi.StringInput `pulumi:"status"`
+	// `(string)` - The status description of the node. This
+	// value is ephemeral and can change without an agent restart.
+	StatusDescription pulumi.StringInput `pulumi:"statusDescription"`
+	// `(string)` - The Nomad version of the node.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetNodesNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNode)(nil)).Elem()
+}
+
+func (i GetNodesNodeArgs) ToGetNodesNodeOutput() GetNodesNodeOutput {
+	return i.ToGetNodesNodeOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeArgs) ToGetNodesNodeOutputWithContext(ctx context.Context) GetNodesNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeOutput)
+}
+
+// GetNodesNodeArrayInput is an input type that accepts GetNodesNodeArray and GetNodesNodeArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeArrayInput` via:
+//
+//	GetNodesNodeArray{ GetNodesNodeArgs{...} }
+type GetNodesNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeArrayOutput() GetNodesNodeArrayOutput
+	ToGetNodesNodeArrayOutputWithContext(context.Context) GetNodesNodeArrayOutput
+}
+
+type GetNodesNodeArray []GetNodesNodeInput
+
+func (GetNodesNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNode)(nil)).Elem()
+}
+
+func (i GetNodesNodeArray) ToGetNodesNodeArrayOutput() GetNodesNodeArrayOutput {
+	return i.ToGetNodesNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeArray) ToGetNodesNodeArrayOutputWithContext(ctx context.Context) GetNodesNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeArrayOutput)
+}
+
+type GetNodesNodeOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNode)(nil)).Elem()
+}
+
+func (o GetNodesNodeOutput) ToGetNodesNodeOutput() GetNodesNodeOutput {
+	return o
+}
+
+func (o GetNodesNodeOutput) ToGetNodesNodeOutputWithContext(ctx context.Context) GetNodesNodeOutput {
+	return o
+}
+
+// `(string)` - The address of the node.
+func (o GetNodesNodeOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// `(map of string)` - Driver-specific attributes.
+func (o GetNodesNodeOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodesNode) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
+}
+
+// `(string)` - The datacenter of the node.
+func (o GetNodesNodeOutput) Datacenter() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.Datacenter }).(pulumi.StringOutput)
+}
+
+// `(bool)` - Whether the node is in drain mode. This value is ephemeral
+// and can change without an agent restart.
+func (o GetNodesNodeOutput) Drain() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodesNode) bool { return v.Drain }).(pulumi.BoolOutput)
+}
+
+// `(list of drivers)` - A list of driver information for the node.
+func (o GetNodesNodeOutput) Drivers() GetNodesNodeDriverArrayOutput {
+	return o.ApplyT(func(v GetNodesNode) []GetNodesNodeDriver { return v.Drivers }).(GetNodesNodeDriverArrayOutput)
+}
+
+// `(string)` - The ID of the node.
+func (o GetNodesNodeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// `(string)` - The device name.
+func (o GetNodesNodeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string)` - The node class of the node.
+func (o GetNodesNodeOutput) NodeClass() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.NodeClass }).(pulumi.StringOutput)
+}
+
+// `(string)` - The node pool of the node.
+func (o GetNodesNodeOutput) NodePool() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.NodePool }).(pulumi.StringOutput)
+}
+
+// `(list)` - Resources available on the node. Only populated
+// when the `resources` parameter is set to true.
+func (o GetNodesNodeOutput) NodeResources() GetNodesNodeNodeResourceArrayOutput {
+	return o.ApplyT(func(v GetNodesNode) []GetNodesNodeNodeResource { return v.NodeResources }).(GetNodesNodeNodeResourceArrayOutput)
+}
+
+// `(list)` - Resources reserved on the node. Only populated
+// when the `resources` parameter is set to true.
+func (o GetNodesNodeOutput) ReservedResources() GetNodesNodeReservedResourceArrayOutput {
+	return o.ApplyT(func(v GetNodesNode) []GetNodesNodeReservedResource { return v.ReservedResources }).(GetNodesNodeReservedResourceArrayOutput)
+}
+
+// `(string)` - The scheduling eligibility of the node.
+// This value is ephemeral and can change without an agent restart.
+func (o GetNodesNodeOutput) SchedulingEligibility() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.SchedulingEligibility }).(pulumi.StringOutput)
+}
+
+// `(string)` - The status of the node. This value is ephemeral and
+// can change without an agent restart.
+func (o GetNodesNodeOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// `(string)` - The status description of the node. This
+// value is ephemeral and can change without an agent restart.
+func (o GetNodesNodeOutput) StatusDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.StatusDescription }).(pulumi.StringOutput)
+}
+
+// `(string)` - The Nomad version of the node.
+func (o GetNodesNodeOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNode) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetNodesNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNode)(nil)).Elem()
+}
+
+func (o GetNodesNodeArrayOutput) ToGetNodesNodeArrayOutput() GetNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeArrayOutput) ToGetNodesNodeArrayOutputWithContext(ctx context.Context) GetNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeArrayOutput) Index(i pulumi.IntInput) GetNodesNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNode {
+		return vs[0].([]GetNodesNode)[vs[1].(int)]
+	}).(GetNodesNodeOutput)
+}
+
+type GetNodesNodeDriver struct {
+	// `(map of string)` - Driver-specific attributes.
+	Attributes map[string]string `pulumi:"attributes"`
+	// `(bool)` - Whether the driver is detected.
+	Detected bool `pulumi:"detected"`
+	// `(bool)` - Whether the driver is healthy.
+	Healthy bool `pulumi:"healthy"`
+	// `(string)` - The device name.
+	Name string `pulumi:"name"`
+}
+
+// GetNodesNodeDriverInput is an input type that accepts GetNodesNodeDriverArgs and GetNodesNodeDriverOutput values.
+// You can construct a concrete instance of `GetNodesNodeDriverInput` via:
+//
+//	GetNodesNodeDriverArgs{...}
+type GetNodesNodeDriverInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeDriverOutput() GetNodesNodeDriverOutput
+	ToGetNodesNodeDriverOutputWithContext(context.Context) GetNodesNodeDriverOutput
+}
+
+type GetNodesNodeDriverArgs struct {
+	// `(map of string)` - Driver-specific attributes.
+	Attributes pulumi.StringMapInput `pulumi:"attributes"`
+	// `(bool)` - Whether the driver is detected.
+	Detected pulumi.BoolInput `pulumi:"detected"`
+	// `(bool)` - Whether the driver is healthy.
+	Healthy pulumi.BoolInput `pulumi:"healthy"`
+	// `(string)` - The device name.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetNodesNodeDriverArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeDriver)(nil)).Elem()
+}
+
+func (i GetNodesNodeDriverArgs) ToGetNodesNodeDriverOutput() GetNodesNodeDriverOutput {
+	return i.ToGetNodesNodeDriverOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeDriverArgs) ToGetNodesNodeDriverOutputWithContext(ctx context.Context) GetNodesNodeDriverOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeDriverOutput)
+}
+
+// GetNodesNodeDriverArrayInput is an input type that accepts GetNodesNodeDriverArray and GetNodesNodeDriverArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeDriverArrayInput` via:
+//
+//	GetNodesNodeDriverArray{ GetNodesNodeDriverArgs{...} }
+type GetNodesNodeDriverArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeDriverArrayOutput() GetNodesNodeDriverArrayOutput
+	ToGetNodesNodeDriverArrayOutputWithContext(context.Context) GetNodesNodeDriverArrayOutput
+}
+
+type GetNodesNodeDriverArray []GetNodesNodeDriverInput
+
+func (GetNodesNodeDriverArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeDriver)(nil)).Elem()
+}
+
+func (i GetNodesNodeDriverArray) ToGetNodesNodeDriverArrayOutput() GetNodesNodeDriverArrayOutput {
+	return i.ToGetNodesNodeDriverArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeDriverArray) ToGetNodesNodeDriverArrayOutputWithContext(ctx context.Context) GetNodesNodeDriverArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeDriverArrayOutput)
+}
+
+type GetNodesNodeDriverOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeDriverOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeDriver)(nil)).Elem()
+}
+
+func (o GetNodesNodeDriverOutput) ToGetNodesNodeDriverOutput() GetNodesNodeDriverOutput {
+	return o
+}
+
+func (o GetNodesNodeDriverOutput) ToGetNodesNodeDriverOutputWithContext(ctx context.Context) GetNodesNodeDriverOutput {
+	return o
+}
+
+// `(map of string)` - Driver-specific attributes.
+func (o GetNodesNodeDriverOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodesNodeDriver) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
+}
+
+// `(bool)` - Whether the driver is detected.
+func (o GetNodesNodeDriverOutput) Detected() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodesNodeDriver) bool { return v.Detected }).(pulumi.BoolOutput)
+}
+
+// `(bool)` - Whether the driver is healthy.
+func (o GetNodesNodeDriverOutput) Healthy() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetNodesNodeDriver) bool { return v.Healthy }).(pulumi.BoolOutput)
+}
+
+// `(string)` - The device name.
+func (o GetNodesNodeDriverOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeDriver) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetNodesNodeDriverArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeDriverArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeDriver)(nil)).Elem()
+}
+
+func (o GetNodesNodeDriverArrayOutput) ToGetNodesNodeDriverArrayOutput() GetNodesNodeDriverArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeDriverArrayOutput) ToGetNodesNodeDriverArrayOutputWithContext(ctx context.Context) GetNodesNodeDriverArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeDriverArrayOutput) Index(i pulumi.IntInput) GetNodesNodeDriverOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeDriver {
+		return vs[0].([]GetNodesNodeDriver)[vs[1].(int)]
+	}).(GetNodesNodeDriverOutput)
+}
+
+type GetNodesNodeNodeResource struct {
+	// `(list)` - Reserved CPU resources.
+	Cpus []GetNodesNodeNodeResourceCpus `pulumi:"cpus"`
+	// `(list)` - Device resources on the node (GPUs, etc.).
+	Devices []GetNodesNodeNodeResourceDevice `pulumi:"devices"`
+	// `(list)` - Reserved disk resources.
+	Disks []GetNodesNodeNodeResourceDisk `pulumi:"disks"`
+	// `(int)` - Maximum dynamic port for this node.
+	MaxDynamicPort int `pulumi:"maxDynamicPort"`
+	// `(list)` - Reserved memory resources.
+	Memories []GetNodesNodeNodeResourceMemory `pulumi:"memories"`
+	// `(int)` - Minimum dynamic port for this node.
+	MinDynamicPort int `pulumi:"minDynamicPort"`
+	// `(map of string)` - Reserved network resources.
+	Networks []GetNodesNodeNodeResourceNetwork `pulumi:"networks"`
+}
+
+// GetNodesNodeNodeResourceInput is an input type that accepts GetNodesNodeNodeResourceArgs and GetNodesNodeNodeResourceOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceInput` via:
+//
+//	GetNodesNodeNodeResourceArgs{...}
+type GetNodesNodeNodeResourceInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceOutput() GetNodesNodeNodeResourceOutput
+	ToGetNodesNodeNodeResourceOutputWithContext(context.Context) GetNodesNodeNodeResourceOutput
+}
+
+type GetNodesNodeNodeResourceArgs struct {
+	// `(list)` - Reserved CPU resources.
+	Cpus GetNodesNodeNodeResourceCpusArrayInput `pulumi:"cpus"`
+	// `(list)` - Device resources on the node (GPUs, etc.).
+	Devices GetNodesNodeNodeResourceDeviceArrayInput `pulumi:"devices"`
+	// `(list)` - Reserved disk resources.
+	Disks GetNodesNodeNodeResourceDiskArrayInput `pulumi:"disks"`
+	// `(int)` - Maximum dynamic port for this node.
+	MaxDynamicPort pulumi.IntInput `pulumi:"maxDynamicPort"`
+	// `(list)` - Reserved memory resources.
+	Memories GetNodesNodeNodeResourceMemoryArrayInput `pulumi:"memories"`
+	// `(int)` - Minimum dynamic port for this node.
+	MinDynamicPort pulumi.IntInput `pulumi:"minDynamicPort"`
+	// `(map of string)` - Reserved network resources.
+	Networks GetNodesNodeNodeResourceNetworkArrayInput `pulumi:"networks"`
+}
+
+func (GetNodesNodeNodeResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResource)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceArgs) ToGetNodesNodeNodeResourceOutput() GetNodesNodeNodeResourceOutput {
+	return i.ToGetNodesNodeNodeResourceOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceArgs) ToGetNodesNodeNodeResourceOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceOutput)
+}
+
+// GetNodesNodeNodeResourceArrayInput is an input type that accepts GetNodesNodeNodeResourceArray and GetNodesNodeNodeResourceArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceArrayInput` via:
+//
+//	GetNodesNodeNodeResourceArray{ GetNodesNodeNodeResourceArgs{...} }
+type GetNodesNodeNodeResourceArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceArrayOutput() GetNodesNodeNodeResourceArrayOutput
+	ToGetNodesNodeNodeResourceArrayOutputWithContext(context.Context) GetNodesNodeNodeResourceArrayOutput
+}
+
+type GetNodesNodeNodeResourceArray []GetNodesNodeNodeResourceInput
+
+func (GetNodesNodeNodeResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResource)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceArray) ToGetNodesNodeNodeResourceArrayOutput() GetNodesNodeNodeResourceArrayOutput {
+	return i.ToGetNodesNodeNodeResourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceArray) ToGetNodesNodeNodeResourceArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceArrayOutput)
+}
+
+type GetNodesNodeNodeResourceOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResource)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceOutput) ToGetNodesNodeNodeResourceOutput() GetNodesNodeNodeResourceOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceOutput) ToGetNodesNodeNodeResourceOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceOutput {
+	return o
+}
+
+// `(list)` - Reserved CPU resources.
+func (o GetNodesNodeNodeResourceOutput) Cpus() GetNodesNodeNodeResourceCpusArrayOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResource) []GetNodesNodeNodeResourceCpus { return v.Cpus }).(GetNodesNodeNodeResourceCpusArrayOutput)
+}
+
+// `(list)` - Device resources on the node (GPUs, etc.).
+func (o GetNodesNodeNodeResourceOutput) Devices() GetNodesNodeNodeResourceDeviceArrayOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResource) []GetNodesNodeNodeResourceDevice { return v.Devices }).(GetNodesNodeNodeResourceDeviceArrayOutput)
+}
+
+// `(list)` - Reserved disk resources.
+func (o GetNodesNodeNodeResourceOutput) Disks() GetNodesNodeNodeResourceDiskArrayOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResource) []GetNodesNodeNodeResourceDisk { return v.Disks }).(GetNodesNodeNodeResourceDiskArrayOutput)
+}
+
+// `(int)` - Maximum dynamic port for this node.
+func (o GetNodesNodeNodeResourceOutput) MaxDynamicPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResource) int { return v.MaxDynamicPort }).(pulumi.IntOutput)
+}
+
+// `(list)` - Reserved memory resources.
+func (o GetNodesNodeNodeResourceOutput) Memories() GetNodesNodeNodeResourceMemoryArrayOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResource) []GetNodesNodeNodeResourceMemory { return v.Memories }).(GetNodesNodeNodeResourceMemoryArrayOutput)
+}
+
+// `(int)` - Minimum dynamic port for this node.
+func (o GetNodesNodeNodeResourceOutput) MinDynamicPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResource) int { return v.MinDynamicPort }).(pulumi.IntOutput)
+}
+
+// `(map of string)` - Reserved network resources.
+func (o GetNodesNodeNodeResourceOutput) Networks() GetNodesNodeNodeResourceNetworkArrayOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResource) []GetNodesNodeNodeResourceNetwork { return v.Networks }).(GetNodesNodeNodeResourceNetworkArrayOutput)
+}
+
+type GetNodesNodeNodeResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResource)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceArrayOutput) ToGetNodesNodeNodeResourceArrayOutput() GetNodesNodeNodeResourceArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceArrayOutput) ToGetNodesNodeNodeResourceArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceArrayOutput) Index(i pulumi.IntInput) GetNodesNodeNodeResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeNodeResource {
+		return vs[0].([]GetNodesNodeNodeResource)[vs[1].(int)]
+	}).(GetNodesNodeNodeResourceOutput)
+}
+
+type GetNodesNodeNodeResourceCpus struct {
+	// `(int)` - Reserved CPU shares.
+	CpuShares int `pulumi:"cpuShares"`
+	// `(list of int)` - List of reservable CPU core IDs.
+	ReservableCpuCores []int `pulumi:"reservableCpuCores"`
+	// `(int)` - Total number of CPU cores.
+	TotalCpuCores int `pulumi:"totalCpuCores"`
+}
+
+// GetNodesNodeNodeResourceCpusInput is an input type that accepts GetNodesNodeNodeResourceCpusArgs and GetNodesNodeNodeResourceCpusOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceCpusInput` via:
+//
+//	GetNodesNodeNodeResourceCpusArgs{...}
+type GetNodesNodeNodeResourceCpusInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceCpusOutput() GetNodesNodeNodeResourceCpusOutput
+	ToGetNodesNodeNodeResourceCpusOutputWithContext(context.Context) GetNodesNodeNodeResourceCpusOutput
+}
+
+type GetNodesNodeNodeResourceCpusArgs struct {
+	// `(int)` - Reserved CPU shares.
+	CpuShares pulumi.IntInput `pulumi:"cpuShares"`
+	// `(list of int)` - List of reservable CPU core IDs.
+	ReservableCpuCores pulumi.IntArrayInput `pulumi:"reservableCpuCores"`
+	// `(int)` - Total number of CPU cores.
+	TotalCpuCores pulumi.IntInput `pulumi:"totalCpuCores"`
+}
+
+func (GetNodesNodeNodeResourceCpusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResourceCpus)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceCpusArgs) ToGetNodesNodeNodeResourceCpusOutput() GetNodesNodeNodeResourceCpusOutput {
+	return i.ToGetNodesNodeNodeResourceCpusOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceCpusArgs) ToGetNodesNodeNodeResourceCpusOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceCpusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceCpusOutput)
+}
+
+// GetNodesNodeNodeResourceCpusArrayInput is an input type that accepts GetNodesNodeNodeResourceCpusArray and GetNodesNodeNodeResourceCpusArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceCpusArrayInput` via:
+//
+//	GetNodesNodeNodeResourceCpusArray{ GetNodesNodeNodeResourceCpusArgs{...} }
+type GetNodesNodeNodeResourceCpusArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceCpusArrayOutput() GetNodesNodeNodeResourceCpusArrayOutput
+	ToGetNodesNodeNodeResourceCpusArrayOutputWithContext(context.Context) GetNodesNodeNodeResourceCpusArrayOutput
+}
+
+type GetNodesNodeNodeResourceCpusArray []GetNodesNodeNodeResourceCpusInput
+
+func (GetNodesNodeNodeResourceCpusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResourceCpus)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceCpusArray) ToGetNodesNodeNodeResourceCpusArrayOutput() GetNodesNodeNodeResourceCpusArrayOutput {
+	return i.ToGetNodesNodeNodeResourceCpusArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceCpusArray) ToGetNodesNodeNodeResourceCpusArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceCpusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceCpusArrayOutput)
+}
+
+type GetNodesNodeNodeResourceCpusOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceCpusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResourceCpus)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceCpusOutput) ToGetNodesNodeNodeResourceCpusOutput() GetNodesNodeNodeResourceCpusOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceCpusOutput) ToGetNodesNodeNodeResourceCpusOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceCpusOutput {
+	return o
+}
+
+// `(int)` - Reserved CPU shares.
+func (o GetNodesNodeNodeResourceCpusOutput) CpuShares() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceCpus) int { return v.CpuShares }).(pulumi.IntOutput)
+}
+
+// `(list of int)` - List of reservable CPU core IDs.
+func (o GetNodesNodeNodeResourceCpusOutput) ReservableCpuCores() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceCpus) []int { return v.ReservableCpuCores }).(pulumi.IntArrayOutput)
+}
+
+// `(int)` - Total number of CPU cores.
+func (o GetNodesNodeNodeResourceCpusOutput) TotalCpuCores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceCpus) int { return v.TotalCpuCores }).(pulumi.IntOutput)
+}
+
+type GetNodesNodeNodeResourceCpusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceCpusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResourceCpus)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceCpusArrayOutput) ToGetNodesNodeNodeResourceCpusArrayOutput() GetNodesNodeNodeResourceCpusArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceCpusArrayOutput) ToGetNodesNodeNodeResourceCpusArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceCpusArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceCpusArrayOutput) Index(i pulumi.IntInput) GetNodesNodeNodeResourceCpusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeNodeResourceCpus {
+		return vs[0].([]GetNodesNodeNodeResourceCpus)[vs[1].(int)]
+	}).(GetNodesNodeNodeResourceCpusOutput)
+}
+
+type GetNodesNodeNodeResourceDevice struct {
+	// `(int)` - The number of device instances.
+	Count int `pulumi:"count"`
+	// `(string)` - The device name.
+	Name string `pulumi:"name"`
+	// `(string)` - The device type.
+	Type string `pulumi:"type"`
+	// `(string)` - The device vendor.
+	Vendor string `pulumi:"vendor"`
+}
+
+// GetNodesNodeNodeResourceDeviceInput is an input type that accepts GetNodesNodeNodeResourceDeviceArgs and GetNodesNodeNodeResourceDeviceOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceDeviceInput` via:
+//
+//	GetNodesNodeNodeResourceDeviceArgs{...}
+type GetNodesNodeNodeResourceDeviceInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceDeviceOutput() GetNodesNodeNodeResourceDeviceOutput
+	ToGetNodesNodeNodeResourceDeviceOutputWithContext(context.Context) GetNodesNodeNodeResourceDeviceOutput
+}
+
+type GetNodesNodeNodeResourceDeviceArgs struct {
+	// `(int)` - The number of device instances.
+	Count pulumi.IntInput `pulumi:"count"`
+	// `(string)` - The device name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// `(string)` - The device type.
+	Type pulumi.StringInput `pulumi:"type"`
+	// `(string)` - The device vendor.
+	Vendor pulumi.StringInput `pulumi:"vendor"`
+}
+
+func (GetNodesNodeNodeResourceDeviceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResourceDevice)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceDeviceArgs) ToGetNodesNodeNodeResourceDeviceOutput() GetNodesNodeNodeResourceDeviceOutput {
+	return i.ToGetNodesNodeNodeResourceDeviceOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceDeviceArgs) ToGetNodesNodeNodeResourceDeviceOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceDeviceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceDeviceOutput)
+}
+
+// GetNodesNodeNodeResourceDeviceArrayInput is an input type that accepts GetNodesNodeNodeResourceDeviceArray and GetNodesNodeNodeResourceDeviceArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceDeviceArrayInput` via:
+//
+//	GetNodesNodeNodeResourceDeviceArray{ GetNodesNodeNodeResourceDeviceArgs{...} }
+type GetNodesNodeNodeResourceDeviceArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceDeviceArrayOutput() GetNodesNodeNodeResourceDeviceArrayOutput
+	ToGetNodesNodeNodeResourceDeviceArrayOutputWithContext(context.Context) GetNodesNodeNodeResourceDeviceArrayOutput
+}
+
+type GetNodesNodeNodeResourceDeviceArray []GetNodesNodeNodeResourceDeviceInput
+
+func (GetNodesNodeNodeResourceDeviceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResourceDevice)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceDeviceArray) ToGetNodesNodeNodeResourceDeviceArrayOutput() GetNodesNodeNodeResourceDeviceArrayOutput {
+	return i.ToGetNodesNodeNodeResourceDeviceArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceDeviceArray) ToGetNodesNodeNodeResourceDeviceArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceDeviceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceDeviceArrayOutput)
+}
+
+type GetNodesNodeNodeResourceDeviceOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceDeviceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResourceDevice)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceDeviceOutput) ToGetNodesNodeNodeResourceDeviceOutput() GetNodesNodeNodeResourceDeviceOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceDeviceOutput) ToGetNodesNodeNodeResourceDeviceOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceDeviceOutput {
+	return o
+}
+
+// `(int)` - The number of device instances.
+func (o GetNodesNodeNodeResourceDeviceOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceDevice) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// `(string)` - The device name.
+func (o GetNodesNodeNodeResourceDeviceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceDevice) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string)` - The device type.
+func (o GetNodesNodeNodeResourceDeviceOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceDevice) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// `(string)` - The device vendor.
+func (o GetNodesNodeNodeResourceDeviceOutput) Vendor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceDevice) string { return v.Vendor }).(pulumi.StringOutput)
+}
+
+type GetNodesNodeNodeResourceDeviceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceDeviceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResourceDevice)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceDeviceArrayOutput) ToGetNodesNodeNodeResourceDeviceArrayOutput() GetNodesNodeNodeResourceDeviceArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceDeviceArrayOutput) ToGetNodesNodeNodeResourceDeviceArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceDeviceArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceDeviceArrayOutput) Index(i pulumi.IntInput) GetNodesNodeNodeResourceDeviceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeNodeResourceDevice {
+		return vs[0].([]GetNodesNodeNodeResourceDevice)[vs[1].(int)]
+	}).(GetNodesNodeNodeResourceDeviceOutput)
+}
+
+type GetNodesNodeNodeResourceDisk struct {
+	// `(int)` - Reserved disk space in MB.
+	DiskMb int `pulumi:"diskMb"`
+}
+
+// GetNodesNodeNodeResourceDiskInput is an input type that accepts GetNodesNodeNodeResourceDiskArgs and GetNodesNodeNodeResourceDiskOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceDiskInput` via:
+//
+//	GetNodesNodeNodeResourceDiskArgs{...}
+type GetNodesNodeNodeResourceDiskInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceDiskOutput() GetNodesNodeNodeResourceDiskOutput
+	ToGetNodesNodeNodeResourceDiskOutputWithContext(context.Context) GetNodesNodeNodeResourceDiskOutput
+}
+
+type GetNodesNodeNodeResourceDiskArgs struct {
+	// `(int)` - Reserved disk space in MB.
+	DiskMb pulumi.IntInput `pulumi:"diskMb"`
+}
+
+func (GetNodesNodeNodeResourceDiskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResourceDisk)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceDiskArgs) ToGetNodesNodeNodeResourceDiskOutput() GetNodesNodeNodeResourceDiskOutput {
+	return i.ToGetNodesNodeNodeResourceDiskOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceDiskArgs) ToGetNodesNodeNodeResourceDiskOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceDiskOutput)
+}
+
+// GetNodesNodeNodeResourceDiskArrayInput is an input type that accepts GetNodesNodeNodeResourceDiskArray and GetNodesNodeNodeResourceDiskArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceDiskArrayInput` via:
+//
+//	GetNodesNodeNodeResourceDiskArray{ GetNodesNodeNodeResourceDiskArgs{...} }
+type GetNodesNodeNodeResourceDiskArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceDiskArrayOutput() GetNodesNodeNodeResourceDiskArrayOutput
+	ToGetNodesNodeNodeResourceDiskArrayOutputWithContext(context.Context) GetNodesNodeNodeResourceDiskArrayOutput
+}
+
+type GetNodesNodeNodeResourceDiskArray []GetNodesNodeNodeResourceDiskInput
+
+func (GetNodesNodeNodeResourceDiskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResourceDisk)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceDiskArray) ToGetNodesNodeNodeResourceDiskArrayOutput() GetNodesNodeNodeResourceDiskArrayOutput {
+	return i.ToGetNodesNodeNodeResourceDiskArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceDiskArray) ToGetNodesNodeNodeResourceDiskArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceDiskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceDiskArrayOutput)
+}
+
+type GetNodesNodeNodeResourceDiskOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResourceDisk)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceDiskOutput) ToGetNodesNodeNodeResourceDiskOutput() GetNodesNodeNodeResourceDiskOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceDiskOutput) ToGetNodesNodeNodeResourceDiskOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceDiskOutput {
+	return o
+}
+
+// `(int)` - Reserved disk space in MB.
+func (o GetNodesNodeNodeResourceDiskOutput) DiskMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceDisk) int { return v.DiskMb }).(pulumi.IntOutput)
+}
+
+type GetNodesNodeNodeResourceDiskArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceDiskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResourceDisk)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceDiskArrayOutput) ToGetNodesNodeNodeResourceDiskArrayOutput() GetNodesNodeNodeResourceDiskArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceDiskArrayOutput) ToGetNodesNodeNodeResourceDiskArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceDiskArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceDiskArrayOutput) Index(i pulumi.IntInput) GetNodesNodeNodeResourceDiskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeNodeResourceDisk {
+		return vs[0].([]GetNodesNodeNodeResourceDisk)[vs[1].(int)]
+	}).(GetNodesNodeNodeResourceDiskOutput)
+}
+
+type GetNodesNodeNodeResourceMemory struct {
+	// `(int)` - Reserved memory in MB.
+	MemoryMb int `pulumi:"memoryMb"`
+}
+
+// GetNodesNodeNodeResourceMemoryInput is an input type that accepts GetNodesNodeNodeResourceMemoryArgs and GetNodesNodeNodeResourceMemoryOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceMemoryInput` via:
+//
+//	GetNodesNodeNodeResourceMemoryArgs{...}
+type GetNodesNodeNodeResourceMemoryInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceMemoryOutput() GetNodesNodeNodeResourceMemoryOutput
+	ToGetNodesNodeNodeResourceMemoryOutputWithContext(context.Context) GetNodesNodeNodeResourceMemoryOutput
+}
+
+type GetNodesNodeNodeResourceMemoryArgs struct {
+	// `(int)` - Reserved memory in MB.
+	MemoryMb pulumi.IntInput `pulumi:"memoryMb"`
+}
+
+func (GetNodesNodeNodeResourceMemoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResourceMemory)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceMemoryArgs) ToGetNodesNodeNodeResourceMemoryOutput() GetNodesNodeNodeResourceMemoryOutput {
+	return i.ToGetNodesNodeNodeResourceMemoryOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceMemoryArgs) ToGetNodesNodeNodeResourceMemoryOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceMemoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceMemoryOutput)
+}
+
+// GetNodesNodeNodeResourceMemoryArrayInput is an input type that accepts GetNodesNodeNodeResourceMemoryArray and GetNodesNodeNodeResourceMemoryArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceMemoryArrayInput` via:
+//
+//	GetNodesNodeNodeResourceMemoryArray{ GetNodesNodeNodeResourceMemoryArgs{...} }
+type GetNodesNodeNodeResourceMemoryArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceMemoryArrayOutput() GetNodesNodeNodeResourceMemoryArrayOutput
+	ToGetNodesNodeNodeResourceMemoryArrayOutputWithContext(context.Context) GetNodesNodeNodeResourceMemoryArrayOutput
+}
+
+type GetNodesNodeNodeResourceMemoryArray []GetNodesNodeNodeResourceMemoryInput
+
+func (GetNodesNodeNodeResourceMemoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResourceMemory)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceMemoryArray) ToGetNodesNodeNodeResourceMemoryArrayOutput() GetNodesNodeNodeResourceMemoryArrayOutput {
+	return i.ToGetNodesNodeNodeResourceMemoryArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceMemoryArray) ToGetNodesNodeNodeResourceMemoryArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceMemoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceMemoryArrayOutput)
+}
+
+type GetNodesNodeNodeResourceMemoryOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceMemoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResourceMemory)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceMemoryOutput) ToGetNodesNodeNodeResourceMemoryOutput() GetNodesNodeNodeResourceMemoryOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceMemoryOutput) ToGetNodesNodeNodeResourceMemoryOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceMemoryOutput {
+	return o
+}
+
+// `(int)` - Reserved memory in MB.
+func (o GetNodesNodeNodeResourceMemoryOutput) MemoryMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceMemory) int { return v.MemoryMb }).(pulumi.IntOutput)
+}
+
+type GetNodesNodeNodeResourceMemoryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceMemoryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResourceMemory)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceMemoryArrayOutput) ToGetNodesNodeNodeResourceMemoryArrayOutput() GetNodesNodeNodeResourceMemoryArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceMemoryArrayOutput) ToGetNodesNodeNodeResourceMemoryArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceMemoryArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceMemoryArrayOutput) Index(i pulumi.IntInput) GetNodesNodeNodeResourceMemoryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeNodeResourceMemory {
+		return vs[0].([]GetNodesNodeNodeResourceMemory)[vs[1].(int)]
+	}).(GetNodesNodeNodeResourceMemoryOutput)
+}
+
+type GetNodesNodeNodeResourceNetwork struct {
+	// `(string)` - The CIDR of the network.
+	Cidr string `pulumi:"cidr"`
+	// `(string)` - The network device.
+	Device string `pulumi:"device"`
+	// `(string)` - The IP address of the network.
+	Ip string `pulumi:"ip"`
+	// `(string)` - The network mode.
+	Mode string `pulumi:"mode"`
+}
+
+// GetNodesNodeNodeResourceNetworkInput is an input type that accepts GetNodesNodeNodeResourceNetworkArgs and GetNodesNodeNodeResourceNetworkOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceNetworkInput` via:
+//
+//	GetNodesNodeNodeResourceNetworkArgs{...}
+type GetNodesNodeNodeResourceNetworkInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceNetworkOutput() GetNodesNodeNodeResourceNetworkOutput
+	ToGetNodesNodeNodeResourceNetworkOutputWithContext(context.Context) GetNodesNodeNodeResourceNetworkOutput
+}
+
+type GetNodesNodeNodeResourceNetworkArgs struct {
+	// `(string)` - The CIDR of the network.
+	Cidr pulumi.StringInput `pulumi:"cidr"`
+	// `(string)` - The network device.
+	Device pulumi.StringInput `pulumi:"device"`
+	// `(string)` - The IP address of the network.
+	Ip pulumi.StringInput `pulumi:"ip"`
+	// `(string)` - The network mode.
+	Mode pulumi.StringInput `pulumi:"mode"`
+}
+
+func (GetNodesNodeNodeResourceNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResourceNetwork)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceNetworkArgs) ToGetNodesNodeNodeResourceNetworkOutput() GetNodesNodeNodeResourceNetworkOutput {
+	return i.ToGetNodesNodeNodeResourceNetworkOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceNetworkArgs) ToGetNodesNodeNodeResourceNetworkOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceNetworkOutput)
+}
+
+// GetNodesNodeNodeResourceNetworkArrayInput is an input type that accepts GetNodesNodeNodeResourceNetworkArray and GetNodesNodeNodeResourceNetworkArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeNodeResourceNetworkArrayInput` via:
+//
+//	GetNodesNodeNodeResourceNetworkArray{ GetNodesNodeNodeResourceNetworkArgs{...} }
+type GetNodesNodeNodeResourceNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeNodeResourceNetworkArrayOutput() GetNodesNodeNodeResourceNetworkArrayOutput
+	ToGetNodesNodeNodeResourceNetworkArrayOutputWithContext(context.Context) GetNodesNodeNodeResourceNetworkArrayOutput
+}
+
+type GetNodesNodeNodeResourceNetworkArray []GetNodesNodeNodeResourceNetworkInput
+
+func (GetNodesNodeNodeResourceNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResourceNetwork)(nil)).Elem()
+}
+
+func (i GetNodesNodeNodeResourceNetworkArray) ToGetNodesNodeNodeResourceNetworkArrayOutput() GetNodesNodeNodeResourceNetworkArrayOutput {
+	return i.ToGetNodesNodeNodeResourceNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeNodeResourceNetworkArray) ToGetNodesNodeNodeResourceNetworkArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeNodeResourceNetworkArrayOutput)
+}
+
+type GetNodesNodeNodeResourceNetworkOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeNodeResourceNetwork)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceNetworkOutput) ToGetNodesNodeNodeResourceNetworkOutput() GetNodesNodeNodeResourceNetworkOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceNetworkOutput) ToGetNodesNodeNodeResourceNetworkOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceNetworkOutput {
+	return o
+}
+
+// `(string)` - The CIDR of the network.
+func (o GetNodesNodeNodeResourceNetworkOutput) Cidr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceNetwork) string { return v.Cidr }).(pulumi.StringOutput)
+}
+
+// `(string)` - The network device.
+func (o GetNodesNodeNodeResourceNetworkOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceNetwork) string { return v.Device }).(pulumi.StringOutput)
+}
+
+// `(string)` - The IP address of the network.
+func (o GetNodesNodeNodeResourceNetworkOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceNetwork) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// `(string)` - The network mode.
+func (o GetNodesNodeNodeResourceNetworkOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNodesNodeNodeResourceNetwork) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+type GetNodesNodeNodeResourceNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeNodeResourceNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeNodeResourceNetwork)(nil)).Elem()
+}
+
+func (o GetNodesNodeNodeResourceNetworkArrayOutput) ToGetNodesNodeNodeResourceNetworkArrayOutput() GetNodesNodeNodeResourceNetworkArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceNetworkArrayOutput) ToGetNodesNodeNodeResourceNetworkArrayOutputWithContext(ctx context.Context) GetNodesNodeNodeResourceNetworkArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeNodeResourceNetworkArrayOutput) Index(i pulumi.IntInput) GetNodesNodeNodeResourceNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeNodeResourceNetwork {
+		return vs[0].([]GetNodesNodeNodeResourceNetwork)[vs[1].(int)]
+	}).(GetNodesNodeNodeResourceNetworkOutput)
+}
+
+type GetNodesNodeReservedResource struct {
+	// `(list)` - Reserved CPU resources.
+	Cpus []GetNodesNodeReservedResourceCpus `pulumi:"cpus"`
+	// `(list)` - Reserved disk resources.
+	Disks []GetNodesNodeReservedResourceDisk `pulumi:"disks"`
+	// `(list)` - Reserved memory resources.
+	Memories []GetNodesNodeReservedResourceMemory `pulumi:"memories"`
+	// `(map of string)` - Reserved network resources.
+	Networks map[string]string `pulumi:"networks"`
+}
+
+// GetNodesNodeReservedResourceInput is an input type that accepts GetNodesNodeReservedResourceArgs and GetNodesNodeReservedResourceOutput values.
+// You can construct a concrete instance of `GetNodesNodeReservedResourceInput` via:
+//
+//	GetNodesNodeReservedResourceArgs{...}
+type GetNodesNodeReservedResourceInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeReservedResourceOutput() GetNodesNodeReservedResourceOutput
+	ToGetNodesNodeReservedResourceOutputWithContext(context.Context) GetNodesNodeReservedResourceOutput
+}
+
+type GetNodesNodeReservedResourceArgs struct {
+	// `(list)` - Reserved CPU resources.
+	Cpus GetNodesNodeReservedResourceCpusArrayInput `pulumi:"cpus"`
+	// `(list)` - Reserved disk resources.
+	Disks GetNodesNodeReservedResourceDiskArrayInput `pulumi:"disks"`
+	// `(list)` - Reserved memory resources.
+	Memories GetNodesNodeReservedResourceMemoryArrayInput `pulumi:"memories"`
+	// `(map of string)` - Reserved network resources.
+	Networks pulumi.StringMapInput `pulumi:"networks"`
+}
+
+func (GetNodesNodeReservedResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeReservedResource)(nil)).Elem()
+}
+
+func (i GetNodesNodeReservedResourceArgs) ToGetNodesNodeReservedResourceOutput() GetNodesNodeReservedResourceOutput {
+	return i.ToGetNodesNodeReservedResourceOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeReservedResourceArgs) ToGetNodesNodeReservedResourceOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeReservedResourceOutput)
+}
+
+// GetNodesNodeReservedResourceArrayInput is an input type that accepts GetNodesNodeReservedResourceArray and GetNodesNodeReservedResourceArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeReservedResourceArrayInput` via:
+//
+//	GetNodesNodeReservedResourceArray{ GetNodesNodeReservedResourceArgs{...} }
+type GetNodesNodeReservedResourceArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeReservedResourceArrayOutput() GetNodesNodeReservedResourceArrayOutput
+	ToGetNodesNodeReservedResourceArrayOutputWithContext(context.Context) GetNodesNodeReservedResourceArrayOutput
+}
+
+type GetNodesNodeReservedResourceArray []GetNodesNodeReservedResourceInput
+
+func (GetNodesNodeReservedResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeReservedResource)(nil)).Elem()
+}
+
+func (i GetNodesNodeReservedResourceArray) ToGetNodesNodeReservedResourceArrayOutput() GetNodesNodeReservedResourceArrayOutput {
+	return i.ToGetNodesNodeReservedResourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeReservedResourceArray) ToGetNodesNodeReservedResourceArrayOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeReservedResourceArrayOutput)
+}
+
+type GetNodesNodeReservedResourceOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeReservedResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeReservedResource)(nil)).Elem()
+}
+
+func (o GetNodesNodeReservedResourceOutput) ToGetNodesNodeReservedResourceOutput() GetNodesNodeReservedResourceOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceOutput) ToGetNodesNodeReservedResourceOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceOutput {
+	return o
+}
+
+// `(list)` - Reserved CPU resources.
+func (o GetNodesNodeReservedResourceOutput) Cpus() GetNodesNodeReservedResourceCpusArrayOutput {
+	return o.ApplyT(func(v GetNodesNodeReservedResource) []GetNodesNodeReservedResourceCpus { return v.Cpus }).(GetNodesNodeReservedResourceCpusArrayOutput)
+}
+
+// `(list)` - Reserved disk resources.
+func (o GetNodesNodeReservedResourceOutput) Disks() GetNodesNodeReservedResourceDiskArrayOutput {
+	return o.ApplyT(func(v GetNodesNodeReservedResource) []GetNodesNodeReservedResourceDisk { return v.Disks }).(GetNodesNodeReservedResourceDiskArrayOutput)
+}
+
+// `(list)` - Reserved memory resources.
+func (o GetNodesNodeReservedResourceOutput) Memories() GetNodesNodeReservedResourceMemoryArrayOutput {
+	return o.ApplyT(func(v GetNodesNodeReservedResource) []GetNodesNodeReservedResourceMemory { return v.Memories }).(GetNodesNodeReservedResourceMemoryArrayOutput)
+}
+
+// `(map of string)` - Reserved network resources.
+func (o GetNodesNodeReservedResourceOutput) Networks() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetNodesNodeReservedResource) map[string]string { return v.Networks }).(pulumi.StringMapOutput)
+}
+
+type GetNodesNodeReservedResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeReservedResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeReservedResource)(nil)).Elem()
+}
+
+func (o GetNodesNodeReservedResourceArrayOutput) ToGetNodesNodeReservedResourceArrayOutput() GetNodesNodeReservedResourceArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceArrayOutput) ToGetNodesNodeReservedResourceArrayOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceArrayOutput) Index(i pulumi.IntInput) GetNodesNodeReservedResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeReservedResource {
+		return vs[0].([]GetNodesNodeReservedResource)[vs[1].(int)]
+	}).(GetNodesNodeReservedResourceOutput)
+}
+
+type GetNodesNodeReservedResourceCpus struct {
+	// `(int)` - Reserved CPU shares.
+	CpuShares int `pulumi:"cpuShares"`
+}
+
+// GetNodesNodeReservedResourceCpusInput is an input type that accepts GetNodesNodeReservedResourceCpusArgs and GetNodesNodeReservedResourceCpusOutput values.
+// You can construct a concrete instance of `GetNodesNodeReservedResourceCpusInput` via:
+//
+//	GetNodesNodeReservedResourceCpusArgs{...}
+type GetNodesNodeReservedResourceCpusInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeReservedResourceCpusOutput() GetNodesNodeReservedResourceCpusOutput
+	ToGetNodesNodeReservedResourceCpusOutputWithContext(context.Context) GetNodesNodeReservedResourceCpusOutput
+}
+
+type GetNodesNodeReservedResourceCpusArgs struct {
+	// `(int)` - Reserved CPU shares.
+	CpuShares pulumi.IntInput `pulumi:"cpuShares"`
+}
+
+func (GetNodesNodeReservedResourceCpusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeReservedResourceCpus)(nil)).Elem()
+}
+
+func (i GetNodesNodeReservedResourceCpusArgs) ToGetNodesNodeReservedResourceCpusOutput() GetNodesNodeReservedResourceCpusOutput {
+	return i.ToGetNodesNodeReservedResourceCpusOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeReservedResourceCpusArgs) ToGetNodesNodeReservedResourceCpusOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceCpusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeReservedResourceCpusOutput)
+}
+
+// GetNodesNodeReservedResourceCpusArrayInput is an input type that accepts GetNodesNodeReservedResourceCpusArray and GetNodesNodeReservedResourceCpusArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeReservedResourceCpusArrayInput` via:
+//
+//	GetNodesNodeReservedResourceCpusArray{ GetNodesNodeReservedResourceCpusArgs{...} }
+type GetNodesNodeReservedResourceCpusArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeReservedResourceCpusArrayOutput() GetNodesNodeReservedResourceCpusArrayOutput
+	ToGetNodesNodeReservedResourceCpusArrayOutputWithContext(context.Context) GetNodesNodeReservedResourceCpusArrayOutput
+}
+
+type GetNodesNodeReservedResourceCpusArray []GetNodesNodeReservedResourceCpusInput
+
+func (GetNodesNodeReservedResourceCpusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeReservedResourceCpus)(nil)).Elem()
+}
+
+func (i GetNodesNodeReservedResourceCpusArray) ToGetNodesNodeReservedResourceCpusArrayOutput() GetNodesNodeReservedResourceCpusArrayOutput {
+	return i.ToGetNodesNodeReservedResourceCpusArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeReservedResourceCpusArray) ToGetNodesNodeReservedResourceCpusArrayOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceCpusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeReservedResourceCpusArrayOutput)
+}
+
+type GetNodesNodeReservedResourceCpusOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeReservedResourceCpusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeReservedResourceCpus)(nil)).Elem()
+}
+
+func (o GetNodesNodeReservedResourceCpusOutput) ToGetNodesNodeReservedResourceCpusOutput() GetNodesNodeReservedResourceCpusOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceCpusOutput) ToGetNodesNodeReservedResourceCpusOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceCpusOutput {
+	return o
+}
+
+// `(int)` - Reserved CPU shares.
+func (o GetNodesNodeReservedResourceCpusOutput) CpuShares() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNodeReservedResourceCpus) int { return v.CpuShares }).(pulumi.IntOutput)
+}
+
+type GetNodesNodeReservedResourceCpusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeReservedResourceCpusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeReservedResourceCpus)(nil)).Elem()
+}
+
+func (o GetNodesNodeReservedResourceCpusArrayOutput) ToGetNodesNodeReservedResourceCpusArrayOutput() GetNodesNodeReservedResourceCpusArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceCpusArrayOutput) ToGetNodesNodeReservedResourceCpusArrayOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceCpusArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceCpusArrayOutput) Index(i pulumi.IntInput) GetNodesNodeReservedResourceCpusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeReservedResourceCpus {
+		return vs[0].([]GetNodesNodeReservedResourceCpus)[vs[1].(int)]
+	}).(GetNodesNodeReservedResourceCpusOutput)
+}
+
+type GetNodesNodeReservedResourceDisk struct {
+	// `(int)` - Reserved disk space in MB.
+	DiskMb int `pulumi:"diskMb"`
+}
+
+// GetNodesNodeReservedResourceDiskInput is an input type that accepts GetNodesNodeReservedResourceDiskArgs and GetNodesNodeReservedResourceDiskOutput values.
+// You can construct a concrete instance of `GetNodesNodeReservedResourceDiskInput` via:
+//
+//	GetNodesNodeReservedResourceDiskArgs{...}
+type GetNodesNodeReservedResourceDiskInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeReservedResourceDiskOutput() GetNodesNodeReservedResourceDiskOutput
+	ToGetNodesNodeReservedResourceDiskOutputWithContext(context.Context) GetNodesNodeReservedResourceDiskOutput
+}
+
+type GetNodesNodeReservedResourceDiskArgs struct {
+	// `(int)` - Reserved disk space in MB.
+	DiskMb pulumi.IntInput `pulumi:"diskMb"`
+}
+
+func (GetNodesNodeReservedResourceDiskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeReservedResourceDisk)(nil)).Elem()
+}
+
+func (i GetNodesNodeReservedResourceDiskArgs) ToGetNodesNodeReservedResourceDiskOutput() GetNodesNodeReservedResourceDiskOutput {
+	return i.ToGetNodesNodeReservedResourceDiskOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeReservedResourceDiskArgs) ToGetNodesNodeReservedResourceDiskOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeReservedResourceDiskOutput)
+}
+
+// GetNodesNodeReservedResourceDiskArrayInput is an input type that accepts GetNodesNodeReservedResourceDiskArray and GetNodesNodeReservedResourceDiskArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeReservedResourceDiskArrayInput` via:
+//
+//	GetNodesNodeReservedResourceDiskArray{ GetNodesNodeReservedResourceDiskArgs{...} }
+type GetNodesNodeReservedResourceDiskArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeReservedResourceDiskArrayOutput() GetNodesNodeReservedResourceDiskArrayOutput
+	ToGetNodesNodeReservedResourceDiskArrayOutputWithContext(context.Context) GetNodesNodeReservedResourceDiskArrayOutput
+}
+
+type GetNodesNodeReservedResourceDiskArray []GetNodesNodeReservedResourceDiskInput
+
+func (GetNodesNodeReservedResourceDiskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeReservedResourceDisk)(nil)).Elem()
+}
+
+func (i GetNodesNodeReservedResourceDiskArray) ToGetNodesNodeReservedResourceDiskArrayOutput() GetNodesNodeReservedResourceDiskArrayOutput {
+	return i.ToGetNodesNodeReservedResourceDiskArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeReservedResourceDiskArray) ToGetNodesNodeReservedResourceDiskArrayOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceDiskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeReservedResourceDiskArrayOutput)
+}
+
+type GetNodesNodeReservedResourceDiskOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeReservedResourceDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeReservedResourceDisk)(nil)).Elem()
+}
+
+func (o GetNodesNodeReservedResourceDiskOutput) ToGetNodesNodeReservedResourceDiskOutput() GetNodesNodeReservedResourceDiskOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceDiskOutput) ToGetNodesNodeReservedResourceDiskOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceDiskOutput {
+	return o
+}
+
+// `(int)` - Reserved disk space in MB.
+func (o GetNodesNodeReservedResourceDiskOutput) DiskMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNodeReservedResourceDisk) int { return v.DiskMb }).(pulumi.IntOutput)
+}
+
+type GetNodesNodeReservedResourceDiskArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeReservedResourceDiskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeReservedResourceDisk)(nil)).Elem()
+}
+
+func (o GetNodesNodeReservedResourceDiskArrayOutput) ToGetNodesNodeReservedResourceDiskArrayOutput() GetNodesNodeReservedResourceDiskArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceDiskArrayOutput) ToGetNodesNodeReservedResourceDiskArrayOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceDiskArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceDiskArrayOutput) Index(i pulumi.IntInput) GetNodesNodeReservedResourceDiskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeReservedResourceDisk {
+		return vs[0].([]GetNodesNodeReservedResourceDisk)[vs[1].(int)]
+	}).(GetNodesNodeReservedResourceDiskOutput)
+}
+
+type GetNodesNodeReservedResourceMemory struct {
+	// `(int)` - Reserved memory in MB.
+	MemoryMb int `pulumi:"memoryMb"`
+}
+
+// GetNodesNodeReservedResourceMemoryInput is an input type that accepts GetNodesNodeReservedResourceMemoryArgs and GetNodesNodeReservedResourceMemoryOutput values.
+// You can construct a concrete instance of `GetNodesNodeReservedResourceMemoryInput` via:
+//
+//	GetNodesNodeReservedResourceMemoryArgs{...}
+type GetNodesNodeReservedResourceMemoryInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeReservedResourceMemoryOutput() GetNodesNodeReservedResourceMemoryOutput
+	ToGetNodesNodeReservedResourceMemoryOutputWithContext(context.Context) GetNodesNodeReservedResourceMemoryOutput
+}
+
+type GetNodesNodeReservedResourceMemoryArgs struct {
+	// `(int)` - Reserved memory in MB.
+	MemoryMb pulumi.IntInput `pulumi:"memoryMb"`
+}
+
+func (GetNodesNodeReservedResourceMemoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeReservedResourceMemory)(nil)).Elem()
+}
+
+func (i GetNodesNodeReservedResourceMemoryArgs) ToGetNodesNodeReservedResourceMemoryOutput() GetNodesNodeReservedResourceMemoryOutput {
+	return i.ToGetNodesNodeReservedResourceMemoryOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeReservedResourceMemoryArgs) ToGetNodesNodeReservedResourceMemoryOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceMemoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeReservedResourceMemoryOutput)
+}
+
+// GetNodesNodeReservedResourceMemoryArrayInput is an input type that accepts GetNodesNodeReservedResourceMemoryArray and GetNodesNodeReservedResourceMemoryArrayOutput values.
+// You can construct a concrete instance of `GetNodesNodeReservedResourceMemoryArrayInput` via:
+//
+//	GetNodesNodeReservedResourceMemoryArray{ GetNodesNodeReservedResourceMemoryArgs{...} }
+type GetNodesNodeReservedResourceMemoryArrayInput interface {
+	pulumi.Input
+
+	ToGetNodesNodeReservedResourceMemoryArrayOutput() GetNodesNodeReservedResourceMemoryArrayOutput
+	ToGetNodesNodeReservedResourceMemoryArrayOutputWithContext(context.Context) GetNodesNodeReservedResourceMemoryArrayOutput
+}
+
+type GetNodesNodeReservedResourceMemoryArray []GetNodesNodeReservedResourceMemoryInput
+
+func (GetNodesNodeReservedResourceMemoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeReservedResourceMemory)(nil)).Elem()
+}
+
+func (i GetNodesNodeReservedResourceMemoryArray) ToGetNodesNodeReservedResourceMemoryArrayOutput() GetNodesNodeReservedResourceMemoryArrayOutput {
+	return i.ToGetNodesNodeReservedResourceMemoryArrayOutputWithContext(context.Background())
+}
+
+func (i GetNodesNodeReservedResourceMemoryArray) ToGetNodesNodeReservedResourceMemoryArrayOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceMemoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetNodesNodeReservedResourceMemoryArrayOutput)
+}
+
+type GetNodesNodeReservedResourceMemoryOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeReservedResourceMemoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetNodesNodeReservedResourceMemory)(nil)).Elem()
+}
+
+func (o GetNodesNodeReservedResourceMemoryOutput) ToGetNodesNodeReservedResourceMemoryOutput() GetNodesNodeReservedResourceMemoryOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceMemoryOutput) ToGetNodesNodeReservedResourceMemoryOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceMemoryOutput {
+	return o
+}
+
+// `(int)` - Reserved memory in MB.
+func (o GetNodesNodeReservedResourceMemoryOutput) MemoryMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetNodesNodeReservedResourceMemory) int { return v.MemoryMb }).(pulumi.IntOutput)
+}
+
+type GetNodesNodeReservedResourceMemoryArrayOutput struct{ *pulumi.OutputState }
+
+func (GetNodesNodeReservedResourceMemoryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetNodesNodeReservedResourceMemory)(nil)).Elem()
+}
+
+func (o GetNodesNodeReservedResourceMemoryArrayOutput) ToGetNodesNodeReservedResourceMemoryArrayOutput() GetNodesNodeReservedResourceMemoryArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceMemoryArrayOutput) ToGetNodesNodeReservedResourceMemoryArrayOutputWithContext(ctx context.Context) GetNodesNodeReservedResourceMemoryArrayOutput {
+	return o
+}
+
+func (o GetNodesNodeReservedResourceMemoryArrayOutput) Index(i pulumi.IntInput) GetNodesNodeReservedResourceMemoryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetNodesNodeReservedResourceMemory {
+		return vs[0].([]GetNodesNodeReservedResourceMemory)[vs[1].(int)]
+	}).(GetNodesNodeReservedResourceMemoryOutput)
 }
 
 type GetPluginNode struct {
@@ -10234,20 +15469,32 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestRequiredPtrInput)(nil)).Elem(), ExternalVolumeTopologyRequestRequiredArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestRequiredTopologyInput)(nil)).Elem(), ExternalVolumeTopologyRequestRequiredTopologyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ExternalVolumeTopologyRequestRequiredTopologyArrayInput)(nil)).Elem(), ExternalVolumeTopologyRequestRequiredTopologyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobConstraintInput)(nil)).Elem(), JobConstraintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobConstraintArrayInput)(nil)).Elem(), JobConstraintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobHcl2Input)(nil)).Elem(), JobHcl2Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobHcl2PtrInput)(nil)).Elem(), JobHcl2Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobPeriodicConfigInput)(nil)).Elem(), JobPeriodicConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobPeriodicConfigArrayInput)(nil)).Elem(), JobPeriodicConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupInput)(nil)).Elem(), JobTaskGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupArrayInput)(nil)).Elem(), JobTaskGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupTaskInput)(nil)).Elem(), JobTaskGroupTaskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupTaskArrayInput)(nil)).Elem(), JobTaskGroupTaskArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupTaskVolumeMountInput)(nil)).Elem(), JobTaskGroupTaskVolumeMountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupTaskVolumeMountArrayInput)(nil)).Elem(), JobTaskGroupTaskVolumeMountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupUpdateStrategyInput)(nil)).Elem(), JobTaskGroupUpdateStrategyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupUpdateStrategyArrayInput)(nil)).Elem(), JobTaskGroupUpdateStrategyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupVolumeInput)(nil)).Elem(), JobTaskGroupVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobTaskGroupVolumeArrayInput)(nil)).Elem(), JobTaskGroupVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobUpdateStrategyInput)(nil)).Elem(), JobUpdateStrategyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobUpdateStrategyArrayInput)(nil)).Elem(), JobUpdateStrategyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceCapabilitiesInput)(nil)).Elem(), NamespaceCapabilitiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceCapabilitiesPtrInput)(nil)).Elem(), NamespaceCapabilitiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceConsulConfigInput)(nil)).Elem(), NamespaceConsulConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceConsulConfigPtrInput)(nil)).Elem(), NamespaceConsulConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceNodePoolConfigInput)(nil)).Elem(), NamespaceNodePoolConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceNodePoolConfigPtrInput)(nil)).Elem(), NamespaceNodePoolConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceVaultConfigInput)(nil)).Elem(), NamespaceVaultConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NamespaceVaultConfigPtrInput)(nil)).Elem(), NamespaceVaultConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolSchedulerConfigInput)(nil)).Elem(), NodePoolSchedulerConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolSchedulerConfigPtrInput)(nil)).Elem(), NodePoolSchedulerConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthJwtInput)(nil)).Elem(), ProviderAuthJwtArgs{})
@@ -10257,6 +15504,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitInput)(nil)).Elem(), QuoteSpecificationLimitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitArrayInput)(nil)).Elem(), QuoteSpecificationLimitArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitDeviceInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitDeviceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitDeviceArrayInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePoolInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitNodePoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePoolArrayInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitNodePoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePoolDeviceInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitNodePoolDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePoolStorageInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitNodePoolStorageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitNodePoolStoragePtrInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitNodePoolStorageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitStorageInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitStorageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*QuoteSpecificationLimitRegionLimitStoragePtrInput)(nil)).Elem(), QuoteSpecificationLimitRegionLimitStorageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeCapabilityInput)(nil)).Elem(), VolumeCapabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeCapabilityArrayInput)(nil)).Elem(), VolumeCapabilityArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumeMountOptionsInput)(nil)).Elem(), VolumeMountOptionsArgs{})
@@ -10299,20 +15556,76 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupTaskArrayInput)(nil)).Elem(), GetJobTaskGroupTaskArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupTaskVolumeMountInput)(nil)).Elem(), GetJobTaskGroupTaskVolumeMountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupTaskVolumeMountArrayInput)(nil)).Elem(), GetJobTaskGroupTaskVolumeMountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupUpdateStrategyInput)(nil)).Elem(), GetJobTaskGroupUpdateStrategyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupUpdateStrategyArrayInput)(nil)).Elem(), GetJobTaskGroupUpdateStrategyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupVolumeInput)(nil)).Elem(), GetJobTaskGroupVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJobTaskGroupVolumeArrayInput)(nil)).Elem(), GetJobTaskGroupVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobUpdateStrategyInput)(nil)).Elem(), GetJobUpdateStrategyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobUpdateStrategyArrayInput)(nil)).Elem(), GetJobUpdateStrategyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJwksKeyInput)(nil)).Elem(), GetJwksKeyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetJwksKeyArrayInput)(nil)).Elem(), GetJwksKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceCapabilityInput)(nil)).Elem(), GetNamespaceCapabilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceCapabilityArrayInput)(nil)).Elem(), GetNamespaceCapabilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceConsulConfigInput)(nil)).Elem(), GetNamespaceConsulConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceConsulConfigArrayInput)(nil)).Elem(), GetNamespaceConsulConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceNodePoolConfigInput)(nil)).Elem(), GetNamespaceNodePoolConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceNodePoolConfigArrayInput)(nil)).Elem(), GetNamespaceNodePoolConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceVaultConfigInput)(nil)).Elem(), GetNamespaceVaultConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNamespaceVaultConfigArrayInput)(nil)).Elem(), GetNamespaceVaultConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeDriverInput)(nil)).Elem(), GetNodeDriverArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeDriverArrayInput)(nil)).Elem(), GetNodeDriverArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeHostVolumeInput)(nil)).Elem(), GetNodeHostVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeHostVolumeArrayInput)(nil)).Elem(), GetNodeHostVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceInput)(nil)).Elem(), GetNodeNodeResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceArrayInput)(nil)).Elem(), GetNodeNodeResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceCpusInput)(nil)).Elem(), GetNodeNodeResourceCpusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceCpusArrayInput)(nil)).Elem(), GetNodeNodeResourceCpusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceDeviceInput)(nil)).Elem(), GetNodeNodeResourceDeviceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceDeviceArrayInput)(nil)).Elem(), GetNodeNodeResourceDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceDiskInput)(nil)).Elem(), GetNodeNodeResourceDiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceDiskArrayInput)(nil)).Elem(), GetNodeNodeResourceDiskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceMemoryInput)(nil)).Elem(), GetNodeNodeResourceMemoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceMemoryArrayInput)(nil)).Elem(), GetNodeNodeResourceMemoryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceNetworkInput)(nil)).Elem(), GetNodeNodeResourceNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeNodeResourceNetworkArrayInput)(nil)).Elem(), GetNodeNodeResourceNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolSchedulerConfigInput)(nil)).Elem(), GetNodePoolSchedulerConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolSchedulerConfigArrayInput)(nil)).Elem(), GetNodePoolSchedulerConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolInput)(nil)).Elem(), GetNodePoolsNodePoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolArrayInput)(nil)).Elem(), GetNodePoolsNodePoolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolSchedulerConfigInput)(nil)).Elem(), GetNodePoolsNodePoolSchedulerConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNodePoolsNodePoolSchedulerConfigArrayInput)(nil)).Elem(), GetNodePoolsNodePoolSchedulerConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeReservedResourceInput)(nil)).Elem(), GetNodeReservedResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeReservedResourceArrayInput)(nil)).Elem(), GetNodeReservedResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeReservedResourceCpusInput)(nil)).Elem(), GetNodeReservedResourceCpusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeReservedResourceCpusArrayInput)(nil)).Elem(), GetNodeReservedResourceCpusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeReservedResourceDiskInput)(nil)).Elem(), GetNodeReservedResourceDiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeReservedResourceDiskArrayInput)(nil)).Elem(), GetNodeReservedResourceDiskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeReservedResourceMemoryInput)(nil)).Elem(), GetNodeReservedResourceMemoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodeReservedResourceMemoryArrayInput)(nil)).Elem(), GetNodeReservedResourceMemoryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeInput)(nil)).Elem(), GetNodesNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeArrayInput)(nil)).Elem(), GetNodesNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeDriverInput)(nil)).Elem(), GetNodesNodeDriverArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeDriverArrayInput)(nil)).Elem(), GetNodesNodeDriverArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceInput)(nil)).Elem(), GetNodesNodeNodeResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceArrayInput)(nil)).Elem(), GetNodesNodeNodeResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceCpusInput)(nil)).Elem(), GetNodesNodeNodeResourceCpusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceCpusArrayInput)(nil)).Elem(), GetNodesNodeNodeResourceCpusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceDeviceInput)(nil)).Elem(), GetNodesNodeNodeResourceDeviceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceDeviceArrayInput)(nil)).Elem(), GetNodesNodeNodeResourceDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceDiskInput)(nil)).Elem(), GetNodesNodeNodeResourceDiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceDiskArrayInput)(nil)).Elem(), GetNodesNodeNodeResourceDiskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceMemoryInput)(nil)).Elem(), GetNodesNodeNodeResourceMemoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceMemoryArrayInput)(nil)).Elem(), GetNodesNodeNodeResourceMemoryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceNetworkInput)(nil)).Elem(), GetNodesNodeNodeResourceNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeNodeResourceNetworkArrayInput)(nil)).Elem(), GetNodesNodeNodeResourceNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeReservedResourceInput)(nil)).Elem(), GetNodesNodeReservedResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeReservedResourceArrayInput)(nil)).Elem(), GetNodesNodeReservedResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeReservedResourceCpusInput)(nil)).Elem(), GetNodesNodeReservedResourceCpusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeReservedResourceCpusArrayInput)(nil)).Elem(), GetNodesNodeReservedResourceCpusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeReservedResourceDiskInput)(nil)).Elem(), GetNodesNodeReservedResourceDiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeReservedResourceDiskArrayInput)(nil)).Elem(), GetNodesNodeReservedResourceDiskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeReservedResourceMemoryInput)(nil)).Elem(), GetNodesNodeReservedResourceMemoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetNodesNodeReservedResourceMemoryArrayInput)(nil)).Elem(), GetNodesNodeReservedResourceMemoryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginNodeInput)(nil)).Elem(), GetPluginNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginNodeArrayInput)(nil)).Elem(), GetPluginNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScalingPoliciesPolicyInput)(nil)).Elem(), GetScalingPoliciesPolicyArgs{})
@@ -10381,20 +15694,32 @@ func init() {
 	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestRequiredPtrOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestRequiredTopologyOutput{})
 	pulumi.RegisterOutputType(ExternalVolumeTopologyRequestRequiredTopologyArrayOutput{})
+	pulumi.RegisterOutputType(JobConstraintOutput{})
+	pulumi.RegisterOutputType(JobConstraintArrayOutput{})
 	pulumi.RegisterOutputType(JobHcl2Output{})
 	pulumi.RegisterOutputType(JobHcl2PtrOutput{})
+	pulumi.RegisterOutputType(JobPeriodicConfigOutput{})
+	pulumi.RegisterOutputType(JobPeriodicConfigArrayOutput{})
 	pulumi.RegisterOutputType(JobTaskGroupOutput{})
 	pulumi.RegisterOutputType(JobTaskGroupArrayOutput{})
 	pulumi.RegisterOutputType(JobTaskGroupTaskOutput{})
 	pulumi.RegisterOutputType(JobTaskGroupTaskArrayOutput{})
 	pulumi.RegisterOutputType(JobTaskGroupTaskVolumeMountOutput{})
 	pulumi.RegisterOutputType(JobTaskGroupTaskVolumeMountArrayOutput{})
+	pulumi.RegisterOutputType(JobTaskGroupUpdateStrategyOutput{})
+	pulumi.RegisterOutputType(JobTaskGroupUpdateStrategyArrayOutput{})
 	pulumi.RegisterOutputType(JobTaskGroupVolumeOutput{})
 	pulumi.RegisterOutputType(JobTaskGroupVolumeArrayOutput{})
+	pulumi.RegisterOutputType(JobUpdateStrategyOutput{})
+	pulumi.RegisterOutputType(JobUpdateStrategyArrayOutput{})
 	pulumi.RegisterOutputType(NamespaceCapabilitiesOutput{})
 	pulumi.RegisterOutputType(NamespaceCapabilitiesPtrOutput{})
+	pulumi.RegisterOutputType(NamespaceConsulConfigOutput{})
+	pulumi.RegisterOutputType(NamespaceConsulConfigPtrOutput{})
 	pulumi.RegisterOutputType(NamespaceNodePoolConfigOutput{})
 	pulumi.RegisterOutputType(NamespaceNodePoolConfigPtrOutput{})
+	pulumi.RegisterOutputType(NamespaceVaultConfigOutput{})
+	pulumi.RegisterOutputType(NamespaceVaultConfigPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolSchedulerConfigOutput{})
 	pulumi.RegisterOutputType(NodePoolSchedulerConfigPtrOutput{})
 	pulumi.RegisterOutputType(ProviderAuthJwtOutput{})
@@ -10404,6 +15729,16 @@ func init() {
 	pulumi.RegisterOutputType(QuoteSpecificationLimitOutput{})
 	pulumi.RegisterOutputType(QuoteSpecificationLimitArrayOutput{})
 	pulumi.RegisterOutputType(QuoteSpecificationLimitRegionLimitOutput{})
+	pulumi.RegisterOutputType(QuoteSpecificationLimitRegionLimitDeviceOutput{})
+	pulumi.RegisterOutputType(QuoteSpecificationLimitRegionLimitDeviceArrayOutput{})
+	pulumi.RegisterOutputType(QuoteSpecificationLimitRegionLimitNodePoolOutput{})
+	pulumi.RegisterOutputType(QuoteSpecificationLimitRegionLimitNodePoolArrayOutput{})
+	pulumi.RegisterOutputType(QuoteSpecificationLimitRegionLimitNodePoolDeviceOutput{})
+	pulumi.RegisterOutputType(QuoteSpecificationLimitRegionLimitNodePoolDeviceArrayOutput{})
+	pulumi.RegisterOutputType(QuoteSpecificationLimitRegionLimitNodePoolStorageOutput{})
+	pulumi.RegisterOutputType(QuoteSpecificationLimitRegionLimitNodePoolStoragePtrOutput{})
+	pulumi.RegisterOutputType(QuoteSpecificationLimitRegionLimitStorageOutput{})
+	pulumi.RegisterOutputType(QuoteSpecificationLimitRegionLimitStoragePtrOutput{})
 	pulumi.RegisterOutputType(VolumeCapabilityOutput{})
 	pulumi.RegisterOutputType(VolumeCapabilityArrayOutput{})
 	pulumi.RegisterOutputType(VolumeMountOptionsOutput{})
@@ -10446,20 +15781,76 @@ func init() {
 	pulumi.RegisterOutputType(GetJobTaskGroupTaskArrayOutput{})
 	pulumi.RegisterOutputType(GetJobTaskGroupTaskVolumeMountOutput{})
 	pulumi.RegisterOutputType(GetJobTaskGroupTaskVolumeMountArrayOutput{})
+	pulumi.RegisterOutputType(GetJobTaskGroupUpdateStrategyOutput{})
+	pulumi.RegisterOutputType(GetJobTaskGroupUpdateStrategyArrayOutput{})
 	pulumi.RegisterOutputType(GetJobTaskGroupVolumeOutput{})
 	pulumi.RegisterOutputType(GetJobTaskGroupVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetJobUpdateStrategyOutput{})
+	pulumi.RegisterOutputType(GetJobUpdateStrategyArrayOutput{})
 	pulumi.RegisterOutputType(GetJwksKeyOutput{})
 	pulumi.RegisterOutputType(GetJwksKeyArrayOutput{})
 	pulumi.RegisterOutputType(GetNamespaceCapabilityOutput{})
 	pulumi.RegisterOutputType(GetNamespaceCapabilityArrayOutput{})
+	pulumi.RegisterOutputType(GetNamespaceConsulConfigOutput{})
+	pulumi.RegisterOutputType(GetNamespaceConsulConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetNamespaceNodePoolConfigOutput{})
 	pulumi.RegisterOutputType(GetNamespaceNodePoolConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetNamespaceVaultConfigOutput{})
+	pulumi.RegisterOutputType(GetNamespaceVaultConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeDriverOutput{})
+	pulumi.RegisterOutputType(GetNodeDriverArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeHostVolumeOutput{})
+	pulumi.RegisterOutputType(GetNodeHostVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceCpusOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceCpusArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceDeviceOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceDeviceArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceDiskOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceDiskArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceMemoryOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceMemoryArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceNetworkOutput{})
+	pulumi.RegisterOutputType(GetNodeNodeResourceNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolSchedulerConfigOutput{})
 	pulumi.RegisterOutputType(GetNodePoolSchedulerConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolsNodePoolOutput{})
 	pulumi.RegisterOutputType(GetNodePoolsNodePoolArrayOutput{})
 	pulumi.RegisterOutputType(GetNodePoolsNodePoolSchedulerConfigOutput{})
 	pulumi.RegisterOutputType(GetNodePoolsNodePoolSchedulerConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeReservedResourceOutput{})
+	pulumi.RegisterOutputType(GetNodeReservedResourceArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeReservedResourceCpusOutput{})
+	pulumi.RegisterOutputType(GetNodeReservedResourceCpusArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeReservedResourceDiskOutput{})
+	pulumi.RegisterOutputType(GetNodeReservedResourceDiskArrayOutput{})
+	pulumi.RegisterOutputType(GetNodeReservedResourceMemoryOutput{})
+	pulumi.RegisterOutputType(GetNodeReservedResourceMemoryArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeDriverOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeDriverArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceCpusOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceCpusArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceDeviceOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceDeviceArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceDiskOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceDiskArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceMemoryOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceMemoryArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceNetworkOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeNodeResourceNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeReservedResourceOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeReservedResourceArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeReservedResourceCpusOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeReservedResourceCpusArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeReservedResourceDiskOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeReservedResourceDiskArrayOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeReservedResourceMemoryOutput{})
+	pulumi.RegisterOutputType(GetNodesNodeReservedResourceMemoryArrayOutput{})
 	pulumi.RegisterOutputType(GetPluginNodeOutput{})
 	pulumi.RegisterOutputType(GetPluginNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetScalingPoliciesPolicyOutput{})

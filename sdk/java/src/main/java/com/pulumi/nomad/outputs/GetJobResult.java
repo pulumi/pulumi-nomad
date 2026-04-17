@@ -8,6 +8,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetJobConstraint;
 import com.pulumi.nomad.outputs.GetJobPeriodicConfig;
 import com.pulumi.nomad.outputs.GetJobTaskGroup;
+import com.pulumi.nomad.outputs.GetJobUpdateStrategy;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -23,6 +24,10 @@ public final class GetJobResult {
      * 
      */
     private Boolean allAtOnce;
+    /**
+     * @return `(list of maps)` Job constraints.
+     * 
+     */
     private List<GetJobConstraint> constraints;
     /**
      * @return `(integer)` Creation Index.
@@ -51,7 +56,7 @@ public final class GetJobResult {
      */
     private Integer modifyIndex;
     /**
-     * @return `(string)` Name of the job.
+     * @return `(string)` Volume name.
      * 
      */
     private String name;
@@ -62,7 +67,7 @@ public final class GetJobResult {
      */
     private String parentId;
     /**
-     * @return `(list of maps)` Job&#39;s periodic configuration (time based scheduling).
+     * @return `(list of maps)` Job&#39;s periodic configuration.
      * 
      */
     private List<GetJobPeriodicConfig> periodicConfigs;
@@ -100,17 +105,22 @@ public final class GetJobResult {
      * @return `(integer)` Job submission date.
      * 
      */
-    private Integer submitTime;
+    private String submitTime;
     /**
-     * @return `(list of maps)` A list of of the job&#39;s task groups.
+     * @return `(list of maps)` A list of the job&#39;s task groups.
      * 
      */
     private List<GetJobTaskGroup> taskGroups;
     /**
-     * @return `(string)` Scheduler type used during job creation.
+     * @return `(string)` Volume type.
      * 
      */
     private String type;
+    /**
+     * @return `(list of maps)` Job-level update strategy returned by Nomad.
+     * 
+     */
+    private List<GetJobUpdateStrategy> updateStrategies;
     /**
      * @return `(integer)` Version of the specified job.
      * 
@@ -125,6 +135,10 @@ public final class GetJobResult {
     public Boolean allAtOnce() {
         return this.allAtOnce;
     }
+    /**
+     * @return `(list of maps)` Job constraints.
+     * 
+     */
     public List<GetJobConstraint> constraints() {
         return this.constraints;
     }
@@ -167,7 +181,7 @@ public final class GetJobResult {
         return this.modifyIndex;
     }
     /**
-     * @return `(string)` Name of the job.
+     * @return `(string)` Volume name.
      * 
      */
     public String name() {
@@ -184,7 +198,7 @@ public final class GetJobResult {
         return this.parentId;
     }
     /**
-     * @return `(list of maps)` Job&#39;s periodic configuration (time based scheduling).
+     * @return `(list of maps)` Job&#39;s periodic configuration.
      * 
      */
     public List<GetJobPeriodicConfig> periodicConfigs() {
@@ -236,22 +250,29 @@ public final class GetJobResult {
      * @return `(integer)` Job submission date.
      * 
      */
-    public Integer submitTime() {
+    public String submitTime() {
         return this.submitTime;
     }
     /**
-     * @return `(list of maps)` A list of of the job&#39;s task groups.
+     * @return `(list of maps)` A list of the job&#39;s task groups.
      * 
      */
     public List<GetJobTaskGroup> taskGroups() {
         return this.taskGroups;
     }
     /**
-     * @return `(string)` Scheduler type used during job creation.
+     * @return `(string)` Volume type.
      * 
      */
     public String type() {
         return this.type;
+    }
+    /**
+     * @return `(list of maps)` Job-level update strategy returned by Nomad.
+     * 
+     */
+    public List<GetJobUpdateStrategy> updateStrategies() {
+        return this.updateStrategies;
     }
     /**
      * @return `(integer)` Version of the specified job.
@@ -288,9 +309,10 @@ public final class GetJobResult {
         private String status;
         private String statusDescription;
         private Boolean stop;
-        private Integer submitTime;
+        private String submitTime;
         private List<GetJobTaskGroup> taskGroups;
         private String type;
+        private List<GetJobUpdateStrategy> updateStrategies;
         private Integer version;
         public Builder() {}
         public Builder(GetJobResult defaults) {
@@ -316,6 +338,7 @@ public final class GetJobResult {
     	      this.submitTime = defaults.submitTime;
     	      this.taskGroups = defaults.taskGroups;
     	      this.type = defaults.type;
+    	      this.updateStrategies = defaults.updateStrategies;
     	      this.version = defaults.version;
         }
 
@@ -471,7 +494,7 @@ public final class GetJobResult {
             return this;
         }
         @CustomType.Setter
-        public Builder submitTime(Integer submitTime) {
+        public Builder submitTime(String submitTime) {
             if (submitTime == null) {
               throw new MissingRequiredPropertyException("GetJobResult", "submitTime");
             }
@@ -496,6 +519,17 @@ public final class GetJobResult {
             }
             this.type = type;
             return this;
+        }
+        @CustomType.Setter
+        public Builder updateStrategies(List<GetJobUpdateStrategy> updateStrategies) {
+            if (updateStrategies == null) {
+              throw new MissingRequiredPropertyException("GetJobResult", "updateStrategies");
+            }
+            this.updateStrategies = updateStrategies;
+            return this;
+        }
+        public Builder updateStrategies(GetJobUpdateStrategy... updateStrategies) {
+            return updateStrategies(List.of(updateStrategies));
         }
         @CustomType.Setter
         public Builder version(Integer version) {
@@ -528,6 +562,7 @@ public final class GetJobResult {
             _resultValue.submitTime = submitTime;
             _resultValue.taskGroups = taskGroups;
             _resultValue.type = type;
+            _resultValue.updateStrategies = updateStrategies;
             _resultValue.version = version;
             return _resultValue;
         }

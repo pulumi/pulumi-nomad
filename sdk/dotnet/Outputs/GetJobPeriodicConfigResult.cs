@@ -14,23 +14,23 @@ namespace Pulumi.Nomad.Outputs
     public sealed class GetJobPeriodicConfigResult
     {
         /// <summary>
-        /// `(boolean)` If periodic scheduling is enabled for the specified job.
+        /// `(boolean)` Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
-        /// `(boolean)`  If the specified job should wait until previous instances of the job have completed.
+        /// `(boolean)` Whether this job should wait until previous instances of the same job have completed before launching again.
         /// </summary>
         public readonly bool ProhibitOverlap;
         /// <summary>
-        /// `(string)`
+        /// `(string)` Cron expression configuring the interval at which the job is launched.
         /// </summary>
         public readonly string Spec;
         /// <summary>
-        /// `(string)`
+        /// `(string)` Type of periodic specification, such as `Cron`.
         /// </summary>
         public readonly string SpecType;
         /// <summary>
-        /// `(string)` Time zone to evaluate the next launch interval against.
+        /// `(string)` Time zone used to evaluate the next launch interval.
         /// </summary>
         public readonly string Timezone;
 

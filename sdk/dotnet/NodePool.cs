@@ -61,6 +61,13 @@ namespace Pulumi.Nomad
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// `(string)` - The TTL applied to node identities issued to
+        /// nodes in this pool.
+        /// </summary>
+        [Output("nodeIdentityTtl")]
+        public Output<string> NodeIdentityTtl { get; private set; } = null!;
+
+        /// <summary>
         /// `(block)` - Scheduler configuration for the node pool.
         /// </summary>
         [Output("schedulerConfig")]
@@ -138,6 +145,13 @@ namespace Pulumi.Nomad
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// `(string)` - The TTL applied to node identities issued to
+        /// nodes in this pool.
+        /// </summary>
+        [Input("nodeIdentityTtl")]
+        public Input<string>? NodeIdentityTtl { get; set; }
+
+        /// <summary>
         /// `(block)` - Scheduler configuration for the node pool.
         /// </summary>
         [Input("schedulerConfig")]
@@ -175,6 +189,13 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// `(string)` - The TTL applied to node identities issued to
+        /// nodes in this pool.
+        /// </summary>
+        [Input("nodeIdentityTtl")]
+        public Input<string>? NodeIdentityTtl { get; set; }
 
         /// <summary>
         /// `(block)` - Scheduler configuration for the node pool.

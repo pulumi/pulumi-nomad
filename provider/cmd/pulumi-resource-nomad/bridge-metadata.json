@@ -239,11 +239,17 @@
                     "allocation_ids": {
                         "maxItemsOne": false
                     },
+                    "constraints": {
+                        "maxItemsOne": false
+                    },
                     "datacenters": {
                         "maxItemsOne": false
                     },
                     "hcl2": {
                         "maxItemsOne": true
+                    },
+                    "periodic_config": {
+                        "maxItemsOne": false
                     },
                     "task_groups": {
                         "maxItemsOne": false,
@@ -259,11 +265,17 @@
                                         }
                                     }
                                 },
+                                "update_strategy": {
+                                    "maxItemsOne": false
+                                },
                                 "volumes": {
                                     "maxItemsOne": false
                                 }
                             }
                         }
+                    },
+                    "update_strategy": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -289,7 +301,33 @@
                             }
                         }
                     },
+                    "consul_config": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "allowed": {
+                                    "maxItemsOne": false
+                                },
+                                "denied": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "node_pool_config": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "allowed": {
+                                    "maxItemsOne": false
+                                },
+                                "denied": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "vault_config": {
                         "maxItemsOne": true,
                         "elem": {
                             "fields": {
@@ -320,7 +358,30 @@
                         "elem": {
                             "fields": {
                                 "region_limit": {
-                                    "maxItemsOne": true
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "devices": {
+                                                "maxItemsOne": false
+                                            },
+                                            "node_pools": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "devices": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "storage": {
+                                                            "maxItemsOne": true
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "storage": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -500,11 +561,17 @@
                                         }
                                     }
                                 },
+                                "update_strategy": {
+                                    "maxItemsOne": false
+                                },
                                 "volumes": {
                                     "maxItemsOne": false
                                 }
                             }
                         }
+                    },
+                    "update_strategy": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -544,7 +611,33 @@
                             }
                         }
                     },
+                    "consul_config": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "allowed": {
+                                    "maxItemsOne": false
+                                },
+                                "denied": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "node_pool_config": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "allowed": {
+                                    "maxItemsOne": false
+                                },
+                                "denied": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "vault_config": {
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
@@ -567,6 +660,62 @@
                     }
                 }
             },
+            "nomad_node": {
+                "current": "nomad:index/getNode:getNode",
+                "fields": {
+                    "drivers": {
+                        "maxItemsOne": false
+                    },
+                    "host_volumes": {
+                        "maxItemsOne": false
+                    },
+                    "node_resources": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "cpu": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "reservable_cpu_cores": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "devices": {
+                                    "maxItemsOne": false
+                                },
+                                "disk": {
+                                    "maxItemsOne": false
+                                },
+                                "memory": {
+                                    "maxItemsOne": false
+                                },
+                                "networks": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "reserved_resources": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "cpu": {
+                                    "maxItemsOne": false
+                                },
+                                "disk": {
+                                    "maxItemsOne": false
+                                },
+                                "memory": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "nomad_node_pool": {
                 "current": "nomad:index/getNodePool:getNodePool",
                 "fields": {
@@ -584,6 +733,66 @@
                             "fields": {
                                 "scheduler_config": {
                                     "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "nomad_nodes": {
+                "current": "nomad:index/getNodes:getNodes",
+                "fields": {
+                    "nodes": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "drivers": {
+                                    "maxItemsOne": false
+                                },
+                                "node_resources": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "cpu": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "reservable_cpu_cores": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "devices": {
+                                                "maxItemsOne": false
+                                            },
+                                            "disk": {
+                                                "maxItemsOne": false
+                                            },
+                                            "memory": {
+                                                "maxItemsOne": false
+                                            },
+                                            "networks": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "reserved_resources": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "cpu": {
+                                                "maxItemsOne": false
+                                            },
+                                            "disk": {
+                                                "maxItemsOne": false
+                                            },
+                                            "memory": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

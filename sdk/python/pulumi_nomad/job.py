@@ -28,6 +28,7 @@ class JobArgs:
                  hcl2: Optional[pulumi.Input['JobHcl2Args']] = None,
                  json: Optional[pulumi.Input[_builtins.bool]] = None,
                  policy_override: Optional[pulumi.Input[_builtins.bool]] = None,
+                 preserve_counts: Optional[pulumi.Input[_builtins.bool]] = None,
                  purge_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  read_allocation_ids: Optional[pulumi.Input[_builtins.bool]] = None,
                  rerun_if_dead: Optional[pulumi.Input[_builtins.bool]] = None):
@@ -46,6 +47,9 @@ class JobArgs:
                JSON instead of the default HCL.
         :param pulumi.Input[_builtins.bool] policy_override: `(boolean: false)` - Determines if the job will override any
                soft-mandatory Sentinel policies and register even if they fail.
+        :param pulumi.Input[_builtins.bool] preserve_counts: `(boolean: false)` - If true, preserves the current task
+               group counts already stored in Nomad during job registration instead of
+               applying the counts from the submitted jobspec.
         :param pulumi.Input[_builtins.bool] purge_on_destroy: `(boolean: false)` - Set this to true if you want the job to
                be purged when the resource is destroyed.
         :param pulumi.Input[_builtins.bool] rerun_if_dead: `(boolean: false)` - Set this to true to force the job to run
@@ -64,6 +68,8 @@ class JobArgs:
             pulumi.set(__self__, "json", json)
         if policy_override is not None:
             pulumi.set(__self__, "policy_override", policy_override)
+        if preserve_counts is not None:
+            pulumi.set(__self__, "preserve_counts", preserve_counts)
         if purge_on_destroy is not None:
             pulumi.set(__self__, "purge_on_destroy", purge_on_destroy)
         if read_allocation_ids is not None:
@@ -164,6 +170,20 @@ class JobArgs:
         pulumi.set(self, "policy_override", value)
 
     @_builtins.property
+    @pulumi.getter(name="preserveCounts")
+    def preserve_counts(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        `(boolean: false)` - If true, preserves the current task
+        group counts already stored in Nomad during job registration instead of
+        applying the counts from the submitted jobspec.
+        """
+        return pulumi.get(self, "preserve_counts")
+
+    @preserve_counts.setter
+    def preserve_counts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "preserve_counts", value)
+
+    @_builtins.property
     @pulumi.getter(name="purgeOnDestroy")
     def purge_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -203,7 +223,10 @@ class JobArgs:
 @pulumi.input_type
 class _JobState:
     def __init__(__self__, *,
+                 all_at_once: Optional[pulumi.Input[_builtins.bool]] = None,
                  allocation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 constraints: Optional[pulumi.Input[Sequence[pulumi.Input['JobConstraintArgs']]]] = None,
+                 create_index: Optional[pulumi.Input[_builtins.int]] = None,
                  datacenters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
                  deployment_status: Optional[pulumi.Input[_builtins.str]] = None,
@@ -216,21 +239,34 @@ class _JobState:
                  modify_index: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 parent_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 periodic_configs: Optional[pulumi.Input[Sequence[pulumi.Input['JobPeriodicConfigArgs']]]] = None,
                  policy_override: Optional[pulumi.Input[_builtins.bool]] = None,
+                 preserve_counts: Optional[pulumi.Input[_builtins.bool]] = None,
+                 priority: Optional[pulumi.Input[_builtins.int]] = None,
                  purge_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  read_allocation_ids: Optional[pulumi.Input[_builtins.bool]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  rerun_if_dead: Optional[pulumi.Input[_builtins.bool]] = None,
+                 stable: Optional[pulumi.Input[_builtins.bool]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
+                 status_description: Optional[pulumi.Input[_builtins.str]] = None,
+                 stop: Optional[pulumi.Input[_builtins.bool]] = None,
+                 submit_time: Optional[pulumi.Input[_builtins.str]] = None,
                  task_groups: Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupArgs']]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 update_strategies: Optional[pulumi.Input[Sequence[pulumi.Input['JobUpdateStrategyArgs']]]] = None,
+                 version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering Job resources.
 
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allocation_ids: The IDs for allocations associated with this job.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] datacenters: The target datacenters for the job, as derived from the jobspec.
-        :param pulumi.Input[_builtins.str] deployment_id: If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
-        :param pulumi.Input[_builtins.str] deployment_status: If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+        :param pulumi.Input[_builtins.bool] all_at_once: `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allocation_ids: `(list of strings)` - Allocation IDs associated with the job when `read_allocation_ids = true`.
+        :param pulumi.Input[Sequence[pulumi.Input['JobConstraintArgs']]] constraints: `(list of maps)` - Job constraints.
+        :param pulumi.Input[_builtins.int] create_index: `(integer)` - The job creation index.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] datacenters: `(set of strings)` - The target datacenters for the job.
+        :param pulumi.Input[_builtins.str] deployment_id: `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
+        :param pulumi.Input[_builtins.str] deployment_status: `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
         :param pulumi.Input[_builtins.bool] deregister_on_destroy: `(boolean: true)` - Determines if the job will be
                deregistered when this resource is destroyed in Terraform.
         :param pulumi.Input[_builtins.bool] deregister_on_id_change: `(boolean: true)` - Determines if the job will be
@@ -241,24 +277,43 @@ class _JobState:
         :param pulumi.Input[_builtins.str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
         :param pulumi.Input[_builtins.bool] json: `(boolean: false)` - Set this to `true` if your jobspec is structured with
                JSON instead of the default HCL.
-        :param pulumi.Input[_builtins.str] modify_index: Integer that increments for each change. Used to detect any changes between plan and apply.
-        :param pulumi.Input[_builtins.str] name: The name of the job, as derived from the jobspec.
-        :param pulumi.Input[_builtins.str] namespace: The namespace of the job, as derived from the jobspec.
+        :param pulumi.Input[_builtins.str] modify_index: `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
+        :param pulumi.Input[_builtins.str] name: `(string)` - Volume name.
+        :param pulumi.Input[_builtins.str] namespace: `(string)` - The namespace of the job, as derived from the jobspec.
+        :param pulumi.Input[_builtins.str] parent_id: `(string)` - The parent job ID, if applicable.
+        :param pulumi.Input[Sequence[pulumi.Input['JobPeriodicConfigArgs']]] periodic_configs: `(list of maps)` - The job's periodic configuration.
         :param pulumi.Input[_builtins.bool] policy_override: `(boolean: false)` - Determines if the job will override any
                soft-mandatory Sentinel policies and register even if they fail.
+        :param pulumi.Input[_builtins.bool] preserve_counts: `(boolean: false)` - If true, preserves the current task
+               group counts already stored in Nomad during job registration instead of
+               applying the counts from the submitted jobspec.
+        :param pulumi.Input[_builtins.int] priority: `(integer)` - The job priority for scheduling and resource access.
         :param pulumi.Input[_builtins.bool] purge_on_destroy: `(boolean: false)` - Set this to true if you want the job to
                be purged when the resource is destroyed.
-        :param pulumi.Input[_builtins.str] region: The target region for the job, as derived from the jobspec.
+        :param pulumi.Input[_builtins.str] region: `(string)` - The target region for the job.
         :param pulumi.Input[_builtins.bool] rerun_if_dead: `(boolean: false)` - Set this to true to force the job to run
                again if its status is `dead`.
-        :param pulumi.Input[_builtins.str] status: The status of the job.
-        :param pulumi.Input[_builtins.str] type: The type of the job, as derived from the jobspec.
+        :param pulumi.Input[_builtins.bool] stable: `(boolean)` - Whether the job is stable.
+        :param pulumi.Input[_builtins.str] status: `(string)` - The current status of the job.
+        :param pulumi.Input[_builtins.str] status_description: `(string)` - Additional status information returned by Nomad.
+        :param pulumi.Input[_builtins.bool] stop: `(boolean)` - Whether the job is stopped.
+        :param pulumi.Input[_builtins.str] submit_time: `(integer)` - The Unix timestamp when the job was submitted.
+        :param pulumi.Input[Sequence[pulumi.Input['JobTaskGroupArgs']]] task_groups: `(list of maps)` - A list of the job's task groups.
+        :param pulumi.Input[_builtins.str] type: `(string)` - Volume type.
+        :param pulumi.Input[Sequence[pulumi.Input['JobUpdateStrategyArgs']]] update_strategies: `(list of maps)` - Effective update strategy for the task group.
+        :param pulumi.Input[_builtins.int] version: `(integer)` - The current job version.
         """
+        if all_at_once is not None:
+            pulumi.set(__self__, "all_at_once", all_at_once)
         if allocation_ids is not None:
             warnings.warn("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""", DeprecationWarning)
             pulumi.log.warn("""allocation_ids is deprecated: Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
         if allocation_ids is not None:
             pulumi.set(__self__, "allocation_ids", allocation_ids)
+        if constraints is not None:
+            pulumi.set(__self__, "constraints", constraints)
+        if create_index is not None:
+            pulumi.set(__self__, "create_index", create_index)
         if datacenters is not None:
             pulumi.set(__self__, "datacenters", datacenters)
         if deployment_id is not None:
@@ -283,8 +338,16 @@ class _JobState:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if parent_id is not None:
+            pulumi.set(__self__, "parent_id", parent_id)
+        if periodic_configs is not None:
+            pulumi.set(__self__, "periodic_configs", periodic_configs)
         if policy_override is not None:
             pulumi.set(__self__, "policy_override", policy_override)
+        if preserve_counts is not None:
+            pulumi.set(__self__, "preserve_counts", preserve_counts)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
         if purge_on_destroy is not None:
             pulumi.set(__self__, "purge_on_destroy", purge_on_destroy)
         if read_allocation_ids is not None:
@@ -296,19 +359,43 @@ class _JobState:
             pulumi.set(__self__, "region", region)
         if rerun_if_dead is not None:
             pulumi.set(__self__, "rerun_if_dead", rerun_if_dead)
+        if stable is not None:
+            pulumi.set(__self__, "stable", stable)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if status_description is not None:
+            pulumi.set(__self__, "status_description", status_description)
+        if stop is not None:
+            pulumi.set(__self__, "stop", stop)
+        if submit_time is not None:
+            pulumi.set(__self__, "submit_time", submit_time)
         if task_groups is not None:
             pulumi.set(__self__, "task_groups", task_groups)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if update_strategies is not None:
+            pulumi.set(__self__, "update_strategies", update_strategies)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter(name="allAtOnce")
+    def all_at_once(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+        """
+        return pulumi.get(self, "all_at_once")
+
+    @all_at_once.setter
+    def all_at_once(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "all_at_once", value)
 
     @_builtins.property
     @pulumi.getter(name="allocationIds")
     @_utilities.deprecated("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
     def allocation_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The IDs for allocations associated with this job.
+        `(list of strings)` - Allocation IDs associated with the job when `read_allocation_ids = true`.
         """
         return pulumi.get(self, "allocation_ids")
 
@@ -318,9 +405,33 @@ class _JobState:
 
     @_builtins.property
     @pulumi.getter
+    def constraints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobConstraintArgs']]]]:
+        """
+        `(list of maps)` - Job constraints.
+        """
+        return pulumi.get(self, "constraints")
+
+    @constraints.setter
+    def constraints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobConstraintArgs']]]]):
+        pulumi.set(self, "constraints", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createIndex")
+    def create_index(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(integer)` - The job creation index.
+        """
+        return pulumi.get(self, "create_index")
+
+    @create_index.setter
+    def create_index(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "create_index", value)
+
+    @_builtins.property
+    @pulumi.getter
     def datacenters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The target datacenters for the job, as derived from the jobspec.
+        `(set of strings)` - The target datacenters for the job.
         """
         return pulumi.get(self, "datacenters")
 
@@ -332,7 +443,7 @@ class _JobState:
     @pulumi.getter(name="deploymentId")
     def deployment_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+        `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
         """
         return pulumi.get(self, "deployment_id")
 
@@ -344,7 +455,7 @@ class _JobState:
     @pulumi.getter(name="deploymentStatus")
     def deployment_status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+        `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
         """
         return pulumi.get(self, "deployment_status")
 
@@ -432,7 +543,7 @@ class _JobState:
     @pulumi.getter(name="modifyIndex")
     def modify_index(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Integer that increments for each change. Used to detect any changes between plan and apply.
+        `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
         """
         return pulumi.get(self, "modify_index")
 
@@ -444,7 +555,7 @@ class _JobState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The name of the job, as derived from the jobspec.
+        `(string)` - Volume name.
         """
         return pulumi.get(self, "name")
 
@@ -456,13 +567,37 @@ class _JobState:
     @pulumi.getter
     def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The namespace of the job, as derived from the jobspec.
+        `(string)` - The namespace of the job, as derived from the jobspec.
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
     def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "namespace", value)
+
+    @_builtins.property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - The parent job ID, if applicable.
+        """
+        return pulumi.get(self, "parent_id")
+
+    @parent_id.setter
+    def parent_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "parent_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="periodicConfigs")
+    def periodic_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobPeriodicConfigArgs']]]]:
+        """
+        `(list of maps)` - The job's periodic configuration.
+        """
+        return pulumi.get(self, "periodic_configs")
+
+    @periodic_configs.setter
+    def periodic_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobPeriodicConfigArgs']]]]):
+        pulumi.set(self, "periodic_configs", value)
 
     @_builtins.property
     @pulumi.getter(name="policyOverride")
@@ -476,6 +611,32 @@ class _JobState:
     @policy_override.setter
     def policy_override(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "policy_override", value)
+
+    @_builtins.property
+    @pulumi.getter(name="preserveCounts")
+    def preserve_counts(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        `(boolean: false)` - If true, preserves the current task
+        group counts already stored in Nomad during job registration instead of
+        applying the counts from the submitted jobspec.
+        """
+        return pulumi.get(self, "preserve_counts")
+
+    @preserve_counts.setter
+    def preserve_counts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "preserve_counts", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(integer)` - The job priority for scheduling and resource access.
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter(name="purgeOnDestroy")
@@ -504,7 +665,7 @@ class _JobState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The target region for the job, as derived from the jobspec.
+        `(string)` - The target region for the job.
         """
         return pulumi.get(self, "region")
 
@@ -527,9 +688,21 @@ class _JobState:
 
     @_builtins.property
     @pulumi.getter
+    def stable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        `(boolean)` - Whether the job is stable.
+        """
+        return pulumi.get(self, "stable")
+
+    @stable.setter
+    def stable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "stable", value)
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The status of the job.
+        `(string)` - The current status of the job.
         """
         return pulumi.get(self, "status")
 
@@ -538,8 +711,47 @@ class _JobState:
         pulumi.set(self, "status", value)
 
     @_builtins.property
+    @pulumi.getter(name="statusDescription")
+    def status_description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(string)` - Additional status information returned by Nomad.
+        """
+        return pulumi.get(self, "status_description")
+
+    @status_description.setter
+    def status_description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status_description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def stop(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        `(boolean)` - Whether the job is stopped.
+        """
+        return pulumi.get(self, "stop")
+
+    @stop.setter
+    def stop(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "stop", value)
+
+    @_builtins.property
+    @pulumi.getter(name="submitTime")
+    def submit_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        `(integer)` - The Unix timestamp when the job was submitted.
+        """
+        return pulumi.get(self, "submit_time")
+
+    @submit_time.setter
+    def submit_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "submit_time", value)
+
+    @_builtins.property
     @pulumi.getter(name="taskGroups")
     def task_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobTaskGroupArgs']]]]:
+        """
+        `(list of maps)` - A list of the job's task groups.
+        """
         return pulumi.get(self, "task_groups")
 
     @task_groups.setter
@@ -550,13 +762,37 @@ class _JobState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of the job, as derived from the jobspec.
+        `(string)` - Volume type.
         """
         return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updateStrategies")
+    def update_strategies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobUpdateStrategyArgs']]]]:
+        """
+        `(list of maps)` - Effective update strategy for the task group.
+        """
+        return pulumi.get(self, "update_strategies")
+
+    @update_strategies.setter
+    def update_strategies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobUpdateStrategyArgs']]]]):
+        pulumi.set(self, "update_strategies", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        `(integer)` - The current job version.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "version", value)
 
 
 @pulumi.type_token("nomad:index/job:Job")
@@ -572,6 +808,7 @@ class Job(pulumi.CustomResource):
                  jobspec: Optional[pulumi.Input[_builtins.str]] = None,
                  json: Optional[pulumi.Input[_builtins.bool]] = None,
                  policy_override: Optional[pulumi.Input[_builtins.bool]] = None,
+                 preserve_counts: Optional[pulumi.Input[_builtins.bool]] = None,
                  purge_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  read_allocation_ids: Optional[pulumi.Input[_builtins.bool]] = None,
                  rerun_if_dead: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -609,6 +846,9 @@ class Job(pulumi.CustomResource):
                JSON instead of the default HCL.
         :param pulumi.Input[_builtins.bool] policy_override: `(boolean: false)` - Determines if the job will override any
                soft-mandatory Sentinel policies and register even if they fail.
+        :param pulumi.Input[_builtins.bool] preserve_counts: `(boolean: false)` - If true, preserves the current task
+               group counts already stored in Nomad during job registration instead of
+               applying the counts from the submitted jobspec.
         :param pulumi.Input[_builtins.bool] purge_on_destroy: `(boolean: false)` - Set this to true if you want the job to
                be purged when the resource is destroyed.
         :param pulumi.Input[_builtins.bool] rerun_if_dead: `(boolean: false)` - Set this to true to force the job to run
@@ -661,6 +901,7 @@ class Job(pulumi.CustomResource):
                  jobspec: Optional[pulumi.Input[_builtins.str]] = None,
                  json: Optional[pulumi.Input[_builtins.bool]] = None,
                  policy_override: Optional[pulumi.Input[_builtins.bool]] = None,
+                 preserve_counts: Optional[pulumi.Input[_builtins.bool]] = None,
                  purge_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  read_allocation_ids: Optional[pulumi.Input[_builtins.bool]] = None,
                  rerun_if_dead: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -682,20 +923,33 @@ class Job(pulumi.CustomResource):
             __props__.__dict__["jobspec"] = jobspec
             __props__.__dict__["json"] = json
             __props__.__dict__["policy_override"] = policy_override
+            __props__.__dict__["preserve_counts"] = preserve_counts
             __props__.__dict__["purge_on_destroy"] = purge_on_destroy
             __props__.__dict__["read_allocation_ids"] = read_allocation_ids
             __props__.__dict__["rerun_if_dead"] = rerun_if_dead
+            __props__.__dict__["all_at_once"] = None
             __props__.__dict__["allocation_ids"] = None
+            __props__.__dict__["constraints"] = None
+            __props__.__dict__["create_index"] = None
             __props__.__dict__["datacenters"] = None
             __props__.__dict__["deployment_id"] = None
             __props__.__dict__["deployment_status"] = None
             __props__.__dict__["modify_index"] = None
             __props__.__dict__["name"] = None
             __props__.__dict__["namespace"] = None
+            __props__.__dict__["parent_id"] = None
+            __props__.__dict__["periodic_configs"] = None
+            __props__.__dict__["priority"] = None
             __props__.__dict__["region"] = None
+            __props__.__dict__["stable"] = None
             __props__.__dict__["status"] = None
+            __props__.__dict__["status_description"] = None
+            __props__.__dict__["stop"] = None
+            __props__.__dict__["submit_time"] = None
             __props__.__dict__["task_groups"] = None
             __props__.__dict__["type"] = None
+            __props__.__dict__["update_strategies"] = None
+            __props__.__dict__["version"] = None
         super(Job, __self__).__init__(
             'nomad:index/job:Job',
             resource_name,
@@ -706,7 +960,10 @@ class Job(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            all_at_once: Optional[pulumi.Input[_builtins.bool]] = None,
             allocation_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            constraints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobConstraintArgs', 'JobConstraintArgsDict']]]]] = None,
+            create_index: Optional[pulumi.Input[_builtins.int]] = None,
             datacenters: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             deployment_id: Optional[pulumi.Input[_builtins.str]] = None,
             deployment_status: Optional[pulumi.Input[_builtins.str]] = None,
@@ -719,14 +976,24 @@ class Job(pulumi.CustomResource):
             modify_index: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             namespace: Optional[pulumi.Input[_builtins.str]] = None,
+            parent_id: Optional[pulumi.Input[_builtins.str]] = None,
+            periodic_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobPeriodicConfigArgs', 'JobPeriodicConfigArgsDict']]]]] = None,
             policy_override: Optional[pulumi.Input[_builtins.bool]] = None,
+            preserve_counts: Optional[pulumi.Input[_builtins.bool]] = None,
+            priority: Optional[pulumi.Input[_builtins.int]] = None,
             purge_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
             read_allocation_ids: Optional[pulumi.Input[_builtins.bool]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             rerun_if_dead: Optional[pulumi.Input[_builtins.bool]] = None,
+            stable: Optional[pulumi.Input[_builtins.bool]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
+            status_description: Optional[pulumi.Input[_builtins.str]] = None,
+            stop: Optional[pulumi.Input[_builtins.bool]] = None,
+            submit_time: Optional[pulumi.Input[_builtins.str]] = None,
             task_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobTaskGroupArgs', 'JobTaskGroupArgsDict']]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Job':
+            type: Optional[pulumi.Input[_builtins.str]] = None,
+            update_strategies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobUpdateStrategyArgs', 'JobUpdateStrategyArgsDict']]]]] = None,
+            version: Optional[pulumi.Input[_builtins.int]] = None) -> 'Job':
         """
         Get an existing Job resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -734,10 +1001,13 @@ class Job(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allocation_ids: The IDs for allocations associated with this job.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] datacenters: The target datacenters for the job, as derived from the jobspec.
-        :param pulumi.Input[_builtins.str] deployment_id: If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
-        :param pulumi.Input[_builtins.str] deployment_status: If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+        :param pulumi.Input[_builtins.bool] all_at_once: `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allocation_ids: `(list of strings)` - Allocation IDs associated with the job when `read_allocation_ids = true`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobConstraintArgs', 'JobConstraintArgsDict']]]] constraints: `(list of maps)` - Job constraints.
+        :param pulumi.Input[_builtins.int] create_index: `(integer)` - The job creation index.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] datacenters: `(set of strings)` - The target datacenters for the job.
+        :param pulumi.Input[_builtins.str] deployment_id: `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
+        :param pulumi.Input[_builtins.str] deployment_status: `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
         :param pulumi.Input[_builtins.bool] deregister_on_destroy: `(boolean: true)` - Determines if the job will be
                deregistered when this resource is destroyed in Terraform.
         :param pulumi.Input[_builtins.bool] deregister_on_id_change: `(boolean: true)` - Determines if the job will be
@@ -748,24 +1018,40 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
         :param pulumi.Input[_builtins.bool] json: `(boolean: false)` - Set this to `true` if your jobspec is structured with
                JSON instead of the default HCL.
-        :param pulumi.Input[_builtins.str] modify_index: Integer that increments for each change. Used to detect any changes between plan and apply.
-        :param pulumi.Input[_builtins.str] name: The name of the job, as derived from the jobspec.
-        :param pulumi.Input[_builtins.str] namespace: The namespace of the job, as derived from the jobspec.
+        :param pulumi.Input[_builtins.str] modify_index: `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
+        :param pulumi.Input[_builtins.str] name: `(string)` - Volume name.
+        :param pulumi.Input[_builtins.str] namespace: `(string)` - The namespace of the job, as derived from the jobspec.
+        :param pulumi.Input[_builtins.str] parent_id: `(string)` - The parent job ID, if applicable.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobPeriodicConfigArgs', 'JobPeriodicConfigArgsDict']]]] periodic_configs: `(list of maps)` - The job's periodic configuration.
         :param pulumi.Input[_builtins.bool] policy_override: `(boolean: false)` - Determines if the job will override any
                soft-mandatory Sentinel policies and register even if they fail.
+        :param pulumi.Input[_builtins.bool] preserve_counts: `(boolean: false)` - If true, preserves the current task
+               group counts already stored in Nomad during job registration instead of
+               applying the counts from the submitted jobspec.
+        :param pulumi.Input[_builtins.int] priority: `(integer)` - The job priority for scheduling and resource access.
         :param pulumi.Input[_builtins.bool] purge_on_destroy: `(boolean: false)` - Set this to true if you want the job to
                be purged when the resource is destroyed.
-        :param pulumi.Input[_builtins.str] region: The target region for the job, as derived from the jobspec.
+        :param pulumi.Input[_builtins.str] region: `(string)` - The target region for the job.
         :param pulumi.Input[_builtins.bool] rerun_if_dead: `(boolean: false)` - Set this to true to force the job to run
                again if its status is `dead`.
-        :param pulumi.Input[_builtins.str] status: The status of the job.
-        :param pulumi.Input[_builtins.str] type: The type of the job, as derived from the jobspec.
+        :param pulumi.Input[_builtins.bool] stable: `(boolean)` - Whether the job is stable.
+        :param pulumi.Input[_builtins.str] status: `(string)` - The current status of the job.
+        :param pulumi.Input[_builtins.str] status_description: `(string)` - Additional status information returned by Nomad.
+        :param pulumi.Input[_builtins.bool] stop: `(boolean)` - Whether the job is stopped.
+        :param pulumi.Input[_builtins.str] submit_time: `(integer)` - The Unix timestamp when the job was submitted.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobTaskGroupArgs', 'JobTaskGroupArgsDict']]]] task_groups: `(list of maps)` - A list of the job's task groups.
+        :param pulumi.Input[_builtins.str] type: `(string)` - Volume type.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobUpdateStrategyArgs', 'JobUpdateStrategyArgsDict']]]] update_strategies: `(list of maps)` - Effective update strategy for the task group.
+        :param pulumi.Input[_builtins.int] version: `(integer)` - The current job version.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _JobState.__new__(_JobState)
 
+        __props__.__dict__["all_at_once"] = all_at_once
         __props__.__dict__["allocation_ids"] = allocation_ids
+        __props__.__dict__["constraints"] = constraints
+        __props__.__dict__["create_index"] = create_index
         __props__.__dict__["datacenters"] = datacenters
         __props__.__dict__["deployment_id"] = deployment_id
         __props__.__dict__["deployment_status"] = deployment_status
@@ -778,30 +1064,64 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["modify_index"] = modify_index
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["parent_id"] = parent_id
+        __props__.__dict__["periodic_configs"] = periodic_configs
         __props__.__dict__["policy_override"] = policy_override
+        __props__.__dict__["preserve_counts"] = preserve_counts
+        __props__.__dict__["priority"] = priority
         __props__.__dict__["purge_on_destroy"] = purge_on_destroy
         __props__.__dict__["read_allocation_ids"] = read_allocation_ids
         __props__.__dict__["region"] = region
         __props__.__dict__["rerun_if_dead"] = rerun_if_dead
+        __props__.__dict__["stable"] = stable
         __props__.__dict__["status"] = status
+        __props__.__dict__["status_description"] = status_description
+        __props__.__dict__["stop"] = stop
+        __props__.__dict__["submit_time"] = submit_time
         __props__.__dict__["task_groups"] = task_groups
         __props__.__dict__["type"] = type
+        __props__.__dict__["update_strategies"] = update_strategies
+        __props__.__dict__["version"] = version
         return Job(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="allAtOnce")
+    def all_at_once(self) -> pulumi.Output[_builtins.bool]:
+        """
+        `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+        """
+        return pulumi.get(self, "all_at_once")
 
     @_builtins.property
     @pulumi.getter(name="allocationIds")
     @_utilities.deprecated("""Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the get_allocations data source instead.""")
     def allocation_ids(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        The IDs for allocations associated with this job.
+        `(list of strings)` - Allocation IDs associated with the job when `read_allocation_ids = true`.
         """
         return pulumi.get(self, "allocation_ids")
 
     @_builtins.property
     @pulumi.getter
+    def constraints(self) -> pulumi.Output[Sequence['outputs.JobConstraint']]:
+        """
+        `(list of maps)` - Job constraints.
+        """
+        return pulumi.get(self, "constraints")
+
+    @_builtins.property
+    @pulumi.getter(name="createIndex")
+    def create_index(self) -> pulumi.Output[_builtins.int]:
+        """
+        `(integer)` - The job creation index.
+        """
+        return pulumi.get(self, "create_index")
+
+    @_builtins.property
+    @pulumi.getter
     def datacenters(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        The target datacenters for the job, as derived from the jobspec.
+        `(set of strings)` - The target datacenters for the job.
         """
         return pulumi.get(self, "datacenters")
 
@@ -809,7 +1129,7 @@ class Job(pulumi.CustomResource):
     @pulumi.getter(name="deploymentId")
     def deployment_id(self) -> pulumi.Output[_builtins.str]:
         """
-        If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+        `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
         """
         return pulumi.get(self, "deployment_id")
 
@@ -817,7 +1137,7 @@ class Job(pulumi.CustomResource):
     @pulumi.getter(name="deploymentStatus")
     def deployment_status(self) -> pulumi.Output[_builtins.str]:
         """
-        If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+        `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
         """
         return pulumi.get(self, "deployment_status")
 
@@ -877,7 +1197,7 @@ class Job(pulumi.CustomResource):
     @pulumi.getter(name="modifyIndex")
     def modify_index(self) -> pulumi.Output[_builtins.str]:
         """
-        Integer that increments for each change. Used to detect any changes between plan and apply.
+        `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
         """
         return pulumi.get(self, "modify_index")
 
@@ -885,7 +1205,7 @@ class Job(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        The name of the job, as derived from the jobspec.
+        `(string)` - Volume name.
         """
         return pulumi.get(self, "name")
 
@@ -893,9 +1213,25 @@ class Job(pulumi.CustomResource):
     @pulumi.getter
     def namespace(self) -> pulumi.Output[_builtins.str]:
         """
-        The namespace of the job, as derived from the jobspec.
+        `(string)` - The namespace of the job, as derived from the jobspec.
         """
         return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="parentId")
+    def parent_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        `(string)` - The parent job ID, if applicable.
+        """
+        return pulumi.get(self, "parent_id")
+
+    @_builtins.property
+    @pulumi.getter(name="periodicConfigs")
+    def periodic_configs(self) -> pulumi.Output[Sequence['outputs.JobPeriodicConfig']]:
+        """
+        `(list of maps)` - The job's periodic configuration.
+        """
+        return pulumi.get(self, "periodic_configs")
 
     @_builtins.property
     @pulumi.getter(name="policyOverride")
@@ -905,6 +1241,24 @@ class Job(pulumi.CustomResource):
         soft-mandatory Sentinel policies and register even if they fail.
         """
         return pulumi.get(self, "policy_override")
+
+    @_builtins.property
+    @pulumi.getter(name="preserveCounts")
+    def preserve_counts(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        `(boolean: false)` - If true, preserves the current task
+        group counts already stored in Nomad during job registration instead of
+        applying the counts from the submitted jobspec.
+        """
+        return pulumi.get(self, "preserve_counts")
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> pulumi.Output[_builtins.int]:
+        """
+        `(integer)` - The job priority for scheduling and resource access.
+        """
+        return pulumi.get(self, "priority")
 
     @_builtins.property
     @pulumi.getter(name="purgeOnDestroy")
@@ -925,7 +1279,7 @@ class Job(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        The target region for the job, as derived from the jobspec.
+        `(string)` - The target region for the job.
         """
         return pulumi.get(self, "region")
 
@@ -940,22 +1294,73 @@ class Job(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def stable(self) -> pulumi.Output[_builtins.bool]:
+        """
+        `(boolean)` - Whether the job is stable.
+        """
+        return pulumi.get(self, "stable")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
-        The status of the job.
+        `(string)` - The current status of the job.
         """
         return pulumi.get(self, "status")
 
     @_builtins.property
+    @pulumi.getter(name="statusDescription")
+    def status_description(self) -> pulumi.Output[_builtins.str]:
+        """
+        `(string)` - Additional status information returned by Nomad.
+        """
+        return pulumi.get(self, "status_description")
+
+    @_builtins.property
+    @pulumi.getter
+    def stop(self) -> pulumi.Output[_builtins.bool]:
+        """
+        `(boolean)` - Whether the job is stopped.
+        """
+        return pulumi.get(self, "stop")
+
+    @_builtins.property
+    @pulumi.getter(name="submitTime")
+    def submit_time(self) -> pulumi.Output[_builtins.str]:
+        """
+        `(integer)` - The Unix timestamp when the job was submitted.
+        """
+        return pulumi.get(self, "submit_time")
+
+    @_builtins.property
     @pulumi.getter(name="taskGroups")
     def task_groups(self) -> pulumi.Output[Sequence['outputs.JobTaskGroup']]:
+        """
+        `(list of maps)` - A list of the job's task groups.
+        """
         return pulumi.get(self, "task_groups")
 
     @_builtins.property
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of the job, as derived from the jobspec.
+        `(string)` - Volume type.
         """
         return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="updateStrategies")
+    def update_strategies(self) -> pulumi.Output[Sequence['outputs.JobUpdateStrategy']]:
+        """
+        `(list of maps)` - Effective update strategy for the task group.
+        """
+        return pulumi.get(self, "update_strategies")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> pulumi.Output[_builtins.int]:
+        """
+        `(integer)` - The current job version.
+        """
+        return pulumi.get(self, "version")
 

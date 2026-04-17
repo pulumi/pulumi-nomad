@@ -12,22 +12,36 @@ namespace Pulumi.Nomad.Inputs
 
     public sealed class JobTaskGroupTaskGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// `(string)` - Task driver.
+        /// </summary>
         [Input("driver")]
         public Input<string>? Driver { get; set; }
 
         [Input("meta")]
         private InputMap<string>? _meta;
+
+        /// <summary>
+        /// `(map of strings)` - Task group metadata.
+        /// </summary>
         public InputMap<string> Meta
         {
             get => _meta ?? (_meta = new InputMap<string>());
             set => _meta = value;
         }
 
+        /// <summary>
+        /// `(string)` - Volume name.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("volumeMounts")]
         private InputList<Inputs.JobTaskGroupTaskVolumeMountGetArgs>? _volumeMounts;
+
+        /// <summary>
+        /// `(list of maps)` - Task volume mounts.
+        /// </summary>
         public InputList<Inputs.JobTaskGroupTaskVolumeMountGetArgs> VolumeMounts
         {
             get => _volumeMounts ?? (_volumeMounts = new InputList<Inputs.JobTaskGroupTaskVolumeMountGetArgs>());

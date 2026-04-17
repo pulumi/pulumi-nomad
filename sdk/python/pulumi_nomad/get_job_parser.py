@@ -26,7 +26,7 @@ class GetJobParserResult:
     """
     A collection of values returned by getJobParser.
     """
-    def __init__(__self__, canonicalize=None, hcl=None, id=None, json=None):
+    def __init__(__self__, canonicalize=None, hcl=None, id=None, json=None, variables=None):
         if canonicalize and not isinstance(canonicalize, bool):
             raise TypeError("Expected argument 'canonicalize' to be a bool")
         pulumi.set(__self__, "canonicalize", canonicalize)
@@ -39,21 +39,18 @@ class GetJobParserResult:
         if json and not isinstance(json, str):
             raise TypeError("Expected argument 'json' to be a str")
         pulumi.set(__self__, "json", json)
+        if variables and not isinstance(variables, str):
+            raise TypeError("Expected argument 'variables' to be a str")
+        pulumi.set(__self__, "variables", variables)
 
     @_builtins.property
     @pulumi.getter
     def canonicalize(self) -> Optional[_builtins.bool]:
-        """
-        `(boolean: true)` - flag to enable setting any unset fields to their default values.
-        """
         return pulumi.get(self, "canonicalize")
 
     @_builtins.property
     @pulumi.getter
     def hcl(self) -> _builtins.str:
-        """
-        `(string)` - the HCL definition of the job.
-        """
         return pulumi.get(self, "hcl")
 
     @_builtins.property
@@ -68,9 +65,14 @@ class GetJobParserResult:
     @pulumi.getter
     def json(self) -> _builtins.str:
         """
-        `(string)` - the parsed job as JSON string.
+        `(string)` - The parsed job as JSON string.
         """
         return pulumi.get(self, "json")
+
+    @_builtins.property
+    @pulumi.getter
+    def variables(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "variables")
 
 
 class AwaitableGetJobParserResult(GetJobParserResult):
@@ -82,22 +84,26 @@ class AwaitableGetJobParserResult(GetJobParserResult):
             canonicalize=self.canonicalize,
             hcl=self.hcl,
             id=self.id,
-            json=self.json)
+            json=self.json,
+            variables=self.variables)
 
 
 def get_job_parser(canonicalize: Optional[_builtins.bool] = None,
                    hcl: Optional[_builtins.str] = None,
+                   variables: Optional[_builtins.str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetJobParserResult:
     """
     Parse a HCL jobspec and produce the equivalent JSON encoded job.
 
 
-    :param _builtins.bool canonicalize: `(boolean: true)` - flag to enable setting any unset fields to their default values.
-    :param _builtins.str hcl: `(string)` - the HCL definition of the job.
+    :param _builtins.bool canonicalize: `(boolean: false)` - Flag to enable setting any unset fields to their default values.
+    :param _builtins.str hcl: `(string: <required>)` - The HCL definition of the job.
+    :param _builtins.str variables: `(string: "")` - HCL2 variables to pass to the job parser. Interpreted as the content of a variables file.
     """
     __args__ = dict()
     __args__['canonicalize'] = canonicalize
     __args__['hcl'] = hcl
+    __args__['variables'] = variables
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('nomad:index/getJobParser:getJobParser', __args__, opts=opts, typ=GetJobParserResult).value
 
@@ -105,24 +111,29 @@ def get_job_parser(canonicalize: Optional[_builtins.bool] = None,
         canonicalize=pulumi.get(__ret__, 'canonicalize'),
         hcl=pulumi.get(__ret__, 'hcl'),
         id=pulumi.get(__ret__, 'id'),
-        json=pulumi.get(__ret__, 'json'))
+        json=pulumi.get(__ret__, 'json'),
+        variables=pulumi.get(__ret__, 'variables'))
 def get_job_parser_output(canonicalize: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                           hcl: Optional[pulumi.Input[_builtins.str]] = None,
+                          variables: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetJobParserResult]:
     """
     Parse a HCL jobspec and produce the equivalent JSON encoded job.
 
 
-    :param _builtins.bool canonicalize: `(boolean: true)` - flag to enable setting any unset fields to their default values.
-    :param _builtins.str hcl: `(string)` - the HCL definition of the job.
+    :param _builtins.bool canonicalize: `(boolean: false)` - Flag to enable setting any unset fields to their default values.
+    :param _builtins.str hcl: `(string: <required>)` - The HCL definition of the job.
+    :param _builtins.str variables: `(string: "")` - HCL2 variables to pass to the job parser. Interpreted as the content of a variables file.
     """
     __args__ = dict()
     __args__['canonicalize'] = canonicalize
     __args__['hcl'] = hcl
+    __args__['variables'] = variables
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getJobParser:getJobParser', __args__, opts=opts, typ=GetJobParserResult)
     return __ret__.apply(lambda __response__: GetJobParserResult(
         canonicalize=pulumi.get(__response__, 'canonicalize'),
         hcl=pulumi.get(__response__, 'hcl'),
         id=pulumi.get(__response__, 'id'),
-        json=pulumi.get(__response__, 'json')))
+        json=pulumi.get(__response__, 'json'),
+        variables=pulumi.get(__response__, 'variables')))

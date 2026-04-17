@@ -6,6 +6,7 @@ package com.pulumi.nomad.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.nomad.outputs.GetJobTaskGroupTask;
+import com.pulumi.nomad.outputs.GetJobTaskGroupUpdateStrategy;
 import com.pulumi.nomad.outputs.GetJobTaskGroupVolume;
 import java.lang.Integer;
 import java.lang.String;
@@ -15,33 +16,77 @@ import java.util.Objects;
 
 @CustomType
 public final class GetJobTaskGroup {
+    /**
+     * @return `(integer)` Task group count.
+     * 
+     */
     private Integer count;
+    /**
+     * @return `(map of strings)` Task group metadata.
+     * 
+     */
     private Map<String,String> meta;
     /**
-     * @return `(string)` Name of the job.
+     * @return `(string)` Volume name.
      * 
      */
     private String name;
+    /**
+     * @return `(list of maps)` Tasks in the task group.
+     * 
+     */
     private List<GetJobTaskGroupTask> tasks;
+    /**
+     * @return `(list of maps)` Job-level update strategy returned by Nomad.
+     * 
+     */
+    private List<GetJobTaskGroupUpdateStrategy> updateStrategies;
+    /**
+     * @return `(list of maps)` Volume requests for the task group.
+     * 
+     */
     private List<GetJobTaskGroupVolume> volumes;
 
     private GetJobTaskGroup() {}
+    /**
+     * @return `(integer)` Task group count.
+     * 
+     */
     public Integer count() {
         return this.count;
     }
+    /**
+     * @return `(map of strings)` Task group metadata.
+     * 
+     */
     public Map<String,String> meta() {
         return this.meta;
     }
     /**
-     * @return `(string)` Name of the job.
+     * @return `(string)` Volume name.
      * 
      */
     public String name() {
         return this.name;
     }
+    /**
+     * @return `(list of maps)` Tasks in the task group.
+     * 
+     */
     public List<GetJobTaskGroupTask> tasks() {
         return this.tasks;
     }
+    /**
+     * @return `(list of maps)` Job-level update strategy returned by Nomad.
+     * 
+     */
+    public List<GetJobTaskGroupUpdateStrategy> updateStrategies() {
+        return this.updateStrategies;
+    }
+    /**
+     * @return `(list of maps)` Volume requests for the task group.
+     * 
+     */
     public List<GetJobTaskGroupVolume> volumes() {
         return this.volumes;
     }
@@ -59,6 +104,7 @@ public final class GetJobTaskGroup {
         private Map<String,String> meta;
         private String name;
         private List<GetJobTaskGroupTask> tasks;
+        private List<GetJobTaskGroupUpdateStrategy> updateStrategies;
         private List<GetJobTaskGroupVolume> volumes;
         public Builder() {}
         public Builder(GetJobTaskGroup defaults) {
@@ -67,6 +113,7 @@ public final class GetJobTaskGroup {
     	      this.meta = defaults.meta;
     	      this.name = defaults.name;
     	      this.tasks = defaults.tasks;
+    	      this.updateStrategies = defaults.updateStrategies;
     	      this.volumes = defaults.volumes;
         }
 
@@ -106,6 +153,17 @@ public final class GetJobTaskGroup {
             return tasks(List.of(tasks));
         }
         @CustomType.Setter
+        public Builder updateStrategies(List<GetJobTaskGroupUpdateStrategy> updateStrategies) {
+            if (updateStrategies == null) {
+              throw new MissingRequiredPropertyException("GetJobTaskGroup", "updateStrategies");
+            }
+            this.updateStrategies = updateStrategies;
+            return this;
+        }
+        public Builder updateStrategies(GetJobTaskGroupUpdateStrategy... updateStrategies) {
+            return updateStrategies(List.of(updateStrategies));
+        }
+        @CustomType.Setter
         public Builder volumes(List<GetJobTaskGroupVolume> volumes) {
             if (volumes == null) {
               throw new MissingRequiredPropertyException("GetJobTaskGroup", "volumes");
@@ -122,6 +180,7 @@ public final class GetJobTaskGroup {
             _resultValue.meta = meta;
             _resultValue.name = name;
             _resultValue.tasks = tasks;
+            _resultValue.updateStrategies = updateStrategies;
             _resultValue.volumes = volumes;
             return _resultValue;
         }

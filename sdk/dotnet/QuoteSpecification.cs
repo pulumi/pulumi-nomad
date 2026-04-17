@@ -36,7 +36,46 @@ namespace Pulumi.Nomad
     ///                 RegionLimit = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitArgs
     ///                 {
     ///                     Cpu = 2400,
+    ///                     Cores = 4,
     ///                     MemoryMb = 1200,
+    ///                     MemoryMaxMb = 2400,
+    ///                     Devices = new[]
+    ///                     {
+    ///                         new Nomad.Inputs.QuoteSpecificationLimitRegionLimitDeviceArgs
+    ///                         {
+    ///                             Name = "nvidia/gpu",
+    ///                             Count = 2,
+    ///                         },
+    ///                     },
+    ///                     NodePools = new[]
+    ///                     {
+    ///                         new Nomad.Inputs.QuoteSpecificationLimitRegionLimitNodePoolArgs
+    ///                         {
+    ///                             NodePool = "batch",
+    ///                             Cpu = 800,
+    ///                             Cores = 2,
+    ///                             MemoryMb = 1024,
+    ///                             MemoryMaxMb = 2048,
+    ///                             Devices = new[]
+    ///                             {
+    ///                                 new Nomad.Inputs.QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs
+    ///                                 {
+    ///                                     Name = "fpga",
+    ///                                     Count = 1,
+    ///                                 },
+    ///                             },
+    ///                             Storage = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitNodePoolStorageArgs
+    ///                             {
+    ///                                 VariablesMb = 25,
+    ///                                 HostVolumesMb = 50,
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                     Storage = new Nomad.Inputs.QuoteSpecificationLimitRegionLimitStorageArgs
+    ///                     {
+    ///                         VariablesMb = 500,
+    ///                         HostVolumesMb = 1000,
+    ///                     },
     ///                 },
     ///             },
     ///         },
@@ -50,13 +89,14 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `(string: "")` - A description of the quota specification.
+        /// - `Limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
+        /// be repeated. See below for the structure of this block.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-        /// be repeated. See below for the structure of this block.
+        /// Limits encapsulated by this quota specification.
         /// </summary>
         [Output("limits")]
         public Output<ImmutableArray<Outputs.QuoteSpecificationLimit>> Limits { get; private set; } = null!;
@@ -115,6 +155,8 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `(string: "")` - A description of the quota specification.
+        /// - `Limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
+        /// be repeated. See below for the structure of this block.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -123,8 +165,7 @@ namespace Pulumi.Nomad
         private InputList<Inputs.QuoteSpecificationLimitArgs>? _limits;
 
         /// <summary>
-        /// `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-        /// be repeated. See below for the structure of this block.
+        /// Limits encapsulated by this quota specification.
         /// </summary>
         public InputList<Inputs.QuoteSpecificationLimitArgs> Limits
         {
@@ -148,6 +189,8 @@ namespace Pulumi.Nomad
     {
         /// <summary>
         /// `(string: "")` - A description of the quota specification.
+        /// - `Limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
+        /// be repeated. See below for the structure of this block.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -156,8 +199,7 @@ namespace Pulumi.Nomad
         private InputList<Inputs.QuoteSpecificationLimitGetArgs>? _limits;
 
         /// <summary>
-        /// `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-        /// be repeated. See below for the structure of this block.
+        /// Limits encapsulated by this quota specification.
         /// </summary>
         public InputList<Inputs.QuoteSpecificationLimitGetArgs> Limits
         {

@@ -201,9 +201,9 @@ export interface AclPolicyJobAcl {
      */
     group?: pulumi.Input<string>;
     /**
-     * Job
+     * Job. If empty, the policy applies to all jobs in the namespace.
      */
-    jobId: pulumi.Input<string>;
+    jobId?: pulumi.Input<string>;
     /**
      * Namespace
      */
@@ -504,6 +504,21 @@ export interface ExternalVolumeTopologyRequestRequiredTopology {
     segments: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
+export interface JobConstraint {
+    /**
+     * `(string)` - Attribute being constrained.
+     */
+    ltarget?: pulumi.Input<string>;
+    /**
+     * `(string)` - Operator used to compare the attribute to the constraint.
+     */
+    operand?: pulumi.Input<string>;
+    /**
+     * `(string)` - Constraint value.
+     */
+    rtarget?: pulumi.Input<string>;
+}
+
 export interface JobHcl2 {
     /**
      * `(boolean: false)` - Set this to `true` to be able to use
@@ -516,32 +531,169 @@ export interface JobHcl2 {
     vars?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
+export interface JobPeriodicConfig {
+    /**
+     * `(boolean)` - Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * `(boolean)` - Whether this job should wait until previous instances of the same job have completed before launching again.
+     */
+    prohibitOverlap?: pulumi.Input<boolean>;
+    /**
+     * `(string)` - Cron expression configuring the interval at which the job is launched.
+     */
+    spec?: pulumi.Input<string>;
+    /**
+     * `(string)` - Type of periodic specification, such as `cron`.
+     */
+    specType?: pulumi.Input<string>;
+    /**
+     * `(string)` - Time zone used to evaluate the next launch interval.
+     */
+    timezone?: pulumi.Input<string>;
+}
+
 export interface JobTaskGroup {
+    /**
+     * `(integer)` - Task group count.
+     */
     count?: pulumi.Input<number>;
+    /**
+     * `(map of strings)` - Task group metadata.
+     */
     meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * `(string)` - Volume name.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * `(list of maps)` - Tasks in the task group.
+     */
     tasks?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupTask>[]>;
+    /**
+     * `(list of maps)` - Effective update strategy for the task group.
+     */
+    updateStrategies?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupUpdateStrategy>[]>;
+    /**
+     * `(list of maps)` - Volume requests for the task group.
+     */
     volumes?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupVolume>[]>;
 }
 
 export interface JobTaskGroupTask {
+    /**
+     * `(string)` - Task driver.
+     */
     driver?: pulumi.Input<string>;
+    /**
+     * `(map of strings)` - Task group metadata.
+     */
     meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * `(string)` - Volume name.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * `(list of maps)` - Task volume mounts.
+     */
     volumeMounts?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupTaskVolumeMount>[]>;
 }
 
 export interface JobTaskGroupTaskVolumeMount {
+    /**
+     * `(string)` - Destination path inside the task.
+     */
     destination?: pulumi.Input<string>;
+    /**
+     * `(boolean)` - Whether the volume is read-only.
+     */
     readOnly?: pulumi.Input<boolean>;
+    /**
+     * `(string)` - Volume name.
+     */
     volume?: pulumi.Input<string>;
 }
 
+export interface JobTaskGroupUpdateStrategy {
+    /**
+     * `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+     */
+    autoRevert?: pulumi.Input<boolean>;
+    /**
+     * `(integer)` - Number of canary allocations created before destructive updates continue.
+     */
+    canary?: pulumi.Input<number>;
+    /**
+     * `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+     */
+    healthCheck?: pulumi.Input<string>;
+    /**
+     * `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+     */
+    healthyDeadline?: pulumi.Input<string>;
+    /**
+     * `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+     */
+    maxParallel?: pulumi.Input<number>;
+    /**
+     * `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+     */
+    minHealthyTime?: pulumi.Input<string>;
+    /**
+     * `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
+     */
+    stagger?: pulumi.Input<string>;
+}
+
 export interface JobTaskGroupVolume {
+    /**
+     * `(string)` - Volume name.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * `(boolean)` - Whether the volume is read-only.
+     */
     readOnly?: pulumi.Input<boolean>;
+    /**
+     * `(string)` - Volume source.
+     */
     source?: pulumi.Input<string>;
+    /**
+     * `(string)` - Volume type.
+     */
     type?: pulumi.Input<string>;
+}
+
+export interface JobUpdateStrategy {
+    /**
+     * `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
+     */
+    autoRevert?: pulumi.Input<boolean>;
+    /**
+     * `(integer)` - Number of canary allocations created before destructive updates continue.
+     */
+    canary?: pulumi.Input<number>;
+    /**
+     * `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
+     */
+    healthCheck?: pulumi.Input<string>;
+    /**
+     * `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
+     */
+    healthyDeadline?: pulumi.Input<string>;
+    /**
+     * `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
+     */
+    maxParallel?: pulumi.Input<number>;
+    /**
+     * `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
+     */
+    minHealthyTime?: pulumi.Input<string>;
+    /**
+     * `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
+     */
+    stagger?: pulumi.Input<string>;
 }
 
 export interface NamespaceCapabilities {
@@ -563,6 +715,21 @@ export interface NamespaceCapabilities {
     enabledTaskDrivers?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface NamespaceConsulConfig {
+    /**
+     * `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
+     */
+    alloweds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
+     */
+    default?: pulumi.Input<string>;
+    /**
+     * `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
+     */
+    denieds?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface NamespaceNodePoolConfig {
     /**
      * `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
@@ -574,6 +741,21 @@ export interface NamespaceNodePoolConfig {
     default?: pulumi.Input<string>;
     /**
      * `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
+     */
+    denieds?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface NamespaceVaultConfig {
+    /**
+     * `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
+     */
+    alloweds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
+     */
+    default?: pulumi.Input<string>;
+    /**
+     * `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
      */
     denieds?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -623,28 +805,136 @@ export interface ProviderHeader {
 export interface QuoteSpecificationLimit {
     /**
      * `(string: <required>)` - The region these limits should apply to.
+     * - `regionLimit` `(block: <required>)` - The limits to enforce. This block
+     * may only be specified once in the `limits` block. Its structure is
+     * documented below.
      */
     region: pulumi.Input<string>;
     /**
-     * `(block: <required>)` - The limits to enforce. This block
-     * may only be specified once in the `limits` block. Its structure is
-     * documented below.
+     * The limit applied to this region.
      */
     regionLimit: pulumi.Input<inputs.QuoteSpecificationLimitRegionLimit>;
 }
 
 export interface QuoteSpecificationLimitRegionLimit {
     /**
+     * `(int: 0)` - The number of CPU cores to limit allocations to. A value
+     * of zero is treated as unlimited, and a negative value is treated as fully
+     * disallowed.
+     */
+    cores?: pulumi.Input<number>;
+    /**
      * `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
      * is treated as unlimited, and a negative value is treated as fully disallowed.
      */
     cpu?: pulumi.Input<number>;
+    devices?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitDevice>[]>;
+    /**
+     * `(int: 0)` - The maximum amount of memory (in megabytes) to
+     * limit allocations to. A value of zero is treated as unlimited, and a negative
+     * value is treated as fully disallowed.
+     * - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
+     * repeated. See below for the structure of this block.
+     * - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
+     * repeated. See below for the structure of this block.
+     * - `storage` `(block: optional)` - Storage resource quota configuration. May only
+     * be specified once. See below for the structure of this block.
+     */
+    memoryMaxMb?: pulumi.Input<number>;
     /**
      * `(int: 0)` - The amount of memory (in megabytes) to limit
      * allocations to. A value of zero is treated as unlimited, and a negative value
      * is treated as fully disallowed.
      */
     memoryMb?: pulumi.Input<number>;
+    nodePools?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitNodePool>[]>;
+    storage?: pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitStorage>;
+}
+
+export interface QuoteSpecificationLimitRegionLimitDevice {
+    /**
+     * `(int: 0)` - The number of device instances to limit allocations to.
+     */
+    count?: pulumi.Input<number>;
+    /**
+     * `(string: <required>)` - The name of the device, e.g.
+     * `"nvidia/gpu"`.
+     */
+    name: pulumi.Input<string>;
+}
+
+export interface QuoteSpecificationLimitRegionLimitNodePool {
+    /**
+     * `(int: 0)` - The number of CPU cores to limit allocations to. A value
+     * of zero is treated as unlimited, and a negative value is treated as fully
+     * disallowed.
+     */
+    cores?: pulumi.Input<number>;
+    /**
+     * `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
+     * is treated as unlimited, and a negative value is treated as fully disallowed.
+     */
+    cpu?: pulumi.Input<number>;
+    devices?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitNodePoolDevice>[]>;
+    /**
+     * `(int: 0)` - The maximum amount of memory (in megabytes) to
+     * limit allocations to. A value of zero is treated as unlimited, and a negative
+     * value is treated as fully disallowed.
+     * - `devices` `(block: optional)` - A list of device quotas to
+     * enforce for the node pool. Can be repeated.
+     * - `storage` `(block: optional)` - Storage resource quota
+     * configuration for the node pool. May only be specified once.
+     */
+    memoryMaxMb?: pulumi.Input<number>;
+    /**
+     * `(int: 0)` - The amount of memory (in megabytes) to limit
+     * allocations to. A value of zero is treated as unlimited, and a negative value
+     * is treated as fully disallowed.
+     */
+    memoryMb?: pulumi.Input<number>;
+    /**
+     * `(string: <required>)` - The node pool name to apply limits to.
+     */
+    nodePool: pulumi.Input<string>;
+    storage?: pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitNodePoolStorage>;
+}
+
+export interface QuoteSpecificationLimitRegionLimitNodePoolDevice {
+    /**
+     * `(int: 0)` - The number of device instances to limit allocations to.
+     */
+    count?: pulumi.Input<number>;
+    /**
+     * `(string: <required>)` - The name of the device, e.g.
+     * `"nvidia/gpu"`.
+     */
+    name: pulumi.Input<string>;
+}
+
+export interface QuoteSpecificationLimitRegionLimitNodePoolStorage {
+    /**
+     * `(int: 0)` - The amount of storage (in megabytes) to limit
+     * host volumes to.
+     */
+    hostVolumesMb?: pulumi.Input<number>;
+    /**
+     * `(int: 0)` - The amount of storage (in megabytes) to limit
+     * Nomad variables to.
+     */
+    variablesMb?: pulumi.Input<number>;
+}
+
+export interface QuoteSpecificationLimitRegionLimitStorage {
+    /**
+     * `(int: 0)` - The amount of storage (in megabytes) to limit
+     * host volumes to.
+     */
+    hostVolumesMb?: pulumi.Input<number>;
+    /**
+     * `(int: 0)` - The amount of storage (in megabytes) to limit
+     * Nomad variables to.
+     */
+    variablesMb?: pulumi.Input<number>;
 }
 
 export interface VolumeCapability {

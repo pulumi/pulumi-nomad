@@ -12,34 +12,50 @@ import java.util.Objects;
 @CustomType
 public final class GetJobTaskGroupVolume {
     /**
-     * @return `(string)` Name of the job.
+     * @return `(string)` Volume name.
      * 
      */
     private String name;
+    /**
+     * @return `(boolean)` Whether the volume is read-only.
+     * 
+     */
     private Boolean readOnly;
+    /**
+     * @return `(string)` Volume source.
+     * 
+     */
     private String source;
     /**
-     * @return `(string)` Scheduler type used during job creation.
+     * @return `(string)` Volume type.
      * 
      */
     private String type;
 
     private GetJobTaskGroupVolume() {}
     /**
-     * @return `(string)` Name of the job.
+     * @return `(string)` Volume name.
      * 
      */
     public String name() {
         return this.name;
     }
+    /**
+     * @return `(boolean)` Whether the volume is read-only.
+     * 
+     */
     public Boolean readOnly() {
         return this.readOnly;
     }
+    /**
+     * @return `(string)` Volume source.
+     * 
+     */
     public String source() {
         return this.source;
     }
     /**
-     * @return `(string)` Scheduler type used during job creation.
+     * @return `(string)` Volume type.
      * 
      */
     public String type() {

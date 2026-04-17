@@ -20,6 +20,10 @@ import (
 //	`items` in the Terraform's state file. Take care to
 //	[protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
 //
+// > **Note:** Use `itemsWo` with `itemsWoVersion` when you want Terraform to
+//
+//	write variable items without storing those values in the state file.
+//
 // ## Example Usage
 //
 // Creating a variable in the default namespace:
@@ -41,6 +45,43 @@ import (
 //				Items: pulumi.StringMap{
 //					"example_key": pulumi.String("example_value"),
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Creating a variable with write-only items:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-nomad/sdk/v2/go/nomad"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//				"example_key": "example_value",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = nomad.NewVariable(ctx, "example", &nomad.VariableArgs{
+//				Path:           pulumi.String("some/path/of/your/choosing"),
+//				ItemsWo:        pulumi.String(pulumi.String(json0)),
+//				ItemsWoVersion: pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
@@ -90,8 +131,13 @@ import (
 type Variable struct {
 	pulumi.CustomResourceState
 
-	// `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+	// `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
 	Items pulumi.StringMapOutput `pulumi:"items"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+	ItemsWo pulumi.StringPtrOutput `pulumi:"itemsWo"`
+	// `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+	ItemsWoVersion pulumi.IntPtrOutput `pulumi:"itemsWoVersion"`
 	// `(string: "default")` - The namepsace to create the variable in.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// `(string: <required>)` - A unique path to create the variable at.
@@ -105,17 +151,18 @@ func NewVariable(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Items == nil {
-		return nil, errors.New("invalid value for required argument 'Items'")
-	}
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
 	if args.Items != nil {
 		args.Items = pulumi.ToSecret(args.Items).(pulumi.StringMapInput)
 	}
+	if args.ItemsWo != nil {
+		args.ItemsWo = pulumi.ToSecret(args.ItemsWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"items",
+		"itemsWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -141,8 +188,13 @@ func GetVariable(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Variable resources.
 type variableState struct {
-	// `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+	// `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
 	Items map[string]string `pulumi:"items"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+	ItemsWo *string `pulumi:"itemsWo"`
+	// `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+	ItemsWoVersion *int `pulumi:"itemsWoVersion"`
 	// `(string: "default")` - The namepsace to create the variable in.
 	Namespace *string `pulumi:"namespace"`
 	// `(string: <required>)` - A unique path to create the variable at.
@@ -150,8 +202,13 @@ type variableState struct {
 }
 
 type VariableState struct {
-	// `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+	// `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
 	Items pulumi.StringMapInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+	ItemsWo pulumi.StringPtrInput
+	// `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+	ItemsWoVersion pulumi.IntPtrInput
 	// `(string: "default")` - The namepsace to create the variable in.
 	Namespace pulumi.StringPtrInput
 	// `(string: <required>)` - A unique path to create the variable at.
@@ -163,8 +220,13 @@ func (VariableState) ElementType() reflect.Type {
 }
 
 type variableArgs struct {
-	// `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+	// `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
 	Items map[string]string `pulumi:"items"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+	ItemsWo *string `pulumi:"itemsWo"`
+	// `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+	ItemsWoVersion *int `pulumi:"itemsWoVersion"`
 	// `(string: "default")` - The namepsace to create the variable in.
 	Namespace *string `pulumi:"namespace"`
 	// `(string: <required>)` - A unique path to create the variable at.
@@ -173,8 +235,13 @@ type variableArgs struct {
 
 // The set of arguments for constructing a Variable resource.
 type VariableArgs struct {
-	// `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+	// `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
 	Items pulumi.StringMapInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+	ItemsWo pulumi.StringPtrInput
+	// `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+	ItemsWoVersion pulumi.IntPtrInput
 	// `(string: "default")` - The namepsace to create the variable in.
 	Namespace pulumi.StringPtrInput
 	// `(string: <required>)` - A unique path to create the variable at.
@@ -268,9 +335,20 @@ func (o VariableOutput) ToVariableOutputWithContext(ctx context.Context) Variabl
 	return o
 }
 
-// `(map[string]string: <required>)` - An arbitrary map of items to create in the variable.
+// `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
 func (o VariableOutput) Items() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Variable) pulumi.StringMapOutput { return v.Items }).(pulumi.StringMapOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
+func (o VariableOutput) ItemsWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Variable) pulumi.StringPtrOutput { return v.ItemsWo }).(pulumi.StringPtrOutput)
+}
+
+// `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
+func (o VariableOutput) ItemsWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Variable) pulumi.IntPtrOutput { return v.ItemsWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // `(string: "default")` - The namepsace to create the variable in.

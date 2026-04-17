@@ -13,6 +13,10 @@ import * as utilities from "./utilities";
  *   Terraform's state file. Take care to
  *   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
  *
+ * > **Note:** `secretId` is deprecated on this resource. Use the `nomad.AclToken`
+ * ephemeral resource when the token secret is needed during a run without
+ * storing it in Terraform state.
+ *
  * ## Example Usage
  *
  * Creating a token with limited policies:
@@ -146,7 +150,10 @@ export class AclToken extends pulumi.CustomResource {
     declare public readonly roles: pulumi.Output<outputs.AclTokenRole[] | undefined>;
     /**
      * `(string)` - The token value itself, which is presented for
-     * access to the cluster.
+     * access to the cluster. This attribute is deprecated and will be removed in a
+     * future release.
+     *
+     * @deprecated Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
      */
     declare public /*out*/ readonly secretId: pulumi.Output<string>;
     /**
@@ -251,7 +258,10 @@ export interface AclTokenState {
     roles?: pulumi.Input<pulumi.Input<inputs.AclTokenRole>[]>;
     /**
      * `(string)` - The token value itself, which is presented for
-     * access to the cluster.
+     * access to the cluster. This attribute is deprecated and will be removed in a
+     * future release.
+     *
+     * @deprecated Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
      */
     secretId?: pulumi.Input<string>;
     /**

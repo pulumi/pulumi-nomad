@@ -65,7 +65,8 @@ type LookupJobArgs struct {
 // A collection of values returned by getJob.
 type LookupJobResult struct {
 	// `(boolean)`  If the scheduler can make partial placements on oversubscribed nodes.
-	AllAtOnce   bool               `pulumi:"allAtOnce"`
+	AllAtOnce bool `pulumi:"allAtOnce"`
+	// `(list of maps)` Job constraints.
 	Constraints []GetJobConstraint `pulumi:"constraints"`
 	// `(integer)` Creation Index.
 	CreateIndex int `pulumi:"createIndex"`
@@ -78,12 +79,12 @@ type LookupJobResult struct {
 	JobModifyIndex int `pulumi:"jobModifyIndex"`
 	// `(integer)` Modification Index.
 	ModifyIndex int `pulumi:"modifyIndex"`
-	// `(string)` Name of the job.
+	// `(string)` Volume name.
 	Name      string  `pulumi:"name"`
 	Namespace *string `pulumi:"namespace"`
 	// `(string)` Job's parent ID.
 	ParentId string `pulumi:"parentId"`
-	// `(list of maps)` Job's periodic configuration (time based scheduling).
+	// `(list of maps)` Job's periodic configuration.
 	PeriodicConfigs []GetJobPeriodicConfig `pulumi:"periodicConfigs"`
 	// `(integer)` Used for the prioritization of scheduling and resource access.
 	Priority int `pulumi:"priority"`
@@ -98,11 +99,13 @@ type LookupJobResult struct {
 	// `(boolean)` Job enabled status.
 	Stop bool `pulumi:"stop"`
 	// `(integer)` Job submission date.
-	SubmitTime int `pulumi:"submitTime"`
-	// `(list of maps)` A list of of the job's task groups.
+	SubmitTime string `pulumi:"submitTime"`
+	// `(list of maps)` A list of the job's task groups.
 	TaskGroups []GetJobTaskGroup `pulumi:"taskGroups"`
-	// `(string)` Scheduler type used during job creation.
+	// `(string)` Volume type.
 	Type string `pulumi:"type"`
+	// `(list of maps)` Job-level update strategy returned by Nomad.
+	UpdateStrategies []GetJobUpdateStrategy `pulumi:"updateStrategies"`
 	// `(integer)` Version of the specified job.
 	Version int `pulumi:"version"`
 }
@@ -148,6 +151,7 @@ func (o LookupJobResultOutput) AllAtOnce() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupJobResult) bool { return v.AllAtOnce }).(pulumi.BoolOutput)
 }
 
+// `(list of maps)` Job constraints.
 func (o LookupJobResultOutput) Constraints() GetJobConstraintArrayOutput {
 	return o.ApplyT(func(v LookupJobResult) []GetJobConstraint { return v.Constraints }).(GetJobConstraintArrayOutput)
 }
@@ -181,7 +185,7 @@ func (o LookupJobResultOutput) ModifyIndex() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupJobResult) int { return v.ModifyIndex }).(pulumi.IntOutput)
 }
 
-// `(string)` Name of the job.
+// `(string)` Volume name.
 func (o LookupJobResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupJobResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -195,7 +199,7 @@ func (o LookupJobResultOutput) ParentId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupJobResult) string { return v.ParentId }).(pulumi.StringOutput)
 }
 
-// `(list of maps)` Job's periodic configuration (time based scheduling).
+// `(list of maps)` Job's periodic configuration.
 func (o LookupJobResultOutput) PeriodicConfigs() GetJobPeriodicConfigArrayOutput {
 	return o.ApplyT(func(v LookupJobResult) []GetJobPeriodicConfig { return v.PeriodicConfigs }).(GetJobPeriodicConfigArrayOutput)
 }
@@ -231,18 +235,23 @@ func (o LookupJobResultOutput) Stop() pulumi.BoolOutput {
 }
 
 // `(integer)` Job submission date.
-func (o LookupJobResultOutput) SubmitTime() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupJobResult) int { return v.SubmitTime }).(pulumi.IntOutput)
+func (o LookupJobResultOutput) SubmitTime() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupJobResult) string { return v.SubmitTime }).(pulumi.StringOutput)
 }
 
-// `(list of maps)` A list of of the job's task groups.
+// `(list of maps)` A list of the job's task groups.
 func (o LookupJobResultOutput) TaskGroups() GetJobTaskGroupArrayOutput {
 	return o.ApplyT(func(v LookupJobResult) []GetJobTaskGroup { return v.TaskGroups }).(GetJobTaskGroupArrayOutput)
 }
 
-// `(string)` Scheduler type used during job creation.
+// `(string)` Volume type.
 func (o LookupJobResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupJobResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// `(list of maps)` Job-level update strategy returned by Nomad.
+func (o LookupJobResultOutput) UpdateStrategies() GetJobUpdateStrategyArrayOutput {
+	return o.ApplyT(func(v LookupJobResult) []GetJobUpdateStrategy { return v.UpdateStrategies }).(GetJobUpdateStrategyArrayOutput)
 }
 
 // `(integer)` Version of the specified job.

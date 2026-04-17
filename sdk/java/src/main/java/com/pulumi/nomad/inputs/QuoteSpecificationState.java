@@ -19,6 +19,8 @@ public final class QuoteSpecificationState extends com.pulumi.resources.Resource
 
     /**
      * `(string: &#34;&#34;)` - A description of the quota specification.
+     * - `limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
+     *   be repeated. See below for the structure of this block.
      * 
      */
     @Import(name="description")
@@ -26,6 +28,8 @@ public final class QuoteSpecificationState extends com.pulumi.resources.Resource
 
     /**
      * @return `(string: &#34;&#34;)` - A description of the quota specification.
+     * - `limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
+     *   be repeated. See below for the structure of this block.
      * 
      */
     public Optional<Output<String>> description() {
@@ -33,16 +37,14 @@ public final class QuoteSpecificationState extends com.pulumi.resources.Resource
     }
 
     /**
-     * `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-     * be repeated. See below for the structure of this block.
+     * Limits encapsulated by this quota specification.
      * 
      */
     @Import(name="limits")
     private @Nullable Output<List<QuoteSpecificationLimitArgs>> limits;
 
     /**
-     * @return `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-     * be repeated. See below for the structure of this block.
+     * @return Limits encapsulated by this quota specification.
      * 
      */
     public Optional<Output<List<QuoteSpecificationLimitArgs>>> limits() {
@@ -92,6 +94,8 @@ public final class QuoteSpecificationState extends com.pulumi.resources.Resource
 
         /**
          * @param description `(string: &#34;&#34;)` - A description of the quota specification.
+         * - `limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
+         *   be repeated. See below for the structure of this block.
          * 
          * @return builder
          * 
@@ -103,6 +107,8 @@ public final class QuoteSpecificationState extends com.pulumi.resources.Resource
 
         /**
          * @param description `(string: &#34;&#34;)` - A description of the quota specification.
+         * - `limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
+         *   be repeated. See below for the structure of this block.
          * 
          * @return builder
          * 
@@ -112,8 +118,7 @@ public final class QuoteSpecificationState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param limits `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-         * be repeated. See below for the structure of this block.
+         * @param limits Limits encapsulated by this quota specification.
          * 
          * @return builder
          * 
@@ -124,8 +129,7 @@ public final class QuoteSpecificationState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param limits `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-         * be repeated. See below for the structure of this block.
+         * @param limits Limits encapsulated by this quota specification.
          * 
          * @return builder
          * 
@@ -135,8 +139,7 @@ public final class QuoteSpecificationState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param limits `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-         * be repeated. See below for the structure of this block.
+         * @param limits Limits encapsulated by this quota specification.
          * 
          * @return builder
          * 

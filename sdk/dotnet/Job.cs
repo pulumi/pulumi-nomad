@@ -31,25 +31,43 @@ namespace Pulumi.Nomad
     public partial class Job : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The IDs for allocations associated with this job.
+        /// `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+        /// </summary>
+        [Output("allAtOnce")]
+        public Output<bool> AllAtOnce { get; private set; } = null!;
+
+        /// <summary>
+        /// `(list of strings)` - Allocation IDs associated with the job when `ReadAllocationIds = true`.
         /// </summary>
         [Output("allocationIds")]
         public Output<ImmutableArray<string>> AllocationIds { get; private set; } = null!;
 
         /// <summary>
-        /// The target datacenters for the job, as derived from the jobspec.
+        /// `(list of maps)` - Job constraints.
+        /// </summary>
+        [Output("constraints")]
+        public Output<ImmutableArray<Outputs.JobConstraint>> Constraints { get; private set; } = null!;
+
+        /// <summary>
+        /// `(integer)` - The job creation index.
+        /// </summary>
+        [Output("createIndex")]
+        public Output<int> CreateIndex { get; private set; } = null!;
+
+        /// <summary>
+        /// `(set of strings)` - The target datacenters for the job.
         /// </summary>
         [Output("datacenters")]
         public Output<ImmutableArray<string>> Datacenters { get; private set; } = null!;
 
         /// <summary>
-        /// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+        /// `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
         /// </summary>
         [Output("deploymentId")]
         public Output<string> DeploymentId { get; private set; } = null!;
 
         /// <summary>
-        /// If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+        /// `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
         /// </summary>
         [Output("deploymentStatus")]
         public Output<string> DeploymentStatus { get; private set; } = null!;
@@ -95,22 +113,34 @@ namespace Pulumi.Nomad
         public Output<bool?> Json { get; private set; } = null!;
 
         /// <summary>
-        /// Integer that increments for each change. Used to detect any changes between plan and apply.
+        /// `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
         /// </summary>
         [Output("modifyIndex")]
         public Output<string> ModifyIndex { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the job, as derived from the jobspec.
+        /// `(string)` - Volume name.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The namespace of the job, as derived from the jobspec.
+        /// `(string)` - The namespace of the job, as derived from the jobspec.
         /// </summary>
         [Output("namespace")]
         public Output<string> Namespace { get; private set; } = null!;
+
+        /// <summary>
+        /// `(string)` - The parent job ID, if applicable.
+        /// </summary>
+        [Output("parentId")]
+        public Output<string> ParentId { get; private set; } = null!;
+
+        /// <summary>
+        /// `(list of maps)` - The job's periodic configuration.
+        /// </summary>
+        [Output("periodicConfigs")]
+        public Output<ImmutableArray<Outputs.JobPeriodicConfig>> PeriodicConfigs { get; private set; } = null!;
 
         /// <summary>
         /// `(boolean: false)` - Determines if the job will override any
@@ -118,6 +148,20 @@ namespace Pulumi.Nomad
         /// </summary>
         [Output("policyOverride")]
         public Output<bool?> PolicyOverride { get; private set; } = null!;
+
+        /// <summary>
+        /// `(boolean: false)` - If true, preserves the current task
+        /// group counts already stored in Nomad during job registration instead of
+        /// applying the counts from the submitted jobspec.
+        /// </summary>
+        [Output("preserveCounts")]
+        public Output<bool?> PreserveCounts { get; private set; } = null!;
+
+        /// <summary>
+        /// `(integer)` - The job priority for scheduling and resource access.
+        /// </summary>
+        [Output("priority")]
+        public Output<int> Priority { get; private set; } = null!;
 
         /// <summary>
         /// `(boolean: false)` - Set this to true if you want the job to
@@ -130,7 +174,7 @@ namespace Pulumi.Nomad
         public Output<bool?> ReadAllocationIds { get; private set; } = null!;
 
         /// <summary>
-        /// The target region for the job, as derived from the jobspec.
+        /// `(string)` - The target region for the job.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -143,19 +187,58 @@ namespace Pulumi.Nomad
         public Output<bool?> RerunIfDead { get; private set; } = null!;
 
         /// <summary>
-        /// The status of the job.
+        /// `(boolean)` - Whether the job is stable.
+        /// </summary>
+        [Output("stable")]
+        public Output<bool> Stable { get; private set; } = null!;
+
+        /// <summary>
+        /// `(string)` - The current status of the job.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
+        /// <summary>
+        /// `(string)` - Additional status information returned by Nomad.
+        /// </summary>
+        [Output("statusDescription")]
+        public Output<string> StatusDescription { get; private set; } = null!;
+
+        /// <summary>
+        /// `(boolean)` - Whether the job is stopped.
+        /// </summary>
+        [Output("stop")]
+        public Output<bool> Stop { get; private set; } = null!;
+
+        /// <summary>
+        /// `(integer)` - The Unix timestamp when the job was submitted.
+        /// </summary>
+        [Output("submitTime")]
+        public Output<string> SubmitTime { get; private set; } = null!;
+
+        /// <summary>
+        /// `(list of maps)` - A list of the job's task groups.
+        /// </summary>
         [Output("taskGroups")]
         public Output<ImmutableArray<Outputs.JobTaskGroup>> TaskGroups { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the job, as derived from the jobspec.
+        /// `(string)` - Volume type.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
+
+        /// <summary>
+        /// `(list of maps)` - Effective update strategy for the task group.
+        /// </summary>
+        [Output("updateStrategies")]
+        public Output<ImmutableArray<Outputs.JobUpdateStrategy>> UpdateStrategies { get; private set; } = null!;
+
+        /// <summary>
+        /// `(integer)` - The current job version.
+        /// </summary>
+        [Output("version")]
+        public Output<int> Version { get; private set; } = null!;
 
 
         /// <summary>
@@ -251,6 +334,14 @@ namespace Pulumi.Nomad
         public Input<bool>? PolicyOverride { get; set; }
 
         /// <summary>
+        /// `(boolean: false)` - If true, preserves the current task
+        /// group counts already stored in Nomad during job registration instead of
+        /// applying the counts from the submitted jobspec.
+        /// </summary>
+        [Input("preserveCounts")]
+        public Input<bool>? PreserveCounts { get; set; }
+
+        /// <summary>
         /// `(boolean: false)` - Set this to true if you want the job to
         /// be purged when the resource is destroyed.
         /// </summary>
@@ -275,11 +366,17 @@ namespace Pulumi.Nomad
 
     public sealed class JobState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
+        /// </summary>
+        [Input("allAtOnce")]
+        public Input<bool>? AllAtOnce { get; set; }
+
         [Input("allocationIds")]
         private InputList<string>? _allocationIds;
 
         /// <summary>
-        /// The IDs for allocations associated with this job.
+        /// `(list of strings)` - Allocation IDs associated with the job when `ReadAllocationIds = true`.
         /// </summary>
         [Obsolete(@"Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.")]
         public InputList<string> AllocationIds
@@ -288,11 +385,29 @@ namespace Pulumi.Nomad
             set => _allocationIds = value;
         }
 
+        [Input("constraints")]
+        private InputList<Inputs.JobConstraintGetArgs>? _constraints;
+
+        /// <summary>
+        /// `(list of maps)` - Job constraints.
+        /// </summary>
+        public InputList<Inputs.JobConstraintGetArgs> Constraints
+        {
+            get => _constraints ?? (_constraints = new InputList<Inputs.JobConstraintGetArgs>());
+            set => _constraints = value;
+        }
+
+        /// <summary>
+        /// `(integer)` - The job creation index.
+        /// </summary>
+        [Input("createIndex")]
+        public Input<int>? CreateIndex { get; set; }
+
         [Input("datacenters")]
         private InputList<string>? _datacenters;
 
         /// <summary>
-        /// The target datacenters for the job, as derived from the jobspec.
+        /// `(set of strings)` - The target datacenters for the job.
         /// </summary>
         public InputList<string> Datacenters
         {
@@ -301,13 +416,13 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// If detach = false, the ID for the deployment associated with the last job create/update, if one exists.
+        /// `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
         /// </summary>
         [Input("deploymentId")]
         public Input<string>? DeploymentId { get; set; }
 
         /// <summary>
-        /// If detach = false, the status for the deployment associated with the last job create/update, if one exists.
+        /// `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
         /// </summary>
         [Input("deploymentStatus")]
         public Input<string>? DeploymentStatus { get; set; }
@@ -353,22 +468,40 @@ namespace Pulumi.Nomad
         public Input<bool>? Json { get; set; }
 
         /// <summary>
-        /// Integer that increments for each change. Used to detect any changes between plan and apply.
+        /// `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
         /// </summary>
         [Input("modifyIndex")]
         public Input<string>? ModifyIndex { get; set; }
 
         /// <summary>
-        /// The name of the job, as derived from the jobspec.
+        /// `(string)` - Volume name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The namespace of the job, as derived from the jobspec.
+        /// `(string)` - The namespace of the job, as derived from the jobspec.
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// `(string)` - The parent job ID, if applicable.
+        /// </summary>
+        [Input("parentId")]
+        public Input<string>? ParentId { get; set; }
+
+        [Input("periodicConfigs")]
+        private InputList<Inputs.JobPeriodicConfigGetArgs>? _periodicConfigs;
+
+        /// <summary>
+        /// `(list of maps)` - The job's periodic configuration.
+        /// </summary>
+        public InputList<Inputs.JobPeriodicConfigGetArgs> PeriodicConfigs
+        {
+            get => _periodicConfigs ?? (_periodicConfigs = new InputList<Inputs.JobPeriodicConfigGetArgs>());
+            set => _periodicConfigs = value;
+        }
 
         /// <summary>
         /// `(boolean: false)` - Determines if the job will override any
@@ -376,6 +509,20 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("policyOverride")]
         public Input<bool>? PolicyOverride { get; set; }
+
+        /// <summary>
+        /// `(boolean: false)` - If true, preserves the current task
+        /// group counts already stored in Nomad during job registration instead of
+        /// applying the counts from the submitted jobspec.
+        /// </summary>
+        [Input("preserveCounts")]
+        public Input<bool>? PreserveCounts { get; set; }
+
+        /// <summary>
+        /// `(integer)` - The job priority for scheduling and resource access.
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
 
         /// <summary>
         /// `(boolean: false)` - Set this to true if you want the job to
@@ -388,7 +535,7 @@ namespace Pulumi.Nomad
         public Input<bool>? ReadAllocationIds { get; set; }
 
         /// <summary>
-        /// The target region for the job, as derived from the jobspec.
+        /// `(string)` - The target region for the job.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -401,13 +548,41 @@ namespace Pulumi.Nomad
         public Input<bool>? RerunIfDead { get; set; }
 
         /// <summary>
-        /// The status of the job.
+        /// `(boolean)` - Whether the job is stable.
+        /// </summary>
+        [Input("stable")]
+        public Input<bool>? Stable { get; set; }
+
+        /// <summary>
+        /// `(string)` - The current status of the job.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        /// <summary>
+        /// `(string)` - Additional status information returned by Nomad.
+        /// </summary>
+        [Input("statusDescription")]
+        public Input<string>? StatusDescription { get; set; }
+
+        /// <summary>
+        /// `(boolean)` - Whether the job is stopped.
+        /// </summary>
+        [Input("stop")]
+        public Input<bool>? Stop { get; set; }
+
+        /// <summary>
+        /// `(integer)` - The Unix timestamp when the job was submitted.
+        /// </summary>
+        [Input("submitTime")]
+        public Input<string>? SubmitTime { get; set; }
+
         [Input("taskGroups")]
         private InputList<Inputs.JobTaskGroupGetArgs>? _taskGroups;
+
+        /// <summary>
+        /// `(list of maps)` - A list of the job's task groups.
+        /// </summary>
         public InputList<Inputs.JobTaskGroupGetArgs> TaskGroups
         {
             get => _taskGroups ?? (_taskGroups = new InputList<Inputs.JobTaskGroupGetArgs>());
@@ -415,10 +590,28 @@ namespace Pulumi.Nomad
         }
 
         /// <summary>
-        /// The type of the job, as derived from the jobspec.
+        /// `(string)` - Volume type.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        [Input("updateStrategies")]
+        private InputList<Inputs.JobUpdateStrategyGetArgs>? _updateStrategies;
+
+        /// <summary>
+        /// `(list of maps)` - Effective update strategy for the task group.
+        /// </summary>
+        public InputList<Inputs.JobUpdateStrategyGetArgs> UpdateStrategies
+        {
+            get => _updateStrategies ?? (_updateStrategies = new InputList<Inputs.JobUpdateStrategyGetArgs>());
+            set => _updateStrategies = value;
+        }
+
+        /// <summary>
+        /// `(integer)` - The current job version.
+        /// </summary>
+        [Input("version")]
+        public Input<int>? Version { get; set; }
 
         public JobState()
         {

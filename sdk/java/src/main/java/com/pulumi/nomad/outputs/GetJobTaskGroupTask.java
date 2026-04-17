@@ -13,29 +13,53 @@ import java.util.Objects;
 
 @CustomType
 public final class GetJobTaskGroupTask {
+    /**
+     * @return `(string)` Task driver.
+     * 
+     */
     private String driver;
+    /**
+     * @return `(map of strings)` Task group metadata.
+     * 
+     */
     private Map<String,String> meta;
     /**
-     * @return `(string)` Name of the job.
+     * @return `(string)` Volume name.
      * 
      */
     private String name;
+    /**
+     * @return `(list of maps)` Task volume mounts.
+     * 
+     */
     private List<GetJobTaskGroupTaskVolumeMount> volumeMounts;
 
     private GetJobTaskGroupTask() {}
+    /**
+     * @return `(string)` Task driver.
+     * 
+     */
     public String driver() {
         return this.driver;
     }
+    /**
+     * @return `(map of strings)` Task group metadata.
+     * 
+     */
     public Map<String,String> meta() {
         return this.meta;
     }
     /**
-     * @return `(string)` Name of the job.
+     * @return `(string)` Volume name.
      * 
      */
     public String name() {
         return this.name;
     }
+    /**
+     * @return `(list of maps)` Task volume mounts.
+     * 
+     */
     public List<GetJobTaskGroupTaskVolumeMount> volumeMounts() {
         return this.volumeMounts;
     }

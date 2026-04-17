@@ -12,12 +12,21 @@ namespace Pulumi.Nomad.Inputs
 
     public sealed class JobTaskGroupTaskVolumeMountGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// `(string)` - Destination path inside the task.
+        /// </summary>
         [Input("destination")]
         public Input<string>? Destination { get; set; }
 
+        /// <summary>
+        /// `(boolean)` - Whether the volume is read-only.
+        /// </summary>
         [Input("readOnly")]
         public Input<bool>? ReadOnly { get; set; }
 
+        /// <summary>
+        /// `(string)` - Volume name.
+        /// </summary>
         [Input("volume")]
         public Input<string>? Volume { get; set; }
 

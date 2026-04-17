@@ -18,30 +18,62 @@ public final class JobTaskGroupTaskArgs extends com.pulumi.resources.ResourceArg
 
     public static final JobTaskGroupTaskArgs Empty = new JobTaskGroupTaskArgs();
 
+    /**
+     * `(string)` - Task driver.
+     * 
+     */
     @Import(name="driver")
     private @Nullable Output<String> driver;
 
+    /**
+     * @return `(string)` - Task driver.
+     * 
+     */
     public Optional<Output<String>> driver() {
         return Optional.ofNullable(this.driver);
     }
 
+    /**
+     * `(map of strings)` - Task group metadata.
+     * 
+     */
     @Import(name="meta")
     private @Nullable Output<Map<String,String>> meta;
 
+    /**
+     * @return `(map of strings)` - Task group metadata.
+     * 
+     */
     public Optional<Output<Map<String,String>>> meta() {
         return Optional.ofNullable(this.meta);
     }
 
+    /**
+     * `(string)` - Volume name.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * `(list of maps)` - Task volume mounts.
+     * 
+     */
     @Import(name="volumeMounts")
     private @Nullable Output<List<JobTaskGroupTaskVolumeMountArgs>> volumeMounts;
 
+    /**
+     * @return `(list of maps)` - Task volume mounts.
+     * 
+     */
     public Optional<Output<List<JobTaskGroupTaskVolumeMountArgs>>> volumeMounts() {
         return Optional.ofNullable(this.volumeMounts);
     }
@@ -73,42 +105,96 @@ public final class JobTaskGroupTaskArgs extends com.pulumi.resources.ResourceArg
             $ = new JobTaskGroupTaskArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param driver `(string)` - Task driver.
+         * 
+         * @return builder
+         * 
+         */
         public Builder driver(@Nullable Output<String> driver) {
             $.driver = driver;
             return this;
         }
 
+        /**
+         * @param driver `(string)` - Task driver.
+         * 
+         * @return builder
+         * 
+         */
         public Builder driver(String driver) {
             return driver(Output.of(driver));
         }
 
+        /**
+         * @param meta `(map of strings)` - Task group metadata.
+         * 
+         * @return builder
+         * 
+         */
         public Builder meta(@Nullable Output<Map<String,String>> meta) {
             $.meta = meta;
             return this;
         }
 
+        /**
+         * @param meta `(map of strings)` - Task group metadata.
+         * 
+         * @return builder
+         * 
+         */
         public Builder meta(Map<String,String> meta) {
             return meta(Output.of(meta));
         }
 
+        /**
+         * @param name `(string)` - Volume name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name `(string)` - Volume name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param volumeMounts `(list of maps)` - Task volume mounts.
+         * 
+         * @return builder
+         * 
+         */
         public Builder volumeMounts(@Nullable Output<List<JobTaskGroupTaskVolumeMountArgs>> volumeMounts) {
             $.volumeMounts = volumeMounts;
             return this;
         }
 
+        /**
+         * @param volumeMounts `(list of maps)` - Task volume mounts.
+         * 
+         * @return builder
+         * 
+         */
         public Builder volumeMounts(List<JobTaskGroupTaskVolumeMountArgs> volumeMounts) {
             return volumeMounts(Output.of(volumeMounts));
         }
 
+        /**
+         * @param volumeMounts `(list of maps)` - Task volume mounts.
+         * 
+         * @return builder
+         * 
+         */
         public Builder volumeMounts(JobTaskGroupTaskVolumeMountArgs... volumeMounts) {
             return volumeMounts(List.of(volumeMounts));
         }

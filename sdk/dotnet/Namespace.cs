@@ -93,6 +93,12 @@ namespace Pulumi.Nomad
         public Output<Outputs.NamespaceCapabilities?> Capabilities { get; private set; } = null!;
 
         /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+        /// </summary>
+        [Output("consulConfig")]
+        public Output<Outputs.NamespaceConsulConfig> ConsulConfig { get; private set; } = null!;
+
+        /// <summary>
         /// `(string: "")` - A description of the namespace.
         /// </summary>
         [Output("description")]
@@ -121,6 +127,12 @@ namespace Pulumi.Nomad
         /// </summary>
         [Output("quota")]
         public Output<string?> Quota { get; private set; } = null!;
+
+        /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+        /// </summary>
+        [Output("vaultConfig")]
+        public Output<Outputs.NamespaceVaultConfig> VaultConfig { get; private set; } = null!;
 
 
         /// <summary>
@@ -176,6 +188,12 @@ namespace Pulumi.Nomad
         public Input<Inputs.NamespaceCapabilitiesArgs>? Capabilities { get; set; }
 
         /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+        /// </summary>
+        [Input("consulConfig")]
+        public Input<Inputs.NamespaceConsulConfigArgs>? ConsulConfig { get; set; }
+
+        /// <summary>
         /// `(string: "")` - A description of the namespace.
         /// </summary>
         [Input("description")]
@@ -211,6 +229,12 @@ namespace Pulumi.Nomad
         [Input("quota")]
         public Input<string>? Quota { get; set; }
 
+        /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+        /// </summary>
+        [Input("vaultConfig")]
+        public Input<Inputs.NamespaceVaultConfigArgs>? VaultConfig { get; set; }
+
         public NamespaceArgs()
         {
         }
@@ -225,6 +249,12 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("capabilities")]
         public Input<Inputs.NamespaceCapabilitiesGetArgs>? Capabilities { get; set; }
+
+        /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+        /// </summary>
+        [Input("consulConfig")]
+        public Input<Inputs.NamespaceConsulConfigGetArgs>? ConsulConfig { get; set; }
 
         /// <summary>
         /// `(string: "")` - A description of the namespace.
@@ -261,6 +291,12 @@ namespace Pulumi.Nomad
         /// </summary>
         [Input("quota")]
         public Input<string>? Quota { get; set; }
+
+        /// <summary>
+        /// `(block: &lt;optional&gt;)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+        /// </summary>
+        [Input("vaultConfig")]
+        public Input<Inputs.NamespaceVaultConfigGetArgs>? VaultConfig { get; set; }
 
         public NamespaceState()
         {

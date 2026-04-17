@@ -50,6 +50,21 @@ func NewProvider(ctx *pulumi.Context,
 	if args.Headers != nil {
 		args.Headers = pulumi.ToSecret(args.Headers).(ProviderHeaderArrayInput)
 	}
+	if args.HttpAuth != nil {
+		args.HttpAuth = pulumi.ToSecret(args.HttpAuth).(pulumi.StringPtrInput)
+	}
+	if args.KeyPem != nil {
+		args.KeyPem = pulumi.ToSecret(args.KeyPem).(pulumi.StringPtrInput)
+	}
+	if args.SecretId != nil {
+		args.SecretId = pulumi.ToSecret(args.SecretId).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"httpAuth",
+		"keyPem",
+		"secretId",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:nomad", name, args, &resource, opts...)

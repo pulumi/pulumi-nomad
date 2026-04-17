@@ -27,10 +27,13 @@ class GetNamespaceResult:
     """
     A collection of values returned by getNamespace.
     """
-    def __init__(__self__, capabilities=None, description=None, id=None, meta=None, name=None, node_pool_configs=None, quota=None):
+    def __init__(__self__, capabilities=None, consul_configs=None, description=None, id=None, meta=None, name=None, node_pool_configs=None, quota=None, vault_configs=None):
         if capabilities and not isinstance(capabilities, list):
             raise TypeError("Expected argument 'capabilities' to be a list")
         pulumi.set(__self__, "capabilities", capabilities)
+        if consul_configs and not isinstance(consul_configs, list):
+            raise TypeError("Expected argument 'consul_configs' to be a list")
+        pulumi.set(__self__, "consul_configs", consul_configs)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -49,6 +52,9 @@ class GetNamespaceResult:
         if quota and not isinstance(quota, str):
             raise TypeError("Expected argument 'quota' to be a str")
         pulumi.set(__self__, "quota", quota)
+        if vault_configs and not isinstance(vault_configs, list):
+            raise TypeError("Expected argument 'vault_configs' to be a list")
+        pulumi.set(__self__, "vault_configs", vault_configs)
 
     @_builtins.property
     @pulumi.getter
@@ -57,6 +63,14 @@ class GetNamespaceResult:
         `(block)` - Capabilities of the namespace
         """
         return pulumi.get(self, "capabilities")
+
+    @_builtins.property
+    @pulumi.getter(name="consulConfigs")
+    def consul_configs(self) -> Sequence['outputs.GetNamespaceConsulConfigResult']:
+        """
+        `(block)` - Consul configuration for the namespace.
+        """
+        return pulumi.get(self, "consul_configs")
 
     @_builtins.property
     @pulumi.getter
@@ -90,6 +104,9 @@ class GetNamespaceResult:
     @_builtins.property
     @pulumi.getter(name="nodePoolConfigs")
     def node_pool_configs(self) -> Sequence['outputs.GetNamespaceNodePoolConfigResult']:
+        """
+        `(block)` - Node pool configuration for the namespace.
+        """
         return pulumi.get(self, "node_pool_configs")
 
     @_builtins.property
@@ -100,6 +117,14 @@ class GetNamespaceResult:
         """
         return pulumi.get(self, "quota")
 
+    @_builtins.property
+    @pulumi.getter(name="vaultConfigs")
+    def vault_configs(self) -> Sequence['outputs.GetNamespaceVaultConfigResult']:
+        """
+        `(block)` - Vault configuration for the namespace.
+        """
+        return pulumi.get(self, "vault_configs")
+
 
 class AwaitableGetNamespaceResult(GetNamespaceResult):
     # pylint: disable=using-constant-test
@@ -108,12 +133,14 @@ class AwaitableGetNamespaceResult(GetNamespaceResult):
             yield self
         return GetNamespaceResult(
             capabilities=self.capabilities,
+            consul_configs=self.consul_configs,
             description=self.description,
             id=self.id,
             meta=self.meta,
             name=self.name,
             node_pool_configs=self.node_pool_configs,
-            quota=self.quota)
+            quota=self.quota,
+            vault_configs=self.vault_configs)
 
 
 def get_namespace(name: Optional[_builtins.str] = None,
@@ -140,12 +167,14 @@ def get_namespace(name: Optional[_builtins.str] = None,
 
     return AwaitableGetNamespaceResult(
         capabilities=pulumi.get(__ret__, 'capabilities'),
+        consul_configs=pulumi.get(__ret__, 'consul_configs'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         meta=pulumi.get(__ret__, 'meta'),
         name=pulumi.get(__ret__, 'name'),
         node_pool_configs=pulumi.get(__ret__, 'node_pool_configs'),
-        quota=pulumi.get(__ret__, 'quota'))
+        quota=pulumi.get(__ret__, 'quota'),
+        vault_configs=pulumi.get(__ret__, 'vault_configs'))
 def get_namespace_output(name: Optional[pulumi.Input[_builtins.str]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNamespaceResult]:
     """
@@ -169,9 +198,11 @@ def get_namespace_output(name: Optional[pulumi.Input[_builtins.str]] = None,
     __ret__ = pulumi.runtime.invoke_output('nomad:index/getNamespace:getNamespace', __args__, opts=opts, typ=GetNamespaceResult)
     return __ret__.apply(lambda __response__: GetNamespaceResult(
         capabilities=pulumi.get(__response__, 'capabilities'),
+        consul_configs=pulumi.get(__response__, 'consul_configs'),
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
         meta=pulumi.get(__response__, 'meta'),
         name=pulumi.get(__response__, 'name'),
         node_pool_configs=pulumi.get(__response__, 'node_pool_configs'),
-        quota=pulumi.get(__response__, 'quota')))
+        quota=pulumi.get(__response__, 'quota'),
+        vault_configs=pulumi.get(__response__, 'vault_configs')))

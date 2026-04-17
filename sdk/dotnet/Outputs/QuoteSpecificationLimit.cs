@@ -15,12 +15,13 @@ namespace Pulumi.Nomad.Outputs
     {
         /// <summary>
         /// `(string: &lt;required&gt;)` - The region these limits should apply to.
+        /// - `RegionLimit` `(block: &lt;required&gt;)` - The limits to enforce. This block
+        /// may only be specified once in the `Limits` block. Its structure is
+        /// documented below.
         /// </summary>
         public readonly string Region;
         /// <summary>
-        /// `(block: &lt;required&gt;)` - The limits to enforce. This block
-        /// may only be specified once in the `Limits` block. Its structure is
-        /// documented below.
+        /// The limit applied to this region.
         /// </summary>
         public readonly Outputs.QuoteSpecificationLimitRegionLimit RegionLimit;
 

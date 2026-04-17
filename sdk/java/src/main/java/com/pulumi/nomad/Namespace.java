@@ -11,7 +11,9 @@ import com.pulumi.nomad.NamespaceArgs;
 import com.pulumi.nomad.Utilities;
 import com.pulumi.nomad.inputs.NamespaceState;
 import com.pulumi.nomad.outputs.NamespaceCapabilities;
+import com.pulumi.nomad.outputs.NamespaceConsulConfig;
 import com.pulumi.nomad.outputs.NamespaceNodePoolConfig;
+import com.pulumi.nomad.outputs.NamespaceVaultConfig;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -137,6 +139,20 @@ public class Namespace extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.capabilities);
     }
     /**
+     * `(block: &lt;optional&gt;)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    @Export(name="consulConfig", refs={NamespaceConsulConfig.class}, tree="[0]")
+    private Output<NamespaceConsulConfig> consulConfig;
+
+    /**
+     * @return `(block: &lt;optional&gt;)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    public Output<NamespaceConsulConfig> consulConfig() {
+        return this.consulConfig;
+    }
+    /**
      * `(string: &#34;&#34;)` - A description of the namespace.
      * 
      */
@@ -205,6 +221,20 @@ public class Namespace extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> quota() {
         return Codegen.optional(this.quota);
+    }
+    /**
+     * `(block: &lt;optional&gt;)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    @Export(name="vaultConfig", refs={NamespaceVaultConfig.class}, tree="[0]")
+    private Output<NamespaceVaultConfig> vaultConfig;
+
+    /**
+     * @return `(block: &lt;optional&gt;)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
+     * 
+     */
+    public Output<NamespaceVaultConfig> vaultConfig() {
+        return this.vaultConfig;
     }
 
     /**

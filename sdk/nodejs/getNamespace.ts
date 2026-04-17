@@ -46,6 +46,10 @@ export interface GetNamespaceResult {
      */
     readonly capabilities: outputs.GetNamespaceCapability[];
     /**
+     * `(block)` - Consul configuration for the namespace.
+     */
+    readonly consulConfigs: outputs.GetNamespaceConsulConfig[];
+    /**
      * `(string)` - The description of the namespace.
      */
     readonly description: string;
@@ -58,11 +62,18 @@ export interface GetNamespaceResult {
      */
     readonly meta: {[key: string]: string};
     readonly name: string;
+    /**
+     * `(block)` - Node pool configuration for the namespace.
+     */
     readonly nodePoolConfigs: outputs.GetNamespaceNodePoolConfig[];
     /**
      * `(string)` - The quota associated with the namespace.
      */
     readonly quota: string;
+    /**
+     * `(block)` - Vault configuration for the namespace.
+     */
+    readonly vaultConfigs: outputs.GetNamespaceVaultConfig[];
 }
 /**
  * Get information about a namespace in Nomad.

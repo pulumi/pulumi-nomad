@@ -19,6 +19,10 @@ import (
 //	Terraform's state file. Take care to
 //	[protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
 //
+// > **Note:** `secretId` is deprecated on this resource. Use the `AclToken`
+// ephemeral resource when the token secret is needed during a run without
+// storing it in Terraform state.
+//
 // ## Example Usage
 //
 // Creating a token with limited policies:
@@ -171,7 +175,10 @@ type AclToken struct {
 	// `name` and `id` attributes. It may be used multiple times.
 	Roles AclTokenRoleArrayOutput `pulumi:"roles"`
 	// `(string)` - The token value itself, which is presented for
-	// access to the cluster.
+	// access to the cluster. This attribute is deprecated and will be removed in a
+	// future release.
+	//
+	// Deprecated: Use the AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
 	SecretId pulumi.StringOutput `pulumi:"secretId"`
 	// `(string: <required>)` - The type of token this is. Use `client`
 	// for tokens that will have policies associated with them. Use `management`
@@ -244,7 +251,10 @@ type aclTokenState struct {
 	// `name` and `id` attributes. It may be used multiple times.
 	Roles []AclTokenRole `pulumi:"roles"`
 	// `(string)` - The token value itself, which is presented for
-	// access to the cluster.
+	// access to the cluster. This attribute is deprecated and will be removed in a
+	// future release.
+	//
+	// Deprecated: Use the AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
 	SecretId *string `pulumi:"secretId"`
 	// `(string: <required>)` - The type of token this is. Use `client`
 	// for tokens that will have policies associated with them. Use `management`
@@ -281,7 +291,10 @@ type AclTokenState struct {
 	// `name` and `id` attributes. It may be used multiple times.
 	Roles AclTokenRoleArrayInput
 	// `(string)` - The token value itself, which is presented for
-	// access to the cluster.
+	// access to the cluster. This attribute is deprecated and will be removed in a
+	// future release.
+	//
+	// Deprecated: Use the AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
 	SecretId pulumi.StringPtrInput
 	// `(string: <required>)` - The type of token this is. Use `client`
 	// for tokens that will have policies associated with them. Use `management`
@@ -485,7 +498,10 @@ func (o AclTokenOutput) Roles() AclTokenRoleArrayOutput {
 }
 
 // `(string)` - The token value itself, which is presented for
-// access to the cluster.
+// access to the cluster. This attribute is deprecated and will be removed in a
+// future release.
+//
+// Deprecated: Use the AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
 func (o AclTokenOutput) SecretId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AclToken) pulumi.StringOutput { return v.SecretId }).(pulumi.StringOutput)
 }

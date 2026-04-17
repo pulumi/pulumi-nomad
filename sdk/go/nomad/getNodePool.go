@@ -64,6 +64,9 @@ type LookupNodePoolResult struct {
 	// node pool.
 	Meta map[string]string `pulumi:"meta"`
 	Name string            `pulumi:"name"`
+	// `(string)` - The TTL applied to node identities issued to
+	// nodes in this pool.
+	NodeIdentityTtl string `pulumi:"nodeIdentityTtl"`
 	// `(block)` - Scheduler configuration for the node pool.
 	SchedulerConfigs []GetNodePoolSchedulerConfig `pulumi:"schedulerConfigs"`
 }
@@ -120,6 +123,12 @@ func (o LookupNodePoolResultOutput) Meta() pulumi.StringMapOutput {
 
 func (o LookupNodePoolResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNodePoolResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// `(string)` - The TTL applied to node identities issued to
+// nodes in this pool.
+func (o LookupNodePoolResultOutput) NodeIdentityTtl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupNodePoolResult) string { return v.NodeIdentityTtl }).(pulumi.StringOutput)
 }
 
 // `(block)` - Scheduler configuration for the node pool.

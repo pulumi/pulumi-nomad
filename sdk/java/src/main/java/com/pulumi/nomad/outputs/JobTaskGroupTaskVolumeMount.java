@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class JobTaskGroupTaskVolumeMount {
+    /**
+     * @return `(string)` - Destination path inside the task.
+     * 
+     */
     private @Nullable String destination;
+    /**
+     * @return `(boolean)` - Whether the volume is read-only.
+     * 
+     */
     private @Nullable Boolean readOnly;
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     private @Nullable String volume;
 
     private JobTaskGroupTaskVolumeMount() {}
+    /**
+     * @return `(string)` - Destination path inside the task.
+     * 
+     */
     public Optional<String> destination() {
         return Optional.ofNullable(this.destination);
     }
+    /**
+     * @return `(boolean)` - Whether the volume is read-only.
+     * 
+     */
     public Optional<Boolean> readOnly() {
         return Optional.ofNullable(this.readOnly);
     }
+    /**
+     * @return `(string)` - Volume name.
+     * 
+     */
     public Optional<String> volume() {
         return Optional.ofNullable(this.volume);
     }

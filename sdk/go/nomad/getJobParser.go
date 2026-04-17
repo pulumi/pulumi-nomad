@@ -24,22 +24,23 @@ func GetJobParser(ctx *pulumi.Context, args *GetJobParserArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getJobParser.
 type GetJobParserArgs struct {
-	// `(boolean: true)` - flag to enable setting any unset fields to their default values.
+	// `(boolean: false)` - Flag to enable setting any unset fields to their default values.
 	Canonicalize *bool `pulumi:"canonicalize"`
-	// `(string)` - the HCL definition of the job.
+	// `(string: <required>)` - The HCL definition of the job.
 	Hcl string `pulumi:"hcl"`
+	// `(string: "")` - HCL2 variables to pass to the job parser. Interpreted as the content of a variables file.
+	Variables *string `pulumi:"variables"`
 }
 
 // A collection of values returned by getJobParser.
 type GetJobParserResult struct {
-	// `(boolean: true)` - flag to enable setting any unset fields to their default values.
-	Canonicalize *bool `pulumi:"canonicalize"`
-	// `(string)` - the HCL definition of the job.
-	Hcl string `pulumi:"hcl"`
+	Canonicalize *bool  `pulumi:"canonicalize"`
+	Hcl          string `pulumi:"hcl"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// `(string)` - the parsed job as JSON string.
-	Json string `pulumi:"json"`
+	// `(string)` - The parsed job as JSON string.
+	Json      string  `pulumi:"json"`
+	Variables *string `pulumi:"variables"`
 }
 
 func GetJobParserOutput(ctx *pulumi.Context, args GetJobParserOutputArgs, opts ...pulumi.InvokeOption) GetJobParserResultOutput {
@@ -53,10 +54,12 @@ func GetJobParserOutput(ctx *pulumi.Context, args GetJobParserOutputArgs, opts .
 
 // A collection of arguments for invoking getJobParser.
 type GetJobParserOutputArgs struct {
-	// `(boolean: true)` - flag to enable setting any unset fields to their default values.
+	// `(boolean: false)` - Flag to enable setting any unset fields to their default values.
 	Canonicalize pulumi.BoolPtrInput `pulumi:"canonicalize"`
-	// `(string)` - the HCL definition of the job.
+	// `(string: <required>)` - The HCL definition of the job.
 	Hcl pulumi.StringInput `pulumi:"hcl"`
+	// `(string: "")` - HCL2 variables to pass to the job parser. Interpreted as the content of a variables file.
+	Variables pulumi.StringPtrInput `pulumi:"variables"`
 }
 
 func (GetJobParserOutputArgs) ElementType() reflect.Type {
@@ -78,12 +81,10 @@ func (o GetJobParserResultOutput) ToGetJobParserResultOutputWithContext(ctx cont
 	return o
 }
 
-// `(boolean: true)` - flag to enable setting any unset fields to their default values.
 func (o GetJobParserResultOutput) Canonicalize() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetJobParserResult) *bool { return v.Canonicalize }).(pulumi.BoolPtrOutput)
 }
 
-// `(string)` - the HCL definition of the job.
 func (o GetJobParserResultOutput) Hcl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobParserResult) string { return v.Hcl }).(pulumi.StringOutput)
 }
@@ -93,9 +94,13 @@ func (o GetJobParserResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobParserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// `(string)` - the parsed job as JSON string.
+// `(string)` - The parsed job as JSON string.
 func (o GetJobParserResultOutput) Json() pulumi.StringOutput {
 	return o.ApplyT(func(v GetJobParserResult) string { return v.Json }).(pulumi.StringOutput)
+}
+
+func (o GetJobParserResultOutput) Variables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetJobParserResult) *string { return v.Variables }).(pulumi.StringPtrOutput)
 }
 
 func init() {

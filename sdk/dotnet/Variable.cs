@@ -17,6 +17,9 @@ namespace Pulumi.Nomad
     ///   `Items` in the Terraform's state file. Take care to
     ///   [protect your state file](https://www.terraform.io/docs/state/sensitive-data.html).
     /// 
+    /// &gt; **Note:** Use `ItemsWo` with `ItemsWoVersion` when you want Terraform to
+    ///   write variable items without storing those values in the state file.
+    /// 
     /// ## Example Usage
     /// 
     /// Creating a variable in the default namespace:
@@ -36,6 +39,30 @@ namespace Pulumi.Nomad
     ///         {
     ///             { "example_key", "example_value" },
     ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Creating a variable with write-only items:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Nomad = Pulumi.Nomad;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Nomad.Index.Variable("example", new()
+    ///     {
+    ///         Path = "some/path/of/your/choosing",
+    ///         ItemsWo = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["example_key"] = "example_value",
+    ///         }),
+    ///         ItemsWoVersion = 1,
     ///     });
     /// 
     /// });
@@ -74,10 +101,23 @@ namespace Pulumi.Nomad
     public partial class Variable : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
+        /// `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `ItemsWo` and `ItemsWoVersion`.
         /// </summary>
         [Output("items")]
-        public Output<ImmutableDictionary<string, string>> Items { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Items { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `Items` and requires `ItemsWoVersion`.
+        /// </summary>
+        [Output("itemsWo")]
+        public Output<string?> ItemsWo { get; private set; } = null!;
+
+        /// <summary>
+        /// `(number)` - A version marker for `ItemsWo`. Required when using `ItemsWo`, conflicts with `Items`, and should be incremented to apply a new write-only payload.
+        /// </summary>
+        [Output("itemsWoVersion")]
+        public Output<int?> ItemsWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// `(string: "default")` - The namepsace to create the variable in.
@@ -117,6 +157,7 @@ namespace Pulumi.Nomad
                 AdditionalSecretOutputs =
                 {
                     "items",
+                    "itemsWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -141,11 +182,11 @@ namespace Pulumi.Nomad
 
     public sealed class VariableArgs : global::Pulumi.ResourceArgs
     {
-        [Input("items", required: true)]
+        [Input("items")]
         private InputMap<string>? _items;
 
         /// <summary>
-        /// `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
+        /// `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `ItemsWo` and `ItemsWoVersion`.
         /// </summary>
         public InputMap<string> Items
         {
@@ -156,6 +197,29 @@ namespace Pulumi.Nomad
                 _items = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
+
+        [Input("itemsWo")]
+        private Input<string>? _itemsWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `Items` and requires `ItemsWoVersion`.
+        /// </summary>
+        public Input<string>? ItemsWo
+        {
+            get => _itemsWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _itemsWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// `(number)` - A version marker for `ItemsWo`. Required when using `ItemsWo`, conflicts with `Items`, and should be incremented to apply a new write-only payload.
+        /// </summary>
+        [Input("itemsWoVersion")]
+        public Input<int>? ItemsWoVersion { get; set; }
 
         /// <summary>
         /// `(string: "default")` - The namepsace to create the variable in.
@@ -181,7 +245,7 @@ namespace Pulumi.Nomad
         private InputMap<string>? _items;
 
         /// <summary>
-        /// `(map[string]string: &lt;required&gt;)` - An arbitrary map of items to create in the variable.
+        /// `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `ItemsWo` and `ItemsWoVersion`.
         /// </summary>
         public InputMap<string> Items
         {
@@ -192,6 +256,29 @@ namespace Pulumi.Nomad
                 _items = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
+
+        [Input("itemsWo")]
+        private Input<string>? _itemsWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `Items` and requires `ItemsWoVersion`.
+        /// </summary>
+        public Input<string>? ItemsWo
+        {
+            get => _itemsWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _itemsWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// `(number)` - A version marker for `ItemsWo`. Required when using `ItemsWo`, conflicts with `Items`, and should be incremented to apply a new write-only payload.
+        /// </summary>
+        [Input("itemsWoVersion")]
+        public Input<int>? ItemsWoVersion { get; set; }
 
         /// <summary>
         /// `(string: "default")` - The namepsace to create the variable in.

@@ -27,7 +27,7 @@ class GetNodePoolResult:
     """
     A collection of values returned by getNodePool.
     """
-    def __init__(__self__, description=None, id=None, meta=None, name=None, scheduler_configs=None):
+    def __init__(__self__, description=None, id=None, meta=None, name=None, node_identity_ttl=None, scheduler_configs=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -40,6 +40,9 @@ class GetNodePoolResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if node_identity_ttl and not isinstance(node_identity_ttl, str):
+            raise TypeError("Expected argument 'node_identity_ttl' to be a str")
+        pulumi.set(__self__, "node_identity_ttl", node_identity_ttl)
         if scheduler_configs and not isinstance(scheduler_configs, list):
             raise TypeError("Expected argument 'scheduler_configs' to be a list")
         pulumi.set(__self__, "scheduler_configs", scheduler_configs)
@@ -75,6 +78,15 @@ class GetNodePoolResult:
         return pulumi.get(self, "name")
 
     @_builtins.property
+    @pulumi.getter(name="nodeIdentityTtl")
+    def node_identity_ttl(self) -> _builtins.str:
+        """
+        `(string)` - The TTL applied to node identities issued to
+        nodes in this pool.
+        """
+        return pulumi.get(self, "node_identity_ttl")
+
+    @_builtins.property
     @pulumi.getter(name="schedulerConfigs")
     def scheduler_configs(self) -> Sequence['outputs.GetNodePoolSchedulerConfigResult']:
         """
@@ -93,6 +105,7 @@ class AwaitableGetNodePoolResult(GetNodePoolResult):
             id=self.id,
             meta=self.meta,
             name=self.name,
+            node_identity_ttl=self.node_identity_ttl,
             scheduler_configs=self.scheduler_configs)
 
 
@@ -123,6 +136,7 @@ def get_node_pool(name: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         meta=pulumi.get(__ret__, 'meta'),
         name=pulumi.get(__ret__, 'name'),
+        node_identity_ttl=pulumi.get(__ret__, 'node_identity_ttl'),
         scheduler_configs=pulumi.get(__ret__, 'scheduler_configs'))
 def get_node_pool_output(name: Optional[pulumi.Input[_builtins.str]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodePoolResult]:
@@ -150,4 +164,5 @@ def get_node_pool_output(name: Optional[pulumi.Input[_builtins.str]] = None,
         id=pulumi.get(__response__, 'id'),
         meta=pulumi.get(__response__, 'meta'),
         name=pulumi.get(__response__, 'name'),
+        node_identity_ttl=pulumi.get(__response__, 'node_identity_ttl'),
         scheduler_configs=pulumi.get(__response__, 'scheduler_configs')))
