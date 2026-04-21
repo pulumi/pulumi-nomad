@@ -20,8 +20,8 @@ public final class Config {
  * URL of the root of the target Nomad agent.
  * 
  */
-    public String address() {
-        return Codegen.stringProp("address").config(config).require();
+    public Optional<String> address() {
+        return Codegen.stringProp("address").config(config).get();
     }
 /**
  * Authenticates to Nomad using a JWT authentication method.
