@@ -114,10 +114,7 @@
                 "type": "boolean",
                 "description": "Skip TLS verification on client side."
             }
-        },
-        "defaults": [
-            "address"
-        ]
+        }
     },
     "types": {
         "nomad:config/authJwt:authJwt": {
