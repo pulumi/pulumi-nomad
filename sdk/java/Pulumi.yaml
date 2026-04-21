@@ -1,3 +1,0 @@
-name: nomad
-description: A Pulumi resource provider for nomad.
-language: java
