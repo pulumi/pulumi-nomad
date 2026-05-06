@@ -24,22 +24,26 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var namespaces = Nomad.Index.GetNamespaces.Invoke();
+        ///     var namespaces = Nomad.GetNamespaces.Invoke();
         /// 
-        ///     var @namespace = new List&lt;Nomad.Index.AclPolicy&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length; rangeIndex++)
+        ///     var @namespace = new List&lt;Nomad.AclPolicy&gt;();
+        ///     namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length().Apply(rangeBody =&gt;
         ///     {
-        ///         var range = new { Value = rangeIndex };
-        ///         @namespace.Add(new Nomad.Index.AclPolicy($"namespace-{range.Value}", new()
+        ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
-        ///             Name = $"namespace-{namespaces[range.Value]}",
-        ///             Description = $"Write to the namespace {namespaces[range.Value]}",
-        ///             RulesHcl = @$"namespace \""{namespaces[range.Value]}\"" {{
+        ///             var range = new { Value = rangeIndex };
+        ///             @namespace.Add(new Nomad.AclPolicy($"namespace-{range.Value}", new()
+        ///             {
+        ///                 Name = $"namespace-{namespaces[range.Value]}",
+        ///                 Description = $"Write to the namespace {namespaces[range.Value]}",
+        ///                 RulesHcl = @$"namespace \""{namespaces[range.Value]}\"" {{
         ///   policy = \""write\""
         /// }}
         /// ",
-        ///         }));
-        ///     }
+        ///             }));
+        ///         }
+        ///         return 0;
+        ///     });
         /// });
         /// ```
         /// </summary>
@@ -59,22 +63,26 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var namespaces = Nomad.Index.GetNamespaces.Invoke();
+        ///     var namespaces = Nomad.GetNamespaces.Invoke();
         /// 
-        ///     var @namespace = new List&lt;Nomad.Index.AclPolicy&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length; rangeIndex++)
+        ///     var @namespace = new List&lt;Nomad.AclPolicy&gt;();
+        ///     namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length().Apply(rangeBody =&gt;
         ///     {
-        ///         var range = new { Value = rangeIndex };
-        ///         @namespace.Add(new Nomad.Index.AclPolicy($"namespace-{range.Value}", new()
+        ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
-        ///             Name = $"namespace-{namespaces[range.Value]}",
-        ///             Description = $"Write to the namespace {namespaces[range.Value]}",
-        ///             RulesHcl = @$"namespace \""{namespaces[range.Value]}\"" {{
+        ///             var range = new { Value = rangeIndex };
+        ///             @namespace.Add(new Nomad.AclPolicy($"namespace-{range.Value}", new()
+        ///             {
+        ///                 Name = $"namespace-{namespaces[range.Value]}",
+        ///                 Description = $"Write to the namespace {namespaces[range.Value]}",
+        ///                 RulesHcl = @$"namespace \""{namespaces[range.Value]}\"" {{
         ///   policy = \""write\""
         /// }}
         /// ",
-        ///         }));
-        ///     }
+        ///             }));
+        ///         }
+        ///         return 0;
+        ///     });
         /// });
         /// ```
         /// </summary>
@@ -94,22 +102,26 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var namespaces = Nomad.Index.GetNamespaces.Invoke();
+        ///     var namespaces = Nomad.GetNamespaces.Invoke();
         /// 
-        ///     var @namespace = new List&lt;Nomad.Index.AclPolicy&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length; rangeIndex++)
+        ///     var @namespace = new List&lt;Nomad.AclPolicy&gt;();
+        ///     namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length().Apply(rangeBody =&gt;
         ///     {
-        ///         var range = new { Value = rangeIndex };
-        ///         @namespace.Add(new Nomad.Index.AclPolicy($"namespace-{range.Value}", new()
+        ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
-        ///             Name = $"namespace-{namespaces[range.Value]}",
-        ///             Description = $"Write to the namespace {namespaces[range.Value]}",
-        ///             RulesHcl = @$"namespace \""{namespaces[range.Value]}\"" {{
+        ///             var range = new { Value = rangeIndex };
+        ///             @namespace.Add(new Nomad.AclPolicy($"namespace-{range.Value}", new()
+        ///             {
+        ///                 Name = $"namespace-{namespaces[range.Value]}",
+        ///                 Description = $"Write to the namespace {namespaces[range.Value]}",
+        ///                 RulesHcl = @$"namespace \""{namespaces[range.Value]}\"" {{
         ///   policy = \""write\""
         /// }}
         /// ",
-        ///         }));
-        ///     }
+        ///             }));
+        ///         }
+        ///         return 0;
+        ///     });
         /// });
         /// ```
         /// </summary>

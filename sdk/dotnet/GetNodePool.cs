@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var dev = Nomad.Index.GetNodePool.Invoke(new()
+        ///     var dev = Nomad.GetNodePool.Invoke(new()
         ///     {
         ///         Name = "dev",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var dev = Nomad.Index.GetNodePool.Invoke(new()
+        ///     var dev = Nomad.GetNodePool.Invoke(new()
         ///     {
         ///         Name = "dev",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var dev = Nomad.Index.GetNodePool.Invoke(new()
+        ///     var dev = Nomad.GetNodePool.Invoke(new()
         ///     {
         ///         Name = "dev",
         ///     });

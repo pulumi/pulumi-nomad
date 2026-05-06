@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var namespaces = Nomad.Index.GetNamespace.Invoke(new()
+        ///     var namespaces = Nomad.GetNamespace.Invoke(new()
         ///     {
         ///         Name = "default",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var namespaces = Nomad.Index.GetNamespace.Invoke(new()
+        ///     var namespaces = Nomad.GetNamespace.Invoke(new()
         ///     {
         ///         Name = "default",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var namespaces = Nomad.Index.GetNamespace.Invoke(new()
+        ///     var namespaces = Nomad.GetNamespace.Invoke(new()
         ///     {
         ///         Name = "default",
         ///     });

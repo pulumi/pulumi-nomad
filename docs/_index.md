@@ -109,9 +109,9 @@ object NotImplemented(string errorMessage)
 return await Deployment.RunAsync(() =>
 {
     // Register a job
-    var monitoring = new Nomad.Index.Job("monitoring", new()
+    var monitoring = new Nomad.Job("monitoring", new()
     {
-        Jobspec = Std.Index.File.Invoke(new()
+        Jobspec = Std.File.Invoke(new()
         {
             Input = $"{NotImplemented("path.module")}/jobspec.hcl",
         }).Apply(invoke => invoke.Result),
@@ -212,8 +212,8 @@ import com.pulumi.nomad.Job;
 import com.pulumi.nomad.JobArgs;
 import com.pulumi.std.StdFunctions;
 import com.pulumi.std.inputs.FileArgs;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;

@@ -98,8 +98,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -138,8 +138,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -178,8 +178,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -218,8 +218,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -258,8 +258,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -298,8 +298,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -338,8 +338,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -378,8 +378,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -418,8 +418,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -458,8 +458,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -498,8 +498,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -538,8 +538,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -578,8 +578,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -618,8 +618,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -658,8 +658,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -698,8 +698,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -738,8 +738,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -778,8 +778,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -818,8 +818,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -858,8 +858,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -898,8 +898,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -938,8 +938,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -978,8 +978,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1018,8 +1018,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1065,8 +1065,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1112,8 +1112,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1159,8 +1159,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1206,8 +1206,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1253,8 +1253,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1293,8 +1293,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokensArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1333,8 +1333,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokensArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1373,8 +1373,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokensArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1413,8 +1413,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokensArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1453,8 +1453,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokensArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1493,8 +1493,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokensArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1533,8 +1533,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAclTokensArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1573,8 +1573,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAllocationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1613,8 +1613,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAllocationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1653,8 +1653,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAllocationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1693,8 +1693,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAllocationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1733,8 +1733,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAllocationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1773,8 +1773,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAllocationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1813,8 +1813,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetAllocationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1853,8 +1853,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDatacentersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1894,8 +1894,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDatacentersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1935,8 +1935,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDatacentersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1976,8 +1976,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDatacentersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2017,8 +2017,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDatacentersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2058,8 +2058,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDatacentersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2099,8 +2099,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDatacentersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2139,8 +2139,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2176,8 +2176,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2213,8 +2213,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2250,8 +2250,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2287,8 +2287,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2324,8 +2324,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2361,8 +2361,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2401,8 +2401,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2447,8 +2447,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2493,8 +2493,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2539,8 +2539,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2585,8 +2585,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetDynamicHostVolumeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2634,8 +2634,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2680,8 +2680,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2726,8 +2726,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2772,8 +2772,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2818,8 +2818,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2896,8 +2896,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2936,8 +2936,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2976,8 +2976,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3016,8 +3016,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3056,8 +3056,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3096,8 +3096,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3136,8 +3136,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3174,8 +3174,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3214,8 +3214,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3254,8 +3254,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3294,8 +3294,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3334,8 +3334,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3376,8 +3376,8 @@ public final class NomadFunctions {
      * import com.pulumi.nomad.AclPolicy;
      * import com.pulumi.nomad.AclPolicyArgs;
      * import com.pulumi.codegen.internal.KeyedValue;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3429,8 +3429,8 @@ public final class NomadFunctions {
      * import com.pulumi.nomad.AclPolicy;
      * import com.pulumi.nomad.AclPolicyArgs;
      * import com.pulumi.codegen.internal.KeyedValue;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3482,8 +3482,8 @@ public final class NomadFunctions {
      * import com.pulumi.nomad.AclPolicy;
      * import com.pulumi.nomad.AclPolicyArgs;
      * import com.pulumi.codegen.internal.KeyedValue;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3535,8 +3535,8 @@ public final class NomadFunctions {
      * import com.pulumi.nomad.AclPolicy;
      * import com.pulumi.nomad.AclPolicyArgs;
      * import com.pulumi.codegen.internal.KeyedValue;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3588,8 +3588,8 @@ public final class NomadFunctions {
      * import com.pulumi.nomad.AclPolicy;
      * import com.pulumi.nomad.AclPolicyArgs;
      * import com.pulumi.codegen.internal.KeyedValue;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3641,8 +3641,8 @@ public final class NomadFunctions {
      * import com.pulumi.nomad.AclPolicy;
      * import com.pulumi.nomad.AclPolicyArgs;
      * import com.pulumi.codegen.internal.KeyedValue;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3694,8 +3694,8 @@ public final class NomadFunctions {
      * import com.pulumi.nomad.AclPolicy;
      * import com.pulumi.nomad.AclPolicyArgs;
      * import com.pulumi.codegen.internal.KeyedValue;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3750,8 +3750,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3795,8 +3795,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3840,8 +3840,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3885,8 +3885,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3930,8 +3930,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3970,8 +3970,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4010,8 +4010,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4050,8 +4050,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4090,8 +4090,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4130,8 +4130,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4170,8 +4170,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4210,8 +4210,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4250,8 +4250,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4290,8 +4290,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4330,8 +4330,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4370,8 +4370,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4410,8 +4410,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodePoolsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4455,8 +4455,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4487,8 +4487,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4520,8 +4520,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4566,8 +4566,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4598,8 +4598,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4631,8 +4631,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4677,8 +4677,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4709,8 +4709,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4742,8 +4742,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4788,8 +4788,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4820,8 +4820,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4853,8 +4853,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4899,8 +4899,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4931,8 +4931,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4964,8 +4964,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5010,8 +5010,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5042,8 +5042,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5075,8 +5075,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5121,8 +5121,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5153,8 +5153,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5186,8 +5186,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetNodesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5236,8 +5236,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5289,8 +5289,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5342,8 +5342,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5395,8 +5395,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5448,8 +5448,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5492,8 +5492,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5531,8 +5531,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5570,8 +5570,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5609,8 +5609,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5648,8 +5648,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5687,8 +5687,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5726,8 +5726,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetPluginsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5828,8 +5828,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5869,8 +5869,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5910,8 +5910,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5951,8 +5951,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5992,8 +5992,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6033,8 +6033,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6074,8 +6074,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPoliciesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6115,8 +6115,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6155,8 +6155,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6195,8 +6195,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6235,8 +6235,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6275,8 +6275,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetScalingPolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6314,8 +6314,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6351,8 +6351,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6388,8 +6388,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6425,8 +6425,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6462,8 +6462,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6499,8 +6499,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6536,8 +6536,8 @@ public final class NomadFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6582,8 +6582,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.Variable;
      * import com.pulumi.nomad.VariableArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6630,8 +6630,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.Variable;
      * import com.pulumi.nomad.VariableArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6678,8 +6678,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.Variable;
      * import com.pulumi.nomad.VariableArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6726,8 +6726,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.Variable;
      * import com.pulumi.nomad.VariableArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6774,8 +6774,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.Variable;
      * import com.pulumi.nomad.VariableArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6814,8 +6814,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetVolumesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6853,8 +6853,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetVolumesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6892,8 +6892,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetVolumesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6931,8 +6931,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetVolumesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6970,8 +6970,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetVolumesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7009,8 +7009,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetVolumesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7048,8 +7048,8 @@ public final class NomadFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.nomad.NomadFunctions;
      * import com.pulumi.nomad.inputs.GetVolumesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

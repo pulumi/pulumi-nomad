@@ -32,7 +32,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var dakota = new Nomad.Index.AclToken("dakota", new()
+    ///     var dakota = new Nomad.AclToken("dakota", new()
     ///     {
     ///         Name = "Dakota",
     ///         Type = "client",
@@ -56,7 +56,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var dakota = new Nomad.Index.AclToken("dakota", new()
+    ///     var dakota = new Nomad.AclToken("dakota", new()
     ///     {
     ///         Name = "Dakota",
     ///         Type = "client",
@@ -81,7 +81,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var iman = new Nomad.Index.AclToken("iman", new()
+    ///     var iman = new Nomad.AclToken("iman", new()
     ///     {
     ///         Name = "Iman",
     ///         Type = "management",
@@ -100,7 +100,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var token = new Nomad.Index.AclToken("token", new()
+    ///     var token = new Nomad.AclToken("token", new()
     ///     {
     ///         Type = "client",
     ///         Policies = new[]

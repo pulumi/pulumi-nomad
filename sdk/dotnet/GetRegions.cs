@@ -30,19 +30,23 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myRegions = Nomad.Index.GetRegions.Invoke();
+        ///     var myRegions = Nomad.GetRegions.Invoke();
         /// 
         ///     var jobs = NotImplemented("The template_file data resource is not yet supported.");
         /// 
-        ///     var app = new List&lt;Nomad.Index.Job&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; myRegions.Apply(getRegionsResult =&gt; getRegionsResult.Regions).Length; rangeIndex++)
+        ///     var app = new List&lt;Nomad.Job&gt;();
+        ///     myRegions.Apply(getRegionsResult =&gt; getRegionsResult.Regions).Length().Apply(rangeBody =&gt;
         ///     {
-        ///         var range = new { Value = rangeIndex };
-        ///         app.Add(new Nomad.Index.Job($"app-{range.Value}", new()
+        ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
-        ///             Jobspec = jobs[range.Value].Rendered,
-        ///         }));
-        ///     }
+        ///             var range = new { Value = rangeIndex };
+        ///             app.Add(new Nomad.Job($"app-{range.Value}", new()
+        ///             {
+        ///                 Jobspec = jobs[range.Value].Rendered,
+        ///             }));
+        ///         }
+        ///         return 0;
+        ///     });
         /// });
         /// ```
         /// </summary>
@@ -68,19 +72,23 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myRegions = Nomad.Index.GetRegions.Invoke();
+        ///     var myRegions = Nomad.GetRegions.Invoke();
         /// 
         ///     var jobs = NotImplemented("The template_file data resource is not yet supported.");
         /// 
-        ///     var app = new List&lt;Nomad.Index.Job&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; myRegions.Apply(getRegionsResult =&gt; getRegionsResult.Regions).Length; rangeIndex++)
+        ///     var app = new List&lt;Nomad.Job&gt;();
+        ///     myRegions.Apply(getRegionsResult =&gt; getRegionsResult.Regions).Length().Apply(rangeBody =&gt;
         ///     {
-        ///         var range = new { Value = rangeIndex };
-        ///         app.Add(new Nomad.Index.Job($"app-{range.Value}", new()
+        ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
-        ///             Jobspec = jobs[range.Value].Rendered,
-        ///         }));
-        ///     }
+        ///             var range = new { Value = rangeIndex };
+        ///             app.Add(new Nomad.Job($"app-{range.Value}", new()
+        ///             {
+        ///                 Jobspec = jobs[range.Value].Rendered,
+        ///             }));
+        ///         }
+        ///         return 0;
+        ///     });
         /// });
         /// ```
         /// </summary>
@@ -106,19 +114,23 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myRegions = Nomad.Index.GetRegions.Invoke();
+        ///     var myRegions = Nomad.GetRegions.Invoke();
         /// 
         ///     var jobs = NotImplemented("The template_file data resource is not yet supported.");
         /// 
-        ///     var app = new List&lt;Nomad.Index.Job&gt;();
-        ///     for (var rangeIndex = 0; rangeIndex &lt; myRegions.Apply(getRegionsResult =&gt; getRegionsResult.Regions).Length; rangeIndex++)
+        ///     var app = new List&lt;Nomad.Job&gt;();
+        ///     myRegions.Apply(getRegionsResult =&gt; getRegionsResult.Regions).Length().Apply(rangeBody =&gt;
         ///     {
-        ///         var range = new { Value = rangeIndex };
-        ///         app.Add(new Nomad.Index.Job($"app-{range.Value}", new()
+        ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
-        ///             Jobspec = jobs[range.Value].Rendered,
-        ///         }));
-        ///     }
+        ///             var range = new { Value = rangeIndex };
+        ///             app.Add(new Nomad.Job($"app-{range.Value}", new()
+        ///             {
+        ///                 Jobspec = jobs[range.Value].Rendered,
+        ///             }));
+        ///         }
+        ///         return 0;
+        ///     });
         /// });
         /// ```
         /// </summary>

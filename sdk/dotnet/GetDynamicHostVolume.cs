@@ -26,7 +26,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetDynamicHostVolume.Invoke(new()
+        ///     var example = Nomad.GetDynamicHostVolume.Invoke(new()
         ///     {
         ///         Namespace = "prod",
         ///         Id = "d688ff7a-d299-11ef-ae3c-6f2400953c18",
@@ -56,7 +56,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetDynamicHostVolume.Invoke(new()
+        ///     var example = Nomad.GetDynamicHostVolume.Invoke(new()
         ///     {
         ///         Namespace = "prod",
         ///         Id = "d688ff7a-d299-11ef-ae3c-6f2400953c18",
@@ -86,7 +86,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetDynamicHostVolume.Invoke(new()
+        ///     var example = Nomad.GetDynamicHostVolume.Invoke(new()
         ///     {
         ///         Namespace = "prod",
         ///         Id = "d688ff7a-d299-11ef-ae3c-6f2400953c18",

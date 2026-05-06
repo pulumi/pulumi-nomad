@@ -25,7 +25,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exec_only = new Nomad.Index.SentinelPolicy("exec-only", new()
+    ///     var exec_only = new Nomad.SentinelPolicy("exec-only", new()
     ///     {
     ///         Name = "exec-only",
     ///         Description = "Only allow jobs that are based on an exec driver.",
