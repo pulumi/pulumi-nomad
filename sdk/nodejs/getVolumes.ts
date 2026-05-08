@@ -99,17 +99,17 @@ export interface GetVolumesOutputArgs {
     /**
      * `(string: "default")` Nomad namespace.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string: optional)` Volume node filter.
      */
-    nodeId?: pulumi.Input<string>;
+    nodeId?: pulumi.Input<string | undefined>;
     /**
      * `(string: optional)` Plugin ID filter.
      */
-    pluginId?: pulumi.Input<string>;
+    pluginId?: pulumi.Input<string | undefined>;
     /**
      * `(string: "csi")` Volume type (one of `csi` or `host`)
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

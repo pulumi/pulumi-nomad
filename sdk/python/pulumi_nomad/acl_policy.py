@@ -22,9 +22,9 @@ __all__ = ['AclPolicyArgs', 'AclPolicy']
 class AclPolicyArgs:
     def __init__(__self__, *,
                  rules_hcl: pulumi.Input[_builtins.str],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 job_acl: Optional[pulumi.Input['AclPolicyJobAclArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 job_acl: pulumi.Input[Optional['AclPolicyJobAclArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AclPolicy resource.
 
@@ -58,19 +58,19 @@ class AclPolicyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - A description of the policy.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="jobAcl")
-    def job_acl(self) -> Optional[pulumi.Input['AclPolicyJobAclArgs']]:
+    def job_acl(self) -> pulumi.Input[Optional['AclPolicyJobAclArgs']]:
         """
         `(``JobACL``: <optional>)` - Options for assigning the
         ACL rules to a job, group, or task.
@@ -78,29 +78,29 @@ class AclPolicyArgs:
         return pulumi.get(self, "job_acl")
 
     @job_acl.setter
-    def job_acl(self, value: Optional[pulumi.Input['AclPolicyJobAclArgs']]):
+    def job_acl(self, value: pulumi.Input[Optional['AclPolicyJobAclArgs']]):
         pulumi.set(self, "job_acl", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - A unique name for the policy.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _AclPolicyState:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 job_acl: Optional[pulumi.Input['AclPolicyJobAclArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rules_hcl: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 job_acl: pulumi.Input[Optional['AclPolicyJobAclArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rules_hcl: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AclPolicy resources.
 
@@ -122,19 +122,19 @@ class _AclPolicyState:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - A description of the policy.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="jobAcl")
-    def job_acl(self) -> Optional[pulumi.Input['AclPolicyJobAclArgs']]:
+    def job_acl(self) -> pulumi.Input[Optional['AclPolicyJobAclArgs']]:
         """
         `(``JobACL``: <optional>)` - Options for assigning the
         ACL rules to a job, group, or task.
@@ -142,24 +142,24 @@ class _AclPolicyState:
         return pulumi.get(self, "job_acl")
 
     @job_acl.setter
-    def job_acl(self, value: Optional[pulumi.Input['AclPolicyJobAclArgs']]):
+    def job_acl(self, value: pulumi.Input[Optional['AclPolicyJobAclArgs']]):
         pulumi.set(self, "job_acl", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - A unique name for the policy.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="rulesHcl")
-    def rules_hcl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rules_hcl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The contents of the policy to register,
         as HCL or JSON.
@@ -167,7 +167,7 @@ class _AclPolicyState:
         return pulumi.get(self, "rules_hcl")
 
     @rules_hcl.setter
-    def rules_hcl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rules_hcl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rules_hcl", value)
 
 
@@ -177,10 +177,10 @@ class AclPolicy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 job_acl: Optional[pulumi.Input[Union['AclPolicyJobAclArgs', 'AclPolicyJobAclArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rules_hcl: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 job_acl: pulumi.Input[Optional[Union['AclPolicyJobAclArgs', 'AclPolicyJobAclArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rules_hcl: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages an ACL policy registered in Nomad.
@@ -220,10 +220,10 @@ class AclPolicy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 job_acl: Optional[pulumi.Input[Union['AclPolicyJobAclArgs', 'AclPolicyJobAclArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rules_hcl: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 job_acl: pulumi.Input[Optional[Union['AclPolicyJobAclArgs', 'AclPolicyJobAclArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rules_hcl: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -249,10 +249,10 @@ class AclPolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            job_acl: Optional[pulumi.Input[Union['AclPolicyJobAclArgs', 'AclPolicyJobAclArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            rules_hcl: Optional[pulumi.Input[_builtins.str]] = None) -> 'AclPolicy':
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            job_acl: pulumi.Input[Optional[Union['AclPolicyJobAclArgs', 'AclPolicyJobAclArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            rules_hcl: pulumi.Input[Optional[_builtins.str]] = None) -> 'AclPolicy':
         """
         Get an existing AclPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -112,7 +112,7 @@ def get_acl_policy(name: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         rules=pulumi.get(__ret__, 'rules'))
-def get_acl_policy_output(name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_acl_policy_output(name: pulumi.Input[Optional[_builtins.str]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclPolicyResult]:
     """
     Retrieve information on an ACL Policy.

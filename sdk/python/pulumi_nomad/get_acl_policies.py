@@ -97,7 +97,7 @@ def get_acl_policies(prefix: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         policies=pulumi.get(__ret__, 'policies'),
         prefix=pulumi.get(__ret__, 'prefix'))
-def get_acl_policies_output(prefix: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_acl_policies_output(prefix: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclPoliciesResult]:
     """
     Retrieve a list of ACL Policies.

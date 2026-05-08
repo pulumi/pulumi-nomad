@@ -160,21 +160,21 @@ export interface GetNodesOutputArgs {
      * `(string: <optional>)` - Specifies the [expression][nomadApiFilter]
      * used to filter the results.
      */
-    filter?: pulumi.Input<string>;
+    filter?: pulumi.Input<string | undefined>;
     /**
      * `(bool: false)` - If true, include special attributes such as operating
      * system name in the response. When false, the `attributes` map will not contain
      * OS-related attributes.
      */
-    os?: pulumi.Input<boolean>;
+    os?: pulumi.Input<boolean | undefined>;
     /**
      * `(string: <optional>)` - Specifies a string to filter nodes based on
      * an ID prefix. Must have an even number of hexadecimal characters (0-9a-f).
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
     /**
      * `(bool: false)` - If true, include `nodeResources` and
      * `reservedResources` in the response.
      */
-    resources?: pulumi.Input<boolean>;
+    resources?: pulumi.Input<boolean | undefined>;
 }

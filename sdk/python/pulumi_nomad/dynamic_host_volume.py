@@ -23,14 +23,14 @@ class DynamicHostVolumeArgs:
     def __init__(__self__, *,
                  capabilities: pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeCapabilityArgs']]],
                  plugin_id: pulumi.Input[_builtins.str],
-                 capacity_max: Optional[pulumi.Input[_builtins.str]] = None,
-                 capacity_min: Optional[pulumi.Input[_builtins.str]] = None,
-                 constraints: Optional[pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_pool: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+                 capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
+                 capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
+                 constraints: pulumi.Input[Optional[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_pool: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a DynamicHostVolume resource.
 
@@ -152,7 +152,7 @@ class DynamicHostVolumeArgs:
 
     @_builtins.property
     @pulumi.getter(name="capacityMax")
-    def capacity_max(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def capacity_max(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - Option for requesting a maximum
         capacity, in bytes. The capacity of a volume may be the physical size of a
@@ -166,12 +166,12 @@ class DynamicHostVolumeArgs:
         return pulumi.get(self, "capacity_max")
 
     @capacity_max.setter
-    def capacity_max(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def capacity_max(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "capacity_max", value)
 
     @_builtins.property
     @pulumi.getter(name="capacityMin")
-    def capacity_min(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def capacity_min(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - Option for requesting a minimum
         capacity, in bytes. The capacity of a volume may be the physical size of a
@@ -185,12 +185,12 @@ class DynamicHostVolumeArgs:
         return pulumi.get(self, "capacity_min")
 
     @capacity_min.setter
-    def capacity_min(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def capacity_min(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "capacity_min", value)
 
     @_builtins.property
     @pulumi.getter
-    def constraints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]]:
+    def constraints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]]:
         """
         `(block: <optional>)` - A restriction on the eligible nodes where
         a volume can be created, similar to the [`constraint`][] block on a Nomad job
@@ -200,12 +200,12 @@ class DynamicHostVolumeArgs:
         return pulumi.get(self, "constraints")
 
     @constraints.setter
-    def constraints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]]):
+    def constraints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]]):
         pulumi.set(self, "constraints", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The name of the volume, which is used as the
         [`volume.source`][volume_source] field in job specifications that claim this
@@ -216,12 +216,12 @@ class DynamicHostVolumeArgs:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - The namespace of the volume. This field
         overrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`
@@ -230,12 +230,12 @@ class DynamicHostVolumeArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeId")
-    def node_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - A specific node where you would like the
         volume to be created.
@@ -243,12 +243,12 @@ class DynamicHostVolumeArgs:
         return pulumi.get(self, "node_id")
 
     @node_id.setter
-    def node_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_id", value)
 
     @_builtins.property
     @pulumi.getter(name="nodePool")
-    def node_pool(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_pool(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - A specific node pool where you would like
         the volume to be created. If you also provide `node_id`, the node must be in the
@@ -257,12 +257,12 @@ class DynamicHostVolumeArgs:
         return pulumi.get(self, "node_pool")
 
     @node_pool.setter
-    def node_pool(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_pool(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_pool", value)
 
     @_builtins.property
     @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def parameters(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map<string|string>: <optional>)` - A key-value map of strings
         passed directly to the plugin to configure the volume. The details of these
@@ -271,29 +271,29 @@ class DynamicHostVolumeArgs:
         return pulumi.get(self, "parameters")
 
     @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def parameters(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "parameters", value)
 
 
 @pulumi.input_type
 class _DynamicHostVolumeState:
     def __init__(__self__, *,
-                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeCapabilityArgs']]]] = None,
-                 capacity: Optional[pulumi.Input[_builtins.str]] = None,
-                 capacity_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 capacity_max: Optional[pulumi.Input[_builtins.str]] = None,
-                 capacity_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 capacity_min: Optional[pulumi.Input[_builtins.str]] = None,
-                 capacity_min_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 constraints: Optional[pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]] = None,
-                 host_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_pool: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None):
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input['DynamicHostVolumeCapabilityArgs']]]] = None,
+                 capacity: pulumi.Input[Optional[_builtins.str]] = None,
+                 capacity_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
+                 capacity_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
+                 capacity_min_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 constraints: pulumi.Input[Optional[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]] = None,
+                 host_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_pool: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DynamicHostVolume resources.
 
@@ -391,7 +391,7 @@ class _DynamicHostVolumeState:
 
     @_builtins.property
     @pulumi.getter
-    def capabilities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeCapabilityArgs']]]]:
+    def capabilities(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DynamicHostVolumeCapabilityArgs']]]]:
         """
         `(block: <optional>)` - Option for validating the capability of a
         volume. Each capability block has the following attributes:
@@ -399,33 +399,33 @@ class _DynamicHostVolumeState:
         return pulumi.get(self, "capabilities")
 
     @capabilities.setter
-    def capabilities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeCapabilityArgs']]]]):
+    def capabilities(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DynamicHostVolumeCapabilityArgs']]]]):
         pulumi.set(self, "capabilities", value)
 
     @_builtins.property
     @pulumi.getter
-    def capacity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def capacity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Provisioned capacity
         """
         return pulumi.get(self, "capacity")
 
     @capacity.setter
-    def capacity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def capacity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "capacity", value)
 
     @_builtins.property
     @pulumi.getter(name="capacityBytes")
-    def capacity_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def capacity_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "capacity_bytes")
 
     @capacity_bytes.setter
-    def capacity_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def capacity_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "capacity_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="capacityMax")
-    def capacity_max(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def capacity_max(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - Option for requesting a maximum
         capacity, in bytes. The capacity of a volume may be the physical size of a
@@ -439,21 +439,21 @@ class _DynamicHostVolumeState:
         return pulumi.get(self, "capacity_max")
 
     @capacity_max.setter
-    def capacity_max(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def capacity_max(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "capacity_max", value)
 
     @_builtins.property
     @pulumi.getter(name="capacityMaxBytes")
-    def capacity_max_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def capacity_max_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "capacity_max_bytes")
 
     @capacity_max_bytes.setter
-    def capacity_max_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def capacity_max_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "capacity_max_bytes", value)
 
     @_builtins.property
     @pulumi.getter(name="capacityMin")
-    def capacity_min(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def capacity_min(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - Option for requesting a minimum
         capacity, in bytes. The capacity of a volume may be the physical size of a
@@ -467,21 +467,21 @@ class _DynamicHostVolumeState:
         return pulumi.get(self, "capacity_min")
 
     @capacity_min.setter
-    def capacity_min(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def capacity_min(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "capacity_min", value)
 
     @_builtins.property
     @pulumi.getter(name="capacityMinBytes")
-    def capacity_min_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def capacity_min_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "capacity_min_bytes")
 
     @capacity_min_bytes.setter
-    def capacity_min_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def capacity_min_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "capacity_min_bytes", value)
 
     @_builtins.property
     @pulumi.getter
-    def constraints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]]:
+    def constraints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]]:
         """
         `(block: <optional>)` - A restriction on the eligible nodes where
         a volume can be created, similar to the [`constraint`][] block on a Nomad job
@@ -491,24 +491,24 @@ class _DynamicHostVolumeState:
         return pulumi.get(self, "constraints")
 
     @constraints.setter
-    def constraints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]]):
+    def constraints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DynamicHostVolumeConstraintArgs']]]]):
         pulumi.set(self, "constraints", value)
 
     @_builtins.property
     @pulumi.getter(name="hostPath")
-    def host_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def host_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Host path
         """
         return pulumi.get(self, "host_path")
 
     @host_path.setter
-    def host_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def host_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "host_path", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The name of the volume, which is used as the
         [`volume.source`][volume_source] field in job specifications that claim this
@@ -519,12 +519,12 @@ class _DynamicHostVolumeState:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - The namespace of the volume. This field
         overrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`
@@ -533,12 +533,12 @@ class _DynamicHostVolumeState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeId")
-    def node_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - A specific node where you would like the
         volume to be created.
@@ -546,12 +546,12 @@ class _DynamicHostVolumeState:
         return pulumi.get(self, "node_id")
 
     @node_id.setter
-    def node_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_id", value)
 
     @_builtins.property
     @pulumi.getter(name="nodePool")
-    def node_pool(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_pool(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - A specific node pool where you would like
         the volume to be created. If you also provide `node_id`, the node must be in the
@@ -560,12 +560,12 @@ class _DynamicHostVolumeState:
         return pulumi.get(self, "node_pool")
 
     @node_pool.setter
-    def node_pool(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_pool(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_pool", value)
 
     @_builtins.property
     @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def parameters(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map<string|string>: <optional>)` - A key-value map of strings
         passed directly to the plugin to configure the volume. The details of these
@@ -574,12 +574,12 @@ class _DynamicHostVolumeState:
         return pulumi.get(self, "parameters")
 
     @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def parameters(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "parameters", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginId")
-    def plugin_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The ID of the [dynamic host volume
         plugin][dhv_plugin] that manages this volume.
@@ -602,19 +602,19 @@ class _DynamicHostVolumeState:
         return pulumi.get(self, "plugin_id")
 
     @plugin_id.setter
-    def plugin_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         State
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
 
@@ -624,16 +624,16 @@ class DynamicHostVolume(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]]] = None,
-                 capacity_max: Optional[pulumi.Input[_builtins.str]] = None,
-                 capacity_min: Optional[pulumi.Input[_builtins.str]] = None,
-                 constraints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_pool: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]]] = None,
+                 capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
+                 capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
+                 constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_pool: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         layout: "nomad"
@@ -814,16 +814,16 @@ class DynamicHostVolume(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]]] = None,
-                 capacity_max: Optional[pulumi.Input[_builtins.str]] = None,
-                 capacity_min: Optional[pulumi.Input[_builtins.str]] = None,
-                 constraints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_pool: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]]] = None,
+                 capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
+                 capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
+                 constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_pool: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -863,22 +863,22 @@ class DynamicHostVolume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]]] = None,
-            capacity: Optional[pulumi.Input[_builtins.str]] = None,
-            capacity_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-            capacity_max: Optional[pulumi.Input[_builtins.str]] = None,
-            capacity_max_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-            capacity_min: Optional[pulumi.Input[_builtins.str]] = None,
-            capacity_min_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-            constraints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict']]]]] = None,
-            host_path: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            node_id: Optional[pulumi.Input[_builtins.str]] = None,
-            node_pool: Optional[pulumi.Input[_builtins.str]] = None,
-            parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None) -> 'DynamicHostVolume':
+            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]]] = None,
+            capacity: pulumi.Input[Optional[_builtins.str]] = None,
+            capacity_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+            capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
+            capacity_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+            capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
+            capacity_min_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+            constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict']]]]] = None,
+            host_path: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            node_id: pulumi.Input[Optional[_builtins.str]] = None,
+            node_pool: pulumi.Input[Optional[_builtins.str]] = None,
+            parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None) -> 'DynamicHostVolume':
         """
         Get an existing DynamicHostVolume resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

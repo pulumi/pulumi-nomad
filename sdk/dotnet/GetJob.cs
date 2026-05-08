@@ -29,7 +29,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetJob.Invoke(new()
+        ///     var example = Nomad.GetJob.Invoke(new()
         ///     {
         ///         JobId = "example",
         ///         Namespace = "dev",
@@ -59,7 +59,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetJob.Invoke(new()
+        ///     var example = Nomad.GetJob.Invoke(new()
         ///     {
         ///         JobId = "example",
         ///         Namespace = "dev",
@@ -89,7 +89,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetJob.Invoke(new()
+        ///     var example = Nomad.GetJob.Invoke(new()
         ///     {
         ///         JobId = "example",
         ///         Namespace = "dev",

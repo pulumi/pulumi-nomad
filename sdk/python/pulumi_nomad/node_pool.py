@@ -21,11 +21,11 @@ __all__ = ['NodePoolArgs', 'NodePool']
 @pulumi.input_type
 class NodePoolArgs:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_identity_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 scheduler_config: Optional[pulumi.Input['NodePoolSchedulerConfigArgs']] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_identity_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 scheduler_config: pulumi.Input[Optional['NodePoolSchedulerConfigArgs']] = None):
         """
         The set of arguments for constructing a NodePool resource.
 
@@ -50,19 +50,19 @@ class NodePoolArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - The description of the node pool.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def meta(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def meta(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string)` - Arbitrary KV metadata associated with the
         node pool.
@@ -70,24 +70,24 @@ class NodePoolArgs:
         return pulumi.get(self, "meta")
 
     @meta.setter
-    def meta(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def meta(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "meta", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - The name of the node pool.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeIdentityTtl")
-    def node_identity_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_identity_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - The TTL applied to node identities issued to
         nodes in this pool.
@@ -95,30 +95,30 @@ class NodePoolArgs:
         return pulumi.get(self, "node_identity_ttl")
 
     @node_identity_ttl.setter
-    def node_identity_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_identity_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_identity_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerConfig")
-    def scheduler_config(self) -> Optional[pulumi.Input['NodePoolSchedulerConfigArgs']]:
+    def scheduler_config(self) -> pulumi.Input[Optional['NodePoolSchedulerConfigArgs']]:
         """
         `(block)` - Scheduler configuration for the node pool.
         """
         return pulumi.get(self, "scheduler_config")
 
     @scheduler_config.setter
-    def scheduler_config(self, value: Optional[pulumi.Input['NodePoolSchedulerConfigArgs']]):
+    def scheduler_config(self, value: pulumi.Input[Optional['NodePoolSchedulerConfigArgs']]):
         pulumi.set(self, "scheduler_config", value)
 
 
 @pulumi.input_type
 class _NodePoolState:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_identity_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 scheduler_config: Optional[pulumi.Input['NodePoolSchedulerConfigArgs']] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_identity_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 scheduler_config: pulumi.Input[Optional['NodePoolSchedulerConfigArgs']] = None):
         """
         Input properties used for looking up and filtering NodePool resources.
 
@@ -143,19 +143,19 @@ class _NodePoolState:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - The description of the node pool.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def meta(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def meta(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string)` - Arbitrary KV metadata associated with the
         node pool.
@@ -163,24 +163,24 @@ class _NodePoolState:
         return pulumi.get(self, "meta")
 
     @meta.setter
-    def meta(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def meta(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "meta", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - The name of the node pool.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeIdentityTtl")
-    def node_identity_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def node_identity_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - The TTL applied to node identities issued to
         nodes in this pool.
@@ -188,19 +188,19 @@ class _NodePoolState:
         return pulumi.get(self, "node_identity_ttl")
 
     @node_identity_ttl.setter
-    def node_identity_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def node_identity_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "node_identity_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerConfig")
-    def scheduler_config(self) -> Optional[pulumi.Input['NodePoolSchedulerConfigArgs']]:
+    def scheduler_config(self) -> pulumi.Input[Optional['NodePoolSchedulerConfigArgs']]:
         """
         `(block)` - Scheduler configuration for the node pool.
         """
         return pulumi.get(self, "scheduler_config")
 
     @scheduler_config.setter
-    def scheduler_config(self, value: Optional[pulumi.Input['NodePoolSchedulerConfigArgs']]):
+    def scheduler_config(self, value: pulumi.Input[Optional['NodePoolSchedulerConfigArgs']]):
         pulumi.set(self, "scheduler_config", value)
 
 
@@ -210,11 +210,11 @@ class NodePool(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_identity_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 scheduler_config: Optional[pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_identity_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 scheduler_config: pulumi.Input[Optional[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None,
                  __props__=None):
         """
         Provisions a node pool within a Nomad cluster.
@@ -289,11 +289,11 @@ class NodePool(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_identity_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 scheduler_config: Optional[pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_identity_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 scheduler_config: pulumi.Input[Optional[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -318,11 +318,11 @@ class NodePool(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            node_identity_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-            scheduler_config: Optional[pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None) -> 'NodePool':
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_identity_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            scheduler_config: pulumi.Input[Optional[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None) -> 'NodePool':
         """
         Get an existing NodePool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

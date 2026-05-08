@@ -217,16 +217,16 @@ export interface AclTokenState {
      * `(string)` - A non-sensitive identifier for this token that
      * can be logged and shared safely without granting any access to the cluster.
      */
-    accessorId?: pulumi.Input<string>;
+    accessorId?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - The timestamp the token was created.
      */
-    createTime?: pulumi.Input<string>;
+    createTime?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - The timestamp after which the token is
      * considered expired and eligible for destruction.
      */
-    expirationTime?: pulumi.Input<string>;
+    expirationTime?: pulumi.Input<string | undefined>;
     /**
      * `(string: "")` - Provides a TTL for the token in the form of
      * a time duration such as `"5m"` or `"1h"`.
@@ -234,28 +234,28 @@ export interface AclTokenState {
      * In addition to the above arguments, the following attributes are exported and
      * can be referenced:
      */
-    expirationTtl?: pulumi.Input<string>;
+    expirationTtl?: pulumi.Input<string | undefined>;
     /**
      * `(bool: false)` - Whether the token should be replicated to all
      * regions, or if it will only be used in the region it was created in.
      */
-    global?: pulumi.Input<boolean>;
+    global?: pulumi.Input<boolean | undefined>;
     /**
      * `(string: "")` - A human-friendly name for this token.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(set: [])` - A set of policy names to associate with this
      * token. Must be set on `client`-type tokens, must not be set on
      * `management`-type tokens. Policies do not need to exist before being
      * used here.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `(set: [])` - The list of roles attached to the token. Each entry has
      * `name` and `id` attributes. It may be used multiple times.
      */
-    roles?: pulumi.Input<pulumi.Input<inputs.AclTokenRole>[]>;
+    roles?: pulumi.Input<pulumi.Input<inputs.AclTokenRole>[] | undefined>;
     /**
      * `(string)` - The token value itself, which is presented for
      * access to the cluster. This attribute is deprecated and will be removed in a
@@ -263,13 +263,13 @@ export interface AclTokenState {
      *
      * @deprecated Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The type of token this is. Use `client`
      * for tokens that will have policies associated with them. Use `management`
      * for tokens that can perform any action.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -283,28 +283,28 @@ export interface AclTokenArgs {
      * In addition to the above arguments, the following attributes are exported and
      * can be referenced:
      */
-    expirationTtl?: pulumi.Input<string>;
+    expirationTtl?: pulumi.Input<string | undefined>;
     /**
      * `(bool: false)` - Whether the token should be replicated to all
      * regions, or if it will only be used in the region it was created in.
      */
-    global?: pulumi.Input<boolean>;
+    global?: pulumi.Input<boolean | undefined>;
     /**
      * `(string: "")` - A human-friendly name for this token.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(set: [])` - A set of policy names to associate with this
      * token. Must be set on `client`-type tokens, must not be set on
      * `management`-type tokens. Policies do not need to exist before being
      * used here.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `(set: [])` - The list of roles attached to the token. Each entry has
      * `name` and `id` attributes. It may be used multiple times.
      */
-    roles?: pulumi.Input<pulumi.Input<inputs.AclTokenRole>[]>;
+    roles?: pulumi.Input<pulumi.Input<inputs.AclTokenRole>[] | undefined>;
     /**
      * `(string: <required>)` - The type of token this is. Use `client`
      * for tokens that will have policies associated with them. Use `management`

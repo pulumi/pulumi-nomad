@@ -148,27 +148,27 @@ export interface AclBindingRuleState {
      * `(string: <required>)` - Name of the auth method for which this
      * rule applies to.
      */
-    authMethod?: pulumi.Input<string>;
+    authMethod?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - Target of the binding. If `bindType` is
      * `role` or `policy` then `bindName` is required. If `bindType` is
      * `management` than `bindName` must not be defined.
      */
-    bindName?: pulumi.Input<string>;
+    bindName?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - Adjusts how this binding rule is applied
      * at login time. Valid values are `role`, `policy`, and `management`.
      */
-    bindType?: pulumi.Input<string>;
+    bindType?: pulumi.Input<string | undefined>;
     /**
      * `(string: "")` - Description for this ACL binding rule.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(string: "")` - A boolean expression that matches against verified
      * identity attributes returned from the auth method during login.
      */
-    selector?: pulumi.Input<string>;
+    selector?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -185,7 +185,7 @@ export interface AclBindingRuleArgs {
      * `role` or `policy` then `bindName` is required. If `bindType` is
      * `management` than `bindName` must not be defined.
      */
-    bindName?: pulumi.Input<string>;
+    bindName?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - Adjusts how this binding rule is applied
      * at login time. Valid values are `role`, `policy`, and `management`.
@@ -194,10 +194,10 @@ export interface AclBindingRuleArgs {
     /**
      * `(string: "")` - Description for this ACL binding rule.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(string: "")` - A boolean expression that matches against verified
      * identity attributes returned from the auth method during login.
      */
-    selector?: pulumi.Input<string>;
+    selector?: pulumi.Input<string | undefined>;
 }

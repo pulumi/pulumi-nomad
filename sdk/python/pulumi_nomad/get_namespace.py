@@ -175,7 +175,7 @@ def get_namespace(name: Optional[_builtins.str] = None,
         node_pool_configs=pulumi.get(__ret__, 'node_pool_configs'),
         quota=pulumi.get(__ret__, 'quota'),
         vault_configs=pulumi.get(__ret__, 'vault_configs'))
-def get_namespace_output(name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_namespace_output(name: pulumi.Input[Optional[_builtins.str]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNamespaceResult]:
     """
     Get information about a namespace in Nomad.

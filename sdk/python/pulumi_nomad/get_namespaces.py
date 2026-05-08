@@ -69,10 +69,11 @@ def get_namespaces(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetN
 
     ```python
     import pulumi
+    from typing import Any
     import pulumi_nomad as nomad
 
     namespaces = nomad.get_namespaces()
-    namespace = []
+    namespace: list[Any] = []
     def create_namespace(range_body):
         for range in [{"value": i} for i in range(0, range_body)]:
             namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",
@@ -101,10 +102,11 @@ def get_namespaces_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.Invo
 
     ```python
     import pulumi
+    from typing import Any
     import pulumi_nomad as nomad
 
     namespaces = nomad.get_namespaces()
-    namespace = []
+    namespace: list[Any] = []
     def create_namespace(range_body):
         for range in [{"value": i} for i in range(0, range_body)]:
             namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",

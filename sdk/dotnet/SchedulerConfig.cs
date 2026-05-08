@@ -29,7 +29,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var config = new Nomad.Index.SchedulerConfig("config", new()
+    ///     var config = new Nomad.SchedulerConfig("config", new()
     ///     {
     ///         SchedulerAlgorithm = "spread",
     ///         MemoryOversubscriptionEnabled = true,

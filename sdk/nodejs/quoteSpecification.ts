@@ -137,15 +137,15 @@ export interface QuoteSpecificationState {
      * - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
      * be repeated. See below for the structure of this block.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Limits encapsulated by this quota specification.
      */
-    limits?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimit>[]>;
+    limits?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimit>[] | undefined>;
     /**
      * `(string: <required>)` - A unique name for the quota specification.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -157,7 +157,7 @@ export interface QuoteSpecificationArgs {
      * - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
      * be repeated. See below for the structure of this block.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Limits encapsulated by this quota specification.
      */
@@ -165,5 +165,5 @@ export interface QuoteSpecificationArgs {
     /**
      * `(string: <required>)` - A unique name for the quota specification.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }

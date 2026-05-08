@@ -19,9 +19,9 @@ __all__ = ['SchedulerConfigArgs', 'SchedulerConfig']
 @pulumi.input_type
 class SchedulerConfigArgs:
     def __init__(__self__, *,
-                 memory_oversubscription_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 preemption_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.bool]]]] = None,
-                 scheduler_algorithm: Optional[pulumi.Input[_builtins.str]] = None):
+                 memory_oversubscription_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 preemption_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.bool]]]] = None,
+                 scheduler_algorithm: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SchedulerConfig resource.
 
@@ -38,47 +38,47 @@ class SchedulerConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="memoryOversubscriptionEnabled")
-    def memory_oversubscription_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def memory_oversubscription_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
         """
         return pulumi.get(self, "memory_oversubscription_enabled")
 
     @memory_oversubscription_enabled.setter
-    def memory_oversubscription_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def memory_oversubscription_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "memory_oversubscription_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="preemptionConfig")
-    def preemption_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.bool]]]]:
+    def preemption_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.bool]]]]:
         """
         `(map[string]bool)` - Options to enable preemption for various schedulers.
         """
         return pulumi.get(self, "preemption_config")
 
     @preemption_config.setter
-    def preemption_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.bool]]]]):
+    def preemption_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.bool]]]]):
         pulumi.set(self, "preemption_config", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerAlgorithm")
-    def scheduler_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scheduler_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
         """
         return pulumi.get(self, "scheduler_algorithm")
 
     @scheduler_algorithm.setter
-    def scheduler_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scheduler_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scheduler_algorithm", value)
 
 
 @pulumi.input_type
 class _SchedulerConfigState:
     def __init__(__self__, *,
-                 memory_oversubscription_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 preemption_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.bool]]]] = None,
-                 scheduler_algorithm: Optional[pulumi.Input[_builtins.str]] = None):
+                 memory_oversubscription_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 preemption_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.bool]]]] = None,
+                 scheduler_algorithm: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SchedulerConfig resources.
 
@@ -95,38 +95,38 @@ class _SchedulerConfigState:
 
     @_builtins.property
     @pulumi.getter(name="memoryOversubscriptionEnabled")
-    def memory_oversubscription_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def memory_oversubscription_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
         """
         return pulumi.get(self, "memory_oversubscription_enabled")
 
     @memory_oversubscription_enabled.setter
-    def memory_oversubscription_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def memory_oversubscription_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "memory_oversubscription_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="preemptionConfig")
-    def preemption_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.bool]]]]:
+    def preemption_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.bool]]]]:
         """
         `(map[string]bool)` - Options to enable preemption for various schedulers.
         """
         return pulumi.get(self, "preemption_config")
 
     @preemption_config.setter
-    def preemption_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.bool]]]]):
+    def preemption_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.bool]]]]):
         pulumi.set(self, "preemption_config", value)
 
     @_builtins.property
     @pulumi.getter(name="schedulerAlgorithm")
-    def scheduler_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scheduler_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
         """
         return pulumi.get(self, "scheduler_algorithm")
 
     @scheduler_algorithm.setter
-    def scheduler_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scheduler_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scheduler_algorithm", value)
 
 
@@ -136,9 +136,9 @@ class SchedulerConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 memory_oversubscription_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 preemption_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.bool]]]] = None,
-                 scheduler_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
+                 memory_oversubscription_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 preemption_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.bool]]]] = None,
+                 scheduler_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages scheduler configuration of the Nomad cluster.
@@ -223,9 +223,9 @@ class SchedulerConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 memory_oversubscription_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 preemption_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.bool]]]] = None,
-                 scheduler_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
+                 memory_oversubscription_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 preemption_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.bool]]]] = None,
+                 scheduler_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -248,9 +248,9 @@ class SchedulerConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            memory_oversubscription_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            preemption_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.bool]]]] = None,
-            scheduler_algorithm: Optional[pulumi.Input[_builtins.str]] = None) -> 'SchedulerConfig':
+            memory_oversubscription_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            preemption_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.bool]]]] = None,
+            scheduler_algorithm: pulumi.Input[Optional[_builtins.str]] = None) -> 'SchedulerConfig':
         """
         Get an existing SchedulerConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -81,5 +81,5 @@ export interface GetAclTokensOutputArgs {
     /**
      * `(string)` Optional prefix to filter the tokens.
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
 }

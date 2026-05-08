@@ -95,21 +95,21 @@ export interface AclPolicyState {
     /**
      * `(string: "")` - A description of the policy.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(``JobACL``: <optional>)` - Options for assigning the
      * ACL rules to a job, group, or task.
      */
-    jobAcl?: pulumi.Input<inputs.AclPolicyJobAcl>;
+    jobAcl?: pulumi.Input<inputs.AclPolicyJobAcl | undefined>;
     /**
      * `(string: <required>)` - A unique name for the policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The contents of the policy to register,
      * as HCL or JSON.
      */
-    rulesHcl?: pulumi.Input<string>;
+    rulesHcl?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -119,16 +119,16 @@ export interface AclPolicyArgs {
     /**
      * `(string: "")` - A description of the policy.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(``JobACL``: <optional>)` - Options for assigning the
      * ACL rules to a job, group, or task.
      */
-    jobAcl?: pulumi.Input<inputs.AclPolicyJobAcl>;
+    jobAcl?: pulumi.Input<inputs.AclPolicyJobAcl | undefined>;
     /**
      * `(string: <required>)` - A unique name for the policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The contents of the policy to register,
      * as HCL or JSON.

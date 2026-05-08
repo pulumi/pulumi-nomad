@@ -151,9 +151,9 @@ export interface GetPluginOutputArgs {
     /**
      * `(boolean)` retry until the plugin exists and all controllers are healthy
      */
-    waitForHealthy?: pulumi.Input<boolean>;
+    waitForHealthy?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean)` if the plugin doesn't exist, retry until it does
      */
-    waitForRegistration?: pulumi.Input<boolean>;
+    waitForRegistration?: pulumi.Input<boolean | undefined>;
 }

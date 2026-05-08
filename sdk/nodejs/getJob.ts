@@ -178,5 +178,5 @@ export interface GetJobOutputArgs {
     /**
      * `(string)` Namespace of the specified job.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

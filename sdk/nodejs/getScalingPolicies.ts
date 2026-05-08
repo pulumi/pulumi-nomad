@@ -93,9 +93,9 @@ export interface GetScalingPoliciesOutputArgs {
     /**
      * `(string)` - An optional string to filter scaling policies based on the target job. If not provided, policies for all jobs are returned.
      */
-    jobId?: pulumi.Input<string>;
+    jobId?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - An optional string to filter scaling policies based on policy type. If not provided, policies of all types are returned.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

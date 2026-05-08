@@ -92,10 +92,10 @@ export interface GetNodePoolsOutputArgs {
      * `(string)` - Specifies the [expression][nomadApiFilter] used to
      * filter the results.
      */
-    filter?: pulumi.Input<string>;
+    filter?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Specifies a string to filter node pools based on a name
      * prefix.
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
 }

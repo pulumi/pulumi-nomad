@@ -103,15 +103,15 @@ export interface GetAllocationsOutputArgs {
      * `(string: <optional>)` - Specifies the
      * [expression][nomadApiFilter] used to filter the results.
      */
-    filter?: pulumi.Input<string>;
+    filter?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - Specifies the namespace to search for
      * allocations in.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - Specifies a string to filter allocations
      * based on an ID prefix.
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
 }

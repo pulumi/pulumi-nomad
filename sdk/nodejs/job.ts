@@ -299,150 +299,150 @@ export interface JobState {
     /**
      * `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
      */
-    allAtOnce?: pulumi.Input<boolean>;
+    allAtOnce?: pulumi.Input<boolean | undefined>;
     /**
      * `(list of strings)` - Allocation IDs associated with the job when `readAllocationIds = true`.
      *
      * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
-    allocationIds?: pulumi.Input<pulumi.Input<string>[]>;
+    allocationIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `(list of maps)` - Job constraints.
      */
-    constraints?: pulumi.Input<pulumi.Input<inputs.JobConstraint>[]>;
+    constraints?: pulumi.Input<pulumi.Input<inputs.JobConstraint>[] | undefined>;
     /**
      * `(integer)` - The job creation index.
      */
-    createIndex?: pulumi.Input<number>;
+    createIndex?: pulumi.Input<number | undefined>;
     /**
      * `(set of strings)` - The target datacenters for the job.
      */
-    datacenters?: pulumi.Input<pulumi.Input<string>[]>;
+    datacenters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
      */
-    deploymentId?: pulumi.Input<string>;
+    deploymentId?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - If `detach = false`, the status for the deployment associated with the last create or update, if one exists.
      */
-    deploymentStatus?: pulumi.Input<string>;
+    deploymentStatus?: pulumi.Input<string | undefined>;
     /**
      * `(boolean: true)` - Determines if the job will be
      * deregistered when this resource is destroyed in Terraform.
      */
-    deregisterOnDestroy?: pulumi.Input<boolean>;
+    deregisterOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean: true)` - Determines if the job will be
      * deregistered if the ID of the job in the jobspec changes.
      */
-    deregisterOnIdChange?: pulumi.Input<boolean>;
+    deregisterOnIdChange?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean: true)` - If true, the provider will return immediately
      * after creating or updating, instead of monitoring.
      */
-    detach?: pulumi.Input<boolean>;
+    detach?: pulumi.Input<boolean | undefined>;
     /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      */
-    hcl2?: pulumi.Input<inputs.JobHcl2>;
+    hcl2?: pulumi.Input<inputs.JobHcl2 | undefined>;
     /**
      * `(string: <required>)` - The contents of the jobspec to register.
      */
-    jobspec?: pulumi.Input<string>;
+    jobspec?: pulumi.Input<string | undefined>;
     /**
      * `(boolean: false)` - Set this to `true` if your jobspec is structured with
      * JSON instead of the default HCL.
      */
-    json?: pulumi.Input<boolean>;
+    json?: pulumi.Input<boolean | undefined>;
     /**
      * `(string)` - Integer that increments for each change. Used to detect any changes between plan and apply.
      */
-    modifyIndex?: pulumi.Input<string>;
+    modifyIndex?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Volume name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - The namespace of the job, as derived from the jobspec.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - The parent job ID, if applicable.
      */
-    parentId?: pulumi.Input<string>;
+    parentId?: pulumi.Input<string | undefined>;
     /**
      * `(list of maps)` - The job's periodic configuration.
      */
-    periodicConfigs?: pulumi.Input<pulumi.Input<inputs.JobPeriodicConfig>[]>;
+    periodicConfigs?: pulumi.Input<pulumi.Input<inputs.JobPeriodicConfig>[] | undefined>;
     /**
      * `(boolean: false)` - Determines if the job will override any
      * soft-mandatory Sentinel policies and register even if they fail.
      */
-    policyOverride?: pulumi.Input<boolean>;
+    policyOverride?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean: false)` - If true, preserves the current task
      * group counts already stored in Nomad during job registration instead of
      * applying the counts from the submitted jobspec.
      */
-    preserveCounts?: pulumi.Input<boolean>;
+    preserveCounts?: pulumi.Input<boolean | undefined>;
     /**
      * `(integer)` - The job priority for scheduling and resource access.
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * `(boolean: false)` - Set this to true if you want the job to
      * be purged when the resource is destroyed.
      */
-    purgeOnDestroy?: pulumi.Input<boolean>;
+    purgeOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
-    readAllocationIds?: pulumi.Input<boolean>;
+    readAllocationIds?: pulumi.Input<boolean | undefined>;
     /**
      * `(string)` - The target region for the job.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * `(boolean: false)` - Set this to true to force the job to run
      * again if its status is `dead`.
      */
-    rerunIfDead?: pulumi.Input<boolean>;
+    rerunIfDead?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean)` - Whether the job is stable.
      */
-    stable?: pulumi.Input<boolean>;
+    stable?: pulumi.Input<boolean | undefined>;
     /**
      * `(string)` - The current status of the job.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Additional status information returned by Nomad.
      */
-    statusDescription?: pulumi.Input<string>;
+    statusDescription?: pulumi.Input<string | undefined>;
     /**
      * `(boolean)` - Whether the job is stopped.
      */
-    stop?: pulumi.Input<boolean>;
+    stop?: pulumi.Input<boolean | undefined>;
     /**
      * `(integer)` - The Unix timestamp when the job was submitted.
      */
-    submitTime?: pulumi.Input<string>;
+    submitTime?: pulumi.Input<string | undefined>;
     /**
      * `(list of maps)` - A list of the job's task groups.
      */
-    taskGroups?: pulumi.Input<pulumi.Input<inputs.JobTaskGroup>[]>;
+    taskGroups?: pulumi.Input<pulumi.Input<inputs.JobTaskGroup>[] | undefined>;
     /**
      * `(string)` - Volume type.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * `(list of maps)` - Effective update strategy for the task group.
      */
-    updateStrategies?: pulumi.Input<pulumi.Input<inputs.JobUpdateStrategy>[]>;
+    updateStrategies?: pulumi.Input<pulumi.Input<inputs.JobUpdateStrategy>[] | undefined>;
     /**
      * `(integer)` - The current job version.
      */
-    version?: pulumi.Input<number>;
+    version?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -453,21 +453,21 @@ export interface JobArgs {
      * `(boolean: true)` - Determines if the job will be
      * deregistered when this resource is destroyed in Terraform.
      */
-    deregisterOnDestroy?: pulumi.Input<boolean>;
+    deregisterOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean: true)` - Determines if the job will be
      * deregistered if the ID of the job in the jobspec changes.
      */
-    deregisterOnIdChange?: pulumi.Input<boolean>;
+    deregisterOnIdChange?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean: true)` - If true, the provider will return immediately
      * after creating or updating, instead of monitoring.
      */
-    detach?: pulumi.Input<boolean>;
+    detach?: pulumi.Input<boolean | undefined>;
     /**
      * `(block: optional)` - Options for the HCL2 jobspec parser.
      */
-    hcl2?: pulumi.Input<inputs.JobHcl2>;
+    hcl2?: pulumi.Input<inputs.JobHcl2 | undefined>;
     /**
      * `(string: <required>)` - The contents of the jobspec to register.
      */
@@ -476,30 +476,30 @@ export interface JobArgs {
      * `(boolean: false)` - Set this to `true` if your jobspec is structured with
      * JSON instead of the default HCL.
      */
-    json?: pulumi.Input<boolean>;
+    json?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean: false)` - Determines if the job will override any
      * soft-mandatory Sentinel policies and register even if they fail.
      */
-    policyOverride?: pulumi.Input<boolean>;
+    policyOverride?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean: false)` - If true, preserves the current task
      * group counts already stored in Nomad during job registration instead of
      * applying the counts from the submitted jobspec.
      */
-    preserveCounts?: pulumi.Input<boolean>;
+    preserveCounts?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean: false)` - Set this to true if you want the job to
      * be purged when the resource is destroyed.
      */
-    purgeOnDestroy?: pulumi.Input<boolean>;
+    purgeOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      */
-    readAllocationIds?: pulumi.Input<boolean>;
+    readAllocationIds?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean: false)` - Set this to true to force the job to run
      * again if its status is `dead`.
      */
-    rerunIfDead?: pulumi.Input<boolean>;
+    rerunIfDead?: pulumi.Input<boolean | undefined>;
 }

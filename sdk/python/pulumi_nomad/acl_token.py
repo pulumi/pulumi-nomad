@@ -22,11 +22,11 @@ __all__ = ['AclTokenArgs', 'AclToken']
 class AclTokenArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 expiration_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 global_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]]] = None):
+                 expiration_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 global_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input['AclTokenRoleArgs']]]] = None):
         """
         The set of arguments for constructing a AclToken resource.
 
@@ -76,7 +76,7 @@ class AclTokenArgs:
 
     @_builtins.property
     @pulumi.getter(name="expirationTtl")
-    def expiration_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expiration_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - Provides a TTL for the token in the form of
         a time duration such as `"5m"` or `"1h"`.
@@ -87,12 +87,12 @@ class AclTokenArgs:
         return pulumi.get(self, "expiration_ttl")
 
     @expiration_ttl.setter
-    def expiration_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expiration_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expiration_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="global")
-    def global_(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def global_(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `(bool: false)` - Whether the token should be replicated to all
         regions, or if it will only be used in the region it was created in.
@@ -100,24 +100,24 @@ class AclTokenArgs:
         return pulumi.get(self, "global_")
 
     @global_.setter
-    def global_(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def global_(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "global_", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - A human-friendly name for this token.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         `(set: [])` - A set of policy names to associate with this
         token. Must be set on `client`-type tokens, must not be set on
@@ -127,12 +127,12 @@ class AclTokenArgs:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
     @_builtins.property
     @pulumi.getter
-    def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]]]:
+    def roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AclTokenRoleArgs']]]]:
         """
         `(set: [])` - The list of roles attached to the token. Each entry has
         `name` and `id` attributes. It may be used multiple times.
@@ -140,23 +140,23 @@ class AclTokenArgs:
         return pulumi.get(self, "roles")
 
     @roles.setter
-    def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]]]):
+    def roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AclTokenRoleArgs']]]]):
         pulumi.set(self, "roles", value)
 
 
 @pulumi.input_type
 class _AclTokenState:
     def __init__(__self__, *,
-                 accessor_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 create_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiration_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiration_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 global_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 accessor_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 create_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiration_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiration_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 global_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input['AclTokenRoleArgs']]]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AclToken resources.
 
@@ -212,7 +212,7 @@ class _AclTokenState:
 
     @_builtins.property
     @pulumi.getter(name="accessorId")
-    def accessor_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def accessor_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - A non-sensitive identifier for this token that
         can be logged and shared safely without granting any access to the cluster.
@@ -220,24 +220,24 @@ class _AclTokenState:
         return pulumi.get(self, "accessor_id")
 
     @accessor_id.setter
-    def accessor_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def accessor_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "accessor_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createTime")
-    def create_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - The timestamp the token was created.
         """
         return pulumi.get(self, "create_time")
 
     @create_time.setter
-    def create_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create_time", value)
 
     @_builtins.property
     @pulumi.getter(name="expirationTime")
-    def expiration_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expiration_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - The timestamp after which the token is
         considered expired and eligible for destruction.
@@ -245,12 +245,12 @@ class _AclTokenState:
         return pulumi.get(self, "expiration_time")
 
     @expiration_time.setter
-    def expiration_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expiration_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expiration_time", value)
 
     @_builtins.property
     @pulumi.getter(name="expirationTtl")
-    def expiration_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expiration_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - Provides a TTL for the token in the form of
         a time duration such as `"5m"` or `"1h"`.
@@ -261,12 +261,12 @@ class _AclTokenState:
         return pulumi.get(self, "expiration_ttl")
 
     @expiration_ttl.setter
-    def expiration_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expiration_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expiration_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="global")
-    def global_(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def global_(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `(bool: false)` - Whether the token should be replicated to all
         regions, or if it will only be used in the region it was created in.
@@ -274,24 +274,24 @@ class _AclTokenState:
         return pulumi.get(self, "global_")
 
     @global_.setter
-    def global_(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def global_(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "global_", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - A human-friendly name for this token.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         `(set: [])` - A set of policy names to associate with this
         token. Must be set on `client`-type tokens, must not be set on
@@ -301,12 +301,12 @@ class _AclTokenState:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
     @_builtins.property
     @pulumi.getter
-    def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]]]:
+    def roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AclTokenRoleArgs']]]]:
         """
         `(set: [])` - The list of roles attached to the token. Each entry has
         `name` and `id` attributes. It may be used multiple times.
@@ -314,13 +314,13 @@ class _AclTokenState:
         return pulumi.get(self, "roles")
 
     @roles.setter
-    def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AclTokenRoleArgs']]]]):
+    def roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AclTokenRoleArgs']]]]):
         pulumi.set(self, "roles", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
     @_utilities.deprecated("""Use the AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.""")
-    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - The token value itself, which is presented for
         access to the cluster. This attribute is deprecated and will be removed in a
@@ -329,12 +329,12 @@ class _AclTokenState:
         return pulumi.get(self, "secret_id")
 
     @secret_id.setter
-    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The type of token this is. Use `client`
         for tokens that will have policies associated with them. Use `management`
@@ -343,7 +343,7 @@ class _AclTokenState:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -353,12 +353,12 @@ class AclToken(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 expiration_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 global_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 expiration_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 global_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages an ACL token in Nomad.
@@ -537,12 +537,12 @@ class AclToken(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 expiration_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 global_: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 expiration_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 global_: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -576,16 +576,16 @@ class AclToken(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accessor_id: Optional[pulumi.Input[_builtins.str]] = None,
-            create_time: Optional[pulumi.Input[_builtins.str]] = None,
-            expiration_time: Optional[pulumi.Input[_builtins.str]] = None,
-            expiration_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-            global_: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]]] = None,
-            secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'AclToken':
+            accessor_id: pulumi.Input[Optional[_builtins.str]] = None,
+            create_time: pulumi.Input[Optional[_builtins.str]] = None,
+            expiration_time: pulumi.Input[Optional[_builtins.str]] = None,
+            expiration_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            global_: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'AclToken':
         """
         Get an existing AclToken resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

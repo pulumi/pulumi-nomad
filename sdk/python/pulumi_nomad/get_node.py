@@ -288,7 +288,7 @@ def get_node(node_id: Optional[_builtins.str] = None,
         scheduling_eligibility=pulumi.get(__ret__, 'scheduling_eligibility'),
         status=pulumi.get(__ret__, 'status'),
         status_description=pulumi.get(__ret__, 'status_description'))
-def get_node_output(node_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_node_output(node_id: pulumi.Input[Optional[_builtins.str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodeResult]:
     """
     Get information about a specific Nomad node by its ID.

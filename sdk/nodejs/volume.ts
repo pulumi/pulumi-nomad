@@ -267,74 +267,74 @@ export interface VolumeState {
      *
      * @deprecated use capability instead
      */
-    accessMode?: pulumi.Input<string>;
+    accessMode?: pulumi.Input<string | undefined>;
     /**
      * `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
      *
      * @deprecated use capability instead
      */
-    attachmentMode?: pulumi.Input<string>;
+    attachmentMode?: pulumi.Input<string | undefined>;
     /**
      * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
-    capabilities?: pulumi.Input<pulumi.Input<inputs.VolumeCapability>[]>;
+    capabilities?: pulumi.Input<pulumi.Input<inputs.VolumeCapability>[] | undefined>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      */
-    context?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    controllerRequired?: pulumi.Input<boolean>;
-    controllersExpected?: pulumi.Input<number>;
-    controllersHealthy?: pulumi.Input<number>;
+    context?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    controllerRequired?: pulumi.Input<boolean | undefined>;
+    controllersExpected?: pulumi.Input<number | undefined>;
+    controllersHealthy?: pulumi.Input<number | undefined>;
     /**
      * `(boolean: true)` - If true, the volume will be deregistered on destroy.
      */
-    deregisterOnDestroy?: pulumi.Input<boolean>;
+    deregisterOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * `(string: <required>)` - The ID of the physical volume from the storage provider.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
      */
-    mountOptions?: pulumi.Input<inputs.VolumeMountOptions>;
+    mountOptions?: pulumi.Input<inputs.VolumeMountOptions | undefined>;
     /**
      * `(string: <required>)` - The display name for the volume.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: "default")` - The namespace in which to register the volume.
      */
-    namespace?: pulumi.Input<string>;
-    nodesExpected?: pulumi.Input<number>;
-    nodesHealthy?: pulumi.Input<number>;
+    namespace?: pulumi.Input<string | undefined>;
+    nodesExpected?: pulumi.Input<number | undefined>;
+    nodesHealthy?: pulumi.Input<number | undefined>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      */
-    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
-    pluginId?: pulumi.Input<string>;
-    pluginProvider?: pulumi.Input<string>;
-    pluginProviderVersion?: pulumi.Input<string>;
-    schedulable?: pulumi.Input<boolean>;
+    pluginId?: pulumi.Input<string | undefined>;
+    pluginProvider?: pulumi.Input<string | undefined>;
+    pluginProviderVersion?: pulumi.Input<string | undefined>;
+    schedulable?: pulumi.Input<boolean | undefined>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
-    secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    topologies?: pulumi.Input<pulumi.Input<inputs.VolumeTopology>[]>;
+    secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    topologies?: pulumi.Input<pulumi.Input<inputs.VolumeTopology>[] | undefined>;
     /**
      * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      */
-    topologyRequest?: pulumi.Input<inputs.VolumeTopologyRequest>;
+    topologyRequest?: pulumi.Input<inputs.VolumeTopologyRequest | undefined>;
     /**
      * `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The unique ID of the volume.
      */
-    volumeId?: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -351,25 +351,25 @@ export interface VolumeArgs {
      *
      * @deprecated use capability instead
      */
-    accessMode?: pulumi.Input<string>;
+    accessMode?: pulumi.Input<string | undefined>;
     /**
      * `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
      *
      * @deprecated use capability instead
      */
-    attachmentMode?: pulumi.Input<string>;
+    attachmentMode?: pulumi.Input<string | undefined>;
     /**
      * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
-    capabilities?: pulumi.Input<pulumi.Input<inputs.VolumeCapability>[]>;
+    capabilities?: pulumi.Input<pulumi.Input<inputs.VolumeCapability>[] | undefined>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      */
-    context?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    context?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(boolean: true)` - If true, the volume will be deregistered on destroy.
      */
-    deregisterOnDestroy?: pulumi.Input<boolean>;
+    deregisterOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * `(string: <required>)` - The ID of the physical volume from the storage provider.
      */
@@ -377,19 +377,19 @@ export interface VolumeArgs {
     /**
      * `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
      */
-    mountOptions?: pulumi.Input<inputs.VolumeMountOptions>;
+    mountOptions?: pulumi.Input<inputs.VolumeMountOptions | undefined>;
     /**
      * `(string: <required>)` - The display name for the volume.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: "default")` - The namespace in which to register the volume.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      */
-    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
@@ -397,15 +397,15 @@ export interface VolumeArgs {
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
-    secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      */
-    topologyRequest?: pulumi.Input<inputs.VolumeTopologyRequest>;
+    topologyRequest?: pulumi.Input<inputs.VolumeTopologyRequest | undefined>;
     /**
      * `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The unique ID of the volume.
      */

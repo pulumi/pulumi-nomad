@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetAllocations.Invoke(new()
+        ///     var example = Nomad.GetAllocations.Invoke(new()
         ///     {
         ///         Filter = "JobID == \"example\"",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetAllocations.Invoke(new()
+        ///     var example = Nomad.GetAllocations.Invoke(new()
         ///     {
         ///         Filter = "JobID == \"example\"",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetAllocations.Invoke(new()
+        ///     var example = Nomad.GetAllocations.Invoke(new()
         ///     {
         ///         Filter = "JobID == \"example\"",
         ///     });

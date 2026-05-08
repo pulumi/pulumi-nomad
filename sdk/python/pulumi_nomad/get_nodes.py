@@ -165,10 +165,10 @@ def get_nodes(filter: Optional[_builtins.str] = None,
         os=pulumi.get(__ret__, 'os'),
         prefix=pulumi.get(__ret__, 'prefix'),
         resources=pulumi.get(__ret__, 'resources'))
-def get_nodes_output(filter: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     os: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                     prefix: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     resources: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_nodes_output(filter: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     os: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                     prefix: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     resources: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodesResult]:
     """
     Retrieve a list of nodes from Nomad.

@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetAclRoles.Invoke(new()
+        ///     var example = Nomad.GetAclRoles.Invoke(new()
         ///     {
         ///         Prefix = "a242",
         ///     });
@@ -48,7 +48,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetAclRoles.Invoke(new()
+        ///     var example = Nomad.GetAclRoles.Invoke(new()
         ///     {
         ///         Prefix = "a242",
         ///     });
@@ -72,7 +72,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Nomad.Index.GetAclRoles.Invoke(new()
+        ///     var example = Nomad.GetAclRoles.Invoke(new()
         ///     {
         ///         Prefix = "a242",
         ///     });

@@ -113,7 +113,7 @@ def get_acl_role(id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         policies=pulumi.get(__ret__, 'policies'))
-def get_acl_role_output(id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_acl_role_output(id: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclRoleResult]:
     """
     Get information on an ACL Role.

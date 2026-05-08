@@ -123,8 +123,8 @@ def get_variable(namespace: Optional[_builtins.str] = None,
         items=pulumi.get(__ret__, 'items'),
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'))
-def get_variable_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                        path: Optional[pulumi.Input[_builtins.str]] = None,
+def get_variable_output(namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                        path: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVariableResult]:
     """
     Get the information about a Nomad variable.

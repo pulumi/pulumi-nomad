@@ -88,9 +88,9 @@ export interface GetDatacentersOutputArgs {
     /**
      * `(bool: false)`: An optional flag that, if set to `true` will ignore down nodes when compiling the list of datacenters.
      */
-    ignoreDownNodes?: pulumi.Input<boolean>;
+    ignoreDownNodes?: pulumi.Input<boolean | undefined>;
     /**
      * `(string)`: An optional string to filter datacenters based on name prefix. If not provided, all datacenters are returned.
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
 }

@@ -69,5 +69,5 @@ export function getPluginsOutput(args?: GetPluginsOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getPlugins.
  */
 export interface GetPluginsOutputArgs {
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

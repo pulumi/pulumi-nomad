@@ -10,108 +10,108 @@ export interface AclAuthMethodConfig {
      * `([]string: <optional>)` - A list of allowed values
      * that can be used for the redirect URI.
      */
-    allowedRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRedirectUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `([]string: <optional>)` - List of auth claims that are
      * valid for login.
      */
-    boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
+    boundAudiences?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `([]string: <optional>)` - The value against which to match
      * the iss claim in a JWT.
      */
-    boundIssuers?: pulumi.Input<pulumi.Input<string>[]>;
+    boundIssuers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Mappings of claims (key) that will be copied to a metadata field (value).
      */
-    claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string: <optional>)` - Duration of leeway when validating
      * all claims in the form of a time duration such as "5m" or "1h".
      */
-    clockSkewLeeway?: pulumi.Input<string>;
+    clockSkewLeeway?: pulumi.Input<string | undefined>;
     /**
      * `([]string: <optional>)` - PEM encoded CA certs for use
      * by the TLS client used to talk with the OIDC Discovery URL.
      */
-    discoveryCaPems?: pulumi.Input<pulumi.Input<string>[]>;
+    discoveryCaPems?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `(string: <optional>)` - Duration of leeway when validating
      * expiration of a JWT in the form of a time duration such as "5m" or "1h".
      */
-    expirationLeeway?: pulumi.Input<string>;
+    expirationLeeway?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - PEM encoded CA cert for use by the 
      * TLS client used to talk with the JWKS server.
      */
-    jwksCaCert?: pulumi.Input<string>;
+    jwksCaCert?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - JSON Web Key Sets url for authenticating
      * signatures.
      */
-    jwksUrl?: pulumi.Input<string>;
+    jwksUrl?: pulumi.Input<string | undefined>;
     /**
      * `([]string: <optional>)` - List of PEM-encoded 
      * public keys to use to authenticate signatures locally.
      */
-    jwtValidationPubKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    jwtValidationPubKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Mappings of list claims (key) that will be copied to a metadata field (value).
      */
-    listClaimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    listClaimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string: <optional>)` - Duration of leeway when validating
      * not before values of a token in the form of a time duration such as "5m" or "1h".
      */
-    notBeforeLeeway?: pulumi.Input<string>;
+    notBeforeLeeway?: pulumi.Input<string | undefined>;
     /**
      * `(OIDCClientAssertion: <optional>)` - Optionally
      * send a signed JWT ("[private key jwt][]") as a client assertion to the OIDC
      * provider. Browse to the [OIDC concepts][concepts-assertions] page to learn
      * more.
      */
-    oidcClientAssertion?: pulumi.Input<inputs.AclAuthMethodConfigOidcClientAssertion>;
+    oidcClientAssertion?: pulumi.Input<inputs.AclAuthMethodConfigOidcClientAssertion | undefined>;
     /**
      * `(string: <optional>)` - The OAuth Client ID configured
      * with the OIDC provider.
      */
-    oidcClientId?: pulumi.Input<string>;
+    oidcClientId?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - The OAuth Client Secret
      * configured with the OIDC provider.
      */
-    oidcClientSecret?: pulumi.Input<string>;
+    oidcClientSecret?: pulumi.Input<string | undefined>;
     /**
      * `(bool: false)` - When set to `true`, Nomad will
      * not make a request to the identity provider to get OIDC `UserInfo`.
      * You may wish to set this if your identity provider doesn't send any
      * additional claims from the `UserInfo` endpoint.
      */
-    oidcDisableUserinfo?: pulumi.Input<boolean>;
+    oidcDisableUserinfo?: pulumi.Input<boolean | undefined>;
     /**
      * `(string: <optional>)` - The OIDC Discovery URL,
      * without any .well-known component (base path).
      */
-    oidcDiscoveryUrl?: pulumi.Input<string>;
+    oidcDiscoveryUrl?: pulumi.Input<string | undefined>;
     /**
      * `(bool: false)` - When set to `true`, Nomad will include
      * [PKCE][] verification in the auth flow. Even with PKCE enabled in Nomad,
      * you may still need to enable it in your OIDC provider.
      */
-    oidcEnablePkce?: pulumi.Input<boolean>;
+    oidcEnablePkce?: pulumi.Input<boolean | undefined>;
     /**
      * `([]string: <optional>)` - List of OIDC scopes.
      */
-    oidcScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    oidcScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `([]string: <optional>)` - A list of supported signing
      * algorithms.
      */
-    signingAlgs?: pulumi.Input<pulumi.Input<string>[]>;
+    signingAlgs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Enable OIDC verbose logging on the Nomad server.
      */
-    verboseLogging?: pulumi.Input<boolean>;
+    verboseLogging?: pulumi.Input<boolean | undefined>;
 }
 
 export interface AclAuthMethodConfigOidcClientAssertion {
@@ -119,13 +119,13 @@ export interface AclAuthMethodConfigOidcClientAssertion {
      * `([]string: optional)` - Who processes the assertion.
      * Defaults to the auth method's `oidcDiscoveryUrl`.
      */
-    audiences?: pulumi.Input<pulumi.Input<string>[]>;
+    audiences?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `(map[string]string: optional)` - Add to the JWT headers,
      * alongside "kid" and "type". Setting the "kid" header here is not allowed;
      * use `private_key.key_id`.
      */
-    extraHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string: <optional>)` is the key's algorithm.
      * Its default values are based on the `keySource`:
@@ -133,7 +133,7 @@ export interface AclAuthMethodConfigOidcClientAssertion {
      * - "privateKey": "RS256"; must be RS256, RS384, or RS512
      * - "clientSecret": "HS256"; must be HS256, HS384, or HS512
      */
-    keyAlgorithm?: pulumi.Input<string>;
+    keyAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - Specifies where to get the private
      * key to sign the JWT.
@@ -147,7 +147,7 @@ export interface AclAuthMethodConfigOidcClientAssertion {
      * `(OIDCClientAssertionKey: <optional>)` - External key
      * to sign the JWT. `keySource` must be "privateKey" to enable this.
      */
-    privateKey?: pulumi.Input<inputs.AclAuthMethodConfigOidcClientAssertionPrivateKey>;
+    privateKey?: pulumi.Input<inputs.AclAuthMethodConfigOidcClientAssertionPrivateKey | undefined>;
 }
 
 export interface AclAuthMethodConfigOidcClientAssertionPrivateKey {
@@ -156,7 +156,7 @@ export interface AclAuthMethodConfigOidcClientAssertionPrivateKey {
      * Mutually exclusive with `pemCert` and `pemCertFile`.
      * Allowed `keyIdHeader` values: "kid" (the default)
      */
-    keyId?: pulumi.Input<string>;
+    keyId?: pulumi.Input<string | undefined>;
     /**
      * `(string: optional)` - Which header the provider uses
      * to find the public key to verify the signed JWT.
@@ -164,7 +164,7 @@ export interface AclAuthMethodConfigOidcClientAssertionPrivateKey {
      * `pemCert`, or `pemCertFile`. You must set exactly one of those
      * options, so refer to them for their requirements.
      */
-    keyIdHeader?: pulumi.Input<string>;
+    keyIdHeader?: pulumi.Input<string | undefined>;
     /**
      * `(string: optional)` - An x509 certificate, signed by the
      * private key or a CA, in pem format. Nomad uses this certificate to
@@ -172,7 +172,7 @@ export interface AclAuthMethodConfigOidcClientAssertionPrivateKey {
      * Mutually exclusive with `pemCertFile` and `keyId`.
      * Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
      */
-    pemCert?: pulumi.Input<string>;
+    pemCert?: pulumi.Input<string | undefined>;
     /**
      * `(string: optional)` - An absolute path to an x509
      * certificate on Nomad servers' disk, signed by the private key or a CA,
@@ -181,37 +181,37 @@ export interface AclAuthMethodConfigOidcClientAssertionPrivateKey {
      * header. Mutually exclusive with `pemCert` and key_id.
      * Allowed `keyIdHeader` values: "x5t", "x5t#S256" (default "x5t#S256")
      */
-    pemCertFile?: pulumi.Input<string>;
+    pemCertFile?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - An RSA private key, in pem format.
      * It is used to sign the JWT. Mutually exclusive with `pemKey`.
      */
-    pemKey?: pulumi.Input<string>;
+    pemKey?: pulumi.Input<string | undefined>;
     /**
      * `(string: optional)` - An absolute path to a private key
      * on Nomad servers' disk, in pem format. It is used to sign the JWT.
      * Mutually exclusive with `pemKeyFile`.
      */
-    pemKeyFile?: pulumi.Input<string>;
+    pemKeyFile?: pulumi.Input<string | undefined>;
 }
 
 export interface AclPolicyJobAcl {
     /**
      * Group
      */
-    group?: pulumi.Input<string>;
+    group?: pulumi.Input<string | undefined>;
     /**
      * Job. If empty, the policy applies to all jobs in the namespace.
      */
-    jobId?: pulumi.Input<string>;
+    jobId?: pulumi.Input<string | undefined>;
     /**
      * Namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Task
      */
-    task?: pulumi.Input<string>;
+    task?: pulumi.Input<string | undefined>;
 }
 
 export interface AclRolePolicy {
@@ -229,7 +229,7 @@ export interface AclTokenRole {
     /**
      * `(string: "")` - A human-friendly name for this token.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 export interface CsiVolumeCapability {
@@ -254,11 +254,11 @@ export interface CsiVolumeMountOptions {
     /**
      * `(string: optional)` - The file system type.
      */
-    fsType?: pulumi.Input<string>;
+    fsType?: pulumi.Input<string | undefined>;
     /**
      * `[]string: optional` - The flags passed to `mount`.
      */
-    mountFlags?: pulumi.Input<pulumi.Input<string>[]>;
+    mountFlags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface CsiVolumeRegistrationCapability {
@@ -283,11 +283,11 @@ export interface CsiVolumeRegistrationMountOptions {
     /**
      * `(string: <optional>)` - The file system type.
      */
-    fsType?: pulumi.Input<string>;
+    fsType?: pulumi.Input<string | undefined>;
     /**
      * `([]string: <optional>)` - The flags passed to `mount`.
      */
-    mountFlags?: pulumi.Input<pulumi.Input<string>[]>;
+    mountFlags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface CsiVolumeRegistrationTopology {
@@ -297,14 +297,14 @@ export interface CsiVolumeRegistrationTopology {
      * In addition to the above arguments, the following attributes are exported and
      * can be referenced:
      */
-    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
 export interface CsiVolumeRegistrationTopologyRequest {
     /**
      * `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
      */
-    required?: pulumi.Input<inputs.CsiVolumeRegistrationTopologyRequestRequired>;
+    required?: pulumi.Input<inputs.CsiVolumeRegistrationTopologyRequestRequired | undefined>;
 }
 
 export interface CsiVolumeRegistrationTopologyRequestRequired {
@@ -328,18 +328,18 @@ export interface CsiVolumeTopology {
      * In addition to the above arguments, the following attributes are exported and
      * can be referenced:
      */
-    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
 export interface CsiVolumeTopologyRequest {
     /**
      * `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
      */
-    preferred?: pulumi.Input<inputs.CsiVolumeTopologyRequestPreferred>;
+    preferred?: pulumi.Input<inputs.CsiVolumeTopologyRequestPreferred | undefined>;
     /**
      * `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
      */
-    required?: pulumi.Input<inputs.CsiVolumeTopologyRequestRequired>;
+    required?: pulumi.Input<inputs.CsiVolumeTopologyRequestRequired | undefined>;
 }
 
 export interface CsiVolumeTopologyRequestPreferred {
@@ -391,11 +391,11 @@ export interface DynamicHostVolumeConstraint {
     /**
      * `(string)`- The operator to use in the comparison.
      */
-    operator?: pulumi.Input<string>;
+    operator?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - The value of the attribute to compare against.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface DynamicHostVolumeRegistrationCapability {
@@ -419,11 +419,11 @@ export interface DynamicHostVolumeRegistrationConstraint {
     /**
      * The operator to use for comparison
      */
-    operator?: pulumi.Input<string>;
+    operator?: pulumi.Input<string | undefined>;
     /**
      * The requested value of the attribute
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface ExternalVolumeCapability {
@@ -448,11 +448,11 @@ export interface ExternalVolumeMountOptions {
     /**
      * `(string: optional)` - The file system type.
      */
-    fsType?: pulumi.Input<string>;
+    fsType?: pulumi.Input<string | undefined>;
     /**
      * `[]string: optional` - The flags passed to `mount`.
      */
-    mountFlags?: pulumi.Input<pulumi.Input<string>[]>;
+    mountFlags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface ExternalVolumeTopology {
@@ -462,18 +462,18 @@ export interface ExternalVolumeTopology {
      * In addition to the above arguments, the following attributes are exported and
      * can be referenced:
      */
-    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
 export interface ExternalVolumeTopologyRequest {
     /**
      * `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
      */
-    preferred?: pulumi.Input<inputs.ExternalVolumeTopologyRequestPreferred>;
+    preferred?: pulumi.Input<inputs.ExternalVolumeTopologyRequestPreferred | undefined>;
     /**
      * `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
      */
-    required?: pulumi.Input<inputs.ExternalVolumeTopologyRequestRequired>;
+    required?: pulumi.Input<inputs.ExternalVolumeTopologyRequestRequired | undefined>;
 }
 
 export interface ExternalVolumeTopologyRequestPreferred {
@@ -508,15 +508,15 @@ export interface JobConstraint {
     /**
      * `(string)` - Attribute being constrained.
      */
-    ltarget?: pulumi.Input<string>;
+    ltarget?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Operator used to compare the attribute to the constraint.
      */
-    operand?: pulumi.Input<string>;
+    operand?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Constraint value.
      */
-    rtarget?: pulumi.Input<string>;
+    rtarget?: pulumi.Input<string | undefined>;
 }
 
 export interface JobHcl2 {
@@ -524,240 +524,240 @@ export interface JobHcl2 {
      * `(boolean: false)` - Set this to `true` to be able to use
      * HCL2 filesystem functions
      */
-    allowFs?: pulumi.Input<boolean>;
+    allowFs?: pulumi.Input<boolean | undefined>;
     /**
      * Additional variables to use when templating the job with HCL2
      */
-    vars?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    vars?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
 export interface JobPeriodicConfig {
     /**
      * `(boolean)` - Whether the periodic job is enabled. When disabled, scheduled runs and force launches are prevented.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * `(boolean)` - Whether this job should wait until previous instances of the same job have completed before launching again.
      */
-    prohibitOverlap?: pulumi.Input<boolean>;
+    prohibitOverlap?: pulumi.Input<boolean | undefined>;
     /**
      * `(string)` - Cron expression configuring the interval at which the job is launched.
      */
-    spec?: pulumi.Input<string>;
+    spec?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Type of periodic specification, such as `cron`.
      */
-    specType?: pulumi.Input<string>;
+    specType?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Time zone used to evaluate the next launch interval.
      */
-    timezone?: pulumi.Input<string>;
+    timezone?: pulumi.Input<string | undefined>;
 }
 
 export interface JobTaskGroup {
     /**
      * `(integer)` - Task group count.
      */
-    count?: pulumi.Input<number>;
+    count?: pulumi.Input<number | undefined>;
     /**
      * `(map of strings)` - Task group metadata.
      */
-    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string)` - Volume name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(list of maps)` - Tasks in the task group.
      */
-    tasks?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupTask>[]>;
+    tasks?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupTask>[] | undefined>;
     /**
      * `(list of maps)` - Effective update strategy for the task group.
      */
-    updateStrategies?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupUpdateStrategy>[]>;
+    updateStrategies?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupUpdateStrategy>[] | undefined>;
     /**
      * `(list of maps)` - Volume requests for the task group.
      */
-    volumes?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupVolume>[]>;
+    volumes?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupVolume>[] | undefined>;
 }
 
 export interface JobTaskGroupTask {
     /**
      * `(string)` - Task driver.
      */
-    driver?: pulumi.Input<string>;
+    driver?: pulumi.Input<string | undefined>;
     /**
      * `(map of strings)` - Task group metadata.
      */
-    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string)` - Volume name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(list of maps)` - Task volume mounts.
      */
-    volumeMounts?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupTaskVolumeMount>[]>;
+    volumeMounts?: pulumi.Input<pulumi.Input<inputs.JobTaskGroupTaskVolumeMount>[] | undefined>;
 }
 
 export interface JobTaskGroupTaskVolumeMount {
     /**
      * `(string)` - Destination path inside the task.
      */
-    destination?: pulumi.Input<string>;
+    destination?: pulumi.Input<string | undefined>;
     /**
      * `(boolean)` - Whether the volume is read-only.
      */
-    readOnly?: pulumi.Input<boolean>;
+    readOnly?: pulumi.Input<boolean | undefined>;
     /**
      * `(string)` - Volume name.
      */
-    volume?: pulumi.Input<string>;
+    volume?: pulumi.Input<string | undefined>;
 }
 
 export interface JobTaskGroupUpdateStrategy {
     /**
      * `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
      */
-    autoRevert?: pulumi.Input<boolean>;
+    autoRevert?: pulumi.Input<boolean | undefined>;
     /**
      * `(integer)` - Number of canary allocations created before destructive updates continue.
      */
-    canary?: pulumi.Input<number>;
+    canary?: pulumi.Input<number | undefined>;
     /**
      * `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
      */
-    healthCheck?: pulumi.Input<string>;
+    healthCheck?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
      */
-    healthyDeadline?: pulumi.Input<string>;
+    healthyDeadline?: pulumi.Input<string | undefined>;
     /**
      * `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
      */
-    maxParallel?: pulumi.Input<number>;
+    maxParallel?: pulumi.Input<number | undefined>;
     /**
      * `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
      */
-    minHealthyTime?: pulumi.Input<string>;
+    minHealthyTime?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
      */
-    stagger?: pulumi.Input<string>;
+    stagger?: pulumi.Input<string | undefined>;
 }
 
 export interface JobTaskGroupVolume {
     /**
      * `(string)` - Volume name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(boolean)` - Whether the volume is read-only.
      */
-    readOnly?: pulumi.Input<boolean>;
+    readOnly?: pulumi.Input<boolean | undefined>;
     /**
      * `(string)` - Volume source.
      */
-    source?: pulumi.Input<string>;
+    source?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Volume type.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface JobUpdateStrategy {
     /**
      * `(boolean)` - Whether the job should automatically revert to the last stable job on deployment failure.
      */
-    autoRevert?: pulumi.Input<boolean>;
+    autoRevert?: pulumi.Input<boolean | undefined>;
     /**
      * `(integer)` - Number of canary allocations created before destructive updates continue.
      */
-    canary?: pulumi.Input<number>;
+    canary?: pulumi.Input<number | undefined>;
     /**
      * `(string)` - Mechanism used to determine allocation health: `checks`, `taskStates`, or `manual`.
      */
-    healthCheck?: pulumi.Input<string>;
+    healthCheck?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Deadline by which the allocation must become healthy before it is marked unhealthy.
      */
-    healthyDeadline?: pulumi.Input<string>;
+    healthyDeadline?: pulumi.Input<string | undefined>;
     /**
      * `(integer)` - Number of allocations within a task group that can be destructively updated at the same time. Setting `0` forces updates instead of deployments.
      */
-    maxParallel?: pulumi.Input<number>;
+    maxParallel?: pulumi.Input<number | undefined>;
     /**
      * `(string)` - Minimum time the allocation must be in the healthy state before further updates can proceed.
      */
-    minHealthyTime?: pulumi.Input<string>;
+    minHealthyTime?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Delay between each set of `maxParallel` updates when updating system jobs.
      */
-    stagger?: pulumi.Input<string>;
+    stagger?: pulumi.Input<string | undefined>;
 }
 
 export interface NamespaceCapabilities {
     /**
      * `([]string: <optional>)` - Network modes disabled for the namespace.
      */
-    disabledNetworkModes?: pulumi.Input<pulumi.Input<string>[]>;
+    disabledNetworkModes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `([]string: <optional>)` - Task drivers disabled for the namespace.
      */
-    disabledTaskDrivers?: pulumi.Input<pulumi.Input<string>[]>;
+    disabledTaskDrivers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `([]string: <optional>)` - Network modes enabled for the namespace.
      */
-    enabledNetworkModes?: pulumi.Input<pulumi.Input<string>[]>;
+    enabledNetworkModes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `([]string: <optional>)` - Task drivers enabled for the namespace.
      */
-    enabledTaskDrivers?: pulumi.Input<pulumi.Input<string>[]>;
+    enabledTaskDrivers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface NamespaceConsulConfig {
     /**
      * `([]string: <optional>)` - The list of Consul clusters allowed to be used in this namespace. Cannot be used with `denied`.
      */
-    alloweds?: pulumi.Input<pulumi.Input<string>[]>;
+    alloweds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `(string: <optional>)` - The Consul cluster to use when none is specified in the job.
      */
-    default?: pulumi.Input<string>;
+    default?: pulumi.Input<string | undefined>;
     /**
      * `([]string: <optional>)` - The list of Consul clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
      */
-    denieds?: pulumi.Input<pulumi.Input<string>[]>;
+    denieds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface NamespaceNodePoolConfig {
     /**
      * `([]string: <optional>)` - The list of node pools that are allowed to be used in this namespace.
      */
-    alloweds?: pulumi.Input<pulumi.Input<string>[]>;
+    alloweds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `(string: <optional>)` - The default node pool for jobs that don't define one.
      */
-    default?: pulumi.Input<string>;
+    default?: pulumi.Input<string | undefined>;
     /**
      * `([]string: <optional>)` - The list of node pools that are not allowed to be used in this namespace.
      */
-    denieds?: pulumi.Input<pulumi.Input<string>[]>;
+    denieds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface NamespaceVaultConfig {
     /**
      * `([]string: <optional>)` - The list of Vault clusters allowed to be used in this namespace. Cannot be used with `denied`.
      */
-    alloweds?: pulumi.Input<pulumi.Input<string>[]>;
+    alloweds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * `(string: <optional>)` - The Vault cluster to use when none is specified in the job.
      */
-    default?: pulumi.Input<string>;
+    default?: pulumi.Input<string | undefined>;
     /**
      * `([]string: <optional>)` - The list of Vault clusters not allowed to be used in this namespace. Cannot be used with `allowed`.
      */
-    denieds?: pulumi.Input<pulumi.Input<string>[]>;
+    denieds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface NodePoolSchedulerConfig {
@@ -771,13 +771,13 @@ export interface NodePoolSchedulerConfig {
      * allow distinguishing between memory oversubscription being disabled in the
      * node pool and this property not being set.
      */
-    memoryOversubscription?: pulumi.Input<string>;
+    memoryOversubscription?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - The scheduler algorithm used in the node
      * pool. Possible values are `binpack` or `spread`. If not defined the global
      * cluster configuration is used.
      */
-    schedulerAlgorithm?: pulumi.Input<string>;
+    schedulerAlgorithm?: pulumi.Input<string | undefined>;
 }
 
 export interface ProviderAuthJwt {
@@ -822,13 +822,13 @@ export interface QuoteSpecificationLimitRegionLimit {
      * of zero is treated as unlimited, and a negative value is treated as fully
      * disallowed.
      */
-    cores?: pulumi.Input<number>;
+    cores?: pulumi.Input<number | undefined>;
     /**
      * `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
      * is treated as unlimited, and a negative value is treated as fully disallowed.
      */
-    cpu?: pulumi.Input<number>;
-    devices?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitDevice>[]>;
+    cpu?: pulumi.Input<number | undefined>;
+    devices?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitDevice>[] | undefined>;
     /**
      * `(int: 0)` - The maximum amount of memory (in megabytes) to
      * limit allocations to. A value of zero is treated as unlimited, and a negative
@@ -840,22 +840,22 @@ export interface QuoteSpecificationLimitRegionLimit {
      * - `storage` `(block: optional)` - Storage resource quota configuration. May only
      * be specified once. See below for the structure of this block.
      */
-    memoryMaxMb?: pulumi.Input<number>;
+    memoryMaxMb?: pulumi.Input<number | undefined>;
     /**
      * `(int: 0)` - The amount of memory (in megabytes) to limit
      * allocations to. A value of zero is treated as unlimited, and a negative value
      * is treated as fully disallowed.
      */
-    memoryMb?: pulumi.Input<number>;
-    nodePools?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitNodePool>[]>;
-    storage?: pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitStorage>;
+    memoryMb?: pulumi.Input<number | undefined>;
+    nodePools?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitNodePool>[] | undefined>;
+    storage?: pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitStorage | undefined>;
 }
 
 export interface QuoteSpecificationLimitRegionLimitDevice {
     /**
      * `(int: 0)` - The number of device instances to limit allocations to.
      */
-    count?: pulumi.Input<number>;
+    count?: pulumi.Input<number | undefined>;
     /**
      * `(string: <required>)` - The name of the device, e.g.
      * `"nvidia/gpu"`.
@@ -869,13 +869,13 @@ export interface QuoteSpecificationLimitRegionLimitNodePool {
      * of zero is treated as unlimited, and a negative value is treated as fully
      * disallowed.
      */
-    cores?: pulumi.Input<number>;
+    cores?: pulumi.Input<number | undefined>;
     /**
      * `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
      * is treated as unlimited, and a negative value is treated as fully disallowed.
      */
-    cpu?: pulumi.Input<number>;
-    devices?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitNodePoolDevice>[]>;
+    cpu?: pulumi.Input<number | undefined>;
+    devices?: pulumi.Input<pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitNodePoolDevice>[] | undefined>;
     /**
      * `(int: 0)` - The maximum amount of memory (in megabytes) to
      * limit allocations to. A value of zero is treated as unlimited, and a negative
@@ -885,25 +885,25 @@ export interface QuoteSpecificationLimitRegionLimitNodePool {
      * - `storage` `(block: optional)` - Storage resource quota
      * configuration for the node pool. May only be specified once.
      */
-    memoryMaxMb?: pulumi.Input<number>;
+    memoryMaxMb?: pulumi.Input<number | undefined>;
     /**
      * `(int: 0)` - The amount of memory (in megabytes) to limit
      * allocations to. A value of zero is treated as unlimited, and a negative value
      * is treated as fully disallowed.
      */
-    memoryMb?: pulumi.Input<number>;
+    memoryMb?: pulumi.Input<number | undefined>;
     /**
      * `(string: <required>)` - The node pool name to apply limits to.
      */
     nodePool: pulumi.Input<string>;
-    storage?: pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitNodePoolStorage>;
+    storage?: pulumi.Input<inputs.QuoteSpecificationLimitRegionLimitNodePoolStorage | undefined>;
 }
 
 export interface QuoteSpecificationLimitRegionLimitNodePoolDevice {
     /**
      * `(int: 0)` - The number of device instances to limit allocations to.
      */
-    count?: pulumi.Input<number>;
+    count?: pulumi.Input<number | undefined>;
     /**
      * `(string: <required>)` - The name of the device, e.g.
      * `"nvidia/gpu"`.
@@ -916,12 +916,12 @@ export interface QuoteSpecificationLimitRegionLimitNodePoolStorage {
      * `(int: 0)` - The amount of storage (in megabytes) to limit
      * host volumes to.
      */
-    hostVolumesMb?: pulumi.Input<number>;
+    hostVolumesMb?: pulumi.Input<number | undefined>;
     /**
      * `(int: 0)` - The amount of storage (in megabytes) to limit
      * Nomad variables to.
      */
-    variablesMb?: pulumi.Input<number>;
+    variablesMb?: pulumi.Input<number | undefined>;
 }
 
 export interface QuoteSpecificationLimitRegionLimitStorage {
@@ -929,12 +929,12 @@ export interface QuoteSpecificationLimitRegionLimitStorage {
      * `(int: 0)` - The amount of storage (in megabytes) to limit
      * host volumes to.
      */
-    hostVolumesMb?: pulumi.Input<number>;
+    hostVolumesMb?: pulumi.Input<number | undefined>;
     /**
      * `(int: 0)` - The amount of storage (in megabytes) to limit
      * Nomad variables to.
      */
-    variablesMb?: pulumi.Input<number>;
+    variablesMb?: pulumi.Input<number | undefined>;
 }
 
 export interface VolumeCapability {
@@ -959,11 +959,11 @@ export interface VolumeMountOptions {
     /**
      * `(string: <optional>)` - The file system type.
      */
-    fsType?: pulumi.Input<string>;
+    fsType?: pulumi.Input<string | undefined>;
     /**
      * `([]string: <optional>)` - The flags passed to `mount`.
      */
-    mountFlags?: pulumi.Input<pulumi.Input<string>[]>;
+    mountFlags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface VolumeTopology {
@@ -973,14 +973,14 @@ export interface VolumeTopology {
      * In addition to the above arguments, the following attributes are exported and
      * can be referenced:
      */
-    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    segments?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
 export interface VolumeTopologyRequest {
     /**
      * `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
      */
-    required?: pulumi.Input<inputs.VolumeTopologyRequestRequired>;
+    required?: pulumi.Input<inputs.VolumeTopologyRequestRequired | undefined>;
 }
 
 export interface VolumeTopologyRequestRequired {

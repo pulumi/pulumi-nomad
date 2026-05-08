@@ -259,71 +259,71 @@ export interface CsiVolumeRegistrationState {
     /**
      * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
-    capabilities?: pulumi.Input<pulumi.Input<inputs.CsiVolumeRegistrationCapability>[]>;
-    capacity?: pulumi.Input<number>;
+    capabilities?: pulumi.Input<pulumi.Input<inputs.CsiVolumeRegistrationCapability>[] | undefined>;
+    capacity?: pulumi.Input<number | undefined>;
     /**
      * `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      */
-    capacityMax?: pulumi.Input<string>;
-    capacityMaxBytes?: pulumi.Input<number>;
+    capacityMax?: pulumi.Input<string | undefined>;
+    capacityMaxBytes?: pulumi.Input<number | undefined>;
     /**
      * `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      */
-    capacityMin?: pulumi.Input<string>;
-    capacityMinBytes?: pulumi.Input<number>;
+    capacityMin?: pulumi.Input<string | undefined>;
+    capacityMinBytes?: pulumi.Input<number | undefined>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      */
-    context?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    controllerRequired?: pulumi.Input<boolean>;
-    controllersExpected?: pulumi.Input<number>;
-    controllersHealthy?: pulumi.Input<number>;
+    context?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    controllerRequired?: pulumi.Input<boolean | undefined>;
+    controllersExpected?: pulumi.Input<number | undefined>;
+    controllersHealthy?: pulumi.Input<number | undefined>;
     /**
      * `(boolean: true)` - If true, the volume will be deregistered on destroy.
      */
-    deregisterOnDestroy?: pulumi.Input<boolean>;
+    deregisterOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * `(string: <required>)` - The ID of the physical volume from the storage provider.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
      */
-    mountOptions?: pulumi.Input<inputs.CsiVolumeRegistrationMountOptions>;
+    mountOptions?: pulumi.Input<inputs.CsiVolumeRegistrationMountOptions | undefined>;
     /**
      * `(string: <required>)` - The display name for the volume.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: "default")` - The namespace in which to register the volume.
      */
-    namespace?: pulumi.Input<string>;
-    nodesExpected?: pulumi.Input<number>;
-    nodesHealthy?: pulumi.Input<number>;
+    namespace?: pulumi.Input<string | undefined>;
+    nodesExpected?: pulumi.Input<number | undefined>;
+    nodesHealthy?: pulumi.Input<number | undefined>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      */
-    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
-    pluginId?: pulumi.Input<string>;
-    pluginProvider?: pulumi.Input<string>;
-    pluginProviderVersion?: pulumi.Input<string>;
-    schedulable?: pulumi.Input<boolean>;
+    pluginId?: pulumi.Input<string | undefined>;
+    pluginProvider?: pulumi.Input<string | undefined>;
+    pluginProviderVersion?: pulumi.Input<string | undefined>;
+    schedulable?: pulumi.Input<boolean | undefined>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
-    secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    topologies?: pulumi.Input<pulumi.Input<inputs.CsiVolumeRegistrationTopology>[]>;
+    secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    topologies?: pulumi.Input<pulumi.Input<inputs.CsiVolumeRegistrationTopology>[] | undefined>;
     /**
      * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      */
-    topologyRequest?: pulumi.Input<inputs.CsiVolumeRegistrationTopologyRequest>;
+    topologyRequest?: pulumi.Input<inputs.CsiVolumeRegistrationTopologyRequest | undefined>;
     /**
      * `(string: <required>)` - The unique ID of the volume.
      */
-    volumeId?: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -333,23 +333,23 @@ export interface CsiVolumeRegistrationArgs {
     /**
      * `(``Capability``: <required>)` - Options for validating the capability of a volume.
      */
-    capabilities?: pulumi.Input<pulumi.Input<inputs.CsiVolumeRegistrationCapability>[]>;
+    capabilities?: pulumi.Input<pulumi.Input<inputs.CsiVolumeRegistrationCapability>[] | undefined>;
     /**
      * `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
      */
-    capacityMax?: pulumi.Input<string>;
+    capacityMax?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
      */
-    capacityMin?: pulumi.Input<string>;
+    capacityMin?: pulumi.Input<string | undefined>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
      */
-    context?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    context?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(boolean: true)` - If true, the volume will be deregistered on destroy.
      */
-    deregisterOnDestroy?: pulumi.Input<boolean>;
+    deregisterOnDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * `(string: <required>)` - The ID of the physical volume from the storage provider.
      */
@@ -357,19 +357,19 @@ export interface CsiVolumeRegistrationArgs {
     /**
      * `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
      */
-    mountOptions?: pulumi.Input<inputs.CsiVolumeRegistrationMountOptions>;
+    mountOptions?: pulumi.Input<inputs.CsiVolumeRegistrationMountOptions | undefined>;
     /**
      * `(string: <required>)` - The display name for the volume.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: "default")` - The namespace in which to register the volume.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
      */
-    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
      */
@@ -377,11 +377,11 @@ export interface CsiVolumeRegistrationArgs {
     /**
      * `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
      */
-    secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    secrets?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
      */
-    topologyRequest?: pulumi.Input<inputs.CsiVolumeRegistrationTopologyRequest>;
+    topologyRequest?: pulumi.Input<inputs.CsiVolumeRegistrationTopologyRequest | undefined>;
     /**
      * `(string: <required>)` - The unique ID of the volume.
      */

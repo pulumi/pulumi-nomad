@@ -117,59 +117,59 @@ export interface ProviderArgs {
     /**
      * URL of the root of the target Nomad agent.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * Authenticates to Nomad using a JWT authentication method.
      */
-    authJwt?: pulumi.Input<inputs.ProviderAuthJwt>;
+    authJwt?: pulumi.Input<inputs.ProviderAuthJwt | undefined>;
     /**
      * A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.
      */
-    caFile?: pulumi.Input<string>;
+    caFile?: pulumi.Input<string | undefined>;
     /**
      * PEM-encoded certificate authority used to verify the remote agent's certificate.
      */
-    caPem?: pulumi.Input<string>;
+    caPem?: pulumi.Input<string | undefined>;
     /**
      * A path to a PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      */
-    certFile?: pulumi.Input<string>;
+    certFile?: pulumi.Input<string | undefined>;
     /**
      * PEM-encoded certificate provided to the remote agent; requires use of keyFile or key_pem.
      */
-    certPem?: pulumi.Input<string>;
+    certPem?: pulumi.Input<string | undefined>;
     /**
      * The headers to send with each Nomad request.
      */
-    headers?: pulumi.Input<pulumi.Input<inputs.ProviderHeader>[]>;
+    headers?: pulumi.Input<pulumi.Input<inputs.ProviderHeader>[] | undefined>;
     /**
      * HTTP basic auth configuration.
      */
-    httpAuth?: pulumi.Input<string>;
+    httpAuth?: pulumi.Input<string | undefined>;
     /**
      * A set of environment variables that are ignored by the provider when configuring the Nomad API client.
      */
-    ignoreEnvVars?: pulumi.Input<{[key: string]: pulumi.Input<boolean>}>;
+    ignoreEnvVars?: pulumi.Input<{[key: string]: pulumi.Input<boolean>} | undefined>;
     /**
      * A path to a PEM-encoded private key, required if certFile or certPem is specified.
      */
-    keyFile?: pulumi.Input<string>;
+    keyFile?: pulumi.Input<string | undefined>;
     /**
      * PEM-encoded private key, required if certFile or certPem is specified.
      */
-    keyPem?: pulumi.Input<string>;
+    keyPem?: pulumi.Input<string | undefined>;
     /**
      * Region of the target Nomad agent.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * ACL token secret for API requests.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
     /**
      * Skip TLS verification on client side.
      */
-    skipVerify?: pulumi.Input<boolean>;
+    skipVerify?: pulumi.Input<boolean | undefined>;
 }
 
 export namespace Provider {

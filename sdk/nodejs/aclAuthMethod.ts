@@ -160,38 +160,38 @@ export interface AclAuthMethodState {
      * `(block: <required>)` - Configuration specific to the auth method
      * provider.
      */
-    config?: pulumi.Input<inputs.AclAuthMethodConfig>;
+    config?: pulumi.Input<inputs.AclAuthMethodConfig | undefined>;
     /**
      * `(bool: false)` - Defines whether this ACL Auth Method is to be set
      * as default.
      */
-    default?: pulumi.Input<boolean>;
+    default?: pulumi.Input<boolean | undefined>;
     /**
      * `(string: <required>)` - Defines the maximum life of a token
      * created by this method and is specified as a time duration such as "15h".
      */
-    maxTokenTtl?: pulumi.Input<string>;
+    maxTokenTtl?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The identifier of the ACL Auth Method.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - Defines whether the ACL Auth Method
      * creates a local or global token when performing SSO login. This field must be
      * set to either `local` or `global`.
      */
-    tokenLocality?: pulumi.Input<string>;
+    tokenLocality?: pulumi.Input<string | undefined>;
     /**
      * `(string: "${auth_method_type}-${auth_method_name}")` -
      * Defines the token name format for the generated tokens This can be lightly
      * templated using HIL '${foo}' syntax.
      */
-    tokenNameFormat?: pulumi.Input<string>;
+    tokenNameFormat?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
      * are `OIDC` and `JWT`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -207,7 +207,7 @@ export interface AclAuthMethodArgs {
      * `(bool: false)` - Defines whether this ACL Auth Method is to be set
      * as default.
      */
-    default?: pulumi.Input<boolean>;
+    default?: pulumi.Input<boolean | undefined>;
     /**
      * `(string: <required>)` - Defines the maximum life of a token
      * created by this method and is specified as a time duration such as "15h".
@@ -216,7 +216,7 @@ export interface AclAuthMethodArgs {
     /**
      * `(string: <required>)` - The identifier of the ACL Auth Method.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - Defines whether the ACL Auth Method
      * creates a local or global token when performing SSO login. This field must be
@@ -228,7 +228,7 @@ export interface AclAuthMethodArgs {
      * Defines the token name format for the generated tokens This can be lightly
      * templated using HIL '${foo}' syntax.
      */
-    tokenNameFormat?: pulumi.Input<string>;
+    tokenNameFormat?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
      * are `OIDC` and `JWT`.
