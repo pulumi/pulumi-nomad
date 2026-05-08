@@ -164,35 +164,35 @@ export interface NamespaceState {
      * `(block: <optional>)` - A block of capabilities for the namespace. Can't
      * be repeated. See below for the structure of this block.
      */
-    capabilities?: pulumi.Input<inputs.NamespaceCapabilities>;
+    capabilities?: pulumi.Input<inputs.NamespaceCapabilities | undefined>;
     /**
      * `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
      */
-    consulConfig?: pulumi.Input<inputs.NamespaceConsulConfig>;
+    consulConfig?: pulumi.Input<inputs.NamespaceConsulConfig | undefined>;
     /**
      * `(string: "")` - A description of the namespace.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
      */
-    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string: <required>)` - A unique name for the namespace.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
      */
-    nodePoolConfig?: pulumi.Input<inputs.NamespaceNodePoolConfig>;
+    nodePoolConfig?: pulumi.Input<inputs.NamespaceNodePoolConfig | undefined>;
     /**
      * `(string: "")` - A resource quota to attach to the namespace.
      */
-    quota?: pulumi.Input<string>;
+    quota?: pulumi.Input<string | undefined>;
     /**
      * `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
      */
-    vaultConfig?: pulumi.Input<inputs.NamespaceVaultConfig>;
+    vaultConfig?: pulumi.Input<inputs.NamespaceVaultConfig | undefined>;
 }
 
 /**
@@ -203,33 +203,33 @@ export interface NamespaceArgs {
      * `(block: <optional>)` - A block of capabilities for the namespace. Can't
      * be repeated. See below for the structure of this block.
      */
-    capabilities?: pulumi.Input<inputs.NamespaceCapabilities>;
+    capabilities?: pulumi.Input<inputs.NamespaceCapabilities | undefined>;
     /**
      * `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
      */
-    consulConfig?: pulumi.Input<inputs.NamespaceConsulConfig>;
+    consulConfig?: pulumi.Input<inputs.NamespaceConsulConfig | undefined>;
     /**
      * `(string: "")` - A description of the namespace.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
      */
-    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string: <required>)` - A unique name for the namespace.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
      */
-    nodePoolConfig?: pulumi.Input<inputs.NamespaceNodePoolConfig>;
+    nodePoolConfig?: pulumi.Input<inputs.NamespaceNodePoolConfig | undefined>;
     /**
      * `(string: "")` - A resource quota to attach to the namespace.
      */
-    quota?: pulumi.Input<string>;
+    quota?: pulumi.Input<string | undefined>;
     /**
      * `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
      */
-    vaultConfig?: pulumi.Input<inputs.NamespaceVaultConfig>;
+    vaultConfig?: pulumi.Input<inputs.NamespaceVaultConfig | undefined>;
 }

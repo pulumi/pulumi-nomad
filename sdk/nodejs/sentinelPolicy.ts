@@ -138,24 +138,24 @@ export interface SentinelPolicyState {
      * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
      * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(strings: <required>)` - The [enforcement level][enforcement-level]
      * for this policy.
      */
-    enforcementLevel?: pulumi.Input<string>;
+    enforcementLevel?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - A unique name for the policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The contents of the policy to register.
      */
-    policy?: pulumi.Input<string>;
+    policy?: pulumi.Input<string | undefined>;
     /**
      * `(strings: <required>)` - The [scope][scope] for this policy.
      */
-    scope?: pulumi.Input<string>;
+    scope?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -168,7 +168,7 @@ export interface SentinelPolicyArgs {
      * [scope]: https://www.nomadproject.io/guides/sentinel-policy.html#policy-scope
      * [enforcement-level]: https://www.nomadproject.io/guides/sentinel-policy.html#enforcement-level
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(strings: <required>)` - The [enforcement level][enforcement-level]
      * for this policy.
@@ -177,7 +177,7 @@ export interface SentinelPolicyArgs {
     /**
      * `(string: <required>)` - A unique name for the policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The contents of the policy to register.
      */

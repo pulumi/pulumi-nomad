@@ -171,5 +171,5 @@ export interface GetDynamicHostVolumeOutputArgs {
     /**
      * `(string)` - the namespace of the volume. Defaults to `"default"`
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

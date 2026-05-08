@@ -138,7 +138,7 @@ def get_node_pool(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         node_identity_ttl=pulumi.get(__ret__, 'node_identity_ttl'),
         scheduler_configs=pulumi.get(__ret__, 'scheduler_configs'))
-def get_node_pool_output(name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_node_pool_output(name: pulumi.Input[Optional[_builtins.str]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNodePoolResult]:
     """
     Get information about a node pool in Nomad.

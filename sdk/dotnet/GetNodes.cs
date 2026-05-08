@@ -29,7 +29,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all = Nomad.Index.GetNodes.Invoke();
+        ///     var all = Nomad.GetNodes.Invoke();
         /// 
         /// });
         /// ```
@@ -44,7 +44,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ready = Nomad.Index.GetNodes.Invoke(new()
+        ///     var ready = Nomad.GetNodes.Invoke(new()
         ///     {
         ///         Filter = "Status == \"ready\"",
         ///     });
@@ -62,7 +62,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var withDetails = Nomad.Index.GetNodes.Invoke(new()
+        ///     var withDetails = Nomad.GetNodes.Invoke(new()
         ///     {
         ///         Os = true,
         ///         Resources = true,
@@ -92,7 +92,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all = Nomad.Index.GetNodes.Invoke();
+        ///     var all = Nomad.GetNodes.Invoke();
         /// 
         /// });
         /// ```
@@ -107,7 +107,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ready = Nomad.Index.GetNodes.Invoke(new()
+        ///     var ready = Nomad.GetNodes.Invoke(new()
         ///     {
         ///         Filter = "Status == \"ready\"",
         ///     });
@@ -125,7 +125,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var withDetails = Nomad.Index.GetNodes.Invoke(new()
+        ///     var withDetails = Nomad.GetNodes.Invoke(new()
         ///     {
         ///         Os = true,
         ///         Resources = true,
@@ -155,7 +155,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var all = Nomad.Index.GetNodes.Invoke();
+        ///     var all = Nomad.GetNodes.Invoke();
         /// 
         /// });
         /// ```
@@ -170,7 +170,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ready = Nomad.Index.GetNodes.Invoke(new()
+        ///     var ready = Nomad.GetNodes.Invoke(new()
         ///     {
         ///         Filter = "Status == \"ready\"",
         ///     });
@@ -188,7 +188,7 @@ namespace Pulumi.Nomad
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var withDetails = Nomad.Index.GetNodes.Invoke(new()
+        ///     var withDetails = Nomad.GetNodes.Invoke(new()
         ///     {
         ///         Os = true,
         ///         Resources = true,

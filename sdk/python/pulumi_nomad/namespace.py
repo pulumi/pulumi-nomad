@@ -21,14 +21,14 @@ __all__ = ['NamespaceArgs', 'Namespace']
 @pulumi.input_type
 class NamespaceArgs:
     def __init__(__self__, *,
-                 capabilities: Optional[pulumi.Input['NamespaceCapabilitiesArgs']] = None,
-                 consul_config: Optional[pulumi.Input['NamespaceConsulConfigArgs']] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_pool_config: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']] = None,
-                 quota: Optional[pulumi.Input[_builtins.str]] = None,
-                 vault_config: Optional[pulumi.Input['NamespaceVaultConfigArgs']] = None):
+                 capabilities: pulumi.Input[Optional['NamespaceCapabilitiesArgs']] = None,
+                 consul_config: pulumi.Input[Optional['NamespaceConsulConfigArgs']] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_pool_config: pulumi.Input[Optional['NamespaceNodePoolConfigArgs']] = None,
+                 quota: pulumi.Input[Optional[_builtins.str]] = None,
+                 vault_config: pulumi.Input[Optional['NamespaceVaultConfigArgs']] = None):
         """
         The set of arguments for constructing a Namespace resource.
 
@@ -61,7 +61,7 @@ class NamespaceArgs:
 
     @_builtins.property
     @pulumi.getter
-    def capabilities(self) -> Optional[pulumi.Input['NamespaceCapabilitiesArgs']]:
+    def capabilities(self) -> pulumi.Input[Optional['NamespaceCapabilitiesArgs']]:
         """
         `(block: <optional>)` - A block of capabilities for the namespace. Can't
         be repeated. See below for the structure of this block.
@@ -69,105 +69,105 @@ class NamespaceArgs:
         return pulumi.get(self, "capabilities")
 
     @capabilities.setter
-    def capabilities(self, value: Optional[pulumi.Input['NamespaceCapabilitiesArgs']]):
+    def capabilities(self, value: pulumi.Input[Optional['NamespaceCapabilitiesArgs']]):
         pulumi.set(self, "capabilities", value)
 
     @_builtins.property
     @pulumi.getter(name="consulConfig")
-    def consul_config(self) -> Optional[pulumi.Input['NamespaceConsulConfigArgs']]:
+    def consul_config(self) -> pulumi.Input[Optional['NamespaceConsulConfigArgs']]:
         """
         `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
         """
         return pulumi.get(self, "consul_config")
 
     @consul_config.setter
-    def consul_config(self, value: Optional[pulumi.Input['NamespaceConsulConfigArgs']]):
+    def consul_config(self, value: pulumi.Input[Optional['NamespaceConsulConfigArgs']]):
         pulumi.set(self, "consul_config", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - A description of the namespace.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def meta(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def meta(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         """
         return pulumi.get(self, "meta")
 
     @meta.setter
-    def meta(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def meta(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "meta", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - A unique name for the namespace.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodePoolConfig")
-    def node_pool_config(self) -> Optional[pulumi.Input['NamespaceNodePoolConfigArgs']]:
+    def node_pool_config(self) -> pulumi.Input[Optional['NamespaceNodePoolConfigArgs']]:
         """
         `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
         """
         return pulumi.get(self, "node_pool_config")
 
     @node_pool_config.setter
-    def node_pool_config(self, value: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']]):
+    def node_pool_config(self, value: pulumi.Input[Optional['NamespaceNodePoolConfigArgs']]):
         pulumi.set(self, "node_pool_config", value)
 
     @_builtins.property
     @pulumi.getter
-    def quota(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def quota(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - A resource quota to attach to the namespace.
         """
         return pulumi.get(self, "quota")
 
     @quota.setter
-    def quota(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def quota(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "quota", value)
 
     @_builtins.property
     @pulumi.getter(name="vaultConfig")
-    def vault_config(self) -> Optional[pulumi.Input['NamespaceVaultConfigArgs']]:
+    def vault_config(self) -> pulumi.Input[Optional['NamespaceVaultConfigArgs']]:
         """
         `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
         """
         return pulumi.get(self, "vault_config")
 
     @vault_config.setter
-    def vault_config(self, value: Optional[pulumi.Input['NamespaceVaultConfigArgs']]):
+    def vault_config(self, value: pulumi.Input[Optional['NamespaceVaultConfigArgs']]):
         pulumi.set(self, "vault_config", value)
 
 
 @pulumi.input_type
 class _NamespaceState:
     def __init__(__self__, *,
-                 capabilities: Optional[pulumi.Input['NamespaceCapabilitiesArgs']] = None,
-                 consul_config: Optional[pulumi.Input['NamespaceConsulConfigArgs']] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_pool_config: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']] = None,
-                 quota: Optional[pulumi.Input[_builtins.str]] = None,
-                 vault_config: Optional[pulumi.Input['NamespaceVaultConfigArgs']] = None):
+                 capabilities: pulumi.Input[Optional['NamespaceCapabilitiesArgs']] = None,
+                 consul_config: pulumi.Input[Optional['NamespaceConsulConfigArgs']] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_pool_config: pulumi.Input[Optional['NamespaceNodePoolConfigArgs']] = None,
+                 quota: pulumi.Input[Optional[_builtins.str]] = None,
+                 vault_config: pulumi.Input[Optional['NamespaceVaultConfigArgs']] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
 
@@ -200,7 +200,7 @@ class _NamespaceState:
 
     @_builtins.property
     @pulumi.getter
-    def capabilities(self) -> Optional[pulumi.Input['NamespaceCapabilitiesArgs']]:
+    def capabilities(self) -> pulumi.Input[Optional['NamespaceCapabilitiesArgs']]:
         """
         `(block: <optional>)` - A block of capabilities for the namespace. Can't
         be repeated. See below for the structure of this block.
@@ -208,91 +208,91 @@ class _NamespaceState:
         return pulumi.get(self, "capabilities")
 
     @capabilities.setter
-    def capabilities(self, value: Optional[pulumi.Input['NamespaceCapabilitiesArgs']]):
+    def capabilities(self, value: pulumi.Input[Optional['NamespaceCapabilitiesArgs']]):
         pulumi.set(self, "capabilities", value)
 
     @_builtins.property
     @pulumi.getter(name="consulConfig")
-    def consul_config(self) -> Optional[pulumi.Input['NamespaceConsulConfigArgs']]:
+    def consul_config(self) -> pulumi.Input[Optional['NamespaceConsulConfigArgs']]:
         """
         `(block: <optional>)` - A block with Consul configuration for the namespace (Nomad Enterprise only).
         """
         return pulumi.get(self, "consul_config")
 
     @consul_config.setter
-    def consul_config(self, value: Optional[pulumi.Input['NamespaceConsulConfigArgs']]):
+    def consul_config(self, value: pulumi.Input[Optional['NamespaceConsulConfigArgs']]):
         pulumi.set(self, "consul_config", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - A description of the namespace.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def meta(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def meta(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string: <optional>)` -  Specifies arbitrary KV metadata to associate with the namespace.
         """
         return pulumi.get(self, "meta")
 
     @meta.setter
-    def meta(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def meta(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "meta", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - A unique name for the namespace.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nodePoolConfig")
-    def node_pool_config(self) -> Optional[pulumi.Input['NamespaceNodePoolConfigArgs']]:
+    def node_pool_config(self) -> pulumi.Input[Optional['NamespaceNodePoolConfigArgs']]:
         """
         `(block: <optional>)` - A block with node pool configuration for the namespace (Nomad Enterprise only).
         """
         return pulumi.get(self, "node_pool_config")
 
     @node_pool_config.setter
-    def node_pool_config(self, value: Optional[pulumi.Input['NamespaceNodePoolConfigArgs']]):
+    def node_pool_config(self, value: pulumi.Input[Optional['NamespaceNodePoolConfigArgs']]):
         pulumi.set(self, "node_pool_config", value)
 
     @_builtins.property
     @pulumi.getter
-    def quota(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def quota(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - A resource quota to attach to the namespace.
         """
         return pulumi.get(self, "quota")
 
     @quota.setter
-    def quota(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def quota(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "quota", value)
 
     @_builtins.property
     @pulumi.getter(name="vaultConfig")
-    def vault_config(self) -> Optional[pulumi.Input['NamespaceVaultConfigArgs']]:
+    def vault_config(self) -> pulumi.Input[Optional['NamespaceVaultConfigArgs']]:
         """
         `(block: <optional>)` - A block with Vault configuration for the namespace (Nomad Enterprise only).
         """
         return pulumi.get(self, "vault_config")
 
     @vault_config.setter
-    def vault_config(self, value: Optional[pulumi.Input['NamespaceVaultConfigArgs']]):
+    def vault_config(self, value: pulumi.Input[Optional['NamespaceVaultConfigArgs']]):
         pulumi.set(self, "vault_config", value)
 
 
@@ -302,14 +302,14 @@ class Namespace(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']]] = None,
-                 consul_config: Optional[pulumi.Input[Union['NamespaceConsulConfigArgs', 'NamespaceConsulConfigArgsDict']]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_pool_config: Optional[pulumi.Input[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict']]] = None,
-                 quota: Optional[pulumi.Input[_builtins.str]] = None,
-                 vault_config: Optional[pulumi.Input[Union['NamespaceVaultConfigArgs', 'NamespaceVaultConfigArgsDict']]] = None,
+                 capabilities: pulumi.Input[Optional[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']]] = None,
+                 consul_config: pulumi.Input[Optional[Union['NamespaceConsulConfigArgs', 'NamespaceConsulConfigArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_pool_config: pulumi.Input[Optional[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict']]] = None,
+                 quota: pulumi.Input[Optional[_builtins.str]] = None,
+                 vault_config: pulumi.Input[Optional[Union['NamespaceVaultConfigArgs', 'NamespaceVaultConfigArgsDict']]] = None,
                  __props__=None):
         """
         Provisions a namespace within a Nomad cluster.
@@ -442,14 +442,14 @@ class Namespace(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: Optional[pulumi.Input[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']]] = None,
-                 consul_config: Optional[pulumi.Input[Union['NamespaceConsulConfigArgs', 'NamespaceConsulConfigArgsDict']]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_pool_config: Optional[pulumi.Input[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict']]] = None,
-                 quota: Optional[pulumi.Input[_builtins.str]] = None,
-                 vault_config: Optional[pulumi.Input[Union['NamespaceVaultConfigArgs', 'NamespaceVaultConfigArgsDict']]] = None,
+                 capabilities: pulumi.Input[Optional[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']]] = None,
+                 consul_config: pulumi.Input[Optional[Union['NamespaceConsulConfigArgs', 'NamespaceConsulConfigArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_pool_config: pulumi.Input[Optional[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict']]] = None,
+                 quota: pulumi.Input[Optional[_builtins.str]] = None,
+                 vault_config: pulumi.Input[Optional[Union['NamespaceVaultConfigArgs', 'NamespaceVaultConfigArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -477,14 +477,14 @@ class Namespace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            capabilities: Optional[pulumi.Input[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']]] = None,
-            consul_config: Optional[pulumi.Input[Union['NamespaceConsulConfigArgs', 'NamespaceConsulConfigArgsDict']]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            meta: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            node_pool_config: Optional[pulumi.Input[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict']]] = None,
-            quota: Optional[pulumi.Input[_builtins.str]] = None,
-            vault_config: Optional[pulumi.Input[Union['NamespaceVaultConfigArgs', 'NamespaceVaultConfigArgsDict']]] = None) -> 'Namespace':
+            capabilities: pulumi.Input[Optional[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict']]] = None,
+            consul_config: pulumi.Input[Optional[Union['NamespaceConsulConfigArgs', 'NamespaceConsulConfigArgsDict']]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_pool_config: pulumi.Input[Optional[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict']]] = None,
+            quota: pulumi.Input[Optional[_builtins.str]] = None,
+            vault_config: pulumi.Input[Optional[Union['NamespaceVaultConfigArgs', 'NamespaceVaultConfigArgsDict']]] = None) -> 'Namespace':
         """
         Get an existing Namespace resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

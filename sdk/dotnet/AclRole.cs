@@ -24,7 +24,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myNomadAclPolicy = new Nomad.Index.AclPolicy("my_nomad_acl_policy", new()
+    ///     var myNomadAclPolicy = new Nomad.AclPolicy("my_nomad_acl_policy", new()
     ///     {
     ///         Name = "my-nomad-acl-policy",
     ///         RulesHcl = @"namespace \""default\"" {
@@ -34,7 +34,7 @@ namespace Pulumi.Nomad
     /// ",
     ///     });
     /// 
-    ///     var myNomadAclRole = new Nomad.Index.AclRole("my_nomad_acl_role", new()
+    ///     var myNomadAclRole = new Nomad.AclRole("my_nomad_acl_role", new()
     ///     {
     ///         Name = "my-nomad-acl-role",
     ///         Description = "An ACL Role for cluster developers",

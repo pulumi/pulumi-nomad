@@ -158,24 +158,24 @@ export interface VariableState {
     /**
      * `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
      */
-    items?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    items?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
      */
-    itemsWo?: pulumi.Input<string>;
+    itemsWo?: pulumi.Input<string | undefined>;
     /**
      * `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
      */
-    itemsWoVersion?: pulumi.Input<number>;
+    itemsWoVersion?: pulumi.Input<number | undefined>;
     /**
      * `(string: "default")` - The namepsace to create the variable in.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - A unique path to create the variable at.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -185,20 +185,20 @@ export interface VariableArgs {
     /**
      * `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
      */
-    items?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    items?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `itemsWoVersion`.
      */
-    itemsWo?: pulumi.Input<string>;
+    itemsWo?: pulumi.Input<string | undefined>;
     /**
      * `(number)` - A version marker for `itemsWo`. Required when using `itemsWo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
      */
-    itemsWoVersion?: pulumi.Input<number>;
+    itemsWoVersion?: pulumi.Input<number | undefined>;
     /**
      * `(string: "default")` - The namepsace to create the variable in.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - A unique path to create the variable at.
      */

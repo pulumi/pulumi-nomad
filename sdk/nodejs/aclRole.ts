@@ -113,16 +113,16 @@ export interface AclRoleState {
     /**
      * `(string: "")` - A description of the ACL Role.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - A human-friendly name for this ACL Role.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(set: <required>)` - A set of policy names to associate with this
      * ACL Role. It may be used multiple times.
      */
-    policies?: pulumi.Input<pulumi.Input<inputs.AclRolePolicy>[]>;
+    policies?: pulumi.Input<pulumi.Input<inputs.AclRolePolicy>[] | undefined>;
 }
 
 /**
@@ -132,11 +132,11 @@ export interface AclRoleArgs {
     /**
      * `(string: "")` - A description of the ACL Role.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - A human-friendly name for this ACL Role.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(set: <required>)` - A set of policy names to associate with this
      * ACL Role. It may be used multiple times.

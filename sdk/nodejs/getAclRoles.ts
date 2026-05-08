@@ -80,5 +80,5 @@ export interface GetAclRolesOutputArgs {
      * `(string)` An optional string to filter ACL Roles based on ID
      * prefix. If not provided, all policies are returned.
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
 }

@@ -116,25 +116,25 @@ export interface NodePoolState {
     /**
      * `(string)` - The description of the node pool.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(map[string]string)` - Arbitrary KV metadata associated with the
      * node pool.
      */
-    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string)` - The name of the node pool.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - The TTL applied to node identities issued to
      * nodes in this pool.
      */
-    nodeIdentityTtl?: pulumi.Input<string>;
+    nodeIdentityTtl?: pulumi.Input<string | undefined>;
     /**
      * `(block)` - Scheduler configuration for the node pool.
      */
-    schedulerConfig?: pulumi.Input<inputs.NodePoolSchedulerConfig>;
+    schedulerConfig?: pulumi.Input<inputs.NodePoolSchedulerConfig | undefined>;
 }
 
 /**
@@ -144,23 +144,23 @@ export interface NodePoolArgs {
     /**
      * `(string)` - The description of the node pool.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * `(map[string]string)` - Arbitrary KV metadata associated with the
      * node pool.
      */
-    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    meta?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string)` - The name of the node pool.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - The TTL applied to node identities issued to
      * nodes in this pool.
      */
-    nodeIdentityTtl?: pulumi.Input<string>;
+    nodeIdentityTtl?: pulumi.Input<string | undefined>;
     /**
      * `(block)` - Scheduler configuration for the node pool.
      */
-    schedulerConfig?: pulumi.Input<inputs.NodePoolSchedulerConfig>;
+    schedulerConfig?: pulumi.Input<inputs.NodePoolSchedulerConfig | undefined>;
 }

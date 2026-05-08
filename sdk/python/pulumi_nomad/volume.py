@@ -24,18 +24,18 @@ class VolumeArgs:
                  external_id: pulumi.Input[_builtins.str],
                  plugin_id: pulumi.Input[_builtins.str],
                  volume_id: pulumi.Input[_builtins.str],
-                 access_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 attachment_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]]] = None,
-                 context: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 deregister_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mount_options: Optional[pulumi.Input['VolumeMountOptionsArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 topology_request: Optional[pulumi.Input['VolumeTopologyRequestArgs']] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 attachment_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input['VolumeCapabilityArgs']]]] = None,
+                 context: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mount_options: pulumi.Input[Optional['VolumeMountOptionsArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 topology_request: pulumi.Input[Optional['VolumeTopologyRequestArgs']] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Volume resource.
 
@@ -133,7 +133,7 @@ class VolumeArgs:
     @_builtins.property
     @pulumi.getter(name="accessMode")
     @_utilities.deprecated("""use capability instead""")
-    def access_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
         - `single-node-reader-only`
@@ -145,170 +145,170 @@ class VolumeArgs:
         return pulumi.get(self, "access_mode")
 
     @access_mode.setter
-    def access_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="attachmentMode")
     @_utilities.deprecated("""use capability instead""")
-    def attachment_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def attachment_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
         """
         return pulumi.get(self, "attachment_mode")
 
     @attachment_mode.setter
-    def attachment_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def attachment_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "attachment_mode", value)
 
     @_builtins.property
     @pulumi.getter
-    def capabilities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]]]:
+    def capabilities(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['VolumeCapabilityArgs']]]]:
         """
         `(``Capability``: <required>)` - Options for validating the capability of a volume.
         """
         return pulumi.get(self, "capabilities")
 
     @capabilities.setter
-    def capabilities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]]]):
+    def capabilities(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['VolumeCapabilityArgs']]]]):
         pulumi.set(self, "capabilities", value)
 
     @_builtins.property
     @pulumi.getter
-    def context(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def context(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         """
         return pulumi.get(self, "context")
 
     @context.setter
-    def context(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def context(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "context", value)
 
     @_builtins.property
     @pulumi.getter(name="deregisterOnDestroy")
-    def deregister_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def deregister_on_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `(boolean: true)` - If true, the volume will be deregistered on destroy.
         """
         return pulumi.get(self, "deregister_on_destroy")
 
     @deregister_on_destroy.setter
-    def deregister_on_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def deregister_on_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deregister_on_destroy", value)
 
     @_builtins.property
     @pulumi.getter(name="mountOptions")
-    def mount_options(self) -> Optional[pulumi.Input['VolumeMountOptionsArgs']]:
+    def mount_options(self) -> pulumi.Input[Optional['VolumeMountOptionsArgs']]:
         """
         `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         """
         return pulumi.get(self, "mount_options")
 
     @mount_options.setter
-    def mount_options(self, value: Optional[pulumi.Input['VolumeMountOptionsArgs']]):
+    def mount_options(self, value: pulumi.Input[Optional['VolumeMountOptionsArgs']]):
         pulumi.set(self, "mount_options", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The display name for the volume.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "default")` - The namespace in which to register the volume.
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def parameters(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         """
         return pulumi.get(self, "parameters")
 
     @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def parameters(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "parameters", value)
 
     @_builtins.property
     @pulumi.getter
-    def secrets(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def secrets(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         """
         return pulumi.get(self, "secrets")
 
     @secrets.setter
-    def secrets(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def secrets(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "secrets", value)
 
     @_builtins.property
     @pulumi.getter(name="topologyRequest")
-    def topology_request(self) -> Optional[pulumi.Input['VolumeTopologyRequestArgs']]:
+    def topology_request(self) -> pulumi.Input[Optional['VolumeTopologyRequestArgs']]:
         """
         `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         """
         return pulumi.get(self, "topology_request")
 
     @topology_request.setter
-    def topology_request(self, value: Optional[pulumi.Input['VolumeTopologyRequestArgs']]):
+    def topology_request(self, value: pulumi.Input[Optional['VolumeTopologyRequestArgs']]):
         pulumi.set(self, "topology_request", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _VolumeState:
     def __init__(__self__, *,
-                 access_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 attachment_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]]] = None,
-                 context: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 controller_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 controllers_expected: Optional[pulumi.Input[_builtins.int]] = None,
-                 controllers_healthy: Optional[pulumi.Input[_builtins.int]] = None,
-                 deregister_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_options: Optional[pulumi.Input['VolumeMountOptionsArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 nodes_expected: Optional[pulumi.Input[_builtins.int]] = None,
-                 nodes_healthy: Optional[pulumi.Input[_builtins.int]] = None,
-                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_provider_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 schedulable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 topologies: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTopologyArgs']]]] = None,
-                 topology_request: Optional[pulumi.Input['VolumeTopologyRequestArgs']] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 attachment_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input['VolumeCapabilityArgs']]]] = None,
+                 context: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 controller_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 controllers_expected: pulumi.Input[Optional[_builtins.int]] = None,
+                 controllers_healthy: pulumi.Input[Optional[_builtins.int]] = None,
+                 deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_options: pulumi.Input[Optional['VolumeMountOptionsArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 nodes_expected: pulumi.Input[Optional[_builtins.int]] = None,
+                 nodes_healthy: pulumi.Input[Optional[_builtins.int]] = None,
+                 parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_provider_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedulable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 topologies: pulumi.Input[Optional[Sequence[pulumi.Input['VolumeTopologyArgs']]]] = None,
+                 topology_request: pulumi.Input[Optional['VolumeTopologyRequestArgs']] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
 
@@ -391,7 +391,7 @@ class _VolumeState:
     @_builtins.property
     @pulumi.getter(name="accessMode")
     @_utilities.deprecated("""use capability instead""")
-    def access_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <optional>)` - **Deprecated**. Use `capability` block instead. Defines whether a volume should be available concurrently. Possible values are:
         - `single-node-reader-only`
@@ -403,257 +403,257 @@ class _VolumeState:
         return pulumi.get(self, "access_mode")
 
     @access_mode.setter
-    def access_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="attachmentMode")
     @_utilities.deprecated("""use capability instead""")
-    def attachment_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def attachment_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
         """
         return pulumi.get(self, "attachment_mode")
 
     @attachment_mode.setter
-    def attachment_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def attachment_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "attachment_mode", value)
 
     @_builtins.property
     @pulumi.getter
-    def capabilities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]]]:
+    def capabilities(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['VolumeCapabilityArgs']]]]:
         """
         `(``Capability``: <required>)` - Options for validating the capability of a volume.
         """
         return pulumi.get(self, "capabilities")
 
     @capabilities.setter
-    def capabilities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeCapabilityArgs']]]]):
+    def capabilities(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['VolumeCapabilityArgs']]]]):
         pulumi.set(self, "capabilities", value)
 
     @_builtins.property
     @pulumi.getter
-    def context(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def context(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         """
         return pulumi.get(self, "context")
 
     @context.setter
-    def context(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def context(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "context", value)
 
     @_builtins.property
     @pulumi.getter(name="controllerRequired")
-    def controller_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def controller_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "controller_required")
 
     @controller_required.setter
-    def controller_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def controller_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "controller_required", value)
 
     @_builtins.property
     @pulumi.getter(name="controllersExpected")
-    def controllers_expected(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def controllers_expected(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "controllers_expected")
 
     @controllers_expected.setter
-    def controllers_expected(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def controllers_expected(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "controllers_expected", value)
 
     @_builtins.property
     @pulumi.getter(name="controllersHealthy")
-    def controllers_healthy(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def controllers_healthy(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "controllers_healthy")
 
     @controllers_healthy.setter
-    def controllers_healthy(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def controllers_healthy(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "controllers_healthy", value)
 
     @_builtins.property
     @pulumi.getter(name="deregisterOnDestroy")
-    def deregister_on_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def deregister_on_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `(boolean: true)` - If true, the volume will be deregistered on destroy.
         """
         return pulumi.get(self, "deregister_on_destroy")
 
     @deregister_on_destroy.setter
-    def deregister_on_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def deregister_on_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deregister_on_destroy", value)
 
     @_builtins.property
     @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The ID of the physical volume from the storage provider.
         """
         return pulumi.get(self, "external_id")
 
     @external_id.setter
-    def external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "external_id", value)
 
     @_builtins.property
     @pulumi.getter(name="mountOptions")
-    def mount_options(self) -> Optional[pulumi.Input['VolumeMountOptionsArgs']]:
+    def mount_options(self) -> pulumi.Input[Optional['VolumeMountOptionsArgs']]:
         """
         `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         """
         return pulumi.get(self, "mount_options")
 
     @mount_options.setter
-    def mount_options(self, value: Optional[pulumi.Input['VolumeMountOptionsArgs']]):
+    def mount_options(self, value: pulumi.Input[Optional['VolumeMountOptionsArgs']]):
         pulumi.set(self, "mount_options", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The display name for the volume.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "default")` - The namespace in which to register the volume.
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="nodesExpected")
-    def nodes_expected(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def nodes_expected(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "nodes_expected")
 
     @nodes_expected.setter
-    def nodes_expected(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def nodes_expected(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "nodes_expected", value)
 
     @_builtins.property
     @pulumi.getter(name="nodesHealthy")
-    def nodes_healthy(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def nodes_healthy(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "nodes_healthy")
 
     @nodes_healthy.setter
-    def nodes_healthy(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def nodes_healthy(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "nodes_healthy", value)
 
     @_builtins.property
     @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def parameters(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         """
         return pulumi.get(self, "parameters")
 
     @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def parameters(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "parameters", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginId")
-    def plugin_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         """
         return pulumi.get(self, "plugin_id")
 
     @plugin_id.setter
-    def plugin_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_id", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginProvider")
-    def plugin_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "plugin_provider")
 
     @plugin_provider.setter
-    def plugin_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginProviderVersion")
-    def plugin_provider_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_provider_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "plugin_provider_version")
 
     @plugin_provider_version.setter
-    def plugin_provider_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_provider_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_provider_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def schedulable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def schedulable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "schedulable")
 
     @schedulable.setter
-    def schedulable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def schedulable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "schedulable", value)
 
     @_builtins.property
     @pulumi.getter
-    def secrets(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def secrets(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         """
         return pulumi.get(self, "secrets")
 
     @secrets.setter
-    def secrets(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def secrets(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "secrets", value)
 
     @_builtins.property
     @pulumi.getter
-    def topologies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTopologyArgs']]]]:
+    def topologies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['VolumeTopologyArgs']]]]:
         return pulumi.get(self, "topologies")
 
     @topologies.setter
-    def topologies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTopologyArgs']]]]):
+    def topologies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['VolumeTopologyArgs']]]]):
         pulumi.set(self, "topologies", value)
 
     @_builtins.property
     @pulumi.getter(name="topologyRequest")
-    def topology_request(self) -> Optional[pulumi.Input['VolumeTopologyRequestArgs']]:
+    def topology_request(self) -> pulumi.Input[Optional['VolumeTopologyRequestArgs']]:
         """
         `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         """
         return pulumi.get(self, "topology_request")
 
     @topology_request.setter
-    def topology_request(self, value: Optional[pulumi.Input['VolumeTopologyRequestArgs']]):
+    def topology_request(self, value: pulumi.Input[Optional['VolumeTopologyRequestArgs']]):
         pulumi.set(self, "topology_request", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="volumeId")
-    def volume_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def volume_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The unique ID of the volume.
         """
         return pulumi.get(self, "volume_id")
 
     @volume_id.setter
-    def volume_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def volume_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "volume_id", value)
 
 
@@ -663,21 +663,21 @@ class Volume(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 attachment_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict']]]]] = None,
-                 context: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 deregister_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_options: Optional[pulumi.Input[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 topology_request: Optional[pulumi.Input[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict']]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 attachment_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict']]]]] = None,
+                 context: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_options: pulumi.Input[Optional[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 topology_request: pulumi.Input[Optional[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict']]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         > **Deprecated:** This resource has been deprecated and may be removed in a
@@ -837,21 +837,21 @@ class Volume(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 attachment_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict']]]]] = None,
-                 context: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 deregister_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_options: Optional[pulumi.Input[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 topology_request: Optional[pulumi.Input[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict']]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 volume_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 attachment_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict']]]]] = None,
+                 context: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_options: pulumi.Input[Optional[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 topology_request: pulumi.Input[Optional[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict']]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -903,30 +903,30 @@ class Volume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_mode: Optional[pulumi.Input[_builtins.str]] = None,
-            attachment_mode: Optional[pulumi.Input[_builtins.str]] = None,
-            capabilities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict']]]]] = None,
-            context: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            controller_required: Optional[pulumi.Input[_builtins.bool]] = None,
-            controllers_expected: Optional[pulumi.Input[_builtins.int]] = None,
-            controllers_healthy: Optional[pulumi.Input[_builtins.int]] = None,
-            deregister_on_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-            external_id: Optional[pulumi.Input[_builtins.str]] = None,
-            mount_options: Optional[pulumi.Input[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict']]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            nodes_expected: Optional[pulumi.Input[_builtins.int]] = None,
-            nodes_healthy: Optional[pulumi.Input[_builtins.int]] = None,
-            parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
-            plugin_provider: Optional[pulumi.Input[_builtins.str]] = None,
-            plugin_provider_version: Optional[pulumi.Input[_builtins.str]] = None,
-            schedulable: Optional[pulumi.Input[_builtins.bool]] = None,
-            secrets: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            topologies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VolumeTopologyArgs', 'VolumeTopologyArgsDict']]]]] = None,
-            topology_request: Optional[pulumi.Input[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict']]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            volume_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Volume':
+            access_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            attachment_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict']]]]] = None,
+            context: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            controller_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            controllers_expected: pulumi.Input[Optional[_builtins.int]] = None,
+            controllers_healthy: pulumi.Input[Optional[_builtins.int]] = None,
+            deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mount_options: pulumi.Input[Optional[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            nodes_expected: pulumi.Input[Optional[_builtins.int]] = None,
+            nodes_healthy: pulumi.Input[Optional[_builtins.int]] = None,
+            parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
+            plugin_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            plugin_provider_version: pulumi.Input[Optional[_builtins.str]] = None,
+            schedulable: pulumi.Input[Optional[_builtins.bool]] = None,
+            secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            topologies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeTopologyArgs', 'VolumeTopologyArgsDict']]]]] = None,
+            topology_request: pulumi.Input[Optional[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict']]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            volume_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Volume':
         """
         Get an existing Volume resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

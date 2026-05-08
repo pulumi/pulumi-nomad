@@ -130,9 +130,9 @@ def get_allocations(filter: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         namespace=pulumi.get(__ret__, 'namespace'),
         prefix=pulumi.get(__ret__, 'prefix'))
-def get_allocations_output(filter: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           prefix: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_allocations_output(filter: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           prefix: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAllocationsResult]:
     """
     Retrieve a list of allocations from Nomad.

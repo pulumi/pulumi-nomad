@@ -138,10 +138,10 @@ def get_volumes(namespace: Optional[_builtins.str] = None,
         plugin_id=pulumi.get(__ret__, 'plugin_id'),
         type=pulumi.get(__ret__, 'type'),
         volumes=pulumi.get(__ret__, 'volumes'))
-def get_volumes_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       node_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       plugin_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_volumes_output(namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       node_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       plugin_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVolumesResult]:
     """
     Retrieve a list of volumes in Nomad.

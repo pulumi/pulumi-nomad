@@ -302,8 +302,8 @@ def get_dynamic_host_volume(id: Optional[_builtins.str] = None,
         parameters=pulumi.get(__ret__, 'parameters'),
         plugin_id=pulumi.get(__ret__, 'plugin_id'),
         state=pulumi.get(__ret__, 'state'))
-def get_dynamic_host_volume_output(id: Optional[pulumi.Input[_builtins.str]] = None,
-                                   namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_dynamic_host_volume_output(id: pulumi.Input[Optional[_builtins.str]] = None,
+                                   namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDynamicHostVolumeResult]:
     """
     Get information on a dynamic host volume from Nomad.

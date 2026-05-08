@@ -114,8 +114,8 @@ def get_scaling_policies(job_id: Optional[_builtins.str] = None,
         job_id=pulumi.get(__ret__, 'job_id'),
         policies=pulumi.get(__ret__, 'policies'),
         type=pulumi.get(__ret__, 'type'))
-def get_scaling_policies_output(job_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_scaling_policies_output(job_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetScalingPoliciesResult]:
     """
     Retrieve a list of Scaling Policies.

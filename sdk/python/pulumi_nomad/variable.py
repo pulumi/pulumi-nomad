@@ -20,10 +20,10 @@ __all__ = ['VariableArgs', 'Variable']
 class VariableArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[_builtins.str],
-                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 items_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 items_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 items: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 items_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 items_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Variable resource.
 
@@ -58,19 +58,19 @@ class VariableArgs:
 
     @_builtins.property
     @pulumi.getter
-    def items(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def items(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `items_wo` and `items_wo_version`.
         """
         return pulumi.get(self, "items")
 
     @items.setter
-    def items(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def items(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "items", value)
 
     @_builtins.property
     @pulumi.getter(name="itemsWo")
-    def items_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def items_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `items_wo_version`.
@@ -78,42 +78,42 @@ class VariableArgs:
         return pulumi.get(self, "items_wo")
 
     @items_wo.setter
-    def items_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def items_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "items_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="itemsWoVersion")
-    def items_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def items_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(number)` - A version marker for `items_wo`. Required when using `items_wo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
         """
         return pulumi.get(self, "items_wo_version")
 
     @items_wo_version.setter
-    def items_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def items_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "items_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "default")` - The namepsace to create the variable in.
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _VariableState:
     def __init__(__self__, *,
-                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 items_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 items_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None):
+                 items: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 items_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 items_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Variable resources.
 
@@ -137,19 +137,19 @@ class _VariableState:
 
     @_builtins.property
     @pulumi.getter
-    def items(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def items(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `items_wo` and `items_wo_version`.
         """
         return pulumi.get(self, "items")
 
     @items.setter
-    def items(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def items(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "items", value)
 
     @_builtins.property
     @pulumi.getter(name="itemsWo")
-    def items_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def items_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         `(string)` - A JSON-encoded map of variable items to write without storing those values in Terraform state. Conflicts with `items` and requires `items_wo_version`.
@@ -157,43 +157,43 @@ class _VariableState:
         return pulumi.get(self, "items_wo")
 
     @items_wo.setter
-    def items_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def items_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "items_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="itemsWoVersion")
-    def items_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def items_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(number)` - A version marker for `items_wo`. Required when using `items_wo`, conflicts with `items`, and should be incremented to apply a new write-only payload.
         """
         return pulumi.get(self, "items_wo_version")
 
     @items_wo_version.setter
-    def items_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def items_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "items_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "default")` - The namepsace to create the variable in.
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - A unique path to create the variable at.
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
 
@@ -203,11 +203,11 @@ class Variable(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 items_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 items_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
+                 items: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 items_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 items_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates and manages a variable, including it's contents, within a
@@ -357,11 +357,11 @@ class Variable(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 items_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 items_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
+                 items: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 items_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 items_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -390,11 +390,11 @@ class Variable(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            items: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            items_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            items_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None) -> 'Variable':
+            items: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            items_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            items_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None) -> 'Variable':
         """
         Get an existing Variable resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

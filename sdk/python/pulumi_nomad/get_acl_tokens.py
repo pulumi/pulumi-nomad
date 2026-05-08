@@ -97,7 +97,7 @@ def get_acl_tokens(prefix: Optional[_builtins.str] = None,
         acl_tokens=pulumi.get(__ret__, 'acl_tokens'),
         id=pulumi.get(__ret__, 'id'),
         prefix=pulumi.get(__ret__, 'prefix'))
-def get_acl_tokens_output(prefix: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_acl_tokens_output(prefix: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAclTokensResult]:
     """
     Get a list of ACL tokens.

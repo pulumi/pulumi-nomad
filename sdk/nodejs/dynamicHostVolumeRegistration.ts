@@ -174,25 +174,25 @@ export interface DynamicHostVolumeRegistrationState {
      * `(block: <optional>)` - Option for validating the capability of a
      * volume. Each capability block has the following attributes:
      */
-    capabilities?: pulumi.Input<pulumi.Input<inputs.DynamicHostVolumeRegistrationCapability>[]>;
+    capabilities?: pulumi.Input<pulumi.Input<inputs.DynamicHostVolumeRegistrationCapability>[] | undefined>;
     /**
      * `(string: <optional>)` - The size of a volume in bytes. Either the
      * physical size of a disk or a quota, depending on the plugin. This field must
      * be between the `capacityMin` and `capacityMax` values unless they are
      * omitted. Accepts human-friendly suffixes such as `"100GiB"`.
      */
-    capacity?: pulumi.Input<string>;
-    capacityBytes?: pulumi.Input<number>;
-    capacityMaxBytes?: pulumi.Input<number>;
-    capacityMinBytes?: pulumi.Input<number>;
+    capacity?: pulumi.Input<string | undefined>;
+    capacityBytes?: pulumi.Input<number | undefined>;
+    capacityMaxBytes?: pulumi.Input<number | undefined>;
+    capacityMinBytes?: pulumi.Input<number | undefined>;
     /**
      * Constraints
      */
-    constraints?: pulumi.Input<pulumi.Input<inputs.DynamicHostVolumeRegistrationConstraint>[]>;
+    constraints?: pulumi.Input<pulumi.Input<inputs.DynamicHostVolumeRegistrationConstraint>[] | undefined>;
     /**
      * `(string)` - The path on disk where the volume exists.
      */
-    hostPath?: pulumi.Input<string>;
+    hostPath?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The name of the volume, which is used as the
      * [`volume.source`][volumeSource] field in job specifications that claim this
@@ -200,36 +200,36 @@ export interface DynamicHostVolumeRegistrationState {
      * user with `node:read` ACL, even across namespaces, so they should not be
      * treated as sensitive values.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - The namespace of the volume. This field
      * overrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`
      * environment variable. Defaults to `"default"` if unset.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - A specific node where the volume is
      * mounted.
      */
-    nodeId?: pulumi.Input<string>;
+    nodeId?: pulumi.Input<string | undefined>;
     /**
      * Node pool
      */
-    nodePool?: pulumi.Input<string>;
+    nodePool?: pulumi.Input<string | undefined>;
     /**
      * `(map<string|string>: <optional>)` - A key-value map of strings
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
      */
-    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Plugin ID
      */
-    pluginId?: pulumi.Input<string>;
+    pluginId?: pulumi.Input<string | undefined>;
     /**
      * State
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -247,7 +247,7 @@ export interface DynamicHostVolumeRegistrationArgs {
      * be between the `capacityMin` and `capacityMax` values unless they are
      * omitted. Accepts human-friendly suffixes such as `"100GiB"`.
      */
-    capacity?: pulumi.Input<string>;
+    capacity?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - The path on disk where the volume exists.
      */
@@ -259,13 +259,13 @@ export interface DynamicHostVolumeRegistrationArgs {
      * user with `node:read` ACL, even across namespaces, so they should not be
      * treated as sensitive values.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - The namespace of the volume. This field
      * overrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`
      * environment variable. Defaults to `"default"` if unset.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - A specific node where the volume is
      * mounted.
@@ -276,5 +276,5 @@ export interface DynamicHostVolumeRegistrationArgs {
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
      */
-    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }

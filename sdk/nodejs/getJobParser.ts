@@ -69,7 +69,7 @@ export interface GetJobParserOutputArgs {
     /**
      * `(boolean: false)` - Flag to enable setting any unset fields to their default values.
      */
-    canonicalize?: pulumi.Input<boolean>;
+    canonicalize?: pulumi.Input<boolean | undefined>;
     /**
      * `(string: <required>)` - The HCL definition of the job.
      */
@@ -77,5 +77,5 @@ export interface GetJobParserOutputArgs {
     /**
      * `(string: "")` - HCL2 variables to pass to the job parser. Interpreted as the content of a variables file.
      */
-    variables?: pulumi.Input<string>;
+    variables?: pulumi.Input<string | undefined>;
 }

@@ -252,12 +252,12 @@ export interface DynamicHostVolumeState {
      * `(block: <optional>)` - Option for validating the capability of a
      * volume. Each capability block has the following attributes:
      */
-    capabilities?: pulumi.Input<pulumi.Input<inputs.DynamicHostVolumeCapability>[]>;
+    capabilities?: pulumi.Input<pulumi.Input<inputs.DynamicHostVolumeCapability>[] | undefined>;
     /**
      * Provisioned capacity
      */
-    capacity?: pulumi.Input<string>;
-    capacityBytes?: pulumi.Input<number>;
+    capacity?: pulumi.Input<string | undefined>;
+    capacityBytes?: pulumi.Input<number | undefined>;
     /**
      * `(string: <optional>)` - Option for requesting a maximum
      * capacity, in bytes. The capacity of a volume may be the physical size of a
@@ -268,8 +268,8 @@ export interface DynamicHostVolumeState {
      * suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
      * may ignore this field.
      */
-    capacityMax?: pulumi.Input<string>;
-    capacityMaxBytes?: pulumi.Input<number>;
+    capacityMax?: pulumi.Input<string | undefined>;
+    capacityMaxBytes?: pulumi.Input<number | undefined>;
     /**
      * `(string: <optional>)` - Option for requesting a minimum
      * capacity, in bytes. The capacity of a volume may be the physical size of a
@@ -280,19 +280,19 @@ export interface DynamicHostVolumeState {
      * suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
      * may ignore this field.
      */
-    capacityMin?: pulumi.Input<string>;
-    capacityMinBytes?: pulumi.Input<number>;
+    capacityMin?: pulumi.Input<string | undefined>;
+    capacityMinBytes?: pulumi.Input<number | undefined>;
     /**
      * `(block: <optional>)` - A restriction on the eligible nodes where
      * a volume can be created, similar to the [`constraint`][] block on a Nomad job
      * specification.. You can provide multiple `constraint` blocks to add more
      * constraints. Each constraint block has the following attributes.
      */
-    constraints?: pulumi.Input<pulumi.Input<inputs.DynamicHostVolumeConstraint>[]>;
+    constraints?: pulumi.Input<pulumi.Input<inputs.DynamicHostVolumeConstraint>[] | undefined>;
     /**
      * Host path
      */
-    hostPath?: pulumi.Input<string>;
+    hostPath?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The name of the volume, which is used as the
      * [`volume.source`][volumeSource] field in job specifications that claim this
@@ -300,30 +300,30 @@ export interface DynamicHostVolumeState {
      * user with `node:read` ACL, even across namespaces, so they should not be
      * treated as sensitive values.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - The namespace of the volume. This field
      * overrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`
      * environment variable. Defaults to `"default"` if unset.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - A specific node where you would like the
      * volume to be created.
      */
-    nodeId?: pulumi.Input<string>;
+    nodeId?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - A specific node pool where you would like
      * the volume to be created. If you also provide `nodeId`, the node must be in the
      * provided `nodePool`.
      */
-    nodePool?: pulumi.Input<string>;
+    nodePool?: pulumi.Input<string | undefined>;
     /**
      * `(map<string|string>: <optional>)` - A key-value map of strings
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
      */
-    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string: <required>)` - The ID of the [dynamic host volume
      * plugin][dhvPlugin] that manages this volume.
@@ -343,11 +343,11 @@ export interface DynamicHostVolumeState {
      * [`preventDestroy`][tfDocsPreventDestroy] directive to avoid accidental
      * deletions.
      */
-    pluginId?: pulumi.Input<string>;
+    pluginId?: pulumi.Input<string | undefined>;
     /**
      * State
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -369,7 +369,7 @@ export interface DynamicHostVolumeArgs {
      * suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
      * may ignore this field.
      */
-    capacityMax?: pulumi.Input<string>;
+    capacityMax?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - Option for requesting a minimum
      * capacity, in bytes. The capacity of a volume may be the physical size of a
@@ -380,14 +380,14 @@ export interface DynamicHostVolumeArgs {
      * suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
      * may ignore this field.
      */
-    capacityMin?: pulumi.Input<string>;
+    capacityMin?: pulumi.Input<string | undefined>;
     /**
      * `(block: <optional>)` - A restriction on the eligible nodes where
      * a volume can be created, similar to the [`constraint`][] block on a Nomad job
      * specification.. You can provide multiple `constraint` blocks to add more
      * constraints. Each constraint block has the following attributes.
      */
-    constraints?: pulumi.Input<pulumi.Input<inputs.DynamicHostVolumeConstraint>[]>;
+    constraints?: pulumi.Input<pulumi.Input<inputs.DynamicHostVolumeConstraint>[] | undefined>;
     /**
      * `(string: <required>)` - The name of the volume, which is used as the
      * [`volume.source`][volumeSource] field in job specifications that claim this
@@ -395,30 +395,30 @@ export interface DynamicHostVolumeArgs {
      * user with `node:read` ACL, even across namespaces, so they should not be
      * treated as sensitive values.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - The namespace of the volume. This field
      * overrides the namespace provided by the `-namespace` flag or `NOMAD_NAMESPACE`
      * environment variable. Defaults to `"default"` if unset.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - A specific node where you would like the
      * volume to be created.
      */
-    nodeId?: pulumi.Input<string>;
+    nodeId?: pulumi.Input<string | undefined>;
     /**
      * `(string: <optional>)` - A specific node pool where you would like
      * the volume to be created. If you also provide `nodeId`, the node must be in the
      * provided `nodePool`.
      */
-    nodePool?: pulumi.Input<string>;
+    nodePool?: pulumi.Input<string | undefined>;
     /**
      * `(map<string|string>: <optional>)` - A key-value map of strings
      * passed directly to the plugin to configure the volume. The details of these
      * parameters are specific to the plugin.
      */
-    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * `(string: <required>)` - The ID of the [dynamic host volume
      * plugin][dhvPlugin] that manages this volume.

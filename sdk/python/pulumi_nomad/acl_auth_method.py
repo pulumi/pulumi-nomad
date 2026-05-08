@@ -25,9 +25,9 @@ class AclAuthMethodArgs:
                  max_token_ttl: pulumi.Input[_builtins.str],
                  token_locality: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 default: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_name_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 default: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_name_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AclAuthMethod resource.
 
@@ -113,7 +113,7 @@ class AclAuthMethodArgs:
 
     @_builtins.property
     @pulumi.getter
-    def default(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `(bool: false)` - Defines whether this ACL Auth Method is to be set
         as default.
@@ -121,24 +121,24 @@ class AclAuthMethodArgs:
         return pulumi.get(self, "default")
 
     @default.setter
-    def default(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The identifier of the ACL Auth Method.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNameFormat")
-    def token_name_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_name_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "${auth_method_type}-${auth_method_name}")` -
         Defines the token name format for the generated tokens This can be lightly
@@ -147,20 +147,20 @@ class AclAuthMethodArgs:
         return pulumi.get(self, "token_name_format")
 
     @token_name_format.setter
-    def token_name_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_name_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_name_format", value)
 
 
 @pulumi.input_type
 class _AclAuthMethodState:
     def __init__(__self__, *,
-                 config: Optional[pulumi.Input['AclAuthMethodConfigArgs']] = None,
-                 default: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_token_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_locality: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_name_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 config: pulumi.Input[Optional['AclAuthMethodConfigArgs']] = None,
+                 default: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_token_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_locality: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_name_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AclAuthMethod resources.
 
@@ -197,7 +197,7 @@ class _AclAuthMethodState:
 
     @_builtins.property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input['AclAuthMethodConfigArgs']]:
+    def config(self) -> pulumi.Input[Optional['AclAuthMethodConfigArgs']]:
         """
         `(block: <required>)` - Configuration specific to the auth method
         provider.
@@ -205,12 +205,12 @@ class _AclAuthMethodState:
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input['AclAuthMethodConfigArgs']]):
+    def config(self, value: pulumi.Input[Optional['AclAuthMethodConfigArgs']]):
         pulumi.set(self, "config", value)
 
     @_builtins.property
     @pulumi.getter
-    def default(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `(bool: false)` - Defines whether this ACL Auth Method is to be set
         as default.
@@ -218,12 +218,12 @@ class _AclAuthMethodState:
         return pulumi.get(self, "default")
 
     @default.setter
-    def default(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTokenTtl")
-    def max_token_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_token_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - Defines the maximum life of a token
         created by this method and is specified as a time duration such as "15h".
@@ -231,24 +231,24 @@ class _AclAuthMethodState:
         return pulumi.get(self, "max_token_ttl")
 
     @max_token_ttl.setter
-    def max_token_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_token_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The identifier of the ACL Auth Method.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenLocality")
-    def token_locality(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_locality(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - Defines whether the ACL Auth Method
         creates a local or global token when performing SSO login. This field must be
@@ -257,12 +257,12 @@ class _AclAuthMethodState:
         return pulumi.get(self, "token_locality")
 
     @token_locality.setter
-    def token_locality(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_locality(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_locality", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNameFormat")
-    def token_name_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_name_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "${auth_method_type}-${auth_method_name}")` -
         Defines the token name format for the generated tokens This can be lightly
@@ -271,12 +271,12 @@ class _AclAuthMethodState:
         return pulumi.get(self, "token_name_format")
 
     @token_name_format.setter
-    def token_name_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_name_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_name_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - ACL Auth Method SSO workflow type. Valid values,
         are `OIDC` and `JWT`.
@@ -284,7 +284,7 @@ class _AclAuthMethodState:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -294,13 +294,13 @@ class AclAuthMethod(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 config: Optional[pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
-                 default: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_token_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_locality: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_name_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 config: pulumi.Input[Optional[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
+                 default: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_token_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_locality: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_name_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages an ACL Auth Method in Nomad.
@@ -409,13 +409,13 @@ class AclAuthMethod(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 config: Optional[pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
-                 default: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_token_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_locality: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_name_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 config: pulumi.Input[Optional[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
+                 default: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_token_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_locality: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_name_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -450,13 +450,13 @@ class AclAuthMethod(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            config: Optional[pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
-            default: Optional[pulumi.Input[_builtins.bool]] = None,
-            max_token_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            token_locality: Optional[pulumi.Input[_builtins.str]] = None,
-            token_name_format: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'AclAuthMethod':
+            config: pulumi.Input[Optional[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
+            default: pulumi.Input[Optional[_builtins.bool]] = None,
+            max_token_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            token_locality: pulumi.Input[Optional[_builtins.str]] = None,
+            token_name_format: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'AclAuthMethod':
         """
         Get an existing AclAuthMethod resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

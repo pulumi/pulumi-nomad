@@ -110,8 +110,8 @@ def get_datacenters(ignore_down_nodes: Optional[_builtins.bool] = None,
         id=pulumi.get(__ret__, 'id'),
         ignore_down_nodes=pulumi.get(__ret__, 'ignore_down_nodes'),
         prefix=pulumi.get(__ret__, 'prefix'))
-def get_datacenters_output(ignore_down_nodes: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                           prefix: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_datacenters_output(ignore_down_nodes: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                           prefix: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatacentersResult]:
     """
     Retrieve a list of datacenters.

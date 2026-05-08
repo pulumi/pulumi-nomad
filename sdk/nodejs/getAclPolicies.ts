@@ -81,5 +81,5 @@ export interface GetAclPoliciesOutputArgs {
     /**
      * `(string)` An optional string to filter ACL policies based on name prefix. If not provided, all policies are returned.
      */
-    prefix?: pulumi.Input<string>;
+    prefix?: pulumi.Input<string | undefined>;
 }

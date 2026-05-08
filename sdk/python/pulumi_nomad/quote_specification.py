@@ -22,8 +22,8 @@ __all__ = ['QuoteSpecificationArgs', 'QuoteSpecification']
 class QuoteSpecificationArgs:
     def __init__(__self__, *,
                  limits: pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]],
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a QuoteSpecification resource.
 
@@ -53,7 +53,7 @@ class QuoteSpecificationArgs:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - A description of the quota specification.
         - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
@@ -62,28 +62,28 @@ class QuoteSpecificationArgs:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - A unique name for the quota specification.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 @pulumi.input_type
 class _QuoteSpecificationState:
     def __init__(__self__, *,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering QuoteSpecification resources.
 
@@ -102,7 +102,7 @@ class _QuoteSpecificationState:
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: "")` - A description of the quota specification.
         - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
@@ -111,31 +111,31 @@ class _QuoteSpecificationState:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def limits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]]]:
+    def limits(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]]]:
         """
         Limits encapsulated by this quota specification.
         """
         return pulumi.get(self, "limits")
 
     @limits.setter
-    def limits(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]]]):
+    def limits(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]]]):
         pulumi.set(self, "limits", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - A unique name for the quota specification.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
@@ -145,9 +145,9 @@ class QuoteSpecification(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages a quota specification in a Nomad cluster.
@@ -276,9 +276,9 @@ class QuoteSpecification(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -303,9 +303,9 @@ class QuoteSpecification(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None) -> 'QuoteSpecification':
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None) -> 'QuoteSpecification':
         """
         Get an existing QuoteSpecification resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

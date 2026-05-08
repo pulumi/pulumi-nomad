@@ -32,7 +32,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Nomad.Index.Variable("example", new()
+    ///     var example = new Nomad.Variable("example", new()
     ///     {
     ///         Path = "some/path/of/your/choosing",
     ///         Items = 
@@ -55,7 +55,7 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Nomad.Index.Variable("example", new()
+    ///     var example = new Nomad.Variable("example", new()
     ///     {
     ///         Path = "some/path/of/your/choosing",
     ///         ItemsWo = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -78,13 +78,13 @@ namespace Pulumi.Nomad
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Nomad.Index.Namespace("example", new()
+    ///     var example = new Nomad.Namespace("example", new()
     ///     {
     ///         Name = "example",
     ///         Description = "Example namespace.",
     ///     });
     /// 
-    ///     var exampleVariable = new Nomad.Index.Variable("example", new()
+    ///     var exampleVariable = new Nomad.Variable("example", new()
     ///     {
     ///         Path = "some/path/of/your/choosing",
     ///         Namespace = example.Name,

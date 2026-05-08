@@ -107,15 +107,15 @@ export interface SchedulerConfigState {
     /**
      * `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
      */
-    memoryOversubscriptionEnabled?: pulumi.Input<boolean>;
+    memoryOversubscriptionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * `(map[string]bool)` - Options to enable preemption for various schedulers.
      */
-    preemptionConfig?: pulumi.Input<{[key: string]: pulumi.Input<boolean>}>;
+    preemptionConfig?: pulumi.Input<{[key: string]: pulumi.Input<boolean>} | undefined>;
     /**
      * `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
      */
-    schedulerAlgorithm?: pulumi.Input<string>;
+    schedulerAlgorithm?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -125,13 +125,13 @@ export interface SchedulerConfigArgs {
     /**
      * `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
      */
-    memoryOversubscriptionEnabled?: pulumi.Input<boolean>;
+    memoryOversubscriptionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * `(map[string]bool)` - Options to enable preemption for various schedulers.
      */
-    preemptionConfig?: pulumi.Input<{[key: string]: pulumi.Input<boolean>}>;
+    preemptionConfig?: pulumi.Input<{[key: string]: pulumi.Input<boolean>} | undefined>;
     /**
      * `(string: "binpack")` - Specifies whether scheduler binpacks or spreads allocations on available nodes. Possible values are `binpack` and `spread`.
      */
-    schedulerAlgorithm?: pulumi.Input<string>;
+    schedulerAlgorithm?: pulumi.Input<string | undefined>;
 }

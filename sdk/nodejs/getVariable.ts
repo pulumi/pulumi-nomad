@@ -102,7 +102,7 @@ export interface GetVariableOutputArgs {
     /**
      * `(string: "default")` - The namepsace in which the variable exists.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Path to the existing variable.
      */

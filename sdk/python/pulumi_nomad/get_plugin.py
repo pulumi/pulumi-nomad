@@ -227,9 +227,9 @@ def get_plugin(plugin_id: Optional[_builtins.str] = None,
         plugin_provider_version=pulumi.get(__ret__, 'plugin_provider_version'),
         wait_for_healthy=pulumi.get(__ret__, 'wait_for_healthy'),
         wait_for_registration=pulumi.get(__ret__, 'wait_for_registration'))
-def get_plugin_output(plugin_id: Optional[pulumi.Input[_builtins.str]] = None,
-                      wait_for_healthy: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                      wait_for_registration: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_plugin_output(plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
+                      wait_for_healthy: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                      wait_for_registration: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPluginResult]:
     """
     Lookup a plugin by ID. The aim of this datasource is to determine whether

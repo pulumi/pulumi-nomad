@@ -93,7 +93,7 @@ def get_plugins(type: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         plugins=pulumi.get(__ret__, 'plugins'),
         type=pulumi.get(__ret__, 'type'))
-def get_plugins_output(type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_plugins_output(type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPluginsResult]:
     """
     Retrieve a list of dynamic plugins in Nomad.
