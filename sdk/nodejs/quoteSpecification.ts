@@ -86,7 +86,7 @@ export class QuoteSpecification extends pulumi.CustomResource {
     /**
      * `(string: "")` - A description of the quota specification.
      * - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
-     * be repeated. See below for the structure of this block.
+     *   be repeated. See below for the structure of this block.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
@@ -135,7 +135,7 @@ export interface QuoteSpecificationState {
     /**
      * `(string: "")` - A description of the quota specification.
      * - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
-     * be repeated. See below for the structure of this block.
+     *   be repeated. See below for the structure of this block.
      */
     description?: pulumi.Input<string | undefined>;
     /**
@@ -155,7 +155,7 @@ export interface QuoteSpecificationArgs {
     /**
      * `(string: "")` - A description of the quota specification.
      * - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
-     * be repeated. See below for the structure of this block.
+     *   be repeated. See below for the structure of this block.
      */
     description?: pulumi.Input<string | undefined>;
     /**

@@ -27,7 +27,7 @@ import (
 //
 // )
 //
-//	func notImplemented(message string) pulumi.AnyOutput {
+//	func notImplemented(message string) any {
 //		panic(message)
 //	}
 //
@@ -43,7 +43,7 @@ import (
 //				key0 := index
 //				val0 := index
 //				__res, err := nomad.NewJob(ctx, fmt.Sprintf("app-%v", key0), &nomad.JobArgs{
-//					Jobspec: jobs[val0].Rendered,
+//					Jobspec: jobs[val0].Rendered.(pulumi.String),
 //				})
 //				if err != nil {
 //					return err
@@ -74,10 +74,8 @@ type GetRegionsResult struct {
 }
 
 func GetRegionsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetRegionsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetRegionsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("nomad:index/getRegions:getRegions", nil, GetRegionsResultOutput{}, options).(GetRegionsResultOutput), nil
-	}).(GetRegionsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getRegions:getRegions", nil, GetRegionsResultOutput{}, options).(GetRegionsResultOutput)
 }
 
 // A collection of values returned by getRegions.

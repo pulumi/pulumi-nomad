@@ -3391,7 +3391,7 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
@@ -3444,7 +3444,7 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
@@ -3497,7 +3497,7 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
@@ -3550,7 +3550,7 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
@@ -3603,7 +3603,7 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
@@ -3656,7 +3656,7 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
@@ -3709,7 +3709,7 @@ public final class NomadFunctions {
      *     public static void stack(Context ctx) {
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().length(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))

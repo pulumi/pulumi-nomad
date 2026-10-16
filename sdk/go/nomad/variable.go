@@ -71,7 +71,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//			tmpJSON0, err := json.Marshal(map[string]string{
 //				"example_key": "example_value",
 //			})
 //			if err != nil {
@@ -80,7 +80,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			_, err = nomad.NewVariable(ctx, "example", &nomad.VariableArgs{
 //				Path:           pulumi.String("some/path/of/your/choosing"),
-//				ItemsWo:        pulumi.String(pulumi.String(json0)),
+//				ItemsWo:        pulumi.String(json0),
 //				ItemsWoVersion: pulumi.Int(1),
 //			})
 //			if err != nil {

@@ -59,10 +59,8 @@ type GetSchedulerPolicyResult struct {
 }
 
 func GetSchedulerPolicyOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetSchedulerPolicyResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetSchedulerPolicyResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("nomad:index/getSchedulerPolicy:getSchedulerPolicy", nil, GetSchedulerPolicyResultOutput{}, options).(GetSchedulerPolicyResultOutput), nil
-	}).(GetSchedulerPolicyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getSchedulerPolicy:getSchedulerPolicy", nil, GetSchedulerPolicyResultOutput{}, options).(GetSchedulerPolicyResultOutput)
 }
 
 // A collection of values returned by getSchedulerPolicy.

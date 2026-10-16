@@ -57,6 +57,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.nomad.inputs.ExternalVolumeMountOptionsArgs;
  * import com.pulumi.nomad.inputs.ExternalVolumeTopologyRequestArgs;
  * import com.pulumi.nomad.inputs.ExternalVolumeTopologyRequestRequiredArgs;
+ * import com.pulumi.nomad.inputs.ExternalVolumeTopologyRequestRequiredTopologyArgs;
  * import com.pulumi.resources.CustomResourceOptions;
  * import java.util.ArrayList;
  * import java.util.Arrays;

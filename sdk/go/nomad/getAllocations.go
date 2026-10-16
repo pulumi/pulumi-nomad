@@ -75,12 +75,8 @@ type GetAllocationsResult struct {
 }
 
 func GetAllocationsOutput(ctx *pulumi.Context, args GetAllocationsOutputArgs, opts ...pulumi.InvokeOption) GetAllocationsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAllocationsResultOutput, error) {
-			args := v.(GetAllocationsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("nomad:index/getAllocations:getAllocations", args, GetAllocationsResultOutput{}, options).(GetAllocationsResultOutput), nil
-		}).(GetAllocationsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getAllocations:getAllocations", args, GetAllocationsResultOutput{}, options).(GetAllocationsResultOutput)
 }
 
 // A collection of arguments for invoking getAllocations.

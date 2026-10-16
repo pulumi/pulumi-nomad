@@ -60,10 +60,8 @@ type GetDeploymentsResult struct {
 }
 
 func GetDeploymentsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetDeploymentsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetDeploymentsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("nomad:index/getDeployments:getDeployments", nil, GetDeploymentsResultOutput{}, options).(GetDeploymentsResultOutput), nil
-	}).(GetDeploymentsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getDeployments:getDeployments", nil, GetDeploymentsResultOutput{}, options).(GetDeploymentsResultOutput)
 }
 
 // A collection of values returned by getDeployments.

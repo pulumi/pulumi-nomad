@@ -143,7 +143,7 @@ class AclRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRolePolicyArgs', 'AclRolePolicyArgsDict']]]]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRolePolicyArgs', 'AclRolePolicyArgsDict', 'outputs.AclRolePolicy']]]]] = None,
                  __props__=None):
         """
         Manages an ACL Role in Nomad.
@@ -176,7 +176,7 @@ class AclRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the ACL Role.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - A human-friendly name for this ACL Role.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclRolePolicyArgs', 'AclRolePolicyArgsDict']]]] policies: `(set: <required>)` - A set of policy names to associate with this
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclRolePolicyArgs', 'AclRolePolicyArgsDict', 'outputs.AclRolePolicy']]]] policies: `(set: <required>)` - A set of policy names to associate with this
                ACL Role. It may be used multiple times.
         """
         ...
@@ -229,7 +229,7 @@ class AclRole(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRolePolicyArgs', 'AclRolePolicyArgsDict']]]]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRolePolicyArgs', 'AclRolePolicyArgsDict', 'outputs.AclRolePolicy']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -256,7 +256,7 @@ class AclRole(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRolePolicyArgs', 'AclRolePolicyArgsDict']]]]] = None) -> 'AclRole':
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRolePolicyArgs', 'AclRolePolicyArgsDict', 'outputs.AclRolePolicy']]]]] = None) -> 'AclRole':
         """
         Get an existing AclRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -266,7 +266,7 @@ class AclRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the ACL Role.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - A human-friendly name for this ACL Role.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclRolePolicyArgs', 'AclRolePolicyArgsDict']]]] policies: `(set: <required>)` - A set of policy names to associate with this
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclRolePolicyArgs', 'AclRolePolicyArgsDict', 'outputs.AclRolePolicy']]]] policies: `(set: <required>)` - A set of policy names to associate with this
                ACL Role. It may be used multiple times.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

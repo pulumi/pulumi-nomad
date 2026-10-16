@@ -60,7 +60,7 @@ import (
 //				},
 //				Constraints: nomad.DynamicHostVolumeConstraintArray{
 //					&nomad.DynamicHostVolumeConstraintArgs{
-//						Attribute: pulumi.Sprintf("${attr.kernel.name}"),
+//						Attribute: pulumi.String("${attr.kernel.name}"),
 //						Value:     pulumi.String("linux"),
 //					},
 //				},

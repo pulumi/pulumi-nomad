@@ -804,7 +804,7 @@ class Job(pulumi.CustomResource):
                  deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
                  deregister_on_id_change: pulumi.Input[Optional[_builtins.bool]] = None,
                  detach: pulumi.Input[Optional[_builtins.bool]] = None,
-                 hcl2: pulumi.Input[Optional[Union['JobHcl2Args', 'JobHcl2ArgsDict']]] = None,
+                 hcl2: pulumi.Input[Optional[Union['JobHcl2Args', 'JobHcl2ArgsDict', 'outputs.JobHcl2']]] = None,
                  jobspec: pulumi.Input[Optional[_builtins.str]] = None,
                  json: pulumi.Input[Optional[_builtins.bool]] = None,
                  policy_override: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -840,7 +840,7 @@ class Job(pulumi.CustomResource):
                deregistered if the ID of the job in the jobspec changes.
         :param pulumi.Input[_builtins.bool] detach: `(boolean: true)` - If true, the provider will return immediately
                after creating or updating, instead of monitoring.
-        :param pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
+        :param pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict', 'outputs.JobHcl2']] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
         :param pulumi.Input[_builtins.str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
         :param pulumi.Input[_builtins.bool] json: `(boolean: false)` - Set this to `true` if your jobspec is structured with
                JSON instead of the default HCL.
@@ -897,7 +897,7 @@ class Job(pulumi.CustomResource):
                  deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
                  deregister_on_id_change: pulumi.Input[Optional[_builtins.bool]] = None,
                  detach: pulumi.Input[Optional[_builtins.bool]] = None,
-                 hcl2: pulumi.Input[Optional[Union['JobHcl2Args', 'JobHcl2ArgsDict']]] = None,
+                 hcl2: pulumi.Input[Optional[Union['JobHcl2Args', 'JobHcl2ArgsDict', 'outputs.JobHcl2']]] = None,
                  jobspec: pulumi.Input[Optional[_builtins.str]] = None,
                  json: pulumi.Input[Optional[_builtins.bool]] = None,
                  policy_override: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -962,7 +962,7 @@ class Job(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             all_at_once: pulumi.Input[Optional[_builtins.bool]] = None,
             allocation_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobConstraintArgs', 'JobConstraintArgsDict']]]]] = None,
+            constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobConstraintArgs', 'JobConstraintArgsDict', 'outputs.JobConstraint']]]]] = None,
             create_index: pulumi.Input[Optional[_builtins.int]] = None,
             datacenters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -970,14 +970,14 @@ class Job(pulumi.CustomResource):
             deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
             deregister_on_id_change: pulumi.Input[Optional[_builtins.bool]] = None,
             detach: pulumi.Input[Optional[_builtins.bool]] = None,
-            hcl2: pulumi.Input[Optional[Union['JobHcl2Args', 'JobHcl2ArgsDict']]] = None,
+            hcl2: pulumi.Input[Optional[Union['JobHcl2Args', 'JobHcl2ArgsDict', 'outputs.JobHcl2']]] = None,
             jobspec: pulumi.Input[Optional[_builtins.str]] = None,
             json: pulumi.Input[Optional[_builtins.bool]] = None,
             modify_index: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             parent_id: pulumi.Input[Optional[_builtins.str]] = None,
-            periodic_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobPeriodicConfigArgs', 'JobPeriodicConfigArgsDict']]]]] = None,
+            periodic_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobPeriodicConfigArgs', 'JobPeriodicConfigArgsDict', 'outputs.JobPeriodicConfig']]]]] = None,
             policy_override: pulumi.Input[Optional[_builtins.bool]] = None,
             preserve_counts: pulumi.Input[Optional[_builtins.bool]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
@@ -990,9 +990,9 @@ class Job(pulumi.CustomResource):
             status_description: pulumi.Input[Optional[_builtins.str]] = None,
             stop: pulumi.Input[Optional[_builtins.bool]] = None,
             submit_time: pulumi.Input[Optional[_builtins.str]] = None,
-            task_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobTaskGroupArgs', 'JobTaskGroupArgsDict']]]]] = None,
+            task_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobTaskGroupArgs', 'JobTaskGroupArgsDict', 'outputs.JobTaskGroup']]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
-            update_strategies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobUpdateStrategyArgs', 'JobUpdateStrategyArgsDict']]]]] = None,
+            update_strategies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobUpdateStrategyArgs', 'JobUpdateStrategyArgsDict', 'outputs.JobUpdateStrategy']]]]] = None,
             version: pulumi.Input[Optional[_builtins.int]] = None) -> 'Job':
         """
         Get an existing Job resource's state with the given name, id, and optional extra
@@ -1003,7 +1003,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] all_at_once: `(boolean)` - Whether the scheduler can make partial placements on oversubscribed nodes.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allocation_ids: `(list of strings)` - Allocation IDs associated with the job when `read_allocation_ids = true`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['JobConstraintArgs', 'JobConstraintArgsDict']]]] constraints: `(list of maps)` - Job constraints.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobConstraintArgs', 'JobConstraintArgsDict', 'outputs.JobConstraint']]]] constraints: `(list of maps)` - Job constraints.
         :param pulumi.Input[_builtins.int] create_index: `(integer)` - The job creation index.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] datacenters: `(set of strings)` - The target datacenters for the job.
         :param pulumi.Input[_builtins.str] deployment_id: `(string)` - If `detach = false`, the deployment associated with the last create or update, if one exists.
@@ -1014,7 +1014,7 @@ class Job(pulumi.CustomResource):
                deregistered if the ID of the job in the jobspec changes.
         :param pulumi.Input[_builtins.bool] detach: `(boolean: true)` - If true, the provider will return immediately
                after creating or updating, instead of monitoring.
-        :param pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict']] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
+        :param pulumi.Input[Union['JobHcl2Args', 'JobHcl2ArgsDict', 'outputs.JobHcl2']] hcl2: `(block: optional)` - Options for the HCL2 jobspec parser.
         :param pulumi.Input[_builtins.str] jobspec: `(string: <required>)` - The contents of the jobspec to register.
         :param pulumi.Input[_builtins.bool] json: `(boolean: false)` - Set this to `true` if your jobspec is structured with
                JSON instead of the default HCL.
@@ -1022,7 +1022,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: `(string)` - Volume name.
         :param pulumi.Input[_builtins.str] namespace: `(string)` - The namespace of the job, as derived from the jobspec.
         :param pulumi.Input[_builtins.str] parent_id: `(string)` - The parent job ID, if applicable.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['JobPeriodicConfigArgs', 'JobPeriodicConfigArgsDict']]]] periodic_configs: `(list of maps)` - The job's periodic configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobPeriodicConfigArgs', 'JobPeriodicConfigArgsDict', 'outputs.JobPeriodicConfig']]]] periodic_configs: `(list of maps)` - The job's periodic configuration.
         :param pulumi.Input[_builtins.bool] policy_override: `(boolean: false)` - Determines if the job will override any
                soft-mandatory Sentinel policies and register even if they fail.
         :param pulumi.Input[_builtins.bool] preserve_counts: `(boolean: false)` - If true, preserves the current task
@@ -1039,9 +1039,9 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] status_description: `(string)` - Additional status information returned by Nomad.
         :param pulumi.Input[_builtins.bool] stop: `(boolean)` - Whether the job is stopped.
         :param pulumi.Input[_builtins.str] submit_time: `(integer)` - The Unix timestamp when the job was submitted.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['JobTaskGroupArgs', 'JobTaskGroupArgsDict']]]] task_groups: `(list of maps)` - A list of the job's task groups.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobTaskGroupArgs', 'JobTaskGroupArgsDict', 'outputs.JobTaskGroup']]]] task_groups: `(list of maps)` - A list of the job's task groups.
         :param pulumi.Input[_builtins.str] type: `(string)` - Volume type.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['JobUpdateStrategyArgs', 'JobUpdateStrategyArgsDict']]]] update_strategies: `(list of maps)` - Effective update strategy for the task group.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobUpdateStrategyArgs', 'JobUpdateStrategyArgsDict', 'outputs.JobUpdateStrategy']]]] update_strategies: `(list of maps)` - Effective update strategy for the task group.
         :param pulumi.Input[_builtins.int] version: `(integer)` - The current job version.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

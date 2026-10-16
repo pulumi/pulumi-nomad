@@ -294,7 +294,7 @@ class AclAuthMethod(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 config: pulumi.Input[Optional[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
+                 config: pulumi.Input[Optional[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict', 'outputs.AclAuthMethodConfig']]] = None,
                  default: pulumi.Input[Optional[_builtins.bool]] = None,
                  max_token_ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -338,7 +338,7 @@ class AclAuthMethod(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']] config: `(block: <required>)` - Configuration specific to the auth method
+        :param pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict', 'outputs.AclAuthMethodConfig']] config: `(block: <required>)` - Configuration specific to the auth method
                provider.
         :param pulumi.Input[_builtins.bool] default: `(bool: false)` - Defines whether this ACL Auth Method is to be set
                as default.
@@ -409,7 +409,7 @@ class AclAuthMethod(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 config: pulumi.Input[Optional[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
+                 config: pulumi.Input[Optional[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict', 'outputs.AclAuthMethodConfig']]] = None,
                  default: pulumi.Input[Optional[_builtins.bool]] = None,
                  max_token_ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -450,7 +450,7 @@ class AclAuthMethod(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            config: pulumi.Input[Optional[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']]] = None,
+            config: pulumi.Input[Optional[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict', 'outputs.AclAuthMethodConfig']]] = None,
             default: pulumi.Input[Optional[_builtins.bool]] = None,
             max_token_ttl: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -464,7 +464,7 @@ class AclAuthMethod(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict']] config: `(block: <required>)` - Configuration specific to the auth method
+        :param pulumi.Input[Union['AclAuthMethodConfigArgs', 'AclAuthMethodConfigArgsDict', 'outputs.AclAuthMethodConfig']] config: `(block: <required>)` - Configuration specific to the auth method
                provider.
         :param pulumi.Input[_builtins.bool] default: `(bool: false)` - Defines whether this ACL Auth Method is to be set
                as default.

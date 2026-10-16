@@ -23,7 +23,7 @@ Nomad provider exposes resources to interact with a Nomad cluster.
 Use the navigation to the left to read about the available resources.
 ## Example Usage
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -42,7 +42,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as nomad from "@pulumi/nomad";
 import * as std from "@pulumi/std";
 
-function notImplemented(message: string) {
+function notImplemented(message: string): any {
     throw new Error(message);
 }
 
@@ -146,7 +146,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func notImplemented(message string) pulumi.AnyOutput {
+func notImplemented(message string) any {
 	panic(message)
 }
 
@@ -233,6 +233,29 @@ public class App {
             .build());
 
     }
+}
+```
+
+{{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+terraform {
+  required_providers {
+    nomad = {
+      source = "pulumi/nomad"
+    }
+    std = {
+      source = "pulumi/std"
+    }
+  }
+}
+
+# Register a job
+resource "nomad_job" "monitoring" {
+  lifecycle {
+    create_before_destroy = true
+  }
+  jobspec = file("${notImplemented("path.module")}/jobspec.hcl")
 }
 ```
 
