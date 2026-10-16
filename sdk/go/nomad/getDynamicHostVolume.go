@@ -116,12 +116,8 @@ type LookupDynamicHostVolumeResult struct {
 }
 
 func LookupDynamicHostVolumeOutput(ctx *pulumi.Context, args LookupDynamicHostVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupDynamicHostVolumeResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDynamicHostVolumeResultOutput, error) {
-			args := v.(LookupDynamicHostVolumeArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("nomad:index/getDynamicHostVolume:getDynamicHostVolume", args, LookupDynamicHostVolumeResultOutput{}, options).(LookupDynamicHostVolumeResultOutput), nil
-		}).(LookupDynamicHostVolumeResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getDynamicHostVolume:getDynamicHostVolume", args, LookupDynamicHostVolumeResultOutput{}, options).(LookupDynamicHostVolumeResultOutput)
 }
 
 // A collection of arguments for invoking getDynamicHostVolume.

@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *     type: "OIDC",
  *     tokenLocality: "global",
  *     maxTokenTtl: "10m0s",
- *     tokenNameFormat: `${auth_method_type}-${value.user}`,
+ *     tokenNameFormat: "${auth_method_type}-${value.user}",
  *     "default": true,
  *     config: {
  *         oidcDiscoveryUrl: "https://uk.auth0.com/",

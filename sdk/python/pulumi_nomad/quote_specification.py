@@ -30,7 +30,7 @@ class QuoteSpecificationArgs:
         :param pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]] limits: Limits encapsulated by this quota specification.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the quota specification.
                - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
-               be repeated. See below for the structure of this block.
+                 be repeated. See below for the structure of this block.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - A unique name for the quota specification.
         """
         pulumi.set(__self__, "limits", limits)
@@ -57,7 +57,7 @@ class QuoteSpecificationArgs:
         """
         `(string: "")` - A description of the quota specification.
         - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
-        be repeated. See below for the structure of this block.
+          be repeated. See below for the structure of this block.
         """
         return pulumi.get(self, "description")
 
@@ -89,7 +89,7 @@ class _QuoteSpecificationState:
 
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the quota specification.
                - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
-               be repeated. See below for the structure of this block.
+                 be repeated. See below for the structure of this block.
         :param pulumi.Input[Sequence[pulumi.Input['QuoteSpecificationLimitArgs']]] limits: Limits encapsulated by this quota specification.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - A unique name for the quota specification.
         """
@@ -106,7 +106,7 @@ class _QuoteSpecificationState:
         """
         `(string: "")` - A description of the quota specification.
         - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
-        be repeated. See below for the structure of this block.
+          be repeated. See below for the structure of this block.
         """
         return pulumi.get(self, "description")
 
@@ -146,7 +146,7 @@ class QuoteSpecification(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict', 'outputs.QuoteSpecificationLimit']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -202,8 +202,8 @@ class QuoteSpecification(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the quota specification.
                - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
-               be repeated. See below for the structure of this block.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]] limits: Limits encapsulated by this quota specification.
+                 be repeated. See below for the structure of this block.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict', 'outputs.QuoteSpecificationLimit']]]] limits: Limits encapsulated by this quota specification.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - A unique name for the quota specification.
         """
         ...
@@ -277,7 +277,7 @@ class QuoteSpecification(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict', 'outputs.QuoteSpecificationLimit']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -304,7 +304,7 @@ class QuoteSpecification(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
-            limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]]] = None,
+            limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict', 'outputs.QuoteSpecificationLimit']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None) -> 'QuoteSpecification':
         """
         Get an existing QuoteSpecification resource's state with the given name, id, and optional extra
@@ -315,8 +315,8 @@ class QuoteSpecification(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: `(string: "")` - A description of the quota specification.
                - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
-               be repeated. See below for the structure of this block.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict']]]] limits: Limits encapsulated by this quota specification.
+                 be repeated. See below for the structure of this block.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['QuoteSpecificationLimitArgs', 'QuoteSpecificationLimitArgsDict', 'outputs.QuoteSpecificationLimit']]]] limits: Limits encapsulated by this quota specification.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - A unique name for the quota specification.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -334,7 +334,7 @@ class QuoteSpecification(pulumi.CustomResource):
         """
         `(string: "")` - A description of the quota specification.
         - `limits` `(block: <required>)` - A block of quota limits to enforce. Can
-        be repeated. See below for the structure of this block.
+          be repeated. See below for the structure of this block.
         """
         return pulumi.get(self, "description")
 

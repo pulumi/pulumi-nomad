@@ -72,12 +72,8 @@ type GetScalingPolicyResult struct {
 }
 
 func GetScalingPolicyOutput(ctx *pulumi.Context, args GetScalingPolicyOutputArgs, opts ...pulumi.InvokeOption) GetScalingPolicyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetScalingPolicyResultOutput, error) {
-			args := v.(GetScalingPolicyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("nomad:index/getScalingPolicy:getScalingPolicy", args, GetScalingPolicyResultOutput{}, options).(GetScalingPolicyResultOutput), nil
-		}).(GetScalingPolicyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getScalingPolicy:getScalingPolicy", args, GetScalingPolicyResultOutput{}, options).(GetScalingPolicyResultOutput)
 }
 
 // A collection of arguments for invoking getScalingPolicy.

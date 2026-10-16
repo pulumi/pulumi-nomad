@@ -61,10 +61,8 @@ type GetJwksResult struct {
 }
 
 func GetJwksOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetJwksResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (GetJwksResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("nomad:index/getJwks:getJwks", nil, GetJwksResultOutput{}, options).(GetJwksResultOutput), nil
-	}).(GetJwksResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getJwks:getJwks", nil, GetJwksResultOutput{}, options).(GetJwksResultOutput)
 }
 
 // A collection of values returned by getJwks.

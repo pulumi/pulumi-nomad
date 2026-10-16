@@ -224,11 +224,11 @@ class AclAuthMethodConfig(dict):
                by the TLS client used to talk with the OIDC Discovery URL.
         :param _builtins.str expiration_leeway: `(string: <optional>)` - Duration of leeway when validating
                expiration of a JWT in the form of a time duration such as "5m" or "1h".
-        :param _builtins.str jwks_ca_cert: `(string: <optional>)` - PEM encoded CA cert for use by the 
+        :param _builtins.str jwks_ca_cert: `(string: <optional>)` - PEM encoded CA cert for use by the
                TLS client used to talk with the JWKS server.
         :param _builtins.str jwks_url: `(string: <optional>)` - JSON Web Key Sets url for authenticating
                signatures.
-        :param Sequence[_builtins.str] jwt_validation_pub_keys: `([]string: <optional>)` - List of PEM-encoded 
+        :param Sequence[_builtins.str] jwt_validation_pub_keys: `([]string: <optional>)` - List of PEM-encoded
                public keys to use to authenticate signatures locally.
         :param Mapping[str, _builtins.str] list_claim_mappings: Mappings of list claims (key) that will be copied to a metadata field (value).
         :param _builtins.str not_before_leeway: `(string: <optional>)` - Duration of leeway when validating
@@ -364,7 +364,7 @@ class AclAuthMethodConfig(dict):
     @pulumi.getter(name="jwksCaCert")
     def jwks_ca_cert(self) -> Optional[_builtins.str]:
         """
-        `(string: <optional>)` - PEM encoded CA cert for use by the 
+        `(string: <optional>)` - PEM encoded CA cert for use by the
         TLS client used to talk with the JWKS server.
         """
         return pulumi.get(self, "jwks_ca_cert")
@@ -382,7 +382,7 @@ class AclAuthMethodConfig(dict):
     @pulumi.getter(name="jwtValidationPubKeys")
     def jwt_validation_pub_keys(self) -> Optional[Sequence[_builtins.str]]:
         """
-        `([]string: <optional>)` - List of PEM-encoded 
+        `([]string: <optional>)` - List of PEM-encoded
         public keys to use to authenticate signatures locally.
         """
         return pulumi.get(self, "jwt_validation_pub_keys")
@@ -2737,8 +2737,8 @@ class QuoteSpecificationLimit(dict):
         """
         :param _builtins.str region: `(string: <required>)` - The region these limits should apply to.
                - `region_limit` `(block: <required>)` - The limits to enforce. This block
-               may only be specified once in the `limits` block. Its structure is
-               documented below.
+                 may only be specified once in the `limits` block. Its structure is
+                 documented below.
         :param 'QuoteSpecificationLimitRegionLimitArgs' region_limit: The limit applied to this region.
         """
         pulumi.set(__self__, "region", region)
@@ -2750,8 +2750,8 @@ class QuoteSpecificationLimit(dict):
         """
         `(string: <required>)` - The region these limits should apply to.
         - `region_limit` `(block: <required>)` - The limits to enforce. This block
-        may only be specified once in the `limits` block. Its structure is
-        documented below.
+          may only be specified once in the `limits` block. Its structure is
+          documented below.
         """
         return pulumi.get(self, "region")
 
@@ -2805,11 +2805,11 @@ class QuoteSpecificationLimitRegionLimit(dict):
                limit allocations to. A value of zero is treated as unlimited, and a negative
                value is treated as fully disallowed.
                - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
-               repeated. See below for the structure of this block.
+                 repeated. See below for the structure of this block.
                - `node_pools` `(block: optional)` - Per-node-pool quota limits. Can be
-               repeated. See below for the structure of this block.
+                 repeated. See below for the structure of this block.
                - `storage` `(block: optional)` - Storage resource quota configuration. May only
-               be specified once. See below for the structure of this block.
+                 be specified once. See below for the structure of this block.
         :param _builtins.int memory_mb: `(int: 0)` - The amount of memory (in megabytes) to limit
                allocations to. A value of zero is treated as unlimited, and a negative value
                is treated as fully disallowed.
@@ -2861,11 +2861,11 @@ class QuoteSpecificationLimitRegionLimit(dict):
         limit allocations to. A value of zero is treated as unlimited, and a negative
         value is treated as fully disallowed.
         - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
-        repeated. See below for the structure of this block.
+          repeated. See below for the structure of this block.
         - `node_pools` `(block: optional)` - Per-node-pool quota limits. Can be
-        repeated. See below for the structure of this block.
+          repeated. See below for the structure of this block.
         - `storage` `(block: optional)` - Storage resource quota configuration. May only
-        be specified once. See below for the structure of this block.
+          be specified once. See below for the structure of this block.
         """
         return pulumi.get(self, "memory_max_mb")
 
@@ -2964,9 +2964,9 @@ class QuoteSpecificationLimitRegionLimitNodePool(dict):
                limit allocations to. A value of zero is treated as unlimited, and a negative
                value is treated as fully disallowed.
                - `devices` `(block: optional)` - A list of device quotas to
-               enforce for the node pool. Can be repeated.
+                 enforce for the node pool. Can be repeated.
                - `storage` `(block: optional)` - Storage resource quota
-               configuration for the node pool. May only be specified once.
+                 configuration for the node pool. May only be specified once.
         :param _builtins.int memory_mb: `(int: 0)` - The amount of memory (in megabytes) to limit
                allocations to. A value of zero is treated as unlimited, and a negative value
                is treated as fully disallowed.
@@ -3025,9 +3025,9 @@ class QuoteSpecificationLimitRegionLimitNodePool(dict):
         limit allocations to. A value of zero is treated as unlimited, and a negative
         value is treated as fully disallowed.
         - `devices` `(block: optional)` - A list of device quotas to
-        enforce for the node pool. Can be repeated.
+          enforce for the node pool. Can be repeated.
         - `storage` `(block: optional)` - Storage resource quota
-        configuration for the node pool. May only be specified once.
+          configuration for the node pool. May only be specified once.
         """
         return pulumi.get(self, "memory_max_mb")
 

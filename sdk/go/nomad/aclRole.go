@@ -32,7 +32,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			myNomadAclPolicy, err := nomad.NewAclPolicy(ctx, "my_nomad_acl_policy", &nomad.AclPolicyArgs{
 //				Name:     pulumi.String("my-nomad-acl-policy"),
-//				RulesHcl: pulumi.Sprintf("namespace \\\"default\\\" {\n  policy       = \\\"read\\\"\n  capabilities = [\\\"submit-job\\\"]\n}\n"),
+//				RulesHcl: pulumi.String("namespace \\\"default\\\" {\n  policy       = \\\"read\\\"\n  capabilities = [\\\"submit-job\\\"]\n}\n"),
 //			})
 //			if err != nil {
 //				return err

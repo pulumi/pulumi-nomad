@@ -19,6 +19,7 @@ namespace Pulumi.Nomad
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
+        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
@@ -28,14 +29,14 @@ namespace Pulumi.Nomad
         ///     throw new System.NotImplementedException(errorMessage);
         /// }
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var myRegions = Nomad.GetRegions.Invoke();
+        ///     var myRegions = await Nomad.GetRegions.InvokeAsync();
         /// 
         ///     var jobs = NotImplemented("The template_file data resource is not yet supported.");
         /// 
         ///     var app = new List&lt;Nomad.Job&gt;();
-        ///     myRegions.Apply(getRegionsResult =&gt; getRegionsResult.Regions).Length().Apply(rangeBody =&gt;
+        ///     myRegions.Regions.Length.Apply(rangeBody =&gt;
         ///     {
         ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
@@ -61,6 +62,7 @@ namespace Pulumi.Nomad
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
+        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
@@ -70,14 +72,14 @@ namespace Pulumi.Nomad
         ///     throw new System.NotImplementedException(errorMessage);
         /// }
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var myRegions = Nomad.GetRegions.Invoke();
+        ///     var myRegions = await Nomad.GetRegions.InvokeAsync();
         /// 
         ///     var jobs = NotImplemented("The template_file data resource is not yet supported.");
         /// 
         ///     var app = new List&lt;Nomad.Job&gt;();
-        ///     myRegions.Apply(getRegionsResult =&gt; getRegionsResult.Regions).Length().Apply(rangeBody =&gt;
+        ///     myRegions.Regions.Length.Apply(rangeBody =&gt;
         ///     {
         ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
@@ -103,6 +105,7 @@ namespace Pulumi.Nomad
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
+        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
@@ -112,14 +115,14 @@ namespace Pulumi.Nomad
         ///     throw new System.NotImplementedException(errorMessage);
         /// }
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var myRegions = Nomad.GetRegions.Invoke();
+        ///     var myRegions = await Nomad.GetRegions.InvokeAsync();
         /// 
         ///     var jobs = NotImplemented("The template_file data resource is not yet supported.");
         /// 
         ///     var app = new List&lt;Nomad.Job&gt;();
-        ///     myRegions.Apply(getRegionsResult =&gt; getRegionsResult.Regions).Length().Apply(rangeBody =&gt;
+        ///     myRegions.Regions.Length.Apply(rangeBody =&gt;
         ///     {
         ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {

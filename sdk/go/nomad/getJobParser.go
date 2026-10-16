@@ -44,12 +44,8 @@ type GetJobParserResult struct {
 }
 
 func GetJobParserOutput(ctx *pulumi.Context, args GetJobParserOutputArgs, opts ...pulumi.InvokeOption) GetJobParserResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetJobParserResultOutput, error) {
-			args := v.(GetJobParserArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("nomad:index/getJobParser:getJobParser", args, GetJobParserResultOutput{}, options).(GetJobParserResultOutput), nil
-		}).(GetJobParserResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getJobParser:getJobParser", args, GetJobParserResultOutput{}, options).(GetJobParserResultOutput)
 }
 
 // A collection of arguments for invoking getJobParser.

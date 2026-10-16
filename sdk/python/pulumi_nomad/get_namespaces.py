@@ -73,13 +73,13 @@ def get_namespaces(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetN
     import pulumi_nomad as nomad
 
     namespaces = nomad.get_namespaces()
-    namespace: list[Any] = []
+    namespace: list[nomad.AclPolicy] = []
     def create_namespace(range_body):
-        for range in [{"value": i} for i in range(0, range_body)]:
-            namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",
-                name=f"namespace-{namespaces[range['value']]}",
-                description=f"Write to the namespace {namespaces[range['value']]}",
-                rules_hcl=f\"\"\"namespace \\"{namespaces[range["value"]]}\\" {{
+        for namespace_range in [{"value": i} for i in range(0, range_body)]:
+            namespace.append(nomad.AclPolicy(f"namespace-{namespace_range['value']}",
+                name=f"namespace-{namespaces[namespace_range['value']]}",
+                description=f"Write to the namespace {namespaces[namespace_range['value']]}",
+                rules_hcl=f\"\"\"namespace \\"{namespaces[namespace_range["value"]]}\\" {{
       policy = \\"write\\"
     }}
     \"\"\"))
@@ -106,13 +106,13 @@ def get_namespaces_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.Invo
     import pulumi_nomad as nomad
 
     namespaces = nomad.get_namespaces()
-    namespace: list[Any] = []
+    namespace: list[nomad.AclPolicy] = []
     def create_namespace(range_body):
-        for range in [{"value": i} for i in range(0, range_body)]:
-            namespace.append(nomad.AclPolicy(f"namespace-{range['value']}",
-                name=f"namespace-{namespaces[range['value']]}",
-                description=f"Write to the namespace {namespaces[range['value']]}",
-                rules_hcl=f\"\"\"namespace \\"{namespaces[range["value"]]}\\" {{
+        for namespace_range in [{"value": i} for i in range(0, range_body)]:
+            namespace.append(nomad.AclPolicy(f"namespace-{namespace_range['value']}",
+                name=f"namespace-{namespaces[namespace_range['value']]}",
+                description=f"Write to the namespace {namespaces[namespace_range['value']]}",
+                rules_hcl=f\"\"\"namespace \\"{namespaces[namespace_range["value"]]}\\" {{
       policy = \\"write\\"
     }}
     \"\"\"))

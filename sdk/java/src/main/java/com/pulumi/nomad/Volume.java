@@ -53,6 +53,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.nomad.inputs.VolumeMountOptionsArgs;
  * import com.pulumi.nomad.inputs.VolumeTopologyRequestArgs;
  * import com.pulumi.nomad.inputs.VolumeTopologyRequestRequiredArgs;
+ * import com.pulumi.nomad.inputs.VolumeTopologyRequestRequiredTopologyArgs;
  * import com.pulumi.resources.CustomResourceOptions;
  * import java.util.ArrayList;
  * import java.util.Arrays;
@@ -78,7 +79,7 @@ import javax.annotation.Nullable;
  *             .pluginId("aws-ebs0")
  *             .volumeId("mysql_volume")
  *             .name("mysql_volume")
- *             .externalId(hashistack.ebsTestVolumeId())
+ *             .externalId(hashistack.get("ebsTestVolumeId"))
  *             .capabilities(VolumeCapabilityArgs.builder()
  *                 .accessMode("single-node-writer")
  *                 .attachmentMode("file-system")

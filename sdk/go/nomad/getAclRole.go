@@ -67,12 +67,8 @@ type LookupAclRoleResult struct {
 }
 
 func LookupAclRoleOutput(ctx *pulumi.Context, args LookupAclRoleOutputArgs, opts ...pulumi.InvokeOption) LookupAclRoleResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAclRoleResultOutput, error) {
-			args := v.(LookupAclRoleArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("nomad:index/getAclRole:getAclRole", args, LookupAclRoleResultOutput{}, options).(LookupAclRoleResultOutput), nil
-		}).(LookupAclRoleResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getAclRole:getAclRole", args, LookupAclRoleResultOutput{}, options).(LookupAclRoleResultOutput)
 }
 
 // A collection of arguments for invoking getAclRole.
