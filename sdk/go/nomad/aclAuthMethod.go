@@ -35,7 +35,7 @@ import (
 //				Type:            pulumi.String("OIDC"),
 //				TokenLocality:   pulumi.String("global"),
 //				MaxTokenTtl:     pulumi.String("10m0s"),
-//				TokenNameFormat: pulumi.Sprintf("${auth_method_type}-${value.user}"),
+//				TokenNameFormat: pulumi.String("${auth_method_type}-${value.user}"),
 //				Default:         pulumi.Bool(true),
 //				Config: &nomad.AclAuthMethodConfigArgs{
 //					OidcDiscoveryUrl: pulumi.String("https://uk.auth0.com/"),

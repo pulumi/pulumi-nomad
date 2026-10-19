@@ -415,7 +415,7 @@ class DynamicHostVolumeRegistration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationCapabilityArgs', 'DynamicHostVolumeRegistrationCapabilityArgsDict']]]]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationCapabilityArgs', 'DynamicHostVolumeRegistrationCapabilityArgsDict', 'outputs.DynamicHostVolumeRegistrationCapability']]]]] = None,
                  capacity: pulumi.Input[Optional[_builtins.str]] = None,
                  host_path: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -439,7 +439,7 @@ class DynamicHostVolumeRegistration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationCapabilityArgs', 'DynamicHostVolumeRegistrationCapabilityArgsDict']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationCapabilityArgs', 'DynamicHostVolumeRegistrationCapabilityArgsDict', 'outputs.DynamicHostVolumeRegistrationCapability']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
                volume. Each capability block has the following attributes:
         :param pulumi.Input[_builtins.str] capacity: `(string: <optional>)` - The size of a volume in bytes. Either the
                physical size of a disk or a quota, depending on the plugin. This field must
@@ -495,7 +495,7 @@ class DynamicHostVolumeRegistration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationCapabilityArgs', 'DynamicHostVolumeRegistrationCapabilityArgsDict']]]]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationCapabilityArgs', 'DynamicHostVolumeRegistrationCapabilityArgsDict', 'outputs.DynamicHostVolumeRegistrationCapability']]]]] = None,
                  capacity: pulumi.Input[Optional[_builtins.str]] = None,
                  host_path: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -541,12 +541,12 @@ class DynamicHostVolumeRegistration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationCapabilityArgs', 'DynamicHostVolumeRegistrationCapabilityArgsDict']]]]] = None,
+            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationCapabilityArgs', 'DynamicHostVolumeRegistrationCapabilityArgsDict', 'outputs.DynamicHostVolumeRegistrationCapability']]]]] = None,
             capacity: pulumi.Input[Optional[_builtins.str]] = None,
             capacity_bytes: pulumi.Input[Optional[_builtins.int]] = None,
             capacity_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
             capacity_min_bytes: pulumi.Input[Optional[_builtins.int]] = None,
-            constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationConstraintArgs', 'DynamicHostVolumeRegistrationConstraintArgsDict']]]]] = None,
+            constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationConstraintArgs', 'DynamicHostVolumeRegistrationConstraintArgsDict', 'outputs.DynamicHostVolumeRegistrationConstraint']]]]] = None,
             host_path: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -562,13 +562,13 @@ class DynamicHostVolumeRegistration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationCapabilityArgs', 'DynamicHostVolumeRegistrationCapabilityArgsDict']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationCapabilityArgs', 'DynamicHostVolumeRegistrationCapabilityArgsDict', 'outputs.DynamicHostVolumeRegistrationCapability']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
                volume. Each capability block has the following attributes:
         :param pulumi.Input[_builtins.str] capacity: `(string: <optional>)` - The size of a volume in bytes. Either the
                physical size of a disk or a quota, depending on the plugin. This field must
                be between the `capacity_min` and `capacity_max` values unless they are
                omitted. Accepts human-friendly suffixes such as `"100GiB"`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationConstraintArgs', 'DynamicHostVolumeRegistrationConstraintArgsDict']]]] constraints: Constraints
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeRegistrationConstraintArgs', 'DynamicHostVolumeRegistrationConstraintArgsDict', 'outputs.DynamicHostVolumeRegistrationConstraint']]]] constraints: Constraints
         :param pulumi.Input[_builtins.str] host_path: `(string)` - The path on disk where the volume exists.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - The name of the volume, which is used as the
                [`volume.source`][volume_source] field in job specifications that claim this

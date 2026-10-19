@@ -595,18 +595,18 @@ class ExternalVolume(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ExternalVolumeCapabilityArgs', 'ExternalVolumeCapabilityArgsDict']]]]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ExternalVolumeCapabilityArgs', 'ExternalVolumeCapabilityArgsDict', 'outputs.ExternalVolumeCapability']]]]] = None,
                  capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
                  capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
                  clone_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 mount_options: pulumi.Input[Optional[Union['ExternalVolumeMountOptionsArgs', 'ExternalVolumeMountOptionsArgsDict']]] = None,
+                 mount_options: pulumi.Input[Optional[Union['ExternalVolumeMountOptionsArgs', 'ExternalVolumeMountOptionsArgsDict', 'outputs.ExternalVolumeMountOptions']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
                  secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 topology_request: pulumi.Input[Optional[Union['ExternalVolumeTopologyRequestArgs', 'ExternalVolumeTopologyRequestArgsDict']]] = None,
+                 topology_request: pulumi.Input[Optional[Union['ExternalVolumeTopologyRequestArgs', 'ExternalVolumeTopologyRequestArgsDict', 'outputs.ExternalVolumeTopologyRequest']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -674,18 +674,18 @@ class ExternalVolume(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ExternalVolumeCapabilityArgs', 'ExternalVolumeCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ExternalVolumeCapabilityArgs', 'ExternalVolumeCapabilityArgsDict', 'outputs.ExternalVolumeCapability']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[_builtins.str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[_builtins.str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[_builtins.str] clone_id: `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
-        :param pulumi.Input[Union['ExternalVolumeMountOptionsArgs', 'ExternalVolumeMountOptionsArgsDict']] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[Union['ExternalVolumeMountOptionsArgs', 'ExternalVolumeMountOptionsArgsDict', 'outputs.ExternalVolumeMountOptions']] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[_builtins.str] namespace: `(string: "default")` - The namespace in which to register the volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] parameters: `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secrets: `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         :param pulumi.Input[_builtins.str] snapshot_id: `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
-        :param pulumi.Input[Union['ExternalVolumeTopologyRequestArgs', 'ExternalVolumeTopologyRequestArgsDict']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[Union['ExternalVolumeTopologyRequestArgs', 'ExternalVolumeTopologyRequestArgsDict', 'outputs.ExternalVolumeTopologyRequest']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[_builtins.str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         :param pulumi.Input[_builtins.str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """
@@ -772,18 +772,18 @@ class ExternalVolume(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ExternalVolumeCapabilityArgs', 'ExternalVolumeCapabilityArgsDict']]]]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ExternalVolumeCapabilityArgs', 'ExternalVolumeCapabilityArgsDict', 'outputs.ExternalVolumeCapability']]]]] = None,
                  capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
                  capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
                  clone_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 mount_options: pulumi.Input[Optional[Union['ExternalVolumeMountOptionsArgs', 'ExternalVolumeMountOptionsArgsDict']]] = None,
+                 mount_options: pulumi.Input[Optional[Union['ExternalVolumeMountOptionsArgs', 'ExternalVolumeMountOptionsArgsDict', 'outputs.ExternalVolumeMountOptions']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
                  secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 topology_request: pulumi.Input[Optional[Union['ExternalVolumeTopologyRequestArgs', 'ExternalVolumeTopologyRequestArgsDict']]] = None,
+                 topology_request: pulumi.Input[Optional[Union['ExternalVolumeTopologyRequestArgs', 'ExternalVolumeTopologyRequestArgsDict', 'outputs.ExternalVolumeTopologyRequest']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -836,14 +836,14 @@ class ExternalVolume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ExternalVolumeCapabilityArgs', 'ExternalVolumeCapabilityArgsDict']]]]] = None,
+            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ExternalVolumeCapabilityArgs', 'ExternalVolumeCapabilityArgsDict', 'outputs.ExternalVolumeCapability']]]]] = None,
             capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
             capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
             clone_id: pulumi.Input[Optional[_builtins.str]] = None,
             controller_required: pulumi.Input[Optional[_builtins.bool]] = None,
             controllers_expected: pulumi.Input[Optional[_builtins.int]] = None,
             controllers_healthy: pulumi.Input[Optional[_builtins.int]] = None,
-            mount_options: pulumi.Input[Optional[Union['ExternalVolumeMountOptionsArgs', 'ExternalVolumeMountOptionsArgsDict']]] = None,
+            mount_options: pulumi.Input[Optional[Union['ExternalVolumeMountOptionsArgs', 'ExternalVolumeMountOptionsArgsDict', 'outputs.ExternalVolumeMountOptions']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             nodes_expected: pulumi.Input[Optional[_builtins.int]] = None,
@@ -855,8 +855,8 @@ class ExternalVolume(pulumi.CustomResource):
             schedulable: pulumi.Input[Optional[_builtins.bool]] = None,
             secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
-            topologies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ExternalVolumeTopologyArgs', 'ExternalVolumeTopologyArgsDict']]]]] = None,
-            topology_request: pulumi.Input[Optional[Union['ExternalVolumeTopologyRequestArgs', 'ExternalVolumeTopologyRequestArgsDict']]] = None,
+            topologies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ExternalVolumeTopologyArgs', 'ExternalVolumeTopologyArgsDict', 'outputs.ExternalVolumeTopology']]]]] = None,
+            topology_request: pulumi.Input[Optional[Union['ExternalVolumeTopologyRequestArgs', 'ExternalVolumeTopologyRequestArgsDict', 'outputs.ExternalVolumeTopologyRequest']]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             volume_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ExternalVolume':
         """
@@ -866,18 +866,18 @@ class ExternalVolume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ExternalVolumeCapabilityArgs', 'ExternalVolumeCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ExternalVolumeCapabilityArgs', 'ExternalVolumeCapabilityArgsDict', 'outputs.ExternalVolumeCapability']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[_builtins.str] capacity_max: `(string: <optional>)` - Option to signal a maximum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[_builtins.str] capacity_min: `(string: <optional>)` - Option to signal a minimum volume size. This may not be supported by all storage providers.
         :param pulumi.Input[_builtins.str] clone_id: `(string: <optional>)` - The external ID of an existing volume to restore. If ommited, the volume will be created from scratch. Conflicts with `snapshot_id`.
-        :param pulumi.Input[Union['ExternalVolumeMountOptionsArgs', 'ExternalVolumeMountOptionsArgsDict']] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[Union['ExternalVolumeMountOptionsArgs', 'ExternalVolumeMountOptionsArgsDict', 'outputs.ExternalVolumeMountOptions']] mount_options: `(block: optional)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[_builtins.str] namespace: `(string: "default")` - The namespace in which to register the volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] parameters: `(map[string]string: optional)` An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secrets: `(map[string]string: optional)` An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
         :param pulumi.Input[_builtins.str] snapshot_id: `(string: <optional>)` - The external ID of a snapshot to restore. If ommited, the volume will be created from scratch. Conflicts with `clone_id`.
-        :param pulumi.Input[Union['ExternalVolumeTopologyRequestArgs', 'ExternalVolumeTopologyRequestArgsDict']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[Union['ExternalVolumeTopologyRequestArgs', 'ExternalVolumeTopologyRequestArgsDict', 'outputs.ExternalVolumeTopologyRequest']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[_builtins.str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         :param pulumi.Input[_builtins.str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """

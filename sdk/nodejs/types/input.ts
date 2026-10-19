@@ -41,7 +41,7 @@ export interface AclAuthMethodConfig {
      */
     expirationLeeway?: pulumi.Input<string | undefined>;
     /**
-     * `(string: <optional>)` - PEM encoded CA cert for use by the 
+     * `(string: <optional>)` - PEM encoded CA cert for use by the
      * TLS client used to talk with the JWKS server.
      */
     jwksCaCert?: pulumi.Input<string | undefined>;
@@ -51,7 +51,7 @@ export interface AclAuthMethodConfig {
      */
     jwksUrl?: pulumi.Input<string | undefined>;
     /**
-     * `([]string: <optional>)` - List of PEM-encoded 
+     * `([]string: <optional>)` - List of PEM-encoded
      * public keys to use to authenticate signatures locally.
      */
     jwtValidationPubKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -806,8 +806,8 @@ export interface QuoteSpecificationLimit {
     /**
      * `(string: <required>)` - The region these limits should apply to.
      * - `regionLimit` `(block: <required>)` - The limits to enforce. This block
-     * may only be specified once in the `limits` block. Its structure is
-     * documented below.
+     *   may only be specified once in the `limits` block. Its structure is
+     *   documented below.
      */
     region: pulumi.Input<string>;
     /**
@@ -834,11 +834,11 @@ export interface QuoteSpecificationLimitRegionLimit {
      * limit allocations to. A value of zero is treated as unlimited, and a negative
      * value is treated as fully disallowed.
      * - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
-     * repeated. See below for the structure of this block.
+     *   repeated. See below for the structure of this block.
      * - `nodePools` `(block: optional)` - Per-node-pool quota limits. Can be
-     * repeated. See below for the structure of this block.
+     *   repeated. See below for the structure of this block.
      * - `storage` `(block: optional)` - Storage resource quota configuration. May only
-     * be specified once. See below for the structure of this block.
+     *   be specified once. See below for the structure of this block.
      */
     memoryMaxMb?: pulumi.Input<number | undefined>;
     /**
@@ -881,9 +881,9 @@ export interface QuoteSpecificationLimitRegionLimitNodePool {
      * limit allocations to. A value of zero is treated as unlimited, and a negative
      * value is treated as fully disallowed.
      * - `devices` `(block: optional)` - A list of device quotas to
-     * enforce for the node pool. Can be repeated.
+     *   enforce for the node pool. Can be repeated.
      * - `storage` `(block: optional)` - Storage resource quota
-     * configuration for the node pool. May only be specified once.
+     *   configuration for the node pool. May only be specified once.
      */
     memoryMaxMb?: pulumi.Input<number | undefined>;
     /**

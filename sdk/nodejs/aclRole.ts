@@ -19,9 +19,9 @@ import * as utilities from "./utilities";
  *
  * const myNomadAclPolicy = new nomad.AclPolicy("my_nomad_acl_policy", {
  *     name: "my-nomad-acl-policy",
- *     rulesHcl: `namespace \"default\" {
- *   policy       = \"read\"
- *   capabilities = [\"submit-job\"]
+ *     rulesHcl: `namespace \\"default\\" {
+ *   policy       = \\"read\\"
+ *   capabilities = [\\"submit-job\\"]
  * }
  * `,
  * });

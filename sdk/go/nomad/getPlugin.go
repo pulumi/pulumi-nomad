@@ -97,12 +97,8 @@ type GetPluginResult struct {
 }
 
 func GetPluginOutput(ctx *pulumi.Context, args GetPluginOutputArgs, opts ...pulumi.InvokeOption) GetPluginResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPluginResultOutput, error) {
-			args := v.(GetPluginArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("nomad:index/getPlugin:getPlugin", args, GetPluginResultOutput{}, options).(GetPluginResultOutput), nil
-		}).(GetPluginResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getPlugin:getPlugin", args, GetPluginResultOutput{}, options).(GetPluginResultOutput)
 }
 
 // A collection of arguments for invoking getPlugin.

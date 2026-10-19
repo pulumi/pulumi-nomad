@@ -64,12 +64,8 @@ type GetAclPoliciesResult struct {
 }
 
 func GetAclPoliciesOutput(ctx *pulumi.Context, args GetAclPoliciesOutputArgs, opts ...pulumi.InvokeOption) GetAclPoliciesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAclPoliciesResultOutput, error) {
-			args := v.(GetAclPoliciesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("nomad:index/getAclPolicies:getAclPolicies", args, GetAclPoliciesResultOutput{}, options).(GetAclPoliciesResultOutput), nil
-		}).(GetAclPoliciesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getAclPolicies:getAclPolicies", args, GetAclPoliciesResultOutput{}, options).(GetAclPoliciesResultOutput)
 }
 
 // A collection of arguments for invoking getAclPolicies.

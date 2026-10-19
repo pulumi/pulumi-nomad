@@ -41,7 +41,7 @@ import * as utilities from "./utilities";
  *         attachmentMode: "file-system",
  *     }],
  *     constraints: [{
- *         attribute: `${attr.kernel.name}`,
+ *         attribute: "${attr.kernel.name}",
  *         value: "linux",
  *     }],
  *     parameters: {
@@ -163,7 +163,6 @@ export class DynamicHostVolume extends pulumi.CustomResource {
     /**
      * `(string: <required>)` - The ID of the [dynamic host volume
      * plugin][dhvPlugin] that manages this volume.
-     *
      *
      * [tfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
      * [`constraint`]: /nomad/docs/job-specification/constraint
@@ -328,7 +327,6 @@ export interface DynamicHostVolumeState {
      * `(string: <required>)` - The ID of the [dynamic host volume
      * plugin][dhvPlugin] that manages this volume.
      *
-     *
      * [tfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
      * [`constraint`]: /nomad/docs/job-specification/constraint
      * [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
@@ -422,7 +420,6 @@ export interface DynamicHostVolumeArgs {
     /**
      * `(string: <required>)` - The ID of the [dynamic host volume
      * plugin][dhvPlugin] that manages this volume.
-     *
      *
      * [tfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
      * [`constraint`]: /nomad/docs/job-specification/constraint

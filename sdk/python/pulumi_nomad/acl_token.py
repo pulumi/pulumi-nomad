@@ -357,7 +357,7 @@ class AclToken(pulumi.CustomResource):
                  global_: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict', 'outputs.AclTokenRole']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -442,7 +442,7 @@ class AclToken(pulumi.CustomResource):
                token. Must be set on `client`-type tokens, must not be set on
                `management`-type tokens. Policies do not need to exist before being
                used here.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]] roles: `(set: [])` - The list of roles attached to the token. Each entry has
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict', 'outputs.AclTokenRole']]]] roles: `(set: [])` - The list of roles attached to the token. Each entry has
                `name` and `id` attributes. It may be used multiple times.
         :param pulumi.Input[_builtins.str] type: `(string: <required>)` - The type of token this is. Use `client`
                for tokens that will have policies associated with them. Use `management`
@@ -541,7 +541,7 @@ class AclToken(pulumi.CustomResource):
                  global_: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict', 'outputs.AclTokenRole']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -583,7 +583,7 @@ class AclToken(pulumi.CustomResource):
             global_: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict', 'outputs.AclTokenRole']]]]] = None,
             secret_id: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'AclToken':
         """
@@ -610,7 +610,7 @@ class AclToken(pulumi.CustomResource):
                token. Must be set on `client`-type tokens, must not be set on
                `management`-type tokens. Policies do not need to exist before being
                used here.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict']]]] roles: `(set: [])` - The list of roles attached to the token. Each entry has
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict', 'outputs.AclTokenRole']]]] roles: `(set: [])` - The list of roles attached to the token. Each entry has
                `name` and `id` attributes. It may be used multiple times.
         :param pulumi.Input[_builtins.str] secret_id: `(string)` - The token value itself, which is presented for
                access to the cluster. This attribute is deprecated and will be removed in a

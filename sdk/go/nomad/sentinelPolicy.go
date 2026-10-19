@@ -35,7 +35,7 @@ import (
 //			_, err := nomad.NewSentinelPolicy(ctx, "exec-only", &nomad.SentinelPolicyArgs{
 //				Name:        pulumi.String("exec-only"),
 //				Description: pulumi.String("Only allow jobs that are based on an exec driver."),
-//				Policy: pulumi.Sprintf(`main = rule { all_drivers_exec }
+//				Policy: pulumi.String(`main = rule { all_drivers_exec }
 //
 // # all_drivers_exec checks that all the drivers in use are exec
 //

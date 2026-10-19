@@ -19,15 +19,16 @@ namespace Pulumi.Nomad
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
+        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var namespaces = Nomad.GetNamespaces.Invoke();
+        ///     var namespaces = await Nomad.GetNamespaces.InvokeAsync();
         /// 
         ///     var @namespace = new List&lt;Nomad.AclPolicy&gt;();
-        ///     namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length().Apply(rangeBody =&gt;
+        ///     namespaces.Namespaces.Length.Apply(rangeBody =&gt;
         ///     {
         ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
@@ -58,15 +59,16 @@ namespace Pulumi.Nomad
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
+        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var namespaces = Nomad.GetNamespaces.Invoke();
+        ///     var namespaces = await Nomad.GetNamespaces.InvokeAsync();
         /// 
         ///     var @namespace = new List&lt;Nomad.AclPolicy&gt;();
-        ///     namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length().Apply(rangeBody =&gt;
+        ///     namespaces.Namespaces.Length.Apply(rangeBody =&gt;
         ///     {
         ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
@@ -97,15 +99,16 @@ namespace Pulumi.Nomad
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
+        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Nomad = Pulumi.Nomad;
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var namespaces = Nomad.GetNamespaces.Invoke();
+        ///     var namespaces = await Nomad.GetNamespaces.InvokeAsync();
         /// 
         ///     var @namespace = new List&lt;Nomad.AclPolicy&gt;();
-        ///     namespaces.Apply(getNamespacesResult =&gt; getNamespacesResult.Namespaces).Length().Apply(rangeBody =&gt;
+        ///     namespaces.Namespaces.Length.Apply(rangeBody =&gt;
         ///     {
         ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {

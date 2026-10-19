@@ -665,17 +665,17 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  attachment_mode: pulumi.Input[Optional[_builtins.str]] = None,
-                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict']]]]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict', 'outputs.VolumeCapability']]]]] = None,
                  context: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
                  external_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 mount_options: pulumi.Input[Optional[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict']]] = None,
+                 mount_options: pulumi.Input[Optional[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict', 'outputs.VolumeMountOptions']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
                  secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 topology_request: pulumi.Input[Optional[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict']]] = None,
+                 topology_request: pulumi.Input[Optional[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict', 'outputs.VolumeTopologyRequest']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -745,17 +745,17 @@ class Volume(pulumi.CustomResource):
                - `multi-node-single-writer`
                - `multi-node-multi-writer`
         :param pulumi.Input[_builtins.str] attachment_mode: `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict', 'outputs.VolumeCapability']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         :param pulumi.Input[_builtins.bool] deregister_on_destroy: `(boolean: true)` - If true, the volume will be deregistered on destroy.
         :param pulumi.Input[_builtins.str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
-        :param pulumi.Input[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict', 'outputs.VolumeMountOptions']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[_builtins.str] namespace: `(string: "default")` - The namespace in which to register the volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] parameters: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secrets: `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-        :param pulumi.Input[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict', 'outputs.VolumeTopologyRequest']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[_builtins.str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         :param pulumi.Input[_builtins.str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """
@@ -839,17 +839,17 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  attachment_mode: pulumi.Input[Optional[_builtins.str]] = None,
-                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict']]]]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict', 'outputs.VolumeCapability']]]]] = None,
                  context: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
                  external_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 mount_options: pulumi.Input[Optional[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict']]] = None,
+                 mount_options: pulumi.Input[Optional[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict', 'outputs.VolumeMountOptions']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
                  secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 topology_request: pulumi.Input[Optional[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict']]] = None,
+                 topology_request: pulumi.Input[Optional[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict', 'outputs.VolumeTopologyRequest']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -905,14 +905,14 @@ class Volume(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_mode: pulumi.Input[Optional[_builtins.str]] = None,
             attachment_mode: pulumi.Input[Optional[_builtins.str]] = None,
-            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict']]]]] = None,
+            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict', 'outputs.VolumeCapability']]]]] = None,
             context: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             controller_required: pulumi.Input[Optional[_builtins.bool]] = None,
             controllers_expected: pulumi.Input[Optional[_builtins.int]] = None,
             controllers_healthy: pulumi.Input[Optional[_builtins.int]] = None,
             deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
             external_id: pulumi.Input[Optional[_builtins.str]] = None,
-            mount_options: pulumi.Input[Optional[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict']]] = None,
+            mount_options: pulumi.Input[Optional[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict', 'outputs.VolumeMountOptions']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             nodes_expected: pulumi.Input[Optional[_builtins.int]] = None,
@@ -923,8 +923,8 @@ class Volume(pulumi.CustomResource):
             plugin_provider_version: pulumi.Input[Optional[_builtins.str]] = None,
             schedulable: pulumi.Input[Optional[_builtins.bool]] = None,
             secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            topologies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeTopologyArgs', 'VolumeTopologyArgsDict']]]]] = None,
-            topology_request: pulumi.Input[Optional[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict']]] = None,
+            topologies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeTopologyArgs', 'VolumeTopologyArgsDict', 'outputs.VolumeTopology']]]]] = None,
+            topology_request: pulumi.Input[Optional[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict', 'outputs.VolumeTopologyRequest']]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             volume_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Volume':
         """
@@ -941,17 +941,17 @@ class Volume(pulumi.CustomResource):
                - `multi-node-single-writer`
                - `multi-node-multi-writer`
         :param pulumi.Input[_builtins.str] attachment_mode: `(string: <otional>)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict', 'outputs.VolumeCapability']]]] capabilities: `(``Capability``: <required>)` - Options for validating the capability of a volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] context: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to validate the volume.
         :param pulumi.Input[_builtins.bool] deregister_on_destroy: `(boolean: true)` - If true, the volume will be deregistered on destroy.
         :param pulumi.Input[_builtins.str] external_id: `(string: <required>)` - The ID of the physical volume from the storage provider.
-        :param pulumi.Input[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
+        :param pulumi.Input[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict', 'outputs.VolumeMountOptions']] mount_options: `(block: <optional>)` Options for mounting `block-device` volumes without a pre-formatted file system.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` - The display name for the volume.
         :param pulumi.Input[_builtins.str] namespace: `(string: "default")` - The namespace in which to register the volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] parameters: `(map[string]string: <optional>)` - An optional key-value map of strings passed directly to the CSI plugin to configure the volume.
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the Nomad plugin for registering this volume.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] secrets: `(map[string]string: <optional>)` - An optional key-value map of strings used as credentials for publishing and unpublishing volumes.
-        :param pulumi.Input[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
+        :param pulumi.Input[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict', 'outputs.VolumeTopologyRequest']] topology_request: `(``TopologyRequest``: <optional>)` - Specify locations (region, zone, rack, etc.) where the provisioned volume is accessible from.
         :param pulumi.Input[_builtins.str] type: `(string: <required>)` - The type of the volume. Currently, only `csi` is supported.
         :param pulumi.Input[_builtins.str] volume_id: `(string: <required>)` - The unique ID of the volume.
         """

@@ -39,7 +39,6 @@ class DynamicHostVolumeArgs:
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the [dynamic host volume
                plugin][dhv_plugin] that manages this volume.
                
-               
                [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
                [`constraint`]: /nomad/docs/job-specification/constraint
                [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
@@ -128,7 +127,6 @@ class DynamicHostVolumeArgs:
         """
         `(string: <required>)` - The ID of the [dynamic host volume
         plugin][dhv_plugin] that manages this volume.
-
 
         [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
         [`constraint`]: /nomad/docs/job-specification/constraint
@@ -339,7 +337,6 @@ class _DynamicHostVolumeState:
                parameters are specific to the plugin.
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the [dynamic host volume
                plugin][dhv_plugin] that manages this volume.
-               
                
                [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
                [`constraint`]: /nomad/docs/job-specification/constraint
@@ -584,7 +581,6 @@ class _DynamicHostVolumeState:
         `(string: <required>)` - The ID of the [dynamic host volume
         plugin][dhv_plugin] that manages this volume.
 
-
         [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
         [`constraint`]: /nomad/docs/job-specification/constraint
         [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
@@ -624,10 +620,10 @@ class DynamicHostVolume(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict', 'outputs.DynamicHostVolumeCapability']]]]] = None,
                  capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
                  capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
-                 constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict']]]]] = None,
+                 constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict', 'outputs.DynamicHostVolumeConstraint']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  node_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -687,7 +683,7 @@ class DynamicHostVolume(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict', 'outputs.DynamicHostVolumeCapability']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
                volume. Each capability block has the following attributes:
         :param pulumi.Input[_builtins.str] capacity_max: `(string: <optional>)` - Option for requesting a maximum
                capacity, in bytes. The capacity of a volume may be the physical size of a
@@ -705,7 +701,7 @@ class DynamicHostVolume(pulumi.CustomResource):
                `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
                suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
                may ignore this field.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict']]]] constraints: `(block: <optional>)` - A restriction on the eligible nodes where
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict', 'outputs.DynamicHostVolumeConstraint']]]] constraints: `(block: <optional>)` - A restriction on the eligible nodes where
                a volume can be created, similar to the [`constraint`][] block on a Nomad job
                specification.. You can provide multiple `constraint` blocks to add more
                constraints. Each constraint block has the following attributes.
@@ -727,7 +723,6 @@ class DynamicHostVolume(pulumi.CustomResource):
                parameters are specific to the plugin.
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the [dynamic host volume
                plugin][dhv_plugin] that manages this volume.
-               
                
                [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
                [`constraint`]: /nomad/docs/job-specification/constraint
@@ -814,10 +809,10 @@ class DynamicHostVolume(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]]] = None,
+                 capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict', 'outputs.DynamicHostVolumeCapability']]]]] = None,
                  capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
                  capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
-                 constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict']]]]] = None,
+                 constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict', 'outputs.DynamicHostVolumeConstraint']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  node_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -863,14 +858,14 @@ class DynamicHostVolume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]]] = None,
+            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict', 'outputs.DynamicHostVolumeCapability']]]]] = None,
             capacity: pulumi.Input[Optional[_builtins.str]] = None,
             capacity_bytes: pulumi.Input[Optional[_builtins.int]] = None,
             capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
             capacity_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
             capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
             capacity_min_bytes: pulumi.Input[Optional[_builtins.int]] = None,
-            constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict']]]]] = None,
+            constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict', 'outputs.DynamicHostVolumeConstraint']]]]] = None,
             host_path: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -886,7 +881,7 @@ class DynamicHostVolume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict', 'outputs.DynamicHostVolumeCapability']]]] capabilities: `(block: <optional>)` - Option for validating the capability of a
                volume. Each capability block has the following attributes:
         :param pulumi.Input[_builtins.str] capacity: Provisioned capacity
         :param pulumi.Input[_builtins.str] capacity_max: `(string: <optional>)` - Option for requesting a maximum
@@ -905,7 +900,7 @@ class DynamicHostVolume(pulumi.CustomResource):
                `capacity_min` and `capacity_max` to the same value. Accepts human-friendly
                suffixes such as `"100GiB"`. Plugins that cannot restrict the size of volumes
                may ignore this field.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict']]]] constraints: `(block: <optional>)` - A restriction on the eligible nodes where
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict', 'outputs.DynamicHostVolumeConstraint']]]] constraints: `(block: <optional>)` - A restriction on the eligible nodes where
                a volume can be created, similar to the [`constraint`][] block on a Nomad job
                specification.. You can provide multiple `constraint` blocks to add more
                constraints. Each constraint block has the following attributes.
@@ -928,7 +923,6 @@ class DynamicHostVolume(pulumi.CustomResource):
                parameters are specific to the plugin.
         :param pulumi.Input[_builtins.str] plugin_id: `(string: <required>)` - The ID of the [dynamic host volume
                plugin][dhv_plugin] that manages this volume.
-               
                
                [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
                [`constraint`]: /nomad/docs/job-specification/constraint
@@ -1105,7 +1099,6 @@ class DynamicHostVolume(pulumi.CustomResource):
         """
         `(string: <required>)` - The ID of the [dynamic host volume
         plugin][dhv_plugin] that manages this volume.
-
 
         [tf_docs_prevent_destroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
         [`constraint`]: /nomad/docs/job-specification/constraint

@@ -54,6 +54,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.nomad.inputs.CsiVolumeMountOptionsArgs;
  * import com.pulumi.nomad.inputs.CsiVolumeTopologyRequestArgs;
  * import com.pulumi.nomad.inputs.CsiVolumeTopologyRequestRequiredArgs;
+ * import com.pulumi.nomad.inputs.CsiVolumeTopologyRequestRequiredTopologyArgs;
  * import com.pulumi.resources.CustomResourceOptions;
  * import java.util.ArrayList;
  * import java.util.Arrays;

@@ -72,12 +72,8 @@ type LookupNodePoolResult struct {
 }
 
 func LookupNodePoolOutput(ctx *pulumi.Context, args LookupNodePoolOutputArgs, opts ...pulumi.InvokeOption) LookupNodePoolResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNodePoolResultOutput, error) {
-			args := v.(LookupNodePoolArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("nomad:index/getNodePool:getNodePool", args, LookupNodePoolResultOutput{}, options).(LookupNodePoolResultOutput), nil
-		}).(LookupNodePoolResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("nomad:index/getNodePool:getNodePool", args, LookupNodePoolResultOutput{}, options).(LookupNodePoolResultOutput)
 }
 
 // A collection of arguments for invoking getNodePool.

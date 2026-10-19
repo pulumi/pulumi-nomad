@@ -176,7 +176,7 @@ class AclAuthMethodConfigArgsDict(TypedDict):
     """
     jwks_ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    `(string: <optional>)` - PEM encoded CA cert for use by the 
+    `(string: <optional>)` - PEM encoded CA cert for use by the
     TLS client used to talk with the JWKS server.
     """
     jwks_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
@@ -186,7 +186,7 @@ class AclAuthMethodConfigArgsDict(TypedDict):
     """
     jwt_validation_pub_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
-    `([]string: <optional>)` - List of PEM-encoded 
+    `([]string: <optional>)` - List of PEM-encoded
     public keys to use to authenticate signatures locally.
     """
     list_claim_mappings: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
@@ -198,7 +198,7 @@ class AclAuthMethodConfigArgsDict(TypedDict):
     `(string: <optional>)` - Duration of leeway when validating
     not before values of a token in the form of a time duration such as "5m" or "1h".
     """
-    oidc_client_assertion: NotRequired[pulumi.Input[Optional['AclAuthMethodConfigOidcClientAssertionArgs']]]
+    oidc_client_assertion: NotRequired[pulumi.Input[Optional['AclAuthMethodConfigOidcClientAssertionArgsDict']]]
     """
     `(OIDCClientAssertion: <optional>)` - Optionally
     send a signed JWT ("[private key jwt][]") as a client assertion to the OIDC
@@ -285,11 +285,11 @@ class AclAuthMethodConfigArgs:
                by the TLS client used to talk with the OIDC Discovery URL.
         :param pulumi.Input[_builtins.str] expiration_leeway: `(string: <optional>)` - Duration of leeway when validating
                expiration of a JWT in the form of a time duration such as "5m" or "1h".
-        :param pulumi.Input[_builtins.str] jwks_ca_cert: `(string: <optional>)` - PEM encoded CA cert for use by the 
+        :param pulumi.Input[_builtins.str] jwks_ca_cert: `(string: <optional>)` - PEM encoded CA cert for use by the
                TLS client used to talk with the JWKS server.
         :param pulumi.Input[_builtins.str] jwks_url: `(string: <optional>)` - JSON Web Key Sets url for authenticating
                signatures.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] jwt_validation_pub_keys: `([]string: <optional>)` - List of PEM-encoded 
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] jwt_validation_pub_keys: `([]string: <optional>)` - List of PEM-encoded
                public keys to use to authenticate signatures locally.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] list_claim_mappings: Mappings of list claims (key) that will be copied to a metadata field (value).
         :param pulumi.Input[_builtins.str] not_before_leeway: `(string: <optional>)` - Duration of leeway when validating
@@ -453,7 +453,7 @@ class AclAuthMethodConfigArgs:
     @pulumi.getter(name="jwksCaCert")
     def jwks_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        `(string: <optional>)` - PEM encoded CA cert for use by the 
+        `(string: <optional>)` - PEM encoded CA cert for use by the
         TLS client used to talk with the JWKS server.
         """
         return pulumi.get(self, "jwks_ca_cert")
@@ -479,7 +479,7 @@ class AclAuthMethodConfigArgs:
     @pulumi.getter(name="jwtValidationPubKeys")
     def jwt_validation_pub_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        `([]string: <optional>)` - List of PEM-encoded 
+        `([]string: <optional>)` - List of PEM-encoded
         public keys to use to authenticate signatures locally.
         """
         return pulumi.get(self, "jwt_validation_pub_keys")
@@ -663,7 +663,7 @@ class AclAuthMethodConfigOidcClientAssertionArgsDict(TypedDict):
     - "private_key": "RS256"; must be RS256, RS384, or RS512
     - "client_secret": "HS256"; must be HS256, HS384, or HS512
     """
-    private_key: NotRequired[pulumi.Input[Optional['AclAuthMethodConfigOidcClientAssertionPrivateKeyArgs']]]
+    private_key: NotRequired[pulumi.Input[Optional['AclAuthMethodConfigOidcClientAssertionPrivateKeyArgsDict']]]
     """
     `(OIDCClientAssertionKey: <optional>)` - External key
     to sign the JWT. `key_source` must be "private_key" to enable this.
@@ -1402,7 +1402,7 @@ class CsiVolumeRegistrationTopologyArgs:
 
 
 class CsiVolumeRegistrationTopologyRequestArgsDict(TypedDict):
-    required: NotRequired[pulumi.Input[Optional['CsiVolumeRegistrationTopologyRequestRequiredArgs']]]
+    required: NotRequired[pulumi.Input[Optional['CsiVolumeRegistrationTopologyRequestRequiredArgsDict']]]
     """
     `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
     """
@@ -1525,11 +1525,11 @@ class CsiVolumeTopologyArgs:
 
 
 class CsiVolumeTopologyRequestArgsDict(TypedDict):
-    preferred: NotRequired[pulumi.Input[Optional['CsiVolumeTopologyRequestPreferredArgs']]]
+    preferred: NotRequired[pulumi.Input[Optional['CsiVolumeTopologyRequestPreferredArgsDict']]]
     """
     `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
     """
-    required: NotRequired[pulumi.Input[Optional['CsiVolumeTopologyRequestRequiredArgs']]]
+    required: NotRequired[pulumi.Input[Optional['CsiVolumeTopologyRequestRequiredArgsDict']]]
     """
     `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
     """
@@ -2083,11 +2083,11 @@ class ExternalVolumeTopologyArgs:
 
 
 class ExternalVolumeTopologyRequestArgsDict(TypedDict):
-    preferred: NotRequired[pulumi.Input[Optional['ExternalVolumeTopologyRequestPreferredArgs']]]
+    preferred: NotRequired[pulumi.Input[Optional['ExternalVolumeTopologyRequestPreferredArgsDict']]]
     """
     `(``Topology``: <optional>)` - Preferred topologies indicate that the volume should be created in a location accessible from some of the listed topologies.
     """
-    required: NotRequired[pulumi.Input[Optional['ExternalVolumeTopologyRequestRequiredArgs']]]
+    required: NotRequired[pulumi.Input[Optional['ExternalVolumeTopologyRequestRequiredArgsDict']]]
     """
     `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
     """
@@ -2486,15 +2486,15 @@ class JobTaskGroupArgsDict(TypedDict):
     """
     `(string)` - Volume name.
     """
-    tasks: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['JobTaskGroupTaskArgs']]]]]
+    tasks: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['JobTaskGroupTaskArgsDict']]]]]
     """
     `(list of maps)` - Tasks in the task group.
     """
-    update_strategies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['JobTaskGroupUpdateStrategyArgs']]]]]
+    update_strategies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['JobTaskGroupUpdateStrategyArgsDict']]]]]
     """
     `(list of maps)` - Effective update strategy for the task group.
     """
-    volumes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['JobTaskGroupVolumeArgs']]]]]
+    volumes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['JobTaskGroupVolumeArgsDict']]]]]
     """
     `(list of maps)` - Volume requests for the task group.
     """
@@ -2615,7 +2615,7 @@ class JobTaskGroupTaskArgsDict(TypedDict):
     """
     `(string)` - Volume name.
     """
-    volume_mounts: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['JobTaskGroupTaskVolumeMountArgs']]]]]
+    volume_mounts: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['JobTaskGroupTaskVolumeMountArgsDict']]]]]
     """
     `(list of maps)` - Task volume mounts.
     """
@@ -3618,8 +3618,8 @@ class QuoteSpecificationLimitArgsDict(TypedDict):
     """
     `(string: <required>)` - The region these limits should apply to.
     - `region_limit` `(block: <required>)` - The limits to enforce. This block
-    may only be specified once in the `limits` block. Its structure is
-    documented below.
+      may only be specified once in the `limits` block. Its structure is
+      documented below.
     """
     region_limit: pulumi.Input['QuoteSpecificationLimitRegionLimitArgsDict']
     """
@@ -3634,8 +3634,8 @@ class QuoteSpecificationLimitArgs:
         """
         :param pulumi.Input[_builtins.str] region: `(string: <required>)` - The region these limits should apply to.
                - `region_limit` `(block: <required>)` - The limits to enforce. This block
-               may only be specified once in the `limits` block. Its structure is
-               documented below.
+                 may only be specified once in the `limits` block. Its structure is
+                 documented below.
         :param pulumi.Input['QuoteSpecificationLimitRegionLimitArgs'] region_limit: The limit applied to this region.
         """
         pulumi.set(__self__, "region", region)
@@ -3647,8 +3647,8 @@ class QuoteSpecificationLimitArgs:
         """
         `(string: <required>)` - The region these limits should apply to.
         - `region_limit` `(block: <required>)` - The limits to enforce. This block
-        may only be specified once in the `limits` block. Its structure is
-        documented below.
+          may only be specified once in the `limits` block. Its structure is
+          documented below.
         """
         return pulumi.get(self, "region")
 
@@ -3681,18 +3681,18 @@ class QuoteSpecificationLimitRegionLimitArgsDict(TypedDict):
     `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
     is treated as unlimited, and a negative value is treated as fully disallowed.
     """
-    devices: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitDeviceArgs']]]]]
+    devices: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitDeviceArgsDict']]]]]
     memory_max_mb: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     `(int: 0)` - The maximum amount of memory (in megabytes) to
     limit allocations to. A value of zero is treated as unlimited, and a negative
     value is treated as fully disallowed.
     - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
-    repeated. See below for the structure of this block.
+      repeated. See below for the structure of this block.
     - `node_pools` `(block: optional)` - Per-node-pool quota limits. Can be
-    repeated. See below for the structure of this block.
+      repeated. See below for the structure of this block.
     - `storage` `(block: optional)` - Storage resource quota configuration. May only
-    be specified once. See below for the structure of this block.
+      be specified once. See below for the structure of this block.
     """
     memory_mb: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
@@ -3700,8 +3700,8 @@ class QuoteSpecificationLimitRegionLimitArgsDict(TypedDict):
     allocations to. A value of zero is treated as unlimited, and a negative value
     is treated as fully disallowed.
     """
-    node_pools: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolArgs']]]]]
-    storage: NotRequired[pulumi.Input[Optional['QuoteSpecificationLimitRegionLimitStorageArgs']]]
+    node_pools: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolArgsDict']]]]]
+    storage: NotRequired[pulumi.Input[Optional['QuoteSpecificationLimitRegionLimitStorageArgsDict']]]
 
 @pulumi.input_type
 class QuoteSpecificationLimitRegionLimitArgs:
@@ -3723,11 +3723,11 @@ class QuoteSpecificationLimitRegionLimitArgs:
                limit allocations to. A value of zero is treated as unlimited, and a negative
                value is treated as fully disallowed.
                - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
-               repeated. See below for the structure of this block.
+                 repeated. See below for the structure of this block.
                - `node_pools` `(block: optional)` - Per-node-pool quota limits. Can be
-               repeated. See below for the structure of this block.
+                 repeated. See below for the structure of this block.
                - `storage` `(block: optional)` - Storage resource quota configuration. May only
-               be specified once. See below for the structure of this block.
+                 be specified once. See below for the structure of this block.
         :param pulumi.Input[_builtins.int] memory_mb: `(int: 0)` - The amount of memory (in megabytes) to limit
                allocations to. A value of zero is treated as unlimited, and a negative value
                is treated as fully disallowed.
@@ -3791,11 +3791,11 @@ class QuoteSpecificationLimitRegionLimitArgs:
         limit allocations to. A value of zero is treated as unlimited, and a negative
         value is treated as fully disallowed.
         - `devices` `(block: optional)` - A list of device quotas to enforce. Can be
-        repeated. See below for the structure of this block.
+          repeated. See below for the structure of this block.
         - `node_pools` `(block: optional)` - Per-node-pool quota limits. Can be
-        repeated. See below for the structure of this block.
+          repeated. See below for the structure of this block.
         - `storage` `(block: optional)` - Storage resource quota configuration. May only
-        be specified once. See below for the structure of this block.
+          be specified once. See below for the structure of this block.
         """
         return pulumi.get(self, "memory_max_mb")
 
@@ -3903,16 +3903,16 @@ class QuoteSpecificationLimitRegionLimitNodePoolArgsDict(TypedDict):
     `(int: 0)` - The amount of CPU to limit allocations to. A value of zero
     is treated as unlimited, and a negative value is treated as fully disallowed.
     """
-    devices: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolDeviceArgs']]]]]
+    devices: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['QuoteSpecificationLimitRegionLimitNodePoolDeviceArgsDict']]]]]
     memory_max_mb: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     `(int: 0)` - The maximum amount of memory (in megabytes) to
     limit allocations to. A value of zero is treated as unlimited, and a negative
     value is treated as fully disallowed.
     - `devices` `(block: optional)` - A list of device quotas to
-    enforce for the node pool. Can be repeated.
+      enforce for the node pool. Can be repeated.
     - `storage` `(block: optional)` - Storage resource quota
-    configuration for the node pool. May only be specified once.
+      configuration for the node pool. May only be specified once.
     """
     memory_mb: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
@@ -3920,7 +3920,7 @@ class QuoteSpecificationLimitRegionLimitNodePoolArgsDict(TypedDict):
     allocations to. A value of zero is treated as unlimited, and a negative value
     is treated as fully disallowed.
     """
-    storage: NotRequired[pulumi.Input[Optional['QuoteSpecificationLimitRegionLimitNodePoolStorageArgs']]]
+    storage: NotRequired[pulumi.Input[Optional['QuoteSpecificationLimitRegionLimitNodePoolStorageArgsDict']]]
 
 @pulumi.input_type
 class QuoteSpecificationLimitRegionLimitNodePoolArgs:
@@ -3943,9 +3943,9 @@ class QuoteSpecificationLimitRegionLimitNodePoolArgs:
                limit allocations to. A value of zero is treated as unlimited, and a negative
                value is treated as fully disallowed.
                - `devices` `(block: optional)` - A list of device quotas to
-               enforce for the node pool. Can be repeated.
+                 enforce for the node pool. Can be repeated.
                - `storage` `(block: optional)` - Storage resource quota
-               configuration for the node pool. May only be specified once.
+                 configuration for the node pool. May only be specified once.
         :param pulumi.Input[_builtins.int] memory_mb: `(int: 0)` - The amount of memory (in megabytes) to limit
                allocations to. A value of zero is treated as unlimited, and a negative value
                is treated as fully disallowed.
@@ -4020,9 +4020,9 @@ class QuoteSpecificationLimitRegionLimitNodePoolArgs:
         limit allocations to. A value of zero is treated as unlimited, and a negative
         value is treated as fully disallowed.
         - `devices` `(block: optional)` - A list of device quotas to
-        enforce for the node pool. Can be repeated.
+          enforce for the node pool. Can be repeated.
         - `storage` `(block: optional)` - Storage resource quota
-        configuration for the node pool. May only be specified once.
+          configuration for the node pool. May only be specified once.
         """
         return pulumi.get(self, "memory_max_mb")
 
@@ -4371,7 +4371,7 @@ class VolumeTopologyArgs:
 
 
 class VolumeTopologyRequestArgsDict(TypedDict):
-    required: NotRequired[pulumi.Input[Optional['VolumeTopologyRequestRequiredArgs']]]
+    required: NotRequired[pulumi.Input[Optional['VolumeTopologyRequestRequiredArgsDict']]]
     """
     `(``Topology``: <optional>)` - Required topologies indicate that the volume must be created in a location accessible from all the listed topologies.
     """

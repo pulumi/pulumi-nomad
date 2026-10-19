@@ -214,7 +214,7 @@ class NodePool(pulumi.CustomResource):
                  meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_identity_ttl: pulumi.Input[Optional[_builtins.str]] = None,
-                 scheduler_config: pulumi.Input[Optional[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None,
+                 scheduler_config: pulumi.Input[Optional[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict', 'outputs.NodePoolSchedulerConfig']]] = None,
                  __props__=None):
         """
         Provisions a node pool within a Nomad cluster.
@@ -245,7 +245,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: `(string)` - The name of the node pool.
         :param pulumi.Input[_builtins.str] node_identity_ttl: `(string)` - The TTL applied to node identities issued to
                nodes in this pool.
-        :param pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']] scheduler_config: `(block)` - Scheduler configuration for the node pool.
+        :param pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict', 'outputs.NodePoolSchedulerConfig']] scheduler_config: `(block)` - Scheduler configuration for the node pool.
         """
         ...
     @overload
@@ -293,7 +293,7 @@ class NodePool(pulumi.CustomResource):
                  meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_identity_ttl: pulumi.Input[Optional[_builtins.str]] = None,
-                 scheduler_config: pulumi.Input[Optional[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None,
+                 scheduler_config: pulumi.Input[Optional[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict', 'outputs.NodePoolSchedulerConfig']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -322,7 +322,7 @@ class NodePool(pulumi.CustomResource):
             meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             node_identity_ttl: pulumi.Input[Optional[_builtins.str]] = None,
-            scheduler_config: pulumi.Input[Optional[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']]] = None) -> 'NodePool':
+            scheduler_config: pulumi.Input[Optional[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict', 'outputs.NodePoolSchedulerConfig']]] = None) -> 'NodePool':
         """
         Get an existing NodePool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -336,7 +336,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: `(string)` - The name of the node pool.
         :param pulumi.Input[_builtins.str] node_identity_ttl: `(string)` - The TTL applied to node identities issued to
                nodes in this pool.
-        :param pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict']] scheduler_config: `(block)` - Scheduler configuration for the node pool.
+        :param pulumi.Input[Union['NodePoolSchedulerConfigArgs', 'NodePoolSchedulerConfigArgsDict', 'outputs.NodePoolSchedulerConfig']] scheduler_config: `(block)` - Scheduler configuration for the node pool.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
