@@ -125,6 +125,12 @@ func (NodePoolState) ElementType() reflect.Type {
 	return reflect.TypeOf((*nodePoolState)(nil)).Elem()
 }
 
+// NodePoolExists checks whether an existing NodePool resource with the given ID exists.
+func NodePoolExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NodePoolState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/nodePool:NodePool", id, state, "", opts...)
+}
+
 type nodePoolArgs struct {
 	// `(string)` - The description of the node pool.
 	Description *string `pulumi:"description"`

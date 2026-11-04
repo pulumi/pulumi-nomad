@@ -186,7 +186,6 @@ namespace Pulumi.Nomad
         /// `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
         /// plugin][DhvPlugin] that manages this volume.
         /// 
-        /// 
         /// [TfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
         /// [`Constraint`]: /nomad/docs/job-specification/constraint
         /// [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
@@ -361,7 +360,6 @@ namespace Pulumi.Nomad
         /// `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
         /// plugin][DhvPlugin] that manages this volume.
         /// 
-        /// 
         /// [TfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
         /// [`Constraint`]: /nomad/docs/job-specification/constraint
         /// [node attribute]: /nomad/docs/runtime/interpolation#interpreted_node_vars
@@ -512,7 +510,6 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: &lt;required&gt;)` - The ID of the [dynamic host volume
         /// plugin][DhvPlugin] that manages this volume.
-        /// 
         /// 
         /// [TfDocsPreventDestroy]: https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy
         /// [`Constraint`]: /nomad/docs/job-specification/constraint

@@ -114,6 +114,12 @@ func (SchedulerConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*schedulerConfigState)(nil)).Elem()
 }
 
+// SchedulerConfigExists checks whether an existing SchedulerConfig resource with the given ID exists.
+func SchedulerConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SchedulerConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/schedulerConfig:SchedulerConfig", id, state, "", opts...)
+}
+
 type schedulerConfigArgs struct {
 	// `(bool: false)` - When `true`, tasks may exceed their reserved memory limit.
 	MemoryOversubscriptionEnabled *bool `pulumi:"memoryOversubscriptionEnabled"`

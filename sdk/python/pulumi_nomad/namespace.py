@@ -516,6 +516,28 @@ class Namespace(pulumi.CustomResource):
         __props__.__dict__["vault_config"] = vault_config
         return Namespace(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            capabilities: pulumi.Input[Optional[Union['NamespaceCapabilitiesArgs', 'NamespaceCapabilitiesArgsDict', 'outputs.NamespaceCapabilities']]] = None,
+            consul_config: pulumi.Input[Optional[Union['NamespaceConsulConfigArgs', 'NamespaceConsulConfigArgsDict', 'outputs.NamespaceConsulConfig']]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            meta: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_pool_config: pulumi.Input[Optional[Union['NamespaceNodePoolConfigArgs', 'NamespaceNodePoolConfigArgsDict', 'outputs.NamespaceNodePoolConfig']]] = None,
+            quota: pulumi.Input[Optional[_builtins.str]] = None,
+            vault_config: pulumi.Input[Optional[Union['NamespaceVaultConfigArgs', 'NamespaceVaultConfigArgsDict', 'outputs.NamespaceVaultConfig']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["capabilities"] = capabilities
+        __props__["consulConfig"] = consul_config
+        __props__["description"] = description
+        __props__["meta"] = meta
+        __props__["name"] = name
+        __props__["nodePoolConfig"] = node_pool_config
+        __props__["quota"] = quota
+        __props__["vaultConfig"] = vault_config
+        return pulumi.runtime.exists_resource(None, 'nomad:index/namespace:Namespace', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def capabilities(self) -> pulumi.Output[Optional['outputs.NamespaceCapabilities']]:

@@ -268,6 +268,12 @@ func (ExternalVolumeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*externalVolumeState)(nil)).Elem()
 }
 
+// ExternalVolumeExists checks whether an existing ExternalVolume resource with the given ID exists.
+func ExternalVolumeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ExternalVolumeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/externalVolume:ExternalVolume", id, state, "", opts...)
+}
+
 type externalVolumeArgs struct {
 	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities []ExternalVolumeCapability `pulumi:"capabilities"`

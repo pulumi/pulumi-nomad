@@ -153,6 +153,12 @@ func (QuoteSpecificationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*quoteSpecificationState)(nil)).Elem()
 }
 
+// QuoteSpecificationExists checks whether an existing QuoteSpecification resource with the given ID exists.
+func QuoteSpecificationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *QuoteSpecificationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/quoteSpecification:QuoteSpecification", id, state, "", opts...)
+}
+
 type quoteSpecificationArgs struct {
 	// `(string: "")` - A description of the quota specification.
 	// - `limits` `(block: <required>)` - A block of quota limits to enforce. Can

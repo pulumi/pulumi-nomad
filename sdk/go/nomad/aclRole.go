@@ -122,6 +122,12 @@ func (AclRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*aclRoleState)(nil)).Elem()
 }
 
+// AclRoleExists checks whether an existing AclRole resource with the given ID exists.
+func AclRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AclRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/aclRole:AclRole", id, state, "", opts...)
+}
+
 type aclRoleArgs struct {
 	// `(string: "")` - A description of the ACL Role.
 	Description *string `pulumi:"description"`

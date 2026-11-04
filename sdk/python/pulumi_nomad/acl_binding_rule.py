@@ -413,6 +413,22 @@ class AclBindingRule(pulumi.CustomResource):
         __props__.__dict__["selector"] = selector
         return AclBindingRule(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auth_method: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_name: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_type: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            selector: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authMethod"] = auth_method
+        __props__["bindName"] = bind_name
+        __props__["bindType"] = bind_type
+        __props__["description"] = description
+        __props__["selector"] = selector
+        return pulumi.runtime.exists_resource(None, 'nomad:index/aclBindingRule:AclBindingRule', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authMethod")
     def auth_method(self) -> pulumi.Output[_builtins.str]:

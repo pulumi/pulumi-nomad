@@ -985,6 +985,60 @@ class Volume(pulumi.CustomResource):
         __props__.__dict__["volume_id"] = volume_id
         return Volume(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            attachment_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeCapabilityArgs', 'VolumeCapabilityArgsDict', 'outputs.VolumeCapability']]]]] = None,
+            context: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            controller_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            controllers_expected: pulumi.Input[Optional[_builtins.int]] = None,
+            controllers_healthy: pulumi.Input[Optional[_builtins.int]] = None,
+            deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mount_options: pulumi.Input[Optional[Union['VolumeMountOptionsArgs', 'VolumeMountOptionsArgsDict', 'outputs.VolumeMountOptions']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            nodes_expected: pulumi.Input[Optional[_builtins.int]] = None,
+            nodes_healthy: pulumi.Input[Optional[_builtins.int]] = None,
+            parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
+            plugin_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            plugin_provider_version: pulumi.Input[Optional[_builtins.str]] = None,
+            schedulable: pulumi.Input[Optional[_builtins.bool]] = None,
+            secrets: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            topologies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['VolumeTopologyArgs', 'VolumeTopologyArgsDict', 'outputs.VolumeTopology']]]]] = None,
+            topology_request: pulumi.Input[Optional[Union['VolumeTopologyRequestArgs', 'VolumeTopologyRequestArgsDict', 'outputs.VolumeTopologyRequest']]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            volume_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessMode"] = access_mode
+        __props__["attachmentMode"] = attachment_mode
+        __props__["capabilities"] = capabilities
+        __props__["context"] = context
+        __props__["controllerRequired"] = controller_required
+        __props__["controllersExpected"] = controllers_expected
+        __props__["controllersHealthy"] = controllers_healthy
+        __props__["deregisterOnDestroy"] = deregister_on_destroy
+        __props__["externalId"] = external_id
+        __props__["mountOptions"] = mount_options
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["nodesExpected"] = nodes_expected
+        __props__["nodesHealthy"] = nodes_healthy
+        __props__["parameters"] = parameters
+        __props__["pluginId"] = plugin_id
+        __props__["pluginProvider"] = plugin_provider
+        __props__["pluginProviderVersion"] = plugin_provider_version
+        __props__["schedulable"] = schedulable
+        __props__["secrets"] = secrets
+        __props__["topologies"] = topologies
+        __props__["topologyRequest"] = topology_request
+        __props__["type"] = type
+        __props__["volumeId"] = volume_id
+        return pulumi.runtime.exists_resource(None, 'nomad:index/volume:Volume', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessMode")
     @_utilities.deprecated("""use capability instead""")

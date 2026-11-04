@@ -90,7 +90,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: "")` - A description of the quota specification.
         /// - `Limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-        /// be repeated. See below for the structure of this block.
+        ///   be repeated. See below for the structure of this block.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -156,7 +156,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: "")` - A description of the quota specification.
         /// - `Limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-        /// be repeated. See below for the structure of this block.
+        ///   be repeated. See below for the structure of this block.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -190,7 +190,7 @@ namespace Pulumi.Nomad
         /// <summary>
         /// `(string: "")` - A description of the quota specification.
         /// - `Limits` `(block: &lt;required&gt;)` - A block of quota limits to enforce. Can
-        /// be repeated. See below for the structure of this block.
+        ///   be repeated. See below for the structure of this block.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }

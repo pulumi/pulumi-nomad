@@ -190,6 +190,12 @@ func (NamespaceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*namespaceState)(nil)).Elem()
 }
 
+// NamespaceExists checks whether an existing Namespace resource with the given ID exists.
+func NamespaceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NamespaceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/namespace:Namespace", id, state, "", opts...)
+}
+
 type namespaceArgs struct {
 	// `(block: <optional>)` - A block of capabilities for the namespace. Can't
 	// be repeated. See below for the structure of this block.

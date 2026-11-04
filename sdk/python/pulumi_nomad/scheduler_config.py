@@ -271,6 +271,18 @@ class SchedulerConfig(pulumi.CustomResource):
         __props__.__dict__["scheduler_algorithm"] = scheduler_algorithm
         return SchedulerConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            memory_oversubscription_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            preemption_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.bool]]]] = None,
+            scheduler_algorithm: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["memoryOversubscriptionEnabled"] = memory_oversubscription_enabled
+        __props__["preemptionConfig"] = preemption_config
+        __props__["schedulerAlgorithm"] = scheduler_algorithm
+        return pulumi.runtime.exists_resource(None, 'nomad:index/schedulerConfig:SchedulerConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="memoryOversubscriptionEnabled")
     def memory_oversubscription_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:

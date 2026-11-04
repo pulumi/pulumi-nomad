@@ -16,8 +16,8 @@ namespace Pulumi.Nomad.Outputs
         /// <summary>
         /// `(string: &lt;required&gt;)` - The region these limits should apply to.
         /// - `RegionLimit` `(block: &lt;required&gt;)` - The limits to enforce. This block
-        /// may only be specified once in the `Limits` block. Its structure is
-        /// documented below.
+        ///   may only be specified once in the `Limits` block. Its structure is
+        ///   documented below.
         /// </summary>
         public readonly string Region;
         /// <summary>

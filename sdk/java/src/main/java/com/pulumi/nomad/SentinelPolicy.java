@@ -38,33 +38,33 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var exec_only = new SentinelPolicy("exec-only", SentinelPolicyArgs.builder()
  *             .name("exec-only")
  *             .description("Only allow jobs that are based on an exec driver.")
  *             .policy("""
- * main = rule { all_drivers_exec }
+ * main = rule }{{@code  all_drivers_exec }}{@code
  * 
  * # all_drivers_exec checks that all the drivers in use are exec
- * all_drivers_exec = rule {
- *     all job.task_groups as tg {
- *         all tg.tasks as task {
- *             task.driver is \"exec\"
- *         }
- *     }
- * }
+ * all_drivers_exec = rule }{{@code
+ *     all job.task_groups as tg }{{@code
+ *         all tg.tasks as task }{{@code
+ *             task.driver is }&#92;{@code "exec}&#92;{@code "
+ *         }}{@code
+ *     }}{@code
+ * }}{@code
  *             """)
  *             .scope("submit-job")
  *             .enforcementLevel("soft-mandatory")
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 

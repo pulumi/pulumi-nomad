@@ -170,20 +170,18 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * @deprecated
-     * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      * 
      */
-    @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead. */
+    @Deprecated
     @Import(name="readAllocationIds")
     private @Nullable Output<Boolean> readAllocationIds;
 
     /**
-     * @deprecated
-     * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
+     * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
      * 
      */
-    @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead. */
+    @Deprecated
     public Optional<Output<Boolean>> readAllocationIds() {
         return Optional.ofNullable(this.readAllocationIds);
     }
@@ -447,11 +445,10 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @return builder
          * 
-         * @deprecated
-         * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
+         * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
          * 
          */
-        @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead. */
+        @Deprecated
         public Builder readAllocationIds(@Nullable Output<Boolean> readAllocationIds) {
             $.readAllocationIds = readAllocationIds;
             return this;
@@ -460,11 +457,10 @@ public final class JobArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @return builder
          * 
-         * @deprecated
-         * Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
+         * @deprecated Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead.
          * 
          */
-        @Deprecated /* Retrieving allocation IDs from the job resource is deprecated and will be removed in a future release. Use the nomad.getAllocations data source instead. */
+        @Deprecated
         public Builder readAllocationIds(Boolean readAllocationIds) {
             return readAllocationIds(Output.of(readAllocationIds));
         }
