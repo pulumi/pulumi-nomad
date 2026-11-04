@@ -48,7 +48,7 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string? ExpirationLeeway;
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the 
+        /// `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the
         /// TLS client used to talk with the JWKS server.
         /// </summary>
         public readonly string? JwksCaCert;
@@ -58,7 +58,7 @@ namespace Pulumi.Nomad.Outputs
         /// </summary>
         public readonly string? JwksUrl;
         /// <summary>
-        /// `([]string: &lt;optional&gt;)` - List of PEM-encoded 
+        /// `([]string: &lt;optional&gt;)` - List of PEM-encoded
         /// public keys to use to authenticate signatures locally.
         /// </summary>
         public readonly ImmutableArray<string> JwtValidationPubKeys;

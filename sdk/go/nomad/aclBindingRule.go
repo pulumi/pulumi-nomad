@@ -171,6 +171,12 @@ func (AclBindingRuleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*aclBindingRuleState)(nil)).Elem()
 }
 
+// AclBindingRuleExists checks whether an existing AclBindingRule resource with the given ID exists.
+func AclBindingRuleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AclBindingRuleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/aclBindingRule:AclBindingRule", id, state, "", opts...)
+}
+
 type aclBindingRuleArgs struct {
 	// `(string: <required>)` - Name of the auth method for which this
 	// rule applies to.

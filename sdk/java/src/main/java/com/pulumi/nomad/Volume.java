@@ -121,11 +121,10 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * - `multi-node-single-writer`
      * - `multi-node-multi-writer`
      * 
-     * @deprecated
-     * use capability instead
+     * @deprecated use capability instead
      * 
      */
-    @Deprecated /* use capability instead */
+    @Deprecated
     @Export(name="accessMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> accessMode;
 
@@ -144,11 +143,10 @@ public class Volume extends com.pulumi.resources.CustomResource {
     /**
      * `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
      * 
-     * @deprecated
-     * use capability instead
+     * @deprecated use capability instead
      * 
      */
-    @Deprecated /* use capability instead */
+    @Deprecated
     @Export(name="attachmentMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attachmentMode;
 

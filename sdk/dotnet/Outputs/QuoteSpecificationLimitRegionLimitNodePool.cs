@@ -30,9 +30,9 @@ namespace Pulumi.Nomad.Outputs
         /// limit allocations to. A value of zero is treated as unlimited, and a negative
         /// value is treated as fully disallowed.
         /// - `Devices` `(block: optional)` - A list of device quotas to
-        /// enforce for the node pool. Can be repeated.
+        ///   enforce for the node pool. Can be repeated.
         /// - `Storage` `(block: optional)` - Storage resource quota
-        /// configuration for the node pool. May only be specified once.
+        ///   configuration for the node pool. May only be specified once.
         /// </summary>
         public readonly int? MemoryMaxMb;
         /// <summary>

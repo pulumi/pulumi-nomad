@@ -351,6 +351,12 @@ func (DynamicHostVolumeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*dynamicHostVolumeState)(nil)).Elem()
 }
 
+// DynamicHostVolumeExists checks whether an existing DynamicHostVolume resource with the given ID exists.
+func DynamicHostVolumeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DynamicHostVolumeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/dynamicHostVolume:DynamicHostVolume", id, state, "", opts...)
+}
+
 type dynamicHostVolumeArgs struct {
 	// `(block: <optional>)` - Option for validating the capability of a
 	// volume. Each capability block has the following attributes:

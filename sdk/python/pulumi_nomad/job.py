@@ -1084,6 +1084,80 @@ class Job(pulumi.CustomResource):
         __props__.__dict__["version"] = version
         return Job(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            all_at_once: pulumi.Input[Optional[_builtins.bool]] = None,
+            allocation_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobConstraintArgs', 'JobConstraintArgsDict', 'outputs.JobConstraint']]]]] = None,
+            create_index: pulumi.Input[Optional[_builtins.int]] = None,
+            datacenters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            deployment_id: pulumi.Input[Optional[_builtins.str]] = None,
+            deployment_status: pulumi.Input[Optional[_builtins.str]] = None,
+            deregister_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            deregister_on_id_change: pulumi.Input[Optional[_builtins.bool]] = None,
+            detach: pulumi.Input[Optional[_builtins.bool]] = None,
+            hcl2: pulumi.Input[Optional[Union['JobHcl2Args', 'JobHcl2ArgsDict', 'outputs.JobHcl2']]] = None,
+            jobspec: pulumi.Input[Optional[_builtins.str]] = None,
+            json: pulumi.Input[Optional[_builtins.bool]] = None,
+            modify_index: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            parent_id: pulumi.Input[Optional[_builtins.str]] = None,
+            periodic_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobPeriodicConfigArgs', 'JobPeriodicConfigArgsDict', 'outputs.JobPeriodicConfig']]]]] = None,
+            policy_override: pulumi.Input[Optional[_builtins.bool]] = None,
+            preserve_counts: pulumi.Input[Optional[_builtins.bool]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            purge_on_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            read_allocation_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            rerun_if_dead: pulumi.Input[Optional[_builtins.bool]] = None,
+            stable: pulumi.Input[Optional[_builtins.bool]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            status_description: pulumi.Input[Optional[_builtins.str]] = None,
+            stop: pulumi.Input[Optional[_builtins.bool]] = None,
+            submit_time: pulumi.Input[Optional[_builtins.str]] = None,
+            task_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobTaskGroupArgs', 'JobTaskGroupArgsDict', 'outputs.JobTaskGroup']]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            update_strategies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['JobUpdateStrategyArgs', 'JobUpdateStrategyArgsDict', 'outputs.JobUpdateStrategy']]]]] = None,
+            version: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allAtOnce"] = all_at_once
+        __props__["allocationIds"] = allocation_ids
+        __props__["constraints"] = constraints
+        __props__["createIndex"] = create_index
+        __props__["datacenters"] = datacenters
+        __props__["deploymentId"] = deployment_id
+        __props__["deploymentStatus"] = deployment_status
+        __props__["deregisterOnDestroy"] = deregister_on_destroy
+        __props__["deregisterOnIdChange"] = deregister_on_id_change
+        __props__["detach"] = detach
+        __props__["hcl2"] = hcl2
+        __props__["jobspec"] = jobspec
+        __props__["json"] = json
+        __props__["modifyIndex"] = modify_index
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["parentId"] = parent_id
+        __props__["periodicConfigs"] = periodic_configs
+        __props__["policyOverride"] = policy_override
+        __props__["preserveCounts"] = preserve_counts
+        __props__["priority"] = priority
+        __props__["purgeOnDestroy"] = purge_on_destroy
+        __props__["readAllocationIds"] = read_allocation_ids
+        __props__["region"] = region
+        __props__["rerunIfDead"] = rerun_if_dead
+        __props__["stable"] = stable
+        __props__["status"] = status
+        __props__["statusDescription"] = status_description
+        __props__["stop"] = stop
+        __props__["submitTime"] = submit_time
+        __props__["taskGroups"] = task_groups
+        __props__["type"] = type
+        __props__["updateStrategies"] = update_strategies
+        __props__["version"] = version
+        return pulumi.runtime.exists_resource(None, 'nomad:index/job:Job', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allAtOnce")
     def all_at_once(self) -> pulumi.Output[_builtins.bool]:

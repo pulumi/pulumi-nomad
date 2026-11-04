@@ -316,11 +316,10 @@ public class AclToken extends com.pulumi.resources.CustomResource {
      * access to the cluster. This attribute is deprecated and will be removed in a
      * future release.
      * 
-     * @deprecated
-     * Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
+     * @deprecated Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release.
      * 
      */
-    @Deprecated /* Use the nomad.AclToken ephemeral resource when the token secret is needed during a run without storing it in Terraform state. This attribute will be removed in a future release. */
+    @Deprecated
     @Export(name="secretId", refs={String.class}, tree="[0]")
     private Output<String> secretId;
 

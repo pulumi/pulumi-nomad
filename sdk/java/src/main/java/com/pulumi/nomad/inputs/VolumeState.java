@@ -31,11 +31,10 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
      * - `multi-node-single-writer`
      * - `multi-node-multi-writer`
      * 
-     * @deprecated
-     * use capability instead
+     * @deprecated use capability instead
      * 
      */
-    @Deprecated /* use capability instead */
+    @Deprecated
     @Import(name="accessMode")
     private @Nullable Output<String> accessMode;
 
@@ -47,11 +46,10 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
      * - `multi-node-single-writer`
      * - `multi-node-multi-writer`
      * 
-     * @deprecated
-     * use capability instead
+     * @deprecated use capability instead
      * 
      */
-    @Deprecated /* use capability instead */
+    @Deprecated
     public Optional<Output<String>> accessMode() {
         return Optional.ofNullable(this.accessMode);
     }
@@ -59,22 +57,20 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
     /**
      * `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
      * 
-     * @deprecated
-     * use capability instead
+     * @deprecated use capability instead
      * 
      */
-    @Deprecated /* use capability instead */
+    @Deprecated
     @Import(name="attachmentMode")
     private @Nullable Output<String> attachmentMode;
 
     /**
      * @return `(string: &lt;otional&gt;)` - **Deprecated**. Use `capability` block instead. The storage API that will be used by the volume.
      * 
-     * @deprecated
-     * use capability instead
+     * @deprecated use capability instead
      * 
      */
-    @Deprecated /* use capability instead */
+    @Deprecated
     public Optional<Output<String>> attachmentMode() {
         return Optional.ofNullable(this.attachmentMode);
     }
@@ -394,11 +390,10 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * use capability instead
+         * @deprecated use capability instead
          * 
          */
-        @Deprecated /* use capability instead */
+        @Deprecated
         public Builder accessMode(@Nullable Output<String> accessMode) {
             $.accessMode = accessMode;
             return this;
@@ -414,11 +409,10 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * use capability instead
+         * @deprecated use capability instead
          * 
          */
-        @Deprecated /* use capability instead */
+        @Deprecated
         public Builder accessMode(String accessMode) {
             return accessMode(Output.of(accessMode));
         }
@@ -428,11 +422,10 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * use capability instead
+         * @deprecated use capability instead
          * 
          */
-        @Deprecated /* use capability instead */
+        @Deprecated
         public Builder attachmentMode(@Nullable Output<String> attachmentMode) {
             $.attachmentMode = attachmentMode;
             return this;
@@ -443,11 +436,10 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * use capability instead
+         * @deprecated use capability instead
          * 
          */
-        @Deprecated /* use capability instead */
+        @Deprecated
         public Builder attachmentMode(String attachmentMode) {
             return attachmentMode(Output.of(attachmentMode));
         }

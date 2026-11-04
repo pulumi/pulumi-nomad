@@ -420,6 +420,22 @@ class Variable(pulumi.CustomResource):
         __props__.__dict__["path"] = path
         return Variable(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            items: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            items_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            items_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["items"] = items
+        __props__["itemsWo"] = items_wo
+        __props__["itemsWoVersion"] = items_wo_version
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        return pulumi.runtime.exists_resource(None, 'nomad:index/variable:Variable', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def items(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

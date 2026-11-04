@@ -961,6 +961,44 @@ class DynamicHostVolume(pulumi.CustomResource):
         __props__.__dict__["state"] = state
         return DynamicHostVolume(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            capabilities: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeCapabilityArgs', 'DynamicHostVolumeCapabilityArgsDict', 'outputs.DynamicHostVolumeCapability']]]]] = None,
+            capacity: pulumi.Input[Optional[_builtins.str]] = None,
+            capacity_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+            capacity_max: pulumi.Input[Optional[_builtins.str]] = None,
+            capacity_max_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+            capacity_min: pulumi.Input[Optional[_builtins.str]] = None,
+            capacity_min_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+            constraints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DynamicHostVolumeConstraintArgs', 'DynamicHostVolumeConstraintArgsDict', 'outputs.DynamicHostVolumeConstraint']]]]] = None,
+            host_path: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            node_id: pulumi.Input[Optional[_builtins.str]] = None,
+            node_pool: pulumi.Input[Optional[_builtins.str]] = None,
+            parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            plugin_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["capabilities"] = capabilities
+        __props__["capacity"] = capacity
+        __props__["capacityBytes"] = capacity_bytes
+        __props__["capacityMax"] = capacity_max
+        __props__["capacityMaxBytes"] = capacity_max_bytes
+        __props__["capacityMin"] = capacity_min
+        __props__["capacityMinBytes"] = capacity_min_bytes
+        __props__["constraints"] = constraints
+        __props__["hostPath"] = host_path
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["nodeId"] = node_id
+        __props__["nodePool"] = node_pool
+        __props__["parameters"] = parameters
+        __props__["pluginId"] = plugin_id
+        __props__["state"] = state
+        return pulumi.runtime.exists_resource(None, 'nomad:index/dynamicHostVolume:DynamicHostVolume', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def capabilities(self) -> pulumi.Output[Sequence['outputs.DynamicHostVolumeCapability']]:

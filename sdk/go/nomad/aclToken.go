@@ -306,6 +306,12 @@ func (AclTokenState) ElementType() reflect.Type {
 	return reflect.TypeOf((*aclTokenState)(nil)).Elem()
 }
 
+// AclTokenExists checks whether an existing AclToken resource with the given ID exists.
+func AclTokenExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AclTokenState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/aclToken:AclToken", id, state, "", opts...)
+}
+
 type aclTokenArgs struct {
 	// `(string: "")` - Provides a TTL for the token in the form of
 	// a time duration such as `"5m"` or `"1h"`.

@@ -276,6 +276,12 @@ func (CsiVolumeRegistrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*csiVolumeRegistrationState)(nil)).Elem()
 }
 
+// CsiVolumeRegistrationExists checks whether an existing CsiVolumeRegistration resource with the given ID exists.
+func CsiVolumeRegistrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CsiVolumeRegistrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/csiVolumeRegistration:CsiVolumeRegistration", id, state, "", opts...)
+}
+
 type csiVolumeRegistrationArgs struct {
 	// `(``Capability``: <required>)` - Options for validating the capability of a volume.
 	Capabilities []CsiVolumeRegistrationCapability `pulumi:"capabilities"`

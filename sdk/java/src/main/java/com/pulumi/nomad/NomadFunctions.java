@@ -1580,18 +1580,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter("JobID == \"example\"")
+     *             .filter("JobID == }&#92;{@code "example}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -1620,18 +1620,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter("JobID == \"example\"")
+     *             .filter("JobID == }&#92;{@code "example}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -1660,18 +1660,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter("JobID == \"example\"")
+     *             .filter("JobID == }&#92;{@code "example}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -1700,18 +1700,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter("JobID == \"example\"")
+     *             .filter("JobID == }&#92;{@code "example}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -1740,18 +1740,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter("JobID == \"example\"")
+     *             .filter("JobID == }&#92;{@code "example}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -1780,18 +1780,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter("JobID == \"example\"")
+     *             .filter("JobID == }&#92;{@code "example}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -1820,18 +1820,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var example = NomadFunctions.getAllocations(GetAllocationsArgs.builder()
-     *             .filter("JobID == \"example\"")
+     *             .filter("JobID == }&#92;{@code "example}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -3383,29 +3383,29 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) }{{@code
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace \"%s\" {
-     *   policy = \"write\"
-     * }
+     * namespace }&#92;{@code "%s}&#92;{@code " }{{@code
+     *   policy = }&#92;{@code "write}&#92;{@code "
+     * }}{@code
      * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
-     * }
-     *     }
-     * }
+     * }}{@code
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -3436,29 +3436,29 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) }{{@code
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace \"%s\" {
-     *   policy = \"write\"
-     * }
+     * namespace }&#92;{@code "%s}&#92;{@code " }{{@code
+     *   policy = }&#92;{@code "write}&#92;{@code "
+     * }}{@code
      * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
-     * }
-     *     }
-     * }
+     * }}{@code
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -3489,29 +3489,29 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) }{{@code
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace \"%s\" {
-     *   policy = \"write\"
-     * }
+     * namespace }&#92;{@code "%s}&#92;{@code " }{{@code
+     *   policy = }&#92;{@code "write}&#92;{@code "
+     * }}{@code
      * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
-     * }
-     *     }
-     * }
+     * }}{@code
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -3542,29 +3542,29 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) }{{@code
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace \"%s\" {
-     *   policy = \"write\"
-     * }
+     * namespace }&#92;{@code "%s}&#92;{@code " }{{@code
+     *   policy = }&#92;{@code "write}&#92;{@code "
+     * }}{@code
      * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
-     * }
-     *     }
-     * }
+     * }}{@code
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -3595,29 +3595,29 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) }{{@code
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace \"%s\" {
-     *   policy = \"write\"
-     * }
+     * namespace }&#92;{@code "%s}&#92;{@code " }{{@code
+     *   policy = }&#92;{@code "write}&#92;{@code "
+     * }}{@code
      * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
-     * }
-     *     }
-     * }
+     * }}{@code
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -3648,29 +3648,29 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) }{{@code
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace \"%s\" {
-     *   policy = \"write\"
-     * }
+     * namespace }&#92;{@code "%s}&#92;{@code " }{{@code
+     *   policy = }&#92;{@code "write}&#92;{@code "
+     * }}{@code
      * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
-     * }
-     *     }
-     * }
+     * }}{@code
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -3701,29 +3701,29 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var namespaces = NomadFunctions.getNamespaces(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
      * 
-     *         for (var i = 0; i < namespaces.namespaces().size(); i++) {
+     *         for (var i = 0; i < namespaces.namespaces().size(); i++) }{{@code
      *             new AclPolicy("namespace-" + i, AclPolicyArgs.builder()
      *                 .name(String.format("namespace-%s", namespaces[range.value()]))
      *                 .description(String.format("Write to the namespace %s", namespaces[range.value()]))
      *                 .rulesHcl("""
-     * namespace \"%s\" {
-     *   policy = \"write\"
-     * }
+     * namespace }&#92;{@code "%s}&#92;{@code " }{{@code
+     *   policy = }&#92;{@code "write}&#92;{@code "
+     * }}{@code
      * ", namespaces[range.value()]))
      *                 .build());
      * 
      *         
-     * }
-     *     }
-     * }
+     * }}{@code
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4177,18 +4177,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter("Meta.env == \"prod\"")
+     *             .filter("Meta.env == }&#92;{@code "prod}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4217,18 +4217,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter("Meta.env == \"prod\"")
+     *             .filter("Meta.env == }&#92;{@code "prod}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4257,18 +4257,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter("Meta.env == \"prod\"")
+     *             .filter("Meta.env == }&#92;{@code "prod}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4297,18 +4297,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter("Meta.env == \"prod\"")
+     *             .filter("Meta.env == }&#92;{@code "prod}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4337,18 +4337,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter("Meta.env == \"prod\"")
+     *             .filter("Meta.env == }&#92;{@code "prod}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4377,18 +4377,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter("Meta.env == \"prod\"")
+     *             .filter("Meta.env == }&#92;{@code "prod}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4417,18 +4417,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var prod = NomadFunctions.getNodePools(GetNodePoolsArgs.builder()
-     *             .filter("Meta.env == \"prod\"")
+     *             .filter("Meta.env == }&#92;{@code "prod}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4494,18 +4494,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
-     *             .filter("Status == \"ready\"")
+     *             .filter("Status == }&#92;{@code "ready}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4605,18 +4605,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
-     *             .filter("Status == \"ready\"")
+     *             .filter("Status == }&#92;{@code "ready}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4716,18 +4716,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
-     *             .filter("Status == \"ready\"")
+     *             .filter("Status == }&#92;{@code "ready}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4827,18 +4827,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
-     *             .filter("Status == \"ready\"")
+     *             .filter("Status == }&#92;{@code "ready}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -4938,18 +4938,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
-     *             .filter("Status == \"ready\"")
+     *             .filter("Status == }&#92;{@code "ready}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -5049,18 +5049,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
-     *             .filter("Status == \"ready\"")
+     *             .filter("Status == }&#92;{@code "ready}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 
@@ -5160,18 +5160,18 @@ public final class NomadFunctions {
      * import java.nio.file.Files;
      * import java.nio.file.Paths;
      * 
-     * public class App {
-     *     public static void main(String[] args) {
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
      *         Pulumi.run(App::stack);
-     *     }
+     *     }}{@code
      * 
-     *     public static void stack(Context ctx) {
+     *     public static void stack(Context ctx) }{{@code
      *         final var ready = NomadFunctions.getNodes(GetNodesArgs.builder()
-     *             .filter("Status == \"ready\"")
+     *             .filter("Status == }&#92;{@code "ready}&#92;{@code "")
      *             .build());
      * 
-     *     }
-     * }
+     *     }}{@code
+     * }}{@code
      * }
      * </pre>
      * 

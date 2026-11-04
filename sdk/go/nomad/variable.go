@@ -219,6 +219,12 @@ func (VariableState) ElementType() reflect.Type {
 	return reflect.TypeOf((*variableState)(nil)).Elem()
 }
 
+// VariableExists checks whether an existing Variable resource with the given ID exists.
+func VariableExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VariableState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/variable:Variable", id, state, "", opts...)
+}
+
 type variableArgs struct {
 	// `(map[string]string)` - An arbitrary map of items to create in the variable. Conflicts with `itemsWo` and `itemsWoVersion`.
 	Items map[string]string `pulumi:"items"`

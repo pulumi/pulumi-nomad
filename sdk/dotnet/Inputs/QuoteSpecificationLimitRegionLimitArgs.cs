@@ -40,11 +40,11 @@ namespace Pulumi.Nomad.Inputs
         /// limit allocations to. A value of zero is treated as unlimited, and a negative
         /// value is treated as fully disallowed.
         /// - `Devices` `(block: optional)` - A list of device quotas to enforce. Can be
-        /// repeated. See below for the structure of this block.
+        ///   repeated. See below for the structure of this block.
         /// - `NodePools` `(block: optional)` - Per-node-pool quota limits. Can be
-        /// repeated. See below for the structure of this block.
+        ///   repeated. See below for the structure of this block.
         /// - `Storage` `(block: optional)` - Storage resource quota configuration. May only
-        /// be specified once. See below for the structure of this block.
+        ///   be specified once. See below for the structure of this block.
         /// </summary>
         [Input("memoryMaxMb")]
         public Input<int>? MemoryMaxMb { get; set; }

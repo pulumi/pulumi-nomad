@@ -91,7 +91,7 @@ namespace Pulumi.Nomad.Inputs
         public Input<string>? ExpirationLeeway { get; set; }
 
         /// <summary>
-        /// `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the 
+        /// `(string: &lt;optional&gt;)` - PEM encoded CA cert for use by the
         /// TLS client used to talk with the JWKS server.
         /// </summary>
         [Input("jwksCaCert")]
@@ -108,7 +108,7 @@ namespace Pulumi.Nomad.Inputs
         private InputList<string>? _jwtValidationPubKeys;
 
         /// <summary>
-        /// `([]string: &lt;optional&gt;)` - List of PEM-encoded 
+        /// `([]string: &lt;optional&gt;)` - List of PEM-encoded
         /// public keys to use to authenticate signatures locally.
         /// </summary>
         public InputList<string> JwtValidationPubKeys

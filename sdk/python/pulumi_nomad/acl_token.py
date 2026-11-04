@@ -635,6 +635,32 @@ class AclToken(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return AclToken(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor_id: pulumi.Input[Optional[_builtins.str]] = None,
+            create_time: pulumi.Input[Optional[_builtins.str]] = None,
+            expiration_time: pulumi.Input[Optional[_builtins.str]] = None,
+            expiration_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            global_: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclTokenRoleArgs', 'AclTokenRoleArgsDict', 'outputs.AclTokenRole']]]]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessorId"] = accessor_id
+        __props__["createTime"] = create_time
+        __props__["expirationTime"] = expiration_time
+        __props__["expirationTtl"] = expiration_ttl
+        __props__["global"] = global_
+        __props__["name"] = name
+        __props__["policies"] = policies
+        __props__["roles"] = roles
+        __props__["secretId"] = secret_id
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'nomad:index/aclToken:AclToken', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessorId")
     def accessor_id(self) -> pulumi.Output[_builtins.str]:

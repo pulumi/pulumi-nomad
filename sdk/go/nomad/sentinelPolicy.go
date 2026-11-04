@@ -155,6 +155,12 @@ func (SentinelPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*sentinelPolicyState)(nil)).Elem()
 }
 
+// SentinelPolicyExists checks whether an existing SentinelPolicy resource with the given ID exists.
+func SentinelPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SentinelPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("nomad:index/sentinelPolicy:SentinelPolicy", id, state, "", opts...)
+}
+
 type sentinelPolicyArgs struct {
 	// `(string: "")` - A description of the policy.
 	//
